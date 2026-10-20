@@ -1,0 +1,638 @@
+\section{Taylor-Reihe}\label{MA2-taylorreihen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem eine Taylor-Reihe formal angeben  & \\
+    \tabitem eine Potenz-Reihe als Funktion interpretieren (Einsetzen von $x$ liefert Zahlenreihe) & \\
+    \tabitem entscheiden, ob eine Taylor-Reihe die ihr zugrunde liegende Funktion darstellt & \\
+    \tabitem den Approximationsfehler $R_n(x)=f(x)-p_n(x)$ abschätzen und interpretieren (+) & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem wichtige Zahlenreihen & \abschnittsverweis{MA2-zahlenreihen} \\
+    \tabitem Ableitungen (inkl.\ höherer Ableitungen) bilden & \abschnittsverweis{MA1-ableitungsregeln} \\
+    \tabitem Ungleichungen lösen und Abschätzungen umformen & \abschnittsverweis{MA1-aequivalenzumformungen} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-taylorreihen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+Für eine unendlich oft differenzierbare Funktion, kann man die Näherung durch Polynome immer weiter verbessern\footnote{im Sinne einer lokalen Approximation!} und gelangt damit formal zur Taylor-Reihe [Taylor series]:
+\begin{defbox}{Taylor-Reihe}{}
+	Eine unendlich oft differenzierbare Funktion läßt sich formal an jedem Punkt $x_0 \in D_f$ in eine Taylor-Reihe entwickeln:
+	\[
+	Tf(x,x_0): =  f(x_0) + f'(x_0)(x-x_0) + \cdots + \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n + \cdots = \sum\limits_{k=0}^\infty \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \,.\]
+\end{defbox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Die Struktur einer Taylor-Reihe ist anders als diejenige der unendlichen Reihen, die wir im vorangegangenen Kapitel\randverweis{MA2-zahlenreihen} kennengelernt haben.
+	\item Anstatt Zahlen aufzuaddieren, werden hier Potenzen von $x$, also Funktionen, aufaddiert!
+	\item Fixiert man ein $x\in D_f$, und setzt es in die Reihe ein, dann erhält man eine unendliche Reihe nach dem Schema des letzten Abschnitts. Beispielsweise für $x=3, x_0=0$:
+		\[
+	\sum\limits_{k=0}^\infty \frac{f^{(k)}(0)}{k!}3^k = \sum\limits_{k=0}^\infty a_k, \quad a_k := \frac{f^{(k)}(0)}{k!}3^k \in \mathbb R  \,.
+\]
+\item Eine unendliche Reihe, in der Potenzen von $x$ aufsummiert werden - garniert mit einem Koeffizienten - bezeichnet man Potenzreihen
+	\[
+		\sum\limits_{k=0}^\infty c_k x^k \,.
+	\]
+	Taylor-Reihen sind also spezielle Potenzreihen.
+	\end{itemize}
+
+Zwei Fragen stellen sich:
+\begin{itemize}
+	\item Gibt es $x \in D_f$, für die die Taylor-Reihe \underline{konvergieren}\randverweis{MA2-zahlenreihen}?
+	\item Wenn wir ein $x \in D_f$ identifiziert haben, für das die Taylor-Reihe konvergiert, gilt dann Gleichheit, also: $\forall \, x\in D_f:\quad Tf(x,x_0) = f(x)$?
+\end{itemize}
+Klar ist: falls wir Bedingungen kennen, unter denen sich die Fragen mit ja beantworten lassen, dann bedeutet das einen enormen Gewinn, denn $f$, egal wie kompliziert, wird plötzlich einfach berechenbar. Es lohnt sich also auf diese Fragen einzugehen und das werden wir in den nächsten Abschnitten tun. Für den Moment konzentrieren wir uns noch auf das Erlernen des Handwerkszeugs: wir entwickeln Taylor-Reihen!
+
+\begin{exabox}{Taylor-Reihe für $f: x\mapsto \exp(x)$ }{ }
+	Funktion: \[ f: \mathbb R \to (0,\infty),  x\mapsto e^x \]
+	Entwicklungspunkt:
+	\[ x_0 \in \mathbb R : \; x_0 = 0\,.\]
+	Ableitungen:
+\[
+	\forall\, k\in \mathbb N_0:\quad f^{(k)}(x) = e^x \Rightarrow  	f^{(k)}(0) = 1\,.
+\]
+	Taylor-Reihe mit $x_0=0$:
+	\[
+	Tf(x,0):=1 + x + \cdots + \frac{1}{n!}x^n + \cdots = \sum\limits_{k=0}^\infty \frac{1}{k!}x^k \,.
+\]
+\end{exabox}
+
+\begin{exabox}{Taylor-Reihe für $f: x\mapsto \exp(ix)$ }{ }
+	Funktion: \[ f: \mathbb R \to \mathbb C, x \mapsto e^{ix} \]
+	Entwicklungspunkt:
+	\[ x_0 \in \mathbb R :\; x_0 = 0\,.\]
+	Ableitungen\dots
+\[
+	\forall\, k\in \mathbb N_0:\quad f^{(k)}(i x) = i^k e^{i x} \Rightarrow  	f^{(k)}(0) = i^k\,.
+\]
+	Taylor-Reihe mit $x_0=0$:
+\[ Tf(x,0):=1 + \cdots + \frac{i^n}{n!}x^n + \cdots = \sum\limits_{k=0}^\infty \frac{i^k}{k!}x^k \,.\]
+\end{exabox}
+
+\noindent Bemerkungen:\marginpar{\small Aufgaben}
+\begin{itemize}
+	\item Um eine Näherung beispielsweise an die Zahl $e^{1/2}$ anzugeben, summeriert man die ersten fünf bis zehn Summanden dieser Reihe auf.
+	\item Entsprechend betrachtet man eine Talyor-Reihe für ein komplexes Argument $z=x+iy$ und kann eine Näherung von $e^{3+4i}$ angeben.
+\end{itemize}
+
+Die \underline{Eulersche Identität}\randverweis{MA1-komplexe-zahlen-polarform-und-euler}
+\[
+	re^{i\varphi} = r ( \cos(\varphi) + i\sin(\varphi) )\,.
+\]
+eröffnet einen Weg, um von der komplexen Exponentialfunktion zu den \underline{trigonometrischen Funktionen}\randverweis{MA1-trigonometrische-funktionen} zu gelangen. Die Taylor-Reihen für Sinus und Kosinus sind folgende Potenzreihen:
+\begin{exabox}{Taylor-Reihe für $f_1:x\mapsto \sin(x)$ und $f_2:x\mapsto \cos(x)$}{ }
+	Funktionen:
+	\[\begin{cases}
+			f_1: &\mathbb R \to \mathbb R, x\mapsto \sin(x) \\
+			f_2: &\mathbb R \to \mathbb R, x\mapsto \cos(x) \\
+		\end{cases}
+	\]
+	Ableitungen:
+	\begin{center}
+		\begin{tabular}{c|c c c c c c c c c c }
+			& $f(0)$ & $f{(1)}(0)$ & $f^{(2)}(0)$ & $f^{(3)}(0)$ &$f^{(4)}(0)$ & $f^{(5)}(0)$ & $f^{(6)}(0)$ & $f^{(7)}(0)$ &  \ldots \\
+			\hline
+			$\sin$ & $0$ & $1$ & $0$ &  $-1$ & $0$ & $1$ & $0$ &  $-1$ &\ldots \\
+			$\cos$ & $1$ & $0$ & $-1$&  $0$ & $1$ & $0$ & $-1$&  $0$ &\ldots
+		\end{tabular}
+	\end{center}
+	Taylor-Reihen mit $x_0=0$:
+	\begin{eqnarray*}
+		\begin{cases}
+			Tf_1(x,0)=  x - \displaystyle{\frac{1}{3!}} x^3 + \displaystyle{\frac{1}{5!}} x^5 -+  \cdots = \displaystyle{\sum\limits_{k=0}^\infty} (-1)^{k} \displaystyle{\frac{1}{(2k+1)!}} x^{2k+1} \,,\\[1ex]
+			Tf_2(x,0) =  1 - \displaystyle{\frac12} x^2 + \displaystyle{\frac{1}{4!}} x^4 - \displaystyle{\frac{1}{6!}} x^6 +-  \cdots = \displaystyle{\sum\limits_{k=0}^\infty} (-1)^{k}\displaystyle{\frac{1}{(2k)!}} x^{2k} \,.
+		\end{cases}
+	\end{eqnarray*}
+%Betrachtet man nur die ersten $n$ Summanden, erhält man Taylor-Polynome, die sich mehr und mehr um die $x$-Achse wickeln, um sich dann entsprechen $x^n$ asymptotisch Unendlich annähern:
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Mathematik_2/Bilder/taylor_sinus_maclaurinpolynom_grad_10.png}
+\end{exabox}
+%Demo mit Wolfram Alpha: \begin{verbatim} series sin(x) at x=0 order 20 \end{verbatim} Durch Einsetzen von $x=i \varphi$ in die Potenzreihe für die Exponentialfunktion findet man:
+
+Als nächstes Beispiel entwickeln wir die \underline{gebrochenrationale Funktion}\randverweis{MA1-rationale-funktionen} $f: x\mapsto 1/(1-x)$ an der Stelle $x_0=0$.
+
+Dazu sind die Ableitungen dieser Funktion zu bestimmen und an der Stelle \(x_0=0\) auszuwerten:
+\begin{exabox}{Taylor-Reihe für $f:x\mapsto 1/(1-x)$}{ }
+	Funktion: \[ f: \mathbb R\setminus\{ 1\} \to \mathbb R, x \mapsto \frac{1}{1-x} \]
+	Ableitungen:
+	\begin{center}
+		\begin{tabular}{cccccc}
+			$f(x)$ & $f^{(1)}(x)$ & $f^{(2)}(x)$ & $f^{(3)}(x)$ &  \ldots & $f^{(n)}(x)$\\
+			\hline
+			$(1-x)^{-1}$ & $(1-x)^{-2}$ & $2(1-x)^{-3}$ & $6(1-x)^{-4}$ & \ldots & $n!(1-x)^{-n-1}$
+		\end{tabular}
+	\end{center}
+	Taylor-Reihe mit $x_0=0$:
+	\begin{eqnarray*}
+		Tf(x,0) = \frac{1}{1-x} =  1 +x + 2\frac{1}{2!} x^2 + 3!\frac{1}{3!} x^3 \cdots  + n!\frac{1}{n!} x^n + \cdots = \sum\limits_{k=0}^\infty x^{k} \,. \quad(**)
+	\end{eqnarray*}
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Benutzt man die Tayplor-Reihen zur Darstellung von $\sin$ und $\cos$, so ist  $x$  im Bogenmaß einzusetzen, denn die Ableitungen von Sinus und Cosinus bildet man typischerweise im Bogenmaß!
+	\item Die Taylor-Reihen, die wir für die Exponentialfunktion entwickelt haben, kennen wir schon und wir wissen auch schon, dass die Taylor-Reihe die Exponentialfunktion für jedes $x\in \mathbb K$ mit $\mathbb K = \mathbb R$ oder $\mathbb C$ darstellt! Das Thema Konvergenz scheint hier kein Problem zu sein.
+	\item Bei $(**)$ sieht das anders aus, wie folgendes Experiment zeigt: multiplizieren wir die Partialsumme $1+x+x^2+x^3+\dots + x^n$ mit $(1-x)$, dann erhalten wir \marginpar{\small {Aufgabe}}:
+\begin{eqnarray*}
+\left( 1 + x + x^2 + \cdots + x^n\right) \cdot (\textcolor{blue}{1}\textcolor{brown}{-x}) &=& \textcolor{blue}{ 1+ x + x^2 + \cdots + x^n}\textcolor{brown}{  -  x - x^2 - x^3 - \cdots - x^{n+1}} \\
+&=& \textcolor{blue}{1} \textcolor{brown}{- x^{n+1} }\\[1ex]
+ \stackrel{\displaystyle{x\not=1}}{\Rightarrow}  && 1+x+x^2 + \cdots + x^n = \frac{1-x^{n+1}}{1-x} \,.
+\end{eqnarray*}
+ %eine Teleskopsumme [telescope sum}
+
+Der Term auf der rechten Seite des letzten Gleichheitszeichen entspricht also für $n\to \infty$ der Taylor-Reihe $(**)$.
+\[
+	\lim\limits_{n\to\infty} \left( 1 + x + x^2 + x^3 + \cdots + x^n\right) = \lim\limits_{n\to\infty} \frac{1-x^{n+1}}{1-x} = \textnormal{?}
+\]
+Die Konvergenz der Reihe muss also maßgeblich von dem Wertebereich von $x$ abhängen, denn
+\begin{eqnarray*}
+	\big|x^{n+1}\big|  \to \begin{cases}  \infty, \quad &|x| > 1 \,, \\
+		1, \quad& |x| = 1\,,\\
+		0, \quad &|x| < 1\,.
+	\end{cases}
+\end{eqnarray*}
+Also können wir an der Stelle schließen:
+\[
+	\lim\limits_{n\to\infty} \left( 1 + x + x^2 + x^3 + \cdots + x^n\right) = \frac{1}{1-x} \quad \textnormal{falls}\quad -1 < x < 1\,.
+\]
+\end{itemize}
+
+\subsection*{Abschätzung des Fehlers}
+
+Eine Funktion $f$ soll an der Stelle $x_0$ mit einem Taylor-Polynom $n$-ten Grades genähert werden, also durch den Anfang der Taylor-Reihe:
+\[
+	f(x) \approx p_n(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 + \cdots +  \frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n\,.
+\]
+
+Die Frage ist, wie gut diese Näherung an einer Stelle $x$ ist. Anschaulich scheint es so, dass die Näherung lokal um so besser ist, je näher $x$ an $x_0$ ist und je höher der Grad $n$ ist. Um das zu untersuchen, betrachtet man die Abweichung der Funktion $f$ von der Näherung. Der Fehler bzw. Rest $R_n$ ist:
+
+\[
+	R_n(x) = f(x) -p_n(x) = f(x) -\left(  f(x_0) + f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 + \cdots +  \frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n \right) \,.
+\]
+
+	\begin{theorembox}{Abschätzung des Fehlers}{ }
+	Sei $D_f\subset \mathbb R$ ein Intervall und $f:D_f\to \mathbb R$ eine $(n+1)$-mal stetig differenzierbare Funktion. Es gilt:
+\begin{eqnarray*}
+	| R_n(x)| \leq  \max\limits_{\xi\in [x_0,x]} \big| f^{(n+1)}(\xi)\big|  \frac{1}{(n+1)!} |x-x_0|^{n+1}\,.
+	\end{eqnarray*}
+\end{theorembox}
+
+Wenn man $x$ und $n$ so wählt, dass dieser Ausdruck kleiner als die gewünschte Fehlerschranke $F$ ist, dann ist es der Betrag $|R_n|$ des wahren Fehlers erst recht.
+
+Betrachten wir beispielsweise wieder die Wurzelfunktion $f: x\mapsto \sqrt{x}$.  Wie groß ist der Fehler, wenn wir die $f$ an $x_0=4$ mit einer quadratischen Parabel $p_2$ annähern?
+\begin{exabox}{Fehlerabschätzung für $R_2(x)$ für $x_0=4$ im Intervall \( [1,7]\)}{ }
+	Taylor-Polynom $p_2$ für $x_0=4$:
+\[
+	p_2(x) = 2 + \frac{1}{2\sqrt{4}}(x-4) - \frac{1}{8\sqrt{4}^3}(x-4)^2 \,.
+\]
+Größtmöglicher Fehler im Intervall \( x\in [1,7]\):
+\[
+	\Big| R_2(x)\Big| \leq \underbrace{\max\Big| \frac38 \xi^{-5/2}\Big|}_{\leq 3/8 1^{-5/2}}  \cdot\underbrace{ \frac{(x-4)^3}{6}}_{\leq 3^3/6} \leq \frac{3}{8}\frac{3^3}{6} = \frac{27}{16}\,.
+\]
+\end{exabox}
+
+
+%Für $R_1$, also den Fehler der Tangentengerade \(\textcolor{blue}{p_1(x) = f(x_0) + f'(x_0)(x-x_0)}\), ergibt sich:
+%\[
+%	R_1(x) = f(x) - p_1(x)  = \int\limits_{x_0}^x f''(t)(x-t)\,\mathrm{d}t\,,
+%\]
+%denn mit partieller Integration folgt\randverweis{MA2-integrationsregeln}
+%\begin{eqnarray*}
+%	\int\limits_{x_0}^x f''(t)(x-t)\,\mathrm{d}t &=& \Big[ f'(t)(x-t)\Big]_{t = x_0}^{t=x} - \int\limits_{x_0}^x f'(t) (-1) \,\mathrm{d}t \\
+%	&=& 0 \textcolor{blue}{- f'(x_0)(x-x_0)} + \left( f(x) \textcolor{blue}{-f(x_0)}\right) = f(x) \textcolor{blue}{-p_1(x)} = R_1(x)\,.
+%\end{eqnarray*}
+%
+%Für $R_2$, also der Fehler der Schmiegeparabel \(p_2(x) = f(x_0) + f'(x_0)(x-x_0) + \frac12 f''(x_0)(x-x_0)^2\), ergibt sich:
+%\[
+%	R_2(x) = f(x) - p_2(x)  = \frac12 \int\limits_{x_0}^x f'''(t)(x-t)^2\,\mathrm{d}t\,,
+%\]
+%Das zeigt man, indem man diesen Ausdruck mit Hilfe einer \underline{partiellen Integration}\randverweis{MA2-integrationsregeln} auf $R_1$ zurückführt:
+%\begin{eqnarray*}
+%	\frac12\int\limits_{x_0}^x f'''(t)(x-t)^2\,\mathrm{d}t &=& \Big[ f''(t)(x-t)^2\Big]_{t = x_0}^{t=x} + \int\limits_{x_0}^x f''(t) (x-t) \,\mathrm{d}t \\
+%	&=& 0 -\frac12 f''(x_0)(x-x_0)^2 + R_1(x) = f(x) \underbrace{- p_1(x) -\frac12 f''(x_0)(x-x_0)^2}_{\displaystyle{=- p_2(x)}} = R_2(x)\,.
+%\end{eqnarray*}
+%
+%Nach diesem Muster ergibt sich offensichtlich allgemein für $R_n$, also den Fehler des Taylor-Polynoms $n$-ten Grades:\footnote{Man findet in der Literatur eine äquivalente Darstellung des Restglieds. Sie heißt Restglied nach Lagrange: es existiert ein \(\xi\in (x_0,x)\) mit \( R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\xi)(x-x_0)^{n+1}\,. \) }
+%\begin{theorembox}{Taylor-Restformeln: Integrale Darstellung}{ }
+%	Sei $D_f\subset \mathbb R$ ein Intervall und $f:D_f\to \mathbb R$ eine $(n+1)$-mal stetig differenzierbare Funktion. Schneidet man die Taylor-Reihe nach dem $n$-ten Glied an, so gilt
+%\[
+%	f(x) = p_n(x) + R_n(x),\quad \textnormal{mit}\; R_n(x) = \frac{1}{n!} \int\limits_{x_0}^x f^{(n+1)}(t)(x-t)^{n}\,\mathrm{d}t\,.
+%\]
+%\end{theorembox}
+%
+%Die Formel für $R_n$ erlaubt  zu  sagen,  wie  dicht $x$ an $x_0$ liegen  muss  und wie hoch der Grad $n$ gewählt werden muss, um den Fehler $R_n$ hinreichend klein zu halten. Typischerweise gibt man dazu vor, wie groß der Absolutbetrag des Fehlers maximal sein darf (sagen wir eine Zahl $F$). Also ist die Frage, für welche $x$ und für welche $n$ dies gilt:
+%\[
+%	| R_n(x)| = \Big| f(x) - p_n(x)\Big|  \leq F \,.
+%\]
+%
+%Das Integral auszurechnen, ist mit Bleistift und Papier oft gar nicht möglich. Man gibt sich mit einer konservativen Schätzung zufrieden, d. h. einer Schätzung, die auf der sicheren Seite liegt, den Fehler im Betrag also allenfalls zu groß schätzt und nie zu klein. Das Integral ändert man dazu so, dass es im Betrag allenfalls größer werden kann. Betrachten wir zunächst den Fall $x>x_0$:
+%\begin{eqnarray*}
+%	| R_n(x)| = \Big|\frac{1}{n!} \int\limits_{x_0}^x f^{(n+1)}(t)(x-t)^{n}\,\mathrm{d}t \Big| &\leq& \frac{1}{n!} \int\limits_{x_0}^x \big| f^{(n+1)}(t)(x-t)^{n}\big|\,\mathrm{d}t  = \frac{1}{n!} \int\limits_{x_0}^x \big| f^{(n+1)}(t)\big|(x-t)^{n}\,\mathrm{d}t \\
+%	&\leq&  \frac{\max\limits_{x_0 \leq \xi \leq x} \big| f^{(n+1)}(\xi)\big| }{n!} \int\limits_{x_0}^x (x-t)^{n}\,\mathrm{d}t \\
+%		&\leq&  \max\limits_{x_0 \leq \xi \leq x} \big| f^{(n+1)}(\xi)\big|  \frac{1}{(n+1)!} (x-x_0)^{n+1}\,.
+%	\end{eqnarray*}
+%
+%	\begin{theorembox}{Abschätzung des Fehlers}{ }
+%	Sei $D_f\subset \mathbb R$ ein Intervall und $f:D_f\to \mathbb R$ eine $(n+1)$-mal stetig differenzierbare Funktion. Es gilt:
+%\begin{eqnarray*}
+%	| R_n(x)| \leq  \max\limits_{\xi\in [x_0,x]} \big| f^{(n+1)}(\xi)\big|  \frac{1}{(n+1)!} |x-x_0|^{n+1}\,.
+%	\end{eqnarray*}
+%\end{theorembox}
+%
+%Wenn man $x$ und $n$ so wählt, dass dieser Ausdruck kleiner als die gewünschte Fehlerschranke $F$ ist, dann ist es der Betrag $|R_n|$ des wahren Fehlers erst recht.
+%
+%Betrachten wir beispielsweise wieder die Wurzelfunktion $f: x\mapsto \sqrt{x}$.  Wie groß ist der Fehler, wenn wir die $f$ an $x_0=4$ mit einer quadratischen Parabel $p_2$ annähern?
+%\begin{exabox}{Fehlerabschätzung für $R_2(x)$ für $x_0=4$ im Intervall \( [1,7]\)}{ }
+%	Taylor-Polynom $p_2$ für $x_0=4$:
+%\[
+%	p_2(x) = 2 + \frac{1}{2\sqrt{4}}(x-4) - \frac{1}{8\sqrt{4}^3}(x-4)^2 \,.
+%\]
+%Größtmöglicher Fehler im Intervall \( x\in [1,7]\):
+%\[
+%	\Big| R_2(x)\Big| \leq \underbrace{\max\Big| \frac38 \xi^{-5/2}\Big|}_{\leq 3/8 1^{-5/2}}  \cdot\underbrace{ \frac{(x-4)^3}{6}}_{\leq 3^3/6} \leq \frac{3}{8}\frac{3^3}{6} = \frac{27}{16}\,.
+%\]
+%\end{exabox}
+
+
+%\section{Taylor-Reihe}\label{MA2-taylorreihen}
+%
+%%\subsection{Vokabular}
+%%\begin{itemize}
+%%	\item Polynome, Taylor-Polynome
+%%	\item glatte Funktionen, unendlich oft diffbar.
+%%	\item Entwicklungspunkt
+%%	\item Lineare Näherung
+%%	\item Taylorpoylnom vom Grad $n$
+%%	\item Asymptotisches Verhalten von Polynomen
+%%	\item Taylorpolynom von Polynomen - Fehler
+%%	\item Eulersche Identität folgt aus Taylorreihe
+%%	\item Lagrange Restglied
+%%	\item Integralrestglied
+%%	\item Gebrochenrationale Funktionen, formale Taylorentwickklungen Logarithmus
+%%\end{itemize}
+%
+%\begin{table}[H]
+%  \centering
+%  \begin{tabularx}{\textwidth}{p{0.8\textwidth} p{0.2\textwidth} }
+%    \toprule
+%    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+%    \midrule
+%    \textbf{Sie können nach diesem Abschnitt\ldots} & \\[.5\normalbaselineskip]
+%    \tabitem Taylor-Reihen formal aus den Ableitungen einer Funktion bestimmen & \\
+%    \tabitem die Konvergenz einer Taylor-Reihe untersuchen & \\
+%    \tabitem den Approximationsfehler eines Taylor-Polynoms mit Hilfe des Restglieds abschätzen  (+)& \\[.5\normalbaselineskip]
+%    \midrule
+%    \textbf{Sie sollten bereits\ldots} &  \\[.5\normalbaselineskip]
+%    \tabitem das Konzept der linearen Näherung durch eine Tangente verstehen & \ifintegriereaufgaben \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit} \else \href{MA1-stetigkeit-und-differenzierbarkeit.pdf}{MA1-stetigkeit-und-differenzierbarkeit} \fi \\
+%    \tabitem Ableitungen sicher berechnen können & \ifintegriereaufgaben \abschnittsverweis{MA1-ableitungsregeln} \else \href{MA1-ableitungsregeln.pdf}{MA1-ableitungsregeln} \fi \\
+%    \tabitem Ungleichungen sicher lösen können & \ifintegriereaufgaben \abschnittsverweis{MA1-aequivalenzumformungen} \else \href{MA1-aequivalenzumformungen.pdf}{MA1-aequivalenzumformungen} \fi\\[.5\normalbaselineskip]
+%    \bottomrule
+%  \end{tabularx}
+%\end{table}
+%
+%\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-taylorreihen-aufgaben]{hier}. \fi
+%
+%\vspace{0.3cm}
+%\hrule
+%
+%
+%\subsection{Idee}
+%
+%Gegeben sei eine \underline{differenzierbare}\randverweis{MA1-ableitungsregeln} Funktion $f: D_f \to \mathbb R$. Dann kann man die Gerade suchen, welche $f$ an einer Stelle $x_0\in D_f$ am besten annähert\footnote{im Sinne einer Interpolation bzüglich Funktion und Ableitung!}: das ist die \underline{lineare Näherung}\randverweis{MA1-stetigkeit-und-differenzierbarkeit} oder auch Tangentengerade.
+%\begin{exabox}{Tangentengerade}{ }
+%	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+%		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/taylor_sinus_tangente.png}
+%\end{minipage}
+%	\begin{minipage}{0.6\textwidth}
+%		Für $\sin:x\mapsto \sin(x)$ lautet die Tangente in $x_0=2/5$: \[p_1:x\mapsto \sin(2/5) + \cos(2/5)(x-2/5)\]
+%		Die Tangente erfüllt:
+%	\begin{itemize}
+%		\item $p_1(2/5) = \sin(2/5)$ ,
+%		\item $p_1'(2/5) = \cos(2/5)$.
+%	\end{itemize}
+%\end{minipage}
+%\end{exabox}
+%
+%Für eine beliebige differenzierbare Funktion lautet die Tangentengerade an der Stelle $x_0$ also
+%\[
+%	p_1(x) =  f(x_0) + f'(x_0)(x-x_0)\,,
+%\]
+%und es gilt
+%\begin{itemize}
+%	\item $p_1$ läuft durch den Punkt $(x_0|f(x_0))$, also $p_1(x_0) = f(x_0)$,
+%	\item $p_1$ hat in $x_0$ dieselbe Steigung wie $f$, also $p_1'(x_0) = f'(x_0)$.
+%\end{itemize}
+%
+%Als nächstes kann man die quadratische Parabel suchen, die sich einer zweimal differenzierbaren Funktion $f$ an einer Stelle $x_0$ am besten annähert\footnote{im Sinne einer Interpolation.}: das ist die quadratische Näherung oder auch Schmiegeparabel.
+%\begin{exabox}{Schmiegeparabel}{ }
+%	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+%		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/taylor_sinus_schmiegeparabel.png}
+%\end{minipage}
+%	\begin{minipage}{0.6\textwidth}
+%		Für $\sin:x\mapsto \sin(x)$ lautet die Schmiegeparabel in $x_0=2/5$: \[p_2:x\mapsto \sin(2/5) + \cos(2/5)(x-2/5) - 1/2\sin(2/5)(x-2/5)^2\]
+%		Die Schmiegeparabel erfüllt:
+%	\begin{itemize}
+%		\item $p_2(2/5) = \sin(2/5)$ ,
+%		\item $p_2'(2/5) = \cos(2/5)$.
+%		\item $p_2''(2/5) = -\sin(2/5)$.
+%	\end{itemize}
+%\end{minipage}
+%\end{exabox}
+%
+%Für eine beliebige zweimal differenzierbare Funktion lautet die Schmiegeparabel an der Stelle $x_0$:
+%\begin{eqnarray*}
+%	p_2(x) &=&  f(x_0)+ f'(x_0)(x-x_0) +\frac12 f''(x_0)(x-x_0)^2,
+%\end{eqnarray*}
+%und es gilt
+%\begin{itemize}
+%	\item $p_2$ läuft durch den Punkt $(x_0|f(x_0))$, also $p_2(x_0) = f(x_0)$,
+%	\item $p_2$ hat in $x_0$ dieselbe Steigung wie $f$, also $p_2'(x_0) = f'(x_0)$.
+%	\item $p_2$ hat $x_0$ dieselbe Krümmung wie $f$, also $p_2''(x_0) = f''(x_0)$.
+%\end{itemize}
+%
+%Entsprechend  findet  man  die  Formeln  für  die beste lokale Näherung durch \underline{Polynome}\randverweis{MA1-polynome} dritten \ldots oder zehnten Grades:
+%\begin{eqnarray*}
+%	p_3(x) &=& f(x_0) + f'(x_0)(x-x_0)+ \frac12 f''(x_0)(x-x_0)^2+\frac16 f'''(x_0)(x-x_0)^3\,,\\
+%	\cdots&&\\
+%	p_{10}(x) &=& f(x_0) + f'(x_0)(x-x_0)+ \frac12 f''(x_0)(x-x_0)^2+ \cdots + \frac{1}{10!} f^{(10)}(x_0)(x-x_0)^{10}\,.
+%\end{eqnarray*}
+%
+%\begin{exabox}{Taylor-Polynom vom Grad $10$}{ }
+%	\begin{center}
+%	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/taylor_sinus_polynom_grad_10.png}
+%\end{center}
+%\end{exabox}
+%Vorausgesetzt die Funktion $f$ besitzt mindestens Ableitungen bis zur Ordnung $n$, dann kann man auf diese Weise ein Polynom $p_n$ vom Grad $n$ entwickeln, das sogenannte Taylor-Polynom vom Grad $n$:
+%\begin{defbox}{Taylor-Polynom vom Grad $n$}{ }
+%	Für eine $n$-mal differenzierbare Funktion lautet das Taylor-Polynom vom Grad $n$:
+%
+%	\begin{eqnarray*}
+%		p_n(x) &=& f(x_0) + f'(x_0)(x-x_0) + \frac12 f''(x_0)(x-x_0)^2 + \cdots + \frac{1}{n!} f^{(n)}(x_0)(x-x_0)^n \\
+%		&=& \sum\limits_{k=0}^{n}\frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k\,.
+%\end{eqnarray*}
+%Das Taylorpolynom $p_n$ stimmt an der Stelle $x=x_0$ mit der Funktion $f$ und mit deren Ableitung bis zum Grad $n$ überein:
+%\[ \forall\, k=0,\cdots,n: \quad p_n^{(k)}(x_0)= f^{(k)}(x_0)\,.  \]
+%\end{defbox}
+%
+%\noindent Bemerkungen:\marginpar{\small Aufgaben}
+%\begin{itemize}
+%	\item In der Praxis ist nur das lokale Verhalten einer Funktion oder Kennlinie interessant. Um die Analyse zu erleichtern kann man anstatt der Orginalfunktion ein Taylorpolynom betrachten!
+%	\item Das \underline{asymptotische Verhalten}\wennreferenzvorhanden{MA1-ableitungen-und-funktionsverlauf}{\marginpar{\small \ifintegriereaufgaben \abschnittsverweis{MA1-ableitungen-und-funktionsverlauf} \else \href{MA1-ableitungen-und-funktionsverlauf.pdf}{MA1-ableitungen-und-funktionsverlauf} \fi}} des Taylorpoynoms entspricht dem des Polynoms und kann unter Umständen ganz anders sein als das der betrachteten Funktion!
+%	\item Wechselt man den Entwicklungspunkt $x_0$, muss man das Taylorpolynom neu bestimmen.
+%\end{itemize}
+%
+%Im folgenden Beispiel wird die Wurzelfunktion an der Stelle $x_0 = 4$ mit einem Taylorpolynom vom Grad $3$ angenährt:
+%\begin{exabox}{Taylor-Polynom an $f:x\to\sqrt{x}$ vom Grad $n=3$ an $x_0=4$}{ }
+%Bestimmung der Ableitungen bis zum Grad $3$:
+%\begin{eqnarray*}
+%		f(x) &=& \sqrt{x} = x^{1/2}\,,\\[1ex]
+%		f'(x) &=& \frac12 x^{-1/2} = \frac12 \frac{1}{\sqrt{x}}\,,\\[1ex]
+%		f''(x) &=& -\frac14 x^{-3/2} =- \frac14 \frac{1}{\sqrt{x}^3}\,,\\[1ex]
+%		f'''(x) &=& \frac38 x^{-5/2} =- \frac38 \frac{1}{\sqrt{x}^5}\,.
+%	\end{eqnarray*}
+%
+%Lösung $p_3$ mit $x_0=4$:
+%	\[
+%	p_3:\mathbb R \to \mathbb R, x\mapsto 2 + \frac14(x-4)- \frac{1}{32} \frac{1}{2} (x-4)^2 + \frac{3}{256} \frac{1}{6} (x-4)^3\,.
+%\]
+%\begin{center}
+%\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/taylor_wurzelfunktion_polynom_grad_3.png}
+%\end{center}
+%\end{exabox}
+%%Auf diese Weise ist hier die Wurzelfunktion $f:x\mapsto \sqrt{x}$ mit einer im Vergleich zur Wurzelfunktion harmlosen kubischen Parabel genähert
+%
+%%Die Näherung ist offensichtlich nur in  der  Umgebung  der  Stelle  $x_0=4$  wirklich gut. Je weiter sich von der Entwicklungsstelle $x_0=4$ entfernt, desto größer wird der Fehler $|\sqrt{x} - p(x)|$. Es wird noch Thema in einem der folgenden Abschnitte sein diesen Fehler zu quantifizieren.
+%%Möchte  man  die  Wurzelfunktion anderswo  nähern,  braucht  man  eine andere  Parabel.  Außerdem  sieht  man, dass die Näherung hier wirklich nur unter dem Mikroskop gilt: Wenn man sich nennenswert von dem Entwicklungspunkt  $4$  entfernt,  wird  die  Näherung  extrem  schlecht.  Demo  mit Wolfram Alpha: \begin{verbatim}series sqrt(x) at x=4 order 3 \end{verbatim}
+%
+%\subsection{Taylor-Reihe}
+%
+%Für eine unendlich oft differenzierbare Funktion, kann man die Näherung durch Polynome immer weiter verbessern\footnote{im Sinne einer lokalen Approximation!} und gelangt damit formal zur Taylor-Reihe [Taylor series]:
+%\begin{defbox}{Taylor-Reihe}{}
+%	Eine unendlich oft differenzierbare Funktion läßt sich formal an jedem Punkt $x_0 \in D_f$ in eine Taylor-Reihe entwickeln:
+%	\[
+%	Tf(x,x_0): =  f(x_0) + f'(x_0)(x-x_0) + \cdots + \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n + \cdots = \sum\limits_{k=0}^\infty \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \,.\]
+%\end{defbox}
+%
+%\noindent Bemerkungen:
+%\begin{itemize}
+%	\item Die Struktur einer Taylor-Reihe ist anders als diejenige der unendlichen Reihen, die wir im vorangegangenen Kapitel\wennreferenzvorhanden{MA2-zahlenreihen}{\marginpar{\small \ifintegriereaufgaben \abschnittsverweis{MA2-zahlenreihen} \else \href{MA2-zahlenreihen.pdf}{MA2-zahlenreihen} \fi}} kennengelernt haben.
+%	\item Anstatt Zahlen aufzuaddieren, werden hier Potenzen von $x$, also Funktionen, aufaddiert!
+%	\item Fixiert man ein $x\in D_f$, und setzt es in die Reihe ein, dann erhält man eine unendliche Reihe nach dem Schema des letzten Abschnitts. Beispielsweise für $x=3, x_0=0$:
+%		\[
+%	\sum\limits_{k=0}^\infty \frac{f^{(k)}(0)}{k!}3^k = \sum\limits_{k=0}^\infty a_k, \quad a_k := \frac{f^{(k)}(0)}{k!}3^k \in \mathbb R  \,.
+%\]
+%\item Eine unendliche Reihe, in der Potenzen von $x$ aufsummiert werden - garniert mit einem Koeffizienten - bezeichnet man Potenzreihen
+%	\[
+%		\sum\limits_{k=0}^\infty c_k x^k \,.
+%	\]
+%	Taylor-Reihen sind also spezielle Potenzreihen.
+%	\end{itemize}
+%
+%Zwei Fragen stellen sich:
+%\begin{itemize}
+%	\item Gibt es $x \in D_f$, für die die Taylor-Reihe \underline{konvergieren}\randverweis{MA2-zahlenreihen}?
+%	\item Wenn wir ein $x \in D_f$ identifiziert haben, für das die Taylor-Reihe konvergiert, gilt dann Gleichheit, also: $\forall \, x\in D_f:\quad Tf(x,x_0) = f(x)$?
+%\end{itemize}
+%Klar ist: falls wir Bedingungen kennen, unter denen sich die Fragen mit ja beantworten lassen, dann bedeutet das einen enormen Gewinn, denn $f$, egal wie kompliziert, wird plötzlich einfach berechenbar. Es lohnt sich also auf diese Fragen einzugehen und das werden wir in den nächsten Abschnitten tun. Für den Moment konzentrieren wir uns noch auf das Erlernen des Handwerkszeugs: wir entwickeln Taylor-Reihen!
+%
+%\begin{exabox}{Taylor-Reihe für $f: x\mapsto \exp(x)$ }{ }
+%	Funktion: \[ f: \mathbb R \to (0,\infty),  x\mapsto e^x \]
+%	Entwicklungspunkt:
+%	\[ x_0 \in \mathbb R : \; x_0 = 0\,.\]
+%	Ableitungen:
+%\[
+%	\forall\, k\in \mathbb N_0:\quad f^{(k)}(x) = e^x \Rightarrow  	f^{(k)}(0) = 1\,.
+%\]
+%	Taylor-Reihe mit $x_0=0$:
+%	\[
+%	Tf(x,0):= x + \cdots + \frac{1}{n!}x^n + \cdots = \sum\limits_{k=0}^\infty \frac{1}{k!}x^k \,.
+%\]
+%\end{exabox}
+%
+%\begin{exabox}{Taylor-Reihe für $f: x\mapsto \exp(ix)$ }{ }
+%	Funktion: \[ f: \mathbb R \to \mathbb C, x \mapsto e^{ix} \]
+%	Entwicklungspunkt:
+%	\[ x_0 \in \mathbb R :\; x_0 = 0\,.\]
+%	Ableitungen\dots
+%\[
+%	\forall\, k\in \mathbb N_0:\quad f^{(k)}(i x) = i^k e^{i x} \Rightarrow  	f^{(k)}(0) = i^k\,.
+%\]
+%	Taylor-Reihe mit $x_0=0$:
+%\[ Tf(x,0):=1 + \cdots + \frac{i^n}{n!}x^n + \cdots = \sum\limits_{k=0}^\infty \frac{i^k}{k!}x^k \,.\]
+%\end{exabox}
+%
+%\noindent Bemerkungen:\marginpar{\small Aufgaben}
+%\begin{itemize}
+%	\item Um eine Näherung beispielsweise an die Zahl $e^{1/2}$ anzugeben, summeriert man die ersten fünf bis zehn Summanden dieser Reihe auf.
+%	\item Entsprechend betrachtet man eine Talyor-Reihe für ein komplexes Argument $z=x+iy$ und kann eine Näherung von $e^{3+4i}$ angeben.
+%\end{itemize}
+%
+%Die \underline{Eulersche Identität}\randverweis{MA1-komplexe-zahlen-polarform-und-euler}
+%\[
+%	re^{i\varphi} = r ( \cos(\varphi) + i\sin(\varphi) )\,.
+%\]
+%eröffnet einen Weg, um von der komplexen Exponentialfunktion zu den \underline{trigonometrischen Funktionen}\randverweis{MA1-trigonometrische-funktionen} zu gelangen. Die Taylor-Reihen für Sinus und Kosinus sind folgende Potenzreihen:
+%\begin{exabox}{Taylor-Reihe für $f_1:x\mapsto \sin(x)$ und $f_2:x\mapsto \cos(x)$}{ }
+%	Funktionen:
+%	\[\begin{cases}
+%			f_1: &\mathbb R \to \mathbb R, x\mapsto \sin(x) \\
+%			f_2: &\mathbb R \to \mathbb R, x\mapsto \cos(x) \\
+%		\end{cases}
+%	\]
+%	Ableitungen:
+%	\begin{center}
+%		\begin{tabular}{c|c c c c c c c c c c }
+%			& $f(0)$ & $f{(1)}(0)$ & $f^{(2)}(0)$ & $f^{(3)}(0)$ &$f^{(4)}(0)$ & $f^{(5)}(0)$ & $f^{(6)}(0)$ & $f^{(7)}(0)$ &  \ldots \\
+%			\hline
+%			$\sin$ & $0$ & $1$ & $0$ &  $-1$ & $0$ & $1$ & $0$ &  $-1$ &\ldots \\
+%			$\cos$ & $1$ & $0$ & $-1$&  $0$ & $1$ & $0$ & $-1$&  $0$ &\ldots
+%		\end{tabular}
+%	\end{center}
+%	Taylor-Reihen mit $x_0=0$:
+%	\begin{eqnarray*}
+%		\begin{cases}
+%			Tf_1(x,0)=  x - \displaystyle{\frac{1}{3!}} x^3 + \displaystyle{\frac{1}{5!}} x^5 -+  \cdots = \displaystyle{\sum\limits_{k=0}^\infty} (-1)^{k} \displaystyle{\frac{1}{(2k+1)!}} x^{2k+1} \,,\\[1ex]
+%			Tf_2(x,0) =  1 - \displaystyle{\frac12} x^2 + \displaystyle{\frac{1}{4!}} x^4 - \displaystyle{\frac{1}{6!}} x^6 +-  \cdots = \displaystyle{\sum\limits_{k=0}^\infty} (-1)^{k}\displaystyle{\frac{1}{(2k)!}} x^{2k} \,.
+%		\end{cases}
+%	\end{eqnarray*}
+%%Betrachtet man nur die ersten $n$ Summanden, erhält man Taylor-Polynome, die sich mehr und mehr um die $x$-Achse wickeln, um sich dann entsprechen $x^n$ asymptotisch Unendlich annähern:
+%	\centering
+%	\includegraphics[width=0.6\textwidth]{../Mathematik_2/Bilder/taylor_sinus_maclaurinpolynom_grad_10.png}
+%\end{exabox}
+%%Demo mit Wolfram Alpha: \begin{verbatim} series sin(x) at x=0 order 20 \end{verbatim} Durch Einsetzen von $x=i \varphi$ in die Potenzreihe für die Exponentialfunktion findet man:
+%
+%Als nächstes Beispiel entwickeln wir die \underline{gebrochenrationale Funktion}\randverweis{MA1-rationale-funktionen} $f: x\mapsto 1/(1-x)$ an der Stelle $x_0=0$.
+%
+%Dazu sind die Ableitungen dieser Funktion zu bestimmen und an der Stelle \(x_0=0\) auszuwerten:
+%\begin{exabox}{Taylor-Reihe für $f:x\mapsto 1/(1-x)$}{ }
+%	Funktion: \[ f: \mathbb R\setminus\{ 1\} \to \mathbb R, x \mapsto \frac{1}{1-x} \]
+%	Ableitungen:
+%	\begin{center}
+%		\begin{tabular}{cccccc}
+%			$f(x)$ & $f^{(1)}(x)$ & $f^{(2)}(x)$ & $f^{(3)}(x)$ &  \ldots & $f^{(n)}(x)$\\
+%			\hline
+%			$(1-x)^{-1}$ & $(1-x)^{-2}$ & $2(1-x)^{-3}$ & $6(1-x)^{-4}$ & \ldots & $n!(1-x)^{-n-1}$
+%		\end{tabular}
+%	\end{center}
+%	Taylor-Reihe mit $x_0=0$:
+%	\begin{eqnarray*}
+%		Tf(x,0) = \frac{1}{1-x} =  1 +x + 2\frac{1}{2!} x^2 + 3!\frac{1}{3!} x^3 \cdots  + n!\frac{1}{n!} x^n + \cdots = \sum\limits_{k=0}^\infty x^{k} \,. \quad(**)
+%	\end{eqnarray*}
+%\end{exabox}
+%
+%\noindent Bemerkungen:
+%\begin{itemize}
+%	\item Benutzt man die Tayplor-Reihen zur Darstellung von $\sin$ und $\cos$, so ist  $x$  im Bogenmaß einzusetzen, denn die Ableitungen von Sinus und Cosinus bildet man typischerweise im Bogenmaß!
+%	\item Die Taylor-Reihen, die wir für die Exponentialfunktion entwickelt haben, kennen wir schon und wir wissen auch schon, dass die Taylor-Reihe die Exponentialfunktion für jedes $x\in \mathbb K$ mit $\mathbb K = \mathbb R$ oder $\mathbb C$ darstellt! Das Thema Konvergenz scheint hier kein Problem zu sein.
+%	\item Bei $(**)$ sieht das anders aus, wie folgendes Experiment zeigt: multiplizieren wir die Partialsumme $1+x+x^2+x^3+\dots + x^n$ mit $(1-x)$, dann erhalten wir \marginpar{\small Aufgabe}:
+%\begin{eqnarray*}
+%\left( 1 + x + x^2 + \cdots + x^n\right) \cdot (\textcolor{blue}{1}\textcolor{brown}{-x}) &=& \textcolor{blue}{ 1+ x + x^2 + \cdots + x^n}\textcolor{brown}{  -  x - x^2 - x^3 - \cdots - x^{n+1}} \\
+%&=& \textcolor{blue}{1} \textcolor{brown}{- x^{n+1} }\\[1ex]
+% \stackrel{\displaystyle{x\not=1}}{\Rightarrow}  && 1+x+x^2 + \cdots + x^n = \frac{1-x^{n+1}}{1-x} \,.
+%\end{eqnarray*}
+% %eine Teleskopsumme [telescope sum}
+%
+%Der Term auf der rechten Seite des letzten Gleichheitszeichen entspricht also für $n\to \infty$ der Taylor-Reihe $(**)$.
+%\[
+%	\lim\limits_{n\to\infty} \left( 1 + x + x^2 + x^3 + \cdots + x^n\right) = \lim\limits_{n\to\infty} \frac{1-x^{n+1}}{1-x} = \textnormal{?}
+%\]
+%Die Konvergenz der Reihe muss also maßgeblich von dem Wertebereich von $x$ abhängen, denn
+%\begin{eqnarray*}
+%	\big|x^{n+1}\big|  \to \begin{cases}  \infty, \quad &|x| > 1 \,, \\
+%		1, \quad& |x| = 1\,,\\
+%		0, \quad &|x| < 1\,.
+%	\end{cases}
+%\end{eqnarray*}
+%Also können wir an der Stelle schließen:
+%\[
+%	\lim\limits_{n\to\infty} \left( 1 + x + x^2 + x^3 + \cdots + x^n\right) = \frac{1}{1-x} \quad \textnormal{falls}\quad -1 < x < 1\,.
+%\]
+%\end{itemize}
+%
+%\subsection{Taylor-Restformel}
+%
+%Eine Funktion $f$ soll an der Stelle $x_0$ mit einem Taylor-Polynom $n$-ten Grades genähert werden, also durch den Anfang der Taylor-Reihe:
+%\[
+%	f(x) \approx p_n(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 + \cdots +  \frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n\,.
+%\]
+%
+%Die Frage ist, wie gut diese Näherung an einer Stelle $x$ ist. Anschaulich scheint es so, dass die Näherung lokal um so besser ist, je näher $x$ an $x_0$ ist und je höher der Grad $n$ ist. Um das zu untersuchen, betrachtet man die Abweichung der Funktion $f$ von der Näherung. Der Fehler bzw. Rest $R_n$ ist:
+%
+%\[
+%	R_n(x) = f(x) -p_n(x) = f(x) -\left(  f(x_0) + f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 + \cdots +  \frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n \right) \,.
+%\]
+%
+%Für $R_1$, also den Fehler der Tangentengerade \(\textcolor{blue}{p_1(x) = f(x_0) + f'(x_0)(x-x_0)}\), ergibt sich:
+%\[
+%	R_1(x) = f(x) - p_1(x)  = \int\limits_{x_0}^x f''(t)(x-t)\,\mathrm{d}t\,,
+%\]
+%denn mit partieller Integration folgt\randverweis{MA2-integrationsregeln}
+%\begin{eqnarray*}
+%	\int\limits_{x_0}^x f''(t)(x-t)\,\mathrm{d}t &=& \Big[ f'(t)(x-t)\Big]_{t = x_0}^{t=x} - \int\limits_{x_0}^x f'(t) (-1) \,\mathrm{d}t \\
+%	&=& 0 \textcolor{blue}{- f'(x_0)(x-x_0)} + \left( f(x) \textcolor{blue}{-f(x_0)}\right) = f(x) \textcolor{blue}{-p_1(x)} = R_1(x)\,.
+%\end{eqnarray*}
+%
+%Für $R_2$, also der Fehler der Schmiegeparabel \(p_2(x) = f(x_0) + f'(x_0)(x-x_0) + \frac12 f''(x_0)(x-x_0)^2\), ergibt sich:
+%\[
+%	R_2(x) = f(x) - p_2(x)  = \frac12 \int\limits_{x_0}^x f'''(t)(x-t)^2\,\mathrm{d}t\,,
+%\]
+%Das zeigt man, indem man diesen Ausdruck mit Hilfe einer \underline{partiellen Integration}\randverweis{MA2-integrationsregeln} auf $R_1$ zurückführt:
+%\begin{eqnarray*}
+%	\frac12\int\limits_{x_0}^x f'''(t)(x-t)^2\,\mathrm{d}t &=& \Big[ f''(t)(x-t)^2\Big]_{t = x_0}^{t=x} + \int\limits_{x_0}^x f''(t) (x-t) \,\mathrm{d}t \\
+%	&=& 0 -\frac12 f''(x_0)(x-x_0)^2 + R_1(x) = f(x) \underbrace{- p_1(x) -\frac12 f''(x_0)(x-x_0)^2}_{\displaystyle{=- p_2(x)}} = R_2(x)\,.
+%\end{eqnarray*}
+%
+%Nach diesem Muster ergibt sich offensichtlich allgemein für $R_n$, also den Fehler des Taylor-Polynoms $n$-ten Grades:\footnote{Man findet in der Literatur eine äquivalente Darstellung des Restglieds. Sie heißt Restglied nach Lagrange: es existiert ein \(\xi\in (x_0,x)\) mit \( R_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\xi)(x-x_0)^{n+1}\,. \) }
+%\begin{theorembox}{Taylor-Restformeln: Integrale Darstellung}{ }
+%	Sei $D_f\subset \mathbb R$ ein Intervall und $f:D_f\to \mathbb R$ eine $(n+1)$-mal stetig differenzierbare Funktion. Schneidet man die Taylor-Reihe nach dem $n$-ten Glied an, so gilt
+%\[
+%	f(x) = p_n(x) + R_n(x),\quad \textnormal{mit}\; R_n(x) = \frac{1}{n!} \int\limits_{x_0}^x f^{(n+1)}(t)(x-t)^{n}\,\mathrm{d}t\,.
+%\]
+%\end{theorembox}
+%
+%\subsection{Abschätzung des Fehlers}
+%
+%Die Formel für $R_n$ erlaubt  zu  sagen,  wie  dicht $x$ an $x_0$ liegen  muss  und wie hoch der Grad $n$ gewählt werden muss, um den Fehler $R_n$ hinreichend klein zu halten. Typischerweise gibt man dazu vor, wie groß der Absolutbetrag des Fehlers maximal sein darf (sagen wir eine Zahl $F$). Also ist die Frage, für welche $x$ und für welche $n$ dies gilt:
+%\[
+%	| R_n(x)| = \Big| f(x) - p_n(x)\Big|  \leq F \,.
+%\]
+%
+%Das Integral auszurechnen, ist mit Bleistift und Papier oft gar nicht möglich. Man gibt sich mit einer konservativen Schätzung zufrieden, d. h. einer Schätzung, die auf der sicheren Seite liegt, den Fehler im Betrag also allenfalls zu groß schätzt und nie zu klein. Das Integral ändert man dazu so, dass es im Betrag allenfalls größer werden kann. Betrachten wir zunächst den Fall $x>x_0$:
+%\begin{eqnarray*}
+%	| R_n(x)| = \Big|\frac{1}{n!} \int\limits_{x_0}^x f^{(n+1)}(t)(x-t)^{n}\,\mathrm{d}t \Big| &\leq& \frac{1}{n!} \int\limits_{x_0}^x \big| f^{(n+1)}(t)(x-t)^{n}\big|\,\mathrm{d}t  = \frac{1}{n!} \int\limits_{x_0}^x \big| f^{(n+1)}(t)\big|(x-t)^{n}\,\mathrm{d}t \\
+%	&\leq&  \frac{\max\limits_{x_0 \leq \xi \leq x} \big| f^{(n+1)}(\xi)\big| }{n!} \int\limits_{x_0}^x (x-t)^{n}\,\mathrm{d}t \\
+%		&\leq&  \max\limits_{x_0 \leq \xi \leq x} \big| f^{(n+1)}(\xi)\big|  \frac{1}{(n+1)!} (x-x_0)^{n+1}\,.
+%	\end{eqnarray*}
+%
+%	\begin{theorembox}{Abschätzung des Fehlers}{ }
+%	Sei $D_f\subset \mathbb R$ ein Intervall und $f:D_f\to \mathbb R$ eine $(n+1)$-mal stetig differenzierbare Funktion. Es gilt:
+%\begin{eqnarray*}
+%	| R_n(x)| \leq  \max\limits_{\xi\in [x_0,x]} \big| f^{(n+1)}(\xi)\big|  \frac{1}{(n+1)!} |x-x_0|^{n+1}\,.
+%	\end{eqnarray*}
+%\end{theorembox}
+%
+%Wenn man $x$ und $n$ so wählt, dass dieser Ausdruck kleiner als die gewünschte Fehlerschranke $F$ ist, dann ist es der Betrag $|R_n|$ des wahren Fehlers erst recht.
+%
+%Betrachten wir beispielsweise wieder die Wurzelfunktion $f: x\mapsto \sqrt{x}$.  Wie groß ist der Fehler, wenn wir die $f$ an $x_0=4$ mit einer quadratischen Parabel $p_2$ annähern?
+%\begin{exabox}{Fehlerabschätzung für $R_2(x)$ für $x_0=4$ im Intervall \( [1,7]\)}{ }
+%	Taylor-Polynom $p_2$ für $x_0=4$:
+%\[
+%	p_2(x) = 2 + \frac{1}{2\sqrt{4}}(x-4) - \frac{1}{8\sqrt{4}^3}(x-4)^2 \,.
+%\]
+%Größtmöglicher Fehler im Intervall \( x\in [1,7]\):
+%\[
+%	\Big| R_2(x)\Big| \leq \underbrace{\max\Big| \frac38 \xi^{-5/2}\Big|}_{\leq 3/8 1^{-5/2}}  \cdot\underbrace{ \frac{(x-4)^3}{6}}_{\leq 3^3/6} \leq \frac{3}{8}\frac{3^3}{6} = \frac{27}{16}\,.
+%\]
+%\end{exabox}
+%

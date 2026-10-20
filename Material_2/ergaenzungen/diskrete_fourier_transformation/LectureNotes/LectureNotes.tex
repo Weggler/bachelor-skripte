@@ -1,0 +1,216 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\title{ Lecture Notes: Introduction to the Discrete Fourier Transform}
+
+\begin{document}
+%\maketitle
+\noindent
+{
+
+\section{Discrete Fourier Transform}
+
+\subsection{Fourier Series}\label{SSFourierSeries}
+
+In mathematics, a {\bf Fourier series} is a way to represent a function as the sum of simple waves. More formally, the Fourier series decomposes any periodic signal into the sum of a set of simple oscillating functions, namely sines and cosines (or, equivalently, complex exponentials).
+
+Let $S$ denote a $2\pi$-periodic function with full periodic cycle over the interval $[-\pi,\pi]$ and suppose that $S$ is square integrable. The Fourier series of $S$ in the interval $[-\pi,\pi]$ reads
+
+\begin{equation}\label{FourierSeries}
+S(x) = \sum\limits_{k\in \mathbb Z} c_k \, \underbrace{\left( \cos(kx) + i\,\sin(kx)\right)}_{\text{$=e^{i k x}$}} \quad \textnormal{with} \;\; c_k = \frac{1}{2\pi} \int\limits_{-\pi}^{\pi} S(x) e^{-i k x}\, \mathrm{d}x\,.
+\end{equation}
+
+In case the sum \eqref{FourierSeries} is finite the Fourier series turns into a so-called {\bf Fourier polynom}. The coefficients $c_k$ are complex numbers and we call them the {\bf Fourier coefficients}.
+
+
+As stated above, The Fourier series of a function is a decomposition into oscillating functions, i.e., $\{ e_k:= e^{i\, k\, x} \}_{k\in \mathbb Z} $. The latter are linear independent and, moreover, they build an orthonormal basis of the space of all $2\pi$-periodic (square integrable) functions with respect to the scalar product $\langle f, g \rangle :=  \frac{1}{2\pi}\int\limits_{-\pi}^{\pi} f\, \overline{g}\, \mathrm d x$. This means
+\begin{eqnarray*}
+ \frac{1}{2\pi}\,\int\limits_{-\pi}^{\pi} e_k\, \overline{e_l}\, \mathrm d x &=& \frac{1}{2\pi}\,\int\limits_{-\pi}^{\pi} e^{i k x} e^{- i l x} \mathrm d x = \frac{1}{2\pi}\,\int\limits_{-\pi}^{\pi} e^{i\,( k -l)\,x} \mathrm d x = \delta_{l,k} = \begin{cases} 0, \quad l\neq k\\  1, \quad l= k \end{cases} \,.
+\end{eqnarray*}
+
+Each summand in the Fourier series is a single frequency contribution to the signal $S$. The Fourier coefficients $c_k$ determine amplitude and phase of each frequency-based contribution. The amplitude is the absoute value $|c_k|$ and the phase corresponds to $\mathrm{arg}(c_k)$. Thus, by help of the Fourier series one gains the frequency spectrum of a signal meaning that one can read off \eqref{FourierSeries} which frequencies play a significant and which do play a minor role within the signal.
+
+Note further that, outside the interval $[-\pi,\pi]$, the series is periodic with period $2\pi$. It follows that if $S$ also has that property, the approximation is valid on the entire real line.
+
+\subsection{Mathematical Task} \label{Task}
+
+The Fourier series as sketched in the subsection \ref{SSFourierSeries} by \eqref{FourierSeries} is not feasible to be used in praxis. One reason is that the signal $S$ needs to be known at every point $x\in [-\pi,\pi]$. In general, however, $S$ is not known in closed form. Also the integrals that need to be solved for the Fourier coefficients are most likely not analytically solvable but need to be approximated numerically. Numerical integration, however, is a rather complex issue. Driven by practical use, we look at the following situation.
+
+
+Again, let $S$ denote a $2\pi$-periodic function with full periodic cycle over the interval $[-\pi,\pi]$ and suppose that $S$ is not analytically given {\bf but} only known at $N$ discrete points. Therefore, consider the interval $[-\pi,\pi)$ discretized by the equally-spaced (equidistant) mesh points $x_j$, i.e, the distance between tow consequtive mesh points is $2\pi/N$.   Then, we are given $N$ so-called samples, this is the pair of mesh point and measurement of $S$:
+
+\begin{eqnarray*}
+\left\{ \left(x_j, y_j\right) \right\}_{j=0}^{N-1}, \quad x_j=-\pi+j\frac{2\pi}{N}, \quad y_j = S(x_j) \,.
+\end{eqnarray*}
+
+%\includegaphics{Bilder/SuperpositionDiskret.jpg}
+
+The mathematical task is to find a Fourier polynom $\tilde S$ that interpolates $S$ at the discrete mesh points, i.e.,
+\begin{equation}\label{MathematicalTask}
+\textnormal{Find} \; \tilde S(x) = \sum\limits_{k} \tilde c_k e^{ikx} \quad \textnormal{with}\quad \tilde S(x_l) = y_l \; \textnormal{ for }\; l=0,\dots,N-1\,.
+\end{equation}
+
+Note that in \eqref{MathematicalTask} there are no explicite bounds of the running index $k\in \mathbb Z$ as right now we do not know the spectrum. The mechanism to compute the set of coefficients $\left\{ \tilde c_k\right\}_{k}$ based on the set of given samples $\left\{ \left(x_j, y_j\right) \right\}_{j=0}^{N-1}$ is called {\bf discrete Fourier transform}.
+
+\subsection{Solution}
+
+The key point is to transfer the ideas from \eqref{FourierSeries} to the discrete case. We look at the calculation of the coefficients and than conclude that, dependent on the number of given samples, there is only a finite number of different Fourier coefficients.
+
+Thus, as $S$ is given at the set of discrete samples $\left\{ \left( x_j, y_j\right) \right\}_{j=0}^{N-1}$, a natural idea is to approximate the integrals in
+\begin{eqnarray*}
+c_k = \frac{1}{2\pi} \int\limits_{-\pi}^{\pi} S(x) e^{-i k x}\, \mathrm{d}x
+\end{eqnarray*}
+by a {\bf Riemann sum}:
+
+\begin{eqnarray*}
+\frac{1}{2\pi} \int\limits_{-\pi}^{\pi} S(x) e^{-i\,k\,x}\, \mathrm{d}x \approx  \frac{1}{2\pi} \; \sum\limits_{j=0}^{N-1} S(x_j) e^{-i\, k \,x_j} \, \left( \frac{2\pi}{N}\right)
+&=& \frac{1}{N}  \; \sum\limits_{j=0}^{N-1} y_j e^{-ik ( -\pi + j 2\pi/N)}  \nonumber\\
+&=& \frac{1}{N}  \; \underbrace{ e^{i \,k\pi} }_{\text{$(-1)^k$}} \, \sum\limits_{j=0}^{N-1} y_j e^{-i \,2\pi (k/N) \, j }\nonumber \\
+&=& \frac{1}{N}  \; (-1)^k \, \sum\limits_{j=0}^{N-1} y_j \left( \underbrace{ e^{-i\,2\pi k/N} }_{\text{$=\zeta^{-k}_{N}$}} \right)^j \,.
+\end{eqnarray*} We define the so-called Fourier coefficients for the samples $\left\{ (x_j, y_j) \right\}_{j=0}^{N-1}$:
+\begin{equation}
+\tilde c_k := \frac{(-1)^{k}}{N} \, \sum\limits_{j=0}^{N-1} y_j \left( \zeta_N^{-k}\right)^j \quad\textnormal{for } k\in \mathbb Z\,. \label{FourierCoefficientsForSamples}
+\end{equation}
+
+The set of numbers  $\left\{ \zeta^{k}_N \right\}_{k=0}^{N-1}$ are the {\bf roots of unity}. They are the solutions to the equation $z^N = 1$.
+
+\vspace{0.5cm}
+
+
+\noindent {\bf Observation 1:} For $N$ given samples there are maximal $N$ different Fourier coefficients.
+
+To see this, note that any $\tilde k$ with either $\tilde k \geq N$ or $\tilde k < 0$ can be represented by $\tilde k = k+ mN$ where $k\in \{0,\dots,N-1\}$ and $m\in \mathbb Z$. Thus, for any such $\tilde k$ it follows:
+\begin{eqnarray*}
+\zeta^{-\tilde k}_N =  \zeta^{-k - mN}_N = \zeta^{-k}_N \zeta^{-mN}_N = \zeta^{-k}_N \,.
+\end{eqnarray*}
+Thus, in \eqref{FourierCoefficientsForSamples} there is only the alternating sign left that depends on $\tilde k$ such that it follows $\tilde c_{\tilde k} = (-1)^{mN}\, \tilde c_k$. In other words, there are at most $N$ different Fourier coefficients $ \tilde c_k, \; k=0, \dots, N-1$ for $N$ given samples.
+
+
+\vspace{0.5cm}
+
+
+%{\tiny
+%\noindent {\bf Observation 2:} The vectors
+%\begin{eqnarray*}
+%\boldsymbol {\zeta}_l  = \left( \left(\zeta^l_N\right)^0, \left(\zeta^l_N\right)^1, \dots,  \left(\zeta^l_N\right)^{N-1}\right)^\top, \quad l=0,\dots,N-1,
+%\end{eqnarray*} form an orthogonal basis over the set of $N$-dimensional complex vectors as it holds
+%\begin{eqnarray*}
+%\boldsymbol \zeta_l^\top \boldsymbol \zeta_{j}^* &=& \sum\limits_{k=0}^{N-1}\left( \zeta^l_N\right)^k \left( \zeta^{-j}_N\right)^k = \sum\limits_{k=0}^{N-1}\left( \zeta^{l-j}_N\right)^k =  N \delta_{j,l} = \begin{cases} 0, \quad j\neq l \\ N, \quad j=l\,.\end{cases}  \quad (*)
+%\end{eqnarray*}
+%The step $(*)$ follows from the fact that we are summing up roots of identity in the following way $\sum\limits_{k=0}^{N-1} z^k $. In case $z\neq 1$ it holds for this kind of sum for any complex number
+%\begin{equation*}
+%\sum\limits_{k=0}^{N-1} z^k  = \frac{1-z^N}{ 1 - z}\,.
+%\end{equation*}
+%}
+
+By observation 1 we know that there are only different $N$ Fourier coefficients. A natural choice is to define start with the smallest frequencies, namely, the co-current component for $k=0$, then the fundamental component for $k=-1, 1$, then the first harmonic $k=-2,2$ and so on. There is a slight difference whether $N$ is even or not. For uneven $N$ we define
+\begin{equation} \label{FourierPolynom}
+\tilde S(x) = \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, e^{i\,k\,x_l}\,.
+\end{equation}
+
+For even $N$ note that by observation 1 we know that for  $k=-\frac{N}{2}$ we obtain the same coefficient as for $k={\frac{N}{2}}$. Let us denote it by $C_{\frac{N}{2}}$. In order to take both instead of one and, thus, end up with a symmetrisation around the co-current component, one defines $\tilde c_{-\frac{N}{2}} = \tilde c_{\frac{N}{2}} := \frac12 C_{\frac{N}{2}}$. With this modification for the two higest frequencies we obtain for uneven $N$:
+\begin{equation*}
+\tilde S(x) = \sum\limits_{k=-\frac{N}{2}}^{\frac{N}{2}} \tilde c_k \, e^{i\,k\,x_l} \,.
+\end{equation*}
+
+Without loss of generality, we concentrate in the follwing on the case of uneven sample points.
+
+\vspace{0.5cm}
+
+
+\noindent {\bf Observation 2:} For $N$ given samples $\{ (x_j, y_j)\}_{j=0}^{N-1}$, the Fourier polynom interpolates the original signal at least at the measured points, namely it holds
+\begin{equation}\label{InterpolationProperty}
+\tilde S(x_l) = y_l\quad \textnormal{for } l=0, \dots, N-1\,.
+\end{equation}
+
+Let us have a closer look at the Fourier polynom \eqref{FourierPolynom} for uneven number of samples $N$ and check this claim. Note that
+\begin{eqnarray}
+\tilde S(x_l) &=& \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, e^{i k x_l} = \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, e^{i \, k\, (-\pi + (2\pi/N) \,l)} = \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, \underbrace{e^{-i k \pi}}_{\text{$=(-1)^k$}} \, \underbrace{e^{i\, 2\pi (k/N) \,l}}_{\text{$= \left(\zeta^l_N\right)^k$}} \nonumber \\
+&=& \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \left( \frac1N (-1)^k \sum\limits_{j=0}^{N-1} y_j \left(\zeta^{-k}_N\right)^j\right) \, (-1)^k\left( \zeta^l_N\right)^k \nonumber \\
+&=& \frac1N \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} (-1)^{2k} \sum\limits_{j=0}^{N-1}y_j \left( \zeta^{-j}_N\right)^k \left( \zeta^l_N\right)^k \nonumber \\
+&=& \frac1N \sum\limits_{j=0}^{N-1} y_j  \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}}\left( \zeta^{l-j}_N\right)^k\,. \label{SecondSum}
+\end{eqnarray}
+Note that the follwoing identity
+\begin{equation*}
+\sum\limits_{k=-n}^{n} z^k = \frac{1}{z^{n}} \frac{1-z^{2n+1}}{1-z} \quad \textnormal{for } z\neq1
+\end{equation*}
+helps to get rid of the second sum in \eqref{SecondSum}. Together with the fact that the summands are roots of identity, i.e., $\left( \zeta^{l-j}_N \right)^N = 1$, we finally obtain
+\begin{equation*}
+\tilde S(x_l) = \frac1N \sum\limits_{j=0}^{N-1} y_j N \delta_{j,l} = \begin{cases} 0, \quad j\neq l \\ y_l, \quad j=l\,.\end{cases}
+\end{equation*}
+Thus, we have found a solution to the mathematical task posed in subsection \ref{Task}.
+
+
+\vspace{0.5cm}
+
+\noindent {\bf Observation 3:} For $N$ given samples there are maximal $N/2$ different frequencies recovered in frequency space.
+
+Let us consider again an uneven number $N$ of samples and recall that $\cos(x)=\cos(-x)$ whereas $\sin(x) = -\sin(-x)$.
+\begin{eqnarray*}
+\tilde S(x) &=& \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, e^{i\,k\,x} = \sum\limits_{k=-\frac{N-1}{2}}^{\frac{N-1}{2}} \tilde c_k \, \left( \cos(kx) + i\, \sin(kx)\right)\\
+&=& c_0 +  \sum\limits_{k=1}^{\frac{N-1}{2}} \left(\tilde c_{k} + \tilde c_{-k}\right) \,\cos(kx) + i\,\left(\tilde c_{k} - \tilde c_{-k}\right) \sin(kx)\,.
+\end{eqnarray*}
+
+Note that for even $N$ the same formula holds true and we get for the highest frequency $k=N/2$ only a cosine.
+
+\vspace{0.5cm}
+
+\noindent {\bf Observation 4:} For real-valued samples, the Fourier polynom is real-valued.
+
+Recall that for a complex number $z\in \mathbb C$ it holds $z+\overline z = 2\,\mathrm{Re}(z)$ and $z-\overline z = i\,2\,\mathrm{Im}(z)$. For real-valued samples, $y_k\in \mathbb R, \; k=0,\dots,N$, it holds $\tilde c_{-k} = \overline {\tilde c_k}$ and, therefore,
+\begin{eqnarray*}
+\tilde S(x) = c_0 +  \sum\limits_{k=1}^{\frac{N-1}{2}} 2\mathrm{Re}(\tilde c_{k}) \,\cos(kx) - 2\mathrm{Im}(\tilde c_{k}) \sin(kx)\,.
+\end{eqnarray*}
+
+We considered here explicitly the case of uneven $N$, for even $N$ there is again the additional cosine wave with $k= \frac N2$.
+
+
+\subsection{Linear Transformation}
+
+
+Based on an example for $N=5$ we will conclude that the discrete Fourier transform is a linear transformation, i.e., a matrix multiplication. Thus, let us consider the Fourier polynom
+\begin{equation*}
+\tilde S(x) = \sum\limits_{k=-2}^{2} \tilde c_k e^{i\,k\,x}, \quad \textnormal{with } \tilde c_k = \frac{(-1)^k}{5} \, \sum\limits_{j=0}^4 y_j \left( \zeta^{-k}_5\right)^j\,.
+\end{equation*}
+and explicity compute the coefficients, i.e.,
+\begin{eqnarray*}
+c_{-2} &=& \frac15 \left( y_0 (\zeta^2_5)^0 + y_1 (\zeta^2_5)^1 + y_2 (\zeta^2_5)^2 + y_3 (\zeta^2_5)^3 + y_4 (\zeta^2_5)^4\right) \\
+&& =  \frac15 \left( \zeta^0_5 y_0  + \zeta^2_5 y_1 + \zeta^4_5 y_2 + \zeta^6_5y_3 + \zeta^8_5y_4 \right) \\
+c_{-1} &=& -\frac15 \left( y_0 (\zeta^1_5)^0 + y_1 (\zeta^1_5)^1 + y_2 (\zeta^1_5)^2 + y_3 (\zeta^1_5)^3 + y_4 (\zeta^1_5)^4\right) \\
+&& =  -\frac15 \left( \zeta^0_5 y_0  + \zeta^1_5 y_1 + \zeta^2_5 y_2 + \zeta^3_5y_3 + \zeta^4_5y_4 \right) \\
+c_{0} &=& \frac15 \left( y_0 (\zeta^0_5)^0 + y_1 (\zeta^0_5)^1 + y_2 (\zeta^0_5)^2 + y_3 (\zeta^0_5)^3 + y_4 (\zeta^0_5)^4\right) \\
+&&=  \frac15 \left( \zeta^0_5 y_0  + \zeta^0_5 y_1 + \zeta^0_5 y_2 + \zeta^0_5y_3 + \zeta^0_5y_4 \right) \\
+c_{1} &=& -\frac15 \left( y_0 (\zeta^{-1}_5)^0 + y_1 (\zeta^{-1}_5)^1 + y_2 (\zeta^{-1}_5)^2 + y_3 (\zeta^{-1}_5)^3 + y_4 (\zeta^{-1}_5)^4\right)  \\
+&&=  -\frac15 \left( \zeta^0_5 y_0  + \zeta^{-1}_5 y_1 + \zeta^{-2}_5 y_2 + \zeta^{-3}_5y_3 + \zeta^{-4}_5y_4 \right) \\
+c_{2} &=& \frac15 \left( y_0 (\zeta^{-2}_5)^0 + y_1 (\zeta^{-2}_5)^1 + y_2 (\zeta^{-2}_5)^2 + y_3 (\zeta^{-2}_5)^3 + y_4 (\zeta^{-2}_5)^4\right) \\
+&&=  \frac15 \left( \zeta^0_5 y_0  + \zeta^{-2}_5 y_1 + \zeta^{-4}_5 y_2 + \zeta^{-6}_5y_3 + \zeta^{-8}_5y_4 \right)\,.
+\end{eqnarray*}
+We can rewrite these equations as a matrix vector multiplication, namely,
+
+\begin{equation*}
+\left( \begin{array}{c}c_{-2}\\-c_{-1}\\c_0\\-c_1\\c_2\end{array} \right) = \left( \begin{array}{ccccc}
+\zeta^0_5 & \zeta^2_5 & \zeta^4_5 & \zeta^6_5 &\zeta^8_5\\
+\zeta^0_5 & \zeta^1_5 & \zeta^2_5 & \zeta^3_5 &\zeta^4_5\\
+\zeta^0_5 & \zeta^0_5 & \zeta^0_5 & \zeta^0_5 &\zeta^0_5\\
+\zeta^0_5 & \zeta^{-1}_5 & \zeta^{-2}_5 & \zeta^{-3}_5 &\zeta^{-4}_5\\
+\zeta^0_5 & \zeta^{-2}_5 & \zeta^{-4}_5 & \zeta^{-6}_5 &\zeta^{-8}_5
+\end{array}\right)
+\left( \begin{array}{c}y_0 \\ y_1\\ y_2\\ y_3\\ y_4\end{array} \right)\,.
+\end{equation*}
+
+\subsection{Ongoing topics}
+\begin{itemize}
+\item Nyquist-Shannon sampling theorem
+\item Inverse discrete Fourier transformation (iDFT)
+\item Fast (inverse) Fourier transformation (FFT)
+\item Applications
+\end{itemize}
+
+}
+
+\end{document}

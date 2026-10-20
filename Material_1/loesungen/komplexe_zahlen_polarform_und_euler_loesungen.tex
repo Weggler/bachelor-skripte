@@ -1,0 +1,184 @@
+\section*{Komplexe Zahlen II Lösungen}\label{MA1-komplexe-zahlen-polarform-und-euler-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-komplexe-zahlen-polarform-und-euler}{ (Abschnitt \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Radizieren]
+	Bestimmen Sie alle Lösungen der folgenden Gleichungen
+	\begin{eqnarray*}
+		(a)\; z^3 = -8 \quad \quad \quad 
+		(b)\; z^2 = i \quad \quad \quad  
+		(c)\; z^4 = -16 
+  \end{eqnarray*}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] 
+		\begin{eqnarray*} 
+			-8 = 8 \cdot e^{i\pi}\; \Rightarrow z_k &=& \sqrt[3]{8} \cdot e^{i(\pi+2\pi \,k)/3}, \quad k=0,1,2\\[1ex]
+			z_0 &=& 2\cdot e^{i\pi/3} = 1+ \sqrt{3}i\,,\\ 
+			z_1 &=& 2\cdot e^{i\pi} = -2\,, \\ 
+		z_2 &=& 2\cdot e^{5/3\pi \, i} = 1-\sqrt{3}i\,.
+		\end{eqnarray*}
+		
+	\item[(b)]
+  \begin{eqnarray*}
+	  i = e^{i\pi/2} \; \Rightarrow z_k &=& e^{i(\pi/2+2\pi \,k)/2}, \quad k=0,1\\[1ex]
+    z_0 &=&  e^{i \, \pi/4} = \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\,,\\
+    z_1 &=&  e^{i \,5 \pi/4} =  -\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\,.
+  \end{eqnarray*}
+	\item[(c)] 
+  \begin{eqnarray*}
+	  -16 = 16 \cdot e^{i\pi} \; \Rightarrow z_k &=&  \sqrt[4]{16} \,e^{i(\pi+2\pi\,k)/4}, \quad k=0,1,2,3 \\[1ex]
+	  z_0 &=&  2 e^{\pi/4 \,i} = 2e^{\pi/4 \,i}=\sqrt{2}+i\sqrt{2}\,,\\
+  z_1 &=&  2 e^{3/4\pi \, i}=-\sqrt{2}+i\sqrt{2}\,,\\
+  z_2 &=&  2 e^{5/4\pi\,i}=-\sqrt{2}-i\sqrt{2}\,,\\
+  z_3 &=&  2 e^{7/4\pi\,i}=\sqrt{2}-i\sqrt{2}
+  \end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Eulersche Identität]
+Zeigen Sie, dass die folgenden Darstellungen für $\sin$ und $\cos$ gelten
+			\begin{eqnarray*} 
+				(a)\; \sin(\varphi) = \frac{e^{i\varphi} - e^{-i\varphi}}{2i} \quad\quad\quad (b)\;\cos(\varphi) = \frac{e^{i\varphi} + e^{-i\varphi}}{2} 
+			\end{eqnarray*}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{eqnarray*}
+	e^{ix} &=& \cos(x) + i \sin(x) \\
+	e^{-ix} &=& \cos(-x) + i \sin(-x) = \cos(x) - i \sin(x) \\
+	\Rightarrow e^{ix} + e^{-ix} &=& \cos(x) + i \sin(-x) + \cos(x) - i \sin(-x)  = 2 \cos(x) \Rightarrow \frac12  \left( e^{ix} + e^{-ix}  \right) = \cos(x) \\
+	\Rightarrow e^{ix} - e^{-ix} &=& \cos(x) + i \sin(-x) - \cos(x) + i \sin(-x)  = 2 i  \sin(x) \Rightarrow \frac{1}{2i}  \left( e^{ix} - e^{-ix}  \right) = \sin(x)
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Fundamentalsatz]
+	Betrachten Sie für $n\in \mathbb N$ ein Polynom \[ p:\mathbb C\to \mathbb C, \; z\mapsto p(z)=a_nz^n+a_{n-1}z^{n-1} +\cdots a_1z+a_0\] mit reellen Koeffizenten $a_0, \cdots, a_n\in \mathbb R$ und $a_n\not=0$. 
+	\begin{itemize}
+		\item[(a)] Zeigen Sie: wenn $z_0 \in \mathbb C$ eine Nullstelle von $p$ ist, dann ist auch $\overline{z_0}$ eine Nullstelle von $p$.
+		\item[(b)] Wenden Sie obigen Satz an, um alle Nullstellen des Polynoma \[ p:\mathbb C\to \mathbb C, \; z\mapsto p(z) = z^4-2z^3+2z^2-10z+25 \] zu bestimmen. Zeigen Sie zu erst, dass $z_1= 2+j$ eine Nullstelle ist.
+	\end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] Sei $z_0$ eine Nullstelle. Zu zeigen ist $p(z_0)=0 \; \Rightarrow \, p(\overline{z_0}) = 0$:
+		  \begin{eqnarray*} p(\overline{z_0}) &=& a_n\left( \overline{z_0}\right)^n +  a_{n-1}\left( \overline{z_0}\right)^{n-1} + \cdots + a_1\overline{z_0} + a_0 \\ 
+		                                      &=& a_n\left( \overline{z_0}^n\right) +  a_{n-1}\left( \overline{z_0}^{n-1}\right) + \cdots + a_1\overline{z_0} + a_0 \\ 
+						      &=& \overline{\left(a_n z_0^n\right)} +  \overline{\left(a_{n-1} z_0^{n-1}\right)} + \cdots + \overline{a_1z_0} + \overline{a_0} \quad\quad (*)\\
+						      &=& \overline{ \underbrace{\left(a_n z_0^n\right) +  \left(a_{n-1} z_0^{n-1}\right) + \cdots + a_1z_0 + a_0}_{\displaystyle{ = p(z_0)=0}}}\\
+							      &=& \overline{0} = 0\,.
+					      \end{eqnarray*}
+					      Die Umformung $(*)$ ist gültig, weil alle Koeffizienten reell sind, also $\overline{a_i} = a_i$ für alle $i=0,\cdots, n$. 
+				      \item[(b)] Wegen Aufgabenteil (a) wissen wir, dass $z_1$ und $z_2=\overline{z_1}$ Nullstellen sind und das gegebene Polynom ohne Rest durch die entsprechenden Linearfaktoren teilbar ist. Man kann nacheinander mit je einem Linearfaktoren dividieren oder gleich das quadratische Polynom betrachten: 
+					      \[ (z-z_1) \cdot (z-\overline{z_1}) = (z-(2+i))\cdot (z-(2-i)) = z^2-4z+5\]
+					      Die Polynomdivision mit dem quadratische Polynom führt auf 
+					      \[ (z^4-2z^3+2z^2-10z+25):(z^2-4z+5) = z^2+2z+5 \]
+					      Wir erhalten zwei weitere Nullstellen durch die allgemeine Lösungsformel zu $z_3=-1+2i$ und $z_4=-1-2i$. Die Linearfaktorzerlegung von $p$ lautet \[ p(z) = (z-(2+i))\cdot (z-(2-i)) \cdot (z-(-1+2i))\cdot (z-(-1-2i))\,.\]
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Fundamentalsatz]
+	\begin{itemize}
+		\item[(a)]
+	Lösen Sie die Gleichung: $4z^2 + (8+12i)z - 5+11i = 0$.
+\item[(b)] Bestimmen Sie alle Nullstellen des komplexen Polynoms $p:z\mapsto z^2+\left(2\sqrt{2}i\right) \cdot z - 2\sqrt{3} i$.
+	\end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] Diese Aufgabe löst man mit Hilfe einer quadratischen Ergänzung:
+	\begin{eqnarray*}
+		p(z) &=& \underbrace{4}_{a_2}z^2 + \underbrace{(8+12i)}_{a_1}z \underbrace{- 5+11i}_{a_0} \\
+		&=& (2z)^2 + 2\cdot 2z \cdot (2+3i) + (2+3i)^2 -(2+3i)^2-5+11i \\
+		&=& (2z+2+3i)^2-i \\
+		&&\\
+		\Rightarrow && (2z+2 + 3i)^2 = i = e^{i\pi/2} \\
+		\Rightarrow && (2z+2+3i)^2 = \begin{cases} e^{i\pi/4} \\ 2z_1+2+3i =  e^{i5/4 \pi} = e^{-i3/4 \pi} \end{cases} \\
+		\Rightarrow && z = \begin{cases} \frac12( \frac{1}{\sqrt{2}} - 2 + i(\frac{1}{\sqrt{2}} -3)) \\ 
+		                                 \frac12(- \frac{1}{\sqrt{2}} - 2 - i(\frac{1}{\sqrt{2}} +3))  \end{cases}
+			\end{eqnarray*}
+		\item[(b)] Mit der allgemeinen Lösungsformel erhalten wir 
+			\[ 
+				z = \dfrac{-2\sqrt{2}i + \omega}{2}\,,
+			\]
+			wobei \(\omega\) die Lösungen der folgenden Gleichung sind 
+			\begin{eqnarray*}
+				\omega^2 &=&= (2\sqrt{2}i)^2 - 4\cdot (-2\sqrt{3}i) \\  &=&  -8 + 8\sqrt{3}i = 16\cdot e^{i2/3\pi} \; \widehat = \;  \left( 16, \frac23 \pi\right) \,.
+			\end{eqnarray*}
+			Die komplexen Wurzeln lauten:
+			\[\omega_0 = 8\cdot e^{i\pi/3} = 4+4\sqrt{3}i \quad \lor \quad \omega_1 = 8\cdot e^{i8/3\pi} = 8\cdot e^{-i2/3\pi} = -4-4\sqrt{3}i\] Setzen wir die Lösungen \(\omega_{0,1}\) ein, so erhalten wir  
+			
+			\[ z_1= \left(-\sqrt{3}-\sqrt{2}\right)i-1 \quad \lor \quad z_2= (\sqrt{3}-\sqrt{2})i+1 \,.\]
+  \end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Anwendungen: Additionstheoreme]
+Zeigen Sie, dass für alle $x\in \mathbb R$ gilt
+	\begin{eqnarray*}
+	(a)\; \sin(x \pm y) = \sin(x)\cdot \cos(y) \pm \cos(x)\cdot\sin(y),\quad \quad (b)\; \cos(3x) = 4 (\cos(x))^3 - 3\cos(x) 
+\end{eqnarray*}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Verwenden wir im Folgenden die Abkürzungen $c_x:= \cos(x)$ und $s_x:=\sin(x)$. 
+\begin{itemize}
+	\item[(a)] 
+\begin{eqnarray*}
+	z:=e^{i(x \pm y)} &=& e^{ix} \cdot e^{\pm iy} = = \left( c_x+is_x\right)\cdot \left(c_y\pm is_y\right) \\ 
+	&=& c_xc_y \pm ic_xs_y +is_xc_y \mp s_xs_y = c_xc_y + \mp s_xs_y +i( s_x c_y \pm c_xs_y) \\
+	&&\Rightarrow \begin{cases} \cos(x\pm y) = \mathrm{Re}(z) = \cos(x)\cos(y) \mp  \sin(x)\sin(y) \\  \sin(x\pm y) = \mathrm{Im}(z)= \sin(x)\cos(y) \pm \cos(x)\sin(y)   
+	\end{cases}
+	\end{eqnarray*}
+	\item[(b)] 
+	\begin{eqnarray*}
+		z:= e^{i(3x)} &=& \left( e^{ix} \right)^3= = \left( c_x+is_x\right)^3 \\ 
+		&=& c_x^3 + 3i c_x^2 s_x + i^2 3c_x s_x^2 + i^3 s_x^3  \\
+		&=& c_x^3 - 3c_x s_x^2 + i( 3 c_x^2 s_x - s_x^3) \\
+		&=& c_x^3 - 3c_x (1-c_x^2) + i( 3 (1-s_x^2) s_x - s_x^3) \\
+		&&\Rightarrow \begin{cases} \cos(3x) = \mathrm{Re}(z) = 4\cos^3(x) - 3 \cos(x)  \\  \sin(3x) = \mathrm{Im}(z) = 3\sin(x) - 4\sin^3(x)\,.
+	\end{cases}
+	\end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Harmonische Schwingungen]
+	Gegeben seien die harmonischen Schwingungen \[ s_1(t) = \sqrt{2} \cdot \sin(10t+\pi/4), \quad s_2(t)=2\cos(10t+\pi/6)\,.\]
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die Überlagerung von $s_1$ und $s_2$. 
+			
+			Hinweis: $s_1(t) = \mathrm{Im}\left( \sqrt{2} e^{i\,( 10 t+ \pi/4)}\right), \;s_2(t) = 2\sin(10t + \pi/6+\pi/2) = \mathrm{Im}\left( 2 e^{i\,( 10 t+ 2/3 \pi)}\right)$. 
+		\item[(b)] Wie muss eine harmonische Schwingung \[ s_3(t) = A_3\sin(\omega_3 t+ \varphi_3)\] gewählt werden, dass die Überlagerung von $s_1$ und $s_3$ eine Amplitude von $1$ und eine Nullphase von $\pi/2$ besitzt?
+	\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung (Direkte Anwendung der Formeln möglich, siehe Unterabschnitt "Harmonische Schwingungen")}
+
+\begin{itemize}
+	\item[(a)]
+		\begin{eqnarray*}
+			s_1(t) + s_2(t) &=& \mathrm{Im}\left( \sqrt{2} e^{i\,( 10 t+ \frac14\pi)} + 2 e^{i\,( 10 t+ \frac23\pi)}\right) \\[1ex]
+			&=& \mathrm{Im}\left(\sqrt{2} e^{\frac14 \pi \, i} e^{10 t \, i} + 2 e^{\frac23\pi \, i} e^{10 t \,i} \right) \\[1ex]
+				&=& \mathrm{Im}\left(  \left( \sqrt{2} e^{\frac14\pi\,i}  + 2 e^{\frac23\pi\,i} \right)  e^{i\, 10 t} \right) \\[1ex]
+				&=& \mathrm{Im}\left(  \left( \sqrt{2} \left((\frac{1}{\sqrt{2}} + i + \frac{1}{\sqrt{2}}\right)  + 2 \left( -\frac12 + \frac{\sqrt{3}}{2} i \right) \right)  e^{i\, 10 t} \right) \\[1ex]
+				&=& \mathrm{Im}\left(  \left( 1 + i  -1  \sqrt{3} i \right)  e^{i\, 10 t} \right) \\[1ex]
+				&=& \mathrm{Im}\left(  i \left( 1 + \sqrt{3}\right)   e^{i\, 10 t} \right), \quad i=e^{i\pi/2} \\[1ex]
+				&=& \mathrm{Im}\left(  \left( 1 + \sqrt{3}\right)  e^{i\,( 10 t + \pi/2 )} \right) \\[1ex]
+				&=& \left( 1 + \sqrt{3}\right) \sin( 10 t + \pi/2 )
+	\end{eqnarray*}
+	\item[(b)] 
+		Für die komplexe Amplitude der Überlagerung gilt \[ A= 1\cdot e^{i\pi/2} = i \]
+		Suche $A_3$ so, dass \[ A_1 + A_3 = i \Leftrightarrow A_3 = i + A_1\,.\] Das heißt \[ A_3 = i-(1+i) = -1 = 1\cdot e^{i\pi}\,. \] Also muss gelten $s_3(t) = \sin(10t+\pi)$.
+\end{itemize}
+\end{exercisebox}
+

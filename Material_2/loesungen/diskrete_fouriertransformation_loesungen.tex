@@ -1,0 +1,425 @@
+\section*{Diskrete Fouriertransformation Lösungen}\label{MA2-diskrete-fouriertransformation-loesungen}
+
+\ifintegriereaufgaben  Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-diskrete-fouriertransformation}{ (Abschnitt \abschnittsverweis{MA2-diskrete-fouriertransformation})}. \fi
+
+\begin{exercisebox}{Orthogonalität}{ }
+\begin{itemize}
+\item[(a)]
+	\begin{eqnarray*}
+		s_1: &t\mapsto& \begin{cases} 0, \quad &t\leq 0\,,\\
+			A, \quad &0<t\leq 1\,,\\
+			0,\quad &t>1\,,
+		\end{cases}\\
+		s_2: &t\mapsto& \begin{cases} 0, \quad &t\leq 1\,,\\
+			A/2, \quad &1<t\leq 2\,,\\
+			0,\quad &t>2\,,
+		\end{cases}\\
+		s_3: &t\mapsto& \begin{cases} 0, \quad &t\leq 0\,,\\
+			A/2, \quad &0<t\leq 1\,,\\
+			-A, \quad &1<t\leq 2\,,\\
+			0,\quad &t>2\,.
+		\end{cases}
+	\end{eqnarray*}
+\item[(b)] Wir berechnen die Länge der Signale mit dem angegebenen Skalarprodukt:
+	\begin{eqnarray*}
+		|s_1|^2 &=&  \langle s_1, s_1 \rangle = \int\limits_{-\infty}^\infty s_1(t)\cdot s_1(t) \, \mathrm{d} t = \int\limits_0^1 A^2 \mathrm{d}t = A^2 \;  \Rightarrow |s_1| = |A|\,,\\
+		|s_2|^2 &=&  \langle s_2, s_2 \rangle = \int\limits_{-\infty}^\infty s_2(t)\cdot s_2(t) \, \mathrm{d} t = \int\limits_1^2 \left( \dfrac{A}{2} \right)^2\, \mathrm{d}t = \dfrac{A^2}{4} \;  \Rightarrow |s_2| = \left| \dfrac{A}{2}\right|\,.
+	\end{eqnarray*}
+	Bemerkung: hieran sehen, wir dass die Signale \(s_1\) und \(s_2\) nicht normiert sind.
+
+\item[(c)] Wir überprüfen, ob die Signale bezüglich des gegebenen Skalarprodukts orthogonal zueinander sind, indem wir das Skalarprodukt berechnen:
+	\[ \langle s_1, s_2 \rangle = \int\limits_{-\infty}^\infty s_1(t) \cdot s_2(t) \,\mathrm d t =  0\,, \]
+	Die Intervalle, auf denen die Signale von Null verschieden sind, überplappen sich nicht und damit ist das Integral null. Die Signale sind orthogonal. Um eine Orthonormalbasis aus \(s_1\) und \(s_2\) zu konstruieren, müssen die Signale nur noch normiert werden:
+
+	\[
+		\begin{cases}
+			\hat s_1(t) = \displaystyle{\frac{ s_1(t)}{|s_1|}} = \displaystyle{\frac{ s_1(t)}{A}}\,,\\
+			\hat s_2(t) = \displaystyle{\frac{ s_2(t)}{|s_2|}} = \displaystyle{\frac{ s_2(t)}{A/2}}\,.
+	\end{cases} \]
+\item[(d)] Das Signal \(s_3\) kann in eine lineare Kombination aus \(\hat s_1\) und \(\hat s_2\) zerlegt werden  \[ s_3(t) = \lambda_1 \cdot \hat s_1(t) + \lambda_2 \cdot \hat s_2(t)\] mit
+	\begin{eqnarray*}
+		\lambda_1 &=& \langle s_3, \hat s_1\rangle = A/2\\
+		\lambda_2 &=& \langle s_3, \hat s_2\rangle = -A
+	\end{eqnarray*}
+
+	Die vektoriellen Repräsentanten der Signale in dem zweidimensionalen Vektorraum, der von den Funktionen $\hat s_1$ und $\hat s_2$ aufgespannt wird, lauten
+	\[\boldsymbol s_1 = \left(\begin{array}{c} A\\ 0\end{array}\right), \;
+	\boldsymbol s_2 = \left(\begin{array}{c} 0\\ A/2\end{array}\right), \;
+\boldsymbol s_3 = \left(\begin{array}{c} A/2\\ -A/2\end{array}\right)\,. \]
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/dft_rechtecksignale_orthonormale_basis.png}
+\end{center}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}{Reelle und komplexe Fourierreihe}{ }
+	Nehmen wir an, dass uns eine komplexe Fourierreihe für ein \(T\)-periodisches Signal \(f: \mathbb R \to \mathbb R, t\mapsto f(t)\) vorliegt, also
+	\begin{equation}\label{FRC}  \mathrm{FR}_f(t) = \sum\limits_{k=-\infty}^{\infty}c_k\cdot e^{i k \omega_0\,t}\,.\end{equation}
+	Bevor wir uns das im Detail anschauen, eine Vorüberlegung: offensichtlich gilt
+	\begin{equation}\label{cplusk_cminusk}
+		\forall k \in \mathbb N_0: \quad c_{-k} = \overline{c_{k}}\,,
+	\end{equation}
+	denn
+\begin{eqnarray*}
+	\forall k \in \mathbb N_0:\quad c_{-k} &=& \dfrac{1}{T}\int\limits_0^T f(t) \cdot e^{-i(-k) \omega_0\,t}\,\mathrm{d}t = \dfrac{1}{T}\int\limits_0^T f(t) \cdot e^{ik \omega_0\,t}\,\mathrm{d}t \\ &=& \dfrac{1}{T}\int\limits_0^T f(t) \cdot \overline{e^{-ik \omega_0\,t}}\,\mathrm{d}t = \overline{\dfrac{1}{T}\int\limits_0^T f(t) \cdot e^{-ik \omega_0\,t}\,\mathrm{d}t}\\ &=& \overline{c_{k}} \,.
+\end{eqnarray*}
+Jetzt zu der Fourierreihe. In der Reihe gibt es zu jedem \(k \geq 1\) zwei Frequenzanteile und zwar denjenigen mit der Amplitude \(c_k\) und denjenigen mit \(c_{-k}\). Diese beiden Summanden lassen sich zusammenziehen
+	\begin{eqnarray*} c_{-k} \cdot e^{i (-k) \omega_0\, t}  + c_k \cdot e^{ik \omega_0\, t}  &=& c_{-k} \cdot \left( \cos( (-k) \omega_0 t) + i\, \sin( (-k) \omega_0 t)\right) + c_{k}\cdot \left( \cos( k \omega_0 t) + i\, \sin( k \omega_0 t)\right) \\
+		&=& c_{-k} \cdot \left( \cos( k \omega_0 t) - i \,\sin( k \omega_0 t)\right) + c_{k}\cdot \left( \cos( k \omega_0 t) + i \sin( k \omega_0 t)\right) \\
+		&=& \left( c_{-k} + c_k\right)\cdot \cos(k \omega_0 t) - i\,\left( c_{-k} - c_{k}\right)\cdot \sin(k\omega_0 t)  \\
+		&\stackrel{\eqref{cplusk_cminusk}}{=}&  \left( \overline{c_{k}} + c_k\right)\cdot \cos(k \omega_0 t) - i\,\left( \overline{c_{k}} - c_{k}\right)\cdot \sin(k\omega_0 t)  \\
+		&=&  \underbrace{2\, \mathrm{Re}(c_k)}_{\displaystyle{=a_k}}\cdot \cos(k \omega_0 t) + \underbrace{\left( -2\, \mathrm{Im}(c_k)\right)}_{\displaystyle{=b_k}}\cdot \sin(k\omega_0 t) \,.  \end{eqnarray*}
+Die Zahlen \(a_k\) und \(b_k\) sind reell für \(k\geq 1\). Die Fusion von zwei komplexen Summanden führt zu einer reellen Funktion, nämlich einer harmonischen Schwingung bestehend aus einem (ungeraden) Sinusanteil und einem (geraden) Kosinusanteil zur selben Kreisfrequenz \(k\omega_0\).
+Aus \eqref{cplusk_cminusk} folgt insbesondere, dass \(c_0 \in \mathbb R\) eine reelle Zahl ist und entsprechend der Formeln, die wir für \(k\geq 1\) gefunden haben, definieren wir
+\[ 2 \cdot c_0 = a_0\,.\]
+Damit lautet die äquivalente reelle Darstellung von \eqref{FRC}
+\begin{equation}\label{FRR}
+	\mathrm{FR}_f(t) = \dfrac{a_0}{2} + \sum\limits_{k=1}^\infty a_k \cdot \cos(k\omega_0\, t) + b_k \cdot \sin(k\omega_0\,t)\,,
+\end{equation}
+wobei die Formeln für die Umrechnung der Koeffizienten wie folgt lauten:
+		\begin{eqnarray*}
+			&& \begin{cases}
+				a_0 =  2 \cdot c_0, \\[1ex]
+				a_k = c_k + c_{-k} = 2\cdot \mathrm{Re}(c_k), \quad k\geq 1\\[1ex]
+				b_k = i \cdot \left( c_k - c_{-k}\right) = -2 \cdot \mathrm{Im}(c_k) ,\quad k\geq 1 \,.
+		\end{cases}
+	\end{eqnarray*}
+	Möchte man von der reellen Darstellung die komplexe ermitteln, dann gilt
+		\begin{eqnarray*}
+			&& \begin{cases}
+				c_0 = \dfrac12\cdot a_0,\\[1ex]
+				c_k = \dfrac12\cdot \left( a_k - i\, b_k\right) , \quad k\geq 1\,, \\[1ex]
+			c_{-k} = \dfrac12\cdot \left( a_k + i \, b_k\right),\quad  , \quad k\geq 1\,. \end{cases}
+	\end{eqnarray*}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Matlab: Fourierpolynom Rechtecksignal als Funktion]
+
+	\begin{itemize}
+		\item[(a)]
+	Das gegebene Rechtecksignal ist punktsymmetrisch zum Ursprung des Koordinatensystems. Die Fourierreihe enthält keinen Gleichstromanteil und auch keine geraden Anteile ( \(a_k=0, \; k\in \mathbb N_0\)):
+	\[
+		\mathrm{FR}_f(t) = \sum\limits_{n=1}^\infty b_n \cdot \sin\left( \dfrac{2\pi \, n}{T}\cdot  t\right) \,, \quad b_n= \dfrac{T}{2} \int\limits_{0}^T f(t) \cdot \sin\left( \dfrac{2\pi\, n}{T} \cdot t\right) \, \mathrm{d}t\,.
+\]
+Führen wir die Integration zur Bestimmung der Koeffizienten \(b_n\) aus, so stellt sich raus, dass alle Koeffizienten mit geradem Index null werden, konkret:
+\begin{eqnarray*}
+	b_k = \dfrac{T}{2} \int\limits_{0}^T f(t) \cdot \sin\left( \dfrac{2\pi\, k}{T} \cdot t\right) \, \mathrm{d}t = \begin{cases} 0, \quad & k=2\cdot n\,, \\  \left( \dfrac{4\cdot A_0}{k\cdot \pi }\right), & k=2\cdot n+1\,. \end{cases}
+\end{eqnarray*}
+Die Fourierreihe für \(f\) lautet damit
+	\[
+		\mathrm{FR}_f(t) = \sum\limits_{n=0}^\infty \left( \dfrac{4\cdot A_0}{(2n+1)\cdot \pi }\right) \cdot \sin\left( \dfrac{2\pi \cdot (2n + 1)}{T}\cdot t \right) \,.
+\]
+		\item[(b)]
+\end{itemize}
+
+	\begin{minipage}{0.6\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_rechtecksignal_fourierpolynom_grad_4.png}
+\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+\begin{lstlisting}
+FourierSquare(1,pi,4)
+\end{lstlisting}
+\end{minipage}
+
+	\begin{minipage}{0.6\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_rechtecksignal_fourierpolynom_grad_6.png}
+\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+\begin{lstlisting}
+FourierSquare(1,pi,6)
+\end{lstlisting}
+\end{minipage}
+\end{exercisebox}
+
+\begin{exercisebox}[Minimierungsproblem]
+	Die Koeffizienten \( a_0, a_1, \cdots, a_n \) und \(b_1, b_2, \cdots, b_n\) minimieren den Abstand zwischen \(f\) und \(g_n\), wobei der Abstand zwischen zwei belibiegen integrierbaren und \(2\pi\)-periodischen Funktionen wie folgt definiert ist:
+	\[ ||f-g||_2 = \sqrt{\int\limits_{-\pi}^\pi |f(t)-g(t)|^2 \, \mathrm{d}t } \Leftrightarrow ||f-g||^2_2 = \int\limits_{-\pi}^\pi |f(t)-g(t)|^2 \, \mathrm{d}t \,. \]
+	Setzen wir für \(g\) ein trigonometrisches Polynom ein, dann wird behauptet, dass das Fourierpolynom \(g_n\) sich von einem beliebigen \(g\) unterscheidet in sofern, dass es die Koeffizienten \(\left\{a_0, a_k,b_k, \, k=1,\cdots,n\right\} \) so eingestellt sind, dass \(\Phi\) minimiert wird. Eine notwendige Bedingung an die \(g_n\) ist also, dass alle folgenden partiellen Ableitungen verschwinden:
+	\begin{equation}\label{partielle_Ableitungen_null}
+		\begin{cases}
+		\dfrac{\partial \Phi_n(f,g_n)}{\partial a_k} &= 0, \quad k=0,\cdots,n\,,\\
+		\dfrac{\partial \Phi_n(f,g_n)}{\partial b_k} &= 0, \quad k=1,\cdots,n\,.
+	\end{cases}
+\end{equation}
+Da wir die Funktion \(\Phi(f,g_n\) strukturell kennen, besteht die Hoffnung, dass wir die partiellen Ableitungen ausrechnen  und eine explizite Darstellung für die Koeffizienten ermitteln können, so dass \eqref{partielle_Ableitungen_null} erfüllt ist:
+	\begin{eqnarray*} \Phi(f,g_n) = \| f-g_n\|^2_2 &=& \|g_n\|_2^2 +  \|f\|_2^2 - 2\langle g_n, f\rangle_2 \\ &=& \dfrac{\pi}{2} a_0^2 + \pi\sum\limits_{k=1}^n \left( a_k^2 + b_k^2\right)\\&& + \|f\|_2^2 - a_0 \langle 1, f\rangle - 2  \sum\limits_{k=1}^n \left( a_k \langle f, \cos(kx)\rangle + b_k \langle f, \sin(kx)\rangle \right) \\ &=& \Phi(a_0,\cdots,a_n,b_1,\cdots,b_n)\,.\end{eqnarray*}
+
+Führen wir die partiellen Ableitungen aus und setzen sie alle gleich null, dann erhalten wir Bestimmungsgleichungen für die unbekannten Koeffizienten!
+\[
+	\begin{array}{rcl c rcl r}
+		\dfrac{\partial \Phi}{\partial a_0} &=& \pi a_0 - \langle 1, f\rangle = 0 & \Rightarrow & a_0 &=& \dfrac{1}{\pi}  \displaystyle{\int\limits_{-\pi}^\pi} f(x)\,\mathrm d x\,, & k=0\,,\\
+		\dfrac{\partial \Phi}{\partial a_k} &=& 2\pi a_k - \langle \cos(kx), f\rangle = 0 & \Rightarrow & a_k &=& \dfrac{1}{\pi}  \displaystyle{\int\limits_{-\pi}^\pi} f(x) \cdot \cos(kx)\,\mathrm d x\,, &k\geq 1\,,\\
+		\dfrac{\partial \Phi}{\partial b_k} &=& 2\pi b_k - \langle \sin(kx), f\rangle = 0 & \Rightarrow & b_k &=& \dfrac{1}{\pi}\displaystyle{ \int\limits_{-\pi}^\pi} f(x) \cdot \sin(kx)\,\mathrm d x\,,  &k\geq 1\,.
+	\end{array}
+\]
+Was wir in dieser Aufgabe mit Hilfe von Differntialrechnung gezeigt haben, ist die Eigenschasft des Fourierpolynoms \(g_n\) die sogenannte Bestapproximation an die Funktion \(f\) im Vektorraum der trigonometrischen Polynome zu sein. Die Zerlegungskoeffizienten sind gerade die Projektionen auf das Orthonormalsystem der trigonometrischen Funktionen.
+%
+\end{exercisebox}
+
+\begin{exercisebox}[Interpolationseigenschaft]
+	Es ist also \[ \begin{cases} \tilde c_k = \sum\limits_{n=0}^{N-1} f_n\cdot e^{-i\,k\,n\,2\pi/N}\,\\ t_n & = n\cdot h = n\cdot T/N\,.\end{cases} \]
+	Setzen wir \(t_n\) und danach \(\tilde c_k\) explizit in \(g_N\) ein:
+\begin{eqnarray*}
+	g_N(t_l) &=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k\cdot e^{i\, k\, 2\pi/T \,t_l } \\[2ex]
+	&=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \textcolor{blue}{\tilde c_k}\cdot e^{i \,k \,l\,2\pi/N } \\[2ex]
+	&=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1}  \textcolor{blue}{\sum\limits_{n=0}^{N-1} f_n \cdot e^{-i \, k\,n\, 2\pi/N} } e^{i\, k \, l\, 2\pi/N } \\[2ex]
+	&=& \dfrac{1}{N} \cdot \textcolor{blue}{\sum\limits_{n=0}^{N-1} f_n} \cdot \sum\limits_{k=0}^{N-1} \textcolor{blue}{ e^{-i \, k\,n\, 2\pi/N} }\cdot e^{i\, k \,l\, 2\pi/N } \\[2ex]
+	&=& \dfrac{1}{N} \cdot \sum\limits_{n=0}^{N-1} f_l \cdot \sum\limits_{k=0}^{N-1} e^{i\, (l-n)\, k\,2\pi/N} \\[2ex]
+	&\stackrel{(*)}{=}& \dfrac{1}{N} \sum\limits_{n=0}^{N-1} f_l \cdot \cdot N \cdot \delta_{ln} \\[2ex]
+	&=& f_j\,.
+\end{eqnarray*}
+\((*)\) folgt aus der folgenden Beobachtung:
+\[ \sum\limits_{k=0}^{N-1} e^{i \,(l-n)\, k \,2\pi/N} = \sum\limits_{k=0}^{N-1} \left( \left( W_N\right)^{l-n}\right)^k = N\cdot \delta_{ln} = \begin{cases} N,\quad l= n\,,\\ 0,\quad l\not=n\,, \end{cases} \]
+	wobei sich das letzte Ergebnis im Detail wie folgt zeigen läßt
+	\begin{itemize}
+		\item für \(l=n\) wird der Exponent in jedem Summand null und damit \[\sum\limits_{k=0}^{N-1} W_N^{0\cdot k} = \sum\limits_{k=0}^{N-1} 1 = N\,.\]
+		\item für \(l\not=n\) ist der Wert der Summe null. Summiert wird über eine beliebige \(N\).te Einheitswurzel \(Z:= \left( W_N\right)^{l-n}\). Der Wert der Summe ist bekannt und die \(N\).te Potenz einer Einheitswurzel ist eins:
+			\[ \sum\limits_{k=0}^{N-1} Z^k = \dfrac{ Z^N -1}{Z -1} = \dfrac{1-1}{Z-1} = 0\,.\]
+	\end{itemize}
+
+	Das Ergebnis läßt sich wie folgt interpretieren: ob man ein diskretes Signal im Zeitbereich anschaut oder im Frequenzbereich ist egal - wie im kontinuierlichen Fall die Fouriertransformation, liegt im diskreten Fall ein Basiswechsel vor. Konkret: zur DFT gibt es eine inverse Abbildung, die dem diskreten Spektrum die Messwerte zuordnet. Man nennt diese Abbildung die inverse Diskrete Fouriertransformation [iDFT].
+	\begin{eqnarray*}
+		\textnormal{DFT:}\quad \{f_n\}_{n=0}^{N-1} &\mapsto& \{\tilde c_k\}_{k=0}^{N-1}\,, \\
+		\tilde c_k &=& \sum\limits_{n=0}^{N-1} f_n\cdot e^{- i \, k\, n\, 2\pi/N}\,, \quad k=0,\cdots,N-1\,,\\
+		\textnormal{iDFT:}\quad \{\tilde c_k\}_{k=0}^{N-1} &\mapsto& \{f_n\}_{n=0}^{n-1}\,, \\
+		f_n &=& \dfrac{1}{N} \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot e^{i \, k\,n\, 2\pi/N}\,, \quad n=0,\cdots,N-1\,.
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[DFT per Hand]
+\begin{itemize}
+\item[(a)] Für $S_l=(t_l, f(t_l))$ gilt $S_1 = \left(0,8\right), S_2= \left(\frac14,4\right), S_3=\left( \frac12, 8\right), S_4=\left( \frac34,0\right)$
+\item[(b)] Es gilt $\hat c_l = \displaystyle{ \sum\limits_{k=0}^3 e^{-i \,l\, \frac{2\pi}{n}  k} \cdot f(t_l) }$. Im vorliegenden Fall ist \(n=4\) und damit
+	\begin{eqnarray*}
+		\hat c_l = \displaystyle{ \sum\limits_{k=0}^3 e^{- i\,l \frac{2 \pi}{4} l} \cdot f(t_l) } \Rightarrow \left( \begin{array}{c} \hat c_0 \\\hat c_1 \\\hat c_2 \\ \hat c_3 \end{array}\right) = \left( \begin{array}{cccc} 1 & 1 & 1 & 1 \\ 1 & -i & -1 & i \\1 & -1 & 1 & -1 \\ 1 & i & -1 & -i \end{array}\right) \left( \begin{array}{c} 8 \\ 4 \\ 8 \\0\end{array}\right) \Rightarrow    \left( \begin{array}{c} \hat c_0 \\\hat c_1 \\\hat c_2 \\ \hat c_3 \end{array}\right) =\left( \begin{array}{c} 20 \\ -4i \\ 12  \\ 4i \end{array}\right)
+	\end{eqnarray*}
+\item[(c)] Die DFT liefert bis auf einen Skalierungsfaktor die Zerlegungskoeffizienten der harmonischen Schwingungen, die im Signal $f$ detektiert werden! Aus der DFT lassen sich die Samples zurückgewinnen durch die inverse, diskrete Fourier-Transformation (iDFT):
+	\[ f_l = \frac{1}{n}\sum\limits_{k=0}^{n-1} \tilde c_k e^{i\, l\, \frac{2\pi}{n} k}\,. \]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}{Matlab: Diskrete Fouriertransformation (DFT)}{ } % p.428 16.11 standard
+
+	\begin{itemize}
+		\item[(a)] Es gilt
+			\begin{eqnarray*}
+				n &=& 64\,,\\
+				\Delta t &=& 0.01\,\mathrm{s}\,,\\
+				T &=& n\cdot \Delta t\, \mathrm{s}\,,\\
+				f_s &=& \dfrac{1}{\Delta t} = 100 \,\mathrm{Hz}\,,\\
+				f_{\max} &=& \dfrac{f_s}{2} = 50\,\mathrm{Hz}\,,\\
+				f_{\min} &=& \dfrac{1}{T} = 1.56\,\mathrm{Hz}\,,\\
+			\end{eqnarray*}
+			Die DFT detektiert die diskreten Frequenzen \(k\cdot f_{\min}\) für \(k=1,\cdots,\dfrac{n}{2} = 32\,.\) In dem gegebenen Signal gibt es genau zwei Frequenzanteile, die beide durch die DFT detektiert werden. Das Fourierpolynom, das durch die DFT definiert wird, interpoliert die Samples und reproduziert das Signal exakt.
+		\item[(b)]
+	\end{itemize}
+	\begin{center}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_signal_fourierpolynom_und_spektrum.png}
+\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}{Matlab: Experiment: DFT Leck-Effekt}{ } %
+
+	\begin{itemize}
+		\item[(a)] Das Signal \(f_1\) ist eine harmonische Schwingung mit Periode \(T_{\mathrm{min}}=1\). Im Zeitraum \([0,3)\) wird \(f_1\) mit \(n=8\) abgetastet. Wir erhalten:
+		%\begin{enumerate}
+		%	\item Die periodische Fortsetzung des Signals im Beobachtungsfenster \(f_1\big|_{[0,3)}\) ist genau \(f_1\) für alle \(t\geq 3\)!
+		%	\item Die periodische Fortsetzung der \(8\) Samples, die im Intervall \([0,3)\) aufgezeichnet worden sind, liegen alle auf dem Graphen von \(f_1\) für \(t\geq 3\)!
+		%\end{enumerate}
+	\end{itemize}
+\begin{center}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_interpolation_ganzzahlige_periodenzahl.png}
+\end{center}
+Links ist der Graph des exakten Signals mit den Interpolationspunkten gezeigt und rechts zusätzlich das Fourierpolynom.
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/dft_spektrum_ganzzahlige_periodenzahl.png}
+\end{center}
+Gezeigt ist das Spektrum, das die DFT liefert. Links die Ampliduden zu den geraden Anteilen und rechts die Ampliduden zu den ungeraden Anteilen.
+
+\vspace{0.2cm}
+Fazit:
+\begin{itemize}
+	\item Das Fourierpolynom interpoliert alle Samples.
+	\item Es sind maximal \(4\) Frequenzen im Signal detektierbar.
+	\item Von den \(8\) zugehörigen Amplituden ist nur \(a_3\not=0\). \(a_3\) entspricht der Amplitude der Grundschwingung.
+	\item[\(\Rightarrow\)] Die eine Frequenz, die im Signal \(f_1\) vorhanden ist, wird durch die DFT detektiert.
+	\item[\(\Rightarrow\)] Das Signal \(f_1\) wird durch das Fourierpolynom im Zeitbereich reproduziert (Fourier-Synthese).
+\end{itemize}
+
+\begin{itemize}
+	\item[(b)] Das Signal \(f_2\) ist eine harmonische Schwingung mit Periode \(T_{\mathrm{min}} = \frac{6}{5}\). Im Zeitraum \([0,3)\) wird \(f_2\) mit \(N=8\) gesampelt. Wir erhalten:
+		%\begin{itemize}
+		%	\item Die periodische Fortsetzung des Signals im Beobachtungsfenster \(f_2\big|_{[0,3)}\) ist nicht \(f_2\) für alle \(t\geq 3\)!
+		%	\item Die periodische Fortsetzung der \(8\) Samples, die im Intervall \([0,3)\) aufgezeichnet worden sind, liegen nicht auf dem Graphen von \(f_2\) für \(t\geq 3\)!
+		%\end{itemize}
+	\end{itemize}
+	\begin{center}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_interpolation_nichtganzzahlige_periodenzahl.png}
+\end{center}
+Links ist der Graph des exakten Signals mit den Interpolationspunkten gezeigt und rechts zusätzlich das Fourierpolynom.
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/dft_spektrum_nichtganzzahlige_periodenzahl.png}
+\end{center}
+Gezeigt ist das Spektrum, das die DFT liefert. Links die Ampliduden zu den geraden Anteilen und rechts die Ampliduden zu den ungeraden Anteilen.
+
+\vspace{0.2cm}
+Fazit:
+\begin{itemize}
+	\item Das Fourierpolynom interpoliert alle Samples.
+	\item Es sind maximal \(4\) Frequenzen im Signal detektierbar.
+	\item Alle \(8\) zugehörige Amplituden sind ungleich Null.
+	\item[\(\Rightarrow\)] Die  Grundfrequenz, die im Signal \(f_2\) vorhanden ist, wird durch die DFT \textbf{nicht} detektiert.
+	\item[\(\Rightarrow\)] Das Signal \(f_2\) wird \textbf{nicht} reproduziert.
+\end{itemize}
+
+
+\noindent{ (c)} Warum es dazu kommt, dass die DFT in (a) das Signal \(f_1\) exakt reproduziert, ist recht einfach zu sehen: das Beobachtungsintervall \([0,3)\) ist ein ganzzahliges Vielfaches der minimalen Periode \(T_{\mathrm{min}}=1\) des Signals \(f_1\) und das heißt, dass die DFT das Spektrum von \(f_1\) berechnet, weil die \textcolor{blue}{periodischen Fortsetzung} von \(f_1\big|_{ [0,3)} \) \textbf{identisch} mit \(f_1\) ist:
+\vspace{0.2cm}
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{../Mathematik_2/Bilder/dft_periodische_fortsetzung_ganzzahlige_periodenzahl.png}
+\end{center}
+
+%Die Fouriertransformierte im stetigen Frequenzraum ist die Superposition zweier Delta-Impulse, wobei \(2\pi\) und die andere in \(-2\pi\) lokalisiert ist:
+%\[ f_1 \laplace \dfrac{\sqrt{2\pi}}{2} \left( \delta_{2\pi} + \delta_{-2\pi}\right)\,. \]
+%	\begin{eqnarray*}
+%		f_1(t) &=& \dfrac{1}{2\pi} \int\limits_{-\infty}^\infty \dfrac{\sqrt{2\pi}}{2} \left( \delta_{2\pi} + \delta_{-2\pi} \right) \cdot e^{i\omega\,t} \, \mathrm{d}\omega  \\
+%				&=& \dfrac{1}{2}  \left( e^{i \, 2\pi \, t} + e^{-i\,2\pi \,t}\right) = \cos(2\pi\,t)\,.
+%		\end{eqnarray*}
+\vspace{0.2cm}
+
+Genau das ändert sich in (b): das Beobachtungsintervall \([0,3)\) ist kein Vielfaches der minimalen Periode \(T_{\mathrm{min}} = \frac65 \) von \(f_2\) und das heißt, dass die DFT gar nicht das Spektrum von \(f_2\) diskretisiert! Die periodische Fortsetzung von \(f_2\big|_{ [0,3)} \) stimmt nämlich \textbf{nicht} mit \(f_2\) überein:
+\vspace{0.2cm}
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{../Mathematik_2/Bilder/dft_periodische_fortsetzung_nichtganzzahlige_periodenzahl.png}
+\end{center}
+
+\vspace{0.2cm}
+Offensichtlich ist die \textcolor{blue}{periodische Fortsetzung}, die der DFT zu Grunde liegt, keine harmonische Schwingung mehr! Und das heißt
+			\begin{itemize}
+				\item[\(\Rightarrow\)] Ihr Spektrum kann nicht mehr nur aus einem Beitrag bestehen.
+				\item[\(\Rightarrow\)] Das Fourierpolynom, das durch die DFT erzeugt wird, kann das Ausgangssignal \(f_2\) nicht reproduzieren.
+			\end{itemize}
+
+			\textbf{Trotzallem ist die DFT aussagekräftig, wenn man versteht, wie sie zu lesen ist} und das schauen wir uns jetzt in einem allgemeinen Setting an. Let's go.
+
+			Allgemein gilt: das Spektrum eines nicht periodischen, absolut integrierbaren Signals \(f_r\) wird durch dessen Fouriertransformierte \(\hat f_r\) beschrieben. \(\hat f_r\) ist die Fouriertransformierte von \(f_r\), also
+			\[ f_r: t \mapsto g(t)  \quad  \stackrel{\displaystyle{ \mathcal F}}{\longrightarrow} \quad  \hat {f_r}: \omega \mapsto \dfrac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f_r(t) \cdot e^{-i\,\omega \, t}\, \mathrm{d}t\,.\]
+			Betrachten wir als Beispiel für \(f_r\) das folgende Signal
+			\[ f_r: t\mapsto \begin{cases} A \cos(\omega_0\, t), &\quad  -1 \leq t < 1 \,,\\0, &\quad \mathrm{sonst}\,.\end{cases}  \]
+			\(f_r\) schneidet also aus der harmonischen Schwingung \(f: t\mapsto A\cdot \cos(\omega_0\,t)\) das Intervall \([-1,1]\) aus und setzt links von \(-1\) und rechts von \(1\) mit null fort. Die Fouriertransformierte von \(f_r\) lautet:
+\begin{eqnarray}
+	\hat f_r(\omega) &=& \dfrac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f_r(t)\cdot  e^{- i\omega\,t } \,\mathrm{d}t  \stackrel{(*)}{=} \dfrac{2}{\sqrt{2\pi}}\int\limits_{0}^{1} A\cdot \cos(\omega_0\, t) \cdot  \cos(\omega\,t) \,\mathrm{d}t  \nonumber\\
+	& \stackrel{\eqref{int_cosat_cosbt}}{=}& \dfrac{A}{\sqrt{2\pi}} \cdot \left(\dfrac{\sin\left( \omega_0 -\omega\right)}{\omega_0-\omega} + \dfrac{\sin\left( \omega_0+\omega\right)}{\omega_0 + \omega} \right)\,. \label{hat_f_r}
+			\end{eqnarray}
+			wobei
+			\begin{itemize}
+				\item in \( (*)\) ausgenutzt wird, dass \(f_r\) eine gerade Funktion ist,
+				\item in \eqref{int_cosat_cosbt} die folgende Stammfunktion benutzt worden ist
+			\begin{equation}\label{int_cosat_cosbt}
+				\int \cos(a\, t) \cdot  \cos(b\,t) \,\mathrm{d}t = \frac12 \left( \dfrac{\sin\left( (a-b)\,t\right)}{a-b} + \dfrac{\sin\left( (a+b) \, t\right)}{a+b} \right)
+				      \end{equation}
+		      \end{itemize}
+		      Nehmen wir nun an, wir tasten das Signal \(f_r\) auf dem Intervall \([-1,1)\) mit \(n\) Samples ab und benutzen diese Samples für eine DFT. Die DFT sind, bis auf einen Skalierungsfaktor, die Funktionswerte von \(\hat f_r\) an den Kreisfrequenzen, die die DFT detektiert werden können, also an den diskreten Stellen \[ \omega = \dfrac{2\pi}{t_N}\cdot k\,, \quad k=-\dfrac{N}{2},\cdots,\dfrac{N}{2}\,,\]
+		      Also folgt konkret
+		      \begin{eqnarray} c_k &=& \dfrac{\sqrt{2\pi}}{2}\cdot \hat f_r\left( \dfrac{ 2\pi}{T}\cdot k\right) \label{dft_fr}\\
+		&=& \dfrac{ A}{2}\cdot\left(  \dfrac{\sin\left(\dfrac{ 2\pi}{\textcolor{blue}{t_N}}\cdot k -\textcolor{red}{\omega_0}\right)}{\dfrac{ 2\pi}{\textcolor{blue}{t_N}}\cdot k -\textcolor{red}{\omega_0}} +   \dfrac{\sin\left(\dfrac{ 2\pi}{\textcolor{blue}{t_N}}\cdot k +\textcolor{red}{\omega_0}\right)}{\dfrac{ 2\pi}{\textcolor{blue}{t_N}}\cdot k +\textcolor{red}{\omega_0}}\right)\,, \quad k=-\dfrac{N}{2},\cdots,\dfrac{N}{2}\,. \nonumber
+\end{eqnarray}
+Jetzt ist es wichtig die Bedeutung der blau und rot eingebärbten Terme zu kennen:
+		      \begin{itemize}
+			      \item \( \textcolor{blue}{t_N} \) ist die Zeitspanne, die Breite des Beobachtungsfensters.\footnote{ \(t_N\) ist die Periode, von der die DFT ausgeht. }
+			      \item \(\textcolor{red}{\omega_0}\) ist die Grundfrequenz des Signals \(f\). Es gilt \(\textcolor{red}{T_{\mathrm{min}} = \dfrac{2\pi}{\omega_0} }\).
+		      \end{itemize}
+
+		      \vspace{0.2cm}
+
+		      Grundsätzlich können zwei verschiedene Fälle auftreten. Wir machen zwei Beispiele. Das erste Beispiel verdeutlicht die Ergebnisse aus Aufgabenteil (a) und das zweite Beispiel präzisiert und erklärt die Ergebnisse aus Aufgabenteil (b).
+
+		      \vspace{0.2cm}
+		      \noindent\textbf{Beispiel (a)} Betrachte \(f_r\) auf \([-1,1)\) mit \(A=1\) und \(\omega_0 = 2\pi\), also
+		      \begin{itemize}
+			      \item Beobachtungsfenster \([-1,1)  \Rightarrow \textcolor{blue}{ t_N = 2 }  \Rightarrow \) Kreisfrequenzen DFT \( \textcolor{blue}{\dfrac{2\pi}{t_N}\cdot k = \pi\cdot k}\,.\)
+			      \item Grundfrequenz \(\textcolor{red}{\omega_0=2\pi \; \Rightarrow \; T = 1 }\).
+		      \end{itemize}
+
+		      Das Signal ist im folgenden Bild dargestellt und zwar links im Zeitbereich \(f_r: t\mapsto f_r(t)\) und rechts im Frequenzbereich \(\hat f_r: \omega\mapsto \hat {f_r}(\omega)\):
+		      \begin{center}
+
+			      \includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/fouriertransformation_kosinus_endliches_beobachtungsfenster.png}
+\end{center}
+
+Die DFT ist nach \eqref{dft_fr} die Diskretisierung des Spektrums \(\hat {f_r}\) an den Stellen \(\omega = \pi\cdot k\) für \(k= -\dfrac{n}{2},\cdots,\dfrac{n}{2}\) und da wir \(\hat {f_r}\) kennen, können wir uns die genau anschauen:
+\begin{eqnarray*} c_k &=&  \dfrac{A}{2}\cdot\left(  \dfrac{\sin\left(\textcolor{blue}{\pi\cdot k} -\textcolor{red}{2\pi}\right)}{\textcolor{blue}{\pi\cdot k} -\textcolor{red}{2\pi}} + \dfrac{\sin\left(\textcolor{blue}{\pi\cdot k} + \textcolor{red}{2\pi}\right)}{\textcolor{blue}{\pi\cdot k} + \textcolor{red}{2\pi}}\right)\,, \quad k=-\dfrac{n}{2},\cdots,\dfrac{n}{2}\,, \\
+	&=& \begin{cases} \dfrac{A}{2}\,,\quad |k|=2\,, \quad (\textnormal{Regel von L'Hospital})\,,\\ 0\,,\quad \textnormal{sonst}\end{cases}
+	\end{eqnarray*}
+		      \begin{center}
+			      \includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/dft_frequenzraster_auf_spektralmaxima.png}
+\end{center}
+
+	Die Grundfrequenz von \(f\) wird durch die DFT für \(|k|=2\) identifiziert und alle anderen \(c_k\) fallen genau auf Nullstellen der Funktion \(\hat f_r\)! Die Fourier-Synthese reproduziert \(f\):
+	\[ g_n(t) = c_{-2}\, e^{-i\,2\pi\,t} + c_2\, e^{i\,2\pi,t} = A \cdot \cos(2\pi\,t) = f(t)\,.\]
+
+	Entscheidend ist die Wahl des Beobachtungsfensters: immer wenn das Beobachtungsfenster, das der DFT zu Grunde liegt, ein ganzzahliges Vielfaches der Periode \(T_{\mathrm{min}}\) von \(f\) ist, also
+	\[ T = m\cdot T_{\mathrm{min}}\,, \]
+	dann wird die Grundfrequenz von \(f\) durch die DFT exakt detektiert!
+
+	\vspace{0.2cm}
+
+	\noindent\textbf{Beispiel (b)} Betrachte \(f_r\) mit \(A=1\) und \(\omega_0 = \frac65\pi\), also
+		      \begin{itemize}
+			      \item Beobachtungsfenster \([-1,1) \; \Rightarrow \textcolor{blue}{ t_N = 2 } \; \Rightarrow \) Kreisfrequenzen DFT \( \textcolor{blue}{\dfrac{2\pi}{t_N}\cdot k = \pi\cdot k}\,.\)
+			      \item Grundfrequenz \(\textcolor{red}{\omega_0=\frac65 \pi} \; \Rightarrow \; T_{\mathrm min} = 1.2\).
+		      \end{itemize}
+
+	Das Signal ist im folgenden Bild dargestellt und zwar links im Zeitbereich \(f_r: t\mapsto f_r(t)\) und rechts im Frequenzbereich \(\hat f_r: \omega\mapsto \hat {f_r}(\omega)\):
+		      \begin{center}
+			      \includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/fouriertransformation_sinus_endliches_beobachtungsfenster.png}
+\end{center}
+Die DFT ist nach \eqref{dft_fr} die Diskretisierung des Spektrums \(\hat {f_r}\) an den Stellen \(\omega = \pi\cdot k\) für \(k= -\dfrac{N}{2},\cdots,\dfrac{N}{2}\) und da wir \(\hat {f_r}\) kennen, können wir uns die genau anschauen:
+\begin{eqnarray*} c_k =  A\cdot\left(  \dfrac{\sin\left(\textcolor{blue}{\pi\cdot k} -\textcolor{red}{\frac65\pi}\right)}{\textcolor{blue}{\pi\cdot k} -\textcolor{red}{\frac65\pi}} +   \dfrac{\sin\left(\textcolor{blue}{\pi\cdot k} + \textcolor{red}{\frac65\pi}\right)}{\textcolor{blue}{\pi\cdot k} + \textcolor{red}{\frac65\pi}}\right)  \not = 0 \,, \quad k=-\dfrac{N}{2},\cdots,\dfrac{N}{2}\,.
+	\end{eqnarray*}
+		      \begin{center}
+			      \includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/dft_frequenzraster_zwischen_spektralmaxima.png}
+\end{center}
+	Die Grundfrequenz von \(f\) wird durch die DFT für kein \(k\) identifiziert. Alle diskreten Kreisfrequenzen, die die DFT detektieren kann, liegen \textbf{zwischen} den Nullstellen von \(\hat f_r\).
+		Da \(| \hat r|\) asymptotisch gegen Null geht, wird die Grundfrequenz \(\omega_0\) von \(f\) auf benachbarte Frequenzen verteilt, man sagt auch, dass das Spektrum verschmiert. Dieses Phänomen nennt man Leck-Effekt.
+
+		\[ g_{N/2}(t) = \sum\limits_{k=-N/2}^{N/2} c_{k}\, e^{-i\,\pi\,k\,t} \not= f(t)\,.\]
+
+	Ist das Beobachtungsfenster kein ganzzahliges Vielfaches der Periode \(T_{\mathrm{min}}\) des Signals \(f\), so kommt es zum Leck-Effekt. Zur Reduzierung des Leck-Effektes werden bei zeitdiskreten Systemen Fensterfunktionen eingesetzt, und die abgetastete Signalfolge wird zunächst mit der Fensterfunktion, beispielsweise einer diskreten von-Hann-Fensterfunktion, multipliziert. Anschließend wird die diskrete Fourier-Transformation ausgeführt.
+
+\vspace{0.2cm}
+\noindent\textbf{Bemerkungen:}
+
+Man kann die Fouriertransformierte \(\hat f_r\) auch anders herleiten. Um ein stetiges Singal \(f: t\mapsto f(t)\) auf ein Zeitintervall, beispielsweise auf \([-1 ,1)\),  zu beschränken, multipliziert man \(f\) mit einer Rechteckfunktion:
+			\[ f_r: t\mapsto f(t) \cdot r(t), \quad r: t\mapsto \begin{cases}  1, &\quad  -1 \leq t < 1 \,,\\0, &\quad \mathrm{sonst}\,.\end{cases}  \]
+		Die Fouriertransformation eines Produkts im Zeitbereich ist eine Faltung der Fouriertransformierten im Frequenzbereich:
+			\begin{equation}\label{faltung} \hat {f_r}(\omega)  =  \widehat{ \left( f\cdot r\right) }(\omega) = \dfrac{1}{\sqrt{2\pi}} \left( \hat f * \hat r\right) (\omega)   \,. \end{equation}
+			Die Fouriertransformierte der Rechteckfunktion \(\hat r\) lautet:
+			\begin{equation}\label{hat_r}
+	\hat r(\omega) = \dfrac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty r(t) e^{- i\omega\,t } \,\mathrm{d}t  = \dfrac{1}{\sqrt{2\pi}}\dfrac{i}{\omega} \left[ e^{-i\omega\,t}\right]_{-1}^1 = \dfrac{i}{\omega} \left( e^{- i \, \omega} - e^{ i \, \omega}\right)  = \dfrac{2}{\sqrt{2\pi}}\dfrac{\sin(\omega)}{\omega} \,.
+\end{equation}
+\begin{minipage}{0.4\textwidth}
+	\begin{eqnarray*}
+		\Rightarrow \; \begin{cases} | \hat r(\omega) | &= \dfrac{2}{\sqrt{2\pi}}\dfrac{|\sin(\omega)|}{|\omega|} \\ \mathrm{arg}(\hat r(\omega)) &= \begin{cases}  0, \quad &\hat r(\omega) \geq 0\,,\\ \pi,\quad &\hat r(\omega) < 0 \,. \end{cases}\end{cases}
+	\end{eqnarray*}
+\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/fouriertransformation_rechteckfenster_sinc_betrag.png}
+\end{minipage}
+			Nehmen wir an, dass \(f\) eine harmonische Schwingung ist, so ist deren Fouriertransformierte die Überlagerung zweier \(\delta\)-Impulse:
+			\begin{equation}\label{hat_f} f(t) = A\cdot \cos\left( \omega_0\, t\right) \stackrel{\displaystyle{ \mathcal F}}{\longrightarrow}   \hat f(\omega) = A \sqrt{2\pi} \, \dfrac12 \left( \delta(\omega-\omega_0) + \delta(\omega +\omega_0)\right)\,.\end{equation}
+			Wir setzen \eqref{hat_f}, \eqref{hat_r} in \eqref{faltung} ein und erhalten, unter Verwendung der Eigenschaften der Delta-Distrubution, die Fouriertransformierte von \(f_r\):
+\begin{eqnarray*}
+	\hat {f_r}(\omega)  =  \dfrac{1}{\sqrt{2\pi}} \left(  \frac{\sqrt{2\pi}}{2} \cdot A  \,\left(  \hat r(\omega - \omega_0) + \hat r(\omega + \omega_0) \right) \right) = \dfrac{A}{\sqrt{2\pi}}\cdot \left(  \dfrac{\sin(\omega-\omega_0)}{\omega-\omega_0} + \dfrac{\sin(\omega+\omega_0)}{\omega+\omega_0}\right)\,.
+\end{eqnarray*}
+
+\end{exercisebox}
+
+\begin{exercisebox}{Matlab: Experiment: DFT gestörte Daten}{ } % p.428 16.12 noise
+
+\begin{center}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_verrauschtes_signal_und_spektrum.png}
+\end{center}
+\end{exercisebox}

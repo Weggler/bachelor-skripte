@@ -1,0 +1,938 @@
+\section{Grenzwerte von Folgen und Funktionen}\label{MA1-grenzwerte-von-folgen-und-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Folgen als mathematische Beschreibung schrittweiser Prozesse und
+    Annäherungen erklären &\\
+    \tabitem Konvergenz und Grenzwert einer Zahlenfolge anschaulich und
+    mathematisch interpretieren &\\
+    \tabitem Grenzwerte elementarer Zahlenfolgen mithilfe von Grenzwertsätzen
+    bestimmen &\\
+    \tabitem den Grenzwert einer Funktion an einer Stelle sowie einseitige
+    Grenzwerte erklären und bestimmen &\\
+    \tabitem Grenzwerte als Grundlage für Stetigkeit und Differenzierbarkeit
+    einordnen &\\
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem asymptotisches Verhalten von Standardfunktionen, insbesondere
+    von rationalen Funktionen & \abschnittsverweis{MA1-polynome}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema:
+\hyperref[MA1-grenzwerte-von-folgen-und-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Was ist eine Folge?}
+
+Viele mathematische Prozesse entstehen schrittweise. Eine Größe wird
+wiederholt berechnet, verändert oder angenähert, wobei jeder Schritt einen
+neuen Wert liefert. Eine geordnete Auflistung solcher mathematischer
+Objekte heißt \textbf{Folge} (\emph{sequence}).
+
+Eine Folge kann beispielsweise aus Zahlen, Vektoren oder auch Funktionen
+bestehen. In diesem Abschnitt stehen zunächst Folgen reeller Zahlen im
+Mittelpunkt.
+
+Eine Folge lässt sich als Funktion auffassen, deren Argument nicht
+kontinuierlich variiert, sondern die natürlichen Zahlen durchläuft. Jedem
+Index \(n\) wird genau ein Folgenglied \(a_n\) zugeordnet. Ist der
+Wertebereich \(\mathbb R\), so heißt die Folge
+\textbf{Zahlenfolge} (\emph{sequence of real numbers}):
+\[
+(a_n)_{n\in\mathbb N^+}:
+\mathbb N^+\to\mathbb R,
+\qquad
+n\mapsto a_n.
+\]
+
+\begin{exabox}{Folgen von Zahlen}{ }
+  \begin{tabular}{c|ccccc}
+    \(n\)   & \(1\) & \(2\) & \(3\) & \(4\) & \(\dots\)\\
+    \hline
+    \(a_n\) & \(5\) & \(7\) & \(9\) & \(11\) & \(\dots\)\\
+    \(b_n\) & \(1/1\) & \(1/2\) & \(1/3\) & \(1/4\) & \(\dots\)\\
+    \(c_n\) & \(3\) & \(3{,}1\) & \(3{,}14\) & \(3{,}141\) & \(\dots\)
+  \end{tabular}
+\end{exabox}
+
+Die drei Folgen zeigen bereits sehr unterschiedliche Verhaltensweisen.
+Die Folgenglieder von \((a_n)_n\) werden immer größer. Die Folgenglieder
+von \((b_n)_n\) werden dagegen immer kleiner und nähern sich dem Wert
+\(0\). Die Folge \((c_n)_n\) beschreibt eine schrittweise Annäherung an
+die Kreiszahl \(\pi\).
+
+Gerade solche Annäherungsprozesse spielen in der Analysis eine zentrale
+Rolle. Eine Folge ermöglicht es, mathematisch präzise zu beschreiben, was
+geschieht, wenn ein Prozess immer weiter fortgesetzt wird.
+
+
+\subsubsection*{Bildungsgesetze}
+
+Da eine unendliche Folge nicht durch die Auflistung aller ihrer
+Folgenglieder angegeben werden kann, wird sie typischerweise durch ein
+\textbf{Bildungsgesetz} beschrieben.
+
+Bei einer \textbf{explizit definierten Folge} lässt sich jedes
+Folgenglied unmittelbar aus seinem Index berechnen. Bei einer
+\textbf{rekursiv definierten Folge} wird ein neues Folgenglied aus bereits
+bekannten Folgengliedern bestimmt.
+
+\begin{exabox}{Explizite und rekursive Darstellung einer Folge}{ }
+
+Die Folge
+\[
+5,\ 7,\ 9,\ 11,\ldots
+\]
+kann auf zwei verschiedene Arten beschrieben werden.
+
+\medskip
+\textbf{Explizite Darstellung:}
+Jedes Folgenglied lässt sich unmittelbar aus dem Index \(n\) bestimmen:
+\[
+a_n=3+2n,
+\qquad n\in\mathbb N^+.
+\]
+
+\textbf{Rekursive Darstellung:}
+Ausgehend vom ersten Folgenglied wird jedes weitere Folgenglied aus dem
+vorhergehenden berechnet:
+\[
+a_1=5,
+\qquad
+a_{n+1}=a_n+2.
+\]
+
+Beide Bildungsgesetze beschreiben somit dieselbe Folge
+\[
+(a_n)_n=(5,7,9,11,\ldots).
+\]
+\end{exabox}
+
+
+%\noindent\textbf{Ausblick:}
+%Viele numerische Näherungsverfahren erzeugen rekursiv definierte Folgen.
+%Ein später verwendetes Beispiel ist das
+%\underline{Newton-Verfahren}\randverweis{MA1-lineare-funktionen}
+%zur näherungsweisen Bestimmung von Nullstellen.
+%
+%\begin{exabox}{Newton-Verfahren}{ }
+%Gesucht seien die Nullstellen einer differenzierbaren Funktion \(f\).
+%Ausgehend von einem Startwert \(x_0\) erzeugt das Newton-Verfahren eine
+%Folge von Näherungswerten durch
+%\[
+%x_{n+1}
+%=
+%x_n-\frac{f(x_n)}{f'(x_n)}.
+%\]
+%Unter geeigneten Voraussetzungen nähern sich diese Werte einer Nullstelle
+%von \(f\). Das Verfahren zeigt damit exemplarisch, weshalb Folgen für
+%Näherungsprozesse von Bedeutung sind.
+%\end{exabox}
+
+
+\subsection{Grenzwerte von Zahlenfolgen}
+
+Folgen können sehr unterschiedliche Verhaltensweisen zeigen. Sie können
+wachsen oder fallen, zwischen verschiedenen Werten wechseln, beschränkt
+bleiben oder unbegrenzt wachsen.
+
+Die folgenden Skizzen veranschaulichen einige dieser Möglichkeiten.
+
+\begin{exabox}{Eigenschaften von Zahlenfolgen}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/folgen_vergleich_eigenschaften.png}
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    Die dargestellten Folgen unterscheiden sich beispielsweise hinsichtlich
+    folgender Eigenschaften:
+    \begin{itemize}
+      \item beschränkt oder unbeschränkt,
+      \item wachsend oder fallend,
+      \item periodisch,
+      \item konstant.
+    \end{itemize}
+  \end{minipage}
+\end{exabox}
+
+Für die folgenden Überlegungen steht eine andere Frage im Mittelpunkt:
+\emph{Nähern sich die Folgenglieder für zunehmendes \(n\) immer weiter
+einem bestimmten Wert an?}
+
+Ein besonders einfaches Beispiel liefert die Folge
+\[
+a_n=\frac1n.
+\]
+Ihre ersten Folgenglieder lauten
+\[
+1,\quad\frac12,\quad\frac13,\quad\frac14,\quad\ldots
+\]
+und werden immer kleiner. Kein Folgenglied ist gleich \(0\). Trotzdem
+lassen sich die Folgenglieder durch hinreichend großes \(n\) beliebig nahe
+an \(0\) heranbringen.
+
+Dieses Annäherungsverhalten beschreibt der
+\textbf{Grenzwert} (\emph{limit}). Für das Beispiel gilt
+\[
+\lim_{n\to\infty}\frac1n=0.
+\]
+
+Allgemein bedeutet
+\[
+\lim_{n\to\infty}a_n=a
+\qquad\text{oder kurz}\qquad
+a_n\to a,
+\]
+dass sich die Folgenglieder \(a_n\) für zunehmendes \(n\) beliebig nahe
+an den Wert \(a\) annähern.
+
+Entscheidend ist dabei nicht, ob der Grenzwert \(a\) von der Folge jemals
+erreicht wird. Entscheidend ist, dass die Folgenglieder ab einem
+hinreichend großen Index beliebig nahe bei \(a\) liegen und anschließend
+auch dort bleiben.
+
+
+\subsubsection*{Konvergenz}
+
+Die Vorstellung einer Annäherung lässt sich mathematisch präzisieren.
+Dazu wird um den vermuteten Grenzwert \(a\) eine beliebig kleine Umgebung
+betrachtet. Ihre Größe wird durch eine Zahl \(\varepsilon>0\) beschrieben.
+
+Konvergenz bedeutet, dass sich für jede noch so kleine Wahl von
+\(\varepsilon\) ein Index finden lässt, ab dem alle weiteren
+Folgenglieder in dieser Umgebung liegen.
+
+\begin{defbox}{Konvergenz einer Zahlenfolge}{ }
+Eine Zahlenfolge \((a_n)_n\) heißt
+\textbf{konvergent} (\emph{convergent}) mit Grenzwert \(a\in\mathbb R\),
+wenn
+\[
+\forall\,\varepsilon>0\;
+\exists\,N\in\mathbb N^+\;
+\forall\,n\geq N:
+\qquad
+|a_n-a|<\varepsilon.
+\]
+
+In diesem Fall gilt
+\[
+a_n\to a
+\qquad\Longleftrightarrow\qquad
+\lim_{n\to\infty}a_n=a.
+\]
+
+\begin{center}
+\includegraphics[width=0.55\textwidth]
+{../Mathematik_1/Bilder/folgen_konvergenz_epsilon_index.png}
+\end{center}
+\end{defbox}
+
+Die formale Definition beschreibt genau die zuvor entwickelte
+Vorstellung. Die Zahl \(\varepsilon\) gibt einen beliebig kleinen
+zulässigen Abstand vom Grenzwert \(a\) vor. Zu jedem solchen Abstand
+existiert ein Index \(N\). Für alle \(n\geq N\) gilt dann
+\[
+|a_n-a|<\varepsilon.
+\]
+Ab diesem Index liegen also alle weiteren Folgenglieder in der
+\(\varepsilon\)-Umgebung des Grenzwerts.
+
+Die Definition dient hier vor allem dazu, die Bedeutung des
+Grenzwertbegriffs präzise zu erfassen. Grenzwerte werden im Folgenden
+nicht durch die direkte Anwendung dieser Definition bestimmt, sondern
+mithilfe bekannter Grenzwerte und Grenzwertsätze.
+
+
+\begin{exabox}{Annäherung an einen Grenzwert}{ }
+Für
+\[
+a_n=\frac{n^2+2}{3n^2}
+\]
+gilt
+\[
+a_n
+=
+\frac{1+\frac{2}{n^2}}{3}.
+\]
+Da \(2/n^2\) für zunehmendes \(n\) gegen \(0\) strebt, nähern sich die
+Folgenglieder dem Wert \(1/3\):
+\[
+\lim_{n\to\infty}a_n=\frac13.
+\]
+\end{exabox}
+
+
+\begin{exabox}{Eine Nullfolge}{ }
+Für die Folge
+\[
+a_n=\frac3n
+\]
+gilt
+\[
+3,\quad\frac32,\quad1,\quad\frac34,\quad\ldots
+\longrightarrow0.
+\]
+Eine Folge mit Grenzwert \(0\) heißt \textbf{Nullfolge}.
+\end{exabox}
+
+
+\subsubsection*{Konvergenz und Divergenz}
+
+Nicht jede Folge nähert sich einem festen Wert. Eine Folge, die keinen
+endlichen Grenzwert besitzt, heißt
+\textbf{divergent} (\emph{divergent}).
+
+Dabei können unterschiedliche Formen der Divergenz auftreten. Die Folge
+\[
+a_n=(-1)^n
+\]
+wechselt beispielsweise dauerhaft zwischen \(1\) und \(-1\) und nähert
+sich keinem einzelnen Wert.
+
+Eine andere Situation liegt vor, wenn die Folgenglieder schließlich über
+jede vorgegebene Schranke hinauswachsen. In diesem Fall schreibt man
+\[
+a_n\to\infty.
+\]
+Entsprechend beschreibt
+\[
+a_n\to-\infty
+\]
+eine Folge, deren Werte schließlich unter jede vorgegebene Schranke
+fallen. Solche Folgen heißen \textbf{bestimmt divergent}.
+
+\begin{exabox}{Bestimmt divergente Folgen}{ }
+\[
+n^2\to\infty,
+\qquad
+e^n\to\infty,
+\qquad
+\sqrt n\to\infty.
+\]
+\end{exabox}
+
+Das Symbol \(\infty\) bezeichnet dabei keine reelle Zahl. Eine bestimmt
+divergente Folge besitzt daher keinen Grenzwert in \(\mathbb R\).
+
+
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+  \item Jede konvergente Folge ist beschränkt. Die Umkehrung gilt nicht.
+  Eine beschränkte Folge kann also trotzdem divergent sein.
+
+  \item Monotonie und Beschränktheit können verwendet werden, um
+  Konvergenz nachzuweisen. Beispielsweise ist jede nach oben beschränkte
+  monoton wachsende Folge konvergent. Entsprechend ist jede nach unten
+  beschränkte monoton fallende Folge konvergent.
+
+  \item Solche Kriterien zum Nachweis von Konvergenz stehen hier nicht im
+  Mittelpunkt. Entscheidend ist die Bedeutung des Grenzwerts als
+  mathematische Beschreibung eines Annäherungsprozesses.
+\end{itemize}
+
+
+\begin{exabox}{Beschränktheit reicht nicht aus}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/folgen_beschraenkt_divergent_oszillation.png}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    Eine Folge kann beschränkt sein und trotzdem keinen Grenzwert besitzen.
+    Beschränktheit ist damit notwendig, aber nicht ausreichend für
+    Konvergenz.
+  \end{minipage}
+\end{exabox}
+
+
+\begin{exabox}{Beschränktheit und Monotonie}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/folgen_beschraenkt_monoton_konvergent.png}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    Eine beschränkte monotone Folge ist konvergent. In der dargestellten
+    Situation nähern sich die Folgenglieder einem festen Grenzwert.
+  \end{minipage}
+\end{exabox}
+
+
+\subsubsection*{Grenzwerte berechnen}
+
+In praktischen Anwendungen wird ein Grenzwert in der Regel nicht mithilfe
+der formalen Definition berechnet. Stattdessen werden bekannte Grenzwerte
+und Rechenregeln miteinander kombiniert.
+
+\begin{theorembox}{Grenzwertsätze für Folgen}{ }
+Es seien \((a_n)_n\) und \((b_n)_n\) konvergente Zahlenfolgen mit
+\[
+a_n\to a,
+\qquad
+b_n\to b.
+\]
+Dann gilt:
+\[
+\begin{array}{rcl}
+a_n+b_n &\to& a+b,\\[0.5ex]
+a_n-b_n &\to& a-b,\\[0.5ex]
+a_n\cdot b_n &\to& a\cdot b,\\[0.5ex]
+\dfrac{a_n}{b_n} &\to& \dfrac ab
+\qquad\textnormal{für } b\neq0.
+\end{array}
+\]
+
+Ist außerdem \((c_n)_n\) beschränkt und gilt
+\(|d_n|\to\infty\), so folgt
+\[
+\frac{c_n}{d_n}\to0.
+\]
+\end{theorembox}
+
+
+\begin{exabox}{Ein einfacher Grenzwert}{ }
+Für
+\[
+a_n=\frac{2n+1}{n}
+\]
+ergibt sich durch Umformen
+\[
+\lim_{n\to\infty}\frac{2n+1}{n}
+=
+\lim_{n\to\infty}\left(2+\frac1n\right)
+=
+2+0
+=
+2.
+\]
+\end{exabox}
+
+
+\begin{exabox}{Gebrochenrationaler Ausdruck: höchste Potenz ausklammern}{ }
+Für
+\[
+\lim_{n\to\infty}
+\frac{n^2+\sin(n)}{2n^2+e^{-n}}
+\]
+wird Zähler und Nenner durch die höchste auftretende Potenz \(n^2\)
+geteilt:
+\[
+\lim_{n\to\infty}
+\frac{n^2+\sin(n)}{2n^2+e^{-n}}
+=
+\lim_{n\to\infty}
+\frac{1+\frac{\sin(n)}{n^2}}
+     {2+\frac{e^{-n}}{n^2}}
+=
+\frac{1+0}{2+0}
+=
+\frac12.
+\]
+Dabei gilt
+\[
+\left|\frac{\sin(n)}{n^2}\right|
+\leq
+\frac1{n^2}\to0
+\]
+und ebenfalls
+\[
+\frac{e^{-n}}{n^2}\to0.
+\]
+\end{exabox}
+
+
+Einige häufig auftretende Grenzwerte werden im Folgenden als Referenz
+zusammengestellt. Ihre Herleitung steht hier nicht im Mittelpunkt.
+
+\begin{theorembox}{Wichtige Grenzwerte von Folgen}{ }
+\begin{itemize}
+  \item
+  \(\displaystyle
+  \lim_{n\to\infty}\left(1+\frac1n\right)^n=e.
+  \)
+
+  \item Für \(a>0\):
+  \[
+  n^a\to\infty,
+  \qquad
+  \frac1{n^a}\to0.
+  \]
+
+  \item Für \(|q|<1\) und \(a\in\mathbb R\):
+  \[
+  q^n\to0,
+  \qquad
+  n^a q^n\to0.
+  \]
+
+  \item Für \(q>1\) und \(a\in\mathbb R\):
+  \[
+  q^n\to\infty,
+  \qquad
+  \frac{q^n}{n^a}\to\infty.
+  \]
+\end{itemize}
+\end{theorembox}
+
+
+\subsection{Grenzwerte von Funktionen}
+
+Der Grenzwertbegriff für Folgen beschreibt einen Annäherungsprozess:
+Während der Index \(n\) immer größer wird, können sich die Folgenglieder
+\(a_n\) einem bestimmten Wert annähern.
+
+Dieselbe Grundidee lässt sich auf Funktionen übertragen. Nun nähert sich
+nicht der Index \(n\) dem Unendlichen, sondern die Variable \(x\) einer
+bestimmten Stelle \(x_0\). Im Mittelpunkt steht die Frage, welchem Wert
+sich die Funktionswerte \(f(x)\) nähern, wenn \(x\) beliebig nahe an
+\(x_0\) heranrückt.
+
+Dabei ist zunächst nicht entscheidend, welchen Wert die Funktion an der
+Stelle \(x_0\) selbst besitzt. Insbesondere kann ein Grenzwert auch dann
+existieren, wenn \(f(x_0)\) gar nicht definiert ist.
+
+Der \textbf{Grenzwert einer Funktion} überträgt damit die bereits von
+Folgen bekannte Idee der Annäherung auf das lokale Verhalten einer
+Funktion.
+
+
+\begin{exabox}{Grenzwert an einer Definitionslücke}{ }
+  \begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/grenzwerte_hebbare_definitionsluecke.png}
+  \end{minipage}
+  \begin{minipage}{0.67\textwidth}
+    An der Stelle \(x_0=-1\) ist kein Funktionswert definiert. Die
+    Funktionswerte in der Umgebung nähern sich jedoch von beiden Seiten
+    dem Wert \(1\).
+
+    Daher existiert der Grenzwert
+    \[
+    \lim_{x\to-1}f(x)=1.
+    \]
+
+    Die Definitionslücke könnte durch die Festlegung \(f(-1)=1\)
+    geschlossen werden. Im folgenden Abschnitt wird sich zeigen, dass die
+    so ergänzte Funktion an dieser Stelle stetig ist.
+  \end{minipage}
+\end{exabox}
+
+
+Der Grenzwert beschreibt somit das Verhalten der Funktion
+\emph{in der Umgebung} von \(x_0\), nicht den Funktionswert an \(x_0\)
+selbst.
+
+Ein Grenzwert muss allerdings nicht existieren.
+
+\begin{exabox}{Wenn kein Grenzwert existiert}{ }
+  \begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/grenzwerte_polstelle_vorzeichenwechsel.png}
+  \end{minipage}
+  \begin{minipage}{0.67\textwidth}
+    Bei einer Annäherung an \(x_0\) zeigen die Funktionswerte von links
+    und von rechts kein gemeinsames endliches Verhalten.
+
+    In der dargestellten Situation gilt
+    \[
+    f(x)\to-\infty
+    \quad\textnormal{für }x\to x_0^-,
+    \]
+    während
+    \[
+    f(x)\to+\infty
+    \quad\textnormal{für }x\to x_0^+.
+    \]
+
+    Ein gemeinsamer endlicher Grenzwert für \(x\to x_0\) existiert daher
+    nicht.
+  \end{minipage}
+\end{exabox}
+
+
+\subsubsection*{Die präzise Bedeutung eines Funktionsgrenzwerts}
+
+Auch beim Funktionsgrenzwert lässt sich die Vorstellung „beliebig nahe“
+mathematisch präzisieren.
+
+Die Zahl \(\varepsilon>0\) beschreibt wieder einen beliebig kleinen
+Abstand vom Grenzwert \(L\). Nun wird jedoch nicht ein hinreichend großer
+Index gesucht, sondern eine hinreichend kleine Umgebung der Stelle
+\(x_0\). Ihre Größe wird durch \(\delta>0\) beschrieben.
+
+\begin{defbox}{Grenzwert einer Funktion}{ }
+Sei \(f:D\to\mathbb R\) und \(x_0\) ein Häufungspunkt von \(D\).
+Dann bedeutet
+\[
+\lim_{x\to x_0}f(x)=L,
+\]
+dass
+\[
+\forall\,\varepsilon>0\;
+\exists\,\delta>0\;
+\forall\,x\in D:
+\qquad
+0<|x-x_0|<\delta
+\Rightarrow
+|f(x)-L|<\varepsilon.
+\]
+
+\end{defbox}
+
+  \begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]
+{../Mathematik_1/Bilder/grenzwerte_definition_epsilon_delta.png}
+  \end{minipage}
+  \begin{minipage}{0.6\textwidth}
+Die Bedingung
+\[
+0<|x-x_0|<\delta
+\]
+bedeutet, dass \(x\) hinreichend nahe bei \(x_0\), aber nicht gleich
+\(x_0\) liegt. Für alle solchen \(x\) sollen die zugehörigen
+Funktionswerte den vorgegebenen Abstand
+\[
+|f(x)-L|<\varepsilon
+\]
+vom Grenzwert \(L\) einhalten.
+
+Damit wird auch formal sichtbar, dass der Funktionswert \(f(x_0)\) für
+die Existenz und den Wert des Grenzwerts zunächst keine Rolle spielt.
+\end{minipage}
+
+
+\subsubsection*{Die Verbindung zwischen Folgen und Funktionsgrenzwerten}
+
+Die zuvor eingeführten Zahlenfolgen ermöglichen eine weitere anschauliche
+Interpretation des Funktionsgrenzwerts.
+
+Eine Folge von Stellen
+\[
+x_1,x_2,x_3,\ldots
+\]
+kann sich der Stelle \(x_0\) annähern:
+\[
+x_n\to x_0,
+\qquad
+x_n\neq x_0.
+\]
+Wird diese Folge in die Funktion eingesetzt, entsteht eine neue Folge
+von Funktionswerten
+\[
+f(x_1),f(x_2),f(x_3),\ldots
+\]
+
+Existiert der Funktionsgrenzwert
+\[
+\lim_{x\to x_0}f(x)=L,
+\]
+so nähern sich für jede solche Annäherung an \(x_0\) auch die
+Funktionswerte demselben Wert \(L\):
+\[
+x_n\to x_0
+\qquad\Longrightarrow\qquad
+f(x_n)\to L.
+\]
+
+Damit wird deutlich, weshalb Zahlenfolgen für den Grenzwertbegriff von
+Funktionen nützlich sind: Eine Folge beschreibt einen möglichen
+schrittweisen Weg, sich einer Stelle \(x_0\) zu nähern. Ein
+Funktionsgrenzwert existiert nur dann, wenn das Ergebnis nicht davon
+abhängt, auf welche Weise diese Annäherung erfolgt.
+
+Führen zwei unterschiedliche Annäherungen an dieselbe Stelle dagegen zu
+unterschiedlichen Grenzwerten der Funktionswerte, so kann kein
+gemeinsamer Funktionsgrenzwert existieren.
+
+
+\subsubsection*{Einseitige Grenzwerte}
+
+Bei Funktionen mit reellem Definitionsbereich kann eine Stelle \(x_0\)
+von zwei Richtungen angenähert werden. Eine Annäherung kann ausschließlich
+mit Werten \(x<x_0\) oder ausschließlich mit Werten \(x>x_0\) erfolgen.
+
+Dies führt zum \textbf{linksseitigen Grenzwert}
+\[
+\lim_{x\to x_0^-}f(x)
+\]
+und zum \textbf{rechtsseitigen Grenzwert}
+\[
+\lim_{x\to x_0^+}f(x).
+\]
+
+Ein gemeinsamer Grenzwert
+\[
+\lim_{x\to x_0}f(x)
+\]
+existiert genau dann, wenn beide einseitigen Grenzwerte existieren und
+übereinstimmen.
+
+\begin{exabox}{Einseitige Grenzwerte}{ }
+  \begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/grenzwerte_einseitig_sprungstelle.png}
+  \end{minipage}
+  \begin{minipage}{0.67\textwidth}
+    Für die dargestellte Funktion gilt
+    \[
+    \lim_{x\to-1^-}f(x)=-1,
+    \qquad
+    \lim_{x\to-1^+}f(x)=1.
+    \]
+    Beide einseitigen Grenzwerte existieren, stimmen aber nicht überein.
+    Daher existiert kein gemeinsamer Grenzwert
+    \[
+    \lim_{x\to-1}f(x).
+    \]
+  \end{minipage}
+\end{exabox}
+
+
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+  \item Für einen Grenzwert an einer Stelle \(x_0\) müssen Punkte des
+  Definitionsbereichs existieren, die beliebig nahe an \(x_0\) liegen
+  und von \(x_0\) verschieden sind. Eine solche Stelle heißt
+  \textbf{Häufungspunkt} des Definitionsbereichs.
+
+  \item An Randpunkten des Definitionsbereichs ist gegebenenfalls nur
+  eine einseitige Annäherung möglich.
+
+  \item Für \(x\to\infty\) beziehungsweise \(x\to-\infty\) wird das
+  asymptotische Verhalten einer Funktion durch
+  \textbf{uneigentliche Grenzwerte} beschrieben.
+\end{itemize}
+
+
+\subsubsection*{Grenzwerte von Funktionen berechnen}
+
+Wie bei Zahlenfolgen werden Grenzwerte von Funktionen in praktischen
+Berechnungen normalerweise nicht unmittelbar mithilfe der formalen
+Definition bestimmt. Stattdessen werden bekannte Grenzwerte,
+Grenzwertsätze und geeignete Umformungen verwendet.
+
+\begin{theorembox}{Grenzwertsätze für Funktionen}{ }
+Seien \(f,g:D\to\mathbb R\) mit
+\[
+\lim_{x\to x_0}f(x)=a,
+\qquad
+\lim_{x\to x_0}g(x)=b.
+\]
+Dann gilt für \(c\in\mathbb R\):
+\[
+\begin{array}{rcl}
+\displaystyle
+\lim_{x\to x_0}c\,f(x)
+&=&ca,\\[1.5ex]
+
+\displaystyle
+\lim_{x\to x_0}\bigl(f(x)+g(x)\bigr)
+&=&a+b,\\[1.5ex]
+
+\displaystyle
+\lim_{x\to x_0}\bigl(f(x)-g(x)\bigr)
+&=&a-b,\\[1.5ex]
+
+\displaystyle
+\lim_{x\to x_0}f(x)g(x)
+&=&ab,\\[1.5ex]
+
+\displaystyle
+\lim_{x\to x_0}\frac{f(x)}{g(x)}
+&=&\frac ab
+\qquad\textnormal{falls }b\neq0.
+\end{array}
+\]
+\end{theorembox}
+
+
+Besonders einfach ist die Situation bei Funktionen, deren Funktionsterme
+an der betrachteten Stelle ohne Problem ausgewertet werden können.
+
+\begin{exabox}{Direktes Einsetzen}{ }
+Für
+\[
+f(x)=\frac{x^2+7}{e^x}
+\]
+ergibt sich an der Stelle \(x_0=2\)
+\[
+\lim_{x\to2}\frac{x^2+7}{e^x}
+=
+\frac{2^2+7}{e^2}
+=
+\frac{11}{e^2}.
+\]
+\end{exabox}
+
+Interessanter wird der Grenzwert, wenn direktes Einsetzen zunächst zu
+einem unbestimmten Ausdruck führt.
+
+\begin{exabox}{Eine hebbare Definitionslücke}{ }
+Für
+\[
+\lim_{x\to1}\frac{x^2-1}{x-1}
+\]
+ergibt direktes Einsetzen zunächst den Ausdruck \(0/0\). Dieser Ausdruck
+ist kein Grenzwert und enthält für sich genommen noch keine Information
+über das tatsächliche Verhalten der Funktion.
+
+Für \(x\neq1\) lässt sich jedoch faktorisieren:
+\[
+\frac{x^2-1}{x-1}
+=
+\frac{(x-1)(x+1)}{x-1}
+=
+x+1.
+\]
+Da beim Grenzwert \(x=1\) selbst nicht eingesetzt werden muss, folgt
+\[
+\lim_{x\to1}\frac{x^2-1}{x-1}
+=
+\lim_{x\to1}(x+1)
+=
+2.
+\]
+\end{exabox}
+
+Dieses Beispiel wird für die Differentialrechnung von besonderer
+Bedeutung sein: Auch bei der Definition der Ableitung entsteht zunächst
+ein Quotient, dessen Zähler und Nenner gegen \(0\) streben. Der
+Grenzwertbegriff ermöglicht es, trotzdem eine wohldefinierte lokale
+Änderungsrate zu erhalten.
+
+
+\begin{exabox}{Ein einseitiger Grenzwert}{ }
+Für
+\[
+f(x)=\frac{x}{|x|}
+\]
+gilt für \(x<0\)
+\[
+\frac{x}{|x|}=-1,
+\]
+während für \(x>0\)
+\[
+\frac{x}{|x|}=1
+\]
+gilt. Daher folgen die einseitigen Grenzwerte
+\[
+\lim_{x\to0^-}\frac{x}{|x|}=-1,
+\qquad
+\lim_{x\to0^+}\frac{x}{|x|}=1.
+\]
+Da sie verschieden sind, existiert kein gemeinsamer Grenzwert für
+\(x\to0\).
+\end{exabox}
+
+
+\subsubsection*{Grenzwerte für \(x\to\infty\)}
+
+Grenzwerte werden nicht nur in der Umgebung einer endlichen Stelle
+betrachtet. Auch das bereits bekannte asymptotische Verhalten von
+Funktionen lässt sich mit der Grenzwertschreibweise ausdrücken.
+
+Für rationale Funktionen
+\[
+f(x)=\frac{p(x)}{q(x)}
+\]
+wird das Verhalten für große \(|x|\) durch die höchsten Potenzen in
+Zähler und Nenner bestimmt.
+
+\begin{theorembox}{Grenzwerte rationaler Funktionen für \(x\to\infty\)}{ }
+Es seien \(p\) und \(q\) Polynome mit Grad \(n\) beziehungsweise \(m\)
+und Leitkoeffizienten \(a_n\) beziehungsweise \(b_m\). Dann gilt
+\[
+\lim_{x\to\infty}\frac{p(x)}{q(x)}
+=
+\begin{cases}
+0, & n<m,\\[1ex]
+\dfrac{a_n}{b_m}, & n=m,\\[2ex]
+\infty, & n>m\textnormal{ und }a_nb_m>0,\\[1ex]
+-\infty, & n>m\textnormal{ und }a_nb_m<0.
+\end{cases}
+\]
+\end{theorembox}
+
+Weitere häufig auftretende asymptotische Grenzwerte sind:
+
+\begin{theorembox}{Wichtige Grenzwerte für \(x\to\infty\)}{ }
+\begin{itemize}
+  \item Für \(a>0\):
+  \[
+  x^a\to\infty,
+  \qquad
+  \frac1{x^a}\to0.
+  \]
+
+  \item Für \(0<q<1\) und \(a\in\mathbb R\):
+  \[
+  q^x\to0,
+  \qquad
+  q^x x^a\to0.
+  \]
+
+  \item Für \(q>1\) und \(a\in\mathbb R\):
+  \[
+  \frac{q^x}{x^a}\to\infty.
+  \]
+
+  \item Für \(a>0\):
+  \[
+  \frac{\ln(x)}{x^a}\to0.
+  \]
+\end{itemize}
+\end{theorembox}
+
+
+\subsection*{Grenzwerte als Grundlage lokaler Eigenschaften}
+
+Der Grenzwertbegriff ermöglicht es, das Verhalten einer Funktion in der
+unmittelbaren Umgebung einer Stelle zu beschreiben. Dabei werden zwei
+Größen zunächst bewusst voneinander getrennt:
+\[
+\lim_{x\to x_0}f(x)
+\qquad\textnormal{und}\qquad
+f(x_0).
+\]
+
+Der erste Ausdruck beschreibt das Verhalten der Funktionswerte
+\emph{in der Umgebung} von \(x_0\). Der zweite Ausdruck bezeichnet den
+tatsächlichen Funktionswert \emph{an der Stelle} \(x_0\).
+
+Damit entsteht unmittelbar eine neue Frage: Was bedeutet es, wenn beide
+Werte übereinstimmen?
+
+\[
+\lim_{x\to x_0}f(x)=f(x_0).
+\]
+
+Diese Übereinstimmung führt zum Begriff der
+\textbf{Stetigkeit} (\emph{continuity}). Anschaulich bedeutet sie, dass
+sich das Verhalten der Funktion in der Umgebung ohne Sprung oder Lücke an
+den tatsächlichen Funktionswert anschließt.
+
+Der Grenzwertbegriff ermöglicht anschließend noch einen weiteren Schritt.
+Bei der Differentialrechnung wird untersucht, ob sich nicht nur
+Funktionswerte, sondern auch Differenzenquotienten einem festen Wert
+annähern. Dieser Grenzwert führt zur Ableitung und damit zur lokalen
+Änderungsrate einer Funktion.
+
+Grenzwerte bilden damit die begriffliche Grundlage für die beiden
+zentralen lokalen Eigenschaften der folgenden Abschnitte:
+\[
+\text{Grenzwert}
+\quad\longrightarrow\quad
+\text{Stetigkeit}
+\quad\longrightarrow\quad
+\text{Differenzierbarkeit}.
+\]
+

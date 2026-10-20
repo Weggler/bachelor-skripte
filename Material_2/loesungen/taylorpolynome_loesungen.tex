@@ -1,0 +1,150 @@
+\section*{Taylorpolynome und Taylorreihen Aufgaben mit Lösungen}\label{MA2-taylorpolynome-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-taylorpolynome}{ (Abschnitt \abschnittsverweis{MA2-taylorpolynome})}.\fi
+
+\begin{exercisebox}[Taylorpolynom und Restgliedabschätzung] %HMI I Blatt 12, Aufgabe 1
+	Bestimmen Sie für die Funktion \(f:x\mapsto \ln\left( x\cdot e^{-2x}\right) \) das Taylorpolynom \(3.\) Grades in \(x_0=1\) und berechnen SIe damit näherungsweise \(f(6/5)\). Geben Sie anschließend eine Restgliedabschätzung an.
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	Das Taylorpolynom dritten Grades lautet
+	\[ T_{3,x_0}(x) = f(x_0) + f'(x_0)\cdot (x-x_0) + f''(x_0)\cdot \frac{(x-x_0)^2}{2!} + f'''(x_0)\cdot \frac{(x-x_0)^3}{3!}\,.\]
+	Durch Potenzregeln läßt sich die Funktionsabbildung vereinfachen und in der Form fällt das Ableiten wahrscheinlich leichter
+	\[ f(x) = \ln\left( x\cdot e^{-2x}\right)  = \ln(x) + (-2x)\Rightarrow \begin{cases} f'(x) = x^{-1} - 2 &\Rightarrow f'(1) = -1\,,\\ f''(x) = -x^{-2} &\Rightarrow f''(1) = -1\,, \\  f'''(x) = 2x^{-3} &\Rightarrow f'''(1) = 2\,,\\ f^{(4)}(x) = -3! \,x^{-4} &\Rightarrow f^{(4)}(1) = -3! \end{cases} \]
+	Das gesuchte Taylorpolynom für \(x_0 = 1\)
+	\[ T_{3,1}(x) = -2 + (-1)\cdot (x-1) + (-1) \cdot \frac12 \cdot (x-1)^2 + 2\cdot \frac{1}{3!} (x-1)^3  = -2 -(x-1)  -\frac12 \cdot (x-1)^2 + \frac{1}{3} (x-1)^3 \,.\]
+	Die Approximation an der Stelle \(x=6/5\) ist
+	\[ T_{3,1}\left(\frac65\right) = -2 - \frac15 - \frac12 \frac{1}{25} + \frac13\frac{1}{125} = \frac{-1500 - 150 -15 + 2}{6\cdot 125} = -\frac{1663}{2\cdot 3\cdot 125} = -\frac{1663}{750}\,.\]
+	Das Restglied nach Lagrange \(R_3\) lautet
+	\[ \exists \xi \in I=(1,6/5):\quad R_3(6/5) =  f^{(4)}(\xi)\cdot \frac{(1/5)^4}{4!} \,. \]
+	Da der Betrag der vierten Ableitung auf \([1,6/5]\) monoton fällt, gilt:
+\[
+\left|R_3\left(\frac65\right)\right|
+\leq \frac{\max_{\xi\in[1,6/5]}|f^{(4)}(\xi)|}{4!}\left(\frac15\right)^4
+=\frac{6}{24}\left(\frac15\right)^4=4\cdot10^{-4}.
+\]
+Der exakte Fehler ist kleiner und so muss es auch sein:
+		\[ \Big| f\left(\frac65\right) - T_{3,1}\left(\frac65\right) \Big| = \Big| \ln\left(\frac65\right) - 2\frac65 + \frac{1663}{750}\Big| = 3.45\cdot 10^{-4} < 4\cdot 10^{-4}\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 5
+	Geben Sie die ersten vier Glieder der Taylorreihe folgender Funktionen mit Entwicklungspunkt $x_0$ an:
+\begin{eqnarray*}
+	(a)\; f:x\mapsto \mathrm{cos}(x), \; x_0 = \frac{\pi}{3} \quad\quad
+	(b)\; f:x\mapsto \sqrt{x}, \; x_0 = 1 \quad\quad
+	(c)\; f:x\mapsto \frac{1}{x^2} - \frac{2}{x}, \; x_0 = 1
+\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufgabe \(5\) in Papula Band 1, Abschnitt VI.3. Die Aufgabenstellungen sind auf Seite \(520\) und detaillierte Lösungen auf Seite \(813\) zu finden.
+\begin{eqnarray*}
+	(a)\quad  \cos(x) &=& \frac12 - \frac{\sqrt{3}}{2}(x-\pi/3) - \frac14(x-\pi/3)^2 + \frac{\sqrt{3}}{12}(x-\pi/3)^3 + \dots \\
+	(b)\quad\quad\quad \sqrt{x} &=& 1+ \frac12(x-1) - \frac18(x-1)^2 + \frac{1}{16}(x-1)^3 + \dots \\
+	(c)\quad \frac{1}{x^2} - \frac{2}{x} &=& -1 + (x-1)^2 - 2(x-1)^3 + 3(x-1)^4 + \dots
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 3
+	Bestimmen Sie die Taylorreihe von $f:x\mapsto \displaystyle{\frac{1}{\sqrt{1-x^3}}} $ mit Entwicklungspunkt $x_0=0$ mit Hilfe des Binomischen Lehrsatzes und berechnen Sie die ersten vier Glieder explizit.
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufgabe \(3\) in Papula Band 1, Abschnitt VI.3. Papulas Aufgabenstellung ist auf Seite \(635\) und die detaillierte Lösung auf Seite \(813\) zu finden.
+Der Trick ist sich die Binomische Reihe zur Hilfe zu nehmen. Sie lautet:
+\begin{eqnarray*}
+	(*) \quad (1+z)^{-1/2} = 1-\frac{z}{2}+\frac{3z^2}{8} - \frac{5z^3}{16} + \dots
+\end{eqnarray*}
+Das gesuchte Taylorpolynom für \(f\) ergibt sich gerade aus \( (*)\) mit der Substitution $z=-x^3$:
+\begin{eqnarray*}
+	f(x) = 1 + \frac12 x^3 + \frac38 x^6 + \frac{5}{16} x^9+\dots
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 2 und 10
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die Taylorreihe von $f:x\mapsto \displaystyle{\mathrm{cosh}(x)} $ mit Entwicklungspunkt $x_0=0$.
+		\item[(b)] Untersuchen Sie mit Hilfe des Restglieds $R_{n-1}$ für welche Werte $x$ die Potenzreihe gegen $\mathrm{cosh}(x)$ konvergiert. Schätzen Sie dazu $R_{n-1}$ geeignet ab und stellen Sie fest für welche \(x\in\mathbb R\) gilt \(\lim\limits_{n\to\infty} R_{n-1}=0\).
+		\item[(c)] Lösen Sie die Gleichung
+			\[
+			\mathrm{cosh}(x) = 4-x^2\]
+			näherungsweise mit Hilfe der nach der vierten Potenz abgebrochenen Potenzreihenentwicklung von $\mathrm{cosh}(x)$. Geben Sie die Lösung mit vier Nachkommastellen an.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula Band 1, Abschnitt VI.3. ab Seite \(635\) und die detaillierten Lösungen finden Sie zum Nacharbeiten ab Seite \(813\).
+\begin{itemize}
+	\item[(a)] (Papula Aufg. 2 ) \quad Es gilt
+		\[ \mathrm{cosh}(x) = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots = \frac{e^x-e^{-x}}{2}\,,\]
+			das heißt die Taylorreihe lautet
+			\[ \sum\limits_{k=0}^\infty a_k x^k, \quad a_k = \begin{cases} 1/k!, \quad &k\textnormal{ gerade}\,,\\ 0, \quad &k\textnormal{ ungerade}\,.\end{cases} \]
+		\item[(b)] Es gilt \[ |R_{2n-2}(x)| = |R_{2n-1}(x)| = \Big| \frac{\mathrm{cosh}^{(2n)}(\xi)}{(2n)!} x^{2n} \Big| = |\mathrm{cosh}(\xi)|\cdot \frac{|x|^{2n}}{(2n)!}\,,\]
+			mit $\xi \in (0,x)$. Also
+			\[ |\mathrm{cosh}(\xi) = \Big| \frac{e^\xi + e^{-\xi}}{2} \Big| \leq \Big| \frac{e^{|\xi|} + e^{|\xi|}}{2} \Big|  \leq e^{|x|}\,,\]
+
+			da $|\xi| < |x|$. Damit
+			\[ \lim\limits_{n\to\infty}|R_{2n-2}(x)| = \lim\limits_{n\to\infty}|R_{2n-1}(x)| = \leq e^{|x|}\cdot\lim\limits_{n\to\infty} \frac{|x|^{2n}}{(2n)!} = 0 \quad (*)\]
+			Damit konvergiert die Taylorreihe für alle $x\in\mathbb R$ gegen $\mathrm{cosh}(x)$.
+
+			Bemerkung zu dem Grenzwert in \( (*)\): Zu jedem beliebigen, aber fixierten \(x\in \mathbb R\), läßt sich ein \(m\in \mathbb N_0\) finden, für das gilt  \(|x| < m\), und damit folgt für alle \(n\geq m\)
+			\begin{eqnarray*}
+				\dfrac{|x|^{2n} }{(2n)!} &=& \underbrace{ \dfrac{ |x|\cdot |x|\cdot |x|\cdot \dots \cdot |x|^m}{1\cdot 2 \cdot 3 \cdot \cdots \cdot m} }_{ \displaystyle{=M < \infty} }\cdot \dfrac{|x|}{m+1} \cdot \dfrac{|x|}{m+2} \cdot \cdots \cdot \dfrac{|x|}{2n} \\&\leq& M \underbrace{\left( \dfrac{m}{m+1} \right)^n}_{\displaystyle{ q^m, \; q< 1}} \to 0\; \textnormal{für} \; n\to \infty\,.
+		\end{eqnarray*}
+		\item[(c)] (Papula Aufg. 10) Es ist $x^4 + 36x^2 - 72 = 0 \Rightarrow x_{1,2} \approx \pm 1.3783$
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung Anwendung] %Papula I, VI, Abschnitt 3, Aufgabe 12
+	Berechnen Sie einen Näherungswert der folgenden Integrale. Bestimmen Sie dazu das Taylorpolynom  mit Entwicklungspunkt $x_0=0$ bis zur angegebenen Ordnung $n$ und integrieren Sie dieses. Geben Sie das Ergebnis mit $4$ Nachkommmastellen an.
+	\begin{eqnarray*}
+		(a)\; \int\limits_0^{1/2} \cos(\sqrt{x})\,\mathrm{d}x, \; n=3\quad\quad (b)\; \int\limits_{0}^{2/10}\frac{e^x}{x+1}\,\mathrm{d}x,\; n=3\quad\quad (c)\; \int\limits_{0}^1\frac{\sin(x)}{x}\,\mathrm{d}x, \; n=4
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufgabe \(12\) in Papula Band 1, Abschnitt VI.3. Die Aufgabenstellung finden Sie auf Seite \(637\) und die detaillierten Lösungen ab Seite \(815\).
+\vspace{0.2cm}
+
+Kennt man Taylorreihen von Standardfunktionen, so kann man diese benutzen, um Taylorpolynome von komplizierten Funktionen ganz ohne das Berechnen von Ableitungen und Grenzwerten zu bestimmen. Hier drei Beispiele in dieser Richtung:
+	\begin{itemize}
+		\item[(a)] Die Taylorentwicklung der Kosinusfunktion an der Stelle \(\tilde x_0 = \sqrt{x_0} = \sqrt{0} = 0\) lautet
+			\[ \tilde x = \sqrt{x}: \quad \cos(\tilde x) = 1 - \dfrac{1}{2!} \tilde x^2 + \dfrac{1}{4!} \tilde x^4 - \dfrac{1}{6!} \tilde x^6 \pm \cdots\,.
+			\]
+			Im Intervall \( x \in \left(0,\frac12\right)\) läßt sich der Integrand \[f: \left(0,\frac12\right) \to \mathbb R,  x \mapsto \cos\left( \sqrt{x} \right) \] durch das folgende Polynom darstellen:
+			\[ \cos\left(\sqrt{x}\right) \approx  1 - \dfrac{1}{2!} \left(\sqrt{x}\right)^2 + \dfrac{1}{4!} \left( \sqrt{x}\right)^4- \dfrac{1}{6!} \left( \sqrt{x}\right)^4 = 1 - \dfrac{1}{2!} x + \dfrac{1}{4!}x^2 - \dfrac{1}{6!}x^3 \,. \]
+			Und damit erhalten wir als Näherung des Integrals
+			\[  \int\limits_0^{\frac12} \cos\left( \sqrt{x} \right) \,\mathrm{d} x \approx \int\limits_0^\frac12  \left( 1 - \dfrac{1}{2!} x + \dfrac{1}{4!}x^2- \dfrac{1}{6!}x^3 \right) \,\mathrm{d} x  = \Big[ x -\dfrac14 x^2 + \dfrac{1}{3\cdot 4!} x^3  - \dfrac{1}{4\cdot 6!} x^4 \Big]_0^\frac12 \approx 0,4392\,.  \]
+			Das Taylorpolynom zweiter Ordnung des Integranden läßt sich formal eigentlich nicht entwickeln, denn die Ableitungen \(f^{(k)}\) für \( k\geq 1\) sind an der Stelle \(x_0=0\) gar nicht definiert. Die Ableitungen lassen sich für \(x \downarrow 0\) rechtsseitig stetig fortsetzen und betrachtet man diese Fortsetzungen, so gelangt man zu derselben polynomialen Approximation des Integranden in der Nähe von \(x_0 =0\). Im aufgeführten Lösungsweg tritt die Problematik nicht auf, weil allein eine Entwicklung der Kosinusfunktion und die rechtsseitige Stetigkeit der Wurzelfunktion benutzt werden.
+		\item[(b)]
+		Die Taylorentwicklung der Exponentialfunktion an der Stelle \( x_0 = 0\) lautet
+		\[ e^x =  1 + x + \frac12 x^2 + \frac{1}{3!} x^3 + \frac{1}{4!}x^4 +\cdots\,.
+			\]
+			Im Intervall \( x \in \left(0,\frac{2}{10}\right) \) läßt sich der Integrand \[f: \left(0,\frac{2}{10}\right) \to \mathbb R,  x \mapsto \dfrac{e^x}{x+1} \] durch das folgende Polynom darstellen:
+				\begin{eqnarray*} \dfrac{e^x}{x+1} &\approx&  \dfrac{ 1 + x + \frac12 x^2 + \frac16 x^3 \frac{1}{24}x^4}{1+x} = 1 + \frac12 x^2 \dfrac{ 1 + \frac13 x + \frac{1}{12} x^2 }{1+x} \\&& = 1 + \frac12 x^2 + \frac16 x^3\dfrac{-2 + \frac14x}{1+x} = 1 + \frac12 x^2 - \frac13 x^3 + \frac{7}{48}\dfrac{x^3}{1+x}  \,. \end{eqnarray*}
+			Und damit erhalten wir als Näherung des Integrals
+			\[  \int\limits_0^{\frac{2}{10}} \dfrac{e^x}{1+x} \,\mathrm{d} x \approx \int\limits_0^\frac{2}{10}  \left(  1 + \frac12 x^2 - \frac13 x^3 \right) \,\mathrm{d} x  = \Big[ x +\dfrac16 x^3 - \dfrac{1}{12} x^3 \Big]_0^\frac{2}{10}  \approx 0.2012\,.  \]
+			Das Taylorpolynom dritter Ordnung läßt sich auch gemäß Definition bestimmen. Die Ableitungen sind aufwendig und die vorgeschlagene Lösung ist eleganter.
+		\item[(c)]
+		Die Taylorentwicklung der Sinusfunktion an der Stelle \(x_0 = 0\) lautet
+		\[ \sin(x) =  x - \frac{1}{3!} x^3 + \frac{1}{5!} x^5\pm\cdots\,.
+			\]
+			Im Intervall \( x \in (0,1) \) läßt sich der Integrand \[f: (0,1) \to \mathbb R,  x \mapsto \dfrac{\sin(x)}{x} \] durch das folgende Polynom darstellen:
+				\begin{eqnarray*} \dfrac{\sin(x)}{x} &\approx&  1 - \frac{1}{3!} x^2 + \frac{1}{5!} x^4   \,. \end{eqnarray*}
+			Und damit erhalten wir als Näherung des Integrals
+			\[  \int\limits_0^{1} \dfrac{\sin(x)}{x} \,\mathrm{d} x \approx \int\limits_0^1  \left(  1 - \frac16 x^2 + \frac{1}{120} x^4 \right) \,\mathrm{d} x  = \Big[ x -\dfrac{1}{18} x^3 + \dfrac{1}{600} x^5 \Big]_0^1  \approx 0.9460\,.  \]
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Taylor-Entwicklung Anwendung] %Papula I, VI, Abschnitt 3, Aufgabe 13
+	Bestimmen Sie die Taylorreihe von $f: x\mapsto \ln(1-x)$ mit $x_0=0$ und differenzieren Sie diese gliedweise. Welche Potenzreihe erhalten Sie?
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	Diese Aufgabe entspricht Aufgabe \(13\) in Papula Band 1, Abschnitt VI.3. Die Aufgabenstellung finden Sie auf Seite \(637\) und die detaillierten Lösungen ab Seite \(817\).
+
+
+\vspace{0.2cm}
+Die Idee dieser Aufgabe ist zu vermitteln, dass man Taylorreihen gliedweise differenzieren kann und die Potenzreihe, die durch diese Differentiation entsteht, kann ihrerseits bzgl. Konvergenz diskutiert werden.
+
+Die Taylorreihe der Funktion \(f: x\mapsto \ln(1-x)\) lautet:
+\begin{eqnarray*} T_{f,0}(x) &=& - \sum\limits_{k=1}^\infty \dfrac1k x^k \\ \dfrac{\mathrm d}{\mathrm d x} T_{f,0}(x) &=& - \sum\limits_{k=0}^\infty x^k = - \dfrac{1}{1-x}, \quad |x|< 1 \,.\end{eqnarray*}
+\end{exercisebox}
+

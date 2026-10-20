@@ -1,0 +1,99 @@
+\section*{Zahlenmengen Lösungen}\label{MA1-zahlenmengen-loesungen}
+
+\ifintegriereaufgaben
+Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-zahlenmengen}{ (Abschnitt \abschnittsverweis{MA1-zahlenmengen})}.
+
+\else
+Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skipt. 
+\fi 
+
+\begin{exercisebox}[Körperaxiome]
+Welche Rechenregeln erfüllen die ganzen Zahlen $\mathbb Z$ nicht im Vergleich zu $\mathbb R$?
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} In $\mathbb Z$ gibt es keine multiplikativ inversen Elemente! \(\mathbb Z\) ist kein Körper.
+\end{exercisebox}
+
+\begin{exercisebox}[Summen- und Produktzeichen]% Definition Summe und Produkt. Rechenregeln.
+	Schreiben Sie die folgenden Summen aus und berechnen Sie ihren Wert:
+	\begin{equation}
+		\begin{array} { lllll }
+			(a) \; \displaystyle{\sum\limits_{i=1}^{7} i} & \quad  \quad (b)\; \displaystyle{\prod\limits_{i=1}^{2}} i &\quad \quad (c) \;\displaystyle{\prod\limits_{i=0}^{5}} i &\quad \quad (d)\; \displaystyle{\sum\limits_{i=1}^{5} i^2} &\quad\quad (e)\; \displaystyle{\sum\limits_{i=-3}^{3} i^2} \\
+			(f)\; \displaystyle{\prod\limits_{i=-3}^{3}} i^2 &\quad \quad (g)\; \displaystyle{\sum\limits_{i=0}^{7} 5} &\quad \quad (h)\; \displaystyle{\prod\limits_{i=0}^{7}} 2 &\quad \quad (i)\; \displaystyle{\sum\limits_{i=3}^{9} (i-2)} &\quad \quad (j)\; \displaystyle{\prod\limits_{i=-1}^{3}} (i+2)
+	\end{array}
+	\end{equation}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} \newline
+	\begin{equation}
+		\begin{array} { lllll }
+			(a) \; \displaystyle{\sum\limits_{i=1}^{7} i} = 28 & \; (b)\; \displaystyle{\prod\limits_{i=1}^{2}} i = 2 & \; (c) \;\displaystyle{\prod\limits_{i=0}^{5}} i = 0 & \; (d)\; \displaystyle{\sum\limits_{i=1}^{5} i^2} = 55 &\; (e)\; \displaystyle{\sum\limits_{i=-3}^{3} i^2} = 28 \\
+			(f)\; \displaystyle{\prod\limits_{i=-3}^{3}} i^2 = 0 & \; (g)\; \displaystyle{\sum\limits_{i=0}^{7} 5} =40 & \; (h)\; \displaystyle{\prod\limits_{i=0}^{7}} 2 = 256 & \; (i)\; \displaystyle{\sum\limits_{i=3}^{9} (i-2)} = 28 & \; (j)\; \displaystyle{\prod\limits_{i=-1}^{3}} (i+2) = 120
+	\end{array}
+	\end{equation}
+\end{exercisebox}
+
+\begin{exercisebox}[Summenzeichen - Indexverschiebung]
+	Wie lautet das Argument für folgende Indexverschiebung?
+	$\displaystyle{\sum\limits_{i=k}^l x_i} = \displaystyle{\sum\limits_{i=k+a}^{l+a}} \textnormal{???} $
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} \newline
+	$\displaystyle{\sum\limits_{i=k}^l x_i} = \displaystyle{\sum\limits_{i=k+a}^{l+a}} x_{i-a} $
+\end{exercisebox}
+
+\begin{exercisebox}[Summen- und Produktzeichen]
+	\noindent\textbf{Lösung:} \newline
+	\begin{eqnarray*}
+		\begin{array}{ll}
+			(a) \;\; \displaystyle{\sum\limits_{i=0}^{\textnormal{n}} \displaystyle{\frac{x^{i}}{i!}} } = \displaystyle{\sum\limits_{i=1}^{\textnormal{n+1}} \displaystyle{\frac{x^{i-1}}{(i-1)!}} }  = \displaystyle{\sum\limits_{i=-2}^{n-2} } \displaystyle{\frac{x^{i+2}}{(i+2)!} }  &\quad \quad
+			(b)\;\; \displaystyle{\sum\limits_{i=0}^{n}} x^{0\cdot i} = n+1 \\
+			(c)\;\;  \displaystyle{\sum\limits_{i=0}^{\textnormal{n}} \displaystyle{\frac{x^{i}}{i!}} } = x \cdot\displaystyle{\sum\limits_{i=0}^{n}} \frac{x^{i-1}}{i!} &  \quad \quad  (d)\;\; \displaystyle{\frac{\displaystyle{\prod\limits_{i=1}^{n}} 4^i}{\displaystyle{\prod\limits_{i=2}^{n+1}} 2^i}} = \displaystyle{ \prod\limits_{i=1}^{n-1} }2^i
+	\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Binomialkoeffizient]
+	Zeigen Sie
+	$$\binom{n+1}{k} = \binom{n}{k}+ \binom{n}{k-1}, \; k\geq 1\,.$$
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} \newline
+	\begin{eqnarray*}
+		\binom{n}{k}+ \binom{n}{k-1} &=& \frac{n!}{k!(n-k)!} + \frac{n!}{(k-1)!(n-k+1)!} = \frac{n!}{k!(n-k)!}\frac{(n-k+1)}{(n-k+1)} + \frac{n!}{(k-1)!(n-k+1)!} \frac{k}{k}\\[1ex]
+		&=& \frac{n!(n-k+1)! + n!k}{k!(n-k+1)!} = \frac{n!(n-k+1+k)}{k!(n-k+1)!} \\[1ex]
+		&=& \frac{n! (n+1) }{k!(n+1-k)!} = \binom{n+1}{k} \,.
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Binomischer Satz]
+	Bestimmen Sie mithilfe des Binomischen Satzes eine Formel für $(a-b)^n$.
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} \newline
+	\begin{eqnarray*}
+		(a-b)^n = \sum\limits_{i=0}^n  \binom{n}{i} a^i \cdot (-b)^{n-i} =  \sum\limits_{i=0}^n (-1)^{n-i} \binom{n}{i}  a^i \cdot b^{n-i} \,.
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Binomischer Satz]
+	Zeigen Sie
+	$$\sum\limits_{k=0}^n \binom{n}{k} = 2^n$$
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} \newline
+	$$ 2^n = (1+1)^n =  \sum\limits_{k=0}^n \binom{n}{k} 1^k \cdot 1^{n-k} =  \sum\limits_{k=0}^n \binom{n}{k} \,.$$
+\end{exercisebox}
+
+
+%\begin{exercisebox}[Rechenspiele]
+%	Sie sollen die Zahlen \(21\) aus den Zahlen \(1,5,6\) und \(7\) errechnen. Alle diese Zahlen müssen in der Gleichung genau einmal vorkommen. Sie dürfen nur die vier Grundrechenarten \((+,-,\cdot,:)\) sowie Klammern verwenden. Rechnen Sie nur mit ganzen Zahlen. Also zum Beispiel \( 1+5+6+7 = 19\) oder \(5\cdot(7-6+1) = 10\). 
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Vorstellungsgespräch]
+%	In einem Vorstellungsgespräch bietet Ihnen der Personalchef folgendes Spiel an: "Wir addieren ausgehend von der Zahl zehn immer abwechselnd eine Zahl zwischen eins und zehn auf die neue Summe. Wer am Ende auf genau \(100\) addiert hat gewonnen. Ich fange an, um Ihnen das zu demonstrieren: Also \(10+2=12\). Das ist mein erster Zug. Nun ist es an Ihnen." Können Sie das Spiel gewinnen? 
+%\end{exercisebox}
+
+%\begin{exercisebox}[Binomialkoeffizient]
+%	Auf einer internationalen Konferenz treffen sich Vertreter mit $10$ unterschiedlichen Landessprachen. Wie viele Dolmetscher werden benötigt, wenn für jede Übersetzung zwischen zwei Sprachen ein eigener Dolmetscher anwesend sein soll?
+%\end{exercisebox}

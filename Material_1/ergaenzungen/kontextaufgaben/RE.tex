@@ -1,0 +1,862 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true,   % Colours links instead of ugly boxes
+  urlcolor     = red,    % Colour for external hyperlinks
+  linkcolor    = red,    % Colour of internal links
+  citecolor    = red     % Colour of citations
+}
+
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+
+% Notes am rechten Seitenrand -deshalb die unterschiedliche Breite.
+\usepackage{marginnote}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+\usepackage{trfsigns}
+
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\usepackage{tcolorbox}
+\usepackage{pdflscape}
+
+\tcbuselibrary{breakable,skins}
+\usepackage{ctable}
+\definecolor{darkgreen}{RGB}{0,136,0 }
+\definecolor{htwgreen}{RGB}{134,189,36 }
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2}; 
+	  %\node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} 
+	  %};
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Übung
+% #1: Title
+% #2: Bemerkung
+\newcounter{exercise}
+\newtcolorbox{exercisebox}[1][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east)  {#1}; 
+	  \node[anchor=north east, text=black, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  
+	  {\small  Aufg. \stepcounter{exercise}\theexercise };
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+
+\title{Aufgabe: Sensordatenübertragung und Steuerlogik \\(Studiengang: Regenerative Energien)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Bauwerk (Quadratische Gleichung)}
+Ein großes, massives Stelen-Monument auf einem Windpark-Gelände wurde aus gleich großen Betonwürfeln gebaut. Die Grundfläche ist quadratisch und die Seitenfläche auch. Von außen sind \(1657\) Würfel sichtbar.\\
+Frage: Aus wie vielen Betonwürfeln besteht das Bauwerk?
+
+
+\textbf{Lösung.}\\[3pt]
+Die Anzahl der Betonwüfel beträgt \(n^3\), wobei \(n = 19\). \(n\) ist die physikalisch sinnvolle Lösung der folgenden Gleichung:
+\[\begin{array}{c rcl} & 2\cdot n^2 + 2\cdot (n-2)\cdot n + (n-2)^2 &=& 1657 \\  \Leftrightarrow  & 5\, n^2 - 8 \, n - 1653 &=& 0 \\ \Leftrightarrow & n_{1,2} = \displaystyle \frac{ 8 \pm \sqrt{ 64 + 20\cdot 1653} }{10 } = \begin{cases} 19 \\ (- xxx) \text{ nicht physikalisch}   \end{cases} \end{array}\]
+
+	\newpage
+	\section*{Steuerung Phtovoltaikanlage (Aussagenlogik)}
+In einer kleinen Photovoltaikanlage soll entschieden werden, ob der Batteriespeicher geladen, entladen oder in Ruhe gelassen wird. Die Steuerung beruht auf einer einfachen Regel, ohne komplizierte Berechnungen. Die Regel lautet
+\begin{quote}
+	\emph{Es soll geladen werden, wenn die Sonne scheint und die Batterie unter \(80\%\) geladen ist, oder wenn das Netz Unterstützung benötigt.}
+\end{quote}
+
+\begin{itemize}
+	\item[(i)] Die Batterie eines Speichersystems hat eine Kapazität von \(10.0\ \text{kWh}\).  Aktuell sind \(7.5\ \text{kWh}\) geladen. Der Ladezustand in Prozent (\emph{State of Charge, SoC}) wird wie folgt berechnet
+\[
+\text{SoC} = \frac{\text{aktuelle Ladung}}{\text{Gesamtkapazität}} \times 100 \,.
+\]
+
+Berechnen Sie den aktuellen Ladezustand in Prozent.  
+
+\item{(ii)} Nehmen Sie zur abstrakten Beschreibung der Steuerregel folgende Kürzel für die Eingangssignale an:
+\begin{itemize}
+  \item $S$: Sonne scheint (PV-Erzeugung vorhanden)
+  \item $L$: Speicher darf geladen werden (SoC unter 80\,\%)
+  \item $N$: Netzbetrieb erforderlich (Netz muss unterstützt werden)
+\end{itemize}
+
+		\begin{itemize}
+			\item[(a)] Formulieren Sie die Regel als logischen Ausdruck (Laden in Abhängigkeit von \(S,L,N\) ja oder nein) mit $\land$, $\lor$ und $\lnot$.
+			\item[(b)] Erstellen Sie die Wahrheitstabelle (8 Zeilen).  
+			\item[(c)] Erläutern Sie kurz, wann das System tatsächlich lädt.
+		\end{itemize}
+\end{itemize}
+
+\textbf{Lösung i – Einfache Prozentrechnung.}\\[3pt]
+\[
+\text{SoC} = \frac{7{,}5}{10{,}0} \times 100 = 75\%.
+\]
+Da \(75\% < 80\%\), \textbf{darf der Speicher weiterladen.}
+
+\textbf{Lösung ii – Einfache logische Steuerregel.}\\[3pt]
+
+a) Boolesche Formel:
+\[
+F(S,L,N) = (S \land L)\ \lor\ N.
+\]
+
+b) Wahrheitstabelle:
+
+\medskip
+\begin{tabular}{ccc|c}
+$S$ & $L$ & $N$ & $F(S,L,N)$\\
+\midrule
+0 & 0 & 0 & 0\\
+0 & 0 & 1 & 1\\
+0 & 1 & 0 & 0\\
+0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0\\
+1 & 0 & 1 & 1\\
+1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1\\
+\end{tabular}
+
+\medskip
+c) Beschreibung:  
+Das System lädt,
+\begin{itemize}
+  \item wenn Sonne scheint und Laden erlaubt ist (\(S=1, L=1\)), oder
+  \item wenn das Netz Unterstützung braucht (\(N=1\)), unabhängig von Sonne oder Ladefreigabe.
+\end{itemize}
+
+\newpage
+
+
+\section*{Steuerung Photovoltaikanlage (Aussagenlogik, Parität)}
+In Systemen für regenerative Energieanlagen (z.\,B. PV-Fields, Windparks und Speicherkopplungen) werden Messwerte (Leistung, Energieinhalt des Speichers) digital übertragen. Bei einfachen oder preisgünstigen Feldbussen werden oft nur Basis-Fehlererkennungen (Paritätsbits) eingesetzt. Gleichzeitig müssen Steuerregeln entscheiden, ob z.\,B. ein Energiespeicher geladen werden soll — basierend auf Verfügbarkeit erneuerbarer Erzeugung, Speicherkapazität, manueller Freigabe oder Netz-Notlagen. Diese Aufgabe verbindet beides: einfache Paritätsprüfung (Modulo-2 / gerade Parität) und eine logische Steuerregel (Aussagenlogik).
+
+\textbf{Teil A — Parität (Messwertübertragung).}
+
+Ein Leistungssensor meldet eine Messleistung von \(\;85\ \mathrm{kW}\;\) als 7-Bit-Wert (dezimal \(85 =\) binär \(1010101\)). Zur Übertragung wird das 7-Bit-Wort in zwei 4-Bit-Wörter aufgeteilt, indem die ersten vier Bits das erste Nibble bilden und die restlichen drei Bits durch ein Füllbit \(0\) aufgefüllt werden, sodass zwei 4-Bit-Wörter entstehen. Für jedes 4-Bit-Wort wird anschließend ein \emph{gerades Paritätsbit} (even parity) angehängt, so dass jeder 5-Bit-Block insgesamt eine gerade Anzahl von Einsen hat.
+
+1. Teile das 7-Bit-Wort in zwei 4-Bit-Wörter, berechne die jeweiligen Paritätsbits und gib die beiden 5-Bit-Übertragungsblöcke an.
+
+2. Angenommen, beim Empfang wird im zweiten Block das vierte Bit (von links) versehentlich invertiert (Einzelbitfehler). Zeige, wie der Empfänger mithilfe des Paritätsbits erkennt, dass ein Fehler vorliegt. Kann der Empfänger den fehlerhaften Bit exakt lokalisieren und korrigieren? Begründe kurz.
+
+\medskip
+
+\textbf{Teil B — Steuerregel (Aussagenlogik).}
+
+Für die Steuerung der Batteriespeisung definieren wir diese booleschen Eingangssignale:
+\begin{itemize}
+  \item $R$: Erneuerbare Erzeugung ist verfügbar (Renewables: z.\,B. PV oder Wind über Schwellwert).
+  \item $S$: Speicher hat freie Kapazität (Storage available).
+  \item $M$: Manuelle Freigabe / Override aktiv (Manual override).
+  \item $E$: Netz-Notlage / Netzüberlastung (Emergency).
+\end{itemize}
+
+Die gewünschte Aktionsregel (in Worten):
+\begin{quote}
+Der Ladevorgang des Speichers soll gestartet werden, wenn erneuerbare Erzeugung verfügbar ist und der Speicher Kapazität hat, \emph{oder} wenn eine manuelle Freigabe aktiv ist, solange keine Netz-Notlage vorliegt.
+\end{quote}
+
+a) Formuliere diese Regel als boolesche Formel \(H(R,S,M,E)\) mit $\land,\lor,\lnot$.
+
+b) Erstelle die Wahrheitstabelle für \(H\) (für alle 16 Kombinationen von $R,S,M,E$).
+
+c) Vereinfache \(H\) mit Hilfe logischer Gesetze so weit wie möglich und gib die vereinfachte Formel an. Nenne kurz eine sinnvolle zusätzliche Annahme über die Eingangssignale, die zu weiterer Vereinfachung führen würde.
+
+\textbf{Lösung Teil A — Parität (Messwertübertragung).}
+
+Der 7-Bit-Wert für \(85_{10}\) lautet:
+\[
+1010101
+\]
+
+Aufteilung in zwei 4-Bit-Wörter (zweites Wort: Bits 5--7 + Füllbit \(0\)):
+\[
+\text{Erstes 4-Bit-Wort (Bits 1--4)} = 1\;0\;1\;0 = 1010,
+\]
+\[
+\text{Zweites 4-Bit-Wort (Bits 5--7 + Füllbit)} = 1\;0\;1\;0 = 1010.
+\]
+
+Beide 4-Bit-Wörter sind also \(1010\). Jetzt berechnen wir jeweils ein \emph{gerades Paritätsbit} \(p\), das so gewählt wird, dass die Gesamtzahl der Einsen im 5-Bit-Block gerade ist.
+
+Für \(1010\) gilt: Anzahl Einsen = 2 (bereits gerade) \(\Rightarrow\) Paritätsbit \(p = 0\).
+
+Damit sind die beiden zu übertragenden 5-Bit-Blöcke:
+\[
+\boxed{1010\;0}\quad\text{und}\quad\boxed{1010\;0}.
+\]
+
+\medskip
+
+Angenommen, im zweiten Block wird beim Empfang das vierte Bit (von links) invertiert. Gesendeter zweiter Block:
+\[
+1\;0\;1\;0\;0 = 10100.
+\]
+Invertiere das vierte Bit (Position 4): \(0 \to 1\). Empfangener Block:
+\[
+1\;0\;1\;\underline{1}\;0 = 10110.
+\]
+Zähle die Einsen im empfangenen 5-Bit-Block: Einsen an Positionen 1,3,4 $\Rightarrow$ insgesamt 3 Einsen (ungerade). Da wir \emph{gerade} Parität erwarten, erkennt der Empfänger: \emph{Paritätsprüfung schlägt fehl} — ein Fehler wurde entdeckt.
+
+\paragraph{Kann der Fehler lokalisiert/korrektiert werden?}
+
+Mit nur einem Paritätsbit pro 4-Bit-Block kann der Empfänger lediglich feststellen, dass die Anzahl der Einsen ungerade (also ein Fehler mit ungerader Hamming-Distanz) ist. Er kann daraus nicht eindeutig ableiten, welches der 4 Datenbits (oder das Paritätsbit selbst) betroffen ist. Zur eindeutigen Lokalisierung und automatischen Korrektur eines einzelnen Bitfehlers sind zusätzliche Paritätsbits an verschiedenen Positionen erforderlich (z.\,B. Hamming-Code).
+
+\textbf{Antwort:} Fehlererkennung — ja. Fehlerlokalisierung / automatische Korrektur — nein (nicht mit nur einem Paritätsbit pro Block).
+
+\textbf{Lösung Teil B — Steuerregel (Aussagenlogik).}
+
+\paragraph{a) Formel} Die in Worten gegebene Regel lautet formal:
+\[
+H(R,S,M,E) \;=\; (R\land S)\; \lor\; (M \land \lnot E).
+\]
+
+\paragraph{b) Wahrheitstabelle} Wir listen die 16 Kombinationen; $1=\text{wahr}$, $0=\text{falsch}$. Reihenfolge: \(R,S,M,E\).
+
+\medskip
+\begin{tabular}{cccc|c}
+$R$ & $S$ & $M$ & $E$ & $H(R,S,M,E)$\\
+\midrule
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 1 & 0 & 1 & 0\\
+0 & 1 & 1 & 0 & 1\\
+0 & 1 & 1 & 1 & 0\\
+1 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+1 & 0 & 1 & 0 & 1\\
+1 & 0 & 1 & 1 & 0\\
+1 & 1 & 0 & 0 & 1\\
+1 & 1 & 0 & 1 & 1\\
+1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1\\
+\end{tabular}
+
+Erläuterung: \(H\) ist genau dann 1, wenn entweder \(R\land S=1\) (Erneuerbare verfügbar \textbf{und} Speicher hat Kapazität) oder \(M\land\lnot E=1\) (manuelle Freigabe und keine Netz-Notlage).
+
+\paragraph{c) Vereinfachung} Die Ausgangsformel
+\[
+H = (R\land S)\ \lor\ (M\land \lnot E)
+\]
+ist bereits in kompakter disjunktiver Normalform (Sum of Products). Da die beiden Terme unterschiedliche Literale verwenden (es gibt keine offensichtliche gemeinsame Variable, die man herausziehen könnte), existiert ohne weitere Annahmen keine nichttriviale algebraische Verkürzung. Kurznotation:
+\[
+H = RS + M\overline{E}.
+\]
+
+\medskip
+
+\textbf{Zusätzliche sinnvolle Annahme für weitere Vereinfachung:} In realen Systemen gelten oft betriebliche Abhängigkeiten. Ein mögliches Beispiel: \emph{Wenn die manuelle Freigabe aktiv ist, dann ist damit automatisch eine Sicherstellung der Speicherkapazität verbunden} (formell \(M \Rightarrow S\)). Unter dieser Annahme (\(M \Rightarrow S\)) könnte man \(M\overline{E}\) in manchen Implementierungen zusammen mit \(RS\) anders priorisieren oder in hardwarefreundliche Ausdrücke überführen; allerdings reduziert sich die obige Sum-of-Products-Form formal nicht weiter, ohne zusätzliche Abhängigkeiten zwischen \(M\) und \(R\) oder zwischen anderen Variablen.
+
+\textbf{Varianten / Hinweise für Lehrende}
+\begin{itemize}
+  \item Als Variante von Teil A kann statt eines 7-Bit-Wertes ein 8-Bit-Wert verwendet werden (dann entfallen Füllbits). Alternativ kann die Aufgabe erweitert werden zu Hamming(7,4) oder CRC-(n) für erhöhte Fehlererkennung/-korrektur.
+  \item In Teil B kann man Studierenden Aufgaben zur Schaltreihenfolge / Priorisierung geben (z.\,B. manuelle Freigabe hat Vorrang, aber im Notfall wird sofort gestoppt) oder die Funktion mit Karnaugh-Karten minimieren, wenn man Annahmen über Abhängigkeiten macht.
+  \item Für eine praktische Übung: Messe reale PV-/Wind-Daten und definiere \(R\) über einen Schwellwert; lass Studierende die Logik in einer SPS (z.\,B. in FUP) implementieren.
+\end{itemize}
+
+
+\section*{Generatorspannung (Betragsungleichung)}
+Die Spannung am Generator eines Windrads lässt sich in Abhängigkeit der Reglereinstellung \(x\) wie folgt modellieren
+\[\displaystyle U(x)=\frac{2\,x-6}{x-2}\,.\]
+In diesem vereinfachten Modell ist die Variable $x$ eine dimensionslose Größe und es gilt $x\neq 2$. Die Nennspannung des Generators beträgt $U_N=400 \, \mathrm{V} $. Um den Wechselrichter zu schonen, darf die Spannung höchstens um $\pm10\%$ vom Sollwert abweichen. Welche Werte für \(x\) sind erlaubt?  
+
+%%Formuliere die Betragsungleichung und bestimme alle Werte $x$ mit
+%%\[\left|\frac{U(x)-U_N}{U_N}\right|\le 0.10.\]
+%	\item[(ii)] Die Spannung soll nahe am Nennwert liegen, wobei in Messdaten wurden mehrfach kleine, aber rasche Schwankungen beobachtet. Erläutere physikalisch, warum bei einem Modell der Struktur $U(x)=(2x-6)/(x-2)$ die zulässigen Einstellwerte $x$ oft in einem sehr engen Intervall um einen bestimmten Wert liegen können. Welche Rolle spielt die Stelle $x=2$ im Realbetrieb?
+%
+
+\textbf{Lösung}\\[3pt]
+\textbf{1. Umformung der Ungleichung.} Die Bedingung
+\[\left|\frac{U(x)-400}{400}\right|\le 0.1\]
+ist äquivalent zu
+\[ -0.1\le\frac{U(x)-400}{400}\le 0.1\quad\Longleftrightarrow\quad 360\le U(x)\le 440.\]
+Damit m"ussen die beiden Ungleichungen gleichzeitig erf"ullt sein:
+\[\frac{2x-6}{x-2}\ge 360\quad\text{und}\quad \frac{2x-6}{x-2}\le 440,\qquad x\neq2.\]
+
+
+\textbf{2. Erste Ungleichung:} $\dfrac{2x-6}{x-2}\ge 360$. Bring auf gemeinsamen Nenner:
+\[\frac{2x-6-360(x-2)}{x-2}\ge0\quad\Longleftrightarrow\quad \frac{-358x+714}{x-2}\ge0.\]
+Nullstelle des Z"ahlers: $x=\dfrac{714}{358}=\dfrac{357}{179}\approx1.994416\ldots$. Definitionsl"ucke: $x=2$. Durch Vorzeichenanalyse erhalten wir als L"osung dieser Teilungleichung das Intervall
+\[ x\in\left(\frac{357}{179},\;2\right).\]
+
+
+\textbf{3. Zweite Ungleichung:} $\dfrac{2x-6}{x-2}\le 440$ führt zu
+\[\frac{2x-6-440(x-2)}{x-2}\le0\quad\Longleftrightarrow\quad\frac{-438x+874}{x-2}\le0.\]
+Nullstelle des Z"ahlers: $x=\dfrac{874}{438}=\dfrac{437}{219}\approx1.994525\ldots$. Durch Vorzeichenanalyse ergibt sich die L"osungsmenge
+\[ x\in\left(-\infty,\;\frac{437}{219}\right]\cup(2,\infty).\]
+
+
+\textbf{4. Schnittmenge beider Bedingungen:} Der gemeinsame L"osungsbereich ist
+\[\left(\frac{357}{179},\;2\right)\cap\left(\left(-\infty,\;\frac{437}{219}\right]\cup(2,\infty)\right)
+=\left(\frac{357}{179},\;\frac{437}{219}\right].\]
+
+\textbf{5. Dezimalapproximation:}
+\[ x\in\left(\,1.994416\ldots,\;1.994525\ldots\right].\]
+		Dieses sehr enge Intervall zeigt: Nur Reglereinstellungen extrem nahe an $x\approx2$ liefern nach dem Modell eine Spannung innerhalb $\pm10\%$ um \(400 \, \mathrm{V}\).
+
+
+\textbf{Antwort (kompakt):}
+\[ x\in\left(\frac{357}{179},\;\frac{437}{219}\right].\]
+(Beachte $x\neq2$, die Definitionslücke liegen nicht in der offenen Seite des Intervalls.)
+
+\textbf{Lösungshinweis zu ii:} Bei rationalen Funktionen mit einem Pol (hier $x=2$) kann der Funktionswert sehr schnell sehr gro\ss oder sehr klein werden, d.h. es existiert oft nur ein enges Intervall in dessen Umgebung, in dem die Funktion innerhalb vorgegebener Toleranzen bleibt. Physikalisch bedeutet die Lücke: in der Modellgleichung bricht die Annahme (zum Beispiel lineare Näherung) zusammen; im Realbetrieb muss man solche Reglereinstellungen aus Sicherheitsgründen meiden oder das Modell verbessern.
+
+\newpage
+\section*{Knobelaufgabe}
+
+Ein Forscher entwickelt eine Testreihe für ein Photovoltaiksystem mit mehreren Modulen,
+die nach zwei Merkmalen kategorisiert werden:
+\begin{itemize}
+    \item \textbf{Zelltyp} (z.\,B. monokristallin, polykristallin, Dünnschicht)
+    \item \textbf{Ausrichtung} (z.\,B. Nord, Süd, Ost, West)
+\end{itemize}
+
+Es gibt insgesamt \( n \ge 2 \) Zelltypen und \( m \ge 2 \) Ausrichtungen,
+und jede Kombination kommt genau einmal vor.
+
+Für eine Testreihe werden \( x \ge 2 \) Module zufällig ausgewählt.  
+Die Tests sollen so angeordnet werden, dass
+\textbf{zwei aufeinanderfolgende Module entweder denselben Zelltyp oder dieselbe Ausrichtung} haben – 
+um Umrüstzeiten bei der Messapparatur zu vermeiden.
+
+Es sei \( x_{n,m} \) die kleinste Zahl an Modulen, für die eine solche Reihenfolge \textbf{immer} möglich ist, unabhängig von der zufälligen Auswahl. Welche der folgenden Aussagen über \( x_{n,m} \) ist korrekt?
+
+\vspace{1em}
+\begin{itemize}
+    \item[(a)] \( x_{n,m} = (n - 1)(m - 1) \)
+    \item[(b)] \( x_{n,m} = (n - 2)(m - 2) \)
+    \item[(c)] \( x_{n,m} = (n - 1)m - 3 \)
+    \item[(d)] \( x_{n+1,m} = x_{n,m} + m + 1 \)
+    \item[(e)] \( x_{n+1,m+1} = x_{n,m} + m + n - 4 \)
+    \item[(f)] \( x_{n,m+1} = x_{n,m} + n - 1 \)
+\end{itemize}
+
+
+\newpage
+\section*{Knobelaufgabe: Gleichungssystem}
+
+
+Für eine großangelegte Wartungsaktion fahren \(w\) Servicefahrzeuge mit je \(p\) Monteuren zur Windparkanlage. Auf halber Strecke fallen \(10\) Fahrzeuge aus; die verbliebenen Fahrzeuge nehmen die Monteure so auf, dass danach in jedem Fahrzeug genau eine Person mehr sitzt als ursprünglich. Vor dem Rückweg fallen weitere \(15\) Fahrzeuge aus. Danach befinden sich in jedem verbleibenden Fahrzeug genau drei Personen mehr als bei der Abfahrt. Wie viele Monteure/Personen insgesamt nahmen an der Wartungsaktion teil?
+
+
+\textbf{Lösung}\\[3pt]
+Wir haben damit das Gleichungssystem (mit \(N=w\cdot p\)):
+\[
+\begin{aligned}
+w\cdot p &= (w-10)\cdot (p+1),\\
+w\cdot p &= (w-25)\cdot (p+3).
+\end{aligned}
+\]
+
+\newpage
+\section*{Polynome: Kleinturbine Leistungsabweichung}
+
+Ein vereinfachtes Modell für die normierte Leistungsabweichung einer Kleinturbine lautet
+\[
+p_3(x) = x^3 - 6\cdot x^2 + 12\cdot x - 7,
+\]
+wobei \(x\) die normierte Drehzahl ist. Aus betrieblichen Gründen ist bekannt, dass bei \(x=2\) die Regelung eingreift (Abregelpunkt) — man erwartet daher \(p_1(2)\approx 0\). Prüfen Sie, ob der Abregelpunkt tatsächlich bei \(x=2\) liegt. Ermitteln Sie durch eine geeignete Polynomdivision eine Darstellung von \(p_3\) in der Form \( p_3(x) = (x-2)\cdot p_2(x) + c\). Interpretieren Sie die Konstante \(c\) - macht diese aus physikalischer Sicht Sinn?
+
+
+\textbf{Lösung.}
+
+\begin{enumerate}
+  \item Einsetzen:
+  \[
+  p_3(2) = 2^3 - 6\cdot2^2 + 12\cdot2 - 7 = 8 - 24 + 24 - 7 = 1.
+  \]
+  Also \(p_3(2)=1\) (kleiner, aber nicht null).
+  \item Synthetische Division durch \(x-2\). Koeffizienten von \(p_3\): \(1,\ -6,\ 12,\ -7\).
+
+  \[
+  \begin{array}{r|rrrr}
+  2 & 1 & -6 & 12 & -7\\\hline
+    &   & 2  & -8 & 8\\
+    & 1 & -4 & 4  & 1
+  \end{array}
+  \]
+
+  Aus der Tabelle liest man: Quotient \(p_2(x)=x^2 - 4\cdot x + 4\), Rest \(r_1 = 1\).
+  \item Zerlegung:
+  \[
+  p_3(x) = (x-2)\cdot (x^2 - 4\cdot x + 4) + 1 = (x-2)\cdot (x-2)^2 + 1.
+  \]
+  \emph{Physikalische Interpretation des Rests \(r_1=1\):} Der Rest ist klein im Vergleich zu typischen Polynomwerten; er kann interpretiert werden als
+  \begin{itemize}
+    \item ein systematischer Offset (z.\,B. Verbrauch der Hilfssysteme, Reibungsverluste), der in der Normierung nicht berücksichtigt ist, oder
+    \item ein Mess- bzw. Modellfehler (Unschärfe in Parametern der Kennlinie), oder
+    \item eine Kalibrierabweichung (z.\,B. Nullpunktverschiebung der Leistungsmessung).
+  \end{itemize}
+  Praktisch heißt das: die Regelung greift nahe \(x=2\), aber nicht exakt bei Null Leistung — es verbleibt eine kleine Restleistung von „1 Einheit“ im Modell. Für die Prozessführung kann dieser Wert bedeutsam sein (z.\,B. als Mindestabgabe oder Grundlast), oder er weist auf notwendige Modellkorrektur hin.
+\end{enumerate}
+
+\newpage 
+
+\section*{Exponentialfunktion: Energiespeicher}
+
+Ein Energiespeicher (Lithium-Ionen-Akku) wird für ein PV-System genutzt. Die nutzbare Kapazität $C(t)$ (in \%) nimmt wegen Selbstentladung nach dem Laden exponentiell ab:
+\[
+C(t) = C_0 \, e^{-k t},
+\]
+wobei $t$ in Monaten gemessen wird und $C_0$ die Kapazität direkt nach dem Laden (in \%) ist.  
+Nach 6 Monaten wurde gemessen, dass noch 85\,\% der ursprünglichen nutzbaren Kapazität vorhanden sind (also $C(6)=0{,}85\,C_0$).
+
+\begin{itemize}
+	\item[(i)] Bestimmen Sie die Entladungsrate $k$ (Entladung pro $\text{Monat}$).
+  \item[(ii)] Wie viele Monate dauert es, bis die nutzbare Kapazität auf 70\,\% von $C_0$ gefallen ist?
+  \item[(iii)] Interpretieren Sie das Ergebnis.
+\end{itemize}
+
+\textbf{Lösung.}
+
+Aus der gegebenen Gleichung gilt bei $t=6$:
+\[
+C(6) = C_0 \cdot e^{-6\cdot k} = 0.85\,C_0.
+\]
+Daraus folgt
+\[
+e^{-6\cdot k} = 0.85 \quad\Longrightarrow\quad -6\cdot k = \ln(0.85)
+\]
+\[
+\Rightarrow\quad k = -\frac{1}{6}\ln(0.85)\approx 0{.}0270865\ \text{pro Monat}\,.
+\]
+\begin{itemize}
+
+\item $k\approx 0{,}02709\ \text{mon}^{-1}$.
+
+(2) Gesucht ist $t$ mit $C(t)=0.70\,C_0$:
+\[
+e^{-k \cdot t}=0.70 \quad\Longrightarrow\quad -k\cdot t=\ln(0.70)
+\]
+\[
+\Rightarrow\quad t = -\frac{1}{k}\ln(0.70) \approx -\frac{1}{0.0270865}\cdot \ln(0.70) \,.
+\]
+\[
+\ln(0.70)\approx -0.3566749 \quad\Rightarrow\quad t\approx \frac{0.3566749}{0.0270865}\approx 13.17\ \text{Monate}.
+\]
+
+\item Etwa $13.2$ Monate, bis auf 70\,\% gefallen.
+
+\item Die gefundene Rate $k\approx0.027\ \text{pro Monat}$ entspricht einer langsamen Selbstentladung (ca. $2.7\%$ pro Monat im effektiven Exponentialmodell). Praktisch bedeutet das: innerhalb eines Jahres verringert sich die Kapazität deutlich (hier auf $\approx 85\%\cdot e^{-6\,k}$ usw.), und nach ungefähr 13 Monaten ist nur noch 70\,\% verfügbar. 
+\end{itemize}
+
+\newpage
+\section*{Geometrie}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{../../../Mathematik_1/Bilder/geometrie_kreise_gemeinsame_tangenten_aufgabe.png}
+\end{center}
+\noindent Auf einem Gelände stehen zwei Windkraftanlagen im Abstand von \(200\) Metern auseinadner. Um die Windkraftanlagen selbst ist jeweile eine kreisförmige Sicherheitszone eingerichtet.
+Für Servicewege zwischen den Anlagen sollen überdachte Pfade tangential an den Sicherheitszonen verlaufen, sodass niemand gefährdet ist.
+
+\medskip
+Welche Länge haben die Wege der beiden möglichen Servicezufahrten? \\
+
+
+\textbf{Lösung}
+\begin{itemize}
+    \item \textbf{Innere (transversale) Tangente:}
+    \[
+        L_{\mathrm{innen}} = \sqrt{d^2 - (r_1 + r_2)^2}
+    \]
+    \item \textbf{Äußere (direkte) Tangente:}
+    \[
+        L_{\mathrm{außen}} = \sqrt{d^2 - (r_2 - r_1)^2}
+    \]
+\end{itemize}
+
+\[
+\begin{aligned}
+L_{\mathrm{innen}} &= \sqrt{200^2 - (50 + 70)^2} = \sqrt{40000 - 14400} = \sqrt{25600} = 160\, \mathrm m\\
+L_{\mathrm{außen}} &= \sqrt{200^2 - (70 - 50)^2} = \sqrt{40000 - 400} = \sqrt{39600} \approx 199 \, \mathrm m
+\end{aligned}
+\]
+
+
+\newpage
+
+\section*{Sonneneinstrahlung}
+
+Der Einfallswinkel von Sonnenstrahlen auf die Erdoberfläche (sogenannter Höhenwinkel der Sonne oder Sonnenhöhe) verändert sich über den Tag hinweg. Die zeitliche Veränderung ist wie folgt
+\[
+	h(t)=60\cdot \sin\!\Big(\frac{\pi}{12}(t-6)\Big) \, \text{Grad},
+\]
+wobei \(t\) die Tageszeit in Stunden ist (\(0\le t\le 24\)).
+\begin{enumerate}
+  \item Geben Sie Amplitude, Periodendauer, Mittelwert und Phasenverschiebung an und bestimmen Sie die Zeit des täglichen Maximums.
+  \item Bestimmen Sie die Zeiten \(t\) mit \(h(t)=30^\circ\) (im Bereich \(0\le t\le 24\)).
+  \item Berechnen Sie \(h(9)\) und interpretieren Sie das Ergebnis.
+\end{enumerate}
+
+\textbf{Lösung}
+
+\begin{enumerate}
+  \item \(\textbf{Amplitude: }A=60^\circ.\)\\
+        \(\textbf{Frequenz/Koeffizient: }\) Der Winkelkoeffizient ist \(\dfrac{\pi}{12}\) (in \(\mathrm{rad/h}\)).\\
+        \(\textbf{Periodendauer: }T=\dfrac{2\pi}{\pi/12}=24\ \text{h}.\)\\
+        \(\textbf{Mittelwert: }\) Da die Funktion eine reine Sinusschwingung ohne Verschiebung in der Amplitude (kein konstanter Zusatzterm) ist, liegt der Mittelwert über eine Periode bei \(0^\circ\). Aufgrund des Multiplikators 60 bedeutet das: der Mittelwert der Funktion \(h(t)\) über 24 h ist \(0^\circ\). (Physikalisch: das Modell ist symmetrisch um die Horizontlinie.)\\
+        \(\textbf{Phasenverschiebung: }\) Die Verschiebung ist \(t\mapsto t-6\) also eine Rechtsverschiebung um \(6\) Stunden.\\
+        \(\textbf{Tageszeit des Maximums: } h\) ist maximal wenn der Sinus \(=1\), also wenn
+        \[
+          \frac{\pi}{12}(t-6)=\frac{\pi}{2} + 2\pi k \Rightarrow t-6=6 + 24k.
+        \]
+        Für \(k=0\) erhält man \(t=12\) Uhr (Mittag).
+  \item Gesucht: \(h(t)=30^\circ\Rightarrow 60\sin\!\big(\frac{\pi}{12}(t-6)\big)=30\). Also
+  \[
+    \sin\!\Big(\frac{\pi}{12}(t-6)\Big)=\frac{1}{2}.
+  \]
+  Lösungen der Grundgleichung sind
+  \[
+    \frac{\pi}{12}(t-6)=\frac{\pi}{6}+2\pi k\quad\text{oder}\quad \frac{5\pi}{6}+2\pi k.
+  \]
+  Damit:
+  \[
+    t-6=2+24k \quad\Rightarrow\quad t=8+24k
+  \]
+  oder
+  \[
+    t-6=10+24k \quad\Rightarrow\quad t=16+24k.
+  \]
+  Im Bereich \(0\le t\le 24\) gibt es die zwei Lösungen \(t=8\ \text{h}\) und \(t=16\ \text{h}\).
+  \item \(h(9)=60\sin\!\Big(\frac{\pi}{12}(9-6)\Big)=60\sin\!\Big(\frac{\pi}{12}\cdot 3\Big)
+    =60\sin\!\Big(\frac{\pi}{4}\Big)=60\cdot\frac{\sqrt{2}}{2}=30\sqrt{2}\approx 42{,}43^\circ.
+  \)
+  \textbf{Interpretation:} Um 09:00 Uhr beträgt der Sonnenhöhenwinkel etwa \(42{,}4^\circ\). Das bedeutet, die Sonne steht bereits deutlich über dem Horizont — typisch für den Vormittag in einem klaren, modellhaften Taggang.
+\end{enumerate}
+
+\newpage
+
+\section*{Nutzbare Einstrahlung}
+Angenommen, die nutzbare Einstrahlung eines horizontalen Solarpanels ist näherungsweise proportional zu \(\sin(h(t))\) (für \(h(t)>0\), sonst \(0\)). Bestimmen Sie die relative (modellhafte) Tagesenergiemenge
+\[
+E \propto \int_{t_{\text{auf}}}^{t_{\text{ab}}} \sin\!\big(h(t)\big)\,\mathrm{d}t,
+\]
+wobei \(t_{\text{auf}}\) und \(t_{\text{ab}}\) die Zeiten des Sonnenauf- bzw. -untergangs sind (im Modell \(h(t)>0\)). Verwenden Sie das in der vorigen Aufgabe gegebene Modell für \(h\) und berechnen Sie das Integral explizit (bis auf einen bekannten Faktor). 
+
+\textbf{Lösungsskizze}
+Zuerst bestimmen wir die Intervalle, in denen \(h(t)>0\). Da
+\[
+h(t)=60\sin\!\Big(\frac{\pi}{12}(t-6)\Big),
+\]
+ist \(h(t)>0\) genau dann, wenn \(\sin(\cdot)>0\), also für
+\[
+0<\frac{\pi}{12}(t-6)<\pi \quad\Rightarrow\quad 6<t<18.
+\]
+Damit sind \(t_{\text{auf}}=6\) und \(t_{\text{ab}}=18\). Nun wollen wir
+\[
+E \propto \int_{6}^{18} \sin\!\big( h(t)\big)\,\mathrm{d}t
+= \int_{6}^{18} \sin\!\Big(60\sin\!\big(\tfrac{\pi}{12}(t-6)\big)\Big)\,\mathrm{d}t.
+\]
+Dieses Integral ist nicht elementar (es ist ein Integral der Form \(\int \sin(A\sin x)\,dx\)), lässt sich aber durch Substitution \(u=\tfrac{\pi}{12}(t-6)\) vereinfachen:
+\[
+t=6+\frac{12}{\pi}u,\quad \mathrm{d}t=\frac{12}{\pi}\mathrm{d}u,
+\]
+und die Integrationsgrenzen \(t=6\to u=0,\ t=18\to u=\pi\). Also
+\[
+E \propto \frac{12}{\pi}\int_{0}^{\pi} \sin(60\sin u)\,\mathrm{d}u.
+\]
+Das Integral \(\int_{0}^{\pi} \sin(60\sin u)\,du\) ist eine Bessel-/modulierte Funktion und hat keinen einfachen elementaren Ausdruck; man wertet es numerisch oder drückt es in Reihen mittels Besselfunktionen aus. Wichtig für den Studieneinstieg ist hier die Vorgehensweise: Umformung der Integrationsgrenzen, Erkennen der Nicht-Elementarität und Kenntnis, wie man zu einer numerischen Auswertung oder Darstellung mit Spezialfunktionen kommt. Eine numerische Auswertung (z.\,B. mit Taschenrechner/Computeralgebra) liefert dann den konkreten Wert — diese numerische Auswertung ist hier das geforderte nächste Vorgehen im Praktikum.
+\bigskip
+
+\newpage
+\section*{Rechnen mit komplexen Zahlen}
+Netzspannung und Strom sind als Phasoren gegeben (Polarkoordinaten in der Schreibweise \(r\angle \varphi\)):
+\[
+\tilde{V} = 400\angle 0^\circ\ \mathrm{V},\qquad \tilde{I} = 10\angle (-30^\circ)\ \mathrm{A}.
+\]
+Bestimmen Sie die Polarkoordinaten der komplexe Impedanz \(Z = \tilde{V}/\tilde{I}\) und wandeln Sie \(Z\) in kartesische Form um.
+
+\textbf{Lösungsskizze}
+\[
+Z = \frac{400\angle 0^\circ}{10\angle (-30^\circ)} = 40\angle 30^\circ.
+\]
+In kartesischer Form:
+\[
+Z = 40(\cos 30^\circ + \mathrm{i}\sin 30^\circ)
+= 40\Big(\frac{\sqrt{3}}{2} + \mathrm{i}\cdot\frac{1}{2}\Big)
+\]
+\[
+= 40\cdot\frac{\sqrt{3}}{2} + \mathrm{i},40\cdot\frac{1}{2}
+= 20\sqrt{3} + \mathrm{i},20.
+\]
+
+
+\newpage
+\section*{Thermische Speicherwirkung eines Raums}
+
+In einem Gebäude wirken Wände und Luft als thermischer Speicher. Die Außentemperatur schwankt sinusförmig, z. B. durch wechselnde Sonneneinstrahlung:
+
+\[
+T_{\mathrm{out}}(t)=T_0 \cos(\omega t),
+\]
+
+der Raum reagiert träge auf Änderungen, beschrieben durch die komplexe „Transferfunktion“
+
+\[
+H = \frac{1}{1+i \omega \tau},
+\]
+
+wobei $\tau>0$ die thermische Zeitkonstante des Raums ist. Die Innenraumtemperatur hat daher die komplexe Amplitude
+
+\[
+\tilde T_{\mathrm{in}} = H \cdot T_0.
+\]
+
+\begin{enumerate}
+    \item Berechnen Sie $\tilde T_{\mathrm{in}}$ in \textbf{kartesischer Form} $(A_{\mathrm{Re}} + i A_{\mathrm{Im}})$.
+    \item Bestimmen Sie die \textbf{Polarkoordinaten} von $\tilde T_{\mathrm{in}}$.
+    \item Schreiben Sie die  $\tilde T_{\mathrm{in}}(t)$ als harmonische Schwingung und erläutern Sie, warum der Raum die Außentemperaturschwankungen abschwächt und zeitlich verzögert. \textbf{Hinweis:} Eine harmonische Schwingung besitzt die folgende Form
+    \[
+    T_{\mathrm{in}}(t) = R \cos(\omega t + \varphi)
+    \]
+\end{enumerate}
+
+\textbf{Lösungsskizze}
+Betrachten wir die Aufgabe mit den gegebenen Annahmen:
+\[
+T_{\mathrm{out}}(t)=T_0\cos(\omega t),\qquad
+H=\frac{1}{1+i\omega\tau},\qquad
+\tilde T_{\mathrm{out}}=T_0 .
+\]
+Die komplexe Innenraum-Amplitude ist
+\[
+\tilde T_{\mathrm{in}} = H\,\tilde T_{\mathrm{out}} = \frac{T_0}{1+i\omega\tau}.
+\]
+
+\begin{itemize} 
+	\item Um die kartesische Form zu erhalten, multiplizieren wir Zähler und Nenner mit dem konjugierten Nenner:
+\[
+\tilde T_{\mathrm{in}}
+= T_0\cdot\frac{1 - i\omega\tau}{(1 + i\omega\tau)(1 - i\omega\tau)}
+= T_0\cdot\frac{1 - i\omega\tau}{1 + (\omega\tau)^2}.
+\]
+Daraus liest man direkt die Real- und Imaginärteile ab:
+\[
+\boxed{\;\tilde T_{\mathrm{in}} = A_{\mathrm{Re}} + i\,A_{\mathrm{Im}}
+\quad\text{mit}\quad
+A_{\mathrm{Re}}=\frac{T_0}{1+(\omega\tau)^2},\quad
+A_{\mathrm{Im}}=-\frac{T_0\,\omega\tau}{1+(\omega\tau)^2}\;. \;}
+\]
+
+Hinweis: \(A_{\mathrm{Im}}\) ist hier negativ (die Formel zeigt das Vorzeichen).
+
+\item 
+Eine Anregung  Cosinus-Funktion lässt sich als Realteil eines komplexen Exponentials schreiben (Euler-Formel):
+\[
+\cos(\omega t)=\Re\{e^{i\omega t}\}.
+\]
+Daher schreiben wir die (komplexe) Eingangsschwingung als
+\[
+\tilde T_{\mathrm{in}}(t)=T_0\, e^{i\omega t},
+\]
+und erhalten die reale physikalische Anregung später als Realteil:
+\[
+	T_{\mathrm{out}}(t)=\mathrm{Re}\left( \tilde s_{\mathrm{in}}(t)\right) =\mathrm{Re}\left( T_0 e^{i\omega t}\right) \,.
+\]
+
+Schreiben wir \(\tilde T_{\mathrm{in}}=A_{\mathrm{Re}}+iA_{\mathrm{Im}}\) und \(e^{i\omega t}=\cos(\omega t)+i\sin(\omega t)\), so ergibt sich
+\[
+\begin{aligned}
+T_{\mathrm{in}}(t)
+	&= \mathrm{Re}\left( (A_{\mathrm{Re}} +iA_{\mathrm{Im}})\,(\cos\omega t + i\sin\omega t)\right) \\
+	&= \mathrm{Re}\left( A_{\mathrm{Re}} \,\cos\omega t - A_{\mathrm{Im}} \right)\sin\omega t
+     + i\big(A_{\mathrm{Re}}\sin\omega t + A_{\mathrm{Im}}\cos\omega t\big)\} \\
+	&= A_{\mathrm{Re}}\cos\omega t - A_{\mathrm{Im}}\sin\omega t.
+\end{aligned}
+\]
+Damit sind die beiden Anteile klar:
+\begin{itemize}
+  \item \emph{In-Phase-Anteil:} \(\;A_{\mathrm{Re}}\cos(\omega t)\) — dieser Teil schwingt mit derselben Phase wie die Außentemperatur.
+  \item \emph{Quadratur-Anteil:} \(\;-A_{\mathrm{Im}}\sin(\omega t)\) — dieser Teil ist um \(90^\circ\) phasenverschoben (sinusförmig).
+\end{itemize}
+
+\item Man kann die Summe auch als einen einzigen Kosinus mit Amplitude und Phasenwinkel schreiben:
+\[
+T_{\mathrm{in}}(t)=|\tilde T_{\mathrm{in}}| \cos\!\big(\omega t + \varphi\big),
+\]
+wobei Betrag und Phase von \(\tilde T_{\mathrm{in}}\) sind:
+\[
+|\tilde T_{\mathrm{in}}| = \frac{T_0}{\sqrt{1+(\omega\tau)^2}},\qquad
+\varphi = \arg(\tilde T_{\mathrm{in}}) = -\arctan(\omega\tau).
+\]
+Also
+\[
+\boxed{\,T_{\mathrm{in}}(t) = \frac{T_0}{\sqrt{1+(\omega\tau)^2}}
+\;\cos\!\Big(\omega t - \arctan(\omega\tau)\Big)\,}.
+\]
+
+\bigskip
+\textbf{Zusatz: Physikalische Interpretation (einfach)}
+\begin{itemize}
+  \item \textbf{Abschwächung (Dämpfung):} Der Faktor \(\dfrac{1}{\sqrt{1+(\omega\tau)^2}}\) verringert die Amplitude der Innenraumtemperatur gegenüber der Außentemperatur. Je größer \(\omega\tau\) (häufigere Schwankungen oder träger Raum), desto stärker die Dämpfung. Für sehr langsame Schwankungen (\(\omega\tau\ll 1\)) ist die Dämpfung klein (Faktor \(\approx 1\)). Für sehr schnelle Schwankungen (\(\omega\tau\gg1\)) wird die Innenantwort stark gedämpft (\(\sim 1/(\omega\tau)\)).
+  \item \textbf{Phasenverzögerung (Nachhinken):} Der Winkel \(\varphi = -\arctan(\omega\tau)\) ist negativ, d.\,h. die Innenraumtemperatur \emph{hinkt der Außentemperatur nach}. Für kleine Frequenzen ist die Verzögerung klein (\(\varphi\approx -\omega\tau\)), für große Frequenzen nähert sich die Verzögerung \(-90^\circ\) an.
+  \item \textbf{Anschaulich:} Der Raum wirkt wie ein thermisches ``Speicher–Filter'': er kann langsame Änderungen gut folgen, schnelle Änderungen aber nicht — sie werden gepuffert und verzögert.
+\end{itemize}
+\end{itemize}
+
+
+\newpage
+\section*{Aufgabe: Profilähnlichkeit}
+Ein Energiemanagementsystem erfasst über vier Zeitintervalle (oder vier Frequenzbänder) die Leistungsanteile eines Systems. Zwei unterschiedliche Betriebszustände liegen uns vor, dargestellt als Vektoren im $\mathbb R^4$:
+
+Die Vektoren
+\[
+\vec a=
+\begin{pmatrix}
+3\\2\\1\\0
+\end{pmatrix},
+\qquad
+\vec b=
+\begin{pmatrix}
+1\\2\\3\\2
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Berechnen Sie das Skalarprodukt $\langle \vec a, \vec b\rangle$.
+\item Bestimmen Sie die Normen $\|\vec a\|$ und $\|\vec b\|$.
+\item Bestimmen Sie den Winkel zwischen den beiden Vektoren.
+\item Interpretieren Sie das Ergebnis qualitativ.
+\end{enumerate}
+\textbf{Lösungsskizze}
+\begin{enumerate}
+\item
+\[
+\vec a\cdot\vec b
+=3\cdot1+2\cdot2+1\cdot3+0\cdot2
+=10
+\]
+
+\item
+\[
+\|\vec a\|=\sqrt{3^2+2^2+1^2+0^2}=\sqrt{14},
+\quad
+\|\vec b\|=\sqrt{1^2+2^2+3^2+2^2}=\sqrt{18}
+\]
+
+\item
+\[
+\cos\varphi=\frac{10}{\sqrt{14}\sqrt{18}}
+=\frac{10}{\sqrt{252}}
+\]
+
+\item
+	Der Winkel ist kleiner als $\pi/2$: Die Profile sind ähnlich, aber nicht proportional. ( In der Nachrichtentechnik bedeutet dies eine gewisse Korrelation, in der Energietechnik eine teilweise Übereinstimmung der Lastverläufe.)
+\end{enumerate}
+
+\newpage
+\section*{Aufgabe: Windrad – lineares Modell}
+
+Die Leistung $P$ eines Windrads hängt linear von der Windgeschwindigkeit $v$ und der Blattverstellung $\theta$ ab:
+\[
+P = a\,v + b\,\theta
+\]
+
+Drei Messungen liefern folgende Daten:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+Messung & $v$ [m/s] & $\theta$ [°] & $P$ [kW] \\
+\hline
+1 & 4 & 2 & 14 \\
+2 & 6 & 2 & 18 \\
+3 & 5 & 4 & 20
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item Stellen Sie das System $A\,\vec x=\vec b$ für $\vec x=(a,b)^T$ auf.
+\item Prüfen Sie, ob das System lösbar ist und falls ja, bestimmen Sie eine Lösung.
+\end{enumerate}
+\textbf{Lösungsskizze}
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Gebäudeenergie I (Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase eines energieeffizienten Gebäudes wird die
+Geometrie einer ebenen, kreisförmigen Bauteilfläche untersucht. Die betrachtete
+Fläche repräsentiert eine idealisierte Dach- oder Deckenplatte, über die
+Wärmeübertragungs- und Installationsaspekte bewertet werden.
+
+Der Entwurf sieht eine kreisförmige Fläche mit einer konzentrischen, kreisförmigen Aussparung vor. Die Aussparung ist beispielsweise ein Lüftungsschacht oder ein Fenster. 
+
+Auf den Konstruktionsplänen ist die Länge der Sehne des äußeren Kreises, die tangential am Rand der Aussparung liegt, als Strecke $AB$ mit Länge \(|AB| = 36\) angegeben.  Wie groß ist die Dachfläche?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_1.png}
+\end{center}
+
+\textbf{Lösung: \(A = 18^2\cdot \pi\)}
+
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Gebäudeenergie II (Gleichungssystem / Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase eines energieeffizienten Gebäudes wird die
+Geometrie einer ebenen, kreisförmigen Bauteilfläche untersucht. Die betrachtete
+Fläche repräsentiert eine idealisierte Dach- oder Deckenplatte, über die
+Wärmeübertragungs- und Installationsaspekte bewertet werden.
+
+Der Entwurf sieht eine kreisförmige Grundfläche mit drei kreisförmigen Aussparungen vor. In den Konstruktionspänen ist der Durchmesser \(D\) der Grundfläche angegeben mit \(D=36\). Die Radien der Aussparungen sind nicht angegeben. Können wir allein durch die geometrische Anordnung der Aussparungen berechnen wir groß die die Dachfläche ist? Wenn ja, wie groß ist sie?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_2.png}
+\end{center}
+
+\textbf{Lösung: \(A = 115\cdot \pi\) (\(R=9, r=8\))}
+
+\newpage
+\section*{Aufgabe}
+\textbf{Lösungsskizze}
+
+
+\end{document}
+
+

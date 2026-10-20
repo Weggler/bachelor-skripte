@@ -1,0 +1,82 @@
+
+\ifintegriereaufgaben
+\section*{Matrizen Aufgaben}\label{MA1-matrizen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-matrizen}{ (Abschnitt \abschnittsverweis{MA1-matrizen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-matrizen-loesungen]{hier}.
+\else 
+\section{Matrizen Aufgaben}\label{MA1-matrizen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-matrizen-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Rechenregeln]
+	Berechnen Sie $ (  A^\intercal C - 2\cdot B)(-3\cdot C^\intercal )$ für die folgenden Matrizen
+	\[ A = \left( \begin{array}{ccc} 1 & -2 & 3 \\ 0 & 3 & 1 \end{array}\right), \quad B = \left( \begin{array}{cc} 2 & -1 \\ 0 & 3 \\ -2 & -2 \end{array}\right), \quad C=\left( \begin{array}{cc} 3 & 2 \\ -1 & 2 \end{array}\right) \,. \]
+\end{exercisebox}
+
+%\begin{exercisebox}[Matrixmultiplikation und Skalarprodukt]
+%Es sei $\boldsymbol a \in \mathbb R^n, \boldsymbol b\in \mathbb R^m$ und $A\in \mathbb R^{n\times m}$.  Zeigen Sie $\langle \boldsymbol a , A \boldsymbol b\rangle = \langle A^\intercal \boldsymbol a, \boldsymbol b \rangle\,.$
+%\end{exercisebox}
+
+\begin{exercisebox}[Rang und Bild]
+	Es sei $A = \boldsymbol a \boldsymbol b^\intercal, \; \boldsymbol a \in \mathbb R^n, \boldsymbol b \in \mathbb R^m$. Wie ist der Rang der Matrix $A$? Wie sieht das Bild der Matrix aus?
+\end{exercisebox}
+
+\begin{exercisebox}[Basis]
+	\begin{itemize}
+		\item[(a)] Für welche Werte von $a\in\mathbb R$ bilden die vier Vektoren eine Basis des $\mathbb R^4$?
+  \begin{eqnarray*}
+	  \boldsymbol x_1 = (3,1,4,0)^\intercal, \;  
+	  \boldsymbol x_2 = (1,1,0,6)^\intercal, \; 
+	  \boldsymbol x_3 = (-4,0,5,a)^\intercal, \;  
+	  \boldsymbol x_4 = (0,0,1,2)^\intercal\,.
+  \end{eqnarray*}
+
+\item[(b)]	  Überpfrüfen Sie, ob die Polynome $1, 1+x, 1-x, x^2$ eine Basis des $\mathcal P_2$ bilden.
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+	Gegeben sind die linearen Abbildungen 
+	\[ \mathcal A: \mathbb R^2 \to \mathbb R^3, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) \mapsto \left( \begin{array}{c} 0 \\ 3x_1-x_2 \\ 2x_2 \end{array}\right), \quad \mathcal B:\mathbb R^2 \to \mathbb R^3, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) \mapsto \left( \begin{array}{c} -x_1+x_2 \\ -x_2 \\ 3x_2 \end{array}\right)\,.\]
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die darstellenden Matrizen $A$ und $B$ der linearen Abbildungen $\mathcal A$ und $\mathcal B$.
+		\item[(b)] Gegeben ist eine Matrix \[ C=\left( \begin{array}{ccc} -1 & 2 & 0 \\ 0 & 3 & -1 \end{array}\right) \in \mathbb R^{2\times 3}\] Bestimmen Sie die von $C$ induzierte lineare Abbildung $\mathcal C$.
+		\item[(c)] Wie lautet die darstellende Matrix der linearen Abbildung $\mathcal C\circ \mathcal A$?
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+	Gegeben sei der reelle Vektorraum \( \mathcal P_3:= \left\{ p:\mathbb R\to \mathbb R\;|\;p \;\textnormal{Polynome vom Grad } 3\right\}\) und die Abbildung \( f: \mathcal P_3 \to \mathbb R^2, \quad p\mapsto \left( \begin{array}{c}p(2) \\ p(3)\end{array}\right) \,.\)
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass $f$ eine lineare Abbildung ist und berechnen Sie $f$ für die Monome $p_i: x\mapsto x^i,\; i=0,1,2,3\,.$
+		\item[(b)] Berechnen Sie $f(p)$ für ein allgemeines Polynom $p \in \mathcal P_4$. % mit  \[ p=a_3\cdot p_3 + a_2 \cdot p_2 + a_1\cdot p_1 + a_0 \cdot p_0, \quad a_0,\dots,a_3\in \mathbb R.\] 
+		\item[(d)] Zeigen Sie, dass die Funktion \[ g:\mathbb R^4 \to \mathbb R^2, \quad \left( \begin{array}{c}a_3 \\ a_2 \\ a_1 \\ a_0\end{array}\right) \mapsto f(a_3\cdot p_3 + a_2 \cdot p_2 + a_1\cdot p_1 + a_0 \cdot p_0)\] linear ist und berechnen Sie die darstellende Matrix von $g$.
+	\end{itemize}
+\end{exercisebox}
+
+%\begin{exercisebox}[Mathematik lesen, Eigenwerte]
+%\end{exercisebox}
+%\begin{exercisebox}[Mathematik lesen, Eigenvektoren]
+%\end{exercisebox}
+%\begin{exercisebox}[Mathematik lesen, Positive Definitheit]
+%\end{exercisebox}
+%\begin{exercisebox}[Mathematik lesen, Symmetrie]
+%\end{exercisebox}
+%\begin{theorembox}[Grafikkarten Programmierung - cuda]
+%\end{theorembox}
+%\begin{theorembox}[Dünnbesetzte Matrizen]
+%\end{theorembox}
+%\begin{theorembox}[Hierarchische Matrizen, Niedrigrangapproximation]
+%\end{theorembox}
+%\begin{theorembox}[Spezielle Matrizen  (Elemente ergänzen vielleicht?)- Mathematik lesen oder Beispiele angeben?]
+%\begin{itemize}
+%	\item Orthogonale Matrix
+%	\item Komplex konjugierte
+%	\item antisymmetrische Matrix
+%	\item Singuläre Matrix
+%	\item Transponierte
+%	\item  $A \in \mathbb C^{2\times 3}$. Wie lautet $A^\intercal$? Konjugierte 
+%	\item Basis des Vektorraums $\mathbb C^{2\times 3}$
+%\end{itemize}
+%\end{theorembox}

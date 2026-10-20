@@ -1,0 +1,747 @@
+\section{Lokale Linearität}\label{MA1-lokale-linearitaet}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem Differenzierbarkeit als lokale Linearität interpretieren &\\
+    \tabitem eine Funktion durch ihre Tangente lokal approximieren &\\
+    \tabitem die Bedeutung der Krümmung für die Genauigkeit einer
+             Linearisierung erklären &\\
+    \tabitem die Regel von L'Hospital zur Untersuchung geeigneter
+             Grenzwerte anwenden &\\
+    \tabitem Ableitungen aus diskreten Funktionswerten durch
+             Differenzenquotienten approximieren &\\
+    \tabitem das Newton-Verfahren als wiederholte Linearisierung
+             erklären und anwenden &\\
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Grenzwerte von Funktionen verstehen & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}\\
+    \tabitem Differenzierbarkeit und Ableitung interpretieren & \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit}\\
+    \tabitem Ableitungen berechnen & \abschnittsverweis{MA1-ableitungsregeln}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema:
+\hyperref[MA1-lokale-linearitaet-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+% =========================================================
+\subsection{Differenzierbarkeit bedeutet lokale Linearität}
+\label{MA1-lokale-linearitaet-differenzierbarkeit}
+
+Viele Funktionen, die in Anwendungen auftreten, sind nichtlinear.
+Nichtlineare Funktionen und Gleichungen sind im Allgemeinen schwieriger
+zu untersuchen als lineare. Die Differenzierbarkeit eröffnet jedoch einen
+grundlegenden Zugang:
+
+\medskip
+\noindent
+\emph{In hinreichend kleiner Umgebung kann eine differenzierbare Funktion
+durch ein lineares Modell ersetzt werden.}
+\medskip
+
+Dieses Prinzip heißt \textbf{Linearisierung} (\emph{linearization}).
+Es gehört zu den grundlegenden Ideen der Analysis und insbesondere der
+Numerik. Statt ein nichtlineares Problem unmittelbar zu behandeln, wird
+es zunächst lokal durch ein einfacheres lineares Problem ersetzt.
+
+Ist \(f\) in \(x_0\) differenzierbar, so ist die Tangente
+\[
+T_{x_0}(x)
+=
+f(x_0)+f'(x_0)(x-x_0)
+\]
+die lokale affine Approximation der Funktion.
+
+Für \(x=x_0+h\) ergibt sich entsprechend
+\[
+T_{x_0}(x_0+h)
+=
+f(x_0)+f'(x_0)h.
+\]
+
+Die Aussage, dass die Tangente die Funktion lokal approximiert, lässt sich
+präzise formulieren.
+
+\begin{theorembox}{Lokale Linearität}{}
+Ist \(f\) in \(x_0\) differenzierbar, so gilt
+\[
+f(x_0+h)
+=
+f(x_0)+f'(x_0)h+r(h),
+\]
+wobei
+\[
+\lim_{h\to0}\frac{r(h)}{h}=0.
+\]
+\end{theorembox}
+
+Der Rest \(r(h)\) verschwindet also für \(h\to0\) schneller als die
+Schrittweite \(h\). In diesem präzisen Sinn wird die Funktion in immer
+kleinerer Umgebung von \(x_0\) immer besser durch ihre Tangente
+beschrieben.
+
+Mit der \textbf{Landau-Schreibweise} lässt sich die Bedingung an den Rest
+kurz als
+\[
+r(h)=o(h)
+\]
+schreiben. Damit lautet die lokale Linearisierung
+\[
+f(x_0+h)
+=
+f(x_0)+f'(x_0)h+o(h).
+\]
+
+Die Ableitung \(f'(x_0)\) ist somit nicht nur eine Tangentensteigung oder
+eine lokale Änderungsrate. Sie bestimmt zugleich den linearen Anteil der
+lokalen Änderung von \(f\).
+
+Anschaulich:
+\[
+\text{nahe }x_0:
+\qquad
+f
+\approx
+\text{Tangente}.
+\]
+
+Diese Idee wird in Mathematik~2 durch Taylor-Polynome erweitert. Dort wird
+eine Funktion nicht nur durch einen linearen, sondern durch einen
+polynomiellen Ausdruck höherer Ordnung lokal approximiert.
+
+
+\begin{exabox}{Lokale Approximation eines Funktionswertes}{}
+
+Für
+\[
+f(x)=\sqrt{x}
+\]
+ist der Funktionswert bei \(x_0=100\) unmittelbar bekannt:
+\[
+f(100)=10.
+\]
+Außerdem gilt
+\[
+f'(x)=\frac{1}{2\sqrt{x}},
+\qquad
+f'(100)=\frac1{20}.
+\]
+
+Die Linearisierung der Wurzelfunktion bei \(x_0=100\) lautet daher
+\[
+T_{100}(x)
+=
+10+\frac1{20}(x-100).
+\]
+
+Für \(x=103\) ergibt sich
+\[
+\sqrt{103}
+\approx
+T_{100}(103)
+=
+10+\frac3{20}
+=
+10{,}15.
+\]
+
+Die nichtlineare Wurzelfunktion wurde damit in der Nähe von \(100\) durch
+eine affine Funktion ersetzt. Die eigentliche Näherungsrechnung ist
+anschließend nur noch linear.
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+Linearisierung ist eine lokale Aussage. Je weiter sich \(x\) von der
+Entwicklungsstelle \(x_0\) entfernt, desto stärker kann sich die Funktion
+von ihrer Tangente unterscheiden.
+
+
+% =========================================================
+\subsection{Wie gut ist die Linearisierung?}
+\label{MA1-lokale-linearitaet-fehlerabschaetzung}
+
+Eine Näherung ist besonders dann nützlich, wenn zumindest eingeschätzt
+werden kann, wie groß ihr Fehler ist.
+
+Die Tangente stimmt an der Stelle \(x_0\) mit der Funktion im Funktionswert
+und in der Steigung überein:
+\[
+T_{x_0}(x_0)=f(x_0),
+\qquad
+T_{x_0}'(x_0)=f'(x_0).
+\]
+
+Entfernt sich \(x\) von \(x_0\), macht sich jedoch die
+\textbf{Krümmung} der Funktion bemerkbar. Eine nahezu geradlinig
+verlaufende Funktion bleibt über einen größeren Bereich nahe an ihrer
+Tangente; bei starker Krümmung verliert die Tangentenapproximation
+schneller an Genauigkeit.
+
+Die zweite Ableitung liefert ein Maß für diese Krümmung. Damit entsteht
+der qualitative Zusammenhang
+\[
+\text{großes }|f''|
+\quad\Longrightarrow\quad
+\text{stärkere Abweichung von der Tangente}.
+\]
+
+Diese Beobachtung führt zu einer quantitativen Fehlerabschätzung.
+
+
+\subsubsection*{Fehlerabschätzung (+)}
+
+Ist \(f\) zweimal stetig differenzierbar und gilt
+\[
+|f''(x)|\le M
+\]
+für alle \(x\) zwischen \(x_0\) und \(x_0+h\), so lässt sich der Fehler
+der linearen Approximation abschätzen.
+
+\begin{theorembox}{Fehler der linearen Approximation}{}
+Unter den genannten Voraussetzungen gilt
+\[
+\left|
+f(x_0+h)
+-
+\bigl(f(x_0)+f'(x_0)h\bigr)
+\right|
+\le
+\frac{M}{2}h^2.
+\]
+\end{theorembox}
+
+Der Fehler ist damit höchstens von der Größenordnung \(h^2\). Wird die
+Schrittweite beispielsweise halbiert, so wird dieser Anteil der
+Fehlerabschätzung um den Faktor vier kleiner.
+
+Die systematische Herleitung dieser Aussage erfolgt später mithilfe des
+Taylor-Satzes. Für den Moment ist vor allem die Struktur wichtig:
+Die erste Ableitung liefert die lineare Approximation, die zweite
+Ableitung kontrolliert deren Fehler.
+
+
+\begin{exabox}{Fehlerabschätzung für \(\sqrt{103}\)}{}
+
+Für
+\[
+f(x)=\sqrt{x}
+\]
+gilt
+\[
+f''(x)
+=
+-\frac{1}{4x^{3/2}}.
+\]
+
+Im Intervall \([100,103]\) gilt daher
+\[
+|f''(x)|
+\le
+\frac1{4000}.
+\]
+Mit \(h=3\) folgt
+\[
+\left|
+\sqrt{103}-10{,}15
+\right|
+\le
+\frac12\cdot\frac1{4000}\cdot 3^2
+=
+\frac9{8000}.
+\]
+
+Da \(f''(x)<0\), ist die Wurzelfunktion in diesem Bereich nach unten
+gekrümmt und liegt unterhalb ihrer Tangente. Damit ergibt sich sogar
+\[
+10{,}15-\frac9{8000}
+\le
+\sqrt{103}
+\le
+10{,}15.
+\]
+
+Zum Vergleich:
+\[
+\sqrt{103}=10{,}148891\ldots
+\]
+\end{exabox}
+
+
+% =========================================================
+\subsection{Grenzwerte durch lokale Änderungsraten:
+die Regel von L'Hospital}
+\label{MA1-lokale-linearitaet-lhospital}
+
+Die lokale Beschreibung einer Funktion durch ihre Ableitung lässt sich
+auch zur Untersuchung von Grenzwerten nutzen.
+
+Bei einem Quotienten
+\[
+\frac{f(x)}{g(x)}
+\]
+kann es vorkommen, dass für \(x\to x_0\) sowohl Zähler als auch Nenner
+gegen null streben. Direktes Einsetzen führt dann auf die
+\textbf{unbestimmte Form}
+\[
+\frac00.
+\]
+Dieser Ausdruck besitzt keinen eigenen Zahlenwert. Er zeigt vielmehr an,
+dass aus den Grenzwerten von Zähler und Nenner allein noch nicht folgt,
+wie sich ihr Quotient verhält.
+
+Die Idee der Linearisierung liefert zunächst eine anschauliche Erklärung.
+Seien beispielsweise
+\[
+f(x_0)=0,
+\qquad
+g(x_0)=0.
+\]
+Dann gilt lokal
+\[
+f(x_0+h)
+=
+f'(x_0)h+o(h)
+\]
+und
+\[
+g(x_0+h)
+=
+g'(x_0)h+o(h).
+\]
+
+Falls \(g'(x_0)\neq0\), werden Zähler und Nenner in erster Näherung durch
+ihre linearen Anteile beschrieben. Daher verhält sich der Quotient für
+kleine \(h\) wie
+\[
+\frac{f(x_0+h)}{g(x_0+h)}
+\approx
+\frac{f'(x_0)h}{g'(x_0)h}
+=
+\frac{f'(x_0)}{g'(x_0)}.
+\]
+
+Die lokalen Änderungsraten können also darüber entscheiden, wie sich der
+Quotient zweier gegen null strebender Funktionen verhält.
+
+Diese Überlegung erklärt einen wichtigen Spezialfall der
+\textbf{Regel von L'Hospital} (\emph{L'Hospital's rule}). Der allgemeine
+Satz ist weiterreichend und benötigt eigene Voraussetzungen.
+
+
+\begin{theorembox}{Regel von L'Hospital}{}
+Es seien \(f\) und \(g\) in einer punktierten Umgebung von \(x_0\)
+differenzierbar und es gelte dort \(g'(x)\neq0\). Weiter sei
+\[
+\lim_{x\to x_0}f(x)
+=
+\lim_{x\to x_0}g(x)
+=
+0.
+\]
+
+Existiert der Grenzwert
+\[
+\lim_{x\to x_0}
+\frac{f'(x)}{g'(x)}
+=
+L
+\]
+als endlicher oder uneigentlicher Grenzwert, so gilt unter diesen
+Voraussetzungen
+\[
+\lim_{x\to x_0}
+\frac{f(x)}{g(x)}
+=
+L.
+\]
+\end{theorembox}
+
+Eine entsprechende Aussage gilt unter geeigneten Voraussetzungen auch
+für Quotienten der unbestimmten Form
+\[
+\frac{\infty}{\infty}.
+\]
+
+
+\begin{exabox}{Regel von L'Hospital}{}
+
+Der Grenzwert
+\[
+\lim_{x\to0}
+\frac{\sin x}{e^x-1}
+\]
+führt beim direkten Einsetzen auf die unbestimmte Form \(0/0\).
+
+Mit der Regel von L'Hospital folgt
+\[
+\lim_{x\to0}
+\frac{\sin x}{e^x-1}
+=
+\lim_{x\to0}
+\frac{\cos x}{e^x}
+=
+1.
+\]
+
+Die lokale Linearisierung macht das Ergebnis zusätzlich anschaulich:
+Für kleine \(x\) gilt
+\[
+\sin x\approx x
+\qquad\text{und}\qquad
+e^x-1\approx x.
+\]
+Zähler und Nenner besitzen bei \(x=0\) also denselben linearen Anteil.
+Ihr Quotient nähert sich deshalb dem Wert \(1\).
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+Die Linearisierung erklärt die Grundidee von L'Hospital besonders
+anschaulich, wenn die ersten Ableitungen bereits das lokale Verhalten
+bestimmen. Der allgemeine Satz ist jedoch nicht lediglich eine
+Umformulierung der Tangentenapproximation.
+
+
+% =========================================================
+\subsection{Linearisierung aus diskreten Daten}
+\label{MA1-lokale-linearitaet-diskrete-daten}
+
+Bisher wurde die Ableitung als bekannt vorausgesetzt und daraus die
+Linearisierung einer Funktion bestimmt. In Messungen, Experimenten und
+numerischen Berechnungen tritt häufig die umgekehrte Situation auf:
+
+Die Funktionswerte sind bekannt, die Ableitung jedoch nicht.
+
+Beispielsweise kann eine physikalische Größe nur zu diskreten Zeitpunkten
+gemessen worden sein. Zwischen den Messpunkten liegen dann keine
+unmittelbaren Informationen über den Funktionsverlauf vor.
+
+Die lokale Linearität liefert auch hier die entscheidende Idee. Ist eine
+Funktion in einem kleinen Bereich annähernd geradlinig, so lässt sich die
+unbekannte Tangentensteigung durch die Steigung einer nahe gelegenen
+Sekante approximieren.
+
+Für zwei benachbarte Funktionswerte ergibt sich beispielsweise
+\[
+f'(x)
+\approx
+\frac{f(x+h)-f(x)}{h}.
+\]
+
+Damit wird die Ableitung selbst zu einer Größe, die numerisch aus
+Funktionswerten approximiert werden kann.
+
+
+\begin{exabox}{Differenzenquotienten}{}
+\begin{center}
+\includegraphics[width=0.8\textwidth]
+{../Mathematik_1/Bilder/ableitung_differenzenquotienten_vergleich.png}
+\end{center}
+\end{exabox}
+
+Werden Funktionswerte auf beiden Seiten der betrachteten Stelle verwendet,
+so ergibt sich die \textbf{zentrale Differenz}
+(\emph{central difference})
+\[
+f'(x)
+\approx
+\frac{f(x+h)-f(x-h)}{2h}.
+\]
+
+Geometrisch entspricht dieser Ausdruck wieder einer Sekantensteigung.
+Durch die symmetrische Wahl der beiden Punkte heben sich jedoch bestimmte
+Fehleranteile gegenseitig auf. Deshalb ist die zentrale Differenz bei
+glatten Funktionen typischerweise genauer als die einseitige
+Vorwärtsdifferenz.
+
+
+\subsubsection*{Genauigkeit von Differenzenquotienten (+)}
+
+Für hinreichend glatte Funktionen gelten die Fehlerordnungen
+\[
+\textnormal{Vorwärtsdifferenz:}
+\qquad
+f'(x)
+=
+\frac{f(x+h)-f(x)}{h}
++
+\mathcal O(h),
+\]
+während für die zentrale Differenz
+\[
+\textnormal{zentrale Differenz:}
+\qquad
+f'(x)
+=
+\frac{f(x+h)-f(x-h)}{2h}
++
+\mathcal O(h^2)
+\]
+gilt.
+
+Die zentrale Differenz besitzt damit einen Fehler zweiter Ordnung:
+Wird \(h\) halbiert, verkleinert sich dieser Fehleranteil näherungsweise
+um den Faktor vier.
+
+Auch die zweite Ableitung kann aus benachbarten Funktionswerten
+approximiert werden:
+
+\begin{theorembox}{Zweite Differenz}{}
+Für hinreichend glatte Funktionen gilt
+\[
+f''(x)
+=
+\frac{f(x+h)-2f(x)+f(x-h)}{h^2}
++
+\mathcal O(h^2).
+\]
+\end{theorembox}
+
+Diese Formeln sind erste Beispiele für ein grundlegendes Vorgehen der
+Numerik: Aus endlich vielen diskreten Daten werden lokale Eigenschaften
+einer kontinuierlichen Funktion approximiert.
+
+\noindent\textbf{Bemerkung:}
+Mathematisch wird die Approximation für kleiner werdendes \(h\) zunächst
+genauer. In tatsächlichen numerischen Rechnungen kann \(h\) jedoch nicht
+beliebig klein gewählt werden, da Rundungsfehler und Messfehler dann
+zunehmend ins Gewicht fallen. Die Wahl einer geeigneten Schrittweite ist
+daher selbst Teil eines numerischen Verfahrens.
+
+
+% =========================================================
+\subsection{Newton-Verfahren: wiederholte Linearisierung}
+\label{MA1-lokale-linearitaet-newton-verfahren}
+
+Ein besonders wichtiges Beispiel für die Nutzung lokaler Linearität ist
+die numerische Lösung nichtlinearer Gleichungen.
+
+Gesucht sei eine Lösung der Gleichung
+\[
+f(x)=0.
+\]
+Für viele nichtlineare Funktionen lässt sich eine solche Gleichung nicht
+durch einfache algebraische Umformungen lösen. Das
+\textbf{Newton-Verfahren} (\emph{Newton's method}) ersetzt deshalb das
+nichtlineare Problem lokal durch ein lineares.
+
+Ausgehend von einem Näherungswert \(x_k\) wird \(f\) in der Nähe von
+\(x_k\) linearisiert:
+\[
+f(x)
+\approx
+f(x_k)+f'(x_k)(x-x_k).
+\]
+
+Anstatt unmittelbar eine Nullstelle der nichtlinearen Funktion zu suchen,
+wird nun zunächst die Nullstelle dieser Tangente bestimmt. Dazu wird das
+lineare Ersatzproblem
+\[
+0
+=
+f(x_k)+f'(x_k)(x-x_k)
+\]
+gelöst.
+
+Für \(f'(x_k)\neq0\) folgt
+\[
+x
+=
+x_k-\frac{f(x_k)}{f'(x_k)}.
+\]
+
+Dieser Wert wird als neuer Näherungswert verwendet:
+\[
+x_{k+1}
+=
+x_k-\frac{f(x_k)}{f'(x_k)}.
+\]
+
+Anschließend wird die Funktion am neuen Punkt \(x_{k+1}\) erneut
+linearisiert. Das Verfahren wiederholt somit immer denselben Ablauf:
+\[
+\text{linearisieren}
+\longrightarrow
+\text{lineares Problem lösen}
+\longrightarrow
+\text{neu linearisieren}.
+\]
+
+
+\begin{defbox}{Newton-Verfahren}{}
+Sei \(f\) differenzierbar und \(x_0\) ein geeigneter Startwert. Solange
+\(f'(x_k)\neq0\) gilt, wird rekursiv
+\[
+x_{k+1}
+=
+x_k-\frac{f(x_k)}{f'(x_k)}
+\]
+berechnet.
+\end{defbox}
+
+
+\begin{exabox}{Newton-Verfahren: Idee in Bildern}{}
+\begin{minipage}{0.32\textwidth}
+  \includegraphics[width=\textwidth]
+  {../Mathematik_1/Bilder/newton_tangente_startwert.png}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+  \includegraphics[width=\textwidth]
+  {../Mathematik_1/Bilder/newton_tangente_zweite_iteration.png}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+  \includegraphics[width=\textwidth]
+  {../Mathematik_1/Bilder/newton_naeherung_vierte_iteration.png}
+\end{minipage}
+\end{exabox}
+
+Die Bildfolge zeigt die wiederholte Linearisierung geometrisch:
+An jedem Näherungswert wird die Tangente gebildet. Deren Schnittpunkt mit
+der \(x\)-Achse liefert den nächsten Näherungswert.
+
+Damit zeigt das Newton-Verfahren ein grundlegendes Vorgehen der Numerik:
+Ein nichtlineares Problem wird lokal durch ein lineares Problem ersetzt,
+das lineare Problem wird gelöst, und anschließend wird um die neue
+Näherung erneut linearisiert.
+
+
+\subsubsection*{Abbruch und mögliche Schwierigkeiten}
+
+In einer numerischen Rechnung kann die Iteration nicht unbegrenzt
+fortgesetzt werden. Ein mögliches Abbruchkriterium ist
+\[
+|x_{k+1}-x_k|<\varepsilon.
+\]
+Alternativ kann geprüft werden, ob der Funktionswert bereits hinreichend
+klein ist:
+\[
+|f(x_k)|<\varepsilon.
+\]
+
+Beide Kriterien messen unterschiedliche Aspekte: Das erste beobachtet,
+ob sich die Näherungswerte noch wesentlich verändern, das zweite, wie gut
+die aktuelle Näherung die Gleichung \(f(x)=0\) erfüllt.
+
+Das Newton-Verfahren konvergiert nicht für jeden Startwert. Besonders
+problematisch sind Stellen, an denen
+\[
+f'(x_k)\approx0.
+\]
+Die Tangente verläuft dort nahezu horizontal, sodass der Quotient
+\[
+\frac{f(x_k)}{f'(x_k)}
+\]
+sehr groß werden kann. Der nächste Newton-Schritt kann dadurch weit vom
+gesuchten Bereich wegführen.
+
+
+\begin{exabox}{Schlechter Startwert}{}
+\begin{minipage}{0.4\textwidth}
+  \includegraphics[width=\textwidth]
+  {../Mathematik_1/Bilder/newton_problematische_flache_tangente.png}
+\end{minipage}\hfill
+\begin{minipage}{0.58\textwidth}
+Ist die Tangente am aktuellen Näherungswert nahezu horizontal, kann ihr
+Schnittpunkt mit der \(x\)-Achse sehr weit entfernt liegen. Die lokale
+Linearisierung wird dann außerhalb des Bereichs verwendet, in dem sie die
+Funktion gut approximiert, und der Newton-Schritt kann unbrauchbar werden.
+\end{minipage}
+\end{exabox}
+
+Gerade dieses mögliche Scheitern macht noch einmal deutlich, weshalb das
+Wort \emph{lokal} entscheidend ist: Eine Tangente beschreibt eine
+nichtlineare Funktion nur in der Nähe ihres Berührpunktes gut.
+
+
+% =========================================================
+\subsubsection*{Konvergenz des Newton-Verfahrens (+)}
+
+Unter geeigneten Voraussetzungen konvergiert das Newton-Verfahren in der
+Nähe einer einfachen Nullstelle besonders schnell.
+
+Ist \(x^\ast\) eine Nullstelle mit
+\[
+f(x^\ast)=0,
+\qquad
+f'(x^\ast)\neq0,
+\]
+und ist \(f\) in einer Umgebung von \(x^\ast\) hinreichend glatt, so
+konvergiert die Newton-Folge bei einem ausreichend guten Startwert
+typischerweise \textbf{quadratisch} gegen \(x^\ast\).
+
+Für den Fehler
+\[
+e_k=x_k-x^\ast
+\]
+bedeutet dies lokal eine Beziehung der Form
+\[
+|e_{k+1}|
+\le
+C|e_k|^2.
+\]
+
+Ist der Fehler bereits klein, wird er im nächsten Schritt also ungefähr
+quadriert. Dadurch kann sich die Zahl der korrekten Dezimalstellen in der
+Nähe der Lösung von einem Schritt zum nächsten ungefähr verdoppeln.
+
+
+\begin{exabox}{Newton-Verfahren für \(x^3=7\)}{}
+
+Die Gleichung
+\[
+x^3=7
+\]
+wird als Nullstellenproblem
+\[
+f(x)=x^3-7=0
+\]
+geschrieben. Wegen
+\[
+f'(x)=3x^2
+\]
+lautet die Newton-Iteration
+\begin{eqnarray*}
+x_{k+1}
+&=&
+x_k-\frac{x_k^3-7}{3x_k^2}\\[1ex]
+&=&
+\frac23x_k+\frac{7}{3x_k^2}.
+\end{eqnarray*}
+
+Bei einem geeigneten Startwert nähert sich die Folge sehr schnell der
+Nullstelle
+\[
+x^\ast=\sqrt[3]{7}.
+\]
+\end{exabox}
+
+
+% =========================================================
+
+\noindent\textbf{Zusammenfassung:}
+Die Beispiele dieses Abschnitts beruhen auf derselben Grundidee.
+Differenzierbarkeit erlaubt es, eine nichtlineare Funktion lokal durch
+ihre Tangente zu ersetzen. Aus diesem einfachen Gedanken entstehen sehr
+unterschiedliche Werkzeuge:
+
+\[
+\begin{array}{rcl}
+\text{Funktionswert} &\longrightarrow& \text{Tangentenapproximation},\\[0.5ex]
+\text{Grenzwert} &\longrightarrow& \text{Vergleich lokaler Änderungsraten},\\[0.5ex]
+\text{diskrete Daten} &\longrightarrow& \text{Differenzenquotienten},\\[0.5ex]
+\text{nichtlineare Gleichung} &\longrightarrow& \text{Newton-Verfahren}.
+\end{array}
+\]
+
+Damit ist die Linearisierung nicht nur eine geometrische Interpretation
+der Ableitung. Sie ist ein grundlegendes Prinzip, mit dem nichtlineare
+Probleme lokal durch einfachere lineare Probleme approximiert werden.

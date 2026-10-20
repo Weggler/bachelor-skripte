@@ -1,0 +1,325 @@
+\section{Integration}\label{MA2-integration}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem bestimmte Integrale mit Hilfe von Stammfunktionen berechnen & \\
+	\tabitem die Linearität und Additivität des Integrals sicher anwenden & \\
+	\tabitem den Hauptsatz der Differential- und Integralrechnung zur Berechnung bestimmter Integrale nutzen & \\
+	\tabitem die Konvergenz uneigentlicher Integrale prüfen & \\
+	\tabitem Integrale mit einfachen numerischen Verfahren approximieren &\\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Ableitungen berechnen können & \abschnittsverweis{MA1-ableitungsregeln} \\
+    \tabitem Grenzwerte untersuchen können & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}  \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-integration-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Integrierbare Funktionen und Eigenschaften des Integrals}
+
+
+Gegeben sei eine  Funktion $f$,  die  auf  dem  Intervall  $[a,b]$  definiert  ist. Das bestimmte Integral  [definite integral] \[ \int^b_ af(x) \,\mathrm{d}x\] misst die vorzeichenbehaftete Fläche zwischen dem Funktionsgraphen und der $x$-Achse:
+\begin{defbox}{Integral}{ }
+	\begin{minipage}{0.35\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/integration_vorzeichenbehafteter_flaecheninhalt.png}
+\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		$\displaystyle{ \int\limits_{a}^b f(x)\, \mathrm{d}x}$ mit \ldots
+\begin{itemize}
+	\item Integrand $f(x)$,
+	\item untere Integrationsgrenze $a$,
+	\item obere Integrationsgrenze $b$,
+	\item Differential $\mathrm{d}x$.
+\end{itemize}
+\end{minipage}
+\end{defbox}
+
+\begin{theorembox}{Eigenschaften des Integrals}{Aufgabe}
+	\begin{enumerate}
+	\item Das Integral eines Vielfachen (auch eines negativen Vielfachen!) einer Funktion ist das Vielfache des Integrals der Funktion:
+		\[\forall C\, \in \mathbb R:\quad  \int\limits_a^b C\cdot f(x)\, \mathrm{d}x = C\cdot \int\limits_a^b f(x) \, \mathrm{d}x\,.\]
+\item Das Integral der Summe zweier Funktionen ist die Summe der Integrale:
+	\[\int\limits_a^b \left( f(x) + g(x) \right) \, \mathrm{d}x = \int\limits_a^b f(x) \, \mathrm{d}x + \int\limits_a^b g(x) \, \mathrm{d}x\,.\]
+\item Das Integral ist bezüglich der Integrationsgrenzen additiv:
+	\[\forall \, c\in [a,b]:\quad \int\limits_a^b f(x) \, \mathrm{d}x = \int\limits_a^c f(x) \, \mathrm{d}x + \int\limits_c^b f(x) \, \mathrm{d}x\,.\]
+\item Vertauscht man die Integrationsgrenzen so ändert sich das Vorzeichen des Integrals:
+	\[\int\limits_a^b f(x) \, \mathrm{d}x = - \int\limits_b^a f(x) \, \mathrm{d}x\,.\]
+%\item Es gilt also:
+%	\[\int\limits_a^a f(x) \, \mathrm{d}x = 0\,.\]
+	\end{enumerate}
+\end{theorembox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Eine geometrische Fläche ist immer positiv und das heißt, dass das Integrationsgebiet entsprechend zu zerlegen ist, wenn man eine geometrische Fläche als Integral berechnen möchte!\marginpar{\small Aufgabe}
+	\item Dass das Integral das Vorzeichen der Funktion berücksichtigt, führt dazu, dass "\,Integration"\, eine \underline{lineare}\randverweis{MA1-matrizen} Abbildung ist!
+	\item Das Integralzeichen $\int$ ist eigentlich ein langes S und steht für Summe, das Differential $\mathrm{d}x$ gibt die Variable an, über die integriert wird (hier $x$), und steht formal für eine unendliche kleine Differenz zweier verschiedener Werte $x_1$ und $x_2$.
+\end{itemize}
+
+
+Eine einfache Art, sich das Integral vorzustellen, ist die Fläche unter dem Funktionsgraphen
+in schmale Streifen zu zerlegen, diese durch Rechtecke anzunähern und dann aufzusummieren.
+Teilt man das Intervall \([a,b]\) in viele kleine Teilintervalle, so entstehen Rechtecknäherungen
+der Fläche.
+
+\begin{defbox}{Ober- und Untersumme als Idee (+)}{}
+Ist \(f:[a,b]\to\mathbb R\) nichtnegativ, so kann man in jedem Teilintervall
+ein Rechteck mit der kleinsten vorkommenden Höhe wählen. Die Summe dieser Rechtecksflächen
+heißt \textbf{Untersumme}. Wählt man stattdessen die größte vorkommende Höhe,
+so erhält man die \textbf{Obersumme}.
+
+Anschaulich gilt:
+\[
+\textnormal{Untersumme} \;\le\; \int_a^b f(x)\,\mathrm{d}x \;\le\; \textnormal{Obersumme}.
+\]
+Werden die Teilintervalle immer feiner, so nähern sich diese Summen dem Integral an.
+\end{defbox}
+
+\noindent
+Allgemeiner wählt man in jedem Teilintervall einen beliebigen Stützpunkt \(t_i\)
+und erhält eine \underline{Riemann-Summe}
+\[
+\sum_{i=1}^n f(t_i)\,\Delta x_i.
+\]
+Für die in diesem Skript betrachteten Funktionen --- insbesondere für stetige und stückweise stetige Funktionen
+auf endlichen Intervallen --- führt diese Grenzwertidee auf das bestimmte Integral.
+
+\noindent
+\textbf{Bemerkung:}
+Für die praktische Rechnung ist diese Grenzwertkonstruktion nur selten entscheidend.
+Wichtiger sind für uns:
+\begin{itemize}
+	\item der Hauptsatz der Differential- und Integralrechnung,
+	\item die Rechenregeln für Integrale,
+	\item und numerische Näherungsverfahren auf Basis endlich vieler Funktionswerte.
+\end{itemize}
+
+
+%Eine einfache Art, sich das Integral vorzustellen, ist die Fläche unter der Funktion in schmale Streifen zu schneiden, diese als Rechtecke anzunähern und dann aufzusummieren. Es gibt zwei Möglichkeiten Rechtecke zu bilden:
+%\begin{itemize}
+%	\item entweder schneidet man die $x$-Achse in kleine Streifen, oder,
+%	\item man schneidet die $y$-Achse in kleine Streifen.
+%\end{itemize}
+%
+%	\begin{figure}[h]\caption{links: Riemann-Integral, rechts: Lesbuege-Integral}
+%\begin{center}
+%	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder_unused/integration_riemann_und_lebesgue_vergleich.png}
+%\end{center}
+%\end{figure}
+%
+%Die erste Idee, links skizziert, führt auf das { Riemann-Integral}. Die zweite Idee, rechts skizziert, führt auf das {Lebesgue-Integral}.
+%
+%\noindent Bemerkungen:
+%\begin{itemize}
+%	\item Das Lebesgue-Integral ist allgemeiner und erlaubt die Integration von pathologischen Funktionen, beispielsweise der folgenden:
+%\[ f: \mathbb R \to \mathbb R, \; x\mapsto \begin{cases} 1, \quad x\in \mathbb Q\,,\\ 0, \quad \mathbb R \setminus\mathbb Q\end{cases} \; \Rightarrow \forall\, a,b\in \mathbb R: \quad \int\limits_a^b f(x) \, \mathrm{d}x = 0\,.\]
+%\item Für die Praxis spielen die verschiedenen Definitionen des Integrals keine Rolle. Die Funktionen, die uns interessieren sind stückweise stetig und beschränkt und die lassen sich über jeden endlichen  Integrationsbereich  integrieren.  %Ausnahmen  dazu  gibt es  nur  in  bestimmten  mathematischen  Universen  (Suchbegriff:  Auswahlaxiom)  und/oder  in  Integralen  über  drei  oder  mehr  Dimensionen  (Suchbegriff: Banach-Tarski-Paradoxon).
+%\end{itemize}
+%
+%Der Vollständigkeit halber schließen wir diesen Absatz mit der Definition des Rieman-Integrals ab. Hierzu brauchen wir die Begriffe "\,Riemann-Summe"\, und "\,Riemann-Integrabilität"\,:
+%\begin{defbox}{Riemann-Summe}{}
+%Gegeben sei eine Funktion \(f:[a,b]\to\mathbb R\) und eine Zerlegung \(Z\) des Intervalls \([a,b]\) in Stützstellen \(x_i, i=0,\cdots,n\), also:
+%\[ Z = \bigcup_{i=1}^{n} [x_{i-1},x_i]\,,\]
+%Wählen wir in jedem Teilintervall eine beliebige Zwischenstelle \( t_i\in [x_{i-1}, x_i]\), so heißt
+%\[ S\left(f,Z, (t_i)_i\right) := \sum\limits_{i=1}^n f(t_i)\cdot \underbrace{(x_{i}- x_{i-1})}_{\displaystyle{=\Delta x_i}} \]
+%die Riemannsche Summe von $f$ zur Zerlegung $Z$ mit Zwischenstellen $(t_i)_i$.
+%\end{defbox}
+%
+%Die Riemann-Summe verallgemeinert die aus der Schule bekannten Ober- und Untersummen.
+%
+%\begin{defbox}{Riemann-Integrabilität}{}
+%Gegeben sei eine Funktion \(f:[a,b]\to\mathbb R\) und eine Folge von Zerlegungen  \( (Z)_{n\in\mathbb N} \), für die gilt
+%\[ \lim\limits_{n\to\infty} \delta_n = 0 \quad \textnormal{mit} \quad
+%\delta_n := \max\limits_{1\leq i \leq n} \Delta x_i\,. \]
+%Wählen wir für jede Zerlegung in jedem Teilintervall eine beliebige Zwischenstelle \( \left( t^{(n)}_i\right)_{n\in\mathbb N}\), so heißt
+%\[ \left( S\left(f,Z, (t^{(n)}_i)_i\right)\right)_{n\in\mathbb N} \]
+%Riemann-Folge von $f$. Die Funktion $f$ heißt Riemann-integrierbar oder einfach nur integrierbar, falls jede Riemann-Folge von $f$ konvergiert.
+%\end{defbox}
+%
+%Nun haben wir das Vokabular zusammen, um das Integral zu definieren:
+%
+%\begin{theorembox}{Riemann-Integral}{}
+%Gegeben sei eine integrierbare Funktion \(f:[a,b]\to\mathbb R\). Dann haben alle Riemann-Folgen den gleichen Grenzwert $I\in \mathbb R$. Diesen Grenzwert nennen wir im folgenden Riemann-Integral bzw Integral und schreiben:
+%\[ \int\limits_{a}^b f(x) \, \mathrm{d}x : = I\,.\]
+%\end{theorembox}
+
+\subsection{Hauptsatz der Differential- und Integralrechnung}
+
+Der Wert des Integrals hängt von den Integrationsgrenzen $a$ und $b$ ab. Man kann das Integral also als Funktion beispielsweise von $b$ auffassen,
+\[
+	F: b\mapsto \int\limits_{a}^b f(x)\, \mathrm{d}x\,,
+\]
+und sich fragen, was die Ableitung von $F$ nach $b$ ist. Um die Frage zu beantworten, betrachten wir den \underline{Differenzenquotienten}\randverweis{MA1-stetigkeit-und-differenzierbarkeit}  und erhalten
+\[
+	\frac{F(b+h) - F(b)}{h}  = \frac{\int\limits_{a}^{b+h} f(x)\, \mathrm{d}x - \int\limits_{a}^{b} f(x)\, \mathrm{d}x}{h}= \frac{\int\limits_{b}^{b+h} f(x)\, \mathrm{d}x}{h}  \approx \frac{f(b)\cdot h}{h} =  f(b)\,.\quad (*)\,,
+\]
+wobei im letzten Schritt der wahre Flächeninhalt über dem Intervall \([b,b+h]\) durch die Fläche des Rechtecks mit Seitenlängen $h$ und $f(b)$ abgeschätzt wurde.
+
+Die Ableitung hebt also in gewisser Weise das Integral auf und das können wir nutzen, um Integrale zu berechnen. Betrachten wir beispielsweise
+	\[ \int\limits_{a}^b x^3 \, \mathrm{d}x\,.\]
+	Wegen $(*)$ wissen wir, dass die Ableitung des Integrals von der oberen Grenze $b$ abhängt und $b^3$ sein muss:
+\[
+	\frac{\mathrm{d}}{\mathrm d b} \left( \int_a^b x^3\, \mathrm{d}x \right) \stackrel{!}{=} b^3 \Rightarrow   \int_a^b x^3\, \mathrm{d}x = \frac14 b^4 + C \,.
+\]
+Die letzte Gleichung muss auch für $b=a$ gelten, also:
+\[
+	 0 =  \int_a^a x^3\, \mathrm{d}x = \frac14 a^4 + C \Rightarrow  C=-\frac14 a^4 \,.
+\]
+Damit ist das Integral gelöst:
+\[\int_a^b x^3\,\mathrm{d}x =  \frac14 \left( b^4 - a^4\right) \,.\]
+
+Dieser Trick funktioniert immer und liefert ein Vorgehen zur Berechnung bestimmter Integrale:
+	\begin{enumerate}
+		\item Finde zum Integrand $f$ eine Funktion $F$ mit
+			\[ F' = f\,.\]
+		\item Berechne das Integral wie folgt:
+		\[ \int\limits_a^b f(x) \, \mathrm{d}x = \Big[ F(x) \Big]_a^b = F(x)\Big|_a^b = F(b) - F(a)\,. \]
+	\end{enumerate}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Die Funktion $F$ nennt man Stammfunktion [antiderivative].
+	\item Die Stammfunktion $F$ schreibt man auch oft als unbestimmtes Integral ohne Integrationsgrenzen.
+		\item Stammfunktionen sind nur bis auf additive Konstanten eindeutig bestimmt.
+		\item Das unbestimmte Integral ist eine \underline{Funktion}\randverweis{MA1-funktionen}, die von der Integrationsvariable abhängt.
+		\item Das bestimmte Integral ist eine Zahl - nämlich die vorzeichenbehaftete Fläche unter dem Integrand.
+	\end{itemize}
+
+Der Zusammenhang zwischen Ableitung und Stammfunktion wird im sogenannten  Hauptsatz der Differential- und Integralrechnung [fundamental theorem of calculus] zusammengefasst.
+\begin{theorembox}{Hauptsatz der Differtial und Inegralrechnung}{}
+	Für eine stetige Funktion $f:[a,b]\to\mathbb R$ gilt:
+	\begin{itemize}
+		\item Für jede Stammfunktion $F$ von $f$ und alle $\alpha, \beta \in [a,b]$ gilt
+			\[ \int\limits_{\alpha}^\beta f(x) \, \mathrm{d}x = F(\beta) - F(\alpha) =: \Big[ F(x) \Big]_\alpha^\beta\,.\]
+			\item Für $c\in[a,b]$ lautet eine  Stammfunktion von $f$:
+				\[ F:[a,b]\to \mathbb R, x\mapsto F(x) = \int_c^x f(t) \, \mathrm{d}t\,.\]
+		\end{itemize}
+\end{theorembox}
+
+Den Hauptsatz der Differential- und Integralrechnung kann man benutzen, um Integrale auszurechnen:\marginpar{\small Aufgabe}
+
+\begin{exabox}{Hauptsatz der Differential und Integralrechnung}{ }
+		\[ \int\limits_{0}^4 x^{-\frac12} \,\mathrm{d}x  = \Big[ 2 \sqrt{x}\Big]_0^4 = 4\,.
+		\]
+\end{exabox}
+
+Um Stammfunktionen zu finden, stellt man eine Tabelle von Ableitungen auf und liest diese Tabelle rückwärts. Wichtige Stammfunktionen sind die folgenden:
+
+		\begin{center}
+			\begin{tabular}{l|l||l|l || l| l}
+				$f(x)$ & $F(x)$ & $f(x)$ & $F(x)$  & $f(x)$ & $F(x)$ \\
+				\hline
+				$r$ & $rx$ & $\cos(x)$ & $\sin(x)$ &  $\displaystyle{\frac{1}{\sqrt{1-x^2}}}$ & $\arcsin(x)$ \\
+				$x^a, a\not=-1$ & $\displaystyle{\frac{x^{a+1}}{a+1}}$ & $\sin(x)$ & $-\cos(x)$ & $\displaystyle{\frac{-1}{\sqrt{1-x^2}}}$ & $\mathrm{arccos}(x)$  \\
+				$\displaystyle{x^{-1}}$ & $\ln(|x|)$ & $\displaystyle{\frac{1}{\cos^2(x)}}$ & $\tan(x)$ & $\displaystyle{\frac{1}{1+x^2}}$ & $\arctan(x)$ \\
+				$a^x, a>0$ & $\displaystyle{\frac{a^x}{\ln(a)}}$ & $\displaystyle{\frac{-1}{\sin^2(x)}}$  & $\mathrm{cot}(x)$ & $\displaystyle{\frac{-1}{1+x^2}}$ & $\mathrm{arccot}(x)$
+			\end{tabular}
+		\end{center}
+
+\subsection{Uneigentliche Integrale}
+
+Uneigentliche Integrale sind Integrale mit unbeschränktem Integrationsgebiet und/oder unbeschränktem Integranden. Die Frage, ob der Flächeninhalt unter dem Funktionsgraphen unter diesen Bedingungen eine endliche Zahl ist oder nicht, ist mit den bisherigen Mitteln nicht zu beantworten. Uneigentliche Integrale sind problematisch und man muss sie mit \underline{Grenzwertbetrachtungen}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen} behandeln, um festzustellen, ob sie endlich, also definiert, sind.\marginpar{\small Aufgabe}
+\begin{exabox}{Definierte uneigentliche Integrale}{ }
+	\begin{eqnarray*}
+		\displaystyle{\int\limits_0^\infty} e^{-x} \, \mathrm{d}x &=& \lim\limits_{M\to \infty}  \displaystyle{\int\limits_0^M} e^{-x} \, \mathrm{d}x = \lim\limits_{M\to \infty} \Big[ -e^{-x} \Big]_{0}^M =  \lim\limits_{M\to \infty} \left( -e^{-M} -(- 1) \right) = 1 < \infty\,, \\[2ex]
+		\displaystyle{\int\limits_0^{16} \frac{1}{\sqrt{x}}} \, \mathrm{d}x &=& \lim\limits_{\varepsilon \downarrow 0} \displaystyle{\int_\varepsilon^{16} \frac{1}{\sqrt{x}}} \, \mathrm{d}x = \lim\limits_{\varepsilon \downarrow 0} \Big[ 2 \sqrt{x}\Big]_\varepsilon^{16} =  \lim\limits_{\varepsilon \downarrow 0} \left( 2 \sqrt{16} - 2\sqrt{\varepsilon} \right)  = 2\sqrt{16} = 8\,.
+			\end{eqnarray*}
+\end{exabox}
+
+\begin{exabox}{Nicht-definierte uneigentliche Integrale}{ }
+	\begin{eqnarray*}
+		\displaystyle{\int\limits_0^\infty \sin(x)\, \mathrm{d}x} &=& \lim\limits_{M\to \infty} \displaystyle{\int_0^M \sin(x)\, \mathrm{d}x} = \lim\limits_{M\to \infty} \Big[ -\cos(x)\Big]_{0}^M = \lim\limits_{M\to \infty} \left(1 -\cos(M) \right)\; \textnormal{kein Grenzwert}\,, \\
+		\displaystyle{\int\limits_0^{16} \frac{1}{x}  \, \mathrm{d}x } &=& \lim\limits_{\varepsilon \downarrow 0} \displaystyle{\int\limits_\varepsilon^{16} \frac{1}{x}  \, \mathrm{d}x }  = \lim\limits_{\varepsilon\downarrow 0} \Big[ \ln(|x|) \Big]_{\varepsilon}^{16} = \lim\limits_{\varepsilon\downarrow 0} \left( \ln(16) - \ln(\varepsilon)\right)\; \textnormal{kein Grenzwert}\,.
+	\end{eqnarray*}
+\end{exabox}
+
+\subsection{Numerische Integration (+)}
+
+Zu allen üblichen Funktionen lässt sich schnell mit Hilfe von Produktregel, Kettenregel und so weiter die Rechenvorschrift der Ableitung hinschreiben. Mit Stammfunktionen ist das leider nicht so einfach. Zwei Probleme gibt es:
+
+\begin{enumerate}
+	\item Viele Funktionen haben keine Stammfunktion, die man mit üblichen Funktionen geschlossen hinschreiben kann. Die Glockenfunktion $x\mapsto e^{-x^2}$ beispielsweise läßt sich zwar integrieren, aber man findet keine Stammfunktion in Termen bekannten Funktionen.\marginpar{\small Aufgabe}
+	\item Wenn man nur eine Reihe von Messdaten zur Verfügung hat, dann kann man keine Stammfunktion bestimmen, weil keine Funktionsabbildung gegeben ist.
+\end{enumerate}
+
+Ohne Stammfunktion bleibt eigentlich nur die numerische Integration: Man schätzt die Fläche unter der Kurve mit Hilfe endlich vieler Funktionswerte. Vorausgesetzt
+\begin{itemize}
+	\item das Integrationsintervall $[a,b]$ ist in kleine, gleich große Streifen der Breite $h=(b-a)/N$ zerlegt:
+		\[ x_k = \begin{cases}   a, &\quad k=0\,, \\ a+k\cdot h, &\quad 0< k < N \,,\\  b, &\quad k=N\,.\end{cases}\]
+	\item und $f$ ist an den äquidistanten Sützstellen $x_k$ bekannt:
+		\[ y_k = \begin{cases}  f(a), \quad & k=0\,, \\ f(x_k)= f(a+k\cdot h), \quad &0< k < N \,,\\  f(b)\,, \quad &k=N\,,\end{cases}\]
+\end{itemize}
+dann läßt sich das bestimmte Integral durch die sogenannte Trapezformel annähern.\marginpar{ \small Aufgabe}
+%Die Idee ist hier die kleinen Flächenstücke unterhalb des Graphens mit Flächeninhalten $T_k$ der Trapeze anzunähern:
+%\[T_k = \frac{ y_{k+1}-y_{k}}{2}\cdot h\,.\]
+
+\hspace{-0.7cm}\begin{minipage}{0.35\textwidth}
+		\includegraphics[width=1.0\textwidth]{../Mathematik_2/Bilder/integration_trapezregel_zerlegung.png}
+\end{minipage}
+\hspace{-0.5cm}\begin{minipage}{0.7\textwidth}
+\begin{eqnarray*}
+	\int\limits_{a}^b f(x)\, \mathrm{d}x &\approx& \frac{ f(x_1)+f(x_0)}{2}\cdot h + \frac{ f(x_2)+f(x_1)}{2}\cdot h  + \cdots + \\
+&&+ \frac{ f(x_{N-2})+f(x_{N-1})}{2}\cdot h + \frac{ f(x_{N-1})+f(x_N)}{2}\cdot h\\
+&&= h\cdot \left( \frac{f(x_0)}{2}  + \sum\limits_{k=1}^{N-1} f(x_k) + \frac{f(x_N)}{2}\right) := T_N(f)\,.
+\end{eqnarray*}
+	\end{minipage}
+
+	\begin{theorembox}{Trapezformel}{}
+		Trapezformel für $f:[a,b]\to \mathbb R$:
+		\begin{eqnarray*}
+			\int\limits_{a}^b f(x)\, \mathrm{d}x \approx T_N(f) = h\cdot  \left( \frac{f(x_0)}{2}  + \sum\limits_{k=1}^{N-1} f(x_k) + \frac{f(x_N)}{2}\right) \,.
+		\end{eqnarray*}
+		Fehlerabschätzung für $f'':[a,b]\to \mathbb R$ stetig:
+		\begin{eqnarray*}
+		\exists\, \xi \in [a,b]:\quad  \Big| T_N(f) - \int_a^b f(x)\Big|  = \frac{(b-a)\cdot f''(\xi)}{12} \cdot h^2
+	\end{eqnarray*}
+\end{theorembox}
+
+\begin{exabox}{Trapezformel}{ }
+Gesuchter Integralwert:
+			\[
+				\displaystyle{ \int\limits_{0}^\pi \sin(x) \,\mathrm{d}x} = \Big[ -\cos(x)\Big]_0^\pi = 2\,.
+			\]
+Trapezformel für $N=4$:
+			\begin{eqnarray*} T_4(\sin) = \frac{\pi}{4}\left( \frac12 \sin\left(0\cdot \frac{\pi}{4}\right)  + \sin\left( 1\cdot \frac{\pi}{4}\right) + \sin\left( 2\cdot \frac{\pi}{4}\right) + \sin\left( 3\cdot \frac{\pi}{4}\right)   + \frac12\sin\left( 4\cdot \frac{\pi}{4}\right) \right) \approx 1.896 \,.
+			\end{eqnarray*}
+\end{exabox}
+
+Mit  asymptotisch  gleichem Rechenaufwand  kann  man  die Funktion  sogar  durch  Stücke  kubischer  (nicht  nur  quadratischer!)  Parabeln annähern und erhält die Simpson-Formel. Über jedem Intervall der Breite $h$ zieht man zur Approximation des Flächeninhalts neben den Stützstellen an den Intervallenden noch die Intervallmitte heran.
+
+\begin{theorembox}{Simpsonformel}{}
+%\begin{minipage}{0.3\textwidth}
+%	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder_unused/integration_simpsonregel_parabelnaeherung.png}
+%\end{minipage}
+%\begin{minipage}{0.4\textwidth}
+
+Simpsonformel für $f:[a,b]\to \mathbb R$ stetig:
+\begin{eqnarray*}
+	\int\limits_{a}^b f(x)\, \mathrm{d}x &\approx& S_N(f) :=  \frac{h}{6} \left( f(x_0)+ 4\cdot  f\left( \displaystyle{\frac{x_1 + x_0}{2}}\right) + 2\cdot f(x_1) + 4 \cdot f\left( \displaystyle{\frac{x_2 + x_1}{2}}\right) + \right.\\
+	&&\left. + \cdots 2\cdot f(x_{N-1}) + 4\cdot f\left( \displaystyle{\frac{x_{N-1} + x_{N}}{2}}\right) + f(x_{N})\right) \,.
+\end{eqnarray*}
+Fehlerabschätzung für $f^{(4)}:[a,b]\to \mathbb R$ stetig:
+		\begin{eqnarray*}
+			\exists\, \xi \in [a,b]:\quad  \Big| S_N(f) - \int_a^b f(x)\Big| = \frac{(b-a)\cdot f^{(4)}(\xi)}{2880} \cdot h^4
+	\end{eqnarray*}
+	%\end{minipage}
+\end{theorembox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Eine Verbesserung des Trapezverfahrens ist das sogenannte das Romberg-Verfahren. Das Romberg-Verfahren nutzt das Trapezverfahren für verschiedene Schrittweiten.
+
+	\item Die naheliegendste Formel zur numerischen Integration ist die Summe von Rechtecken zu bilden (zum Beispiel Ober- oder Untersumme). Das Preis-Leistungs-Verhältnis dieser Rechteck-Verfahren ist allerdings schlecht im Vergleich zur Trapezformel.\marginpar{\small Aufgabe}
+\end{itemize}

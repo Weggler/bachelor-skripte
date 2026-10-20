@@ -1,0 +1,402 @@
+\section{Stabilität (+)}\label{MA2-stabilitaet}
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+
+    %\tabitem eine lineare Differentialgleichung höherer Ordnung als System erster Ordnung in der Form
+    %$\dot{\vec x}=A\vec x$ formulieren (Zustandsraumdarstellung) & \\
+    \tabitem Lösungen der Form $\vec x(t)=e^{\lambda t}\vec x_0$ herleiten \\
+    \tabitem Lösungen der Form $\vec x(t)=e^{\lambda t}\vec x_0$ als Bewegungen entlang von Eigenrichtungen interpretieren & \\
+    \tabitem Eigenwerte als Nullstellen des charakteristischen Polynoms $\det(A-\lambda I)=0$ bestimmen & \\
+    \tabitem zu gegebenen Eigenwerten Eigenvektoren berechnen & \\
+    \tabitem das qualitative Langzeitverhalten eines LTI-Systems ableiten & \\
+    \tabitem das Federpendel anhand der Eigenwerte klassifizieren & \\[.5\normalbaselineskip]
+
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem Methoden zur Lösung algebraischer Gleichungen (Nullstellen von Polynomen)& \abschnittsverweis{MA1-algebraische-gleichungen}  \\
+    \tabitem komplexe Zahlen & \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
+    \tabitem das Gaußsche Eliminationsverfahren & \abschnittsverweis{MA1-lineare-gleichungssysteme} \\
+    \tabitem Methoden zur Berechnung einer Determinante & \abschnittsverweis{MA1-determinante-und-inverse} \\
+    \tabitem die Umformung einer Differentialgleichung zweiter Ordnung in ein System erster Ordnung & \abschnittsverweis{MA2-differentialgleichungen} \\
+    \tabitem den Exponentialansatz im skalaren Fall $\dot x=\lambda x$ & \abschnittsverweis{MA2-lineare-differentialgleichungen} \\
+    \tabitem Stabilitätskriterien im Kontext von LTI-Systeme & \abschnittsverweis{MA2-systemanalyse} \\[.5\normalbaselineskip]
+
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-stabilitaet-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Eigenlösungen}
+
+Die Differentialgleichung, die die Bewegung eines Federpendels ohne äußere Anregung beschreibt, lautet
+\[
+m\cdot \ddot x = - D \cdot x - \rho \cdot \dot x\, .
+\]
+
+Diese Gleichung besitzt die folgende Klassifikation:
+\begin{itemize}
+\item skalar
+\item Ordnung zwei
+\item linear mit konstanten Koeffizienten
+\end{itemize}
+
+Das zur Ordnung zwei äquivalente \underline{System erster Ordnung}\randverweis{MA2-differentialgleichungen} lautet
+\[
+\frac{\mathrm{d}}{\mathrm{d}t}
+\begin{pmatrix}
+x\\
+p
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & \dfrac{1}{m}\\
+-D & -\dfrac{\rho}{m}
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+p
+\end{pmatrix}\,.
+\]
+
+Hier erscheint eine wichtige Struktur:
+Auf der rechten Seite steht eine Matrix-Vektor-Multiplikation.
+
+Allgemein lässt sich jede homogene \underline{lineare} Differentialgleichung mit \underline{konstanten Koeffizienten}\randverweis{MA2-lineare-differentialgleichungen} in der Form
+
+\begin{equation}\label{eq:DGL_LIN_HOM_Matrix}
+\frac{\mathrm d}{\mathrm d t} \,\vec x = A \,\vec x
+\end{equation}
+schreiben.
+
+Diese Gleichung beschreibt ein \textbf{lineares dynamisches System im Zustandsraum}.
+Der Vektor $\vec x(t)$ beschreibt den Zustand des Systems, während die Matrix $A$ festlegt, wie sich dieser Zustand in der Zeit verändert.
+
+Viele physikalische und technische Modelle lassen sich in dieser Form darstellen. Man spricht daher von der \textbf{Zustandsraumdarstellung} eines linearen Systems.
+
+\medskip
+
+Interessanterweise kennen wir bereits ein solches System im eindimensionalen Fall:
+\[
+\dot x = \lambda \, x \,,
+\]
+und die Lösung dieser Gleichung kennen wir auch, sie lautet
+\[
+x(t)=e^{\lambda \,t}\, x_0 \,.
+\]
+
+\noindent{\textbf{Beobachtungen:}}
+\begin{itemize}
+\item Die Lösung entsteht durch eine zeitliche Fortsetzung des Anfangswerts.
+\item Die zeitliche Fortsetzung passiert in Form von \(e^{\lambda \, t}\) - eine Exponentialfunktion.
+\end{itemize}
+
+\begin{center}
+\emph{Lässt sich diese Struktur auf den vektoriellen Fall übertragen?}
+\end{center}
+
+\medskip
+
+Führen wir die vorige Frage noch ein bisschen aus: die Frage ist, ob es auch im vektoriellen Fall spezielle Anfangszustände $\vec x_0\neq 0$ gibt, für die die zugehörige Lösung $\vec x(t)$ eine Fortsetzung des Anfangszustands ist?\footnote{ Da der Anfangszustand ein Vektor ist, sollte man präziser sagen: gibt es Anfangsrichtungen im Zustandsraum, die im Zustandsraum beibehalten werden?}
+
+Nehmen wir an, dass es solche Anfangszustände gibt, dann bleibt der Lösungsvektor also für alle Zeiten ein skalares Vielfaches des Anfangsvektors – nur seine Länge ändert sich, nicht jedoch seine Richtung. In mathematischer Formelsprache sieht die Lösung dann so aus
+
+\[
+\vec x(t)=c(t) \, \vec x_0 \,.
+\]
+
+Setzen wir diesen Ansatz in die Differentialgleichung \eqref{eq:DGL_LIN_HOM_Matrix} ein, so erhält man
+
+\[
+\frac{\mathrm d}{\mathrm d t}(c(t) \, \vec x_0)=A \,(c(t) \,\vec x_0) \,.
+\]
+
+Dies liefert
+
+\[
+\dot c(t)\, \vec x_0=c(t)\, A\, \vec x_0 \,.
+\]
+
+Damit diese Gleichung für alle $t$ erfüllt ist, muss $A\vec x_0$ ein Vielfaches von $\vec x_0$\footnote{Die Anwendung von \(A\) auf \(\vec x_0\) verändert die Richtung nicht!} sein - wenn es also eine Zahl \(\lambda\) gibt, für die gilt
+
+\[
+A\, \vec x_0=\lambda \,\vec x_0 \, .
+\]
+
+In diesem Fall reduziert sich das Differentialgleichungssystem \eqref{eq:DGL_LIN_HOM_Matrix} auf die skalare Gleichung
+
+\[
+\dot c(t)=\lambda \, c(t) \,,
+\]
+
+deren Lösung
+
+\[
+c(t)=e^{\lambda t}
+\]
+
+ist.
+
+Das Fazit der Diskussion ist: Kennt \(\lambda, \vec x_0\), für die gilt \( A\, \vec x_0 = \lambda \, \vec x_0\), dann löst die Funktion
+\[
+\vec x(t)=e^{\lambda\, t}\, \vec x_0
+\]
+das homogene System \eqref{eq:DGL_LIN_HOM_Matrix}. Lösungen dieser Form sind besondere Lösungen, man nennt sie \textbf{Eigenlösungen}.
+Der Vektor $\vec x_0$ heißt \emph{Eigenvektor} und $\lambda$ der zugehörige \emph{Eigenwert} der Matrix $A$.
+
+\medskip
+
+Wir haben in diesem Abschnitt den Blickwinkel geändert. Bisher bestand die Aufgabe darin, zu einer gegebenen Differentialgleichung die allgemeine Lösung zu bestimmen. Nun gehen wir umgekehrt vor: Die Systemmatrix $A$ sei bekannt, und wir suchen zunächst ganz bestimmte Lösungen mit einer besonders einfachen Struktur.
+
+Da der Lösungsraum einer homogenen linearen Differentialgleichung eine Basis besitzt, diese jedoch nicht eindeutig festgelegt ist, können wir gezielt nach allen Eigenlösungen des Systems. Eigenlösungen bilden die grundlegenden Bausteine, aus denen sich die allgemeine Lösung des linearen Systems zusammensetzen lässt.
+
+\subsection{Bestimmung von Eigenwerten}
+
+Um Eigenlösungen zu konstruieren, müssen Eigenwerte und Eigenvektoren bestimmt werden - handwerklich können wir das schon! Aus der Gleichung
+
+\[
+A\, \vec x_0=\lambda \,\vec x_0
+\]
+
+folgt nämlich
+
+\[
+(A-\lambda \,I) \, \vec x_0= \vec 0 \,.
+\]
+
+Damit dieses Gleichungssystem nichttriviale Lösungen besitzt, darf die Matrix $A-\lambda \,I$ keinen vollen Rang besitzen. Dies ist genau dann der Fall, wenn
+
+\[
+\det(A-\lambda\, I) = 0 \,.
+\]
+
+\begin{theorembox}{Bestimmung von Eigenwerten}{}
+$\lambda$ ist ein Eigenwert der Matrix $A\in\mathbb R^{n\times n}$ genau dann, wenn
+
+\[
+\det(A-\lambda \,I)= 0 \,.
+\]
+\end{theorembox}
+
+Ist $A$ eine $n\times n$-Matrix, dann ist die linke Seite ein Polynom vom Grad \(n\) in der Variable $\lambda$. Man nennt das Polynom das \emph{charakteristische Polynom} von \(A\). Seine Nullstellen sind die Eigenwerte der Matrix \(A\).
+
+In den \underline{komplexen Zahlen}\randverweis{MA1-vektoren} lässt sich jedes Polynom vollständig faktorisieren - es gibt also genau $n$ Nullstellen (mit Vielfachheiten).
+
+Um zu einem gegebenen Eigenwert $\lambda$ einen Eigenvektor zu bestimmen, löst man das Gleichungssystem
+
+\begin{theorembox}{Bestimmung von Eigenvektoren}{}
+Bestimme den Kern der Matrix
+
+\[
+(A-\lambda \,I) \,\vec x_0= \vec 0\, .
+\]
+\end{theorembox}
+
+Eigenvektoren sind nur bis auf einen Skalierungsfaktor bestimmt – entscheidend ist ihre Richtung.
+
+\subsection{Stabilität linearer Systeme}
+
+Die Frage, ob Lösungen eines dynamischen Systems langfristig anwachsen, abklingen oder beschränkt bleiben, bezeichnet man als \textbf{Stabilitätsproblem}.
+
+Für lineare Systeme mit konstanten Koeffizienten
+
+\[
+\dot{\vec x}=A \, \vec x
+\]
+
+lässt sich die Stabilität vollständig aus den Eigenwerten der Systemmatrix $A$ bestimmen.
+
+Da jede Eigenlösung die Form
+
+\[
+\vec x(t)=e^{\lambda \,t} \, \vec x_0
+\]
+
+besitzt, bestimmt der Realteil von $\lambda$ das Wachstums- oder Abklingverhalten der Lösung.
+
+\begin{theorembox}{Stabilitätskriterium für lineare Systeme}{}
+
+Sei $\dot{\vec x}=A\, \vec x$ ein lineares System mit konstanten Koeffizienten und Eigenwerten $\lambda_1,\dots,\lambda_n$.
+
+\begin{itemize}
+
+\item $\mathrm{Re}(\lambda_i)<0$ für alle $i$
+
+$\Rightarrow$ alle Lösungen klingen exponentiell ab
+(asymptotisch stabiles System).
+
+\item $\mathrm{Re}(\lambda_i)>0$ für mindestens ein $i$
+
+$\Rightarrow$ es existieren Lösungen, die exponentiell wachsen
+(instabiles System).
+
+\item $\mathrm{Re}(\lambda_i)=0$ und $\mathrm{Im}(\lambda_i)\neq 0$
+
+$\Rightarrow$ die Lösungen bleiben beschränkt und beschreiben Schwingungen
+(neutrale Stabilität).
+
+\end{itemize}
+
+\end{theorembox}
+
+Damit reduziert sich die Stabilitätsanalyse eines linearen dynamischen Systems auf ein algebraisches Problem:
+die Bestimmung der Eigenwerte der Systemmatrix.
+
+\begin{exabox}[Gedämpftes Federpendel: Eigenwerte der Systemmatrix]
+
+Für das gedämpfte Federpendel ohne äußere Anregung gilt
+
+\[
+m\,\ddot x+\rho\, \dot x+D\,x=0 \, .
+\]
+
+Führt man den Impuls
+\[
+p=m\,\dot x
+\]
+als zweite Zustandsvariable ein, so erhält man das System erster Ordnung
+
+\[
+\frac{\mathrm d}{\mathrm dt}
+\begin{pmatrix}
+x\\
+p
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & \dfrac{1}{m}\\
+-D & -\dfrac{\rho}{m}
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+p
+\end{pmatrix}.
+\]
+
+Die zugehörige Systemmatrix lautet also
+
+\[
+A=
+\begin{pmatrix}
+0 & \dfrac{1}{m}\\
+-D & -\dfrac{\rho}{m}
+\end{pmatrix}.
+\]
+
+Die Eigenwerte dieser Matrix ergeben sich aus dem charakteristischen Polynom
+
+\[
+\det(\lambda I-A)=0.
+\]
+
+Damit erhält man
+
+\[
+\lambda^2+\frac{\rho}{m}\lambda+\frac{D}{m}=0
+\]
+
+und somit
+
+\[
+\lambda_{1,2}
+=
+-\frac{\rho}{2m}
+\pm
+\sqrt{
+\left(\frac{\rho}{2m}\right)^2-\frac{D}{m}
+}.
+\]
+
+Je nach Vorzeichen der Diskriminante erhält man unterschiedliche Lösungsformen:
+
+\begin{itemize}
+\item starke Dämpfung:
+	zwei verschiedene negative reelle Eigenwerte  \(\Rightarrow\) monotones Abklingen ohne Schwingung,
+
+\item kritische Dämpfung:
+	doppelter negativer reeller Eigenwert  \(\Rightarrow\) schnellstes Abklingen ohne Schwingung,
+
+\item schwache Dämpfung:
+	komplex konjugierte Eigenwerte mit negativem Realteil  \(\Rightarrow\) gedämpfte Schwingung.
+\end{itemize}
+
+Das physikalische Verhalten des homogenen Systems wird also durch ein algebraisches Objekt bestimmt:
+die Eigenwerte der Systemmatrix beziehungsweise die Nullstellen ihres charakteristischen Polynoms.
+\end{exabox}
+%\begin{exabox}[Federpendel]
+%
+%Für das gedämpfte Federpendel gilt
+%
+%\[
+%m\,\ddot x+\rho\, \dot x+D \,x=0 \, .
+%\]
+%
+%Die zugehörige Systemmatrix lautet
+%
+%\[
+%A=
+%\begin{pmatrix}
+%0 & \dfrac{1}{m}\\
+%-D & -\dfrac{\rho}{m}
+%\end{pmatrix}.
+%\]
+%
+%Die Eigenwerte dieser Matrix sind die Lösungen des charakteristischen Polynoms
+%
+%\[
+%\lambda^2+\frac{\rho}{m}\lambda+\frac{D}{m}=0 \, .
+%\]
+%
+%Je nach Größe der Diskriminante erhält man unterschiedliches Verhalten der Lösung :
+%
+%\begin{itemize}
+%
+%\item schwache Dämpfung: komplex konjugierte Eigenwerte
+%$\Rightarrow$ gedämpfte Schwingung,
+%
+%\item kritische Dämpfung: doppelter reeller Eigenwert
+%$\Rightarrow$ schnellstes Abklingen ohne Schwingung,
+%
+%\item starke Dämpfung: zwei negative reelle Eigenwerte
+%$\Rightarrow$ monotones Abklingen.
+%
+%\end{itemize}
+%
+%Das physikalische Verhalten des mechanischen Systems ohne äußere Anregung wird also vollständig durch ein algebraisches Objekt bestimmt:
+%die Nullstellen des charakteristischen Polynoms der Systemmatrix.
+%\end{exabox}
+
+
+%\begin{theorembox}{Merkkarte: Stabilität und Eigenwerte}{}
+%
+%Für ein lineares System
+%\[
+%\dot{\vec x}=A\vec x
+%\]
+%entscheidet die Lage der Eigenwerte $\lambda$ in der komplexen Ebene über das Langzeitverhalten.
+%
+%\begin{center}
+%\begin{tabular}{c|c}
+%Lage der Eigenwerte & Verhalten der Lösung \\
+%\hline
+%$\mathrm{Re}(\lambda)<0$ & Lösungen klingen exponentiell ab (stabil) \\
+%$\mathrm{Re}(\lambda)=0$ & reine Schwingung (neutral stabil) \\
+%$\mathrm{Re}(\lambda)>0$ & Lösungen wachsen exponentiell (instabil)
+%\end{tabular}
+%\end{center}
+%
+%\medskip
+%\textbf{Merke:}
+%Der \emph{Realteil} der Eigenwerte entscheidet über Wachstum oder Abklingen,
+%der \emph{Imaginärteil} über Schwingungen.
+%\end{theorembox}

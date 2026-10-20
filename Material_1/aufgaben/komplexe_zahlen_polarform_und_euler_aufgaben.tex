@@ -1,0 +1,93 @@
+
+\ifintegriereaufgaben
+\section*{Komplexe Zahlen II Aufgaben}\label{MA1-komplexe-zahlen-polarform-und-euler-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-komplexe-zahlen-polarform-und-euler}{ (Abschnitt \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA1-komplexe-zahlen-polarform-und-euler-loesungen]{hier}.
+\else 
+\section{Komplexe Zahlen II Aufgaben}\label{MA1-komplexe-zahlen-polarform-und-euler-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA1-komplexe-zahlen-polarform-und-euler-loesungen]{hier}.
+\fi 
+
+%\begin{theorembox}[Polarform und kartesische Form]
+%	Eine komplexe Zahl kann man in kartesischer Form, also $z=x+iy$ mit $x,y\in\mathbb R$ angeben, oder, falls $z\not=0$ in Polarform, also $z = r\cdot e^{i\varphi}$. Je nachdem was für eine Fragestellung zu lösen ist, wird man sich für eine der beiden Darstellungen entscheiden. 
+%	\begin{itemize} 
+%		\item Wie kommt man von Polarform $z=r\cdot e^{i\varphi}$ für $r>0$ zur kartesischen Form?
+%	\begin{eqnarray*} 
+%		z =  x+ iy \quad \textnormal{mit}\; 
+%		\begin{cases} 
+%		x = r \cos(\varphi)\\
+%		y = r \sin(\varphi)
+%	\end{cases}
+%	\end{eqnarray*}
+%	\item Wie kommt man von kartesischen Form $z=x+iy$ zur Polarform?
+%		\begin{eqnarray*} z=r\cdot e^{i\varphi} \quad \textnormal{mit} \; 
+%	r=\sqrt{x^2+y^2}, \quad \varphi =\textnormal{atan2}(y,x): = 
+%	\begin{cases} 
+%		\arctan(y/x), \quad &x>0, \; y> 0\\[1ex]
+%		\arctan(y/x), \quad& x>0, \; y< 0\\[1ex]
+%		\arctan(y/x) + \pi, \quad& x<0, \; y\geq 0\\[1ex]
+%		\arctan(y/x) - \pi, \quad& x<0, \; y< 0\\[1ex]
+%		\pi/2, \quad & x=0, \; y> 0\\[1ex]
+%		-\pi/2, \quad&  x<=0, \; y< 0\\[1ex]
+%		0, \quad&  x<=0, \; y= 0
+%	\end{cases}
+%	\end{eqnarray*} 
+%		\end{itemize}
+%\end{theorembox}
+
+\begin{exercisebox}[Radizieren]
+	Bestimmen Sie alle Lösungen der folgenden Gleichungen
+	\begin{eqnarray*}
+		(a)\; z^3 = -8 \quad \quad \quad 
+		(b)\; z^2 = i \quad \quad \quad  
+		(c)\; z^4 = -16 
+  \end{eqnarray*}
+\end{exercisebox}
+
+		\begin{exercisebox}[Eulersche Identität]
+			Zeigen Sie, dass die folgenden Darstellungen für $\sin$ und $\cos$ gelten
+			\begin{eqnarray*} 
+				(a)\; \sin(\varphi) = \frac{e^{i\varphi} - e^{-i\varphi}}{2i} \quad\quad\quad (b)\;\cos(\varphi) = \frac{e^{i\varphi} + e^{-i\varphi}}{2} 
+			\end{eqnarray*}
+		\end{exercisebox}
+
+\begin{exercisebox}[Fundamentalsatz]
+	Betrachten Sie für $n\in \mathbb N$ ein Polynom \[ p:\mathbb C\to \mathbb C, \; z\mapsto p(z)=a_nz^n+a_{n-1}z^{n-1} +\cdots a_1z+a_0\] mit reellen Koeffizenten $a_0, \cdots, a_n\in \mathbb R$ und $a_n\not=0$. 
+	\begin{itemize}
+		\item[(a)] Zeigen Sie: wenn $z_0 \in \mathbb C$ eine Nullstelle von $p$ ist, dann ist auch $\overline{z_0}$ eine Nullstelle von $p$.
+		\item[(b)] Wenden Sie obigen Satz an, um alle Nullstellen des Polynoma \[ p:\mathbb C\to \mathbb C, \; z\mapsto p(z) = z^4-2z^3+2z^2-10z+25 \] zu bestimmen. Zeigen Sie zu erst, dass $z_1= 2+j$ eine Nullstelle ist.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Fundamentalsatz]
+	\begin{itemize}
+		\item[(a)]
+	Lösen Sie die Gleichung: $4z^2 + (8+12i)z - 5+11i = 0$.
+	%\begin{eqnarray*}
+	%	p(z) &=& \underbrace{4}_{a_2}z^2 + \underbrace{(8+12i)}_{a_1}z \underbrace{- 5+11i}_{a_0} \\
+	%	&=& (2z)^2 + 2\cdot 2z \cdot (2+3i) + (2+3i)^2 -(2+3i)^2-5+11i \\
+	%	&=& (2z+2+3i)^2-i \\
+	%	&&\\
+	%	\Rightarrow && (2z+2 + 3i)^2 = i = 1\cdot e^{i\pi/2} \Rightarrow\begin{cases} 2z_0+2+3i = \frac{\sqrt{2}}{2} + i\frac{2}{2} \\ 2z_1+2+3i = -\frac{\sqrt{2}}{2} - i\frac{2}{2} \end{cases}
+	%		\end{eqnarray*}
+\item[(b)] Bestimmen Sie alle Nullstellen des komplexen Polynoms $p:z\mapsto z^2+\left(2\sqrt{2}i\right) \cdot z - 2\sqrt{3} i$.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Additionstheoreme]
+	Zeigen Sie, dass für alle $x\in \mathbb R$ gilt
+	\begin{eqnarray*}
+	(a)\; \sin(x \pm y) = \sin(x)\cdot \cos(y) \pm \cos(x)\cdot\sin(y),\quad \quad (b)\; \cos(3x) = 4 (\cos(x))^3 - 3\cos(x) 
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Harmonische Schwingungen]
+	Gegeben seien die harmonischen Schwingungen \[ s_1(t) = \sqrt{2} \cdot \sin(10t+\pi/4), \quad s_2(t)=2\cos(10t+\pi/6)\,.\]
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die Überlagerung von $s_1$ und $s_2$. 
+			
+			Hinweis: $\sin(t) =  \mathrm{Im}\left( e^{i\,t}\right), \;\cos(\omega\,t) = \sin(\omega\, t + \pi/2) $. 
+		\item[(b)] Wie muss eine harmonische Schwingung \[ s_3(t) = A_3\sin(\omega_3 t+ \varphi_3)\] gewählt werden, dass die Überlagerung von $s_1$ und $s_3$ eine Amplitude von $1$ und eine Nullphase von $\pi/2$ besitzt?
+	\end{itemize}
+\end{exercisebox}

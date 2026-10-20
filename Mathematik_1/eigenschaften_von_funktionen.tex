@@ -1,0 +1,274 @@
+\section{Eigenschaften von Funktionen}\label{MA1-eigenschaften-von-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem Nullstellen einer Funktion bestimmen &\\
+    \tabitem das asymptotische Verhalten einer Funktion qualitativ angeben &\\
+    \tabitem Monotonie und Symmetrie prüfen &\\
+    \tabitem Periodizität prüfen &\\
+    \tabitem Injektivität, Surjektivität und Bijektivität unterscheiden &\\
+    \tabitem die Umkehrbarkeit einer Funktion bestimmen &\\
+    \tabitem die genannten Eigenschaften zur Erstellung eines Funktionsgraphen einsetzen &\\[.5\normalbaselineskip]
+    \midrule
+	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
+	  \tabitem Grundrechenarten & \abschnittsverweis{MA1-zahlenmengen}\\
+	  \tabitem Äquivalenzumformungen & \abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Definition einer Funktion & \abschnittsverweis{MA1-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-eigenschaften-von-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Nullstellen, Asymptotik, Symmetrie und Periodizität }
+
+Funktionen treten in sehr unterschiedlichen Anwendungen auf: bei wirtschaftlichen Machbarkeitsanalysen, bei der Untersuchung der Effizienz technischer Anlagen oder bei der Auswertung von Daten. In allen diesen Situationen geht es darum, Abhängigkeiten zwischen Größen zu erkennen, mathematisch zu beschreiben und zu interpretieren.
+
+Dabei ist nicht immer eine vollständige Berechnung notwendig. Häufig liefern bereits einige charakteristische Eigenschaften einer Funktion wichtige Informationen über ihr Verhalten. Dazu gehören beispielsweise Nullstellen, Symmetrien, Periodizität, Monotonie und das Verhalten für betragsmäßig große Werte der Variablen.
+
+Eine Funktion \(f:D\to Z\) kann solche Eigenschaften auf ihrem gesamten Definitionsbereich oder nur auf bestimmten Teilbereichen besitzen. Die Symmetrie eines Funktionsgraphen ist beispielsweise eine globale Eigenschaft, während Monotonie auch auf einzelnen Intervallen untersucht werden kann.
+
+\begin{defbox}{Eigenschaften}{ } 
+	\begin{itemize}
+		\item \textbf{Nullstellen} sind diejenigen \(x\in D\), deren zugeordneter \(y\)-Wert null ist. 
+		\item \textbf{Asymptotisches Verhalten} beschreibt das Verhalten der Funktionswerte, wenn sich \(x\) bestimmten Grenzwerten nähert, beispielsweise \(x\to\infty\), \(x\to-\infty\) oder einer Stelle, an der die Funktion nicht definiert ist.	
+			ist das Verhalten der \(y\)-Werte für betragsmäßig große Werte von \(x\).
+		\item \textbf{Punktsymmetrie} liegt vor, wenn der Graph von \(f\) am Koordinatenursprung \( \left( 0|0\right)\) gespiegelt erscheint.
+		\item \textbf{Achsensymmetrie} liegt vor, wenn der Graph von \(f\) an der \(y\)-Achse gespiegelt erscheint.
+		\item \textbf{Periodizität} liegt vor, wenn sich die \(y\)-Werte von \(f\) in einem festen Abstand wiederholen.
+		\item \textbf{Monotonie} beschreibt, ob die Funktionswerte beim Anwachsen der \(x\)-Werte nur wachsen bzw. gleich bleiben oder nur fallen bzw. gleich bleiben.	
+		\item \textbf{Umkehrbarkeit} liegt vor, wenn jedem Funktionswert eindeutig wieder der ursprüngliche Wert aus dem Definitionsbereich zugeordnet werden kann.
+	\end{itemize}
+\end{defbox}
+
+Auf Monotonie und Umkehrbarkeit wird in den folgenden Abschnitten detailliert eingegangen. Die ersten fünf Eigenschaften sollten Ihnen aus der Schule bekannt sein:\marginpar{Aufgaben}    
+	\begin{center}
+	\begin{tabular}{l|l |l }
+		Eigenschaft & Aufgabe & Beispiel \(f: x\mapsto x^2\)   \\\hline
+		Nullstellen & bestimme alle \( x\in D: \quad f(x) = 0 \Rightarrow x= \)? & \(f(x) = 0 \Leftrightarrow x = 0 \)  \\[1ex]
+		Asymptotik & \( \displaystyle{\lim\limits_{|x|\to \infty}} f(x) = \) ? & \( \displaystyle{\lim\limits_{x\to \pm\infty} f(x) = \infty}\) \\[2ex]
+		Punktsymmetrie & zeige \(\forall\; x\in D:\quad f(x) = -f(-x)\) ?  & \(f(2) = 4 \not= -f(-2)=-4 \; \Rightarrow\; \) nein     \\[1ex] 
+		Achsensymmetrie & zeige \(\forall\; x\in D:\quad f(x) = f(-x)\)? & \(\forall \, x \in \mathbb R: \; x^2 = (-x)^2 \Rightarrow \;\) ja  \\[1ex] 
+		Periodizität & zeige $\exists\, T>0:  \forall x \in D: f(x) = f(x+T)$? & nein, denn \(f(0)=0 \Rightarrow f(T) = 0^2 \Leftrightarrow T =0\) 
+	\end{tabular} 
+\end{center}
+
+\noindent \textbf{Bemerkungen:} 
+\begin{itemize}
+	\item Anstelle von "\,\(y\)-Wert"\, werden wir in Zukunft von Funktionswert sprechen. Das ist mathematisch präziser, da man unabhängig von einem Buchstaben ist :) 
+	\item Die Periodenlänge einer periodischen Funktion ist nicht eindeutig bestimmt. Besitzt eine periodische Funktion eine kleinste positive Periode, so wird diese als \textbf{Fundamentalperiode} bezeichnet. 
+	\item Die Übersicht über die Eigenschaften ist eine Checkliste, die dabei hilft Funktionsgraphen schnell skizzieren zu können. Die Liste ist die Grundlage einer \underline{Kurvendiskussion}\randverweis{MA1-ableitungen-und-funktionsverlauf}.
+	\item Die Checkliste wird uns in dem ganzen Themenkomplex  \,"Funktionen"\, begleiten, denn mit ihr werden wir die Standardfunktionen besser verstehen lernen. 
+\end{itemize}
+
+\subsection{Monotonie}
+
+Eine Funktion \(f:D\to\mathbb R\) heißt streng monoton steigend, wenn für alle \(a,b\in D\) aus \(a<b\) folgt, dass \(f(a)<f(b)\). Für eine streng monoton steigende Funktion gilt damit sogar
+
+$$ a<b\quad\Longleftrightarrow\quad f(a)<f(b). $$
+
+Eine streng monoton steigende Funktion erhält also die Größenordnung zweier Argumente.
+
+Bei nicht-strenger Monotonie funktioniert das nicht! Eine Funktion ist \textbf{monoton steigend} (\emph{increasing}), wenn für alle \(a,b\in D\) gilt:
+
+$$
+a<b
+\quad\Rightarrow\quad
+f(a)\leq f(b).
+$$
+
+Aus \(f(a)\le f(b)\) folgt im Allgemeinen nicht \(a<b\), weil beispielsweise \(f(a)=f(b)\) auf einem konstanten Abschnitt möglich ist.
+
+Entsprechend heißt \(f\) \textbf{streng monoton fallend} (\emph{strictly decreasing}), wenn
+
+$$
+a<b
+\quad\Leftrightarrow\quad
+f(a)>f(b),
+$$
+
+und \textbf{monoton fallend} (\emph{decreasing}), wenn
+
+$$
+a<b
+\quad\Rightarrow\quad
+f(a)\geq f(b).
+$$
+
+Folgende Funktionen sind beispielsweise streng monoton steigend:
+\begin{exabox}{Streng monoton steigende Funktionen}{ }
+  \begin{itemize}
+    \item $x \mapsto  3\cdot x + 5$ für $x\in \mathbb R$,
+    \item $x \mapsto  x^3$ für $x\in \mathbb R$,
+    \item $x \mapsto  e^x$ für $x\in \mathbb R$,
+    \item $x \mapsto  \ln(x)$ für $x>0$,
+    \item $x \mapsto  \sqrt{x}$ für $x\geq0$.
+  \end{itemize}
+\end{exabox}
+
+\begin{exabox}{ Anwenden einer streng steigenden Funktion }{ }
+		\[ \begin{array}{c rcl l } & (4\cdot x+7)^2 &\geq& 39 & \| (\cdot )^3 \text{ streng monoton steigend} \\{\Leftrightarrow} & \left( (4\cdot x+7)^2\right)^3 & \geq &  \left(39\right)^3 ,. & \end{array}  \] 
+\end{exabox}
+
+Folgende Funktionen sind beispielsweise streng monoton fallend:
+\begin{exabox}{Streng monoton fallende Funktionen}{ }
+  \begin{itemize}
+    \item $x \mapsto -3\cdot x$ für $x\in \mathbb R$,
+    \item $x \mapsto  -x^3$ für $x\in \mathbb R$,
+    \item $x \mapsto  e^{-x}$ für $x\in \mathbb R$,
+  \end{itemize}
+\end{exabox}
+
+\begin{exabox}{ Anwenden einer streng fallenden Funktion }{ }
+		\[ \begin{array}{c rcl l } & (4\cdot x+7)^2 &\geq& 39 & \| -( \cdot  )^3 \text{ streng monoton fallend} \\{\Leftrightarrow} & -\left( (4\cdot x+7)^2\right)^3 & \leq &  -\left(39\right)^3 ,. & \end{array}  \] 
+\end{exabox}
+
+
+\subsection{Umkehrbarkeit}
+
+Eine Funktion \(f: D\to Z\) ist eine Maschine: ein Objekt aus \(D\) geht rein und ein Objekt aus \(Z\) wird produziert. Die Frage ist: ist der Prozess reversibel oder nicht? 
+
+\begin{exabox}{Die Umkehrfunktion als Maschine}{ } 
+	\begin{minipage}{0.2\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_maschinenmodell.png}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+	Die Maschine \(f\) produziert zu jedem \(x\in D\) ein \(y\in Z\). Den "\,Produktionsprozess"\, umkehren bedeutet eine Maschine \(f^{-1}\) zu finden, die jedem von \(f\) produzierten \(y\) sein Urbild, also seinen zugehörigen \(x\)-Wert, zuordnet, also so: 
+\end{minipage}
+\begin{minipage}{0.2\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_umkehrfunktion_maschinenmodell.png}
+\end{minipage}
+\end{exabox}
+
+Ist die Funktion als Graph gegeben, läßt sich die Frage nach der Existenz einer Umkehrfunktion leicht beantworten. Drehen wir den Graph so, dass die \(y\)-Achse waagerecht und die \(x\)-Achse senkrecht erscheint, und überprüfen, ob die gedrehte Figur eine Funktion ist:
+\begin{itemize}
+	\item[\(\Rightarrow\)] Falls ja, dann kann man \(f\) auf \(D\) umkehren!
+	\item[\(\Rightarrow\)] Falls nein, dann gibt es keine Umkehrfunktion, zumindest nicht auf \(D\)! 
+\end{itemize}
+Was sagen Sie zum nächsten Beispiel: besitzt die Funktion \(f: x\mapsto x^2\) eine Umkehrfunktion?\footnote{Die Normalparabel ist nicht umkehrbar, weil es kein eindeutiges "\,Zurück\"\, gibt.}
+\begin{exabox}{Graphische Lösung: dreh den Graph um!}{ } 
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{../Mathematik_1/Bilder/funktionen_umkehrbarkeit_normalparabel_gedreht.png}
+\end{center}
+\end{exabox}
+
+Die mathematischen Bedingungen dafür, dass die gedrehte Figur der Graph einer Funktion ist, lauten :
+  \begin{itemize}
+	  \item Ein Funktionswert \(y\) im Zielmenge \(Z\) von \(f\) wird genau einmal erreicht. (Injektivität von \(f\) )
+	  \item Jeder Funktionswert \(y\) im Bildmenge \(Z\) von \(f\) erreicht. (Surjektivität von \(f\) )
+  \end{itemize}
+  Gelten diese beiden Bedingungen, dann nennt man \(f\) bijektiv. Für bijektive Funktionen läßt sich eine Umkehrfunktion bestimmen. In mathematischer Kurzschreibweise läßt sich die Bijektivität von \(f\) wie folgt definieren: 
+\begin{defbox}{Existenz einer Umkehrfunktion}{ }
+	\(f\) ist genau dann umkehrbar, wenn \(f\) bijektiv ist, wenn also gilt
+  \begin{itemize}
+	  \item $x,y\in D:\; f(x) = f(y)\, \Leftrightarrow\, x=y\,.$ (Injektivität)
+	  \item $\forall\, y \in Z \, \exists\, x\in D:\; f(x) = y\;$ oder kurz \; $f(D) = Z$. (Surjektivität)
+  \end{itemize}
+\end{defbox}
+
+\begin{exabox}{Injektivität? links ja, rechts nein!}{ } %Bild streng monotone Funktion ist umkehrbar
+	\centering
+	\includegraphics[width=0.25\textwidth]{../Mathematik_1/Bilder/funktionen_injektivitaet_exponentialfunktion.png}\hspace{3cm}
+	\includegraphics[width=0.25\textwidth]{../Mathematik_1/Bilder/funktionen_injektivitaet_quadratfunktion_gegenbeispiel.png}
+\end{exabox}
+
+%Die Funktionswerte \(y\) einer Funktion \(f: x\mapsto f(x) \)   Stellen Sie sich vor, dass Sie eine Funktionsabbildung gegeben haben, beispielsweise   finden Sie praktisch heraus, in dem Sie einen Funktionsgraphen um \(90\circ\) drehen und analysieren, ob die Figur, die Sie sehen eine Funktion ist oder nicht. Wir werden uns mit der
+%Um  eine  Gleichung  wie $a+3=5$ nach $a$ aufzulösen,  wendet  man  (strenggenommen) auf beide Seiten eine Funktion, nämlich $x\mapsto x-3$, an:
+%
+%\begin{exabox}{Umkehrfunktion $\Rightarrow$ Auflösen einer Gleichung}{ }
+%  $ a+ 3 = 5 \Leftrightarrow a+3-3 = 5-3 \Leftrightarrow a = 2\,.$
+%\end{exabox}
+%
+%Um $e^b=7$ nach $b$ aufzulösen wendet man entsprechend den natürlichen Logarithmus $x\mapsto \ln(x)$ an (warum ist das hier kein Problem?)
+%
+%\begin{exabox}{Umkehrfunktion $\Rightarrow$ Auflösen einer Gleichung}{ }
+%  $e^b = 7 \Leftrightarrow \ln(\mathrm{exp}(b)) = \ln(7) \Leftrightarrow b = \ln(7)\,.$
+%\end{exabox}
+
+%Man sucht also Funktionen, welche die ursprünglichen Funktionen wieder aufheben, sie umkehren:
+%\begin{center}
+%  \begin{tabular}{l|l}
+%    Funktion & Idee Umkehrfunktion \\
+%    \hline
+%    $x\mapsto x+3$ & $x+3 \mapsto x$ \\
+%    $x\mapsto \mathrm{exp}(x) $ &  $\mathrm{exp}(x) \mapsto x$ 
+%  \end{tabular}
+%\end{center}
+
+Soweit zur Theorie, die spannendere Frage ist: wie bestimmen wir die Abbildungsvorschrift der \textbf{Umkehrfunktion} (\emph{inverse function})? 
+
+\noindent{\textbf{Bemerkungen}}
+\begin{itemize}
+	\item Ist \(f\) eine \textbf{diskrete}, \textbf{bijektive} Funktion, gegeben als zweispaltige Tabelle, dann erhält man die Umkehrfunktion durch Vertauschen der beiden Spalten!\marginpar{Aufgabe} Die Tabelle läßt sich nämlich einfach rückwärts lesen und man erhält wieder eine Funktion: die Umkehrfunktion  $f^{-1}:Z\to D$. Der Definitionsbereich und die Zielmenge sind gegenüber der Originalfunktion $f:D\to Z$ vertauscht. 
+	\item Ist \(f\) eine \textbf{bijektive} Funktion, deren Funktionsabbildung gegeben ist, dann erhält man die Umkehrfunktion \(f^{-1}\), indem man die Abbildungsvorschrift \( y = f(x) \) nach \(x\) auflöst. 
+\end{itemize}
+
+
+\begin{exabox}{Bestimmung der Umkehrfunktion}{ }
+	\begin{itemize}
+		\item $f:\mathbb R\to \mathbb R, \; x\mapsto \displaystyle{\frac12} \cdot x + 1 $ ist bijektiv, also 
+			\begin{eqnarray*} 
+					\begin{array}{lrlll}
+						& y &=& \displaystyle{\frac12} \cdot x+1 &\; \| -1 \\[2ex]
+						\Leftrightarrow & y-1 &=& \displaystyle{\frac12}\cdot x &\; \| \cdot 2 \\[2ex]
+				\Leftrightarrow & 2\cdot y-2 &=& x &\;\Rightarrow  \; f^{-1}: \mathbb R\to \mathbb R, \; x\mapsto 2\cdot x-2\end{array}\end{eqnarray*}
+			\item $f: (3,\infty)\to (0,\infty), \; x\mapsto \displaystyle{ \frac{2}{x-3}}$ ist bijektiv, also 
+			\begin{eqnarray*} 
+					\begin{array}{lrlll}
+						&y &=&  \displaystyle{ \frac{2}{x-3}} & \|\cdot (x-3) \quad (x\not=3!) \\[2ex]
+						\stackrel{x\not=3}{\Leftrightarrow} & (x-3) \cdot y &=& 2 & \| : y \quad (\not=0!) \\[2ex]
+						\stackrel{y\not=0}{\Leftrightarrow} & x-3 &=& \displaystyle{\frac{2}{y} } &\|+3 \\[2ex]
+						\Leftrightarrow & x &=& \displaystyle{\frac{2}{y} }+3 &  \;\Rightarrow \;  f^{-1}: (0,\infty) \to (3,\infty), \; x\mapsto \displaystyle{ \frac2x } +3
+				\end{array}
+			\end{eqnarray*}
+	\end{itemize}
+\end{exabox}
+
+%\begin{exabox}{Bestimmung der Umkehrfunktionen}{ }
+%	\begin{eqnarray*} 
+%		f_1: x\mapsto x+3 & \Rightarrow & y = x+3 \Leftrightarrow x = y-3 \Rightarrow f_1^{-1}: x\mapsto x-3 \\ 
+%		f_2: x\mapsto e^x & \Rightarrow & y = e^x \Leftrightarrow x = \ln(y) \Rightarrow f_2^{-1}: x \mapsto \ln(x) \,. 
+%	\end{eqnarray*}
+%\end{exabox}
+
+\begin{theorembox}{Systematische Bestimmung der Umkehrfunktion}{ }
+	\begin{enumerate}
+		\item Bestimmung des Bildbereichs $W_f =f(D)\subset Z$ von $f$ (Surjektivität). 
+		\item Bestimmung der Teilmenge $X\subseteq D$, auf der $f$ injektiv ist (Injektivität).
+		\item Lösen der Gleichung $y=f(x)$ führt auf $x=g(y)$. 
+		\item Definition der Umkehrfunktion $ f^{-1}: W_f \to X, \; x\mapsto g(x)\,.$
+	\end{enumerate}
+\end{theorembox}
+
+	\noindent\textbf{Bemerkungen:}
+\begin{itemize} 
+	\item Der Index $-1$ ist eine mathematische Notation -- sie hat nichts mit dem Kehrwert zu tun\footnote{Später bezeichnet $f^{42}$, dass die Funktion $f$ $42$-mal hintereinander anzuwenden ist, also $f^{42}(x)=f(f(\cdots 42-\mathrm{mal} \cdots f(x)\cdots))$. Die Notation mit $-1$ setzt diesen Gedanken fort und $f^0$ wird eingeführt als (komplizierte) Bezeichnung für die identische Abbildung: $f^0: x\mapsto x\,.$}.
+	\item Wenn man zuerst die Funktion $f$ und dann auf das Resultat davon die dazugehörige Umkehrfunktion $f^{-1}$ anwendet (oder andersherum), dann erhält man die identische Abbildung \(\mathrm{id}: x\mapsto x\):
+		\begin{theorembox}{$ \mathrm{id} = f \circ f^{-1} = f^{-1} \circ f$}{ }
+  \begin{itemize}
+	  \item[$\bullet$] $x \mapsto f^{-1}\big( f(x)\big) = x\,,$
+	  \item[$\bullet$] $x \mapsto f\left( f^{-1}(x)\right) = x\,.$
+\end{itemize}
+\end{theorembox}
+	\item In der praktischen  Ingenieurmathematik  kümmert  man  sich  wenig  um  die Surjektivität. Denn ist eine Funktion injektiv, aber nicht surjektiv, kann man diesen Mangel leicht durch Anpassung der Zielmenge heilen. Zum Beispiel ist $f: \mathbb R \to \mathbb R, \, x\mapsto e^x$ nicht surjektiv, aber $f: \mathbb R \to (0,\infty), \, x\mapsto e^x$ ist surjektiv. 
+\end{itemize}
+
+
+Unter den folgenden Funktionen sind zwei, die umkehrbar sind. Wissen Sie welche?
+\begin{itemize}
+  \item $f_1: \mathbb R \to \mathbb R $ mit $x\mapsto \textnormal{kaufm\"annische Rundung von } x \textnormal{ auf eine Stelle nach dem Komma}$ 
+  \item $f_2: \mathbb R \to \mathbb R$ mit $ x\mapsto x^2$
+  \item $f_3: [0,8) \to \mathbb R$ mit $x\mapsto x^2$
+  \item $f_4: [0,4) \to [0,16)$ mit $x\mapsto x^2$
+  \item $f_5: \mathbb R \to \mathbb R$ mit $x\mapsto \sin(x)$
+  \item $f_6: [-\pi/2,\pi/2] \to \mathbb R $ mit $x\mapsto \sin(x)$
+  \item $f_7: [-\pi/2,\pi/2] \to [-1, 1] $ mit $ x \mapsto \sin(x)$
+\end{itemize}

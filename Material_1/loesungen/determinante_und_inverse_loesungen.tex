@@ -1,0 +1,148 @@
+\section*{Determinante, inverse Matrix Lösungen}\label{MA1-determinante-und-inverse-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-determinante-und-inverse}{ (Abschnitt \abschnittsverweis{MA1-determinante-und-inverse})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Determinante]
+	Berechnen Sie die Determinante der Matrix \[ A = \left( \begin{array}{ccc} 2 & -6 & 2 \\ 0 & 0 & 2 \\ -1 & 2 & 1 \end{array}\right)\,.  \]
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Man kann die Determinante auf unterschiedliche Weisen berechnen: 
+\begin{itemize}
+	\item[(a)] Entwicklungssatz nach der ersten Spalte (Entwicklungssatz nach Laplace)
+		\[ \mathrm{det}(A) = 2 \cdot ( 0\cdot 1 - 2 \cdot 2 ) - 0 \cdot ( -6 \cdot 1 - 2 \cdot 2 ) + (-1) \cdot (-6 \cdot 2 - 0 \cdot 2 ) = 4 \,. \]
+	\item[(b)] Regel von Sarrus
+		\[ \mathrm{det}(A) =  { \color{green}+2 \cdot 0 \cdot 1 + (-6)\cdot 2 \cdot (-1) + 2 \cdot 0\cdot 2}  {\color{blue}- (-1)\cdot 0 \cdot 2 - 2 \cdot 2 \cdot 2 - 1 \cdot 0 \cdot (-6)} = 12 - 8 = 4  \,. \]
+\end{itemize}
+
+\textbf{Bemerkung:} Hat eine Matrix Dreiecksgestalt, dann ist die Determinante gerade das Produkt der Diagonalelemente. Also könnte man die Determinante der gegebenen Matrix auch berechnen, indem man die Matrix auf Dreiecksgestalt bringt. Aber Vorsicht: Vertauschen von Zeilen und skalare Vielfache verändern den Wert der Determinante und müssen berücksichtigt werden!    
+\begin{eqnarray*} 
+	\mathrm{det}(A) &=&  \left| \begin{array}{ccc} 2 & -6 & 2 \\  0 & 0 & 2 \\ -1 & 2 & 1 \end{array}  \right| = {\color{red}-} \left| \begin{array}{ccc} 2 & -6 & 2 \\ {\color{red} -1} & {\color{red}2} & {\color{red} 1} \\ {\color{red} 0 } &  {\color{red} 0} & {\color{red} 2} \end{array}  \right|  = - {\color{green}2}\cdot {\color{blue}2} \left| \begin{array}{ccc} {\color{green}1} &  {\color{green}-3} & {\color{green}1} \\ -1 & 2 & 1 \\ 0 & 0 & {\color{blue}1} \end{array}  \right| =  - 4 \left| \begin{array}{ccc} 1 & -3 & 1 \\ 0 & -1 & 2 \\ 0 & 0 & 1 \end{array}  \right| \\  &=& -4 \cdot ( 1 \cdot (-1)\cdot 1 ) = 4\,.
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Determinante]
+	Betrachten Sie die Schar der Matrizen \[ A_a = \left( \begin{array}{ccc} 1 & 1 & a \\ 1 & a & 1 \\ 1 & a & a \end{array}\right)\,, \quad a \in \mathbb R\,. \] 
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die Determinante von $A_a$.
+		\item[(b)] Für welche $a\in \mathbb R$ ist $A_a$ regulär?
+		\item[(c)] Berechnen Sie mit Hilfe des Gauß-Algorithmus die inversen Matrizen $A_a^{-1}$ für alle regulären Matrizen $A_a$.
+		\item[(d)] Berechnen Sie mit Hilfe der Cramerschen Regel die erste Spalte der inversen Matrizen $A_a^{-1}$ für alle regulären Matrizen $A_a$. Hinweis: Lösen Sie $ A_a \boldsymbol v = \boldsymbol e_1, \quad \boldsymbol e_1 = (1, 0, 0)^\intercal\,.$
+
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] $\mathrm{det}(A_a) = 1 \cdot ( a\cdot a -a\cdot 1) - 1 \cdot (1\cdot a-a\cdot a) + 1 \cdot (1 \cdot 1 - a\cdot a) =  a^2 - 2 a +1 = (a-1)^2\,.$
+	\item[(b)] $\mathrm{det}(A_a) \not= 0 \Leftrightarrow a\not=1 \; \Rightarrow $ $A_a$ ist regulär für alle $a\in \mathbb R \setminus\{ 1\}\,.$
+	\item[(c)] Für $a\not=1$ läßt sich die Inverse zu $A_a$ bestimmen durch 
+		\[ \left( A_a | I_3 \right) \stackrel{\textnormal{ÄZU}}{ \Rightarrow } \; \left( I_3 | A_a^{-1}\right) \,.\]
+		Das heißt man betrachtet das um die Einheitsmatrix erweiterte System  $ ( A_a | I_3)$ und transformiert die linke Seite $A_a$ durch äquivalente Zeilenumformungen (ÄZU) zu $I_3$. Aus der rechten Seite $I_3$ wird dann simultan die inverse Matrix $A_a^{-1}$:
+		\begin{eqnarray*}
+		&&	\left( \begin{array}{ccc|ccc} 1 & 1 & a & 1 & 0 & 0 \\ 1 & a& 1 & 0 & 1 & 0 \\  1 & a & a & 0 & 0 &1 \end{array}\right) \Leftrightarrow
+		 \left( \begin{array}{ccc|ccc} 1 & 1 & a & 1 & 0 & 0 \\ 0 & 1-a& a-1 & 1 & -1 & 0 \\  0 & 1-a & 0 & 1 & 0 & -1 \end{array}\right) \\
+		 &\Leftrightarrow& 
+		 \left( \begin{array}{ccc|ccc} 1 & 1 & a & 1 & 0 & 0 \\ 0 & 1-a& a-1 & 1 & -1 & 0 \\  0 & 0 & 1-a & 0 & 1 & -1 \end{array}\right)  
+		 \stackrel{a\not\in\{1,0\}}{\Leftrightarrow}
+		 \left( \begin{array}{ccc|ccc} a-1 & a-1 & 0 & a-1 & a & -a \\ 0 & 1-a & 0 & 1 & 0 & -1 \\  0 & 0 & 1-a & 0 & 1 & -1 \end{array}\right) \\
+		 &\Leftrightarrow& 
+		 \left( \begin{array}{ccc|ccc} a-1 & 0 & 0 & a & a & -a-1 \\ 0 & 1-a & 0 & 1 & 0 & -1 \\  0 & 0 & 1-a & 0 & 1 & -1 \end{array}\right) 
+		 \Leftrightarrow
+		 \left( \begin{array}{ccc|ccc} 1 & 0 & 0 & \displaystyle{\frac{a}{a-1}} & \displaystyle{\frac{a}{a-1}} & \displaystyle{\frac{-a-1}{a-1}} \\ 0 & 1 & 0 & \displaystyle{\frac{1}{a-1}} & 0 & \displaystyle{\frac{-1}{a-1}} \\  0 & 0 & 1 & 0 & \displaystyle{\frac{1}{1-a}} & \displaystyle{\frac{-1}{1-a}} \end{array}\right) 
+	 \end{eqnarray*}
+	 Die zu $A_a$ inverse Matrix für $a\in \mathbb R\setminus \{ 1,0\}$ lautet 
+	 \[ A^{-1}_a = \frac{1}{1-a} \left( \begin{array}{ccc} -a & -a & 1+a \\ 1 & 0 & -1 \\ 0 & 1  & - 1 \end{array}\right)\,. \]
+	 Dass die Matrix für \(a=1\) nicht invertierbar ist, wissen wir. Allerdings sollten wir eine inverse Matrix bestimmen können für \(a=0\). Die soeben berechnete Matrix \(A^{-1}_a\) ist auch für \(a=0\) wohldefiniert und das legt die Vermutung nah, dass \(A^{-1}_0\) die inverse zu \(A_0\) ist.Überprüfen wir das: 
+	 \[ A^{-1}_0 A = \left( \begin{array}{ccc} 0 & 0 & 1 \\ 1 & 0 & -1 \\ 0 & 1  & - 1 \end{array}\right)  \left( \begin{array}{ccc} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & a & 0 \end{array}\right) = \left( \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right)\]
+	 Also ist \(A^{-1}_a\) die inverse zu \(A\) für alle \(a\in \mathbb R \setminus \{ 1\}\).
+
+ \item[(c)] Die Cramersche Regel kann angewand werden, um eine Lösungskomponente $x_i$ eines Gleichungssystems $A\boldsymbol x = \boldsymbol b$ zu berechnen, es gilt 
+	 \[ x_i = \frac{1}{\mathrm{det}(A)} \cdot \mathrm{det}\left( \boldsymbol a_1 \, \vdots  \,\boldsymbol a_2  \,\vdots  \,\boldsymbol a_3  \,\vdots  \,\cdots  \,\vdots   \,\boldsymbol a_{i-1}  \,\vdots   \,\boldsymbol b  \,\vdots  \,\boldsymbol a_{i+1}  \,\vdots \, \cdots \, \vdots  \,\boldsymbol a_n \right)\,. \]
+	 Das heißt im konkreten Fall
+	 \begin{eqnarray*} 
+		 v_1 &=& \frac{1}{(a-1)^2} \cdot \mathrm{det}\left( \begin{array}{ccc}  1 & 1 & a \\ 0 & a & 1 \\ 0 & a & a \end{array}\right) =  \frac{1}{(a-1)^2} \left( 1\cdot( a\cdot a - a\cdot 1 )\right) = \frac{a}{a-1}\,, \\
+		 v_2 &=& \frac{1}{(a-1)^2} \cdot \mathrm{det}\left( \begin{array}{ccc}  1 & 1 & a \\ 1 & 0 & 1 \\ 1 & 0 & a \end{array}\right) =  \frac{1}{(a-1)^2}\left( - (1\cdot a - 1 \cdot 1) \right) =  \frac{1}{1-a}\,,   \\
+		 v_3 &=& \frac{1}{(a-1)^2} \cdot \mathrm{det}\left( \begin{array}{ccc}  1 & 1 & 1 \\ 1 & a & 0 \\ 1 & a & 0 \end{array}\right) \frac{1}{(a-1)^2} \left( 1 \cdot (1 \cdot a - 1 \cdot a ) \right) = 0\,,
+	 \end{eqnarray*}
+	 also die erste Spalte der inversen Matrix $A_a^{-1}$ für $a\not=1$. 
+\end{itemize}
+\end{exercisebox}
+\begin{exercisebox}[Basis]
+	Überprüfen Sie mit Hilfe der Determinante, ob die Vektoren 
+	\[ 
+		\boldsymbol v_1 = ( 2, -1, 0)^\intercal, \quad  
+		\boldsymbol v_2 = ( 1, 1, 2 )^\intercal, \quad 
+	\boldsymbol v_3 = ( -5, 1,-2 )^\intercal \]
+	eine Basis des $\mathbb R^3$ sind.
+	
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Die Vektoren sind genau dann eine Basis, wenn jeder Vektor $\boldsymbol w\in \mathbb R^3$ eindeutig als eine lineare Kombination der Vektoren $\boldsymbol v_i, \; i=1,2,3$ \[
+\boldsymbol w = \lambda_1 \boldsymbol v_1 + \lambda_2 \boldsymbol v_2 +   \lambda_3 \boldsymbol v_3\]
+geschrieben werden kann, d.h. wenn das lineare Gleichungssystem 
+\[ V \boldsymbol \lambda = \boldsymbol w \quad \textnormal{mit} \; 
+	V= \left( \boldsymbol v_1 \,\vdots \, \boldsymbol v_2  \, \vdots \, \boldsymbol v_3\right), \quad 
+\boldsymbol \lambda = (\lambda_1, \lambda_2, \lambda_3 )^\intercal \,, \]
+für jede rechte Seite $\boldsymbol w \in \mathbb R^3$ eindeutig lösbar ist. Das ist genau dann der Fall, wenn die Matrix $V \in \mathbb R^{3\times 3}$ mit Spaltenvektoren $\boldsymbol v_i$, $i=1,2,3$ regulär ist. Also berechnen wir die Determinante
+\[ \mathrm{det}(V) = 2\cdot ( 1\cdot(-2) - 2 \cdot 1 ) - (-1) \cdot (1\cdot(-2) - 2 \cdot (-5) ) + 0 \cdot ( 1\cdot 1 - 1 \cdot (-5) ) = -8 + 8 = 0\,, \] 
+und stellen fest, dass Matrix nicht regulär ist und die Vektoren damit keine Basis bilden.
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssysteme]
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass die Matrix 
+			\[ A = \left( \begin{array}{ccc} 1 & 2 & 0 \\ 1 & 7 & 4 \\ 3 & 13 & 4 \end{array}\right) \]
+			regulär. 
+
+		\item[(b)] Lösen Sie das lineare Gleichungssystem für $x, y, z \in \mathbb R$
+	\[ \begin{array}{ccccccc} 
+			x_1 & + & 2x_2 & && = & x \\ 
+			x_1 & + & 7x_2 &+ & 4x_3 & = & y \\ 
+			3x_1 & + & 13x_2 &+ & 4x_3 & = & z 
+	\end{array} \]
+		\item[(c)] Lösen Sie das lineare Gleichungssystem für $x=3, y=8, z=0$
+	\end{itemize}
+
+	
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] $\mathrm{det}(A) = -4\cdot ( 1\dot 13 - 3 \cdot 2 ) + 4 \cdot ( 1 \dot 7 - 1 \cdot 2 ) = -4 \cdot 7 + 4 \cdot 5 = -8 \not=0 \Rightarrow $ $A$ ist regulär.
+	\item[(b)] Ist die Matrix $A$ einer linearen Abbildung $\mathcal A$ regulär, dann läßt sich die Abbildung invertieren und die inverse  Abbildung $\mathcal A^{-1}$ ist wieder eine lineare Abbildung. Die Matrix, die $\mathcal A^{-1}$ darstellt ist die zu $A$ inverse Matrix $A^{-1}$. Wenn man ein Gleichungssystem für beliebige rechte Seiten lösen soll, dann bietet es sich an $A^{-1}$ einmal zu berechnen. Für eine gegebene rechte Seite $\boldsymbol b$ berechnet sich dann die Lösung des entsprechenden Gleichungssystems durch die Matrix-Vektor-Multiplikation  $A^{-1}\boldsymbol b$.
+		\begin{eqnarray*} 
+		&&	\left( A \,| \, I_3\right)  = 
+		\left( \begin{array}{ccc | ccc } 1 & 2 & 0 & 1 0 & 0 \\ 1 & 7 & 4 & 0 &1 & 0 \\ 3 & 13 & 4 & 0 & 0 & 1 \end{array}\right) 
+		\Leftrightarrow 
+		\left( \begin{array}{ccc | ccc } 1 & 2 & 0 & 1 0 & 0 \\ 0 & 5 & 4 & -1 & 1 & 0 \\ 0 & 7 & 4 & -3 & 0 & 1 \end{array}\right)   \\
+		&&\Leftrightarrow 
+		\left( \begin{array}{ccc | ccc } 1 & 2 & 0 & 1 0 & 0 \\ 0 & 5 & 4 & -1 & 1 & 0 \\ 0 & 0 & -8 & -8 & -7 & 5 \end{array}\right)  
+		 \Leftrightarrow 
+		\left( \begin{array}{ccc | ccc } 1 & 2 & 0 & 1 0 & 0 \\ 0 & 10 & 0 & -10 & -5 & 5 \\ 0 & 0 & -8 & -8 & -7 & 5 \end{array}\right)  \\
+		 && \Leftrightarrow  
+		\left( \begin{array}{ccc | ccc } -5 & 0 & 0 & -15 & -5 & 5 \\ 0 & 10 & 0 & -10 & -5 & 5 \\ 0 & 0 & -8 & -8 & -7 & 5 \end{array}\right) \quad 
+		\Rightarrow A^{-1} = \left( \begin{array}{ccc } 3 & 1 & -1 \\ -1 & -\frac12 & \frac12 \\ 1  & \frac78 & -\frac58 \end{array}\right) 
+\end{eqnarray*}
+\item[(c)] Wir setzen $\boldsymbol b = (x,y,z)^\intercal$ und berechnen $ A^{-1} \boldsymbol b = ( 11, -7 , 10)^\intercal$.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Eigenwerte]
+	Berechnen Sie alle $\lambda \in \mathbb C$, für die die Matrix $A- \lambda I_2$ nicht regulär ist, wobei \[ A = \left( \begin{array}{cc} -11 & 12 \\ -9 & 10 \end{array}\right)\]. 
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Zu bestimmen sind die sogenannten Eigenwerte der Matrix $A$. Sie sind Lösungen der Gleichung 
+\begin{eqnarray*}
+	\mathrm{det}( A-\lambda I_2) = 0\,.
+\end{eqnarray*}
+Also berechnen wir die Determinante in Abhängigkeit von $\lambda$ und lösen die resultierende quadratische Gleichung:
+\begin{eqnarray*}
+	\mathrm{det}\left( \begin{array}{cc} -11 - \lambda & 12 \\ -9 & 10 - \lambda \end{array}\right) &=& (-11-\lambda) \cdot (10-\lambda) - 12\cdot (- 9) =  \lambda^2 +\lambda - 2 \\
+	&&\Rightarrow \mathrm{det}( A-\lambda I_2) = 0\Leftrightarrow \lambda_{1,2}=  \frac{-1 \pm \sqrt{1-4\cdot 1 \cdot (-2) }}{2\cdot 1} = \begin{cases} 1 \\ -2 \end{cases}
+\end{eqnarray*}
+\end{exercisebox}

@@ -1,0 +1,945 @@
+
+\section{Determinante und Inverse (+)}\label{MA1-determinante-und-inverse}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem die Determinante einer quadratischen Matrix berechnen und geometrisch interpretieren &\\
+    \tabitem den Zusammenhang zwischen Determinante, Rang und Invertierbarkeit erläutern &\\
+    \tabitem die Bedeutung der inversen Matrix als Darstellung der Umkehrabbildung erklären &\\
+    \tabitem die inverse Matrix zur Lösung linearer Gleichungssysteme interpretieren &\\
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Umkehrfunktion & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+    \tabitem Rang und Defekt einer Matrix & \abschnittsverweis{MA1-matrizen}\\
+    \tabitem Gaußsches Eliminationsverfahren & \abschnittsverweis{MA1-lineare-gleichungssysteme}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema finden sich hier:
+\hyperref[MA1-determinante-und-inverse-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Was ist die Determinante?}
+
+Eine quadratische Matrix
+\[
+A\in\mathbb R^{n\times n}
+\]
+beschreibt eine lineare Abbildung
+\[
+\mathcal A:\mathbb R^n\to\mathbb R^n,
+\qquad
+\vec x\mapsto A\vec x.
+\]
+Eine solche Abbildung kann den Raum beispielsweise strecken, stauchen,
+scheren oder spiegeln. Dabei verändert sie im Allgemeinen auch Flächen
+beziehungsweise Volumina.
+
+Die \textbf{Determinante} (\emph{determinant}) ordnet jeder quadratischen
+Matrix eine reelle Zahl zu:
+\begin{defbox}{Determinante}{ }
+\[
+\det:\mathbb R^{n\times n}\to\mathbb R,
+\qquad
+A\mapsto\det(A).
+\]
+\end{defbox}
+
+Diese zunächst abstrakt erscheinende Zahl besitzt eine anschauliche
+geometrische Bedeutung. Sie beschreibt, wie die zu \(A\) gehörende lineare
+Abbildung orientierte Volumina verändert.
+
+\begin{defbox}{Geometrische Bedeutung der Determinante}{ }
+\begin{itemize}
+    \item Der Betrag \(|\det(A)|\) gibt an, um welchen Faktor
+    \(n\)-dimensionale Volumina durch die lineare Abbildung verändert
+    werden. Für \(n=2\) sind dies Flächeninhalte, für \(n=3\) Volumina.
+
+    \item Das Vorzeichen der Determinante beschreibt, ob die Orientierung
+    erhalten bleibt oder umgekehrt wird.
+
+    \item Für \(\det(A)=0\) wird das \(n\)-dimensionale Volumen vollständig
+    auf null zusammengedrückt. Das Bild der linearen Abbildung besitzt dann
+    eine kleinere Dimension als der Ausgangsraum.
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.6\textwidth]
+{../Mathematik_1/Bilder/determinante_volumenverlust_dimension.png}
+\end{center}
+\end{defbox}
+
+Gerade der letzte Fall wird später eine besondere Bedeutung erhalten:
+Wenn \(\det(A)=0\) gilt, geht durch die lineare Abbildung mindestens eine
+Raumrichtung verloren. Die Abbildung kann dann nicht umkehrbar sein.
+
+Für einfache geometrische Transformationen
+\[
+\mathcal A:\mathbb R^2\to\mathbb R^2,
+\qquad
+\vec x\mapsto A\vec x,
+\]
+lässt sich die Determinante bereits aus der geometrischen Wirkung der
+Abbildung verstehen.
+
+\begin{exabox}{Determinanten für einfache geometrische Transformationen}{ }
+\begin{eqnarray*}
+\left| \begin{array}{cc} 0 & 0 \\ 0 & 0 \end{array}\right|
+&=&0\,,
+\quad \textnormal{Nullabbildung},\\
+\left| \begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right|
+&=&1\,,
+\quad \textnormal{Identitätsabbildung},\\
+\left| \begin{array}{cc} 2 & 0 \\ 0 & 2 \end{array}\right|
+&=&4\,,
+\quad \textnormal{Skalierung in zwei Richtungen},\\
+\left| \begin{array}{cc} 2 & 0 \\ 0 & 1 \end{array}\right|
+&=&2\,,
+\quad \textnormal{Skalierung in einer Koordinatenrichtung},\\
+\left| \begin{array}{cc}
+\frac{1}{\sqrt{2}} &-\frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}
+\end{array}\right|
+&=&1\,,
+\quad \textnormal{Drehung},\\
+\left| \begin{array}{cc} 0&1\\1&0\end{array}\right|
+&=&-1\,,
+\quad \textnormal{Spiegelung},\\
+\left| \begin{array}{cc}1&1\\0&1\end{array}\right|
+&=&1\,,
+\quad \textnormal{Scherung in einer Achsenrichtung}.
+\end{eqnarray*}
+\end{exabox}
+
+Die Beispiele zeigen bereits zwei unterschiedliche Informationen der
+Determinante. Eine Drehung und eine Scherung können den Flächeninhalt
+unverändert lassen und besitzen daher den Betrag \(1\). Eine Spiegelung
+lässt den Flächeninhalt ebenfalls unverändert, kehrt jedoch die Orientierung
+um und besitzt deshalb eine negative Determinante.
+
+
+\subsection{Eigenschaften und Berechnung der Determinante}
+
+Werden zwei lineare Abbildungen hintereinander ausgeführt, so
+multiplizieren sich ihre Volumenskalierungsfaktoren. Entsprechend gilt für
+quadratische Matrizen \(A\) und \(B\):
+
+\begin{theorembox}{Determinante eines Produkts}{ }
+\[
+\det(AB)=\det(A)\cdot\det(B).
+\]
+\end{theorembox}
+
+Hieraus und aus den grundlegenden Eigenschaften der Determinante ergeben
+sich Rechenregeln für Veränderungen einzelner Spalten beziehungsweise
+Zeilen.
+
+\begin{exabox}{Rechenregeln}{ }
+\begin{enumerate}
+
+\item Wird eine Spalte oder Zeile mit einem Faktor \(\lambda\)
+multipliziert, so wird auch die Determinante mit \(\lambda\) multipliziert:
+\begin{eqnarray*}
+\left| \begin{array}{ccc}
+2&-7&\textcolor{blue}{3}\\
+0&2&\textcolor{blue}{6}\\
+4&1&\textcolor{blue}{9}
+\end{array}\right|
+=
+\textcolor{blue}{3}
+\left| \begin{array}{ccc}
+2&-7&1\\
+0&2&2\\
+4&1&3
+\end{array}\right|.
+\end{eqnarray*}
+
+\item Werden zwei Spalten oder Zeilen vertauscht, so wechselt das
+Vorzeichen der Determinante:
+\begin{eqnarray*}
+\left| \begin{array}{ccc}
+2&\textcolor{blue}{-7}&\textcolor{brown}{3}\\
+0&\textcolor{blue}{2}&\textcolor{brown}{6}\\
+4&\textcolor{blue}{1}&\textcolor{brown}{9}
+\end{array}\right|
+=
+-
+\left| \begin{array}{ccc}
+2&\textcolor{brown}{3}&\textcolor{blue}{-7}\\
+0&\textcolor{brown}{6}&\textcolor{blue}{2}\\
+4&\textcolor{brown}{9}&\textcolor{blue}{1}
+\end{array}\right|.
+\end{eqnarray*}
+
+\item Besitzt eine Matrix zwei identische Spalten oder Zeilen, so
+verschwindet ihre Determinante:
+\begin{eqnarray*}
+\alpha
+&=&
+\left| \begin{array}{ccc}
+\textcolor{blue}{2}&-7&\textcolor{brown}{2}\\
+\textcolor{blue}{0}&2&\textcolor{brown}{0}\\
+\textcolor{blue}{4}&1&\textcolor{brown}{4}
+\end{array}\right| \\
+&=&
+-
+\left| \begin{array}{ccc}
+\textcolor{brown}{2}&-7&\textcolor{blue}{2}\\
+\textcolor{brown}{0}&2&\textcolor{blue}{0}\\
+\textcolor{brown}{4}&1&\textcolor{blue}{4}
+\end{array}\right|
+=-\alpha,
+\end{eqnarray*}
+also \(\alpha=0\).
+
+\item Die Determinante ist in jeder einzelnen Spalte beziehungsweise Zeile
+linear. Ist beispielsweise eine Spalte die Summe zweier Vektoren, so kann
+die Determinante entsprechend zerlegt werden:
+\begin{eqnarray*}
+\left| \begin{array}{cc}2&2\\3&5\end{array}\right|
+&=&
+\left| \begin{array}{cc}\textcolor{blue}{2+}0&2\\
+\textcolor{blue}{1+}2&5\end{array}\right|\\
+&=&
+\left| \begin{array}{cc}\textcolor{blue}{2}&2\\
+\textcolor{blue}{1}&5\end{array}\right|
+\textcolor{blue}{+}
+\left| \begin{array}{cc}0&2\\2&5\end{array}\right|.
+\end{eqnarray*}
+
+\item Wird zu einer Spalte oder Zeile ein Vielfaches einer anderen Spalte
+beziehungsweise Zeile addiert, so verändert sich die Determinante nicht.
+Diese Eigenschaft ist insbesondere bei der Berechnung von Determinanten
+mithilfe des Gaußschen Eliminationsverfahrens nützlich.
+
+\end{enumerate}
+\end{exabox}
+
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+    \item Es gilt
+    \[
+    \det(A)=\det(A^\intercal).
+    \]
+    Daher gelten die entsprechenden Rechenregeln gleichermaßen für
+    Spalten und Zeilen.
+
+    \item Die Determinante ist in ihren Spalten beziehungsweise Zeilen
+    multilinear und alternierend. Insbesondere verschwindet sie, sobald
+    zwei Spalten beziehungsweise zwei Zeilen identisch sind.
+\end{itemize}
+
+
+\subsubsection*{Determinante einer \(2\times2\)-Matrix}
+
+Die Rechenregeln ermöglichen nun die Berechnung konkreter Determinanten.
+Für eine \(2\times2\)-Matrix ergibt sich beispielsweise
+\begin{eqnarray*}
+\left| \begin{array}{cc}
+\textcolor{blue}{1}&\textcolor{brown}{2}\\
+\textcolor{brown}{3}&\textcolor{blue}{4}
+\end{array}\right|
+&=&
+\textcolor{blue}{1}\cdot\textcolor{blue}{4}
+-
+\textcolor{brown}{2}\cdot\textcolor{brown}{3}\\
+&=&-2.
+\end{eqnarray*}
+
+Allgemein gilt damit:
+
+\begin{defbox}{Determinante einer \(2\times2\)-Matrix}{ }
+\[
+\left|
+\begin{array}{cc}
+\textcolor{blue}{a}&\textcolor{brown}{b}\\
+\textcolor{brown}{c}&\textcolor{blue}{d}
+\end{array}
+\right|
+=
+\textcolor{blue}{a}\cdot\textcolor{blue}{d}
+-
+\textcolor{brown}{b}\cdot\textcolor{brown}{c}.
+\]
+\end{defbox}
+
+
+\subsubsection*{Entwicklung einer \(3\times3\)-Determinante}
+
+Eine \(3\times3\)-Determinante kann auf \(2\times2\)-Determinanten
+zurückgeführt werden. Bei einer Entwicklung nach der ersten Spalte ergibt
+sich beispielsweise
+
+\begin{exabox}{Entwicklung nach der ersten Spalte}{ }
+\begin{eqnarray*}
+\left|
+\begin{array}{ccc}
+\textcolor{blue}{1}&2&3\\
+\textcolor{blue}{4}&5&6\\
+\textcolor{blue}{7}&8&9
+\end{array}
+\right|
+&=&
+\textcolor{blue}{1}
+\left|\begin{array}{cc}5&6\\8&9\end{array}\right|
+-
+\textcolor{blue}{4}
+\left|\begin{array}{cc}2&3\\8&9\end{array}\right|
++
+\textcolor{blue}{7}
+\left|\begin{array}{cc}2&3\\5&6\end{array}\right|\\
+&=&
+(5\cdot9-6\cdot8)
+-4(2\cdot9-3\cdot8)
++7(2\cdot6-3\cdot5)\\
+&=&-3+24-21=0.
+\end{eqnarray*}
+\end{exabox}
+
+Entsprechend kann eine Determinante nach jeder Zeile oder Spalte entwickelt
+werden. Das Vorzeichen des jeweiligen Terms hängt von seiner Position ab
+und folgt dem Schachbrettmuster:
+
+\begin{theorembox}{Vorzeichen im Schachbrettmuster}{ }
+\[
+\left|
+\begin{array}{ccc}
++&-&+\\
+-&+&-\\
++&-&+
+\end{array}
+\right|.
+\]
+\end{theorembox}
+
+Für \(3\times3\)-Determinanten ergibt sich außerdem die leicht zu merkende
+\textbf{Regel von Sarrus}:
+
+\begin{eqnarray*}
+\left|
+\begin{array}{ccc}
+1&2&3\\
+4&5&6\\
+7&8&9
+\end{array}
+\right|
+\textcolor{lightgray}{
+\begin{array}{cc}
+1&2\\4&5\\7&8
+\end{array}}
+=
+\textcolor{red}{1\cdot5\cdot9+2\cdot6\cdot7+3\cdot4\cdot8}
+\textcolor{blue}{-7\cdot5\cdot3-8\cdot6\cdot1-9\cdot4\cdot2}.
+\end{eqnarray*}
+
+Die Regel von Sarrus gilt ausschließlich für \(3\times3\)-Matrizen. Sie
+lässt sich nicht auf Determinanten der Größe \(4\times4\) oder höher
+übertragen.
+
+Bei einer direkten Entwicklung einer \(n\times n\)-Determinante entstehen
+\(n!\) Produkte mit jeweils \(n\) Faktoren. Der Rechenaufwand wächst daher
+sehr schnell. Für größere Matrizen ist eine vollständige Entwicklung
+deshalb kein zweckmäßiges Berechnungsverfahren.
+
+Eine Alternative ergibt sich aus dem bereits bekannten Gaußschen
+Eliminationsverfahren. Wird eine Matrix unter Beachtung der oben
+angegebenen Rechenregeln auf Dreiecksgestalt gebracht, so lässt sich die
+Determinante anschließend unmittelbar aus den Diagonaleinträgen bestimmen.
+Für eine Dreiecksmatrix gilt
+\[
+\det(A)=a_{11}a_{22}\cdots a_{nn}.
+\]
+
+
+\subsubsection*{Das Spatprodukt (+)}
+
+Mit der Determinante lässt sich eine weitere geometrische Verknüpfung von
+Vektoren beschreiben. Das \textbf{Spatprodukt} (\emph{triple product}) ist
+eine Besonderheit des \(\mathbb R^3\) und bildet drei Vektoren auf eine
+reelle Zahl ab.
+
+Sind \(\vec x_1,\vec x_2,\vec x_3\in\mathbb R^3\), so werden diese als
+Spalten einer Matrix zusammengefasst:
+
+\begin{defbox}{Spatprodukt}{ }
+\[
+\mathbb R^3\times\mathbb R^3\times\mathbb R^3\to\mathbb R,
+\qquad
+(\vec x_1,\vec x_2,\vec x_3)
+\mapsto
+\det(\vec x_1,\vec x_2,\vec x_3).
+\]
+\end{defbox}
+
+Beispielsweise gilt
+
+\begin{exabox}{Spatprodukt}{ }
+\[
+\left|
+\begin{array}{ccc}
+1&3&4\\
+2&0&-2\\
+3&2&1
+\end{array}
+\right|
+=-4.
+\]
+\end{exabox}
+
+Der Betrag des Spatprodukts liefert das Volumen des von den drei Vektoren
+aufgespannten Parallelepipeds. Das Vorzeichen beschreibt zusätzlich die
+Orientierung der drei Vektoren.
+
+
+\subsection{Inverse Matrix}
+
+Für ein quadratisches lineares Gleichungssystem
+\[
+A\vec x=\vec b,
+\qquad
+A\in\mathbb R^{n\times n},
+\]
+wurde im vorangegangenen Abschnitt gezeigt, dass die Lösbarkeit und
+Eindeutigkeit der Lösung eng mit Rang und Kern der Koeffizientenmatrix
+zusammenhängen.
+
+Für quadratische Matrizen liefert die Determinante nun ein besonders
+kompaktes Kriterium. Ist
+\[
+\det(A)=0,
+\]
+so wird mindestens eine Raumrichtung durch die zugehörige lineare Abbildung
+verloren. Das Bild besitzt eine Dimension kleiner als \(n\), also
+\[
+\operatorname{rk}(A)<n.
+\]
+Die Abbildung kann deshalb nicht bijektiv und damit auch nicht umkehrbar
+sein.
+
+Ist dagegen
+\[
+\det(A)\neq0,
+\]
+so geht keine Raumrichtung verloren. Die Matrix besitzt vollen Rang,
+\[
+\operatorname{rk}(A)=n,
+\]
+und die zugehörige lineare Abbildung
+\[
+\mathcal A:\mathbb R^n\to\mathbb R^n,
+\qquad
+\vec x\mapsto A\vec x,
+\]
+ist bijektiv.
+
+Damit sind für eine quadratische Matrix mehrere der bisher eingeführten
+Begriffe unmittelbar miteinander verbunden:
+
+\begin{theorembox}{Determinante und Invertierbarkeit}{ }
+Für \(A\in\mathbb R^{n\times n}\) sind die folgenden Aussagen äquivalent:
+\[
+\begin{aligned}
+\det(A)&\neq0\\
+&\Longleftrightarrow\operatorname{rk}(A)=n\\
+&\Longleftrightarrow\operatorname{def}(A)=0\\
+&\Longleftrightarrow\ker(A)=\{\vec0\}\\
+&\Longleftrightarrow\mathcal A:\mathbb R^n\to\mathbb R^n
+   \text{ ist bijektiv}\\
+&\Longleftrightarrow A\text{ ist invertierbar}.
+\end{aligned}
+\]
+\end{theorembox}
+
+Damit erhält die Determinante eine zweite Bedeutung neben ihrer
+geometrischen Interpretation: Sie entscheidet bei einer quadratischen
+Matrix mit einer einzigen Zahl darüber, ob die zugehörige lineare Abbildung
+umkehrbar ist.
+
+
+\subsubsection*{Die Inverse als Umkehrabbildung}
+
+Ist \(\det(A)\neq0\), so ist die lineare Abbildung
+\[
+\mathcal A:\mathbb R^n\to\mathbb R^n,
+\qquad
+\vec x\mapsto A\vec x,
+\]
+bijektiv. Zu jedem \(\vec b\in\mathbb R^n\) existiert daher genau ein
+\(\vec x\in\mathbb R^n\) mit
+\[
+A\vec x=\vec b.
+\]
+
+Die Umkehrabbildung
+\[
+\mathcal A^{-1}:\mathbb R^n\to\mathbb R^n
+\]
+ordnet jedem \(\vec b\) wieder den eindeutig bestimmten Ausgangsvektor
+\(\vec x\) zu. Auch diese Umkehrabbildung ist linear und kann deshalb
+wieder durch eine Matrix dargestellt werden. Diese Matrix ist die
+\textbf{inverse Matrix} (\emph{inverse matrix}) \(A^{-1}\).
+
+\begin{defbox}{Inverse Matrix}{ }
+Eine quadratische Matrix \(A\in\mathbb R^{n\times n}\) heißt
+\textbf{invertierbar} (\emph{invertible}), wenn eine Matrix
+\(A^{-1}\in\mathbb R^{n\times n}\) existiert mit
+\[
+A^{-1}A=AA^{-1}=I_n.
+\]
+Die Matrix \(A^{-1}\) ist die Matrixdarstellung der Umkehrabbildung
+\(\mathcal A^{-1}\).
+\end{defbox}
+
+Die Schreibweise \(A^{-1}\) erinnert bewusst an den Kehrwert einer Zahl.
+Für eine Zahl \(a\neq0\) gilt
+\[
+a^{-1}a=aa^{-1}=1.
+\]
+Bei einer invertierbaren Matrix übernimmt die Einheitsmatrix \(I_n\) die
+Rolle der Zahl \(1\):
+\[
+A^{-1}A=AA^{-1}=I_n.
+\]
+
+Der entscheidende Unterschied zu einer einzelnen Lösung eines linearen
+Gleichungssystems besteht darin, dass \(A^{-1}\) nur von der Matrix \(A\)
+und nicht von der rechten Seite \(\vec b\) abhängt.
+
+
+\subsubsection*{Die Inverse als Werkzeug zum Lösen linearer Gleichungssysteme}
+
+Ist \(A\) invertierbar, so kann das lineare Gleichungssystem
+\[
+A\vec x=\vec b
+\]
+von links mit \(A^{-1}\) multipliziert werden:
+\[
+A^{-1}A\vec x=A^{-1}\vec b.
+\]
+Mit \(A^{-1}A=I_n\) folgt
+\[
+\vec x=A^{-1}\vec b.
+\]
+
+\begin{theorembox}{Lösung mit der inversen Matrix}{ }
+Ist \(A\in\mathbb R^{n\times n}\) invertierbar, so besitzt
+\[
+A\vec x=\vec b
+\]
+für jede rechte Seite \(\vec b\in\mathbb R^n\) genau eine Lösung. Sie ist
+gegeben durch
+\[
+\vec x=A^{-1}\vec b.
+\]
+\end{theorembox}
+
+Damit beschreibt \(A^{-1}\) nicht nur die Umkehrung einer einzelnen
+Zuordnung. Die inverse Matrix enthält die Umkehrabbildung für
+\emph{alle} möglichen rechten Seiten gleichzeitig.
+
+Ist \(A^{-1}\) einmal bekannt, so kann für jede neue rechte Seite
+\(\vec b\) unmittelbar der zugehörige Lösungsvektor
+\[
+\vec x=A^{-1}\vec b
+\]
+bestimmt werden. Genau darin liegt die besondere Bedeutung der inversen
+Matrix im Zusammenhang mit linearen Gleichungssystemen.
+
+\noindent\textbf{Bemerkung:}
+Die inverse Matrix kann beispielsweise mit dem Gaußschen
+Eliminationsverfahren bestimmt werden. Dazu wird die erweiterte Matrix
+\[
+(A\,|\,I_n)
+\]
+so lange durch elementare Zeilenumformungen verändert, bis auf der linken
+Seite die Einheitsmatrix steht:
+\[
+(A\,|\,I_n)
+\longrightarrow
+(I_n\,|\,A^{-1}).
+\]
+Die konkrete Berechnung der inversen Matrix steht hier jedoch nicht im
+Vordergrund. Entscheidend ist ihre Bedeutung als Matrixdarstellung der
+Umkehrabbildung.
+
+
+\subsection{Cramersche Regel (+)}
+
+Die Determinante ermöglicht auch eine direkte Darstellung der einzelnen
+Komponenten der Lösung eines quadratischen linearen Gleichungssystems
+\[
+A\vec x=\vec b,
+\qquad
+\det(A)\neq0.
+\]
+
+Wird in \(A\) die \(i\)-te Spalte durch die rechte Seite \(\vec b\)
+ersetzt und die so entstehende Matrix mit \(A_i\) bezeichnet, so gilt die
+\textbf{Cramersche Regel} (\emph{Cramer's rule})
+\[
+x_i=\frac{\det(A_i)}{\det(A)},
+\qquad i=1,\ldots,n.
+\]
+
+Die Cramersche Regel macht den Zusammenhang zwischen Determinante und
+eindeutiger Lösbarkeit besonders deutlich. Für größere Gleichungssysteme
+ist sie jedoch kein zweckmäßiges numerisches Lösungsverfahren; hierfür
+werden beispielsweise Verfahren auf Grundlage der Gauß-Elimination
+verwendet.
+
+
+
+% \section{Determinante und Inverse (+)}\label{MA1-determinante-und-inverse}
+% 
+% \begin{table}[H]
+%   \centering
+%   \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+%     \toprule
+% 	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+%     \midrule
+% \textbf{Lernziele} &\\[.5\normalbaselineskip]
+% \tabitem die Determinante einer quadratischen Matrix berechnen und
+% geometrisch interpretieren &\\
+% \tabitem den Zusammenhang zwischen Determinante, Rang und Invertierbarkeit
+% einer quadratischen Matrix erklären &\\
+% \tabitem die Invertierbarkeit einer quadratischen Matrix untersuchen &\\
+% \tabitem die inverse Matrix mithilfe des Gaußschen Eliminationsverfahrens
+% bestimmen (+) &\\
+% \tabitem die Cramersche Regel erklären und auf lineare Gleichungssysteme
+% anwenden (+) &\\
+%     \midrule
+% 	  \textbf{Sie sollten bereits \ldots} &\\[.5\normalbaselineskip]
+%     \tabitem Umkehrfunktion & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+%     \tabitem Rang und Defekt einer Matrix & \abschnittsverweis{MA1-matrizen}\\
+%     \tabitem Gaußsches Eliminationsverfahren & \abschnittsverweis{MA1-lineare-gleichungssysteme}\\
+%     \bottomrule
+%   \end{tabularx}
+% \end{table}
+% 
+% \ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-determinante-und-inverse-aufgaben]{Aufgaben}
+% \vspace{0.3cm}
+% \hrule
+%  \fi
+% 
+% \subsection{Was ist die Determinante?}
+% 
+% Die Determinante [determinant] ordnet jeder quadratischen Matrix $A\in\mathbb R^{n\times n}$ eine Zahl zu
+% \begin{defbox}{Determinante}{ }
+% 	$\mathrm{det}: \; \mathbb R^{n\times n} \to \mathbb R, \; \left( \begin{array}{cc} 1  & 2 \\ 3 &   4\end{array}\right) \mapsto \left| \begin{array}{cc} 1  & 2 \\ 3 &   4\end{array}\right|\,. $
+% \end{defbox}
+% Die Determinante sagt etwas über die "\,Größe"\, der Matrix $A$ aus und sie liefert ein notwendiges und hinreichendes Kriterium für die Existenz der inversen Matrix $A^{-1}$. Diese Eigenschaft vereinfacht die Frage nach der Lösbarkeit eines linearen Gleichungssystems mit quadratischer Koeffizientenmatrix $A$.\marginpar{\small Aufgaben}
+% 
+% %Wenn die Matrix über ihre Elemente gegeben ist, schreibt man die Determinante auch mit Strichen um die Elemente der Matrix: 
+% 
+% %Also Vorsicht: Runde Klammern oder in den USA eckige Klammern bezeichnen eine Matrix, Striche links und rechts dagegen eine daraus berechnete Zahl, nämlich die Determinante der Matrix. %In MATLAB heißt die Funktion zum Berechnen von Determinenten schlicht \verb-det-. In Wolfram Alpha kann man ebenfalls \verb-det- schreiben. 
+% 
+% Auch wenn die Schreibweise mit den Strichen an einen Betrag erinnert, ist die Determinante etwas Anderes. Sie gibt Aufschluss über zwei geometrische Eigenschaften, die eine lineare Abbildung auf eine Figur hat:
+% \begin{defbox}{Determinante}{ }
+% 	\begin{itemize}
+% 		\item  Der Betrag der Determinante, also ihr Wert ohne Vorzeichen, sagt aus, um welchen Faktor die lineare Abbildung \(\mathcal A\) die Fläche ($n=2$), bzw. das Volumen ($n=3$) verändert.  
+%     \item Das Vorzeichen der Determinante sagt aus, ob die lineare Abbildung \(\mathcal A\) die Orientierung verändert. Für $n=2$ entspricht die Veränderung der Orientierung eine Spiegelung, für $n=3$ ist die "rechte-Hand-Regel" gemeint.
+%      \end{itemize}
+% 	\begin{center}
+% 	\includegraphics[width=0.6\textwidth]{../Mathematik_1/Bilder/determinante_volumenverlust_dimension.png}
+% \end{center}
+% \end{defbox}
+% 
+% Für einfache geometrische Transformation \(\mathcal A: \mathbb R^2 \to \mathbb R^2, \vec x \to A\vec x\) läßt sich \(\mathrm{det}(A)\) ohne Rechnung angeben:
+% \begin{exabox}{Determinanten für einfache geometrische Transformationen}{ }
+%       \begin{eqnarray*}
+% 	\left| \begin{array}{cc} 0 & 0 \\ 0 & 0 \end{array}\right| &=& 0\,, \quad \textnormal{Nullmatrix}\,,\\
+% 	\left| \begin{array}{cc} 1 & 0 \\ 0 & 1 \end{array}\right| &=& 1\,, \quad \textnormal{Identische Abbildung}\,,\\
+% 	\left| \begin{array}{cc} 2 & 0 \\ 0 & 2 \end{array}\right| &=& 4\,,\quad  \textnormal{Skalierung in zwei Richtungen}\,,\\
+% 	\left| \begin{array}{cc} 2 & 0 \\ 0 & 1 \end{array}\right| &=& 2\,,\quad \textnormal{Skalierung in eine Richtung}\,,\\
+% 	\left| \begin{array}{cc} \frac{1}{\sqrt{2}} &  -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} &  \frac{1}{\sqrt{2}} \end{array}\right| &=& 1\,,\quad \textnormal{Drehung}\,,\\
+% 	\left| \begin{array}{cc} 0 &  1 \\ 1 &  0 \end{array}\right| &=& -1\,,\quad \textnormal{Spigelung, i.e. Vertauschung zweier Spalten}\,,\\
+% 	\left| \begin{array}{cc} 1 &  1 \\ 0 &  1 \end{array}\right| &=& 1\,,\quad \textnormal{Scherung in eine Achsenrichtung}\,.
+%       \end{eqnarray*}
+% \end{exabox}
+% 
+% Die Determinante zweier Matrizen $A$ und $B$, die man hintereinander anwendet ist  
+% \begin{theorembox}{Determinante vom Produkt}{ }
+%   $\det(AB)= \det(A)\cdot \det(B)\,.$
+% \end{theorembox}
+% 
+% Hieraus folgen Rechenregeln, die für die Determinante bei Spalten- oder Zeilenumformungen gelten müssen: 
+% \begin{exabox}{Rechenregeln}{ }
+%   \begin{enumerate}
+%     \item Multiplikation einer Spalte (Zeile) einer Matrix mit einer Zahl:
+%       \begin{eqnarray*}
+%       \left| \begin{array}{ccc} 2 & -7 & \textcolor{blue}{3} \\ 0 & 2 & \textcolor{blue}{6}  \\ 4 & 1 & \textcolor{blue}{9} \end{array}\right| = \left| \begin{array}{ccc} 2 & -7 & \textcolor{blue}{ 1} \\ 0 & 2 & \textcolor{blue}{2}  \\ 4 & 1 & \textcolor{blue}{3} \end{array}\right| \cdot \left| \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0  \\ 0 & 0 & \textcolor{blue}{3} \end{array}\right|  = \textcolor{blue}{3}\, \left| \begin{array}{ccc} 2 & -7 & 1 \\ 0 & 2 & 2  \\ 4 & 1 & 3 \end{array}\right| \,.
+%       \end{eqnarray*}
+%     \item Vertauschen zweier Spalten (Zeilen) einer Matrix:
+%       \begin{eqnarray*}
+% 	      \left| \begin{array}{ccc} 2 & \textcolor{blue}{-7} & \textcolor{brown}{3} \\ 0 & \textcolor{blue}{2} & \textcolor{brown}{6}  \\ 4 & \textcolor{blue}{1} & \textcolor{brown}{9} \end{array}\right| = \left| \begin{array}{ccc} 2 & \textcolor{brown}{3} & \textcolor{blue}{-7}  \\ 0 & \textcolor{brown}{6} & \textcolor{blue}{2}  \\ 4 & \textcolor{brown}{9} & \textcolor{blue}{1}  \end{array}\right| \cdot \left| \begin{array}{ccc} 1 & 0 & 0  \\ 0 & 0 & \textcolor{brown}{1}  \\ 0 & \textcolor{blue}{1} & 0  \end{array}\right| = -\left| \begin{array}{ccc} 2 & \textcolor{brown}{3} & \textcolor{blue}{-7}  \\ 0 & \textcolor{brown}{6} & \textcolor{blue}{2}  \\ 4 & \textcolor{brown}{9} & \textcolor{blue}{1}  \end{array}\right| \,.
+%       \end{eqnarray*}
+% \item Zwei identische Spalten (Zeilen):
+%       \begin{eqnarray*}
+% 	      \alpha =\left| \begin{array}{ccc} \textcolor{blue}{2} & -7 & \textcolor{brown}{2} \\ \textcolor{blue}{0} & 2 & \textcolor{brown}{0} \\ \textcolor{blue}{4} & 1 & \textcolor{brown}{4} \end{array}\right| \stackrel{2.}{=} - \left| \begin{array}{ccc} \textcolor{brown}{2} & -7 & \textcolor{blue}{2} \\ \textcolor{brown}{0} & 2 & \textcolor{blue}{0} \\ \textcolor{brown}{4} & 1 & \textcolor{blue}{4} \end{array}\right| = - \alpha  \; \Leftrightarrow \; \alpha = 0 \,.
+%       \end{eqnarray*}
+% \item Eine Spalte (Zeile) einer Matrix als Summer zweier Vektoren:
+%       \begin{eqnarray*}
+% 	      \left| \begin{array}{cc} 2 & 2 \\ 3 & 5  \end{array}\right| = 
+% 	      \left| \begin{array}{cc} \textcolor{blue}{2+}0 & 2 \\ \textcolor{blue}{1+}2 & 5  \end{array}\right| =
+% 	      \left| \begin{array}{cc} \textcolor{blue}{2} & 2 \\ \textcolor{blue}{1} & 5  \end{array}\right|  \textcolor{blue}{+}
+% 	      \left| \begin{array}{cc} 0 & 2 \\ 2 & 5  \end{array}\right| \,.
+%       \end{eqnarray*}
+% %\item Addition eines Vielfachen einer Spalte (Zeile) auf eine andere Spalte (Zeile) der Matrix:
+% %      \begin{eqnarray*}
+% %	      \mathrm{det}\left( \begin{array}{ccc} 2 & -7 & 3 - 2\cdot 7 \\ 0 & 2 & 6+2\cdot2  \\ 4 & 1 & 9+2\cdot 1 \end{array}\right) &=& 
+% %	      \mathrm{det}\left( \begin{array}{ccc} 2 & -7 & 3 \\ 0 & 2 & 6  \\ 4 & 1 & 9 \end{array}\right) + \underbrace{2 \mathrm{det}\left( \begin{array}{ccc} 2 & -7 & -7 \\ 0 & 2 & 2  \\ 4 & 1 & 1 \end{array}\right)}_{\displaystyle{= 0}} = 
+% %	      \mathrm{det}\left( \begin{array}{ccc} 2 & -7 & 3 \\ 0 & 2 & 6  \\ 4 & 1 & 9 \end{array}\right) \,.
+% %      \end{eqnarray*}
+% \end{enumerate}
+% \end{exabox}
+% \noindent\textbf{Bemerkungen:}
+% \begin{itemize}
+% 	\item Es gilt \(\mathrm{det}(A) = \mathrm{det}(A^\intercal)\) und deshalb gelten die Regeln genauso für die entsprechenden Zeilenumformungen.
+% 	\item Besitzt eine Abbildung genau diese Eigenschaften dann nennt man sie "\,antisymmetrischen Multilinearform". Die Determinante ist also eine antisymmetrische Multilinearform.
+% \end{itemize}
+% 
+% Mit den Rechenregeln kann man nun die Determinante jeder Matrix berechnen. Wir beginnen mit der Determinante einer $2\times2$-Matrix:
+%   \begin{eqnarray*}
+% 	  \left| \begin{array}{cc} \textcolor{blue}{1} & \textcolor{brown}{2} \\ \textcolor{brown}{3} & \textcolor{blue}{4}  \end{array}\right| &\stackrel{4.}{=}& \left| \begin{array}{cc} 1 & 2+0 \\0 & 0+4  \end{array}\right| +  \left| \begin{array}{cc} 0 & 2+0 \\3 & 0+4  \end{array}\right| \\[1ex] 
+% 	  &\stackrel{1.}{=}& 2\cdot \underbrace{\left| \begin{array}{cc} 1 & 1 \\0 & 0  \end{array}\right|}_{=0 \; (3.)}
+%     +  4\cdot \underbrace{\left| \begin{array}{cc} 1 & 0 \\0 & 1  \end{array}\right|}_{=1}  
+%     +  2\cdot 3 \underbrace{\left| \begin{array}{cc} 0 & 1 \\1 & 0  \end{array}\right|}_{=-1 \;(1.)} 
+%     +  3\cdot 4 \underbrace{\left| \begin{array}{cc} 0 & 0 \\1 & 1  \end{array}\right|}_{=0 \; (3.)}\\[1ex] 
+%     &=& \textcolor{blue}{1}\cdot \textcolor{blue}{4} - \textcolor{brown}{2}\cdot \textcolor{brown}{3} = -2 \,.
+%   \end{eqnarray*}
+% Diese Umformungen sind immer möglich und deshalb gilt allgemein für eine $2\times 2$-Determinante:
+% \begin{defbox}{Determinante einer $2\times2$ Matrix}{ }
+%   $
+%   \left| \begin{array}{cc} \textcolor{blue}{a} & \textcolor{brown}{b} \\ \textcolor{brown}{c} & \textcolor{blue}{d}  \end{array}\right|  = \textcolor{blue}{a}\cdot \textcolor{blue}{d} - \textcolor{brown}{b} \cdot \textcolor{brown}{c}\,.
+%     $
+% \end{defbox}
+% 
+% Um die Determinante einer $3\times3$-Matrix zu berechnen, zerlegen wir sie in drei $2\times 2$-"\,Unterdeterminanten":
+% \begin{exabox}{Entwicklung nach der ersten Spalte}{ }
+%   \begin{eqnarray*}
+%     \left| \begin{array}{ccc} \textcolor{blue}{1} & 2 & 3 \\\textcolor{blue}{4} & 5 & 6 \\ \textcolor{blue}{7} & 8 & 9  \end{array}\right| 
+%       &=& 
+%       \left| \begin{array}{ccc} \textcolor{blue}{1} & 2 & 3 \\0 & 5 & 6 \\0 & 8 & 9  \end{array}\right| 
+%       + \left| \begin{array}{ccc} 0 & 2 & 3 \\\textcolor{blue}{4} & 5 & 6 \\0 & 8 & 9  \end{array}\right| 
+%       + \left| \begin{array}{ccc} 0 & 3 & 3 \\0 & 5 & 6 \\\textcolor{blue}{7} & 8 & 9  \end{array}\right| \\
+%       &=& 
+%       \textcolor{blue}{1} \cdot \underbrace{\left| \begin{array}{ccc} \textcolor{brown}{1} & 0 & 0 \\0 & 5 & 6 \\0 & 8 & 9  \end{array}\right|}_{\displaystyle{= \textcolor{brown}{1} \cdot \left| \begin{array}{cc} 5 & 6 \\8 & 9  \end{array}\right|} } 
+%       +\; \textcolor{blue}{4} \cdot \underbrace{\left| \begin{array}{ccc} 0 & 2 & 3 \\\textcolor{brown}{1} & 0 & 0 \\0 & 8 & 9  \end{array}\right|}_{\displaystyle{ =\textcolor{brown}{- 1}\cdot \left| \begin{array}{cc} 2 & 3 \\8 & 9  \end{array}\right|} }
+%       +\; \textcolor{blue}{7} \cdot \underbrace{ \left| \begin{array}{ccc} 0 & 3 & 3 \\0 & 5 & 6 \\\textcolor{brown}{1} & 0 & 0  \end{array}\right| }_{\displaystyle{= \textcolor{brown}{1}\cdot \left| \begin{array}{cc} 3 & 3 \\5 & 6  \end{array}\right|} }\\
+%       &=& \textcolor{brown}{1}\cdot \textcolor{blue}{1}\cdot \left| \begin{array}{cc} 5 & 6 \\8 & 9  \end{array}\right| \textcolor{brown}{- 1 }\cdot \textcolor{blue}{4}\cdot \left| \begin{array}{cc} 2 & 3 \\8 & 9  \end{array}\right|+ \textcolor{brown}{1} \cdot\textcolor{blue}{7} \cdot \left| \begin{array}{cc} 3 & 3 \\5 & 6 \end{array}\right| \\
+%       &=& (5\cdot 9 - 6\cdot 8)  - 4  \cdot (2\cdot 9 - 8\cdot 3) + 7 \cdot ( 3\cdot 6 - 5\cdot 3) \\ &=& (45-48)-4\cdot (18-24)+7\cdot (18-15) = -3+24 -21 = 0   \,.
+%   \end{eqnarray*}
+% \end{exabox}
+% 
+% Diese Vorgehensweise heißt "\,Entwicklung nach der ersten Spalte". Entsprechend kann man nach jeder anderen Spalten entwickeln, man muss beim Entwickeln nach anderen Spalten unter Umständen Zeilen vertauschen und das führt zu Vorzeichenwechseln. Merken Sie sich die Vorzeichen einfach im Schachbrettmuster:
+% \begin{theorembox}{Vorzeichen im Schachbrettmuster}{ }
+%   $
+%     \left| \begin{array}{ccc} + & - & + \\- & + & - \\+ & - & +  \end{array}\right|\,.
+%     $
+% \end{theorembox}
+% 
+% %  Analysiert man diese Berechnung, dann stellt man fest, dass Spalten und Zeilen gleichberechtigt sind, dass also 
+% %  \begin{itemize}
+% %    \item für die Reihen die entsprechenden Rechengesetze gelten wie für die Zeilen und 
+% %    \item die Determinante beim Transponieren gleich bleibt: $$\det(A^\intercal)= \det(A)$$ 
+% %  \end{itemize}
+% 
+%   Mit entsprechenden Umformungen kann man Determinanten beliebiger Größe berechnen. Für eine $3\times 3$-Determinante findet man die leicht zu merkende Regel von Sarrus.
+%   \begin{eqnarray*}
+%     \left| \begin{array}{ccc} 1 & 2 & 3 \\4 & 5 & 6 \\7 & 8 & 9  \end{array}\right| \textcolor{lightgray}{\begin{array}{cc} 1 & 2  \\ 4 & 5  \\7 & 8  \end{array}} = 
+%       \textcolor{red}{1\cdot 5\cdot 9 + 2\cdot 6 \cdot 7 + 3\cdot4\cdot8} \textcolor{blue}{- 7\cdot 5\cdot 3 - 8\cdot 6 \cdot 1 - 9\cdot4\cdot2}  \,.
+%   \end{eqnarray*}
+% Vorsicht,  diese  Regel  gilt nicht für  $4\times 4$-oder noch größere Determinanten!  
+% 
+% Wenn man eine $n\times n$-Determinante naiv durch Entwickeln aufdröselt, muss man die Summe von $n!$ Produkten mit je $n$ Faktoren berechnen. Der Rechenaufwand und die Rundungsfehler explodieren mit größeren $n$, selbst wenn man geschickt rechnet. Man schreibt deshalb die Determinanten größerer Matrizen allenfalls als Zwischenschritt hin, um Formeln zu vereinfachen, vermeidet aber strikt, solche Determinanten tatsächlich auszurechnen.
+% 
+% %\subsection{Produkte mit Vektoren}
+% 
+% Mit der Determinante haben wir alle Hilfsmittel zur Hand, um ein letztes Produkten von Vektoren einzuführen: das sogenannte Spatprodukt [triple product] ist eine Sonderausstattung des $\mathbb R^3$ und bildet drei Vektoren auf eine Zahl ab. Es sei $(\vec x_1, \vec x_2, \vec x_3) \in \mathbb R^{3\times 3}$ die Matrix mit den Spaltenvektoren $\vec x_1, \vec x_2$ und $\vec x_3$, dann lautet das Spatprodukt:
+% \begin{defbox}{Spatprodukt}{ }
+%   $ \mathbb R^3\times \mathbb R^3\times \mathbb R^3 \to \mathbb R, \; \left( \vec x_1, \vec x_2, \vec x_3\right) \mapsto |\vec x_1, \vec x_2, \vec x_3| \,,$ 
+% \end{defbox}
+% oder, beispielhaft, mit gegebenen Vektoren: 
+% \begin{exabox}{Spatprodukt}{ }
+%   \begin{eqnarray*}
+%     \left( \left( \begin{array}{r} 1 \\ 2 \\ 3\end{array}\right), 
+%     \left( \begin{array}{r} 3 \\ 0 \\ 2\end{array}\right), 
+%   \left( \begin{array}{r} 4 \\ -2 \\ 1\end{array}\right) \right)
+%   \mapsto \left| \begin{array}{ccc} 1 & 3 & 4 \\2 & 0 & -2 \\3 & 2 & 1  \end{array} \right| = -3 \cdot (2\cdot 1 + 3 \cdot 2 ) - 2 \cdot ( - 2\cdot 1 - 2 \cdot 4)  = -4\,. 
+%   \end{eqnarray*}
+% \end{exabox}
+% Das Spatprodukt liefert das Volumen  des Spats, der von den drei Vektoren aufgespannt wird, mit Vorzeichen für die Orientierung. 
+% 
+% %Um das zu verstehen, macht man sich bewußt, dass die Anwendung einer Matrix, beispielsweise
+% %$$
+% %    A = \left( \begin{array}{ccc} 1 & 3 & 4 \\2 & 0 & -2 \\3 & 2 & 1  \end{array}\right) \,,
+% %$$
+% %aus dem Einheitswürfel $E$ ein Parallelipiped $P$ macht
+% %$$
+% %A: E \mapsto AE =: P\,.
+% %$$
+% %Die Determinante der Matrix $A$ misst wie sich das Volumens des Einheitswürfels durch die lineare Transformation verändert. Also  ist  das  Volumen  des  Parallelipeds  mit  Vorzeichen  gleich  der Determinante und damit gleich dem Spatprodukt.
+% %\begin{theorembox}{Spatprodukt liefert das Volumem des Spats}{ }
+% %  $
+% %  \det(A)\underbrace{\mathrm{vol}(E)}_{\displaystyle{=1}} = \mathrm{vol}(P)\; \Rightarrow\; \mathrm{vol}(P) = \det(A)\,. 
+% %    $
+% %\end{theorembox}
+% 
+% 
+% \subsection{Inverse Matrix}
+% 
+% Betrachten wir ein lineares Gleichungsystem $A\vec x= \vec b$ mit $n$ Gleichungen und $n$ (also genau so vielen!) Unbekannten. Dann ist die Koeffizientenmatrix $A$ quadratisch und man kann ihre Determinante $\det(A)$ bilden. Die Lösbarkeit des Gleichungssystems kann mit Hilfe der Determinante analysiert werden: 
+% \begin{theorembox}{Lösbarkeit von Gleichungssystemen mit \(A\in\mathbb R^{n\times n}\)}{ }
+% 	Einer der beiden Fälle tritt ein:
+% \begin{itemize}
+% 	\item Die Determinante der Koeffizientenmatrix ist null. Dann besitzt das Gleichungssystem nicht für alle rechte Seiten eine Lösung. Wenn das Gleichungssystem für eine bestimmte rechte Seite lösbar ist, dann ist die Lösung nicht eindeutig wie im Beispiel $3$ des vorigen Kapitels. 
+%     \begin{eqnarray*} 
+%       \det(A)=0 &\Leftrightarrow&  \textnormal{mindestens eine Dimension fehlt im Ergebnis} \\
+% 	&\Leftrightarrow& \textnormal{rk}(A) < n  \\
+% 	& \Leftrightarrow&  \textnormal{def}(A) \geq 1 
+%       \end{eqnarray*}
+% \item Die Determinante der Koeffizientenmatrix ist nicht null. Dann gibt es für das entsprechende Gleichungssystem für jede rechte Seite eine eindeutige Lösung wie im Beispiel $4$ des vorigen Kapitels.  
+%     \begin{eqnarray*} 
+%       \det(A)\not=0 &\Leftrightarrow&  \textnormal{Gleichungssystem eindeutig lösbar} \\
+% 	&\Leftrightarrow& \textnormal{rk}(A) = n  \\
+% 	& \Leftrightarrow&  \textnormal{def}(A) = 0\,. 
+%       \end{eqnarray*}
+% \end{itemize}
+% \end{theorembox}
+%   
+% Im Fall $\det(A) \not = 0$ ist die Abbildung \(\mathcal A: \mathbb R^n \to \mathbb R^n\) also bijektiv: man kann von einem \(\vec x\) immer auf \(\vec b\) und zurück schließen! Die lineare Abbildung muss also umkehrbar sein un die \underline{Umkehrabbildung}\randverweis{MA1-eigenschaften-von-funktionen} \(\mathcal A^{-1}\) muss wieder linear sein. Die Matrix, die \(\mathcal A^{-1}\) zugeordnet ist, ist die zu $A$ inverse Matrix $A^{-1}$.
+% \begin{theorembox}{Existenz der inversen Matrix}{ }
+% \[ 
+% A\in \mathbb R^{n\times n}, \; \det(A)\not=0 \Rightarrow \; \exists!\; A^{-1}:\mathbb R^n\to\mathbb R^n, \vec b \mapsto \vec x\,.
+% \]
+% \end{theorembox}
+% 
+% \noindent\textbf{Bemerkungen:}
+% \begin{itemize}
+% 	\item Nur quadratische Matrizen $A\in\mathbb R^{n\times n}$ sind invertierbar und das nur, wenn $\det(A)\not=0$.
+% 	\item Existiert die inverse Matrix, dann kann man das Gleichungssystem $A\vec x = \vec b$ für beliebige rechte Seiten $\vec b \in \mathbb R^n$ lösen und es gilt \(\vec x = A^{-1} \vec b\).
+% 	\item Die Schreibweise $A^{-1}$ ist wie der Kehrwert und wie die Potenz $-1$ bei Zahlen gemeint: Analog zu $3^{-1} \cdot 3= 3 \cdot 3^{-1} = 1$, gilt 
+% $$ 
+% A^{-1} A=  A A^{-1}= \vec 1\,. \quad \quad (*)
+% $$ 
+% Bei Zahlen kann man von der Null keinen Kehrwert bilden und entsprechend kann man von nicht quadratischen Matrizen und von Matrizen mit Determinante null keine inverse Matrix bilden. %In MATLAB sowie in Wolfram Alpha schreibt man \verb-inv(A)- oder die Potenz $-1$ für die inverse Matrix.
+% \end{itemize}
+% 
+% Die Berechnung der inversen Matrix gelingt wieder durch die Anwendung des \underline{Gaußschen Verfahrens}\randverweis{MA1-matrizen}. Betrachten wir eine reguläre Matrix $A\in\mathbb R^{n\times n}$, dann erhält man durch die Lösung des Gleichungssystems
+% \[ A \vec x_i = \vec e_i\,, \quad \quad (**) \] 
+% gerade die $i$-te Spalte der inversen Matrix $A^{-1}$ - denken Sie an $(*)$. Das heißt aber, dass man die Gleichungen $(**)$ für $i=1,\cdots, n$ simulatan gelöst hat, wenn man die Matrix $A$ in der erweiterten Matrix $(A\,|\, \vec 1)$ mittels äquivalenter Zeilenumformungen (ÄZU) in die Einheitsmatrix $\vec 1$ transformiert hat. Die rechte Seite des erweiterten Systems ist dann gerade die inverse Matrix $A^{-1}$:
+% \[  \left( A\, | \, \vec 1\right) \stackrel{\textnormal{\"AZU}}{\Rightarrow} \left( \vec 1 \, |\,  B\right) \; \Rightarrow B = A^{-1} \,.\]
+% Anders als beim Lösen eines Gleichungssystems, hören wir nicht bei der Dreiecksgestalt der Matrix $A$ auf, sondern fahren mit dem Gaußschen Eliminationsverfahren fort und eliminieren auch die Elemente oberhalb der Diagonale. Das entspricht dem Schritt des Rückwärts-Lösens im Gaußschen Verfahren. Zuletzt werden die Diagonalelemente auf eins normiert.   
+% 
+% \begin{exabox}{Berechnung der inversen Matrix $\left(A\, | \, \vec 1 \right) \to \left(\vec 1 \, | \, A^{-1}\right)$}{ }
+% 	Betrachten wir beispielsweise die Matrix \[ A=\left( \begin{array}{ccc} 1 & 1 & -1 \\ 2 & 3 & 0 \\ 1 & 0 & 3 \end{array}\right), \quad \mathrm{det}(A) = 6 \not= 0\,. \] Die Determinante von $A$ verschwindet nicht und wir können die Inverse berechnen: 
+% 	\begin{eqnarray*} 
+% 		& \left( \begin{array}{ccc | ccc} 1 & 1 & -1 & 1 & 0 & 0  \\ 2 & 3 & 0 & 0 & 1 & 0 \\ 1 & 0 & 3 & 0 & 0 & 1\end{array}\right) \Leftrightarrow
+% 		\left( \begin{array}{ccc | ccc} 1 & 1 & -1 & 1& 0 & 0  \\ 0 & 1 & 2 & -2 & 1 & 0 \\ 0 & -1 & 4 & -1 & 0 & 1\end{array}\right) \Leftrightarrow 
+% 		\left( \begin{array}{ccc | ccc} 1 & 1 & -1 & 1& 0 & 0  \\ 0 & 1 & 2 & -2 & 1 & 0 \\ 0 & 0 & 6 & -3 & 1 & 1\end{array}\right) \\
+% 		\Leftrightarrow  &\left( \begin{array}{ccc | ccc} 1 & 1 & -1 & 1 & 0 & 0  \\ 0 & 1 & 2 & -2 & 1 & 0 \\ 0 & 0 & 6 & -3 & 1 & 1\end{array}\right) \Leftrightarrow 
+% 		\left( \begin{array}{ccc | ccc} 6 & 6 & 0 & 3 & 1 & 1  \\ 0 & -3 & 0 & 3 & -2 & 1 \\ 0 & 0 & 6 & -3 & 1 & 1\end{array}\right) \Leftrightarrow 
+% 		\left( \begin{array}{ccc | ccc} 6 & 0 & 0 & 9 & -3 & 3  \\ 0 & -3 & 0 & 3 & -2 & 1 \\ 0 & 0 & 6 & -3 & 1 & 1\end{array}\right)  
+% 	\end{eqnarray*}
+% 	Damit 
+% 	\[
+% 		A^{-1} = \left( \begin{array}{ccc} \frac32 & -\frac12 & \frac12 \\-1 & \frac23 & - \frac13 \\ -\frac12 & \frac16 & \frac16 \end{array}\right)  \,.
+% 	\]
+% \end{exabox}
+% 
+% \subsection{Cramersche Regel (+)}
+% 
+% Gegeben sei ein lineares Gleichungssystem $A\vec x = \vec b$ mit genauso vielen Gleichungen wie Unbekannten beispielsweise $A \in \mathbb R^{3\times 3}$:
+% \[ 
+% 	\left( \begin{array}{ccccc} 
+% 			82 & 45 & 9 & | & 1 \\ 
+% 			27 & 16 & 3 & | & 1 \\ 
+% 			 9 & 5  & 1 & | & 0 
+% 	\end{array}\right)
+% \]
+% oder in Vektoren geschrieben:
+% \[ 
+% 	x_1 \left( \begin{array}{c} 
+% 			82  \\ 27  \\ 9  
+% 	\end{array}\right) + x_2 
+% 	\left( \begin{array}{c} 
+% 			45 \\ 16 \\ 5 
+% 	\end{array}\right) + x_3 
+% 	\left( \begin{array}{c} 
+% 			 9 \\ 3 \\ 1 
+% 	\end{array}\right) =   
+% 	\left( \textcolor{blue}{\begin{array}{c} 
+% 			1 \\ 1 \\ 0 
+% \end{array}}\right) \quad (*) 
+% \]
+% 
+% Ein mathematisches Experiment: In der Determinante der Koeffizientenmatrix wird die erste Spalte durch die Inhomogenität
+% ersetzt. Was passiert?
+% \begin{eqnarray*} 
+% 	\mathrm{det} \left( \begin{array}{ccc} 
+% 			\textcolor{blue}{1} & 45 & 9 \\ 
+% 			\textcolor{blue}{1} & 16 & 3 \\ 
+% 			\textcolor{blue}{0} & 5 & 1   
+% 	\end{array}\right)  &\stackrel{(*)}{=}& \mathrm{det} \left( 
+% 	x_1 \left( \begin{array}{c} 
+% 			82  \\ 27  \\ 9  
+% 	\end{array}\right) + x_2 
+% 	\left( \begin{array}{c} 
+% 			45 \\ 16 \\ 5 
+% 	\end{array}\right) + x_3 
+% 	\left( \begin{array}{c} 
+% 			 9 \\ 3 \\ 1 
+% 	\end{array}\right)     \begin{array}{cc}
+% 			 45 & 9 \\ 
+% 			 16 & 3 \\ 
+% 			 5 & 1   
+% 	 \end{array}\right) \\ 
+% 	 &=& x_1 \cdot 
+% 	\mathrm{det} \left( \begin{array}{ccc} 
+% 			82 & 45 & 9 \\ 
+% 			27 & 16 & 3 \\ 
+% 			9 & 5 & 1   
+% 	\end{array}\right) = x_1 \cdot \mathrm{det}(A)\,. 
+% \end{eqnarray*}
+% 
+% Wenn also die Koeffizientendeterminante nicht null ist $\mathrm{det}(A)\not = 0$, hat man damit $x_1$ eindeutig bestimmt!
+% Wir  wissen  schon  von  der  inversen  Matrix,  dass  man  auch  nur  in diesem Fall sicher eine eindeutige Lösung hat. Analog findet man für $x_2$ und $x_3$:
+% \begin{exabox}{Cramersche Regel zum Lösen eines Gleichungssystems $A \vec x = \vec b$}{ }
+% 	\begin{eqnarray*}
+% 		x_1 &=& \frac{1}{\mathrm{det}(A)} 
+% 		\mathrm{det}\left( \begin{array}{ccc} 
+% 			\textcolor{blue}{1} & 45 & 9 \\ 
+% 			\textcolor{blue}{1} & 16 & 3 \\ 
+% 	\textcolor{blue}{0} & 5  & 1   \end{array}\right)  = 1\,,\\
+% 		x_2 &=& \frac{1}{\mathrm{det}(A)} 
+% 		\mathrm{det}\left( \begin{array}{ccc} 
+% 			82 & \textcolor{blue}{1} & 9 \\ 
+% 			27 & \textcolor{blue}{1} & 3 \\ 
+% 	9  & \textcolor{blue}{0} & 1   \end{array}\right) = 1 \,,\\ 
+% 		x_3 &=& \frac{1}{\mathrm{det}(A)} 
+% 		\mathrm{det}\left( \begin{array}{ccc} 
+% 			82 & 45 & \textcolor{blue}{1}  \\ 
+% 			27 & 16 & \textcolor{blue}{1}  \\ 
+% 	9  & 5  & \textcolor{blue}{0}    \end{array}\right) = -14 \,.
+% \end{eqnarray*}
+% \end{exabox}
+% 
+% Diese Cramersche Regel [Cramer’s rule] gilt offensichtlich auch für zwei Gleichungen mit zwei Unbekannten oder $78$ Gleichungen mit $78$ Unbekannten. Allerdings sollten Sie folgendes beachten:
+% \begin{itemize}
+% 	\item Die Cramersche Regel ist dann anzuwenden, wenn man nur an einer Lösungskomponente des Gleichungssystems interessiert ist.
+%   \item Die Cramersche Regel funktioniert nur, wenn es genauso viele Gleichungen wie Unbekannte gibt (quadratische Gleichungssysteme).
+%   \item Die Cramersche Regel funktioniert nur, wenn das Gleichungssystem genau eine Lösung hat, also wenn die Koeffizientenmatrix eine inverse Matrix besitzt, also wenn die Koeffizientendeterminante nicht null ist.
+%   \item Wenn die Zahl von Unbekannten und Gleichungen groß ist, explodieren durch die Berechnung der Determinanten der Rechenaufwand und die Rundungsfehler (numerische Instabilität).
+% \end{itemize}
+% 
+% 

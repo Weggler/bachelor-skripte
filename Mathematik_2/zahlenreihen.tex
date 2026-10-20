@@ -1,0 +1,253 @@
+\section{Wichtige Zahlenreihen}\label{MA2-zahlenreihen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem wichtige Reihen und deren Konvergenzverhalten nennen & \\
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem Grenzwerte von Zahlenfolgen & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}  \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-zahlenreihen-aufgaben]{hier}.
+\hrule
+\vspace{0.3cm}
+\fi
+
+Der griechische Philosoph Zenon formulierte im $5.$ Jhd vor Christus die folgende Aussage:
+	\begin{center}
+		Ein Läufer kann niemals das Ende einer Rennstrecke erreichen.
+\end{center}
+
+Die Argumentation von Zenon war wie folgt: nehmen wir an, ein Läufer möchte die Rennstrecke $[0,1]$ absolvieren. Er startet an der Stelle $x=1$ und das Ziel ist bei $x=0$. Der Läufer läuft mit konstanter Geschwindigkeit $v$. Wir beobachten ihn:
+\begin{enumerate}
+	\item er hat nach $t_1 = \frac{1}{2v}$ die Hälfte der Strecke hinter sich gebracht,
+	\item er hat die Hälfte der Hälfte nach weiteren $t_2 = \frac{1}{4v}$ geschafft,
+	\item $\cdots$
+\end{enumerate}
+Wir können dieses Gedankenexperiment unendlich lange so fortsetzen mit dem folgenden Ergebnis:
+\begin{itemize}
+\item die Zeitinkremente werden immer kleiner, denn es gilt offensichtlich \[ t_k = \displaystyle{\frac1v \left(\frac12\right)^k}\,.\]
+\item um ins Ziel zu kommen benötigt der Läufer die Summe aller dieser einzelnen Zeitspannen $t_k$, also
+	\[ T = t_1 + t_2 + \cdots = \sum\limits_{k=1}^\infty t_k = \sum\limits_{k=1}^\infty \frac1v \left( \frac12\right)^k\,. \]
+	\end{itemize}
+
+\begin{center}
+Aber die Summe von unendlich vielen positiven Zeiteinheiten kann aber keine endliche Zahl sein - oder doch?
+\end{center}
+
+Diese scheinbar paradoxe Situation sollten wir genauer beleuchten. Aber zuvor nochmal zur Begrifflichkeit. Bei gegebener \underline{Zahlenfolge}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen} $(a_n)_{n\in\mathbb N}$ nennen wir die Summe, die wir aus den Zahlenfolgen bilden können eine Reihe:
+\begin{defbox}{Partialsummen und Reihen}{ }
+	Für jede reelle Folge $(a_n)_{n\in\mathbb N}$ heißt die Folge $( S_n)_{n\in \mathbb N}$ mit \[ S_n=a_1 + a_2 + \cdots + a_n = \sum\limits_{k=1}^n a_n \]
+	die zu $(a_n)_{n\mathbb N}$ gehörende Reihe.  Die Zahl $S_n$ heißt $n$-te Partialsumme.
+	Existiert der Grenzwert
+	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=1}^\infty a_k\,,\]
+	so sprechen wir von einer konvergenten Reihe, ansonsten nennt man die Reihe divergent.
+\end{defbox}
+
+Im Fall unseres Läufers konvergiert die Reihe\footnote{Es handelt sich um eine geometrische Reihe mit $q = 1/2 < 1$. Der Läufer ist nach $2/v$ am Ziel.}
+
+Es gibt überschaubar viele Reihen, deren Konvergenz- und Divergenzverhalten bekannt sind und die man immer wieder braucht - hier sind sie:
+\begin{theorembox}{Exponentialreihe}{ !!!}
+	Die folgende Reihe nennt sich Exponentialreihe, ihr Grenzwert ist die Eulersche Zahl:
+	\[
+		\sum\limits_{k=0}^\infty \frac{1}{k!} = e
+	\]
+\end{theorembox}
+
+\begin{theorembox}{Geometrische Reihe}{ !!!}
+	Reihen vom Typ
+	\[ S_n = \sum\limits_{k=0}^n q^k \]
+	nennt man geometrische Reihe. Genau dann, wenn  \( |q| < 1\) ist, dann konvergiert die Reihe (Grenzwert bekannt):
+	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=0}^\infty q^k =  \frac{1}{1-q}, \quad |q|<1 \,.\]
+\end{theorembox}
+
+\begin{theorembox}{Harmonische Reihe}{ !!!}
+	Reihen vom Typ
+ \[ S_n = \sum\limits_{k=0}^n \left( \frac{1}{k} \right)^a\,,\quad a \geq 0\,, \]
+ nennt man harmonische Reihen. Genau dann, wenn \(a > 1\) ist, dann konvergiert die Reihe (Grenzwert i.A. unbekannt):
+	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=1}^\infty \left( \frac{1}{k} \right)^a < \infty,   \quad a>1 \,. \]
+\end{theorembox}
+
+\noindent Bemerkungen:
+
+Hat man den Wert einer Reihe zu berechnen, so benutzt man - ähnlich wie bei Grenzwerten von Folgen oder Funktionen - \underline{Grenzwertsätze}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen}:
+\begin{theorembox}{Grenzwertsätze und Rechenregeln}{ }
+	Es seien $a=\sum\limits_{k=1}^\infty a_k $ und $b=\sum\limits_{k=1}^\infty b_k $ konvergente Reihen.
+	\begin{enumerate}
+		\item  $\sum\limits_{k=0}^\infty (a_k + b_k) = a+ b $ ist konvergent,
+		\item  $\sum\limits_{k=0}^\infty c\cdot a_k = c\cdot a$ ist konvergent,
+		\item  gilt $a_k \leq b_k$ für alle $k$, dann gilt $ a \leq b$.
+
+	\end{enumerate}
+\end{theorembox}
+
+\begin{exabox}{Einige Beispiele - Rechnen Sie nach!}{}
+	\begin{itemize}
+	\item $\displaystyle{ \sum\limits_{k=1}^\infty} k^2 \to \infty $
+	\item $\displaystyle{ \sum\limits_{k=0}^\infty}\left( \displaystyle{\frac12}\right)^k = 2 $
+	\item $\displaystyle{ \sum\limits_{k=0}^\infty}\displaystyle{\frac{5}{3^k}}  = \displaystyle{\frac{15}{2}} $
+	\item $\displaystyle{ \sum\limits_{k=1}^\infty}\displaystyle{\frac{1}{2^k}}  = 1 $
+	\end{itemize}
+\end{exabox}
+
+Die Konvergenz einer Reihe hängt davon ab, wie schnell die Summanden gegen Null konvergieren. Neben den Grenzwertsätzen dienen im allgemeinen Konvergenzkriterien, auf die wir hier nicht weiter eingehen.
+
+% \section{Reihen}\label{MA2-zahlenreihen}
+%
+% %\subsection{Vokabular}
+% %\begin{itemize}
+% %	\item Partialsumme
+% %	\item Reihe
+% %	\item Folge
+% %	\item Nullfolge
+% %	\item Monotonie
+% %	\item Notwendig und hinreichende Kriterien
+% %	\item Konvergenz und Divergenz
+% %	\item Konvergenz von Reihen und Integralen ? Absolute Konvergenz
+% %	\item harmonische, geometrische Reihen
+% %	\item alternierende Reihen
+% %\end{itemize}
+%
+% \begin{table}[H]
+%   \centering
+%   \begin{tabularx}{\textwidth}{p{0.8\textwidth} p{0.2\textwidth} }
+%     \toprule
+%     \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+%     \midrule
+%     \textbf{Sie können nach diesem Abschnitt\ldots} & \\[.5\normalbaselineskip]
+%     \tabitem typische Reihen (z.\,B. geometrische oder harmonische Reihen) analysieren und ihr Konvergenzverhalten beurteilen & \\[.5\normalbaselineskip]
+% 	\tabitem mit konvergenten Reihen unter Anwendung der Rechenregeln sicher umgehen  & \\[.5\normalbaselineskip]
+%     \midrule
+%     \textbf{Sie sollten bereits\ldots} &  \\[.5\normalbaselineskip]
+%     \tabitem Grenzwerte von Zahlenfolgen berechnen können & \ifintegriereaufgaben \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen} \else \href{MA1-grenzwerte-von-folgen-und-funktionen.pdf}{MA1-grenzwerte-von-folgen-und-funktionen} \fi \\
+%     \tabitem Ungleichungen sicher lösen können & \ifintegriereaufgaben \abschnittsverweis{MA1-aequivalenzumformungen} \else \href{MA1-aequivalenzumformungen.pdf}{MA1-aequivalenzumformungen} \fi\\[.5\normalbaselineskip]
+%     \bottomrule
+%   \end{tabularx}
+% \end{table}
+%
+% \noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-zahlenreihen-aufgaben]{hier}. \fi
+%
+% \vspace{0.3cm}
+% \hrule
+%
+% %\subsection{Theorie}
+% \subsection{Paradoxon von Zenon}
+% \begin{exabox}{Paradoxon von Zenon, griechischer Philosoph, $5.$ Jhd vor Christus}{ }
+% 	\begin{center}
+% 	"\,Ein Läufer kann niemals das Ende einer Rennstrecke erreichen."\,
+% \end{center}
+%
+% Die Argumentation von Zenon war wie folgt: nehmen wir an, ein Läufer möchte die Rennstrecke $[0,1]$ absolvieren. Er startet an der Stelle $x=1$ und das Ziel ist bei $x=0$. Der Läufer läuft mit konstanter Geschwindigkeit $v$. Wir beobachten ihn:
+% \begin{enumerate}
+% 	\item er hat nach $t_1 = \frac{1}{2v}$ die Hälfte der Strecke hinter sich gebracht,
+% 	\item er hat die Hälfte der Hälfte nach weiteren $t_2 = \frac{1}{4v}$ geschafft,
+% 	\item $\cdots$
+% \end{enumerate}
+% Wir können dieses Gedankenexperiment unendlich lange so fortsetzen mit dem folgenden Ergebnis:
+% \begin{itemize}
+% \item die Zeitinkremente werden immer kleiner, denn es gilt offensichtlich \[ t_k = \displaystyle{\frac1v \left(\frac12\right)^k}\,.\]
+% \item um ins Ziel zu kommen benötigt der Läufer die Summe aller dieser einzelnen Zeitspannen $t_k$, also
+% 	\[ T = t_1 + t_2 + \cdots = \sum\limits_{k=1}^\infty t_k = \sum\limits_{k=1}^\infty \frac1v \left( \frac12\right)^k\,. \]
+% 	\end{itemize}
+%
+% 	Fazit: Die Summe von unendlich vielen positiven Zeiteinheiten kann aber keine endliche Zahl sein - oder doch?
+% \end{exabox}
+%
+% \subsection{Konvergenz von Reihen}
+%
+% Diese Frage wollen wir jetzt genauer beleuchten. Aber zuvor nochmal zur Begrifflichkeit. Bei gegebener \underline{Zahlenfolge}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen} $(a_n)_{n\in\mathbb N}$ nennen wir die Summe, die wir aus den Zahlenfolgen bilden können eine Reihe:
+% \begin{defbox}{Partialsummen und Reihen}{ }
+% 	Für jede reelle Folge $(a_n)_{n\in\mathbb N}$ heißt die Folge $( S_n)_{n\in \mathbb N}$ mit \[ S_n=a_1 + a_2 + \cdots + a_n = \sum\limits_{k=1}^n a_n \]
+% 	die zu $(a_n)_{n\mathbb N}$ gehörende Reihe.  Die Zahl $S_n$ heißt $n$-te Partialsumme.
+% 	Existiert der Grenzwert
+% 	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=1}^\infty a_k\,,\]
+% 	so sprechen wir von einer konvergenten Reihe, ansonsten nennt man die Reihe divergent.
+% \end{defbox}
+%
+% Es gibt Reihen, deren Konvergenz- und Divergenzverhalten sich sehr präzise beschreiben läßt. Wir fassen sie in der nächsten Box zusammen:
+% \begin{theorembox}{Exponentialreihe}{ !!!}
+% 	Die folgende Reihe nennt sich Exponentialreihe, ihr Grenzwert ist die Eulersche Zahl:
+% 	\[
+% 		\sum\limits_{k=0}^\infty \frac{1}{k!} = e
+% 	\]
+% \end{theorembox}
+%
+% \begin{theorembox}{Geometrische Reihe}{ !!!}
+% 	Reihen vom Typ
+% 	\[ S_n = \sum\limits_{k=0}^n q^k \]
+% 	nennt man eine geometrische Reihe. Genau dann, wenn  \( |q| < 1\) ist, dann konvergiert die Reihe und der Grenzwert ist bekannt:
+% 	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=0}^\infty q^k =  \frac{1}{1-q}, \quad |q|<1 \,.\]
+% \end{theorembox}
+%
+% \begin{theorembox}{Harmonische Reihe}{ !!!}
+% 	Reihen vom Typ
+%  \[ S_n = \sum\limits_{k=0}^n \left( \frac{1}{k} \right)^a\,,\quad a \geq 0\,, \]
+% 	nennt man harmonische Reihen. Genau dann, wenn \(a > 1\) ist, dann konvergiert die Reihe:
+% 	\[ \lim\limits_{n\to \infty} S_n = \sum\limits_{k=1}^\infty \left( \frac{1}{k} \right)^a < \infty,   \quad a>1 \,. \]
+% \end{theorembox}
+%
+% %\begin{theorembox}{Alternierende Reihen}{ !!!}
+% %Reihen vom Typ
+% %	\[ S_n = \sum\limits_{k=0}^n (-1)^k a_k\,,\quad a_k \geq 0\,, \]
+% %	nennt man alternierende Reihen. Ist die Folge $(a_n)_n$ eine monoton fallende Nullfolge, so konvergiert die alternierende Reihe (Leibniz-Kriterium).
+% %\end{theorembox}
+%
+% \noindent Bemerkungen:
+% \begin{itemize}
+% 	\item Im obigen Fall unseres Läufers konvergiert die Reihe, denn sie gehört in die Klasse der geometrischen Reihen: es ist $a=1/v$ und $q = 1/2 < 1$, das heißt der Läufer ist nach $2/v$ am Ziel.
+% \end{itemize}
+%
+% Hat man den Wert einer Reihe zu berechnen, so benutzt man - ähnlich wie bei Grenzwerten von Folgen oder Funktionen - \underline{Grenzwertsätze}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen}:
+% \begin{theorembox}{Grenzwertsätze und Rechenregeln}{ }
+% 	Es seien
+% 	\[
+% 	a=\sum\limits_{k=1}^\infty a_k
+% 	\quad \text{und} \quad
+% 	b=\sum\limits_{k=1}^\infty b_k
+% 	\]
+% 	konvergente Reihen.
+% 	\begin{enumerate}
+% 		\item  $\displaystyle \sum\limits_{k=1}^\infty (a_k + b_k) = a+ b$ ist konvergent,
+% 		\item  $\displaystyle \sum\limits_{k=1}^\infty c\, a_k = c\, a$ ist konvergent,
+% 		\item  gilt $a_k \leq b_k$ für alle $k$, so gilt auch $ a \leq b$.
+% 	\end{enumerate}
+% \end{theorembox}
+%
+% \begin{exabox}{Einige Beispiele - Rechnen Sie nach!}{}
+% 	\begin{itemize}
+% 	\item $\displaystyle{ \sum\limits_{k=1}^\infty} k^2 \to \infty $
+% 	\item $\displaystyle{ \sum\limits_{k=0}^\infty}\left( \displaystyle{\frac12}\right)^k = 2 $
+% 	\item $\displaystyle{ \sum\limits_{k=0}^\infty}\displaystyle{\frac{5}{3^k}}  = \displaystyle{\frac{15}{2}} $
+% 	\item $\displaystyle{ \sum\limits_{k=1}^\infty}\displaystyle{\frac{1}{2^k}}  = 1 $
+% 	\end{itemize}
+% \end{exabox}
+%
+% Die Konvergenz einer Reihe hängt davon ab, wie schnell die Summanden gegen Null konvergieren. Neben den Grenzwertsätzen dienen im allgemeinen Konvergenzkriterien, auf die wir hier nicht weiter eingehen.
+% %um Aussagen zu treffen:\marginpar{\small Aufgabe}
+% %\begin{theorembox}{Konvergenzkriterien}{ }
+% %	\begin{enumerate}
+% %	\item (Wurzelkriterium) Für eine Reihe $\sum\limits_{k=1}^\infty a_k$, berechnet man den Grenzwert \[ r = \lim\limits_{n\to \infty} \sqrt[n]{| a_n |}\,.\]  Es gilt:
+% %		\begin{itemize}
+% %		\item ist $r>1$, dann divergiert die Reihe,
+% %		\item ist $r < 1$, dann konvergiert die Reihe,
+% %		\item ist $r=1$, dann ist keine Aussage möglich.
+% %		\end{itemize}
+% %	\item (Quotientenkriterium) Für eine Reihe $\sum\limits_{k=1}^\infty a_k$ mit $a_k \not= 0$, berechnet man den Quotienten \[ r = \lim\limits_{n\to \infty}\left| \frac{a_{n+1}}{a_n} \right| \,.\]  Es gilt:
+% %		\begin{itemize}
+% %		\item ist $r>1$, dann divergiert die Reihe,
+% %		\item ist $r < 1$, dann konvergiert die Reihe,
+% %		\item ist $r=1$, dann ist keine Aussage möglich.
+% %		\end{itemize}
+% %	\item (Konvergente Majorante) Ist $\sum\limits_{k=1}^\infty a_k $ eine konvergente Reihe und gilt $0 \leq b_k \leq a_k$ für alle $k$, so ist $\sum\limits_{k=1}^\infty b_k $ konvergent.
+% %	\item  (Divergente Minorante) Ist $\sum\limits_{k=1}^\infty a_k $ eine divergente Reihe und gilt $0 \leq a_k \leq b_k$ für alle $k$, so ist $\sum\limits_{k=1}^\infty b_k $ divergent.
+% %	\item (Leibniz-Kriterium) Eine alternierende Reihe $\sum\limits_{k=1}^\infty (-1)^k\cdot a_k $ konvergiert, wenn $(a_n)_n$ eine monoton fallende Nullfolge ist.
+% %	\end{enumerate}
+% %\end{theorembox}
+%

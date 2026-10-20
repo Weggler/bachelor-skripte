@@ -1,0 +1,210 @@
+
+\ifintegriereaufgaben
+
+\section*{Stabilität und Eigenlösungen Aufgaben}\label{MA2-stabilitaet-aufgaben}
+Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-stabilitaet}{ (Abschnitt \abschnittsverweis{MA2-stabilitaet})}.
+\else
+\section{Stabilität und Eigenlösungen Aufgaben}\label{MA2-stabilitaet-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript.
+\fi
+Zu diesen Aufgaben ist noch keine ausgearbeitete Lösungssammlung enthalten.
+
+
+%\begin{exercisebox}[Stabilität] % (beide EW <0 -> asymptotisch stabil)
+%Gegeben sei das lineare System
+%
+%\[
+%\dot{x} = Ax, \qquad
+%A=
+%\begin{pmatrix}
+%-2 & 1 \\
+%0 & -3
+%\end{pmatrix}.
+%\]
+%
+%\begin{enumerate}
+%\item Bestimmen Sie die Eigenwerte von \(A\).
+%\item Untersuchen Sie die Stabilität des Gleichgewichtspunktes \(x=0\).
+%\item Skizzieren Sie qualitativ das Verhalten der Lösung für \(t\to\infty\).
+%\end{enumerate}
+%\end{exercisebox}
+
+\begin{exercisebox}[Stabilität] %  (EW 2 > 0 -> instabil)
+Gegeben sei
+
+\[
+A=
+\begin{pmatrix}
+2 & 0 \\
+0 & -1
+\end{pmatrix}.
+\]
+
+\begin{enumerate}
+\item Bestimmen Sie die Eigenwerte.
+\item Ist das System, das durch \(A\) beschrieben wird, stabil?
+\item Welche Richtung wächst exponentiell?
+\end{enumerate}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Stabilität] %  (negativer Realteil -> stabile Spirale
+Das System
+
+\[
+\dot{x} =
+\begin{pmatrix}
+0 & 1 \\
+-4 & -1
+\end{pmatrix}
+x
+\]
+
+beschreibt einen gedämpften Oszillator.
+
+\begin{enumerate}
+\item Bestimmen Sie die Eigenwerte.
+\item Welche Art von Stabilität liegt vor?
+\end{enumerate}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Stabilität]
+Ein elektrisches System wird beschrieben durch
+
+\[
+\dot{x} =
+\begin{pmatrix}
+-1 & 2 \\
+0 & -3
+\end{pmatrix}
+x.
+\]
+
+\begin{enumerate}
+\item Bestimmen Sie die Eigenwerte.
+\item Ist das System stabil?
+\item Was bedeutet das für das elektrische Netzwerk?
+
+\end{enumerate}
+\end{exercisebox}
+
+%\begin{exercisebox}[Stabilität (Kriterium)]
+%Die Polstellen eines Systems sind
+%
+%\[
+%s=-2 \pm 3\,i\,.
+%\]
+%
+%Welche Aussage ist korrekt?
+%
+%\begin{itemize}[label={$\Box$}]
+%\item Das System zeigt eine gedämpfte Schwingung.
+%\item Das System wächst exponentiell.
+%\item Das System ist konstant.
+%\item Das System ist instabil.
+%\end{itemize}
+%\end{exercisebox}
+
+\begin{exercisebox}[Stabilität (Kriterium)]
+Gegeben sei
+
+\[
+A=
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}.
+\]
+
+\begin{enumerate}
+\item Zeigen Sie, dass
+
+\[
+\lambda^2-(a+d)\lambda+(ad-bc)=0
+\]
+
+das charakteristische Polynom ist.
+
+\item Welche Bedingungen an Spur und Determinante garantieren Stabilität?
+\end{enumerate}
+\end{exercisebox}
+
+	\begin{exercisebox}[Stabilität (Kriterium)]
+Die folgende Skizze zeigt eine gedämpfte Schwingung.
+
+\begin{center}
+\includegraphics[width=6cm]{../Mathematik_2/Bilder/federpendel_gedaempfte_schwingung_zeitverlauf.png}
+\end{center}
+\begin{enumerate}
+
+\item Welche Form hat die zugrunde liegende Funktion?
+\item Welche Rolle spielen Real- und Imaginärteil des Exponenten?
+
+\end{enumerate}
+\end{exercisebox}
+
+%\begin{exercisebox}[Stabilität (Kriterium)]
+%Ein lineares System
+%
+%\[
+%\dot{x}=A\,x
+%\]
+%
+%besitzt Eigenwerte
+%
+%\[
+%\lambda_1=-2, \qquad \lambda_2=-1.
+%\]
+%
+%Welche Aussage ist korrekt?
+%
+%\begin{itemize}[label={$\Box$}]
+%\item Das System ist asymptotisch stabil.
+%\item Das System ist instabil.
+%\item Das System besitzt periodische Lösungen.
+%\item Das System divergiert.
+%\end{itemize}
+
+%\end{exercisebox}
+
+%\begin{exercisebox}[Stabilität (Eigenwerte)]
+%Gegeben sei
+%
+%\[
+%A=
+%\begin{pmatrix}
+%-2 & 1 \\
+%0 & -3
+%\end{pmatrix}.
+%\]
+%
+%\begin{enumerate}
+%
+%\item Bestimmen Sie die Eigenwerte.
+%\item Ist das System stabil?
+%
+%\end{enumerate}
+%\end{exercisebox}
+%
+%
+%\begin{exercisebox}[Stabilität (Phasenportrait)]
+%Das System
+%
+%\[
+%\dot{x}=
+%\begin{pmatrix}
+%0 & 1 \\
+%-1 & 0
+%\end{pmatrix}x
+%\]
+%
+%beschreibt eine Bewegung.
+%
+%\begin{enumerate}
+%\item Bestimmen Sie die Eigenwerte.
+%\item Welche Art von Stabilität liegt vor?
+%\item Skizzieren Sie das Phasenportrait.
+%\end{enumerate}
+%\end{exercisebox}

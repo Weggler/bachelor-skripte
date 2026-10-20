@@ -1,0 +1,19 @@
+% Gemeinsame Kopfzeile: eine Hauptueberschrift, links, klein und aufrecht.
+% Die Fusszeilen werden weiterhin im jeweiligen Hauptdokument festgelegt.
+\makeatletter
+\@ifpackageloaded{scrlayer-scrpage}{%
+  % Im gegliederten Gesamtskript ist das Kapitel die Hauptueberschrift.
+  \automark{chapter}
+  \setkomafont{pagehead}{\normalfont\footnotesize}
+  \ihead{}\chead{}\ohead{}
+  \lehead{\headmark}
+  \lohead{\headmark}
+}{%
+  % In den article-Dokumenten ist section die oberste Gliederungsebene.
+  \fancyhead{}
+  \fancyhead[L]{\normalfont\footnotesize\nouppercase{\leftmark}}
+  \renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+  \renewcommand{\subsectionmark}[1]{}
+  \setlength{\headheight}{14pt}
+}
+\makeatother

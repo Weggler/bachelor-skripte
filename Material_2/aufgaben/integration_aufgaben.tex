@@ -1,0 +1,240 @@
+\ifintegriereaufgaben
+\section*{Integral Aufgaben}\label{MA2-integration-aufgaben}
+
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-integration}{ (Abschnitt \abschnittsverweis{MA2-integration})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-integration-loesungen]{hier}.
+\else
+\section{Integral Aufgaben}\label{MA2-integration-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-integration-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Flächeninhalt]
+	Berechnen mit Hilfe geometrischer Überlegungen den Flächeninhalt zwischen den Graphen und $x$-Achse
+	\small{
+	\begin{eqnarray*}
+		(a) \;  \displaystyle{ \int\limits_0^4} (2x-1) \mathrm{d}x \quad  \quad  (b) \; \displaystyle{ \int\limits_0^2} (x-1)^3 \mathrm{d}x  \quad \quad (c) \; \displaystyle{ \int\limits_0^1} |\sin(2\pi x)| \mathrm{d}x
+\end{eqnarray*}}
+\end{exercisebox}
+
+\begin{exercisebox}[Flächeninhalt (Trapezformel)] % LS p 153
+\begin{itemize}
+	\item[(a)] $A$ sei der Flächeninhalt eines Kreises mit Radius $r$. Zeigen Sie: $ 2r^2 < A < 4 r^2$.
+	\item[(b)] Entwickeln Sie eine Methode zur Bestimmung von $A$ und implementieren Sie diese (Matlab, Excel).
+	\item[(c)] Was ist der Unterschied zur Flächeninhaltsberechnung von Vielecken?
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Eigenschaften des Integrals]
+	Begründen Sie, dass jede Integralfunktion $ F(x):= \displaystyle{\int\limits_{a}^x} f(t)\,\mathrm{d}t$ mindestens eine Nullstelle hat.
+\end{exercisebox}
+
+\begin{exercisebox}[Hauptsatz der Differential- und Integralrechnung]  %Papula 1, V, Abschnitt 1-7, Aufgaben Seite 559, Lösungen Seite 787
+	Bestimmen Sie alle Stammfunktionen folgender Funktionen:
+	\begin{eqnarray*}
+		\begin{array}{l l l }
+			(a) \;  x\mapsto 4x^5-6x^3+8x^2-3x +5
+			& (b) \; x\mapsto e^x + x^2 - 2x + \sin(x)
+			& (c)\; x\mapsto \displaystyle{\frac{\tan(x)}{\sin(2x)}}
+		\end{array}
+	\end{eqnarray*}
+%\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Bestimmte und uneigentliche Integrale] %Papula 1, V, Abschnitt 1-7, Aufg. 3 Seite 560, Lösungen Seite 787ff
+	% https://mathematikalpha.de/wp-content/uploads/2016/05/aufg125.pdf
+	Bestimmen Sie die Werte der folgenden Integrale, vorausgesetzt sie existieren:
+	\begin{eqnarray*}
+		\hspace{-0.3cm}
+		\begin{array}{l l l l}
+			(a) \; \displaystyle{\int_0^4} \left( x^3 - 5x^2 + \frac32 x -10\right)\, \mathrm{d}x & (b)\; \displaystyle{\int_1^4} \displaystyle{\frac{1-z^2}{z}}\,\mathrm{d}z &(c)\; \displaystyle{\int_0^{0,5}} \displaystyle{\frac{3}{\sqrt{1-x^2}}}\, \mathrm{d}x & (d)\; \displaystyle{\int_0^{\pi/4}} \displaystyle{\frac{1-\cos^2(x)}{2\cos^2(x)}}\,\mathrm{d}x \\[2ex]
+			(e) \; \displaystyle{\int_1^\infty} \frac{1}{x^4}\,\mathrm{d} x & (f)\; \displaystyle{\int_0^\infty} \displaystyle{\frac{1}{x}}\,\mathrm{d}x  & (g)\; \int\limits_{-\infty}^0 e^{-t}\,\mathrm{d}t &(h)\; \displaystyle{\int_0^{4}} \displaystyle{\frac{2}{\sqrt{t}}}\, \mathrm{d}t
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Numerische Integration]
+	Das folgende bestimmte Integral soll näherungsweise bestimmt werden:
+	\[
+		\int_1^3 x^3 \, \mathrm{d}x = 20\,.
+	\]
+	Bestimmen Sie eine Zerlegung des Intervalls $[1,3]$ in $4$ gleich große Intervalle. Approximieren Sie das Integral mit Hilfe einer Rechteckregel, mit Hilfe der Trapezregel und mit Hilfe der Simpson-Regel.
+\end{exercisebox}
+
+\begin{exercisebox}[Simpson-Regel]
+	%\begin{itemize}
+		%\item[(a)] Berechnen SIe \[ \int\limits_0^2 \left( 4x^3+3x^2-4x-1\right)\,\mathrm{d}x \] mit der Simpson-Regal. Welchen absoluten Fehler erwarten Sie? Überprüfen Sie Ihre Vermutung durch analytische Berechnung des Integrals.
+		%\item[(b)]
+	Bestimmen Sie den relativen Fehler, den Sie bei einer Approximation des Intgrals \[ \int\limits_0^1 x\cdot \cos(x^2) \, \mathrm d x\] mit Hilfe der Simpson-Regel auf drei äquidistanten Teilintervallen machen.
+	%\end{itemize}
+\end{exercisebox}
+
+%\subsection{Praxis}
+
+%\begin{exercisebox}[Ableitungen] % Papula 1, V, Abschnitt 1-2, Aufg. 6 % p. 174
+%	Bestimmen Sie die folgenden Ableitungen
+%	\begin{eqnarray*}
+%			(a) \; f: x\mapsto e^{\sin(x)} + C  \quad
+%			(b)\; f: x\mapsto \displaystyle{\frac16} \sin^2(3x) + C
+%			(c)\; f: x\mapsto \displaystyle{\int_{-5}^x} (t^2-2t)\,\mathrm{d}t + C
+%			(d)\; f: x\mapsto \displaystyle{\int_{x}^0} (t^2-2t)\,\mathrm{d}t + C
+%			(e)\; f: x\mapsto \displaystyle{\int_{0}^x} (t^2-2t)\,\mathrm{d}t + C
+%		\end{array}
+%	\end{eqnarray*}
+%%\vspace{0.3cm}
+%%{\bf Lösung:} Differenziere die rechte Seite.
+%\begin{itemize}
+%	\item[(a)] $\cos(x) \cdot e^{\sin(x)} $
+%	\item[(b)] $\sin(3x) \cdot \cos(3x) $
+%	\item[(c)] $x^2-2x$
+%	\item[(d)] $-x^2+2x$
+%	\item[(e)] $x^2-2x$
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Eigenschaften des Integrals] % p. 174
+%	Bestimmen Sie obere Grenze $b$ bzw. die untere Grenze $a$
+%	\begin{eqnarray*}
+%			(a)\; \displaystyle{\int_{a}^5} x^2\,\mathrm{d}t = 63
+%			(b)\; \displaystyle{\int_{1}^b} 2x^3\,\mathrm{d}x = 9
+%			(c)\; \displaystyle{\int_{a}^{10}} \frac{1}{x^2}\,\mathrm{d}x = 0,5
+%		\end{array}
+%	\end{eqnarray*}
+%%%\vspace{0.3cm}
+%%%{\bf Lösung:}
+%%\begin{itemize}
+%%	\item[(a)] $a=-4$
+%%	\item[(b)] $b=3$
+%%	\item[(c)] $a=5/3$
+%%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Flächeninhalt]
+%	Berechnen mit Hilfe von geometrischen Überlegungen den Flächeninhalt zwischen Graphen und $x$-Achse
+%	\begin{eqnarray*}
+%	\displaystyle{\int\limits_0^{2\pi}} \sin(k x)\cdot \cos(k x) \mathrm{d}x
+%		\end{array}
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%$ A = 0$
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Eigenschaften des Integrals] % Papula, Abschn. 1-7, Aufg. 5
+%	Es gelte
+%	\[ \int\limits_0^{1} f(x) \mathrm{d}x = 3 \land \int\limits_0^{2} f(x) \mathrm{d}x = 9\,. \]
+%	Mit diesen Informationen läßt sich der Integralwert \[ \displaystyle{ \int\limits_{1}^2} f(x)\, \mathrm{d}x\] bestimmen - wie lautet er?
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\begin{eqnarray*}
+%	\int\limits_1^2 f(x)\,\mathrm{d}x &=& - \int\limits_0^1 f(x)\, \mathrm{d}x + \int\limits_0^1 f(x)\, \mathrm{d}x + \int\limits_1^2 f(x)\, \mathrm{d}x \\
+%	&=& - \int\limits_0^1 f(x)\, \mathrm{d}x + \int_0^2 f(x) \, \mathrm{d}x = -3 + 9 = 6\,.
+%\end{eqnarray*}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Flächeninhalt] % p. 175
+%Gegeben ist die Funktion \(f\) mit \(f:x\mapsto 2- \displaystyle{ \frac{2}{x^2+1}}\).  Skizzieren Sie den Graphen von \(f\).
+%\begin{itemize}
+%	\item[(a)] Bestimmen Sie alle Stellen \(x\), für die gilt.
+%\[ 2-\frac{2}{x^2} < f(x) \].
+%	\item[(b)] Der Graph von \(f\), die \(x\)-Achse und die Geraden mit den Gleichungen \(x=4\) und \(x=10\) begrenzen eine Fläche. Geben Sie an, wie groß der Inhalt diese Fläche mindestens ist.
+%\end{itemize}
+%%\vspace{0.3cm}
+%%{\bf Lösung:}
+%\begin{itemize}
+%	\item[(a)] $-\infty < x < \infty$
+%	\item[(b)]
+%Es gilt
+%\begin{eqnarray*}
+%	x^2 < x^2+1 \Leftrightarrow \frac{1}{x^2} > \frac{x^2+1} \Leftrightarrow -\frac{1}{x^2} < -\frac{x^2+1} \Leftrightarrow 2 -\frac{1}{x^2} < 2-\frac{x^2+1} \Rightarrpw A \geq \int\limits_{4}^{10} \left( 2- \frac2{x^2}\right) \,\mathrm{d}x = 11,7
+%\end{eqnarray*}
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}{Hauptsatz der Differential- und Integralrechnung}{ }  %Papula 1, V, Abschnitt 1-7, Aufg. 1
+%	Bestimmen Sie alle Stammfunktionen folgender Funktionen:
+%	\begin{eqnarray*}
+%		\begin{array}{l l l }
+%			(a)\; x\mapsto \displaystyle{\frac{1-2x^2-4x^3}{2x}} + 3 & (b)\; z\mapsto \displaystyle{\frac{5}{3+3z^2}} -\displaystyle{\frac14}z^4 & (c)\; x\mapsto -3 e^x - \cos(x)  \\
+%			(d)\; x\mapsto \sqrt{x \sqrt{x}} & (e)\; t\mapsto -\displaystyle{\frac{3}{1+t^2}} - \displaystyle{\frac1t} &
+%		\end{array}
+%	\end{eqnarray*}
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\begin{itemize}
+%	\item[(a)] $F(x) = \displaystyle{\frac12} \ln(|x|) - \displaystyle{\frac12}x^2 - \displaystyle{\frac23} x^3 + 3 x + C $
+%	\item[(b)] $F(z) = \displaystyle{\frac53} \arctan(z) - \displaystyle{\frac{1}{20}}z^5 + C $
+%	\item[(c)] $F(x) = -3 e^x - \sin(x) + C $
+%Papula 1, V, Abschnitt 1-7, Aufg. 2
+%	\item[(d)] $F(x) =- 3 \arctan(t) - \ln(|t|) + C $
+%	\item[(e)] $F(z) = \displaystyle{\frac47} x^{7/4} + C $
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Fehler numerischer Verfahren]
+%Betrachten Sie das folgende Integral
+%\[
+%	\int\limits_{-10}^{10} e^{-x^2}\,\mathrm{d}x\,.
+%\]
+%Approximieren Sie den Integralwert mit Hilfe der Trapezformel. Wie fein muss die Zerlegung sein, um einen relativen Fehler von \( 1\%\) zu erreichen? Benutzen Sie zur Fehlerberechnung den exakten Wert des Integrals erf(x). Schreiben Sie hierzu ein Program.
+%\vspace{0.3cm}
+%{\bf Lösung:}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Fehler numerischer Verfahren]
+%Betrachten Sie das folgende Integral
+%\[
+%	\int\limits_{-5}^2 \left( 4x^3+2x-\pi\right)\,\mathrm{d}x\,.
+%\]
+%Zu untersuchen ist die Güte unterschiedlicher numerischer Integrationsverfahren. Approxieren Sie den Integralwert für eine äquidistante Zerlegung des Intervalls in drei Teile, also \(n=3\) mit
+%\begin{itemize}
+%	\item der Obersumme
+%	\item der Trapezformel
+%	\item Simpson-Formel exakt für kubische Funktionen
+%\end{itemize}
+%Wie fein muss die Zerlegung mindestens sein, um mit der Trapezformel einen relativen Fehler von \( 1\%\) zu erreichen? Schreiben Sie hierzu ein Program.
+%Bestimmen Sie eine Approximation an den Integralwert für eine äquidistante Zerlegung des Intervalls in drei Teile, also \(n=3\)
+%\begin{itemize}
+%	\item Trapezformel exakt für lineare Funktionen
+%	\item Simpson-Formel exakt für kubische Funktionen
+%	\item Obersumme für nichts exakt
+%\end{itemize}
+%%\vspace{0.3cm}
+%%{\bf Lösung:}
+%\begin{itemize}
+%	\item Trapezformel ist exakt für lineare Funktionen
+%	\item Simpson-Formel ist exakt für kubische Funktionen
+%	\item Obersumme für nichts exakt
+%\end{itemize}
+%\end{exercisebox}
+
+
+%\begin{exercisebox}[Zwischenwertsatz]
+%	Bestimmen Sie eine Zwischenstelle $\xi\in (0,a)$, so dass für $f: x\mapsto x^2$ folgendes gilt
+%	\[ \int\limits_0^a f(x) \mathrm{d}x =  a\cdot f(\xi)\,.\]
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%Es gilt
+%\begin{eqnarray*}
+%	\int\limits_0^a f(x)\,\mathrm{d}x = \int\limits_0^a x^2\, \mathrm{d}x \Rightarrow  \quad \xi\in(0,a): \xi^2 \cdot a \stackrel{!}{=} \frac13 a^3 \Rightarrow \xi = \frac{a}{\sqrt{3}}\,.
+%\end{eqnarray*}
+%\end{exercisebox}
+
+
+%\begin{exercisebox}[Numerische Integration]
+%		Schreiben Sie allgemein ein Programm zur näherungsweisen Berechnung von \[ \int\limits_a^b f(x) \, \mathrm{d}x \]
+%		mithilfe der summierten Trapezregel mit $n\in\mathbb N$ Unterteilungen des Intervalls. Folgende Funktionen sollen damit näherungsweise integriert werden:
+%		\[ \int\limits_1^3 x^3 \, \mathrm{d}x,\quad \int\limits_0^1 \sqrt{x}\,\mathrm{d}x, \quad \int\limits_1^2\sqrt{x}\,\mathrm{d}x\,.\]
+%		Gehen Sie dabei wie folgt vor:
+%	\begin{itemize}
+%		\item[(a)] Berechnen Sie für $n=10, 100, 10000$ eine Approximation des Integrals und berechnen Sie den absoluten Fehler $e_n$.
+%		\item[(b)] Tragen Sie dann den absoluten Fehelr $e_n$ logarithmisch über die Anzahl $n$ auf und bestimmen Sie graphisch die Ordnung $k$ für die ein $C$ existiert, so dass
+%			\[ e_n \leq C\cdot n^{-k} \]
+%			gilt Wie erklären Sie sich die Unterschiede?
+%
+%	\end{itemize}
+%%\vspace{0.3cm}
+%%{\bf Lösung:} \newline
+%%\begin{itemize}
+%%\end{itemize}
+%\end{exercisebox}
+

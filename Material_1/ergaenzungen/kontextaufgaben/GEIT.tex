@@ -1,0 +1,1013 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true,   % Colours links instead of ugly boxes
+  urlcolor     = red,    % Colour for external hyperlinks
+  linkcolor    = red,    % Colour of internal links
+  citecolor    = red     % Colour of citations
+}
+
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+
+% Notes am rechten Seitenrand -deshalb die unterschiedliche Breite.
+\usepackage{marginnote}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+\usepackage{trfsigns}
+
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\usepackage{tcolorbox}
+\usepackage{pdflscape}
+
+\tcbuselibrary{breakable,skins}
+\usepackage{ctable}
+\definecolor{darkgreen}{RGB}{0,136,0 }
+\definecolor{htwgreen}{RGB}{134,189,36 }
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2}; 
+	  %\node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} 
+	  %};
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Übung
+% #1: Title
+% #2: Bemerkung
+\newcounter{exercise}
+\newtcolorbox{exercisebox}[1][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east)  {#1}; 
+	  \node[anchor=north east, text=black, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  
+	  {\small  Aufg. \stepcounter{exercise}\theexercise };
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+
+\title{Aufgabe: Sensordatenübertragung und Steuerlogik \\(für Gebäudeenergie- \& Gebäudeinformationstechnik)}
+\author{Studiengang: Gebäudeenergie- und Gebäudeinformationstechnik}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe Quadratische Gleichung}
+In einem Versuchsbau werden modulare Fassadenelemente in Würfelform zu einem quaderförmigen Demonstrations-Aufbau mit quadratischer Grundfläche und quadratischen Außenflächen zusammengesetzt. Von außen sind insgesamt \(1657\) Fassadenwürfel sichtbar.\\
+Frage: Wie viele Fassadenelemente passen ins Innere des Aufbaus? 
+
+\textbf{Lösung.}\\[3pt]
+Die Anzahl der Fassadenelemente beträgt \(n^3\), wobei \(n = 19\). \(n\) ist die physikalisch sinnvolle Lösung der folgenden Gleichung:
+\[\begin{array}{c rcl} & 2\cdot n^2 + 2\cdot (n-2)\cdot n + (n-2)^2 &=& 1657 \\  \Leftrightarrow  & 5\, n^2 - 8 \, n - 1653 &=& 0 \\ \Leftrightarrow & n_{1,2} = \displaystyle \frac{ 8 \pm \sqrt{ 64 + 20\cdot 1653}}{10 } = \begin{cases} 19 \\ (- xxx) \text{ nicht physikalisch}   \end{cases} \end{array}\]
+
+	\newpage
+
+\section*{Aufgabe (Logik)}
+In einem smart house wird die Lüftungsanlage automatisch gesteuert. Die Anlage reagiert auf Sensoren, die die Luftqualität, die Tageszeit und die Anwesenheit von Lebewesen erfassen. Die Regelung der Anlage basiert auf folgender Regel: 
+\begin{quote}
+\emph{Die Lüftung läuft, wenn entweder Personen anwesend sind oder der CO\textsubscript{2}-Wert zu hoch ist, aber sie läuft nicht im Nachtmodus.}
+\end{quote}
+
+\begin{itemize}
+	\item[(i)] Ein Lüftungsventilator hat eine elektrische Leistung von \(150\ \text{W}\).  
+Er läuft täglich 8 Stunden, um die Luftqualität im Gebäude aufrechtzuerhalten.
+
+\begin{itemize}
+	\item[(a)] Berechne den täglichen Energieverbrauch in Wattstunden (Wh).  
+	\item[(b)] Wie viel Kilowattstunden (kWh) werden in einer Woche verbraucht (7 Tage Betrieb)?
+\end{itemize}
+
+\item[(ii)] 
+
+Nehmen Sie die folgenden Kürzel für die gegebenen Eingangssignale an:
+\begin{itemize}
+  \item $A$: Anwesenheit erkannt
+  \item $C$: CO\textsubscript{2}-Wert zu hoch
+  \item $N$: Nachtmodus aktiv
+\end{itemize}
+Für den automatischen Betrieb
+\begin{itemize}
+	\item[(a)] Formulieren Sie die Regel für die automatische Steuerung der Lüftungsanlage als logischen Ausdruck unter Verwendung der logischen Operatoren $\land$, $\lor$ und $\lnot$.  
+	\item[(b)] Erstellen Sie die Wahrheitstabelle, die alle Zustände der Anlage erfasst (8 Zeilen).  
+	\item[(c)] Beschreiben Sie mit einem Satz, wann die Lüftung tatsächlich läuft.
+\end{itemize}
+\end{itemize} 
+
+\textbf{Lösung Teil A – Energieverbrauch und Betriebsdauer.}\\[3pt]
+1. Energieverbrauch pro Tag:
+\[
+E_\text{Tag} = 150\ \text{W} \times 8\ \text{h} = 1200\ \text{Wh}.
+\]
+
+2. Energieverbrauch pro Woche:
+\[
+E_\text{Woche} = 1200\ \text{Wh} \times 7 = 8400\ \text{Wh} = 8{,}4\ \text{kWh}.
+\]
+
+\textbf{Antwort:}  
+Der Ventilator verbraucht täglich 1,2 kWh und in einer Woche 8,4 kWh.
+
+\textbf{Lösung Teil B – Einfache logische Steuerung.}\\[3pt]
+
+a) Boolesche Formel:
+\[
+L(A,C,N) = (A \lor C) \land \lnot N.
+\]
+
+b) Wahrheitstabelle:
+
+\medskip
+\begin{tabular}{ccc|c}
+$A$ & $C$ & $N$ & $L(A,C,N)$\\
+\midrule
+0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 1 & 0 & 1\\
+0 & 1 & 1 & 0\\
+1 & 0 & 0 & 1\\
+1 & 0 & 1 & 0\\
+1 & 1 & 0 & 1\\
+1 & 1 & 1 & 0\\
+\end{tabular}
+
+c) Beschreibung:  
+Die Lüftung läuft, wenn jemand anwesend ist oder der CO\textsubscript{2}-Wert zu hoch ist,  
+\emph{solange der Nachtmodus nicht aktiv ist.}
+
+\textbf{Didaktischer Hinweis}
+
+Diese Aufgabe verbindet Grundrechenarten (Energie \(=\) Leistung \(\cdot\) Zeit)  
+mit logischer Steuerung, wie sie in der Gebäudeautomatisierung häufig vorkommt.  
+Sie eignet sich als Einstieg in Themen wie:
+\begin{itemize}
+  \item Energieeffizienz und Betriebsstrategien in Gebäuden,
+  \item Boolesche Logik in Gebäudeleittechnik,
+  \item einfache Entscheidungsfunktionen für Lüftung und Klima.
+\end{itemize}
+
+\newpage
+\section*{Aufgabe (Logik und Pariatät)}
+In der Gebäudeautomation werden Sensordaten (z.\,B. Raumtemperaturen) häufig digital übertragen — auch in einfachen Systemen mit begrenzten Kommunikationsmöglichkeiten. Kleine Fehlererkennungsmechanismen (z.\,B. Paritätsbits) können einfache Übertragungsfehler aufdecken. Gleichzeitig treffen Steuergeräte (z.\,B. Regelventile, Wärmeerzeuger) Entscheidungen anhand boolescher Eingangssignale (Belegung, Fensterstatus, manuelle Freigabe, Brandmeldung). Diese Aufgabe verbindet beides: einfache Paritätsprüfung (Grundlagenarithmetik, Modulo 2) und die Formulierung plus Vereinfachung einer Steuerregel (Aussagenlogik).
+
+\textbf{Teil A — Parität (Sensordaten und Fehlererkennung).}
+
+Ein Temperatursensor sendet den Messwert \(\,21^\circ\mathrm{C}\,\) als 7-Bit Binärwert (dezimal \(21\) = binär \(0010101\)). Zur Übertragung wird dieses 7-Bit-Wort in zwei 4-Bit-Wörter aufgeteilt, indem die ersten vier Bits das erste Nibble bilden und die restlichen drei Bits durch ein Füllbit \(0\) aufgefüllt werden, sodass zwei 4-Bit-Wörter entstehen. Für jedes 4-Bit-Wort wird anschließend ein \emph{gerades Paritätsbit} angehängt (even parity), so dass jedes 5-Bit-Block insgesamt eine gerade Anzahl von Einsen hat.
+
+1. Teile das 7-Bit-Wort in zwei 4-Bit-Wörter, berechne die jeweiligen Paritätsbits und gib die beiden 5-Bit-Übertragungsblöcke an.
+
+2. Angenommen, beim Empfang wird im ersten Block das zweite Bit (von links) versehentlich invertiert (Einzelbitfehler). Zeige, wie der Empfänger mithilfe des Paritätsbits erkennt, dass ein Fehler vorliegt. Kann der Empfänger den fehlerhaften Bit exakt lokalisieren und korrigieren? Begründe kurz.
+
+\medskip
+
+\textbf{Teil B — Steuerregel (Aussagenlogik).}
+
+In einer einfachen Heizsteuerung sind die folgenden booleschen Eingangssignale definiert:
+\begin{itemize}
+  \item $O$: Raum ist belegt (occupied).
+  \item $L$: Raumtemperatur liegt unter der Sollgrenze (low = Heizbedarf).
+  \item $M$: Manuelle Freigabe / Fernbedienungs-Override ist aktiv (manual override).
+  \item $F$: Brand-/Rauchmelder meldet Brand (fire alarm).
+\end{itemize}
+
+Die gewünschte Schaltregel lautet in Worten:
+\begin{quote}
+Das Heizventil soll öffnen, wenn der Raum belegt ist und Heizbedarf besteht, \emph{oder} wenn eine manuelle Freigabe aktiv ist, es jedoch keine Brandmeldung gibt.
+\end{quote}
+
+a) Formuliere diese Regel als boolesche Formel \(G(O,L,M,F)\) mit $\land,\lor,\lnot$.
+
+b) Erstelle die Wahrheitstabelle für \(G\) (für alle 16 Kombinationen von $O,L,M,F$).
+
+c) Vereinfache \(G\) mit Hilfe logischer Gesetze so weit wie möglich und gib die vereinfachte Formel an. Nenne kurz eine sinnvolle zusätzliche Annahme über die Eingangssignale, die zu weiterer Vereinfachung führen würde.
+
+\textbf{Lösung Teil A — Parität (Sensordaten und Fehlererkennung).}
+
+Der 7-Bit-Wert für \(21_{10}\) ist:
+\[
+0010101
+\]
+Wir nummerieren die Bits von links nach rechts: 1..7.
+
+Aufteilung in zwei 4-Bit-Wörter (zweites Wort: Bits 5–7 + Füllbit \(0\)):
+\begin{align*}
+\text{Erstes 4-Bit-Wort (Bits 1–4)} &= 0\;0\;1\;0 = 0010,\\
+\text{Zweites 4-Bit-Wort (Bits 5–7 + Füllbit)} &= 1\;0\;1\;0 = 1010.
+\end{align*}
+
+Jetzt berechnen wir für jedes 4-Bit-Wort ein \emph{gerades Paritätsbit} \(p\):
+\[
+p = 
+\begin{cases}
+1,&\text{falls die Anzahl der Einsen im 4-Bit-Wort ungerade ist},\\
+0,&\text{falls sie gerade ist}.
+\end{cases}
+\]
+
+\paragraph{Erstes Wort:} \(0010\) hat genau eine Eins \(\Rightarrow\) ungerade \(\Rightarrow p_1 = 1\). Erster 5-Bit-Block:
+\[
+\boxed{0010\;1}.
+\]
+
+\paragraph{Zweites Wort:} \(1010\) hat genau zwei Einsen \(\Rightarrow\) gerade \(\Rightarrow p_2 = 0\). Zweiter 5-Bit-Block:
+\[
+\boxed{1010\;0}.
+\]
+
+Die beiden zu übertragenden Blöcke sind somit \(00101\) und \(10100\).
+
+\medskip
+
+Angenommen, im ersten Block wird beim Empfang das zweite Bit (von links) invertiert. Gesendeter erster Block:
+\[
+0\;0\;1\;0\;1 = 00101.
+\]
+Invertiere das zweite Bit (Position 2): 0 ? 1. Empfangener Block:
+\[
+0\;\underline{1}\;1\;0\;1 = 01101.
+\]
+Zähle die Einsen im empfangenen 5-Bit-Block: Einsen = 3 (Positionen 2,3,5). Das ist ungerade. Da wir geradzahlige Parität erwarten, erkennt der Empfänger: \emph{Paritätsprüfung schlägt fehl} — ein Fehler wurde entdeckt.
+
+\paragraph{Kann der Fehler lokalisiert/korrektiert werden?} 
+
+Mit nur einem Paritätsbit pro 4-Bit-Block lässt sich erkennen, ob die Anzahl der fehlerhaften Bits in diesem Block ungerade ist (also mindestens ein Bitfehler mit ungerader Hamming-Distanz). Es ist jedoch nicht möglich, allein aus dem einzelnen Paritätsbit eindeutig zu bestimmen, welches der (hier) 4 Datenbits oder das Paritätsbit selbst fehlerhaft ist. Zur korrekten Lokalisierung und automatischen Korrektur eines einzelnen Bitfehlers benötigt man zusätzliche Paritätsbits an bestimmten Positionen (z.\,B. Hamming-Code).\\
+
+\textbf{Antwort:} Fehlererkennung — ja. Fehlerlokalisierung / -korrektur — nicht möglich mit nur einem Paritätsbit pro Block.
+
+\textbf{Lösung Teil B — Steuerregel (Aussagenlogik).}
+
+\paragraph{a) Formel} In symbolischer Form (mit $\land$ für ``und'', $\lor$ für ``oder'', $\lnot$ für ``nicht'') lautet die Schaltbedingung:
+\[
+G(O,L,M,F) \;=\; (O \land L)\; \lor\; (M \land \lnot F).
+\]
+
+\paragraph{b) Wahrheitstabelle} Wir listen $O,L,M,F$ in dieser Reihenfolge; 1 = wahr, 0 = falsch.
+
+\medskip
+\begin{tabular}{cccc|c}
+$O$ & $L$ & $M$ & $F$ & $G(O,L,M,F)$\\
+\midrule
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 1 & 0 & 1 & 0\\
+0 & 1 & 1 & 0 & 1\\
+0 & 1 & 1 & 1 & 0\\
+1 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+1 & 0 & 1 & 0 & 1\\
+1 & 0 & 1 & 1 & 0\\
+1 & 1 & 0 & 0 & 1\\
+1 & 1 & 0 & 1 & 1\\
+1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1\\
+\end{tabular}
+
+\smallskip
+Erläuterung: \(G=1\) genau dann, wenn entweder \(O\land L=1\) (belegt und Heizbedarf) oder \(M\land\lnot F=1\) (manuelle Freigabe aktiv und keine Brandmeldung).
+
+\paragraph{c) Vereinfachung} Die Ausgangsformel
+\[
+G = (O\land L)\ \lor\ (M\land \lnot F)
+\]
+ist bereits eine kompakte Disjunktive Normalform (Sum of Products). Da die beteiligten Literale in den beiden Summanden keine gemeinsamen Variablen teilen (außer in trivialer Weise), existiert ohne weitere Annahmen keine nichttriviale algebraische Faktorisierung, die Anzahl der logischen Operatoren reduziert. In Kurzschreibweise:
+\[
+G = OL + M\overline{F}.
+\]
+
+\paragraph{Mögliche zusätzliche Annahme für weitere Vereinfachung:} In realen Systemen gibt es oft physikalische oder systemseitige Abhängigkeiten, z.\,B. \emph{wenn manuelle Freigabe aktiv ist, dann ist der Raum automatisch als belegt zu betrachten} (formell \(M \Rightarrow O\)). Mit dieser Annahme (\(M \Rightarrow O\), also \(\lnot O \Rightarrow \lnot M\)) könnte man je nach gewollter Form die Steuerlogik umschreiben und in manchen Fällen Redundanzen entfernen. Beispiel: Falls zusätzlich bekannt wäre, dass manuelle Freigabe nur möglich ist, wenn Heizbedarf besteht (\(M \Rightarrow L\)), dann würde der Term \(M\overline{F}\) in manchen Betriebsfällen bereits durch \(OL\) abgedeckt werden — konkrete Vereinfachung hängt von der genauen Zusatzannahme ab.
+
+\textbf{Varianten / Hinweise}
+\begin{itemize}
+  \item Als Variante von Teil A kann man statt einer einzelnen Parität pro Block einen Hamming(7,4)-Code einführen, um Einzelbitfehler zu lokalisieren und zu korrigieren — eine sinnvolle Vertiefungsaufgabe für Studierende dieses Studiengangs.
+  \item In Teil B kann die Aufgabe erweitert werden, indem man Annahmen über Abhängigkeiten (z.\,B. $M\Rightarrow O$) einführt und die Funktion mit Karnaugh-Karte minimiert.
+  \item Für Prüfungsaufgaben geeignet: bitte Studierende bei b) die Tabelle selbst ausfüllen lassen; c) als kurze Begründung genügen.
+\end{itemize}
+\newpage
+
+\section*{Aufgabe (Betragsungleichung)}
+Bei einem einfachen, stationären Modell bewirkt die Reglerstellung \(x\) die folgende Temperaturdifferenz
+\[\displaystyle \Delta T(x)=\frac{5-3\,x}{x+1}\,.\]
+Die Variable $x$ ist die (dimensionslose) Ventil- bzw. Reglerstellung darstellt und es gilt $x\neq -1$. F"ur thermischen Komfort soll die Abweichung vom Sollwert h"ochstens $\pm0.5\,^{\circ}\mathrm{C}$ betragen. Welche Reglereinstellungen \(x\) sind möglich?
+%Bestimmen Sie alle Reglerstellungen $x$ mit
+%\[ |\Delta T(x)|\le 0.5.\]
+%Bestimmen Sie die Stelle $x^*$ im zul"assigen Bereich, an dem die Empfindlichkeit der Abweichung gegen kleine \emph{absolute} "Anderungen von $x$ minimal wird (d.h. ein Punkt, an dem der Betrag der Ableitung von $\Delta T$ m"oglicherweise minimal ist). Diskutiere physikalisch, warum ein Betrieb nahe einem solchen Punkt w"unschenswert ist.
+
+
+
+\textbf{L"osungsvorschlag}\\[3pt]
+\textbf{1. Auflösen des Betrags.} Die Bedingung $|\Delta T(x)|\le 0.5$ ist "aquivalent zu
+\[ -0.5\le\frac{5-3x}{x+1}\le 0.5.\]
+Damit m"ussen beide Ungleichungen gleichzeitig gelten.
+
+\textbf{2. Erste Teilungleichung:} $\dfrac{5-3x}{x+1}\le 0.5$.
+Umformen:
+\[\frac{5-3x-0.5(x+1)}{x+1}\le0\quad\Longleftrightarrow\quad\frac{4.5-3.5x}{x+1}\le0.\]
+Nullstelle Z"ahler: $x=\dfrac{4.5}{3.5}=\dfrac{9}{7}\approx1.285714$. Durch Vorzeichenbetrachtung ergibt sich
+\[ x\in\left(-\infty,\,-1\right)\cup\left[\frac{9}{7},\infty\right).\]
+
+
+\textbf{3. Zweite Teilungleichung:} $\dfrac{5-3x}{x+1}\ge -0.5$ f"uhrt zu
+\[\frac{5-3x+0.5(x+1)}{x+1}\ge0\quad\Longleftrightarrow\quad\frac{5.5-2.5x}{x+1}\ge0.\]
+Nullstelle Z"ahler: $x=\dfrac{5.5}{2.5}=\dfrac{11}{5}=2.2$. Die Vorzeichenanalyse liefert
+\[ x\in\left(-1,\;\frac{11}{5}\right].\]
+
+
+\textbf{4. Schnitt beider Bedingungen:}
+\[ x\in\left[\frac{9}{7},\;\frac{11}{5}\right]=\left[\frac{9}{7},\;\frac{11}{5}\right]\approx[1.285714,\;2.2].\]
+
+
+\textbf{Antwort:} Alle Reglereinstellungen $x\in\left[\dfrac{9}{7},\dfrac{11}{5}\right]$ halten die Temperaturabweichung innerhalb $\pm0.5\,^{\circ}\mathrm{C}$.
+
+\textbf{L"osungshinweis zur Knobelaufgabe:} Um die Empfindlichkeit zu analysieren, berechne die Ableitung
+\[ \Delta T'(x)=\frac{d}{dx}\left(\frac{5-3x}{x+1}\right)=\frac{-3(x+1)-(5-3x)}{(x+1)^2}=\frac{-3x-3-5+3x}{(x+1)^2}=\frac{-8}{(x+1)^2}.\]
+Der Betrag der Ableitung ist $|\Delta T'(x)|=8/(x+1)^2$, der minimal wird, wenn $(x+1)^2$ maximal ist innerhalb des zul"assigen Bereichs. Da $x\in[9/7,11/5]$ und $(x+1)^2$ wachsend f"ur $x>-1$, ist $|\Delta T'(x)|$ minimal am rechten Rand $x=11/5$. Physikalisch bedeutet das: Bei gr"o\ss erem $x$ (innerhalb des zul"assigen Bereichs) reagiert die Temperaturabweichung weniger empfindlich auf kleine Stellungs"anderungen—dieser Punkt ist also betriebstechnisch g"unstig, wenn man Robustheit gegen Stellfehler will.
+
+
+\newpage
+
+\section*{Knobelaufgabe}
+Ein Ingenieur betreut ein Smart-Building-System mit einer Vielzahl vernetzter Sensoren.  
+Jeder Sensor ist durch zwei Merkmale beschrieben:
+\begin{itemize}
+    \item seinen \textbf{Raumbereich} (z.\,B. Küche, Büro, Flur – analog zu Farben) und
+    \item den \textbf{Sensortyp} (z.\,B. Temperatur, Luftfeuchte, CO\textsubscript{2} – analog zu Symbolen).
+\end{itemize}
+
+Es gibt insgesamt \( n \ge 2 \) verschiedene Räume und \( m \ge 2 \) verschiedene Sensortypen,
+und jede Kombination kommt genau einmal vor.
+
+Bei einer Systemdiagnose werden zufällig \( x \ge 2 \) Sensoren ausgewählt, die getestet werden sollen.  
+Die Tests sollen in einer Reihenfolge durchgeführt werden, bei der
+\textbf{jeweils zwei aufeinanderfolgende Sensoren entweder aus demselben Raum oder vom selben Typ} stammen – 
+um die Umschaltzeiten der Messgeräte zu minimieren.
+
+Es sei \( x_{n,m} \) die kleinste Zahl an Sensoren, für die dies \textbf{immer} möglich ist,
+unabhängig von der zufälligen Auswahl.  Welche der folgenden Aussagen über \( x_{n,m} \) ist korrekt?
+
+\vspace{1em}
+\begin{itemize}
+    \item[(a)] \( x_{n,m} = (n - 1)(m - 1) \)
+    \item[(b)] \( x_{n,m} = (n - 2)(m - 2) \)
+    \item[(c)] \( x_{n,m} = (n - 1)m - 3 \)
+    \item[(d)] \( x_{n+1,m} = x_{n,m} + m + 1 \)
+    \item[(e)] \( x_{n+1,m+1} = x_{n,m} + m + n - 4 \)
+    \item[(f)] \( x_{n,m+1} = x_{n,m} + n - 1 \)
+\end{itemize}
+
+\newpage
+\section*{Knobelaufgabe: Gleichungssystem}
+
+Ein Gebäudetechnikunternehmen betreibt eine große Heizungsanlage für ein Quartier, die aus mehreren identischen \textbf{Wärmepumpenmodulen} besteht.  \\
+
+
+Zu Beginn des Tages sind alle \( w \) Module in Betrieb, und die Heizlast ist gleichmäßig verteilt - jedes Modul übernimmt also denselben Anteil \( p \) an angeschlossenen Wohnungen. Gegen Mittag (z.\,B. durch einen Spannungseinbruch) fallen \(10\) Module aus.  Die verbleibenden Module müssen die Heizlast so aufteilen, dass jedes Modul jetzt den Anteil \( p + 1 \) Wohnungen versorgt. Gegen Abend fallen weitere \(15\) Module aus und das hat zur Folge, dass jedes der noch funktionierenden Module \( p + 3 \) Wohnungen versorgen muss. \\
+
+Wie viele Wohnungen \( N \) werden insgesamt beheizt?
+
+\newpage
+\section*{Optimale (?) Steuerung des Wärmestroms}
+In einem vereinfachten Modell erfolgt die Beschreibung der normierte Abweichung des realen Wärmestrom zum Soll-Wert, also der Größe \[ \dot Q_{\text{soll}}(x) - \dot Q_{\text{real}}(x)\,,\] in Abhängigkeit der normierten Ventilöffnung \(x\) wie folgt
+\[
+p_3(x)=x^3 - 3\cdot x^2 + 3\cdot x - 0.5.
+\]
+Physikalisch ist zu erwarten, dass bei vollständig geöffneter Stellung \(x=1\) keine Abweichung mehr besteht (also idealerweise \(p_3(1)=0\)). Prüfe die Erwartung und analysieren Sie dann mit Hilfe einer geeigneten Polynomdivision \(p_3\). Ist das Modell sinnvoll? 
+
+\textbf{Lösung.}
+
+\begin{enumerate}
+  \item Funktionswerte
+  \[
+	  \begin{cases} p_3(0) = -0.5 < 0 \\ p_3(1)=1 - 3 + 3 - 0.5 = 0.5 > 0 \,. \end{cases}
+  \]
+		Optimal wäre, dass man beim geöffneten Ventil keinerlei Abweichungen hat und beim geschlossenen 
+  \item Zerlegung 
+  \[
+  p_3(x) = (x-1)\cdot (x^2 - 2x + 1) + 0.5 = (x-1)^3 + 0.5.
+  \]
+  \emph{Physikalische Interpretation der diskreten Zustände:}
+  \begin{itemize}
+	  \item \(p(0)=-0.5 < 0\):  typisch bei Ventilschluss: der reale Wärmestrom ist kleiner als der Sollwert (Raum kühlt aus).
+	  \item \(p(1)= 0.5 >0\): In der Praxis könnte \(0.5\) als minimale Abweichung interpretiert werden, die durch das System nicht kompensiert werden kann (z.\,B. durch interne Verluste, falsch kalibrierte Sensorik oder Raumbeeinflussung).
+	  \item Der Rest der DiDas Restglied kann hier eine \emph{Residualtemperaturabweichung} darstellen, z.\,B. durch Wärmespeicher-Effekte, Leitungslängen, oder Messungenauigkeiten, die selbst bei voll geöffnetem Ventil nicht völlig verschwinden.
+    \item Pädagogisch: Die physikalisch plausible Erwartung \(p_2(1)=0\) trifft nicht exakt zu; der Rest macht auf Modellgrenzen aufmerksam.
+  \end{itemize}
+\end{enumerate}
+
+\includegraphics[width=0.7\textwidth]{Waermeabweichung_Ventil.png}
+\newpage
+
+\section*{Exponentialfunktion: Abkühlung eines Raums (Newtonsche Abkühlung)}
+
+Nach dem Abschalten einer Heizung kühlt ein Raum mit Anfangstemperatur $T_0=22 \mathrm C^\circ$ und Außentemperatur $T_\infty=5 \mathrm C^\circ$ entsprechend des Newtonschen Abkühlungsgesetzes ab:
+\[
+T(t) = T_\infty + (T_0 - T_\infty)\, e^{-t/\tau}\,,
+\]
+wobei $t$ die Zeit in Stunden bezeichnet und $\tau$ eine charakteristische Zeitkonstante (in Stunden) ist. Messungen ergaben nach $t= 2 \mathrm h$ eine Temperatur $T(2)=20.2 \, \mathrm C^\circ$.
+
+\begin{itemize}
+	\item[(i)] Bestimmen Sie die Zeitkonstante $\tau$ (in Stunden).
+  	\item[(ii)] Wie lange dauert es, bis die Raumtemperatur auf $18 \, \mathrm C^\circ$ gesunken ist?
+  	\item[(iii)] Geben Sie eine physikalische Interpretation der Zeitkonstante $\tau$.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Lösung.}
+
+Setze die Werte in die Gleichung ein:
+\[
+20{,}2 = 5 + (22 - 5)\, e^{-2/\tau}.
+\]
+Also
+\[
+20{,}2 - 5 = 17\, e^{-2/\tau} \quad\Longrightarrow\quad 15{,}2 = 17\, e^{-2/\tau}.
+\]
+\[
+e^{-2/\tau} = \frac{15{,}2}{17} \approx 0{,}8941176.
+\]
+\[
+-\,\frac{2}{\tau} = \ln(0{,}8941176) \quad\Rightarrow\quad \tau = -\frac{2}{\ln(0{,}8941176)}.
+\]
+Numerisch:
+\[
+\ln(0{,}8941176)\approx -0{,}1118806 \quad\Rightarrow\quad \tau\approx \frac{2}{0{,}1118806}\approx 17{,}88\ \text{h}.
+\]
+
+\emph{Antwort (1):} $\tau\approx 17{,}9\ \text{h}$.
+
+(2) Gesucht $t$ mit $T(t)=18$:
+\[
+18 = 5 + 17\, e^{-t/\tau} \quad\Longrightarrow\quad e^{-t/\tau} = \frac{13}{17}\approx 0{,}7647059.
+\]
+\[
+-\frac{t}{\tau} = \ln(0{,}7647059) \quad\Rightarrow\quad t = -\tau\ln(0{,}7647059).
+\]
+\[
+\ln(0{,}7647059)\approx -0{,}2682645 \quad\Rightarrow\quad t\approx 17{,}88\cdot 0{,}2682645 \approx 4{,}80\ \text{h}.
+\]
+
+\emph{Antwort (2):} Etwa $4{,}8$ Stunden, bis $18 \mathrm C$ erreicht sind.
+
+(3) \emph{Interpretation:} Die Zeitkonstante $\tau\approx 17{,}9\ \text{h}$ charakterisiert, wie schnell der Raum thermisch ausklingt. Nach einer Zeit $\tau$ ist die Temperaturdifferenz zum Außenwert auf etwa $1/e\approx37\%$ des Anfangswerts gesunken. Kleine $\tau$ bedeuten schnelle Abkühlung (schlechte Dämmung / geringe thermische Masse), große $\tau$ bedeuten langsame Abkühlung (gute Dämmung / hohe thermische Masse).
+
+\newpage
+\section*{Geometrie}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{../../../Mathematik_1/Bilder/geometrie_kreise_gemeinsame_tangenten_aufgabe.png}
+\end{center}
+
+\noindent Zwei runde Gebäudekomplexe mit technischen Schutzzonen (Fundamente, Leitungen) sollen durch Rohrleitungen oder Kabeltrassen verbunden werden.  
+Die Leitungen sollen tangential an den Schutzzonen entlanggeführt werden und genau von einem Gebäude zum anderen reichen.
+
+\medskip
+Welche Länge haben die beiden möglichen Leitungsabschnitte? \\
+
+\textbf{Lösung}
+\begin{itemize}
+    \item \textbf{Innere (transversale) Tangente:}
+    \[
+        L_{\mathrm{innen}} = \sqrt{d^2 - (r_1 + r_2)^2}
+    \]
+    \item \textbf{Äußere (direkte) Tangente:}
+    \[
+        L_{\mathrm{außen}} = \sqrt{d^2 - (r_2 - r_1)^2}
+    \]
+\end{itemize}
+
+\[
+\begin{aligned}
+L_{\mathrm{innen}} &= \sqrt{200^2 - (50 + 70)^2} = \sqrt{40000 - 14400} = \sqrt{25600} = 160\, \mathrm m\\
+L_{\mathrm{außen}} &= \sqrt{200^2 - (70 - 50)^2} = \sqrt{40000 - 400} = \sqrt{39600} \approx 199 \, \mathrm m
+\end{aligned}
+\]
+
+
+
+\newpage
+\section*{Temperaturverlauf}
+Ein kleines Bürogebäude auf dem Campus ist nur mäßig gedämmt und wird in der Nacht nicht beheizt. 
+Über den Tag wirkt die Außentemperatur – gemeinsam mit Sonneneinstrahlung und der thermischen 
+Speicherfähigkeit der Gebäudewände – direkt auf den Innenraum. Dadurch entsteht ein typischer 
+tagesperiodischer Temperaturverlauf: Am frühen Morgen ist es noch kühl, im Laufe des Tages erwärmt 
+sich der Innenraum, und gegen Abend sinkt die Temperatur wieder langsam ab. Konkret wird folgendes Modell angenommen:
+\[
+T(t)=18 + 4\cos\!\left(\frac{\pi}{12}t\right),
+\]
+wobei \(t\) die Zeit in Stunden seit Mitternacht angibt.
+
+Der Innenraum-Temperaturverlauf lässt sich näherungsweise durch eine einfach periodische Cosinusfunktion beschreiben, die die zeitliche Verzögerung zwischen Außen- und 
+Innenraumeinfluss sowie die thermische Trägheit des Gebäudes modellhaft erfasst. Der Energiebeauftragte der Hochschule möchte untersuchen zu welchem Zeitpunkt es besonders kühl bzw. warm im Innenraum ist.
+
+%Der konstante Term \(18\) steht für die mittlere Raumtemperatur an dem betrachteten Tag, 
+%während der Amplitudenwert \(4\) die Stärke der täglichen Temperaturschwankungen beschreibt. 
+%Die Cosinusfunktion bildet den typischen Verlauf ab: Das Temperaturmaximum liegt zur 
+%Referenzzeit \(t=0\) (Mitternacht), das Minimum etwa zwölf Stunden später.
+
+\begin{enumerate}
+  \item Bestimmen Sie Mittelwert, Amplitude, maximale und minimale Temperatur.
+  \item Bestimmen Sie die Zeitpunkte innerhalb von 24 Stunden, zu denen die maximale Temperatur auftritt.
+  \item Berechnen Sie die Temperatur um 17:00 Uhr.
+\end{enumerate}
+
+\textbf{Lösung}
+\begin{enumerate}
+  \item Die Funktion ist \(T(t)=18 + 4\cos(\cdot)\).\\
+        \textbf{Mittelwert:} \(18\) (der konstante Term).\\
+        \textbf{Amplitude:} \(4\).\\
+        \textbf{Maximale Temperatur:} \(T_{\max}=18+4=22^\circ\text{C}.\)\\
+        \textbf{Minimale Temperatur:} \(T_{\min}=18-4=14^\circ\text{C}.\)
+  \item Maxima treten auf wenn \(\cos\!\big(\tfrac{\pi}{12}t\big)=1\), also
+  \[
+    \frac{\pi}{12}t = 2\pi k \Rightarrow t=24k.
+  \]
+  Innerhalb der 24-h-Periode (z.\,B. \(0\le t <24\)) ist \(t=0\) (Mitternacht) ein Maximum; für den geschlossenen Intervall \(0\le t\le 24\) sind \(t=0\) und \(t=24\) Maxima (ein und derselbe Phasenpunkt). (Physikalisch: dieses einfache Modell hat sein Temperaturmaximum zur Referenzzeit \(t=0\).)
+  \item \(t=17\) Stunden: Berechne
+  \[
+    T(17)=18 + 4\cos\!\Big(\frac{\pi}{12}\cdot17\Big)=18+4\cos\!\Big(\frac{17\pi}{12}\Big).
+  \]
+  Nun \(\dfrac{17\pi}{12}= \pi + \dfrac{5\pi}{12}\) oder in Grad \(17\cdot 15^\circ =255^\circ\). \(\cos(255^\circ)=\cos(17\pi/12)\approx -0{,}258819\). Daher
+  \[
+    T(17) \approx 18 + 4\cdot(-0{,}258819)\approx 18 - 1{,}03528 \approx 16{,}9647^\circ\text{C}.
+  \]
+  Auf zwei Dezimalstellen: \(T(17)\approx 16{,}96^\circ\text{C}.\)
+\end{enumerate}
+
+\newpage
+
+\section*{Ergänzungsaufgaben}
+Betrachten Sie ein leicht erweitertes Temperaturmodell, das zwei verschiedene 
+tagesperiodische Einflüsse berücksichtigt: den natürlichen Temperaturgang 
+und eine leichte periodische Schwankung durch eine automatisch geregelte 
+Belüftungsanlage. Das Modell lautet:
+
+\[
+T(t)=18 + 4\cos\!\left(\frac{\pi}{12}t\right) 
+       + 1.5\sin\!\left(\frac{\pi}{6}t\right),
+\]
+
+wobei \(t\) die Zeit in Stunden (0 bis 24) angibt.
+
+\begin{enumerate}
+    \item Erklären Sie anhand der Funktionsterme, warum dieses Modell 
+          innerhalb von 24 Stunden mehrere lokale Temperaturmaxima 
+          und -minima besitzt, obwohl die natürliche Temperaturkomponente 
+          allein nur genau ein Maximum und ein Minimum hätte.
+
+    \item Bestimmen Sie \emph{ohne} Verwendung von Ableitungen, in welchen 
+          Zeitintervallen im Bereich \(0 \le t \le 24\) \emph{ein besonders 
+          hoher Temperaturwert} zu erwarten ist. Begründen Sie Ihre Antwort, 
+          indem Sie analysieren, wann die beiden Schwingungen 
+          gleichzeitig positiv beitragen.
+
+    \item Berechnen Sie die Temperatur für die vier Zeitpunkte
+          \[
+              t \in \{0,\; 6,\; 12,\; 18\}
+          \]
+          und diskutieren Sie, welcher dieser Punkte ein Kandidat für 
+          ein globales Maximum sein kann. (Eine exakte Bestimmung des 
+          Maximums ist nicht erforderlich.)
+\end{enumerate}
+
+\textbf{Lösungsskizze (ohne Differentialrechnung)}
+
+\begin{enumerate}
+    \item Die Funktion besteht aus zwei Schwingungen mit unterschiedlichen
+          Periodendauern: 
+          \[
+            T_1=24\ \text{h}, \qquad T_2=12\ \text{h}.
+          \]
+          Durch Überlagerung entsteht ein zusammengesetzter Verlauf mit
+          wechselnder Verstärkung und Abschwächung (Interferenzprinzip).
+          Daher besitzt das Modell mehrere Maxima und Minima innerhalb 
+          eines Tages.
+
+    \item Ein besonders hoher Temperaturwert ist zu erwarten, wenn 
+          \(\cos(\frac{\pi}{12}t)\) und \(\sin(\frac{\pi}{6}t)\) gleichzeitig 
+          positive Werte besitzen. 
+          \begin{itemize}
+            \item Die Kosinusfunktion ist positiv für 
+                  \[
+                     -6 < t < 6 \quad\text{und}\quad 18 < t < 30.
+                  \]
+                  Im betrachteten Intervall also besonders um 
+                  \(t=0\) und \(t=24\).
+            \item Die Sinusfunktion ist positiv für 
+                  \[
+                     0 < t < 6 \quad\text{und}\quad 12 < t < 18.
+                  \]
+          \end{itemize}
+          Die Bereiche, in denen \emph{beide} Terme positiv sind, sind:
+          \[
+            0 < t < 6.
+          \]
+          Daher ist in den frühen Morgenstunden ein hohes Temperaturmaximum 
+          besonders plausibel – noch bevor die natürliche Temperaturkomponente 
+          in die negative Phase übergeht.
+
+    \item Einsetzen der Werte:
+          \[
+          \begin{aligned}
+            T(0) &= 18 + 4\cdot 1 + 1.5\cdot 0 
+                 = 22, \\[4pt]
+            T(6) &= 18 + 4\cdot 0 + 1.5\cdot 1
+                 = 19.5, \\[4pt]
+            T(12)&= 18 + 4\cdot (-1) + 1.5\cdot 0 
+                 = 14, \\[4pt]
+            T(18)&= 18 + 4\cdot 0 + 1.5\cdot (-1)
+                 = 16.5.
+          \end{aligned}
+          \]
+
+          Der größte der berechneten Werte ist \(T(0)=22^\circ\text{C}\).
+          Da in den Stunden unmittelbar danach beide Schwingungen positiv 
+          beitragen, liegt ein globales Maximum wahrscheinlich in einem 
+          Zeitintervall um \(t=0\) bis \(t\approx 2\).
+\end{enumerate}
+
+Betrachte ein realistischeres Modell mit einer zusätzlichen periodischen Störung (z.\,B. Einflüsse durch Heizzyklen oder zeitliche Belüftung):
+\[
+T(t)=18 + 4\cos\!\Big(\frac{\pi}{12}t\Big) + 1{,}5\cos\!\Big(\frac{\pi}{6}t - \frac{\pi}{3}\Big).
+\]
+\begin{enumerate}
+  \item Bestimmen Sie den Mittelwert (über 24 h).
+  \item Diskutieren Sie, ob sich die beiden Cosinus-Terme zu einer einzigen einfachen Cosinusfunktion mit einer festen Amplitude zusammenfassen lassen. Falls nein, begründen Sie warum und geben Sie eine Methode an, wie man das maximale Temperaturmaximum in einem 24-h-Intervall bestimmen würde.
+  \item Schätzen Sie grob (analytisch begründet), bei welcher Uhrzeit ein plausibles maximales Temperaturmaximum auftreten könnte und geben Sie diesen Wert approximativ an.
+\end{enumerate}
+
+\textbf{Lösungsskizze}
+\begin{enumerate}
+  \item Der Mittelwert ist der konstante Term \(18\) (die Cosinus-Terme haben über ganzzahlige Perioden Mittelwert \(0\)).
+  \item Die beiden Cosinus-Terme haben unterschiedliche Frequenzen:
+  \[
+    \omega_1=\frac{\pi}{12}\quad (T_1=24\ \text{h}),\qquad
+    \omega_2=\frac{\pi}{6}\quad (T_2=12\ \text{h}).
+  \]
+  Da die Frequenzen verschieden sind (ein Term hat Periodendauer 24 h, der andere 12 h), lässt sich die Summe nicht als eine einzelne Cosinusfunktion mit einer einzigen Frequenz darstellen. Man erhält statt dessen eine \emph{Überlagerung} mit möglichen Interferenzeffekten (keine einfache Phasoraddition, da Frequenzen verschieden).\\
+  \textbf{Vorgehen zur Bestimmung des globalen Maximums:} Setze die Ableitung \(T'(t)\) gleich null und löse die Gleichung numerisch:
+  \[
+    T'(t) = -4\cdot\frac{\pi}{12}\sin\!\Big(\frac{\pi}{12}t\Big) - 1{,}5\cdot\frac{\pi}{6}\sin\!\Big(\frac{\pi}{6}t - \frac{\pi}{3}\Big) = 0.
+  \]
+  Diese Gleichung ist transzendent; man benutzt numerische Verfahren (z.\,B. Newton-Verfahren oder Raster/Feinabstufung) oder Auswertung auf einem feinen Zeitgitter \(t\in[0,24]\) zur Suche nach globalen Maxima.
+  \item \textbf{Grobe (analytische) Abschätzung:} Um eine Abschätzung ohne numerische Lösung zu geben, prüfen wir charakteristische Kandidaten: \(t=0\) ist bei der ersten Komponente ein Maximum (\(\cos(0)=1\)), die zweite Komponente bei \(t=0\) ist \(\cos(-\pi/3)=\tfrac{1}{2}\). Also
+  \[
+    T(0)=18 + 4\cdot 1 + 1{,}5\cdot\frac{1}{2} = 18 + 4 + 0{,}75 = 22{,}75^\circ\text{C}.
+  \]
+  Andere Kandidaten sind Zeiten, in denen beide Cosinus-Terme gleichzeitig groß positiv sind (z.\,B. nahe \(t=24\) beziehungsweise nahe Zeiten, bei denen die zweite Cosinus ebenfalls 1 ist: \(\frac{\pi}{6}t-\frac{\pi}{3}=2\pi m\Rightarrow t= ( \tfrac{\pi}{3}+2\pi m )\cdot \tfrac{6}{\pi} = 2 + 12m\) so \(t=2,14\) h, etc.). Man testet einige dieser Kandidaten (simple Liste: \(t=0,\,2,\,12,\,14\) Stunden) und vergleicht die Werte. Die grobe Abschätzung zeigt, dass \(t=0\) mit \(T\approx 22{,}75^\circ\) bereits sehr hoch ist; es ist möglich, dass es noch einen Zeitpunkt gibt, an dem die Summe etwas größer ist, aber der Wert \(22{,}75^\circ\) ist eine gute Näherung für das Maximum, wenn man keine numerische Auswertung durchführt.
+\end{enumerate}
+
+\newpage
+\section*{Polarkoordinaten komplexer Zahlen}
+
+Zwei Temperatur-Phasoren (als Polarformen) beschreiben zeitlich verschobene harmonische Beiträge:
+\[
+	\tilde{T}_1 \widehat = \left(  1.2 | -36^\circ\right) ,\qquad \tilde{T}_2 \widehat = \left( 0.9 | 60^\circ\right) \,.
+\]
+\begin{enumerate}
+	\item Bestimmen Sie die den resultierenden Phasor \(\tilde{T}_{\mathrm{res}} = \tilde{T}_1 + \tilde{T}_2\) in Polarkoordinaten \( (R, \varphi)\).
+	\item Schreiben Sie die zugehörige reale Zeitschwingung in der Form \( T_{\mathrm{real}}(t) = R\cdot \cos(\omega t + \varphi)\).
+\end{enumerate}
+
+\textbf{Lösungsskizze}
+
+\textbf{Umrechnen der Phasenwinkel in Bogenmaß}
+\[
+-36^\circ = -0.6283\ \mathrm{rad}, \qquad
+60^\circ = 1.0472\ \mathrm{rad}.
+\]
+
+\textbf{Umwandlung in kartesische Form}
+\[
+\tilde{T}_1 = 1.2 (\cos(-0.6283) + i \sin(-0.6283)) \approx 0.974 - 0.714 i
+\]
+\[
+\tilde{T}_2 = 0.9 (\cos(1.0472) + i \sin(1.0472)) \approx 0.450 + 0.779 i
+\]
+
+\textbf{Addition der komplexen Zahlen}
+\[
+\tilde{T}_{\mathrm{res}} = (0.974 + 0.450) + (-0.714 + 0.779)i
+= 1.424 + 0.065 i
+\]
+
+\textbf{Umwandlung in Polarform}
+\[
+R = |\tilde{T}_{\mathrm{res}}| = \sqrt{1.424^2 + 0.065^2} \approx 1.426
+\]
+\[
+\varphi = \arctan\left(\frac{0.065}{1.424}\right) \approx 0.0457\ \mathrm{rad} \approx 2.62^\circ
+\]
+
+\textbf{Reale Zeitschwingung}
+\[
+T_{\mathrm{real}}(t) = R \cdot \cos(\omega t + \varphi) \approx 1.426 \cdot \cos(\omega t + 0.0457)
+\]
+
+\textbf{Antwort:}
+\[
+\boxed{
+\tilde{T}_{\mathrm{res}} \approx 1.426 \angle 0.0457\ \mathrm{rad}, \qquad
+T_{\mathrm{real}}(t) \approx 1.426 \cos(\omega t + 0.0457)
+}
+\]
+
+\newpage
+\section*{Frequenzbereichmodell Innenraum}
+
+Die Außentemperatur schwankt im Tagesverlauf ungefähr sinusförmig. Als einfache
+Modellannahme gehen wir davon aus, dass die Innenraumtemperatur diesen
+Temperaturschwankungen ebenfalls sinusförmig folgt, aber \emph{abgeschwächt} und
+\emph{zeitlich verzögert}.
+
+Um diese Abschwächung und Verzögerung zu beschreiben, verwenden wir eine
+\emph{komplexe Zahl}, die die Wirkung des Raumes auf die Temperaturänderung
+mathematisch erfasst.
+
+Für eine Außentemperatur
+\[
+T_{\mathrm{out}}(t)=T_0\cdot \cos(\omega t)
+\]
+sei der Einfluss des Raums durch die komplexe Zahl
+\[
+	H = \frac{1}{1+i\omega\tau}
+\]
+gegeben, wobei $\tau>0$ eine Konstante ist, die beschreibt, wie träge sich der Raum
+auf Temperaturänderungen reagiert: die Innenraumtemperatur besitzt die komplexe Amplitude
+\[
+\tilde T_{\mathrm{in}} = H \cdot T_0\,.
+\]
+
+\begin{enumerate}
+    \item Berechnen Sie $\tilde T_{\mathrm{in}}$ in \textbf{kartesischer Form}.
+
+    \item Bestimmen Sie die \textbf{Polarkoordinaten} von \(\tilde T_{\mathrm{in}}\).
+    \item Schreiben Sie \(T_{\mathrm{in}}(t) \) als harmonische Schwingung und erklären Sie in eigenen Worten, warum der Innenraum eine kleinere Temperaturschwankung zeigt als außen. \textbf{Hinweis:} Eine harmonische Schwingung ist eine Funktion folgender Bauart: 
+    \[
+    T_{\mathrm{in}}(t)= A \,\cos(\omega t + \varphi_0)\,.
+    \]
+\end{enumerate}
+
+\textbf{Lösungsskizze}
+
+Betrachten wir die Aufgabe mit den gegebenen Annahmen:
+\[
+T_{\mathrm{out}}(t)=T_0\cos(\omega t),\qquad
+H=\frac{1}{1+i\omega\tau},\qquad
+\tilde T_{\mathrm{out}}=T_0 .
+\]
+Die komplexe Innenraum-Amplitude ist
+\[
+\tilde T_{\mathrm{in}} = H\,\tilde T_{\mathrm{out}} = \frac{T_0}{1+i\omega\tau}.
+\]
+
+\begin{itemize} 
+	\item Um die kartesische Form zu erhalten, multiplizieren wir Zähler und Nenner mit dem konjugierten Nenner:
+\[
+\tilde T_{\mathrm{in}}
+= T_0\cdot\frac{1 - i\omega\tau}{(1 + i\omega\tau)(1 - i\omega\tau)}
+= T_0\cdot\frac{1 - i\omega\tau}{1 + (\omega\tau)^2}.
+\]
+Daraus liest man direkt die Real- und Imaginärteile ab:
+\[
+\boxed{\;\tilde T_{\mathrm{in}} = A_{\mathrm{Re}} + i\,A_{\mathrm{Im}}
+\quad\text{mit}\quad
+A_{\mathrm{Re}}=\frac{T_0}{1+(\omega\tau)^2},\quad
+A_{\mathrm{Im}}=-\frac{T_0\,\omega\tau}{1+(\omega\tau)^2}\;. \;}
+\]
+
+Hinweis: \(A_{\mathrm{Im}}\) ist hier negativ (die Formel zeigt das Vorzeichen).
+
+\item 
+Eine Anregung  Cosinus-Funktion lässt sich als Realteil eines komplexen Exponentials schreiben (Euler-Formel):
+\[
+\cos(\omega t)=\Re\{e^{i\omega t}\}.
+\]
+Daher schreiben wir die (komplexe) Eingangsschwingung als
+\[
+\tilde T_{\mathrm{in}}(t)=T_0\, e^{i\omega t},
+\]
+und erhalten die reale physikalische Anregung später als Realteil:
+\[
+	T_{\mathrm{out}}(t)=\mathrm{Re}\left( \tilde s_{\mathrm{in}}(t)\right) =\mathrm{Re}\left( T_0 e^{i\omega t}\right) \,.
+\]
+
+Schreiben wir \(\tilde T_{\mathrm{in}}=A_{\mathrm{Re}}+iA_{\mathrm{Im}}\) und \(e^{i\omega t}=\cos(\omega t)+i\sin(\omega t)\), so ergibt sich
+\[
+\begin{aligned}
+T_{\mathrm{in}}(t)
+	&= \mathrm{Re}\left( (A_{\mathrm{Re}} +iA_{\mathrm{Im}})\,(\cos\omega t + i\sin\omega t)\right) \\
+	&= \mathrm{Re}\left( A_{\mathrm{Re}} \,\cos\omega t - A_{\mathrm{Im}} \right)\sin\omega t
+     + i\big(A_{\mathrm{Re}}\sin\omega t + A_{\mathrm{Im}}\cos\omega t\big)\} \\
+	&= A_{\mathrm{Re}}\cos\omega t - A_{\mathrm{Im}}\sin\omega t.
+\end{aligned}
+\]
+Damit sind die beiden Anteile klar:
+\begin{itemize}
+  \item \emph{In-Phase-Anteil:} \(\;A_{\mathrm{Re}}\cos(\omega t)\) — dieser Teil schwingt mit derselben Phase wie die Außentemperatur.
+  \item \emph{Quadratur-Anteil:} \(\;-A_{\mathrm{Im}}\sin(\omega t)\) — dieser Teil ist um \(90^\circ\) phasenverschoben (sinusförmig).
+\end{itemize}
+
+\item Man kann die Summe auch als einen einzigen Kosinus mit Amplitude und Phasenwinkel schreiben:
+\[
+T_{\mathrm{in}}(t)=|\tilde T_{\mathrm{in}}| \cos\!\big(\omega t + \varphi\big),
+\]
+wobei Betrag und Phase von \(\tilde T_{\mathrm{in}}\) sind:
+\[
+|\tilde T_{\mathrm{in}}| = \frac{T_0}{\sqrt{1+(\omega\tau)^2}},\qquad
+\varphi = \arg(\tilde T_{\mathrm{in}}) = -\arctan(\omega\tau).
+\]
+Also
+\[
+\boxed{\,T_{\mathrm{in}}(t) = \frac{T_0}{\sqrt{1+(\omega\tau)^2}}
+\;\cos\!\Big(\omega t - \arctan(\omega\tau)\Big)\,}.
+\]
+
+\bigskip
+\textbf{Zusatz: Physikalische Interpretation (einfach)}
+\begin{itemize}
+  \item \textbf{Abschwächung (Dämpfung):} Der Faktor \(\dfrac{1}{\sqrt{1+(\omega\tau)^2}}\) verringert die Amplitude der Innenraumtemperatur gegenüber der Außentemperatur. Je größer \(\omega\tau\) (häufigere Schwankungen oder träger Raum), desto stärker die Dämpfung. Für sehr langsame Schwankungen (\(\omega\tau\ll 1\)) ist die Dämpfung klein (Faktor \(\approx 1\)). Für sehr schnelle Schwankungen (\(\omega\tau\gg1\)) wird die Innenantwort stark gedämpft (\(\sim 1/(\omega\tau)\)).
+  \item \textbf{Phasenverzögerung (Nachhinken):} Der Winkel \(\varphi = -\arctan(\omega\tau)\) ist negativ, d.\,h. die Innenraumtemperatur \emph{hinkt der Außentemperatur nach}. Für kleine Frequenzen ist die Verzögerung klein (\(\varphi\approx -\omega\tau\)), für große Frequenzen nähert sich die Verzögerung \(-90^\circ\) an.
+  \item \textbf{Anschaulich:} Der Raum wirkt wie ein thermisches ``Speicher–Filter'': er kann langsame Änderungen gut folgen, schnelle Änderungen aber nicht — sie werden gepuffert und verzögert.
+\end{itemize}
+\end{itemize}
+
+
+
+\newpage
+\section*{Aufgabe}
+Zwei Phasoren einer Antennenübertragung seien gegeben durch
+\[
+	S_1 \,\widehat \, \left( 5, 30^\circ\right) ,\qquad S_2 \, \widehat = \, \left( 2, -45^\circ\right)\,.
+\]
+\begin{enumerate}
+\item Bestimmen Sie die Polarkoordinaten von \(S_1\cdot S_2\) und bestimmen Sie die resultierende komplexe Zahl in kartesischer Form.
+\item Berechnen Sie das Verhältnis \(S_1 / S_2\) in Polarform.
+\end{enumerate}
+\textbf{Lösungsskizze}
+
+\newpage
+\section*{Aufgabe: Profilähnlichkeit}
+Ein Energiemanagementsystem erfasst über vier Zeitintervalle (oder vier Frequenzbänder) die Leistungsanteile eines Systems. Zwei unterschiedliche Betriebszustände liegen uns vor, dargestellt als Vektoren im $\mathbb R^4$:
+
+Die Vektoren
+\[
+\vec a=
+\begin{pmatrix}
+3\\2\\1\\0
+\end{pmatrix},
+\qquad
+\vec b=
+\begin{pmatrix}
+1\\2\\3\\2
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Berechnen Sie das Skalarprodukt $\langle \vec a, \vec b\rangle$.
+\item Bestimmen Sie die Normen $\|\vec a\|$ und $\|\vec b\|$.
+\item Bestimmen Sie den Winkel zwischen den beiden Vektoren.
+\item Interpretieren Sie das Ergebnis qualitativ.
+\end{enumerate}
+\textbf{Lösungsskizze}
+\begin{enumerate}
+\item
+\[
+\vec a\cdot\vec b
+=3\cdot1+2\cdot2+1\cdot3+0\cdot2
+=10
+\]
+
+\item
+\[
+\|\vec a\|=\sqrt{3^2+2^2+1^2+0^2}=\sqrt{14},
+\quad
+\|\vec b\|=\sqrt{1^2+2^2+3^2+2^2}=\sqrt{18}
+\]
+
+\item
+\[
+\cos\varphi=\frac{10}{\sqrt{14}\sqrt{18}}
+=\frac{10}{\sqrt{252}}
+\]
+
+\item
+	Der Winkel ist kleiner als $\pi/2$: Die Profile sind ähnlich, aber nicht proportional. ( In der Nachrichtentechnik bedeutet dies eine gewisse Korrelation, in der Energietechnik eine teilweise Übereinstimmung der Lastverläufe.)
+\end{enumerate}
+
+
+
+\newpage
+\section*{Aufgabe: Temperaturmodell}
+
+Ein Gebäude hat drei Temperaturfühler $T_1, T_2, T_3$.  
+Die Raumtemperaturen werden durch Heizleistung $H$ und Außentemperatur $T_\text{außen}$ modelliert:
+\[
+T_i = a\, H + b\, T_\text{außen}, \quad i=1,2,3
+\]
+
+Es liegen uns folgende Messungen vor:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Sensor & $H$ [kW] & $T_\text{außen}$ [°C] & $T$ [°C] \\
+\hline
+1 & 5 & 10 & 22 \\
+2 & 6 & 10 & 24 \\
+3 & 5 & 12 & 26 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+	\item Stellen Sie das System $A\,\vec x=\vec b$ für $\vec x = (a,b)^\intercal  \in \mathbb R^2$ auf.
+\item Prüfen Sie, ob sich das lineare Gleichungssystem eindeutig lösen lässt und falls ja, lösen Sie es.
+\end{enumerate}
+\textbf{Lösungsskizze}
+
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Gebäudeenergie I (Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase eines energieeffizienten Gebäudes wird die
+Geometrie einer ebenen, kreisförmigen Bauteilfläche untersucht. Die betrachtete
+Fläche repräsentiert eine idealisierte Dach- oder Deckenplatte, über die
+Wärmeübertragungs- und Installationsaspekte bewertet werden.
+
+Der Entwurf sieht eine kreisförmige Fläche mit einer konzentrischen, kreisförmigen Aussparung vor. Die Aussparung ist beispielsweise ein Lüftungsschacht oder ein Fenster. 
+
+Auf den Konstruktionsplänen ist die Länge der Sehne des äußeren Kreises, die tangential am Rand der Aussparung liegt, als Strecke $AB$ mit Länge \(|AB| = 36\) angegeben.  Wie groß ist die Dachfläche?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_1.png}
+\end{center}
+
+\textbf{Lösung: \(A = 18^2\cdot \pi\)}
+
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Gebäudeenergie II (Gleichungssystem / Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase eines energieeffizienten Gebäudes wird die
+Geometrie einer ebenen, kreisförmigen Bauteilfläche untersucht. Die betrachtete
+Fläche repräsentiert eine idealisierte Dach- oder Deckenplatte, über die
+Wärmeübertragungs- und Installationsaspekte bewertet werden.
+
+Der Entwurf sieht eine kreisförmige Grundfläche mit drei kreisförmigen Aussparungen vor. In den Konstruktionspänen ist der Durchmesser \(D\) der Grundfläche angegeben mit \(D=36\). Die Radien der Aussparungen sind nicht angegeben. Können wir allein durch die geometrische Anordnung der Aussparungen berechnen wir groß die die Dachfläche ist? Wenn ja, wie groß ist sie?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_2.png}
+\end{center}
+
+\textbf{Lösung: \(A = 115\cdot \pi\) (\(R=9, r=8\))}
+
+\newpage
+\section*{Aufgabe}
+\textbf{Lösungsskizze}
+
+
+\end{document}
+

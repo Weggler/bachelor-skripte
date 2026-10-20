@@ -1,0 +1,129 @@
+\section*{Potenzreihen Aufgaben mit Lösungen}\label{MA2-potenzreihen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-potenzreihen}{ (Abschnitt \abschnittsverweis{MA2-potenzreihen})}. \fi
+
+\begin{exercisebox}[Konvergenz] %Papula VI, Abschnitt 2, Aufgabe 1
+	Bestimmen Sie den Konvergenzradius und geben Sie den Konvergenzbereich der folgenden Reihen an. Untersuchen Sie dabei auch die Ränder des Konvergenzbereichs.
+	\begin{eqnarray*}
+		\begin{array}{l l l}
+			(a)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} k\cdot x^k \quad & (b)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} (-1)^k \cdot \displaystyle{\frac{x^k}{k}} \quad & (c)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} \displaystyle{\frac{x^k}{k^2}} \\
+			(d)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty} \displaystyle{\frac{x^k}{2^k}} \quad & (e)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty } \displaystyle{\frac{k}{k+1} x^{k+1}} \quad & (f)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty} \displaystyle{\frac{k+1}{k!}} x^k
+		\end{array}
+	\end{eqnarray*}
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+Diese Aufgabe entspricht Aufgabe \(1\) in Papula Band 1, Abschnitt VI.2. Die Aufgabenstellung finden Sie auf Seite \(635\) und die detaillierten Lösungen ab Seite \(810\).
+	\begin{itemize}
+		\item[(a)] $R=1$ und Ränder $x=\pm 1$ divergent: Konvergenzbereich $(-1,1)$
+		\item[(b)] $R=1$ und Ränder $x=- 1$ divergent (harmonische Reihe) und $x=1$ konvergent (Leibnitz) Konvergenzbereich $(-1,1]$
+		\item[(c)] $R=1$ und Ränder $x=\pm 1$ konvergnt: Konvergenzbereich $[-1,1]$
+		\item[(d)] $R=2$ und Ränder $x=\pm 2$ divergent: Konvergenzbereich $(-2,2)$
+		\item[(e)] $R=1$ und Ränder $x=\pm 1$ divergent, weil notwendiges Kriterium für Konvergenz \( (a_k)_k\) Nullfolge nicht erfüllt ist: Konvergenzbereich $(-1,1)$
+		\item[(f)] $R=\infty$: Konvergenzbereich $\mathbb R$
+	\end{itemize}
+\end{exercisebox}
+
+%Moodle %HMI I, Blatt 11, Aufgabe 1 Moodle
+\begin{exercisebox}[Konvergenz] %HMI I, Blatt 10, Aufgabe 4 Moodle
+	Bestimmen Sie den Konvergenzradius der folgenden Reihen.
+	\begin{eqnarray*}
+		(a)\; \displaystyle{\sum\limits_{k=1}^\infty} \left(  \displaystyle{\frac{k!}{3 \cdot 5\cdot \dots \cdot (2k+1)}}\right)^{2} x^k \quad  (b)\; \displaystyle{\sum\limits_{k=1}^\infty} \left( \begin{array}{c} 2k\\ k\end{array}\right) x^k \quad  (c)\; \displaystyle{\sum\limits_{k=1}^\infty } \left( k^4 - 4k^3\right) x^k
+	\end{eqnarray*}
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+	Konvergenz einer Potenzreihe liegt oft nicht für alle \(x\in \mathbb R\) vor\footnote{richtig klar wird das erst, wenn man Funktionen im Komplexen diskutiert. Dies ist Teil der mathematischen Disziplin Funktionentheorie, der wir uns leider nicht widmen werden}. Es stellt sich also die Frage: für welche \(x\) konvergiert eine Potenzreihe. Innerhalb des Konvergenzgebietes stellt die Potenzreihe eine Funktion dar!!! Das ist doch erstaunlich, oder? Wie auch immer: es gibt zwei wichtige Kriterien, um das Konverengzgebiet, den sogenannten Konvergenzradius \(R\) einer Potenzreihe zu bestimmen: das Quotientenkriterium und das Wurzelkriterium. Es gilt
+	\begin{eqnarray*}
+		\textnormal{Quotientenkriterium}: \quad &&\lim\limits_{n\to \infty} \left| \frac{ a_{n+1}}{a_n}\right| = a < \infty \Rightarrow R=\frac1a\,,\\
+		\textnormal{Wurzelkriterium}: \quad &&\lim\limits_{n\to \infty} \sqrt[n]{\left| a_n\right|} = a < \infty \Rightarrow R=\frac1a\,.
+	\end{eqnarray*}
+	\begin{itemize}
+		\item[(a)] Wir bestimmen den Konvergenzradius mit Hilfe des Quotientenkriteriums.
+			\begin{eqnarray*} &&\lim\limits_{n\to \infty} \left| \frac{ ((n+1)!)^2}{\left(3\cdot 5 \cdot \cdots\cdot (2n+1)\cdot (2(n+1)+1) \right)^2} \cdot \frac{\left( 3\cdot 5 \cdot \cdots \cdot (2n+1)\right)^2}{(n!)^2 } \right| \\
+				&=& \lim\limits_{n\to \infty} \left| \frac{n^2+2n +1 }{4 n^2 + 12 n + 9}\right| = \lim\limits_{n\to \infty} \left| \frac{1+2/n +1/n^2 }{4 + 12/ n + 9/n^2}\right|  \\ &=& \frac14 \Rightarrow R = 4\end{eqnarray*}
+		\item[(b)] Wir bestimmen den Konvergenzradius mit Hilfe des Wurzelkriteriums.
+			\begin{eqnarray*} \lim\limits_{n\to \infty} \sqrt[n]{{2n}\choose{n}} =  4 \Rightarrow R = \frac14\end{eqnarray*}
+		\item[(c)] Wir bestimmen den Konvergenzradius mit Hilfe des Quotientenkriteriums.
+			\begin{eqnarray*} \lim\limits_{n\to \infty} \left| \frac{ (n+1)^3(n+1-4)}{(n^4-4n^3)} \right| = \lim\limits_{n\to \infty} \left| \frac{n^3\cdot (1+2/n - \cdots) }{n^3\cdot (1-4/n)}\right| = 1 \Rightarrow R = 1\end{eqnarray*}
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[ Analytische Funktionen]
+Begründen Sie, warum die folgende Funktion nicht analytisch ist
+\[ f: x\mapsto  \begin{cases} e^{-1/x^2}, \quad x\not=0\,,\\
+0, \quad x=0\,.\end{cases}
+\]
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+Diese  Funktion  schmiegt  sich  bei $x=0$ extrem  stark  an  die $x$-Achse:  Der Funktionswert und alle Ableitungen sind dort $0$. Die Taylor-Reihe dieser Funktion $f$ für $x_0=0$ ist deshalb für alle $x$ gleich null - also nicht gleich $f$.
+\end{exercisebox}
+
+\begin{exercisebox}[Leibnitz-Kriterium] %HMI I, Blatt 10, Aufgabe 2
+	Der Weg eines Teilchens in Abhängigkeit der Beschleunigung $x<0$ sei durch die unendliche Reihe
+	\[
+		S(x) = \sum\limits_{k=1}^\infty \frac{x^{k-1}}{k^2\cdot 3^k}
+	\] gegeben.  Untersuchen Sie mit Hilfe des Leibnizkriteriums für welche $x\in\mathbb R$ die Reihe $S(x)$ sinnvoll gegeben ist.
+%Geben Sie eine hinreichende Bedingung für die Beschleunigung an, so dass $0\leq S(x) \leq \frac13$ gilt.
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+\(S(x)\) ist sinnvoll definiert, falls die Reihe konvergiert:
+			\[ \sum\limits_{k=0}^\infty \frac{x^{k-1}}{k^2\cdot 3^k} = \sum\limits_{k=1}^\infty (-1)^{k-1}\frac{|x|^{k-1}}{n^2\cdot 3^k}\]
+			Das heißt, dass wir das Leibnitz-Kriterium anwenden können. Eine Reihe über eine alternierende, monoton fallende Nullfolge ist nach Leibnitz konvergent. Die Frage ist also: für welche \(x\) ist die Folge \( a_k:= \displaystyle{ \frac{|x|^{k-1}}{k^2\cdot 3^k} } \)  monton fallend?
+			\begin{itemize}
+				\item offensichtlich ist Null eine untere Schranke für \(a_k\): \(0 < a_k, \; k\in \mathbb N^+\)
+				\item die Folge fällt monoton, wenn der Quotient aus zwei Folgegliedern kleiner als eins ist, also
+					\begin{eqnarray*} \left| \frac{a_{k+1}}{a_k} \right| &=&  \frac{ |x|^k \cdot k^2 \cdot 3^k}{(k+1)^2 \cdot 3^{k+1} \cdot |x|^{k+1}}\\
+						&=&  \frac{|x|}{3}\left( \frac{n}{n+1}\right)^2 \stackrel{!}{\leq} 1  \Leftrightarrow |x| \leq 3 \end{eqnarray*}
+				\end{itemize}
+						Also ist \(S(x)\) wohldefiniert für \(-3 \leq x < 0\).
+\end{exercisebox}
+
+\begin{exercisebox}[Potenzreihen und Differentialgleichungen] %Alternativ: Blatt 11, Aufgabe 3
+  Ein Körper mit der Masse $m$ bewege sich auf einer geradlinigen Bahn. Die Anfangsgeschwindigkeit sei $v_0 = 1$. Durch eine Kraft $F$, die der Geschwindigkeit proportional ist, wird der Körper abgebremst.
+
+  \begin{itemize}
+	  \item[(a)] Stellen Sie  Bewegungsgleichung für den Körper auf.
+	  \item[(b)] Lösen Sie die Differentialgleichung mit Hilfe eines Potenzreihenansatzes.
+  \end{itemize}
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)]
+  In dieser Aufgabe ist eine Bewegungsgleichung zu entwickeln, wie Sie sie aus der Physik kennen. Zu jeder Zeit gilt $F_c(t) = F_a(t)$ mit
+  \begin{eqnarray*}
+	  F_c(t) &=& -c \cdot v(t) \quad \textnormal{(Bremskraft)} \\
+  F_m(t) &=& m \cdot a(t) \quad  \textnormal{(Newton)} \,.
+  \end{eqnarray*}
+  Mit \[  a(t) = \dot v(t)\,,\] folgt ein sogenanntes Anfangswertproblem für $v$, das ist eine Differentialgleichung für $v$ mit gegebener Angfangsgeschwindigkeit $ v_0$:
+  \[ \begin{cases}
+		  \dot v(t) &= -\frac{c}{m} v(t) \quad t > 0\,, \quad (*)\\
+		  v(0) = v_0 &= 1\,.
+	  \end{cases}
+  \]
+  \item[(b)]
+  Die Idee ist diese Differentialgleichung mit einem Potenzreihenansatz zu lösen. Wir nehmen an \[v(t) = \sum\limits_{n=0}^\infty a_n t^n \Rightarrow \dot v(t) = \sum\limits_{n=0}^{\infty} (n+1)\cdot a_{n+1} t^{n}\,.\]
+  Setzen wir nun die Reihenentwicklungen für $v$ und $\dot v$ in $(*)$ ein, dann
+  \begin{eqnarray*}
+	  \sum\limits_{n=0}^{\infty} (n+1)\cdot a_{n+1} t^{n} &=& -\frac{c}{m} \cdot \sum\limits_{n=0}^\infty a_n t^n \\
+	  \Rightarrow && \sum\limits_{n=0}^\infty \left( (n+1)\cdot a_{n+1} + \frac{c}{m} a_{n} \right) t^n = 0   \quad t> 0 \\
+		   \sum\limits_{n=0}^\infty a_n 0^n = 1 \Rightarrow a_0 = 1\,.
+	   \end{eqnarray*}
+	   Das heißt, dass die  unbekannten Koeffizienten  $a_n, n\geq2$ rekursiv miteinander verknüpft sind:
+  \begin{eqnarray*}
+	  a_0 &=& 1 \\
+	  a_{n+1} = -\frac{c}{m} \frac{1}{n+1} a_n \Rightarrow a_1 = -\frac{c}{m},\; a_2 =  \left( -\frac{c}{m}\right)^2 \frac{1}{2},\; a_3 =  \left( -\frac{c}{m}\right)^3 \frac{1}{2\cdot 3} \cdots
+	   \end{eqnarray*}
+	   Mit vollständiger Induktion beweist man \[ a_n = \left( -\frac{m}{c}\right)^n \frac{1}{n!} \,.\]
+	   Das heißt wir haben die Lösung in Form einer Potenzreihe gefunden (deren Wert kennen wir auch schon!):
+	   \[ v(t) = \sum\limits_{n=0}^\infty  \left(  -\frac{c}{m} t\right)^n \frac{1}{n!} \Rightarrow v(t) = e^{-m/c t} \,.\]
+\end{itemize}
+\end{exercisebox}
+

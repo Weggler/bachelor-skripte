@@ -1,0 +1,169 @@
+\section*{Lineare Gleichungssysteme Lösungen}\label{MA1-lineare-gleichungssysteme-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-lineare-gleichungssysteme}{ (Abschnitt \abschnittsverweis{MA1-lineare-gleichungssysteme})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+
+\begin{exercisebox}[Rechenregeln]
+Wie muss $\boldsymbol b$ gewählt werden, dass gilt $A\boldsymbol x =\boldsymbol b$ mit 
+\[ \left( \begin{array}{ccccc} -1 & 0 & 0 & 3 & -2 \\  2 & -1 & 1 & 0 & 0 \\ 1 & 1 & -1 & -2 & 0 \end{array}\right), \quad \boldsymbol x = \left( -1, 2,-2,3,5\right)^\intercal\,.\]
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Zu berechnen ist die Matrix-Vektor Multiplikation
+  \begin{eqnarray*}
+	  \left( \begin{array}{ccccc} -1 & 0 & 0 & 3 & -2 \\  2 & -1 & 1 & 0 & 0 \\ 1 & 1 & -1 & -2 & 0 \end{array}\right) \left(\begin{array}{c} -1 \\ 2 \\ -2 \\3 \\5 \end{array} \right) 
+%&=& \left( \begin{array}{c} 
+% (-1)\cdot (-1) + 0\cdot 2 + 0\cdot (-2) + 3 \cdot 3 + (-2) \cdot 5 \\
+% 2\cdot (-1) + (-1)\cdot 2 + 1\cdot (-2) + 0 \cdot 3 + 0 \cdot 5 \\
+% 1\cdot (-1) + 1\cdot 2 + (-1)\cdot (-2) + (-2) \cdot 3 + 0 \cdot 5 \\
+%  \end{array}\right) \\ 
+  &=&  \left( \begin{array}{c} 0 \\ -6 \\ -3\end{array}\right) \,.
+  \end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Lösbarkeitsanalyse]
+	Gegeben seien \[ A = \left( \begin{array}{cc} 1 & 1 \\ 2 & \alpha \end{array}\right), \quad \boldsymbol b = \left( \begin{array}{c} -2 \\ \beta \end{array}\right)\] mit Parametern $\alpha, \beta\in \mathbb R$. 
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie den Rang der Matrix $A$ in Abhängigkeit von $\alpha$.
+		\item[(b)] Bestimmen Sie den Rang der erweiterten Matrix $(A|b)$ in Abhängigkeit von $\alpha$ und $\beta$.
+		\item[(c)] Bestimmen Sie in Abhängigkeit der beiden Parameter, wann das lineare Gleichugnssystem $A\boldsymbol x = \boldsymbol b$ lösbar ist und wann es genau eine Lösung gibt.
+	\end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Für die Bestimmung von $\mathrm{rk}(A)$ und $\mathrm{rk}(A_{\boldsymbol b}$ bringen wir die erweiterte Koeffizientenmatrix $\mathrm{rk}(A_{\boldsymbol b})$ auf Dreiecksform und lesen die gesuchten Größen ab: 
+		  \begin{eqnarray*}
+			  \left( \begin{array}{cc|c} 1 & 1 & -2 \\ 2 & \alpha & \beta \end{array}\right) \Leftrightarrow 
+			  \left( \begin{array}{cc|c} 1 & 1 & -2 \\ 0 & \alpha-2 & \beta+4 \end{array}\right) \,. 
+		  \end{eqnarray*}
+		  \begin{itemize}
+			  \item[(a)] 
+				  $\mathrm{rk}(A) = \begin{cases} 1 \Leftrightarrow \alpha = 2\,,\\ 2  \Leftrightarrow \alpha \not= 2\,. \end{cases} $
+		  \item[(b)] 
+			  $\mathrm{rk}(A_{\boldsymbol b}) = \begin{cases} 1 \Leftrightarrow \alpha = 2 \land \beta = -4\,,\\ 2  \Leftrightarrow \alpha \not= 2 \lor \beta \not=-4\,. \end{cases}$ 
+		  \item[(c)]  Um zu sehen für welche Werte von $\alpha$ und $\beta$ das Gleichungssystem lösbar ist, bestimmen wir den Fall, für den das Gleichungssystem nicht lösbar ist und negieren dann die Aussage:
+			  \begin{eqnarray*}
+				  \textnormal{Gleichungssystem nicht l\"osbar } &\Leftrightarrow& \; \alpha = 2 \land \beta \not= -4 \\ 
+				  \Rightarrow \; \textnormal{Gleichungssystem l\"osbar } &\Leftrightarrow& \; \neg \left(  \alpha = 2 \land \beta \not= -4\right) \Leftrightarrow    \alpha \not= 2 \lor \beta = -4
+			  \end{eqnarray*}
+			  Das lineare Gleichungssystem ist eindeutig lösbar genau dann, wenn $\mathrm{rk}(A) = \mathrm{rk}(A_b) = 2$, also falls $\alpha \not=2 $ und $\beta\not=-4$.
+	  \end{itemize}
+\end{exercisebox}
+\begin{exercisebox}[Gleichungssysteme]
+	Analysieren Sie die Lösbarkeit der folgenden Gleichungssysteme und bestimmen Sie die Lösungsmenge:
+	\begin{eqnarray*}
+		\begin{array}{lll} 
+			(a) \; \begin{cases}
+				x_1 -x_2 - x_3 &= 0\\
+				x_1 +x_2 + 3x_3 &= 4\\
+				     x_2 + 2x_3 &= 2\\
+				     2x_1 + x_3 &= 3\\
+    \end{cases} 
+    &\;\;  
+    (b)\; \begin{cases}
+	    x_1 + x_2 - x_3 + x_4 - x_5 &= 1\\
+    -x_1 + x_2 - 3 x_3 + 3x_5 &= 2\\
+    x_2 - 2 x_3 + x_4 - x_5 &= -1\\
+    2x_1 + 2 x_3 + x_4 - 2 x_5 &= 1
+  \end{cases}
+  \;\; (c)\; \begin{cases}
+	x_1 + x_2 - x_3 &=1 \\
+	2x_1 + 3x_2 + px_3 &= 3 \\
+	x_1 + px_2 + 3x_3 &= 2
+    \end{cases}    \\[3ex]
+	(d)\; \begin{cases}
+    3x_1 + x_2-4x_3 &= 2\\
+    x_1 + x_2&= 0\\
+    4x_1 +5x_3 + x_4 &= 1 \\
+    6x_2 +x_3 + 2x_4 &= 1
+  \end{cases}
+    &\;\;  
+  (e)\;\begin{cases}
+	  (2+i)\cdot z_1 + i\cdot z_3 &= -4+3i \\ 
+		(1+3i)\cdot z_1 + (-1-i)\cdot z_2  - z_3 &= -6-2i \\ 
+		(4+2i)\cdot z_2 + (3+3i)\cdot z_3 &= -2+4i 
+	\end{cases} 
+  \end{array}
+  \end{eqnarray*}
+
+
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+	\begin{itemize}
+		\item[(a)]  
+			Das Gleichungssystem besteht aus vier Gleichungen für drei Unbekannte. Hat man mehr Gleichungen als Unbekannte, so spricht man von einem überbestimmten Gleichungssystem. Das vorliegende überbestimmte Gleichungssystem besitzt eine eindeutige Lösung und das liegt daran, dass die Gleichungen linear abhängig sind. Bringt man die Matrix auf Trapezform, so pssiert folgendes: 
+			\begin{eqnarray*}
+				\left( \begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 1 & 1 & 3 & 4 \\ 0 & 1 & 2 & 2 \\ 2 & 0 & 1 & 3 \end{array}\right)  \Leftrightarrow  
+				\left( \begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 1 & 2 & 2 \\ 0 & 1 & 2 & 2 \\ 0 & 2 & 3 & 3 \end{array}\right) \Leftrightarrow  
+					\left( \begin{array}{ccc|c} 1 & -1 & -1 & 0 \\ 0 & 1 & 2 & 2 \\ \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{0} \\ 0 & 0 & -1 & -1 \end{array}\right)  
+			\end{eqnarray*}
+			Die dritte Zeile ist eine \textcolor{red}{Nullzeile} und da diese Zeile der Gleichung 
+			\[ \textcolor{red}{0}\cdot x_1 + \textcolor{red}{0} \cdot x_2 + \textcolor{red}{0}\cdot x_3 = \textcolor{red}{0}\] entspricht, ist sie für alle möglichen Werte von \(x_1, x_2\) und \(x_3\) bedingungslos erfüllt! Es genügt die übrigen drei Gleichungen zur Bestimmung der Lösung heranzuziehen und das sieht gut aus: die vierte Gleichung führt auf eine eindeutige Lösung für \(x_3\) 
+			\[ (-1) \cdot x_3 = -1 \Leftrightarrow x_3 = 1\] 
+			Setzt man \(\textcolor{blue}{x_3 = 1 }\) in die zweite Gleichung ein, so erhält man eine eindeutige Lösung für \(x_2\): 
+			\[ \begin{array}{ c rcl l} &  1 \cdot x_2 + 2\cdot \textcolor{blue}{x_3} &=&  2 & \\ \stackrel{ \displaystyle{ \textcolor{blue}{x_3 = 1} } }{\Leftrightarrow} &  x_2 + 2\cdot \textcolor{blue}{1} &=& 2  & \| - 2 \\  \Leftrightarrow &  x_2 &=& 0 & \end{array}\] 
+			Im letzten Schritt des Rückwärtseinsetzens, setzt man nun die Lösungen für \(\textcolor{blue}{x_3}\) und \(\textcolor{blue}{x_2}\) in die erste Gleichugn ein und erhält die eindeutige Lösung für \(x_1\): 
+			\[ \begin{array}{ c rcl l} &  x_1 - \textcolor{blue}{x_2} - \textcolor{blue}{x_3} &=&  0 & \\  \stackrel{ \displaystyle{ \textcolor{blue}{x_3 = 1}, \textcolor{blue}{ x_2 = 0} } }{\Leftrightarrow} &  x_1 - \textcolor{blue}{0} - \textcolor{blue}{1} &=& 0  &  \\  \Leftrightarrow &  x_1 &=& 1 & \end{array}\] 
+
+			Die eindeutige Lösung des Gleichungssystems lautet also $x_1 = 1, x_2 = 0, x_3 = 1$. Überbestimmte Gleichungssysteme sind im allgemeinen nicht lösbar. In diesem Fall sind die Zeilen linear abhängig und das bedeutet, dass die Bedingung, die in einer Zeile drinsteckt durch die anderen schon abgedeckt ist. Eine Zeile kann man aus dem System herausnehmen. Beim Lösen mit dem Gauß-Algorithmus wird diese Information dadurch transparent, dass eine Nullzeile entsteht. 
+
+		\item[(b)] $x_1 = 2-\lambda, x_2 = 1+2\lambda, \; x_3 = \lambda, x_4=-1, x_5=1$ 
+		\item[(c)]  
+			\begin{eqnarray*}
+				\left( \begin{array}{ccc|c} 1 & 1 & - 1 &1 \\ 2 & 3 & p & 3 \\ 1 & p & 3 & 2 \end{array}\right) {\Leftrightarrow }
+				\left( \begin{array}{ccc|c} 1 & 1 & - 1 &1 \\ 0 &1 & 2+p & 1 \\ 0 & p-1 & 4 & 1 \end{array}\right) \stackrel{ p\not=1}{\Leftrightarrow }
+				\left( \begin{array}{ccc|c} 1 & 1 & - 1 &1 \\ 0 & 1 & 2+p & 1 \\ 0 & 0 & 4 + (1-p)(2+p) & 2-p \end{array}\right)\,, 
+			\end{eqnarray*}
+			wobei die faktorisierte Form des Eintrags an Position mit Index \(33\) lautet: 
+			\[ 4+(1-p)(2+p) = -p^2-p+6 = -(x-2)(x+3)\,.\]
+			Das heißt, dass die Fälle \( p=1\), \(p=2\), \(p=-3\) und \(p\in \mathbb R\setminus\{1,2,-3\}\) separat zu untersuchen sind: 
+			\begin{enumerate}
+				\item Für $p=1$ lautet die Lösung $x_1=1, x_2 = x_3 = \displaystyle{\frac14}\,.$  
+				\item Für $p=-3$ ist das System nicht lösbar.  
+				\item Für $p=2$ hat das System unendlich viele Lösungen: $x_1 5\lambda, \, x_2 = 1-4\lambda, \; x_3 = \lambda, \; \lambda \in \mathbb R\,.$  
+				\item Für $p\in \mathbb R\setminus\{1,-3,2\}$ lautet die eindeutige Lösung $x_1 = 1, x_2 = x_3 =\displaystyle{ \frac{1}{3+p} }\,.$
+			\end{enumerate}
+			
+  \item[(d)]  
+			\begin{eqnarray*}
+				\left( \begin{array}{cccc|c} 3 & 1 & -4 & 0 & 2 \\ 1 & 1 & 0 & 0 & 0 \\ 4 & 0 & 5 & 1 & 1 \\ 0 & 6 & 1 & 2 & 1 \end{array}\right) &\Leftrightarrow & 
+				\left( \begin{array}{cccc|c}  1 & 1 & 0 & 0 & 0 \\ 3 & 1 & -4 & 0 & 2 \\4 & 0 & 5 & 1 & 1 \\ 0 & 6 & 1 & 2 & 1 \end{array}\right) \\
+				&\Leftrightarrow & 
+				\left( \begin{array}{cccc|c}  1 & 1 & 0 & 0 & 0 \\ 0 & 1 & 2 & 0 & -1 \\0 & 0 & 2 & 3 & 4 \\ 0 & 0 & 0 & 37 & 58 \end{array}\right)  \Rightarrow \left( \begin{array} {c} x_1 \\x_2 \\x_3 \\ x_4 \end{array}\right) =  \frac{1}{37}\left( \begin{array} {c} 41 \\-41 \\ 2 \\ 58 \end{array}\right) 
+			\end{eqnarray*}
+
+  \item[(e)] 
+			\begin{eqnarray*}
+				\left( \begin{array}{ccc|c} 2+i & 0 & j & -4+3i \\ 1+3i & -1-i & -1 & -6 -2i \\ 0 & 4+2i & 3+3i & -2 + 4i \end{array}\right) &\Leftrightarrow & 
+				\left( \begin{array}{ccc|c} 2+i & 0 & j & -4+3i \\ 0 & -1-i & -i & -6 1-i \\ 0 & 4+2i & 3+3i & -2 + 4i \end{array}\right) \\ &\Leftrightarrow  &
+				\left( \begin{array}{ccc|c} 2+i & 0 & j & -4+3i \\ 0 & -1-i & -i & -6 1-i \\ 0 & 0 & 2 & 0 \end{array}\right)
+			\end{eqnarray*}
+			Lösen wir die Gleichungen von unten nach oben auf, dann erhälten wir 
+			\[ z_1 = -1+2i, \; z_2 = i, \; z_3 = 0\,.\]
+	  \end{itemize}
+\end{exercisebox}
+\begin{exercisebox}[Gleichungssysteme]
+	Gesucht ist eine Matrix $X\in \mathbb R^{2\times 2}$ so, dass \[ A X + X A^\intercal = C, \quad A=\left( \begin{array}{cc} 1 & -1 \\ 2 & 2 \end{array}\right), \; C = \left( \begin{array}{cc} 4 & 0 \\ 6 & 4 \end{array}\right) \,. \]
+	Bestimmen Sie ein lineares Gleichungssystem für die unbekannten Koeffizienten $x_{ij},\; i,j=1,2$ der Matrix $X$ und lösen Sie es.
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Es muss gelten 
+  \[ 
+  \left( \begin{array}{cc} -x_{12} - x_{21} + 2 x_{11} & -x_{22}+3x_{12} + 2x_{11} \\ -x_{22} + 3 x_{21} + 2 x_{11}  & 4 x_{22} + 2 x_{12} + 2 x_{21}  \end{array}\right) = \left( \begin{array}{cc} 4 & 0 \\6 & 4 \end{array}\right) \,. \]
+  Also 
+  \[ 
+  \left( \begin{array}{cccc| c } 2 & -1 & -1 & 0 & 4 \\ 2 & 0 & 3 & -1 & 0 \\ 2 & 3 & 0 & -1 &  6 \\ 0 & 2 & 2 & 4 & 4 \end{array}\right) \]
+  Dieses System lösen wir mittels Gauß-Verfahren und erhalten 
+  \[ \Leftrightarrow 
+  \left( \begin{array}{cccc| c } 2 & -1 & -1 & 0 & 4 \\ 0 & 1 & 4 & -1 & 4 \\ 0 & 0 & -5 & 1 &  6 \\ 0 & 0 & 0 & 1 & 1 \end{array}\right) \Rightarrow x_{22}= 1, x_{21} = -1, x_{12} = 1, x_{11} = 2\,. \]
+  \end{exercisebox}

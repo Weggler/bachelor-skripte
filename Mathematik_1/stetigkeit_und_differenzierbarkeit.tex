@@ -1,0 +1,468 @@
+
+\section{Stetigkeit und Differenzierbarkeit}\label{MA1-stetigkeit-und-differenzierbarkeit}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Stetigkeit erklären und untersuchen &\\
+    \tabitem Parameter so bestimmen, dass eine stückweise definierte
+    Funktion stetig ist &\\
+    \tabitem den Differenzenquotienten als mittlere Änderungsrate interpretieren &\\
+    \tabitem die Ableitung als lokale Änderungsrate interpretieren &\\
+    \tabitem Differenzierbarkeit über den Grenzwert des Differenzenquotienten erklären und untersuchen &\\
+    \tabitem den Zusammenhang zwischen Differenzierbarkeit, Stetigkeit und lokaler Linearität erläutern &\\
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+\tabitem Steigung linearer Funktionen & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+\tabitem Stückweise definierte Funktionen & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+    \tabitem stückweise definierte Funktionen & \abschnittsverweis{MA1-lineare-funktionen}\\
+    \tabitem Grenzwerte von Funktionen und einseitige Grenzwerte
+    & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema:
+\hyperref[MA1-stetigkeit-und-differenzierbarkeit-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Was ist Stetigkeit?}
+
+Der Grenzwert
+\[
+\lim_{x\to x_0}f(x)
+\]
+beschreibt, welchem Wert sich die Funktionswerte nähern, wenn sich \(x\)
+der Stelle \(x_0\) nähert. Dabei spielt der tatsächliche Funktionswert
+\(f(x_0)\) zunächst keine Rolle.
+
+Für eine Funktion, die an \(x_0\) definiert ist, können daher zwei Werte
+miteinander verglichen werden:
+\[
+\lim_{x\to x_0}f(x)
+\qquad\textnormal{und}\qquad
+f(x_0).
+\]
+
+Stimmen beide überein, so schließt sich das Verhalten der Funktion in der
+Umgebung von \(x_0\) ohne Lücke oder Sprung an den Funktionswert an.
+Genau diese Eigenschaft beschreibt die \textbf{Stetigkeit}
+(\emph{continuity}).
+
+
+\begin{defbox}{Stetigkeit in \(x_0\)}{ }
+Eine Funktion \(f:D\to\mathbb R\) ist an einer Stelle \(x_0\in D\)
+\textbf{stetig}, wenn
+\[
+\lim_{x\to x_0}f(x)=f(x_0).
+\]
+\end{defbox}
+
+Für Stetigkeit müssen damit drei Dinge zusammenpassen: Die Funktion muss
+an \(x_0\) definiert sein, der Grenzwert für \(x\to x_0\) muss existieren
+und dieser Grenzwert muss mit dem Funktionswert \(f(x_0)\) übereinstimmen.
+
+Anschaulich bedeutet Stetigkeit, dass kleine Änderungen von \(x\) in der
+Nähe von \(x_0\) nur kleine Änderungen von \(f(x)\) hervorrufen. Der Graph
+besitzt dort insbesondere weder einen Sprung noch eine Lücke.
+
+
+\begin{exabox}{\(\sin:x\mapsto\sin(x)\) ist stetig}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/stetigkeit_sinusfunktion.png}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    Der Graph der Sinusfunktion besitzt weder Sprünge noch Lücken.
+
+    Anschaulich lässt er sich zeichnen, ohne den Stift abzusetzen.
+    Diese Vorstellung ist für viele reelle Funktionen hilfreich, ersetzt
+    aber nicht die mathematische Definition der Stetigkeit.
+  \end{minipage}
+\end{exabox}
+
+
+\subsubsection*{Eine wichtige Konsequenz der Stetigkeit}
+
+Eine stetige Funktion kann zwischen zwei Funktionswerten keine Werte
+überspringen. Liegen beispielsweise \(f(a)\) und \(f(b)\) auf
+unterschiedlichen Seiten eines Wertes \(y\), so muss der Graph den Wert
+\(y\) zwischen \(a\) und \(b\) annehmen.
+
+Diese Eigenschaft wird durch den Zwischenwertsatz präzisiert.
+
+\begin{theorembox}{Zwischenwertsatz}{ }
+Es sei \(f:D\to\mathbb R\) stetig und \([a,b]\subset D\).
+Für jeden Wert \(y\) zwischen \(f(a)\) und \(f(b)\) existiert mindestens
+ein \(x\in[a,b]\) mit
+\[
+f(x)=y.
+\]
+\end{theorembox}
+
+Eine wichtige Anwendung ergibt sich für \(y=0\): Haben \(f(a)\) und
+\(f(b)\) unterschiedliche Vorzeichen, so besitzt eine stetige Funktion
+zwischen \(a\) und \(b\) mindestens eine Nullstelle.
+
+
+\subsubsection*{Stetigkeit und Folgen}
+
+Der Grenzwertbegriff wurde zunächst mithilfe von Zahlenfolgen als
+Annäherungsprozess entwickelt. Auch Stetigkeit lässt sich in dieser
+Vorstellung unmittelbar interpretieren.
+
+Nähert sich eine Folge von Stellen \(x_n\) einer Stelle \(x_0\), so müssen
+sich bei einer stetigen Funktion die zugehörigen Funktionswerte dem
+Funktionswert \(f(x_0)\) nähern.
+
+\begin{theorembox}{Folgenstetigkeit}{ }
+Ist \(f\) in \(x_0\) stetig und gilt
+\[
+x_n\to x_0,
+\]
+so folgt
+\[
+f(x_n)\to f(x_0).
+\]
+\end{theorembox}
+
+Bei stetigen Funktionen kann der Grenzwert damit mit der Funktion
+vertauscht werden:
+\[
+\lim_{n\to\infty}f(x_n)
+=
+f\left(\lim_{n\to\infty}x_n\right)
+=
+f(x_0).
+\]
+
+In diesem Sinne darf bei stetigen Funktionen der Grenzwert
+\emph{eingesetzt} werden.
+
+
+\subsubsection*{Hebbare Definitionslücken}
+
+Der Grenzwert einer Funktion kann an einer Stelle auch dann existieren,
+wenn die Funktion dort selbst nicht definiert ist. In diesem Fall ist die
+ursprüngliche Funktion an dieser Stelle nicht stetig, da \(f(x_0)\) nicht
+existiert.
+
+Existiert jedoch ein endlicher Grenzwert
+\[
+\lim_{x\to x_0}f(x)=L,
+\]
+so kann die fehlende Stelle durch die Festlegung
+\[
+f(x_0)=L
+\]
+ergänzt werden. Eine solche Definitionslücke heißt
+\textbf{hebbare Definitionslücke}; die ergänzte Funktion heißt
+\textbf{stetige Fortsetzung}.
+
+
+\begin{exabox}{Stetige Fortsetzung}{ }
+Die Funktion
+\[
+f:\mathbb R\setminus\{0\}\to(0,\infty),
+\qquad
+x\mapsto e^{-1/x^2},
+\]
+ist im Nullpunkt nicht definiert. Es gilt jedoch
+\[
+\lim_{x\to0}e^{-1/x^2}=0.
+\]
+
+Die Definitionslücke lässt sich daher durch den Grenzwert schließen.
+Eine stetige Fortsetzung ist
+\[
+\widetilde f:\mathbb R\to[0,\infty),
+\qquad
+x\mapsto
+\begin{cases}
+e^{-1/x^2}, & x\neq0,\\
+0,          & x=0.
+\end{cases}
+\]
+\end{exabox}
+
+
+\subsection{Was ist Differenzierbarkeit?}
+
+Stetigkeit beschreibt, ob sich das Verhalten einer Funktion in der
+Umgebung einer Stelle ohne Sprung oder Lücke an den dortigen
+Funktionswert anschließt. Für die Untersuchung lokaler Veränderungen
+reicht diese Information jedoch noch nicht aus.
+
+Von besonderem Interesse ist nun die Frage, \emph{wie stark} sich die
+Funktionswerte verändern, wenn sich \(x\) in der Umgebung einer Stelle
+\(x_0\) verändert.
+
+Dazu werden zunächst zwei Punkte des Funktionsgraphen betrachtet:
+\[
+P=\bigl(x_0,f(x_0)\bigr)
+\qquad\textnormal{und}\qquad
+Q=\bigl(x_0+h,f(x_0+h)\bigr).
+\]
+
+Die Gerade durch diese beiden Punkte ist eine Sekante. Ihre Steigung
+ergibt sich aus der Änderung der Funktionswerte geteilt durch die Änderung
+der Argumente:
+\[
+\frac{f(x_0+h)-f(x_0)}
+     {(x_0+h)-x_0}
+=
+\frac{f(x_0+h)-f(x_0)}{h}.
+\]
+
+Dieser Ausdruck heißt \textbf{Differenzenquotient}. Er beschreibt die
+mittlere Änderungsrate von \(f\) zwischen \(x_0\) und \(x_0+h\).
+
+Nun rückt der zweite Punkt immer näher an den ersten heran. Mathematisch
+entspricht dies dem Grenzübergang
+\[
+h\to0.
+\]
+Existiert dabei ein endlicher Grenzwert des Differenzenquotienten, so
+entsteht aus der mittleren Änderungsrate eine lokale oder momentane
+Änderungsrate. Geometrisch nähert sich die Sekante einer Tangente an.
+
+
+\begin{defbox}{Differenzierbarkeit in \(x_0\)}{ }
+Eine Funktion \(f\) heißt an der Stelle \(x_0\)
+\textbf{differenzierbar} (\emph{differentiable}), wenn der Grenzwert
+\[
+\lim_{h\to0}
+\frac{f(x_0+h)-f(x_0)}{h}
+\]
+existiert.
+
+Der Wert dieses Grenzwerts heißt \textbf{Ableitung}
+(\emph{derivative}) von \(f\) an der Stelle \(x_0\):
+\[
+f'(x_0)
+=
+\lim_{h\to0}
+\frac{f(x_0+h)-f(x_0)}{h}.
+\]
+\end{defbox}
+
+Die Ableitung \(f'(x_0)\) besitzt damit zwei unmittelbar miteinander
+verbundene Interpretationen:
+
+\[
+\text{lokale Änderungsrate}
+\qquad\longleftrightarrow\qquad
+\text{Tangentensteigung}.
+\]
+
+
+\subsubsection*{Die Ableitungsfunktion}
+
+Ist \(f\) nicht nur an einer einzelnen Stelle, sondern an allen Stellen
+eines Bereichs differenzierbar, so kann jedem \(x\) die dortige lokale
+Änderungsrate zugeordnet werden.
+
+Dadurch entsteht aus \(f\) eine neue Funktion: die
+\textbf{Ableitungsfunktion} \(f'\).
+
+\begin{defbox}{Erste Ableitung von \(f\)}{ }
+\[
+f':
+x\mapsto
+\lim_{h\to0}
+\frac{f(x+h)-f(x)}{h}.
+\]
+
+Gängige Bezeichnungen für die erste Ableitung sind
+\[
+f',
+\qquad
+\frac{\mathrm df}{\mathrm dx},
+\qquad
+f^{(1)}.
+\]
+
+Ist die unabhängige Variable die Zeit \(t\), wird häufig auch die
+Schreibweise
+\[
+\dot f=\frac{\mathrm df}{\mathrm dt}
+\]
+verwendet.
+\end{defbox}
+
+Der Definitionsbereich von \(f'\) besteht aus denjenigen Stellen des
+Definitionsbereichs von \(f\), an denen \(f\) differenzierbar ist.
+
+
+\begin{exabox}{Zusammenhang zwischen Funktion und Ableitung}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/ableitung_sinus_kosinus.png}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    Die Ableitung beschreibt die lokale Änderung von \(f\):
+    \begin{itemize}
+      \item Wächst \(f\), so ist \(f'\) positiv.
+      \item Fällt \(f\), so ist \(f'\) negativ.
+      \item Besitzt \(f\) an einer inneren Stelle ein lokales Maximum oder
+      Minimum und ist dort differenzierbar, so gilt \(f'(x)=0\).
+    \end{itemize}
+  \end{minipage}
+\end{exabox}
+
+
+\subsubsection*{Differenzierbarkeit und Stetigkeit}
+
+Differenzierbarkeit stellt eine stärkere lokale Anforderung an eine
+Funktion als Stetigkeit.
+
+\begin{theorembox}{Differenzierbarkeit und Stetigkeit}{ }
+Ist eine Funktion \(f\) an einer Stelle \(x_0\) differenzierbar, so ist
+sie dort auch stetig:
+\[
+f\textnormal{ differenzierbar in }x_0
+\quad\Longrightarrow\quad
+f\textnormal{ stetig in }x_0.
+\]
+
+Die Umkehrung gilt im Allgemeinen nicht.
+\end{theorembox}
+
+Eine stetige Funktion kann also durchaus Stellen besitzen, an denen keine
+eindeutige Tangentensteigung existiert. Ein besonders einfaches Beispiel
+ist die Betragsfunktion.
+
+
+\begin{exabox}{Stetig, aber nicht differenzierbar: \(f(x)=|x|\)}{ }
+  \begin{minipage}{0.5\textwidth}
+    \includegraphics[width=\textwidth]
+    {../Mathematik_1/Bilder/differenzierbarkeit_betragsfunktion_knick.png}
+  \end{minipage}
+  \begin{minipage}{0.45\textwidth}
+    Die Betragsfunktion ist in \(x_0=0\) stetig. Dort besitzt ihr Graph
+    jedoch einen Knick.
+
+    Für \(x_0=0\) lautet der Differenzenquotient
+    \[
+    \frac{f(0+h)-f(0)}{h}
+    =
+    \frac{|h|}{h}.
+    \]
+
+    Die einseitigen Grenzwerte sind
+    \[
+    \lim_{h\to0^-}\frac{|h|}{h}=-1,
+    \qquad
+    \lim_{h\to0^+}\frac{|h|}{h}=1.
+    \]
+
+    Da beide Grenzwerte verschieden sind, existiert der Grenzwert des
+    Differenzenquotienten nicht. Die Betragsfunktion ist daher in
+    \(x_0=0\) nicht differenzierbar.
+  \end{minipage}
+\end{exabox}
+
+Das Beispiel zeigt den Unterschied zwischen beiden Begriffen besonders
+deutlich: Für Stetigkeit genügt es, dass sich die Funktionswerte passend
+an \(f(x_0)\) anschließen. Differenzierbarkeit verlangt zusätzlich, dass
+sich die lokalen Änderungsraten von beiden Seiten an denselben Wert
+annähern.
+
+
+\subsection{Differenzierbarkeit als lokale Linearität}
+
+Die Ableitung beschreibt nicht nur eine Steigung. Hinter der
+Differenzierbarkeit steht eine weitergehende lokale Eigenschaft, die für
+die folgenden Abschnitte von zentraler Bedeutung ist.
+
+Ist eine Funktion in \(x_0\) differenzierbar, so lässt sie sich in einer
+hinreichend kleinen Umgebung von \(x_0\) immer besser durch eine Gerade
+approximieren. Diese Eigenschaft wird als
+\textbf{lokale Linearität} bezeichnet.
+
+Ausgehend von \(x_0\) wird eine kleine Änderung \(h\) betrachtet. Die
+zugehörige Änderung des Funktionswertes lässt sich zerlegen in einen
+linearen Anteil
+\[
+f'(x_0)h
+\]
+und einen verbleibenden Fehler. Differenzierbarkeit bedeutet, dass dieser
+Fehler für \(h\to0\) gegenüber \(h\) vernachlässigbar klein wird.
+
+
+\begin{defbox}{Differenzierbarkeit als lokale Linearisierung}{ }
+Eine Funktion \(f\) ist in \(x_0\) genau dann differenzierbar, wenn
+\[
+f(x_0+h)
+=
+f(x_0)+f'(x_0)h+r(h),
+\]
+wobei für den Rest \(r(h)\) gilt
+\[
+\lim_{h\to0}\frac{r(h)}{h}=0.
+\]
+\end{defbox}
+
+Häufig wird für einen solchen Rest auch die
+\textbf{Landau-Schreibweise}
+\[
+r(h)=o(h)
+\]
+verwendet. Damit lässt sich dieselbe Aussage kompakt als
+\[
+f(x_0+h)
+=
+f(x_0)+f'(x_0)h+o(h)
+\]
+schreiben.
+
+Der entscheidende Teil dieser Darstellung ist
+\[
+f(x_0)+f'(x_0)h.
+\]
+Er beschreibt die lokale affine Approximation der Funktion.
+
+Mit
+\[
+h=x-x_0
+\]
+ergibt sich daraus
+\[
+f(x)
+\approx
+f(x_0)+f'(x_0)(x-x_0).
+\]
+
+Die zugehörige Tangente an den Funktionsgraphen besitzt daher die
+Gleichung
+\[
+t(x)
+=
+f(x_0)+f'(x_0)(x-x_0).
+\]
+
+Die Tangente stimmt an der Stelle \(x_0\) sowohl im Funktionswert als auch
+in der Steigung mit \(f\) überein:
+\[
+t(x_0)=f(x_0),
+\qquad
+t'(x_0)=f'(x_0).
+\]
+
+Differenzierbarkeit kann damit auf zwei eng miteinander verbundenen Wegen
+verstanden werden: über den Grenzwert des Differenzenquotienten als
+\emph{lokale Änderungsrate} und über die Tangente als
+\emph{lokale affine Approximation} der Funktion.
+
+Im folgenden Abschnitt werden aus dieser Definition Rechenregeln
+entwickelt, mit denen Ableitungen bestimmt werden können, ohne den
+Differenzenquotienten jedes Mal erneut von Grund auf untersuchen zu
+müssen.

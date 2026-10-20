@@ -1,0 +1,417 @@
+\documentclass[a4paper,10pt]{scrreprt}
+\usepackage{etoc}
+
+% SeitenrÃ¤nder
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+% Encoding + Sprache
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Notes am rechten Seitenrand -deshalb die unterschiedliche Breite.
+\usepackage{marginnote}
+
+% Farben/Grafik
+\usepackage{xcolor}
+\usepackage{graphicx}
+\definecolor{violett}{RGB}{154,50,205}
+\definecolor{darkgreen}{RGB}{0,136,0}
+\definecolor{htwgreen}{RGB}{134,189,36}
+
+% Mathe
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+\usepackage{trfsigns}
+
+% Tabellen
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array} % fÃ¼r Tabellenspalten, falls nÃ¶tig
+\usepackage[table]{xcolor}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usepackage{pdflscape}
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+% codeboxes
+\usepackage{listings}
+
+% tcolorbox
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{ctable} % Nach tcolorbox/TikZ laden.
+
+% Hyperref (spÃ¤ter laden, aber vor scrlayer-scrpage)
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = red,
+  linkcolor  = red,
+  citecolor  = red
+}
+
+% KOMA-Script header/footer
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\cfoot*{\footnotesize
+Prof. Dr. Lucy Weggler -- Lizenz:
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC-BY-NC-SA 4.0}
+}
+
+\ofoot*{\pagemark}
+
+\input{../LaTeX/kopfzeile}
+
+% --- tcolorbox-Definitionen ---------------------
+% Definition
+% #1: Title
+% #2: Bemerkung
+\newcounter{def}
+\newtcolorbox{defbox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=left, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Def. \stepcounter{def}\thedef \newline \textcolor{black}{#3} };
+},
+  colframe=gray,
+  %colback=mytestcolor,
+  colback=white,
+  coltitle=red!70!gray,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt}
+
+% Satz
+% #1: Title
+% #2: Bemerkung
+\newcounter{satz}
+   \newtcolorbox{theorembox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Regel \stepcounter{satz}\thesatz \newline \textcolor{black}{#3} };
+},
+  colframe=gray,
+  %colback=mytestcolor,
+  colback=white,
+  coltitle=red!70!gray,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+	  \node[fill=white, rounded corners, draw=white, text=blue, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2};
+	  \node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} };
+},
+  colframe=blue,
+  colback=white,
+  coltitle=red!70!blue,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Ãœbung
+% #1: Title
+% #2: Bemerkung
+\newcounter{exercise}
+\newtcolorbox{exercisebox}[1][]{
+  enhanced,
+  overlay unbroken and first={
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east)  {#1};
+	  \node[anchor=north east, text=black, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)
+	  {\small  Aufg. \stepcounter{exercise}\theexercise };
+},
+  colframe=black,
+  colback=white,
+  coltitle=red!70!blue,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+
+% Nummerierung
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+
+
+% Aufgaben gemeinsam mit der Theorie verlinken; siehe LaTeX/README.md.
+\input{../LaTeX/ausgabemodus}
+\integriereaufgabenfalse
+
+\begin{document}
+\pagenumbering{roman}
+\title{Mathematik für Ingenieure\\ \vspace{0.5cm} \large{Hochschule für Technik und Wirtschaft Berlin}}
+\author{Prof. Dr. Lucy Weggler}
+\date{\today}
+\maketitle
+
+\etocsetnexttocdepth{chapter}
+\tableofcontents
+\cleardoublepage
+
+
+\pagenumbering{arabic}
+\part{Mathematik 1 -- Grundlagen und lokale Analyse}
+
+\input{../Mathematik_1/leitideen/mathematik_1}
+
+\chapter{Formelsprache}
+
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+ \input{../Mathematik_1/leitideen/grundlagen}  % Leitidee Grundlagen
+
+\bigskip
+\localtableofcontents
+\newpage
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/mengen_und_logik}  % Mengen und Logik
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/zahlenmengen}  % Zahlenmengen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/aequivalenzumformungen}  % Äquivalenzumformungen
+
+\chapter{Funktionen}
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\input{../Mathematik_1/leitideen/funktionen}  % Leitidee Funktionen
+
+\bigskip
+\localtableofcontents
+\newpage
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/funktionen}  % Definition Funktion
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/eigenschaften_von_funktionen}  % Eigenschaften von Funktionen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/lineare_funktionen}  % Lineare Funktionen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/potenz_und_wurzelfunktionen}  % Potenzfunktionen und Wurzeln
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/polynome}  % Polynome
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/algebraische_gleichungen}  % Algebraische Gleichungen (+)
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/rationale_funktionen} % Rationale Funktionen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/exponential_und_logarithmusfunktionen} % Exponentialfunktion und Logarithmus
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/trigonometrische_funktionen} % Trigonometrische Funktionen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/verkettung_von_funktionen} % Komposition von Funktionen (mit Bezug zu Schwingungen)
+
+\chapter{Komplexe Zahlen}
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\input{../Mathematik_1/leitideen/komplexe_zahlen}  % Leitidee Komplexe Zahlen
+
+\bigskip
+\localtableofcontents
+\newpage
+
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/komplexe_zahlen_grundlagen}  %  Kartesische und Polarkoordinaten, geometrische Interpretation der Grundrechenarten
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/komplexe_zahlen_polarform_und_euler}  %  Wurzelziehene im Komplexen, Polarform, Eulersche Identität
+
+\chapter{Lineare Strukturen im \(\mathbb R^n\) und \(\mathbb C^n\)}
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\input{../Mathematik_1/leitideen/vektoren}  % Leitidee Vektoren
+
+\bigskip
+\localtableofcontents
+\newpage
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/vektoren}  % Vektoren
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/vektorraum}  % Vektorraum inklusive Gerade im Raum
+
+\chapter{Lineare Abbildungen und Matrizen}
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\input{../Mathematik_1/leitideen/lineare_algebra}  % Leitidee Lineare Algebra
+
+\bigskip
+\localtableofcontents
+\newpage
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/matrizen}  % Matrizen % GEOGEBRA APPS
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/lineare_gleichungssysteme}  % Lineare Gleichungssysteme
+\newpage % Linerae Gleichungssysteme
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/determinante_und_inverse}  % Determinante und Inverse
+
+
+\chapter{Lokale Dynamik}
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\input{../Mathematik_1/leitideen/differentialrechnung}  % Leitidee DR
+
+\bigskip
+\localtableofcontents
+\newpage
+
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/grenzwerte_von_folgen_und_funktionen} % Grenzwerte von Folgen und Funktionen
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/stetigkeit_und_differenzierbarkeit} % Statigkeit und Differenzierbarkeit
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/ableitungsregeln} % Ableitungsregeln
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/lokale_linearitaet} % Lokale Linearität
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exa}{0}  \input{../Mathematik_1/ableitungen_und_funktionsverlauf} % Ableitungen und Funktionsverlauf
+
+
+
+% Mathematik 2 % ohne Übungsblättern und Lösungen
+\part{Mathematik 2 -- Systeme und globale Dynamik}
+
+\input{../Mathematik_2/leitideen/mathematik_2} \newpage % Idee
+
+\chapter{Von lokaler zu globaler Näherung}
+
+\input{../Mathematik_2/leitideen/globale_naeherung}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/zahlenreihen} \newpage % 01 Wichtige Reihen
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/taylorpolynome} \newpage % 02 Taylorpolynome
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/taylorreihen} \newpage % 03 Taylorreihen % VPL Approximationfehler Matlab
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/taylorreihen_aufgaben} \newpage
+
+\chapter{Integralrechnung}
+\input{../Mathematik_2/leitideen/integralrechnung}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/integration} \newpage % 04 Hauptsatz der Integralrechung
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/integration_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/integrationsregeln} \newpage % 05 Integrationsregeln
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/integrationsregeln_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/anwendungen_der_integration} \newpage % 06 Anwendungen der Integration: Energie Mittelwert
+
+\chapter{Funktionenräume und Projektion}
+\input{../Mathematik_2/leitideen/funktionenraeume}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/integrierbare_funktionen} \newpage % 07 Integrierbare Funktionen
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/integrierbare_funktionen_aufgaben} \newpage  % Funktionen als Vektoren, Skalarprodukt
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/fourierpolynome_und_projektion} \newpage % 08 Approximation im Funtionenraum
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/fourierpolynome_und_projektion_aufgaben} \newpage  % Bestapproximation
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/orthogonalprojektion} \newpage % 09 Approximation in R^n
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/orthogonalprojektion_aufgaben} \newpage  % Überbestimmte GL, Normalengleichung, Ausgleichsgerade
+
+\chapter{Fourieranalyse}
+\input{../Mathematik_2/leitideen/fourieranalyse}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/fourierreihen} \newpage % 10 Fourierreihen
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/fourierreihen_aufgaben} \newpage % VPL Matlab
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/diskrete_fouriertransformation} \newpage % 11 Diskrete Fouriertrafo
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/diskrete_fouriertransformation_aufgaben} \newpage  % VPL Matlab Experimente
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/fouriertransformation} \newpage % 12 Fouriertrafo OPTIONAL
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/fouriertransformation_aufgaben} \newpage
+
+
+\chapter{Differentialgleichungen}
+\input{../Mathematik_2/leitideen/differentialgleichungen}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/differentialgleichungen} \newpage % 13 Differentialgleichungen Grundlagen
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/differentialgleichungen_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/lineare_differentialgleichungen} \newpage % 14 Differentialgleichungen mit konstanten Koeffizienten
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/lineare_differentialgleichungen_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/stabilitaet} \newpage % 15 Stabilität: lineare DGL: Eigenwerte und Eigenvektoren
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/numerische_loesung_von_differentialgleichungen_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/numerische_loesung_von_differentialgleichungen} \newpage % 16 Numerische LÃ¶sung von Differentialgleichungen OPTIONAL % VPL Matlab
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/numerische_loesung_von_differentialgleichungen_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/trennbare_differentialgleichungen} \newpage % 17 Differentialgleichungen mit trennbaren Variablen OPTIONAL
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/trennbare_differentialgleichungen_aufgaben} \newpage
+
+\chapter{Laplacetransformation}
+\input{../Mathematik_2/leitideen/laplacetransformation}
+\bigskip
+\etocsettocstyle{\section*{Inhalt dieses Kapitels}}{}
+\localtableofcontents
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/laplacetransformation} \newpage % 18 Laplacetrafo  Definition
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/laplacetransformation_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/laplacetransformation_und_differentialgleichungen} \newpage % 19 Anwendungen DGL
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/laplacetransformation_und_differentialgleichungen_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/partialbruchzerlegung} \newpage % 20 Partialbruchzerlegung
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/partialbruchzerlegung_aufgaben} \newpage
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0} \input{../Mathematik_2/systemanalyse} \newpage % 21 Anwendungen Übertragungsfunktionen und Polstellen
+%\setcounter{exercise}{0} \input{../Material_2/aufgaben/systemanalyse_aufgaben} \newpage
+
+% \appendix
+% % Mathematik 2
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/taylorreihen_loesungen} \newpage
+%
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/integration_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/integrationsregeln_loesungen} \newpage
+% % 31 fehlt Anwendungen: Mittelwert %TODO
+%
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/integrierbare_funktionen_loesungen} \newpage  % Funktionen als Vektoren, Skalarprodukt
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/fourierpolynome_und_projektion_loesungen} \newpage  % Bestapproximation
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/orthogonalprojektion_loesungen} \newpage  % Überbestimmte GL, Normalengleichung, Ausgleichsgerade
+%
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/fourierreihen_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/diskrete_fouriertransformation_loesungen} \newpage  % Matlab Experimente
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/fouriertransformation_loesungen} \newpage
+%
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/differentialgleichungen_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/lineare_differentialgleichungen_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/36_loesungen} \newpage  %TODO
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/numerische_loesung_von_differentialgleichungen_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/trennbare_differentialgleichungen_loesungen} \newpage
+%
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/laplacetransformation_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/laplacetransformation_und_differentialgleichungen_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/partialbruchzerlegung_loesungen} \newpage
+% \setcounter{exercise}{0} \input{../Material_2/loesungen/systemanalyse_loesungen}
+
+% Symboluebersicht: gemeinsame Quelle mit dem separaten Querformat-Handout.
+\appendix
+\input{../Mathematik_2/symbole}
+
+\end{document}

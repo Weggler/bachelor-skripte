@@ -1,0 +1,127 @@
+\section*{Lokale Linearität Lösungen}\label{MA1-lokale-linearitaet-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-lokale-linearitaet}{ (Abschnitt \abschnittsverweis{MA1-lokale-linearitaet})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Zentrale Differenz und zweite Differenz]
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass sich die erste Ableitung von Polynomen vom Grad $2$ mit der zentralen Differenz exakt berechnen läßt.
+		\item[(b)] Zeigen Sie, dass sich die zweite Ableitung von Polynomen vom Grad $4$ mit der zweiten Differenz exakt berechnen läßt.
+	\end{itemize}
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+	\begin{itemize}
+		\item[(a)] 
+			Ein Polynom zweiten Grades mit Koeffizienten $a,b,c\in\mathbb R, \; a\not=0$ gilt 
+			\[ p(x) = ax^2 + bx + c\; \Rightarrow p'(x) = 2ax + b \,.\] 
+			Zu zeigen ist, dass die zentrale Differenz die erste Ableitung exakt approximiert. Betrachten wir beispielsweise die Ableitung an der Stelle $x_0 \in \mathbb R$. Es gilt für jedes $h>0$ 
+			\begin{eqnarray*}
+				\frac{ p(x_0+h) - p(x_0-h)}{2h} &=&  
+				\frac{ a(x_0+h)^2+b(x_0+h) +c - \left( a(x_0-h)^2+b(x_0-h) +c\right) }{2h} \\   
+				&=& \frac{ 4 ahx_0 + 2 h b }{2h}= ax + b = p'(x_0) \,.   
+			\end{eqnarray*}
+		\item[(b)]
+			Ein Polynom dritten Grades mit Koeffizienten $a,b,c,d\in\mathbb R, \; a\not=0$ gilt 
+			\[ p(x) = ax^3 + bx^2 + cx + d\; \Rightarrow p''(x) = 6ax + 2b \,.\] 
+			Zu zeigen ist, dass die zweite Differenz die zweite Ableitung exakt approximiert. Betrachten wir beispielsweise die zweite Ableitung an der Stelle $x_0 \in \mathbb R$. Es gilt für jedes $h>0$ 
+			\begin{eqnarray*}
+			&& \frac{ p(x_0+h) - 2 p(x_0) + p(x_0-h)}{h^2} \\
+			&=& =  \frac{ a(x_0+h)^3+b(x_0+h)^2 +c(x_0+h) + d }{h^2} \\
+			&& - 2 \frac{\left(ax_0^3+bx_0^2 +cx_0 + d  \right)}{h^2} +\frac{a(x_0-h)^3+b(x_0-h)^2 +c(x_0-h) + d }{h^2} \\
+		&=&   a\frac{ ( x^3 + 3 h x^2 + 3 h^2 x + h^3) - 2 x^3 + ( x^3 - 3 hx^2 + 3 h^2 x -h^3)}{h^2} \\
+		&& + b \frac{  ( x^2 + 2 h  + h^2 )  - b x^2 + (x^2 - 2 h + h^2 )  }{h^2} \\ 
+				&=& \frac{  6 a  h^2 x  + 2 b h^2  }{h^2}=  6 a x + 2 b \,.  
+			\end{eqnarray*}
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Bestapproximation]
+	Gegeben seien Messungen $x_1, x_2, \cdots, x_n\in\mathbb R$, $n\in \mathbb N$ einer Größe $x\in \mathbb R$. Gesucht ist eine Approximation $\tilde x\in \mathbb R$, deren Abstand zu allen Messwerten gleichzeitig minimal ist, also 
+	\[ \sum\limits_{k=1}^n |x- x_k|^2 \stackrel{!}{=} \mathrm{min}\,.\]
+		Bestimmen Sie eine Formel für $\tilde x$. 
+
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+Fassen wir den Term auf der rechten Seite als Funktion von $x$ auf, dann ist das Minimum dieser Funktion gesucht. Um das Minimum zu bestimmen, suchen wir zunächst kritische Punkte und überprüfen diese mittels der zweiten Ableitung. 
+Bei der Berechnung der ersten Ableitung muss man sich darüber Klarheit verschaffen, wie die Ableitung der Betragsfunktion funktioniert:
+Damit gilt
+\begin{eqnarray*} 
+	Q'(x) = \sum\limits_{k=1}^n 2 \cdot (x-x_k)\,. \\
+	Q''(x) = \sum\limits_{k=1}^n 2 = 2n > 0 \textnormal{ f"ur alle } x\in\mathbb R\,.
+\end{eqnarray*}
+Nun bestimmen wir die Nullstellen der ersten Ableitung:
+\[ Q'(x) = 0 \Leftrightarrow \sum\limits_{k=1}^n -2\cdot (x-x_k) = 0 \Leftrightarrow 2 n x = -2\sum\limits_{k=1}^n x_k\,.\] 
+Also ist die beste Approximation an alle Messpunkte gerade ihr arithmetisches Mittel: \[ \tilde x = -\frac1n \cdot \sum\limits_{k=^n} x_k\,. \]
+\end{exercisebox} 
+
+\begin{exercisebox}[Taylorentwicklung]
+	Gegeben sei die Funktion $f: x\mapsto \cos(x)$. Bestimmen Sie die Taylorentwicklung $T_7$ von $f$ an der Stelle $x_0=0$ und schätzen Sie den Betrag des Lagrangeschen Restglieds $R_8$ im Intervall $x\in I= [ -\pi/6, \pi/6]$ ab. 
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Es gilt 
+  \[ \begin{array}{rcl rcl }
+		  f(x) &=& \cos(x), & f(0) &=& 1 \\
+		  f'(x) &=& -\sin(x), & f'(0) &=& 0 \\
+		  f''(x) &=& -\cos(x), & f''(0) &=& -1 \\
+		  f''(x) &=& \sin(x), & f''(0) &=& 0 \\
+		  f^{(4)}(x) &=& \cos(x), & f^{(4)}(0) &=& 1 \\
+		  f^{(5)}(x) &=& -\sin(x), & f^{(5)}(0) &=& 0 \\
+		  f^{(6)}(x) &=& -\cos(x), & f^{(6)}(0) &=& -1 \\
+		  f^{(7)}(x) &=& \sin(x), & f^{(7)}(0) &=& 1 \\
+		  f^{(8)}(x) &=& \cos(x), & |f^{(8)}(x)| &=& \leq 1
+	  \end{array}
+  \]
+  Damit folgt \[ T_7(x) = 1 -\frac12 x^2 + \frac{1}{24} x^4 - \frac{1}{720} x^6 \quad \textnormal{und}\quad |R_8(x)| \leq \frac{ |\cos(\xi)|}{8!} \left( \pi/6\right)^8 = \frac{\pi^8}{6^8\cdot 8!} \approx 1.4\cdot 10^{-7} \,.\]
+\end{exercisebox} 
+
+\begin{exercisebox}[Interpolation (Wiederholung)]
+Gegeben sind die Punkte 
+\begin{center}
+	\begin{tabular}{c|cccc}
+		$i$ & $0$ & $1$ & $2$ & $3$ \\
+		\hline
+		$x_i$ & $-3$ & $-1$ & $0$ & $2$ \\
+		\hline
+		$y_i$ & $-3$ & $1$ & $0$ & $82$ \\
+	\end{tabular}
+\end{center}
+\begin{itemize}
+	\item[(a)]  Bestimmen Sie den Grad $n$ des Interpolationspolynoms. 
+	\item[(b)]  Bestimmen Sie das lineare Gleichungssystem für die Koeffizienten des Interpolationspolynoms in der Darstellung \[ p(x) =a_nx^n+\cdots +a_1 x+a_0\] und lösen Sie es.
+	%\item[(c)]  Bestimmen Sie den Wert des Polynoms an der Zwischenstelle $\tilde x= 1$.
+	%\item[(d)]  Bestimmen Sie das lineare Gleichungssystem für die Koeffizienten des Interpolationspolynoms in der Darstellung \[ q(x) =c_0+c_1(x-x_0) +c_2(x-x_0)(x-x_1) +\cdots +c_n(x-x_0)\cdots(x-x_{n-1})\] und lösen Sie es mit Matlab.
+	%\item[(e)]  Berechnen Sie den Wert des Polynoms $q$ an der Zwischenstelle $\tilde x= 1$. Wie könnnen Sie den Wert effizient berechnen?
+\end{itemize}
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+\begin{itemize}
+	\item[(a)] Da vier Punkte zu interpolieren sind, hat das Polynom den Grad drei \[ p: x \mapsto a_3 x^3 + a_2 x^2 + a_2 x^1 + a_0\,.\] 
+	\item[(b)] Die Bedingungen $p(x_i) = y_i$ für $i=1,2,3,4$ führen auf das folgende lineare Gleichungssystem:
+		\[ \left( \begin{array}{cccc} -27 & 9 & -3 & 1 \\ -1 & 1 & -1 & 1 \\ 0 & 0 & 0 & 1 \\ 8 & 4 & 2 &1 \end{array}\right) \cdot \left( \begin{array}{c} a_3 \\ a_2 \\ a_1 \\ a_0 \end{array}\right) = \left( \begin{array}{c} -3 \\ 1 \\ 0 \\82 \end{array}\right)\,. \]
+		Die Lösung lautet $a_3=3, \, a_2 = 11,\, a_1 = 7, \, a_0 = 0$ und damit \[ p:x\mapsto 3x^3 + 11 x^2 + 7 x \,,.\]
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Interpolation (Wiederholung)]
+	Eine Funktion der Form \[ f: x \mapsto \frac{a_0}{2} + a_1 \cos(x) + b_1 \sin(x) \,,\] soll durch die Punkte $(x_i, y_i), i=1,2,3$ mit \[ (0|1), \, (\pi/6|-1),\, (\pi/2|-3)\] gelegt werden. Bestimmen Sie ein Gleichungssystem für die Koeffizienten $a_0, a_1, b_1$ und lösen Sie es.
+
+\hspace{0.3cm}
+\newline
+\textbf{Lösung:}
+Allgmein muss gelten 
+\[\left(\begin{array}{ccc} \frac12 & \cos(x_1) & \sin(x_1) \\\frac12 & \cos(x_2) & \sin(x_2) \\  \frac12 & \cos(x_3) & \sin(x_3) \end{array}\right) \cdot \left( \begin{array}{c} a_0 \\ a_1 \\ b_1 \end{array}\right) = \left( \begin{array}{c} y_1 \\ y_2 \\ y_3 \end{array}\right) \]
+Für die gegebenen Punkte lautet das Gleichungssystem also konkret
+\[\left(\begin{array}{ccc} \frac12 & 1 & 0 \\\frac12 & \frac{\sqrt{3}}{2} & \frac12 \\  \frac12 & 0 & 1 \end{array}\right) \cdot \left( \begin{array}{c} a_0 \\ a_1 \\ b_1 \end{array}\right) = \left( \begin{array}{c} 1 \\ -1 \\ -3 \end{array}\right) \]
+Die Lösung lautet $a_0 = 2, \, a_1 = 0,\, b_1 = -4 \,. $ und damit $f:x\mapsto 1-4 \sin(x)\,.$
+\end{exercisebox} 

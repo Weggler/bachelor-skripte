@@ -1,0 +1,276 @@
+\section{Lineare Funktionen}\label{MA1-lineare-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem lineare Funktionen in verschiedenen Darstellungsformen angeben und ineinander überführen: &\\
+    \hspace{0.7cm}\tabitem Achsenabschnittsform &\\
+    \hspace{0.7cm}\tabitem Zwei-Punkte-Form &\\
+    \hspace{0.7cm}\tabitem Punkt-Steigungs-Form &\\
+    \tabitem stückweise definierte Funktionen lesen und interpretieren &\\
+    \tabitem eine gegebene Messreihe durch lineare Interpolation mit einem linearen Spline beschreiben &\\
+    \tabitem Interpolation und lineare Regression voneinander unterscheiden &\\
+    \tabitem für eine Messreihe eine Ausgleichsgerade mittels linearer Regression bestimmen &\\
+    \midrule
+	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
+	  \tabitem Grundrechenarten & \abschnittsverweis{MA1-zahlenmengen}\\
+	  \tabitem Äquivalenzumformungen & \abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Definition einer Funktion & \abschnittsverweis{MA1-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-lineare-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Lineare Funktionen}
+
+Funktionen der Art $f: \mathbb R \to \mathbb R$ mit $x\mapsto 2\cdot x+3$ heißen \textbf{linear}\footnote{In der Schulmathematik und elementaren Analysis werden Funktionen der Form \(f(x)=mx+b\) üblicherweise als lineare Funktionen bezeichnet. Im Sinne der linearen Algebra handelt es sich für \(b\neq0\) um affine Abbildungen; eine lineare Abbildung muss insbesondere \(f(0)=0\) erfüllen.}
+
+Der Graph einer linearen Funktion ist eine Gerade, aber keine vertikale Gerade\footnote{Eine vertikale Gerade kann nicht Graph einer Funktion \(x\mapsto f(x)\) sein, da zu derselben \(x\)-Koordinate mehrere \(y\)-Werte gehören würden.}
+In der Form
+
+$$
+f(x)=m \cdot x+b
+$$
+
+beschreibt \(m\) die \textbf{Steigung} der Geraden und \(b=f(0)\) ihren Schnittpunkt mit der \(y\)-Achse. Je nachdem, welche Informationen über eine Gerade gegeben sind, sind jedoch unterschiedliche Darstellungsformen zweckmäßig.
+
+\begin{itemize}
+	\item Angenommen \(f\) schneidet die $x$-Achse an der Stelle $a\in D$ mit \(a\not=0\) und \(f\) schneidet die $y$-Achse im Punkt $(0,b)\in D\times Z$ mit \(b\not=0\), dann kann man die Abbildungsvorschrift der lineare Funktion in \textbf{Achsenabschnittsform} angeben:
+		\[ 
+			f(x) = \displaystyle{-\frac{b}{a}}\cdot x + b.
+  \]
+Dass diese Gleichung tatsächlich richtig ist, kann man so sehen: sie beschreibt eine Gerade und stimmt für die beiden Schnittpunkte mit den Achsen. Eine  andere  Gerade  als  die  gesuchte  würde  aber  nicht  durch  diese  beiden Schnittpunkte verlaufen. 
+
+\item Für zwei voneinander verschiedene Punkte  $(x_1|y_1)$ und $(x_2|y_2)$, die auf einer nichtvertikalen Geraden liegen, ist das Verhältnis von \(y_2 - y_1\) zu \(x_2 - x_1\) immer gleich! Der Wert wird \textbf{Steigung der Gerade} genannt:
+	\[ 
+  m = \displaystyle{\frac{y_2-y_1}{x_2-x_1}}.
+  \]
+Kennt man die Steigung \(m\) der Gerade und einen Punkt \( (x_1|y_1)\) auf der Gerade, dann ist die Gerade eindeutig bestimmt. Die \textbf{Punkt-Steigungs-Form} liefert die Abbildungsvorschrift: 
+\[ 
+	f(x) = m\cdot (x-x_1) + y_1.
+\]
+\item Kennt man anstatt der Steigung einen weiteren Punkt, gibt man die Gerade in \textbf{Zwei-Punkte-Form} an:
+
+	\[ f(x) = \displaystyle{\frac{y_2-y_1}{x_2-x_1}}\cdot (x-x_1) + y_1.\]
+	\end{itemize}
+
+
+\begin{exabox}{Lineare Funktion \(f: x\mapsto 2\cdot x+3\)}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/lineare_funktionen_gerade_zwei_x_plus_drei.png}
+	\end{minipage}
+	\begin{minipage}{0.7\textwidth}
+		Unterschiedliche Darstellungen für \(f\):
+		\begin{itemize}
+			\item Achsenabschnitt-Form:
+				\[a=-\frac32, \; b = 3: \quad f(x) = - \dfrac{3}{-\frac32}\cdot x + 3 = 2\cdot x+3 \]
+			\item Punkt-Steigungs-Form:
+				\[m=2, \; P(1|5):\quad f(x) = 2\cdot \left( x- 1\right) + 5 = 2\cdot x+3 \]
+			\item Zwei-Punkte-Form:
+				\[P_1(0|3),\; P_2(1|5): \quad f(x) =  \dfrac{3-5}{0-1}\cdot \left( x- 1\right) + 5  = 2\cdot x+3\,.\]
+		\end{itemize}
+	\end{minipage}
+\end{exabox}
+
+\subsection{Interpolation mit Linearen Funktionen}
+
+In einer der folgenden Anwendungen wird der Begriff "\,stückweise definierte Funktion"\, benutzt:
+
+\begin{defbox}{Stückweise definierte Funktion}{ }
+Eine Funktion heißt \textbf{stückweise definiert} (\emph{piecewise defined}), wenn für verschiedene Teilbereiche ihres Definitionsbereichs unterschiedliche Abbildungsvorschriften gelten.
+
+Beispielsweise kann eine Funktion die Form
+
+$$
+f(x)=
+\begin{cases}
+f_1(x), & x\in D_1,\\
+f_2(x), & x\in D_2,\\
+\vdots\\
+f_n(x), & x\in D_n
+\end{cases}
+$$
+
+besitzen, wobei
+
+$$
+D=D_1\cup D_2\cup \cdots \cup D_n.
+$$
+
+Dabei muss für jedes \(x\in D\) eindeutig festgelegt sein, welche Abbildungsvorschrift gilt.
+	
+	%Von einer stückweise definierten Funktion \(f: D\to \mathbb R\) ist dann die Rede, wenn man den Definitionsbereich in \(N-1\) Intervalle \[I_k= [x_k, x_{k+1}], \; x_k < x_{k+1}, \; k=1,\cdots, N-1, \] aufteilen kann, also \[ D = \bigcup\limits_{k=1}^{N-1} I_k = [x_1, x_N]\,,\] und wenn sich auf jedem der Intervalle \(I_k\) eine geschlossene Abbildungsformel angeben läßt: \[ f:x\mapsto \begin{cases} f_1(x), \quad x\in I_1,\\[2ex] f_2(x),\quad x\in I_2, \\[1ex] \vdots \\ f_{N-1}(x), \quad x\in I_{N-1}\,.\end{cases}\] 
+\end{defbox}
+	%Die Frage, ob eine stückweise definierte Funktion auf ihrem Definitionsbereich stetig oder sogar differenzierbar ist, hängt offensichtlich damit zusammen, wie glatt die Funktion von einem Intervall zum anderen Intervall übergeht. 
+Der Prototyp einer stückweise definierten Funktion ist die Betragsfunktion:\marginpar{Aufgabe} 
+	\begin{exabox}{Betragsfunktion}{ }
+		$ f:x\mapsto |x| = \begin{cases} x, &\quad x \in [0, \infty)\,, \\ -x, &\quad x\in (-\infty,0)\,.\end{cases} $
+\end{exabox}
+
+Liegt eine Messreihe vor, so wurde eine Größe \(y\) für verschiedene Werte einer anderen Größe \(x\) bestimmt. Ein Beispiel ist die elektrische Leitfähigkeit eines Metallblocks in Abhängigkeit von seiner Temperatur.
+
+Die Messdaten bestehen aus \(N\) Messpunkten
+
+$$
+\{(x_i,y_i):i=1,\dots,N\}.
+$$
+
+Dabei seien die Messstellen aufsteigend geordnet $ x_1<x_2<\dots<x_N$.
+
+Soll eine Funktion konstruiert werden, deren Graph durch sämtliche Messpunkte verläuft, spricht man von einer \textbf{Interpolation} (\emph{interpolation}). Eine besonders einfache Möglichkeit besteht darin, jeweils zwei benachbarte Messpunkte durch eine Gerade zu verbinden. Auf jedem Intervall
+
+$$
+I_k=[x_k,x_{k+1}]
+$$
+
+wird also die Zwei-Punkte-Form einer Geraden verwendet. Auf diese Weise entsteht ein \textbf{linearer Spline} (\emph{linear spline}).
+
+%Nehmen wir uns liegt eine Messreihe vor: eine physikalische Größe \(y\) wurde in Abhängigkeit einer anderen Größe \(x\) gemessen\footnote{Zum Beispiel die Leitfähigkeit eines Metallblocks in Abhängigkeit von seiner Temperatur.}. Die Messdaten bestehen dann also aus einer Menge von \(N\) Messpunkten \[ \left\{ \left( x_i| y_i\right), \; x_i, y_i \in \mathbb R,\; i=1,\dots,N\right\} \] und zur Analyse der Daten suchen wir eine Funktion, deren Graph die Messpunkte durchläuft.\marginpar{Aufgabe} Wir suchen eine Funktion, die die Daten \textbf{interpoliert}. Eine Idee ist die folgende: zwischen zwei aufeinanderfolgenden Messwerten wird linear interpoliert --  auf diese Weise wird ein \textbf{linearer Spline} konstruiert. Die Details fasst die folgende Regel zusammen.  
+
+\begin{defbox}{Linearer Spline}{ }
+	Es seien \(N\) Messpunkte \( \{(x_i| y_i),\; x_i, y_i \in \mathbb R\,, \; i=1,\cdots,N, \text{ und } x_1<x_2< \cdots <x_N \} \) gegeben. Mit 
+$$
+I_k=[x_k,x_{k+1}], \; k=1,\ldots,N-1, 
+$$
+lautet der lineare Spline
+	
+	\begin{eqnarray*}
+		f: [x_1,x_N] \to\mathbb R,\; x\mapsto \begin{cases} \displaystyle{\frac{y_2-y_1}{x_2-x_1}}\cdot (x-x_1) + y_1, \quad x\in I_1\,,\\[2ex]  \displaystyle{\frac{y_3-y_2}{x_3-x_2}}\cdot (x-x_2) + y_2, \quad x\in I_2\,,\\  \vdots \\  \displaystyle{\frac{y_N-y_{N-1}}{x_N-x_{N-1}}}\cdot (x-x_{N-1}) + y_{N-1}, \quad x\in I_{N-1}\,.\end{cases}
+	\end{eqnarray*}
+\end{defbox}
+
+Ein linearer Spline ist nichts anderes als die wiederholte Anwendung der Zwei-Punkte-Form auf benachbarte Messpunkte.
+
+\subsection{Lineare Regression }
+
+Bei einer Interpolation wird verlangt, dass der Graph der konstruierten Funktion sämtliche Messpunkte exakt durchläuft. Für Messdaten ist diese Forderung jedoch nicht immer sinnvoll. Messwerte sind häufig mit Messfehlern und anderen Unsicherheiten behaftet, sodass kleine Abweichungen einzelner Punkte nicht unbedingt Teil des zugrunde liegenden funktionalen Zusammenhangs sind.
+
+In einer solchen Situation wird statt einer exakt interpolierenden Funktion eine Funktion gesucht, welche die Gesamtheit der Messdaten möglichst gut beschreibt. Soll dieser Zusammenhang durch eine Gerade modelliert werden, führt dies zur \textbf{linearen Regression} (\emph{linear regression}).
+
+Gesucht ist eine lineare Funktion \(f:x\mapsto mx+b\), für welche die Summe der quadrierten vertikalen Abweichungen von den Messwerten minimal wird. 
+
+Die \textbf{Abweichung} oder das \textbf{Residuum} (\emph{residual}) des \(i\)-ten Messwerts von der Geraden beträgt
+
+$$ r_i=f(x_i) - y_i = m\cdot x_i+b-y_i. $$
+
+Bei der Bestimmung der linearen Regression werden \(m\) und \(b\) so gewählt, dass die Summe aller quadrierten Abweichungen
+
+$$ r_1^2+\dots+r_N^2 $$
+
+möglichst klein wird: 
+
+\[ \sum\limits_{i=1}^N \left( m \cdot x_i + b - y_i \right)^2 \stackrel{!}{=} \min \,.\]
+Für verschiedene Messstellen \(x_i\) ist die Aufgabe eindeutig lösbar mit expliziten Formeln für die optimalen Werte von $m$ und $b$:\marginpar{Aufgabe} 
+
+\begin{theorembox}{Ausgleichsgerade (lineare Regression oder Bestapproximation)}{ }
+	Die Ausgleichsgerade \[ f: x\mapsto m\cdot x + b \] für $N$ verschiedene Messpunkte $\{ (x_1, y_1), (x_2,y_2), \dots, (x_N, y_N)\}$ mit $x_1 < x_2 < \cdots < x_n$ besitzt die Steigung  
+	\begin{eqnarray*} 
+		m = \frac{\sum\limits_{i=1}^N (x_i - \langle x\rangle ) \cdot (y_i - \langle y\rangle ) }{ \sum\limits_{i=1}^N (x_i - \langle x \rangle )^2 }
+		\end{eqnarray*}
+		und den \(y\)-Achsenabschnitt 
+		\begin{eqnarray*}
+		b = \langle y \rangle - m \cdot \langle x\rangle\,.
+	\end{eqnarray*} 
+	Die spitzen Klammern $\langle \cdot  \rangle $ bezeichnen Mittelwerte, also
+	\begin{eqnarray*}
+		\langle x \rangle = \frac{1}{N} \cdot \sum\limits_{i=1}^N x_i\,, \quad \langle y \rangle = \frac{1}{N}\cdot \sum\limits_{i=1}^N y_i\,.
+	\end{eqnarray*}
+\end{theorembox}
+
+\noindent{\textbf{Bemerkung:}}
+\begin{itemize}
+	\item Die Ausgleichsgerade verläuft damit durch den Punkt $ \big(\langle x\rangle,\langle y\rangle\big), $ also durch den Schwerpunkt der Messpunkte.
+	\item Die Ausgleichsgerade interpoliert alle Messpunkte, wenn die Messpunkte exakt auf einer Geraden liegen.
+	\item Die Ausgleichsgerade reagiert sensitiv auf \textbf{Ausreißer} in der Messreihe, weil die Abstände quadriert werden. 
+\end{itemize}
+
+\begin{exabox}{Lineare Regression}{}
+
+Gegeben seien die drei Messwerte
+
+$$
+(1,2),\qquad (2,3),\qquad (3,5).
+$$
+
+Gesucht ist daher eine Ausgleichsgerade, die die drei Messwerte im Sinne der kleinsten Quadrate möglichst gut beschreibt.
+
+\begin{itemize} 
+	\item Zunächst werden die Mittelwerte der \(x\)- und \(y\)-Werte bestimmt:
+
+$$
+\langle x\rangle = \frac{1+2+3}{3} = 2, \quad \langle y\rangle = \frac{2+3+5}{3} = \frac{10}{3}.
+$$
+
+\item Die Steigung der Ausgleichsgerade lässt sich nun berechnen:
+
+$$
+\begin{aligned}
+m
+&=
+\frac{
+\displaystyle
+\sum_{i=1}^3
+(x_i-\langle x\rangle)
+(y_i-\langle y\rangle)
+}{
+\displaystyle
+\sum_{i=1}^3
+(x_i-\langle x\rangle)^2
+}
+\\[1ex]
+&=
+\frac{
+(1-2)\left(2-\frac{10}{3}\right)
++
+(2-2)\left(3-\frac{10}{3}\right)
++
+(3-2)\left(5-\frac{10}{3}\right)
+}{
+(1-2)^2+(2-2)^2+(3-2)^2
+}
+\\[1ex]
+&=
+\frac{
+\frac43+0+\frac53
+}{
+1+0+1
+}
+=
+\frac{3}{2}.
+\end{aligned}
+$$
+
+\item Damit ergibt sich für den \(y\)-Achsenabschnitt 
+
+$$
+b
+=
+\frac{10}{3}
+-
+\frac32\cdot2
+=
+\frac13.
+$$
+\end{itemize}
+
+Die gesuchte Ausgleichsgerade lautet damit $f(x)=\frac32x+\frac13$.
+
+	\begin{minipage}{0.5\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/lineare_regression_drei_messwerte.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{itemize}
+		\item Im Unterschied zu einer Interpolation verläuft die Ausgleichsgerade im Allgemeinen nicht durch die Messpunkte. 
+		\item Die gestrichelten vertikalen Linien in der Abbildung zeigen die Abweichungen zwischen den Messwerten und den zugehörigen Werten der Ausgleichsgeraden.
+	\end{itemize}
+\end{minipage}
+
+\end{exabox}

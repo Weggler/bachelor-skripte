@@ -1,0 +1,210 @@
+\section{Integrierbare Funktionen}\label{MA2-integrierbare-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem ein Skalarprodukt im Funktionenraum definieren und zur Rechnung verwenden & \\
+    \tabitem die Norm einer Funktion aus dem Skalarprodukt bestimmen und Funktionen normieren & \\
+    \tabitem Orthogonalität von Funktionen durch Berechnung des Skalarprodukts prüfen & \\
+    \tabitem den Begriff \emph{Orthonormalsystem} für Funktionen formulieren und anwenden & \\
+    \tabitem die Orthonormalität von Funktionenpaaren bzgl eines Skalarprodukts prüfen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem mit Skalarprodukten und Normen in $\mathbb R^n$ umgehen können & \abschnittsverweis{MA1-vektoren} \\
+    \tabitem Integrale berechnen können & \abschnittsverweis{MA2-integrationsregeln}\\
+    \tabitem trigonometrische Funktionen sicher anwenden können & \abschnittsverweis{MA1-verkettung-von-funktionen} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-integrierbare-funktionen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Vom $\mathbb{R}^n$ zum Funktionenraum}
+
+Im $\mathbb{R}^n$ haben wir das \underline{Skalarprodukt}\randverweis{MA1-vektoren}  kennengelernt, es war wie folgt definiert
+
+\[
+	\forall \, \vec x, \vec y \in \mathbb R^n: \quad \langle \vec x,\vec y\rangle = \sum_{i=1}^n x_i \cdot  y_i\,.
+\]
+
+Analog definieren wir für zwei Funktionen \(f, g\), die über dem Intervall $[a,b]$ integrierbar sind\footnote{Stetigkeit auf \((a,b)\) und Beschränktheit auf \([a,b]\) garantiert beispielsweise die Integrierbarkeit}:
+
+\[
+	\langle f,g\rangle = \int\limits_a^b f(x)\cdot g(x)\,\mathrm d x\, .
+\]
+Und das ist sinnvoll, denn offensichtlich gilt (genauso wie für Spaltenvektoren)
+\[
+	\langle f,f \rangle = \int\limits_a^b f(x)^2 \,\mathrm d x \geq 0 \, .
+\]
+
+Tatsächlich gibt es wenig Unterschied in der Art und Weise wie wir Vektoren miteinander verarbeiten und derjenigen wie wir Funktionen miteinander verarbeiten:
+\begin{itemize}
+	\item Addition klappt,
+
+\[ f,g \; \quad \textnormal{Funktionen } \Rightarrow f+g \; \quad \textnormal{auch wieder eine Funktion}\,,\]
+
+\item Skalierung klappt
+\[ \lambda \textnormal{ Skalar }, f \; \quad \textnormal{Funktion } \Rightarrow \lambda \cdot f \; \quad \textnormal{auch wieder eine Funktion}\,,\]
+
+\item und ein Skalarprodukt haben wir auch!
+\end{itemize}
+Es wundert einem deshalb kaum, dass wir Begriffe und Strukturen, die wir aus der linearen Algebra kennen, nun wieder auftauchen und zwar zur Analyse von Mengen von Funktionen. Funktionen sind tatsächlich Vektoren, Vektoren in einem unendlichdimensionalen Raum.
+
+Einen Vektor \(\vec x \in \mathbb R^n\) haben wir normiert, in dem wir ihn durch seine Länge (Norm) geteilt haben, also
+\[ \hat  x := \dfrac{\vec x}{\| \vec x\|}\,, \quad \textnormal{ wobei } \;  \| \vec x\| = \sqrt{ \langle \vec x, \vec x \rangle } \,. \]
+Und entsprechend lässt sich aus einer Funktion \(f\) abstrakt dessen normiertes Gegenstück defninieren:
+\[ \hat  f := \dfrac{f}{\| f\|}\,, \quad \textnormal{ wobei } \;  \| f\| = \sqrt{ \langle f, f \rangle } \,. \]
+\begin{itemize}
+	\item Das Symbol \(\| f\|\) nennen wir die Norm der Funktion \(f\). Den Begriff Länge nuzt man für Funktionen nicht.
+	\item Zur Berechnung von \(\| f\|\) müssen wir wissen, wie das Skalarprodukt definiert ist - genauer die Integrationsgrenzen \(a,b\) müssen festgelegt sein.
+\end{itemize}
+
+\begin{exabox}{Normierung einer Funktion}{ }
+	Skalarprodukt:
+\[
+	\langle f,g \rangle = \int\limits_{-1}^{1} f(x)\cdot g(x) \,\mathrm d x
+\]
+
+	Funktion:
+	\[ p_1: [-1,1]\to \mathbb R, x \mapsto x \]
+		Norm:
+		\[ \| p_1 \|^2 = \int\limits_{-1}^1 p_1(x)^2 \, \mathrm d x = \int\limits_{-1}^1 x^2 \, \mathrm d x = \Big[ \frac13 x^3\Big]_{-1}^1= \frac23 \Rightarrow \|p_1\| = \sqrt{\frac23} \,.\]
+		Normierung:
+		\[ \hat p_1 (x) = \frac{1}{ \|p_1\|} \cdot p_1(x) = \frac{1}{\sqrt{\frac23}} \cdot x = \frac32 \cdot x\,.\]
+\end{exabox}
+
+
+\subsection{Orthogonalität von Funktionen}
+
+Das Skalarprodukt ist so wertvoll, weil es Orthognoalität definiert: zwei Funktionen heißen \textbf{orthogonal}, wenn
+
+\[
+\langle f,g\rangle = 0 \; \Rightarrow \; f\perp g \,.
+\]
+
+Wir schauen uns jetzt Beispiele für Funktionenpärchen und Skalarprodukte an und prüfen, ob die Funktionen orthogonal sind.
+
+\begin{exabox}{Orthogonale Funktionen}{ }
+	Funktionen:
+	\[\begin{cases}  f: & [-1,1]\to \mathbb R, x \mapsto 1  \\  g: & [-1,1]\to \mathbb R, x \mapsto x \end{cases}\]
+		Skalarprodukt:
+		\[ \langle f, g \rangle  = \int\limits_{-1}^1 f(x) \cdot g(x) \, \mathrm d x = \int\limits_{-1}^1 1\cdot x \, \mathrm d x = \Big[ \frac12 x^2\Big]_{-1}^1= \frac12\cdot (1^2- (-1)^2) = 0\]
+		Schlussfolgerung: \(f \perp g\)
+\end{exabox}
+
+
+\begin{exabox}{Orthogonale Funktionen}{ }
+	Funktionen:
+	\[\begin{cases}  f: & [-1,1]\to \mathbb R, x \mapsto 1  \\  g: & [-1,1]\to \mathbb R, x \mapsto x^2 \end{cases}\]
+		Skalarprodukt:
+	\[ \langle f,  g \rangle  = \int\limits_{-1}^1 f(x) \cdot g(x) \, \mathrm d x = \int\limits_{-1}^1 1\cdot x^2 \, \mathrm d x = \Big[ \frac13 x^3\Big]_{-1}^1= \frac13\cdot (1)^3 - (-1)^3) = \frac23\]
+		Schlussfolgerung: \(f\not \perp g\)
+\end{exabox}
+
+Monome sind also im Allgemeinen nicht paarweise orthogonal! Und noch ein Beispiel mit harmonischen Schwingungen an - beachte, dass das Integrationsgebiet in diesem Skalarprodukt das Intervall \( [-\pi, \pi]\) ist.
+
+\begin{exabox}{Orthogonale Funktionen}{ }
+	Funktionen \(f, g\):
+	\[\begin{cases}  f: & [-\pi,\pi]\to \mathbb R, x \mapsto \sin(x)  \\  g: & [-\pi,\pi]\to \mathbb R, x \mapsto \cos(x) \end{cases}\]
+		Skalarprodukt:
+		\[ \langle f,  g \rangle  = \int\limits_{-\pi}^\pi \sin(x) \cdot \cos(x) \, \mathrm d x = \Big[ \frac12 \sin(x)^2\Big]_{-\pi}^\pi= \frac12\cdot (0- 0) = 0\]
+		Schlussfolgerung: \(f \perp g\)
+\end{exabox}
+
+Interessanterweise kann man zeigen, dass alle harmonischen Schwingungen der Form \[ s_n: x\mapsto \sin(n\cdot x), \quad n \in \mathbb N^+ \] und \[ c_m: x\mapsto \cos(m\cdot x), \quad m \in \mathbb N_0 \]  über \([-\pi,\pi]\) \textbf{paarweise orthogonal} sind. Auf mathematisch gilt also folgendes
+
+\[
+	\langle s_n, c_m \rangle = \int\limits_{-\pi}^\pi \sin(n\cdot x) \cdot \cos(m\cdot x)\,\mathrm d x  = 0\,.
+\]
+
+Und das ist nicht genug, es gilt auch:
+
+\[
+	\begin{array}{rcl}
+		\langle s_n, s_m \rangle &=& \displaystyle \int\limits_{-\pi}^\pi \sin(n\cdot x) \cdot \sin(m\cdot x)\,\mathrm d x  = 0, \quad n\not=m\,, \\[2ex]
+	\langle c_n, c_m \rangle &=& \displaystyle \int\limits_{-\pi}^\pi \cos(n\cdot x) \cdot \cos(m\cdot x)\,\mathrm d x  = 0, \quad n\not=m\,. \end{array}
+\]
+
+Die Funktionen
+\[
+	\left\{ 1, \sin(n\cdot x), \cos(n\cdot x), \quad n \in \mathbb N\right\}
+\]
+sind bezüglich des Skalarprodukts
+\[
+\langle f,g\rangle
+=
+\int\limits_{-\pi}^{\pi} f(x)\cdot g(x)\,\mathrm dx
+\]
+orthogonal.
+
+\subsection{Orthonormalsystem}
+
+Eine Menge von Funktionen heißt \emph{Orthogonalsystem}, wenn die Funktionen normiert und paarweise orthogonal zueinander sind.
+Mit dem Skalarprodukt
+\begin{equation}\label{skp_orthonormalsystem}
+\langle u,v\rangle
+=
+\frac{1}{\pi}
+\int_{1}^{2\pi} u(t)\cdot v(t)\,\mathrm dt
+\end{equation}
+werden die harmonischen Schwingungen aus dem vorigen Abschnitt automatisch normiert. Wir kennen also ein konkretes Beispiel für ein Orthogonalsystem.
+
+Um orthographisch kenntlich zu machen, dass wir die harmonischen Schwingungen ab jetzt immer mit dem Skalarprodukt betrachen, in dem sie ein Orthonormalsystem bilden, nutzen den kleinen Hut:
+
+\[ \left\{ \begin{array}{rcl l} \hat s_n(t): &=& \sin(n\cdot t)\,, &\quad n\geq 1\,, \\  \hat c_n(t): &=& \cos(n\cdot t)\,, & \quad n\geq 1 \,.\end{array}\right.  \]
+
+\begin{exabox}{Orthonormalsystem}{ }
+	Die Funktionen
+\[
+	M = \left\{ 1, \hat s_n, \hat c_n, \; n \in \mathbb N\right\}
+\]
+bilden bezüglich \eqref{skp_orthonormalsystem} ein Orthonormalsystem und das heißt, dass für alle \(n,m\in \mathbb N^+\) gilt
+\[
+	\begin{array}{rl}
+		\textnormal{paarweise orthogonal:} & \quad \left\{
+	\begin{array}{rcl l}
+		\langle 1, \hat c_n\rangle &=& 0 & \\
+		\langle 1, \hat s_n\rangle &=& 0 & \\
+		\langle \hat c_n, \hat s_m\rangle &=& 0\,, &  \\
+		\langle \hat c_n, \hat c_m\rangle &=& 0\,, & n\not=m \\
+		\langle \hat s_n, \hat s_m\rangle &=& 0\,, & n\not=m \\
+\end{array} \right. \\
+		\textnormal{normiert} & \quad \left\{
+	\begin{array}{rcl}
+		\langle 1, 1\rangle &=& 1\\
+		\langle \hat s_n, \hat s_n\rangle &=& 1\\
+		\langle \hat c_n, \hat c_n\rangle &=& 1
+\end{array} \right.
+\end{array}
+\]
+
+\end{exabox}
+
+Das Orthonormalsystem $M$ besitzt zwei zentrale Eigenschaften:
+
+\begin{itemize}
+  \item Alle Funktionen sind $2\pi$-periodisch.
+  \item Linearkombinationen bleiben ebenfalls $2\pi$-periodisch.
+\end{itemize}
+
+Die gemeinsame Periode ist entscheidend:
+Überlagert man zwei Funktionen aus $M$,
+so entsteht wieder eine $2\pi$-periodische Funktion.
+Dasselbe gilt für jedes skalare Vielfache.
+
+Damit verhält sich $M$ strukturell wie eine Basis im
+endlichdimensionalen Vektorraum —
+nur dass wir uns hier in einem Funktionenraum befinden.
+
+In der Fourier-Analyse werden wir dieses Orthonormalsystem
+verwenden, um $2\pi$-periodische Funktionen als
+Reihenentwicklungen in harmonischen Schwingungen darzustellen.
+

@@ -1,0 +1,165 @@
+\section*{Matrizen Lösungen}\label{MA1-matrizen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-matrizen}{ (Abschnitt \abschnittsverweis{MA1-matrizen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Rechenregeln]
+	Gegeben seien die Matrizen 
+	\[ A = \left( \begin{array}{ccc} 1 & -2 & 3 \\ 0 & 3 & 1 \end{array}\right), \quad B = \left( \begin{array}{cc} 2 & -1 \\ 0 & 3 \\ -2 & -2 \end{array}\right), \quad C=\left( \begin{array}{cc} 3 & 2 \\ -1 & 2 \end{array}\right) \,. \]
+	Berechnen Sie $ ( A^\intercal C - 2\cdot B)(-3\cdot C^\intercal )\,.$
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\[ \left( \begin{array}{cc} -15 & -27 \\ 105 & -3 \\ -180 & -36 \end{array}\right)\,. \]
+\end{exercisebox}
+
+%\begin{exercisebox}[Matrixmultiplikation und Skalarprodukt]
+%Es sei $\boldsymbol a \in \mathbb R^n, \boldsymbol b\in \mathbb R^m$ und $A\in \mathbb R^{n\times m}$.  Zeigen Sie $\langle \boldsymbol a , A \boldsymbol b\rangle = \langle A^\intercal \boldsymbol a, \boldsymbol b \rangle\,.$
+%
+%\vspace{0.3cm}
+%\noindent\textbf{Lösung:}\newline
+%\begin{eqnarray*}
+%	\langle \boldsymbol a, A\boldsymbol b\rangle &=& \sum\limits_{i=1}^n \left( a_i \cdot \left( A \boldsymbol b\right)_i \right) \\
+%	&=& \sum\limits_{i=1}^n a_i \left( \sum\limits_{j}^m a_{ij} b_j \right) \\
+%	&=& \sum\limits_{i=1}^n\sum\limits_{j}^m  a_i a_{ij} b_j  \\
+%	&=&  \sum\limits_{j}^m \left(\sum\limits_{i=1}^n  \underbrace{a_i a_{ij}}_{\displaystyle{= \boldsymbol a^\intercal A = \left( \boldsymbol a A^\intercal \right)^\intercal = \boldsymbol a A^\intercal }} \right) b_j  \\
+%	&=&  \sum\limits_{j}^m \left(A^\intercal \boldsymbol a \right)_j b_j
+%\end{eqnarray*}
+%\end{exercisebox}
+
+\begin{exercisebox}[Rang und Bild]
+	Es sei $A = \boldsymbol a \boldsymbol b^\intercal, \quad \boldsymbol a \in \mathbb R^n, \boldsymbol b \in \mathbb R^m$. Wie ist der Rang der Matrix $A$? Wie sieht das Bild der Matrix aus?
+
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Der Rang der Matrix $A \in \mathbb R^{n\times m}$ entspricht der Dimension des Bildes der linearen Abbildung $A:\mathbb R^m \to \mathbb R^n$. Es gilt 
+\begin{eqnarray*} 
+	\forall \boldsymbol y \in \mathbb R^m: A\boldsymbol y &=& (\boldsymbol a \boldsymbol b^\intercal) \boldsymbol y = \boldsymbol a \underbrace{(\boldsymbol b^\intercal  \boldsymbol y)}_{\displaystyle{ =: \lambda \in \mathbb R!}} = \lambda \boldsymbol a\,,
+\end{eqnarray*}
+wobei wir das Assoziativgesetz der Matrixmultiplikation, $(A B)C = A(BC)$, ausgenutzt haben. Die Multiplikation eines Zeilenvektors mit einem Spaltenvektor gleicher Größe ist eine reelle Zahl\footnote{ im Grunde ist diese Zahl das Skalarprodukt der beiden Vektoren: \(
+\boldsymbol b^\intercal  \boldsymbol y = \langle \boldsymbol b ,\boldsymbol y\rangle =:  \lambda \in \mathbb R\,. \)}
+Damit umfasst das Bild der linearen Abbildung $A$ alle skalaren Vielfachen des Vektors $\boldsymbol a$ und damit
+\[ \mathrm{rk}(A) = \mathrm{dim}\left( \mathrm{im}A\right) = \mathrm{dim} \{ \boldsymbol x \in \mathbb R^n: \boldsymbol x = \lambda \boldsymbol a\} = 1\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Basis]
+	\begin{itemize}
+		\item[(a)] Für welche Werte von $a\in\mathbb R$ bilden die vier Vektoren eine Basis des $\mathbb R^4$?
+  \begin{eqnarray*}
+	  \boldsymbol x_1 = (3,1,4,0)^\intercal, \;  
+	  \boldsymbol x_2 = (1,1,0,6)^\intercal, \; 
+	  \boldsymbol x_3 = (-4,0,5,a)^\intercal, \;  
+	  \boldsymbol x_4 = (0,0,1,2)^\intercal\,.
+  \end{eqnarray*}
+
+\item[(b)]	  Überprüfen Sie, ob die Polynome $1, 1+x, 1-x, x^2$ eine Basis des $\mathcal P_2$ bilden.
+\end{itemize}
+
+  %\hspace{0.3cm}
+  %\newline
+  \textbf{Lösung:}
+ \begin{itemize}
+	 \item[(a)] Die Vektoren sind genau dann linear unabhängig, wenn die Matrix
+		 \[ A_a := \left( \begin{array}{cccc} 3 & 1 & -4 & 0 \\ 1 & 1 & 0 & 0 \\ 4 & 0 & 5 & 1 \\ 0 & 6 & a & 2 \end{array}\right) \in \mathbb R^{4\times 4}\,, \]
+		 
+		 deren Spalten $\boldsymbol x_1, \boldsymbol x_2, \boldsymbol x_3$ und $\boldsymbol x_4$ sind, vollen Rang hat. Wir bringen $A_a$ auf Dreiecksform und bestimmen den Rang in Abhängigkeit von $a\in \mathbb R$. Es ist geschickt die zwei letzten Spalten zu vertauschen, so dass der Parameter \(a\) rechts unten landet und so in möglichst wenig Rechenoperationen mitgeschleppt wird:      
+		 \begin{eqnarray*}
+			 \left( \begin{array}{cccc} 3 & 1 & -4 & 0 \\ 1 & 1 & 0 & 0 \\ 4 & 0 & 5 & 1 \\ 0 & 6 & a & 2 \end{array}\right) &\Leftrightarrow&
+			 \left( \begin{array}{cccc} 3 & 1 & 0 & -4 \\ 1 & 1 & 0 & 0 \\ 4 & 0 & 1 & 5 \\ 0 & 6 & 2 & a \end{array}\right) \Leftrightarrow 
+		 \left( \begin{array}{cccc} 3 & 1 & 0 & -4 \\ 0 & -2 & 0 & -4 \\ 0 & 4 & -3 & -31 \\ 0 & 6 & 2 & a \end{array}\right) \\
+		 \left( \begin{array}{cccc} 3 & 1 & 0 & -4 \\ 0 & -2 & 0 & -4 \\ 0 & 0 & -3 & -39 \\ 0 & 0 & 2 & -12+a \end{array}\right) &\Leftrightarrow& 
+		 \left( \begin{array}{cccc} 3 & 1 & 0 & -4 \\ 0 & -2 & 0 & -4 \\ 0 & 0 & -3 & -39 \\ 0 & 0 & 0 & -114-3a \end{array}\right) \,.
+	 \end{eqnarray*}
+	 Für $a=38$ hat die Matrix $A_{38}$ also Rang $3<4$ beliebig und damit sind die Vektoren für $a=38$ linear abhängig. Für $a\not = 38$ hat die Matrix vollen Rang und das heißt die Vektoren sind linear unabhängig.
+ \item[(b)]
+	 Zwei Lösungsvarianten: 
+	 \begin{itemize}
+		 \item Die drei Polynome \(\{p_0(x)= 1, p_1(x)= 1+x, P_2(x)= 1-x\}\) sind linear abhängig, weil \[ p_0(x) = \frac12 p_1(x) + \frac12 p_2(x)\,.\] Also kann es sich nicht um eine Basis handeln.  
+		 \item Der systematische Weg zu prüfen, ob die gegebenen Polynome linear abhängig sind ist folgender: man zeige, dass die Nullabbildung \(x\mapsto 0\) auf nichttriviale Weise darstellbar ist, dass also die Gleichung 
+	 \[ \alpha_1 \cdot 1 + \alpha_2 \cdot (1+x) + \alpha_3 \cdot (1-x) +\alpha_4 \cdot x^2 = 0 \quad (*)\,,\]
+	 mindestens eine nichttriviale Lösung besitzt. Nichttriviale Lösung heißt, dass für mindestens einen Koeffizienten \(\alpha_i, i\in \{1,2,3,4\},\) gilt $\alpha_i\not= 0$. Aus $(*)$ folgt durch Ausklammern und Zusammenfassen 
+	\begin{eqnarray*}
+		1\cdot (\alpha_1 + \alpha_2 + \alpha_3) + x\cdot ( \alpha_2 - \alpha_3) + \alpha_4 x^2 = 0 \,,
+	\end{eqnarray*}
+	und hieraus folgt für die unbekannten Koeffizienten $\alpha_i, \; i=1,2,3,4$:
+	\begin{eqnarray*}
+		\left\{ \begin{array}{lcl}
+		\alpha_1 + \alpha_2 + \alpha_3 &=& 0 \\
+		\alpha_2 - \alpha_3 &=& 0\\
+\alpha_4 &=& 0 
+\end{array}\right.
+\end{eqnarray*}
+Dieses Gleichungssystem ist unterbestimmt und hat unendlich viele Lösungen:
+\begin{eqnarray*}
+	\Rightarrow \begin{cases}{r}  \alpha_1 = -2t \\ \alpha_2=\alpha_3=t\in \mathbb R  \\ \alpha_4 = 0\,.
+	\end{cases}
+\end{eqnarray*}
+Die Polynome $1, 1+x, 1-x, x^2$ bilden also kein minimales Erzeugendensystem, sind also keine Basis des $\mathcal P_2$. Zum Beispiel erhalten wir für $t=1$ die Koeffizienten $\alpha_1 = -2, \alpha_2=1, \alpha_3=1, \alpha_4 =0$, die eine nichttriviale Linearkombination bilden. 
+\end{itemize}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+	Gegeben sind die linearen Abbildungen 
+	\[ \mathcal A: \mathbb R^2 \to \mathbb R^3, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) \mapsto \left( \begin{array}{c} 0 \\ 3x_1-x_2 \\ 2x_2 \end{array}\right), \quad \mathcal B:\mathbb R^2 \to \mathbb R^3, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) \mapsto \left( \begin{array}{c} -x_1+x_2 \\ -x_2 \\ 3x_2 \end{array}\right)\,.\]
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die darstellenden Matrizen $A$ und $B$ der linearen Abbildungen $\mathcal A$ und $\mathcal B$.
+		\item[(b)] Gegeben ist eine Matrix \[ C=\left( \begin{array}{ccc} -1 & 2 & 0 \\ 0 & 3 & -1 \end{array}\right) \in \mathbb R^{2\times 3}\] Bestimmen SIe die von $C$ induzierte lineare Abbildung $\mathcal C$.
+		\item[(c)] Wie lautet die darstellende Matrix der linearen Abbildung $\mathcal C\circ \mathcal A$?
+	\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] Die darstellenden Matrizen sind 
+		\[ A = \left( \begin{array}{cc} 0 & 0 \\ 3 & -1 \\ 0 & 2 \end{array} \right), \quad B=\left( \begin{array}{cc} -1 & 1 \\ 0 & -1 \\ 0 & 3 \end{array}\right) \,. \]
+	\item[(b)] Die Abbildung ist durch \[ \mathcal C:\mathbb R^3 \to \mathbb R^2, \quad \left( \begin{array}{c} x_1 \\x_2 \\x_3\end{array}\right) \mapsto \left( \begin{array}{ccc} -1 & 2 & 0 \\ 0 & 3 & -1 \end{array}\right) \left( \begin{array}{c} x_1 \\x_2 \\x_3\end{array}\right) = \left( \begin{array}{c} -x_1 + 2 x_2 \\3x_2 - x_3 \end{array}\right) \] gegeben. 
+	\item[(c)] Es gilt \[ M_{\mathcal C \circ  \mathcal B} = CB= \left( \begin{array}{ccc} -1 & 2 & 0 \\ 0 & 3 & -1 \end{array}\right) \left( \begin{array}{cc} -1 & 1 \\ 0 & -1 \\ 0 & 3 \end{array}\right) =  \left( \begin{array}{cc} 6 & -2 \\ 9 & -5 \end{array}\right)\,.\]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+	Gegeben sei der reelle Vektorraum 
+	\[ \mathcal P_3:= \left\{ p:\mathbb R\to \mathbb R\;|\;p \;\textnormal{Polynome vom Grad } 3\right\}\] und die Abbildung \[ f: \mathcal P_3 \to \mathbb R^2, \quad p\mapsto \left( \begin{array}{c}p(2) \\ p(3)\end{array}\right) \,.\]
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass $f$ eine lineare Abbildung ist und berechnen Sie $f$ für die Monome $p_i: x\mapsto x^i,\; i=0,1,2,3\,.$
+		\item[(b)] Berechnen Sie $f(p)$ für ein allgemeines Polynom $p \in \mathcal P_4$. % mit  \[ p=a_3\cdot p_3 + a_2 \cdot p_2 + a_1\cdot p_1 + a_0 \cdot p_0, \quad a_0,\dots,a_3\in \mathbb R.\] 
+		\item[(d)] Zeigen Sie, dass die Funktion \[ g:\mathbb R^4 \to \mathbb R^2, \quad \left( \begin{array}{c}a_3 \\ a_2 \\ a_1 \\ a_0\end{array}\right) \mapsto f(a_3\cdot p_3 + a_2 \cdot p_2 + a_1\cdot p_1 + a_0 \cdot p_0)\] linear ist und berechnen Sie die darstellende Matrix von $g$.
+	\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] Es gilt für $p, q \in \Pi_3$ und $\lambda \in \mathbb R$
+		\begin{eqnarray*}
+			f(p + q) &=& \left( \begin{array}{c} (p+q) (2) \\ (p + q)(3) \end{array}\right) =  \left( \begin{array}{c} p(2) + q(2) \\ p(3) + q(3) \end{array}\right) =\left( \begin{array}{c} p(2)\\ p(3) \end{array}\right) + \left( \begin{array}{c} q(2) \\ q(3) \end{array}\right) =  f(p) + f(q)\,, \\[1ex]
+	f(\lambda \cdot p) &=& \left( \begin{array}{c} \lambda \cdot p(2) \\ \lambda \cdot p(3) \end{array}\right) =  \lambda \cdot \left( \begin{array}{c} p(2) \\ p(3) \end{array}\right) = \lambda \cdot f(p) \,. 
+\end{eqnarray*}
+Es gilt 
+	\[ 
+	f(p_0) = \left( \begin{array}{c} 1 \\1 \end{array}\right), \; 
+	f(p_1) = \left( \begin{array}{c} 2 \\3 \end{array}\right), \; 
+	f(p_2) = \left( \begin{array}{c} 4 \\9 \end{array}\right), \; 
+	f(p_3) = \left( \begin{array}{c} 8 \\27 \end{array}\right)\,.
+ \]
+\item[(b)] Durch die Linearität folgt 
+	\begin{eqnarray*} 
+		f(p) &=& f(a_3\cdot p_3 + a_2\cdot p_2 + a_1\cdot p_1 + a_0\cdot p_0) \\
+	&=& a_3  f(p_3) + a_2 f(p_2) + a_1 f(p_1) + a_0f(p_0) \\
+	&\stackrel{(b)}{=}&  \left( \begin{array}{c} 8a_3 + 4a_2 + 2a_1 + a_0 \\ 27a_3 + 9a_2 + 3a_1 + a_0 \end{array}\right) 
+\end{eqnarray*}
+\item[(c)] Es gilt 
+	\[ g: \mathbb R^4 \to \mathbb R^2, \quad \left( \begin{array}{c} a_3 \\ a_2 \\ a_1 \\ a_0 \end{array}\right) \mapsto \left( \begin{array}{c} 8a_3 + 4a_2 + 2a_1 + a_0 \\ 27a_3 + 9a_2 + 3a_1 + a_0 \end{array}\right)	
+	\]
+		Damit ist die darstellende Matrix durch 
+		\[ M_g = \left( \begin{array}{cccc} 8 & 4 & 2 &1 \\ 27 & 9 & 3 & 1 \end{array}\right) \]
+		gegeben und es gilt 
+		\[ g( \boldsymbol a ) = \left( \begin{array}{cccc} 8 & 4 & 2 &1 \\ 27 & 9 & 3 & 1 \end{array}\right) \boldsymbol a \,. \]
+\end{itemize}
+
+\end{exercisebox}
+

@@ -1,0 +1,147 @@
+% Gemeinsame Quelle fuer Gesamtskript und eigenstaendige Symboluebersicht.
+\begin{landscape}
+\section{Übersicht über Symbole mit Beispielen}
+\begingroup
+% Die globale longtable-Zeilenfarbe lokal durch eine hellere Variante ersetzen.
+\ifdefined\oldlongtable
+  \let\longtable\oldlongtable
+  \let\endlongtable\endoldlongtable
+\fi
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\rowcolors{2}{white}{black!4}
+\newcommand{\symbolgruppe}[1]{%
+  \rowcolor{black!10}\multicolumn{3}{@{}l@{}}{\rule{0pt}{2.6ex}\textbf{#1}}\\*}
+\begin{longtable}{@{}p{0.17\linewidth}p{0.35\linewidth}p{\dimexpr0.48\linewidth-4\tabcolsep\relax}@{}}
+\caption{Mathematische Zeichen lesen}\label{MA1-Symbole}\\
+\toprule
+\textbf{Symbol} & \textbf{Bedeutung} & \textbf{Beispiel}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l@{}}{\textbf{Mathematische Zeichen lesen} -- Fortsetzung}\\
+\toprule
+\textbf{Symbol} & \textbf{Bedeutung} & \textbf{Beispiel}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize Fortsetzung auf der nächsten Seite}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\symbolgruppe{Mengen und Zahlenbereiche}
+$\{\ldots\}$ & Eine Menge wird durch ihre Elemente beschrieben. & $\{1,2,3\}=\{3,1,2\}$.\\
+$a\in A$, $a\notin A$ & $a$ ist ein Element von $A$ bzw. kein Element von $A$. & $3\in\{1,3\}$, aber $3\notin\mathbb R\setminus\{3\}$.\\
+$\emptyset$ & Die leere Menge enthält kein Element. & $\emptyset=\{\}$, aber $\{0\}\ne\emptyset$.\\
+$|A|$ & Mächtigkeit: Anzahl der Elemente einer endlichen Menge. & $|\{2,4,6\}|=3$, $|\emptyset|=0$.\\
+$|A|=\infty$ & Kurzschreibweise: $A$ enthält unendlich viele Elemente. & $|\mathbb N_0|=\infty$; dies unterscheidet keine unendlichen Mächtigkeiten.\\
+$A=B$ & Beide Mengen enthalten genau dieselben Elemente. & $\{1,2\}=\{2,1\}$.\\
+$A\subseteq B$, $A\subset B$ & $A$ ist eine Teilmenge von $B$; hier darf auch $A=B$ gelten. & $\{1,2\}\subseteq\mathbb N^+$. Die Schreibweise $\subset$ wird nicht überall einheitlich verwendet.\\
+$A\subsetneq B$ & $A$ ist eine echte Teilmenge von $B$. & $\{1\}\subsetneq\{1,2\}$.\\
+$A\cup B$ & Vereinigung: Elemente, die in mindestens einer der Mengen liegen. & $\{-1,2\}\cup\{-1,3\}=\{-1,2,3\}$.\\
+$A\cap B$ & Schnitt: Elemente, die in beiden Mengen liegen. & $\{-1,2\}\cap\{-1,3\}=\{-1\}$.\\
+$A\setminus B$ & Differenz: Elemente von $A$, die nicht in $B$ liegen. & $\{-1,2\}\setminus\{-1,3\}=\{2\}$.\\
+$\overline A$ & Komplement bezüglich einer festgelegten Grundmenge $G$. & Für $G=\{1,2,3\}$ und $A=\{1,3\}$ ist $\overline A=G\setminus A=\{2\}$.\\
+$A\times B$ & Kartesisches Produkt: Menge aller geordneten Paare. & $\{1\}\times\{0,2\}=\{(1,0),(1,2)\}$.\\
+$\mathbb N$, $\mathbb N_0$, $\mathbb N^+$ & Natürliche Zahlen; bei $\mathbb N$ ist zu klären, ob $0$ dazugehört. & Eindeutig sind $\mathbb N_0=\{0,1,2,\ldots\}$ und $\mathbb N^+=\{1,2,3,\ldots\}$.\\
+$\mathbb Z$ & Ganze Zahlen. & $\mathbb Z=\{\ldots,-2,-1,0,1,2,\ldots\}$.\\
+$\mathbb Q$ & Rationale Zahlen: Quotienten ganzer Zahlen mit Nenner ungleich null. & $\frac23\in\mathbb Q$, $-4=\frac{-4}{1}\in\mathbb Q$.\\
+$\mathbb R$ & Reelle Zahlen; dazu gehören rationale und irrationale Zahlen. & $\frac23\in\mathbb R$, $\sqrt2\in\mathbb R\setminus\mathbb Q$.\\
+$[a,b]$, $(a,b)$ & Abgeschlossenes bzw. offenes Intervall, $a<b$. & $x\in[-2,2]\Leftrightarrow-2\le x\le2$; bei $(-2,2)$ fehlen die Randpunkte.\\
+
+\symbolgruppe{Aussagen, Vergleiche und Quantoren}
+$p\Rightarrow q$ & Aus $p$ folgt $q$. & $x=-1\Rightarrow x\le0$.\\
+$p\Leftarrow q$ & Aus $q$ folgt $p$. & $x\in\mathbb R\Leftarrow x=\pi$.\\
+$p\Leftrightarrow q$ & $p$ gilt genau dann, wenn $q$ gilt. & Für $x\in\mathbb R$: $x^2=2\Leftrightarrow x=\sqrt2\ \lor\ x=-\sqrt2$.\\
+$\forall x\in A$ & Für alle Elemente $x$ der Menge $A$ gilt die folgende Aussage. & $\forall x\in(-\infty,0):\ x\le10$.\\
+$\exists x\in A$ & Es gibt mindestens ein Element $x$ mit der genannten Eigenschaft. & $\exists x\in\mathbb R:\ x^2=2$.\\
+$p\land q$, $p\wedge q$ & Sowohl $p$ als auch $q$ sind wahr (und). & $(x>0)\land(x\le10)\Leftrightarrow x\in(0,10]$.\\
+$p\lor q$ & Mindestens eine der Aussagen ist wahr (einschließendes Oder). & Für $x\in\mathbb R$ ist $(x>0)\lor(x\le10)$ immer wahr.\\
+$p\veebar q$ & Genau eine der beiden Aussagen ist wahr (ausschließendes Oder). & $[(x>0)\veebar(x\le10)]\Leftrightarrow x\in(-\infty,0]\cup(10,\infty)$.\\
+$\neg p$ & Negation: $p$ ist nicht wahr. & $\neg(x>0)\Leftrightarrow x\le0$.\\
+$<$, $>$, $\le$, $\ge$ & Kleiner, größer, kleiner oder gleich, größer oder gleich. & $-3<-2$, $3>2$, $2\le2$, $3\ge2$.\\
+$=$, $\ne$, $\approx$ & Gleich, ungleich, näherungsweise gleich. & $\frac12=0{,}5$, $2\ne3$, $\frac13\approx0{,}3333$.\\
+$y:=f(x)$ & Definition: $y$ bezeichnet den Funktionswert an der Stelle $x$. & Für $f(x)=x^2$ ist $y:=f(3)=9$.\\
+$p\stackrel{!}{=}q$ & Eine Gleichheit wird gefordert, etwa zur Bestimmung eines Parameters. & $x-1\stackrel{!}{=}\frac23\Leftrightarrow x=\frac53$.\\
+
+\symbolgruppe{Funktionen, Potenzen und elementare Funktionen}
+$f:D\to W$ & Funktion mit Definitionsbereich $D$ und Zielmenge $W$. Die Bildmenge ist $f(D)\subseteq W$. & $f:\mathbb R\to\mathbb R$, $x\mapsto x^2$, hat die Bildmenge $[0,\infty)$.\\
+$x\mapsto f(x)$ & Zuordnungsvorschrift: Jedem $x$ wird $f(x)$ zugeordnet. & $x\mapsto x^2$ ordnet der Zahl $3$ die Zahl $9$ zu.\\
+$(a,b)$, $G_f$ & Geordnetes Paar; der Graph besteht aus den Paaren $(x,f(x))$. & $G_f=\{(x,f(x)):x\in D\}\subseteq D\times W$.\\
+$f\circ g$ & Verkettung: zuerst $g$, dann $f$ anwenden. & $f(x)=\sin x$, $g(x)=x^2$: $(f\circ g)(x)=\sin(x^2)$.\\
+$f^{-1}$ & Umkehrfunktion einer bijektiven Funktion $f:D\to W$. & $f(x)=x^3$ auf $\mathbb R$: $f^{-1}(x)=\sqrt[3]x$ und $f^{-1}(f(x))=x$.\\
+$f^{\circ n}$ & $n$-malige Verkettung einer Funktion mit sich selbst. & Für $f(x)=x^2$ gilt $f^{\circ3}(x)=x^8$. Dagegen ist $(f(x))^3=x^6$.\\
+$x^n$, $x^{-n}$ & Ganzzahlige Potenzen; negative Exponenten erfordern $x\ne0$. & $x^4=x\cdot x\cdot x\cdot x$, $x^{-4}=1/x^4$.\\
+$\sqrt[n]x$, $x^{1/n}$ & $n$-te Wurzel; bei geradem $n$ reell nur für $x\ge0$. & Für $x>0$: $\sqrt[3]{x^{-5}}=x^{-5/3}$.\\
+$(x+y)^2$ & Binomische Formel. & $(x+y)^2=x^2+2xy+y^2$.\\
+$e$, $\exp(x)$ & Eulersche Zahl und Exponentialfunktion zur Basis $e$. & $e=\lim_{n\to\infty}(1+1/n)^n\approx2{,}71828$, $\exp(x)=e^x$.\\
+$\ln$, $\lg$, $\mathrm{lb}$ & Logarithmus zur Basis $e$, $10$ bzw. $2$. & $\ln(e)=1$, $\lg(10^3)=3$, $\mathrm{lb}(8)=3$.\\
+$n!$, $\binom nk$ & Fakultät und Binomialkoeffizient für $n,k\in\mathbb N_0$, $0\le k\le n$. & $0!=1$, $3!=6$, $\binom52=\frac{5!}{2!3!}=10$.\\
+$\pi$ & Kreiszahl; Flächeninhalt des Einheitskreises. & $\pi\approx3{,}14159$, $\pi\in\mathbb R\setminus\mathbb Q$.\\
+$\sin$, $\cos$ & Sinus und Kosinus; im rechtwinkligen Dreieck Gegenkathete bzw. Ankathete durch Hypotenuse. & $\sin0=0$, $\cos0=1$; beide Funktionen bilden $\mathbb R$ nach $[-1,1]$ ab.\\
+$\tan$ & Tangens: Quotient aus Sinus und Kosinus, sofern $\cos x\ne0$. & $\tan x=\sin x/\cos x$; nicht definiert für $x=\pi/2+k\pi$, $k\in\mathbb Z$.\\
+$\arcsin$ & Umkehrfunktion des auf $[-\pi/2,\pi/2]$ eingeschränkten Sinus. & $\arcsin:[-1,1]\to[-\pi/2,\pi/2]$, $\arcsin1=\pi/2$.\\
+$\arccos$ & Umkehrfunktion des auf $[0,\pi]$ eingeschränkten Kosinus. & $\arccos:[-1,1]\to[0,\pi]$, $\arccos0=\pi/2$.\\
+$\arctan$ & Umkehrfunktion des auf $(-\pi/2,\pi/2)$ eingeschränkten Tangens. & $\arctan:\mathbb R\to(-\pi/2,\pi/2)$, $\arctan1=\pi/4$.\\
+
+\symbolgruppe{Komplexe Zahlen und Koordinaten}
+$\mathbb C$ & Körper der komplexen Zahlen; $i^2=-1$. & $z=3+4i\in\mathbb C$.\\
+$\mathrm{Re}\,z$, $\mathrm{Im}\,z$ & Realteil und Imaginärteil; beide sind reelle Zahlen. & $\mathrm{Re}(3+4i)=3$, $\mathrm{Im}(3+4i)=4$.\\
+$\overline z$ & Komplex konjugierte Zahl; Spiegelung an der reellen Achse. & $z=3+4i\Rightarrow\overline z=3-4i$.\\
+$|x|$, $|z|$ & Betrag einer reellen oder komplexen Zahl; stets nichtnegativ. & $|-3|=3$, $|3+4i|=\sqrt{3^2+4^2}=5$, $|0|=0$.\\
+$\arg z$ & Argument einer komplexen Zahl $z\ne0$; ein Winkel, der zur Polarform gehört. & $\arg(i)=\pi/2$ bei Hauptwerten in $(-\pi,\pi]$.\\
+$e^{i\varphi}$, $\exp(z)$ & Eulersche Formel und komplexe Exponentialfunktion. & $e^{i\varphi}=\cos\varphi+i\sin\varphi$; $e^{(-3+4i)t}=e^{-3t}(\cos4t+i\sin4t)$.\\
+$x,y,z$ & Kartesische Koordinaten; in der Ebene zwei, im Raum drei Koordinaten. & $(3,4)\in\mathbb R^2$ entspricht der Zahl $3+4i$ in der Gaußschen Zahlenebene.\\
+$r,\varphi$ & Polarkoordinaten: Abstand vom Ursprung und Winkel. & $x=r\cos\varphi$, $y=r\sin\varphi$, $r\ge0$; für $r>0$ z.\,B. $\varphi\in(-\pi,\pi]$.\\
+$r,\varphi,z$ & Zylinderkoordinaten: Polarkoordinaten in der Ebene plus Höhe. & $(x,y,z)=(r\cos\varphi,r\sin\varphi,z)$.\\
+
+\symbolgruppe{Vektoren und Matrizen}
+$\boldsymbol a$, $\vec a$, $\underline a$ & Gängige Schreibweisen für Vektoren. & $\boldsymbol a=(1,-2,3)^\intercal\in\mathbb R^3$.\\
+$\mathbb R^n$, $\mathbb C^n$ & Vektoren mit $n$ reellen bzw. komplexen Komponenten. & $\mathbb R^2$: Ebene, $\mathbb R^3$: Raum; $\mathbb C^2$ hat als reeller Vektorraum Dimension $4$.\\
+$\boldsymbol a^\intercal$ & Transponieren: Ein Spaltenvektor wird zum Zeilenvektor. & $\boldsymbol a=(11,\pi,-1)^\intercal\Rightarrow\boldsymbol a^\intercal=(11,\pi,-1)$.\\
+$|\boldsymbol a|$, $\|\boldsymbol a\|$ & Euklidische Länge eines reellen Vektors. & $\|(1,-2,3)^\intercal\|=\sqrt{1^2+(-2)^2+3^2}=\sqrt{14}$.\\
+$\langle\boldsymbol a,\boldsymbol b\rangle$, $\boldsymbol a\cdot\boldsymbol b$ & Reelles euklidisches Skalarprodukt. & $\langle(1,2)^\intercal,(3,4)^\intercal\rangle=1\cdot3+2\cdot4=11$.\\
+$\boldsymbol a\perp\boldsymbol b$ & Vektoren stehen senkrecht aufeinander. & $\boldsymbol a\perp\boldsymbol b\Leftrightarrow\langle\boldsymbol a,\boldsymbol b\rangle=0$.\\
+$\boldsymbol a\parallel\boldsymbol b$ & Für von null verschiedene Vektoren: Einer ist ein skalares Vielfaches des anderen. & $(2,4)^\intercal=2(1,2)^\intercal$.\\
+$\boldsymbol a_\parallel+\boldsymbol a_\perp$ & Orthogonale Zerlegung bezüglich einer vorgegebenen Richtung. & Bezüglich der $x$-Achse: $(3,1)^\intercal=(3,0)^\intercal+(0,1)^\intercal$.\\
+$\boldsymbol a\times\boldsymbol b$ & Kreuzprodukt zweier Vektoren im $\mathbb R^3$; Ergebnis wieder im $\mathbb R^3$. & $(1,2,3)^\intercal\times(1,0,0)^\intercal=(0,3,-2)^\intercal$.\\
+$(\boldsymbol a\times\boldsymbol b)\cdot\boldsymbol c$ & Spatprodukt; sein Betrag ist das Volumen des aufgespannten Spats. & $((1,0,0)^\intercal\times(0,1,0)^\intercal)\cdot(0,0,1)^\intercal=1$.\\
+$A=(a_{ij})\in\mathbb R^{n\times m}$ & Matrix mit $n$ Zeilen und $m$ Spalten; $i$ ist Zeilen-, $j$ Spaltenindex. & Für $A=\left(\begin{smallmatrix}3&1\\0&2\end{smallmatrix}\right)$ ist $a_{12}=1$.\\
+$A^\intercal$ & Transponierte Matrix: Zeilen und Spalten vertauschen. & $A=\left(\begin{smallmatrix}3&-2\\\pi&1\end{smallmatrix}\right)\Rightarrow A^\intercal=\left(\begin{smallmatrix}3&\pi\\-2&1\end{smallmatrix}\right)$.\\
+$A^2$ & Matrixprodukt $A\cdot A$ für eine quadratische Matrix. & $A=\left(\begin{smallmatrix}3&1\\0&1\end{smallmatrix}\right)\Rightarrow A^2=\left(\begin{smallmatrix}9&4\\0&1\end{smallmatrix}\right)$.\\
+$I_n$, $\boldsymbol 1$ & Einheitsmatrix: neutrale Matrix der Multiplikation. & $I_2=\left(\begin{smallmatrix}1&0\\0&1\end{smallmatrix}\right)$, $AI_n=A$ für $A\in\mathbb R^{n\times n}$.\\
+$A^{-1}$ & Inverse einer invertierbaren quadratischen Matrix. & $A=\left(\begin{smallmatrix}3&1\\0&1\end{smallmatrix}\right)\Rightarrow A^{-1}=\frac13\left(\begin{smallmatrix}1&-1\\0&3\end{smallmatrix}\right)$, $AA^{-1}=I_2$.\\
+$A\boldsymbol x=\boldsymbol b$ & Lineares Gleichungssystem; gesucht ist $\boldsymbol x$. & $A=I_2$, $\boldsymbol b=(1,2)^\intercal\Rightarrow\boldsymbol x=(1,2)^\intercal$.\\
+$\mathrm{span}$, $\mathrm{LH}$ & Linearer Spann: alle Linearkombinationen der angegebenen Vektoren. & $\mathrm{span}\{(1,2)^\intercal\}=\{t(1,2)^\intercal:t\in\mathbb R\}$.\\
+$\mathrm{im}(A)$ & Bild: Menge aller Vektoren $A\boldsymbol x$. & Für $A=\left(\begin{smallmatrix}3&1\\6&2\end{smallmatrix}\right)$: $\mathrm{im}(A)=\mathrm{span}\{(1,2)^\intercal\}$.\\
+$\mathrm{rk}(A)$ & Rang: Dimension des Bildes. & Für $A=\left(\begin{smallmatrix}3&1\\6&2\end{smallmatrix}\right)$ gilt $\mathrm{rk}(A)=1$.\\
+$\mathrm{ker}(A)$ & Kern: alle Vektoren $\boldsymbol x$ mit $A\boldsymbol x=\boldsymbol0$. & Für $A=\left(\begin{smallmatrix}3&1\\6&2\end{smallmatrix}\right)$: $\mathrm{ker}(A)=\mathrm{span}\{(1,-3)^\intercal\}$.\\
+$\mathrm{def}(A)$ & Defekt: Dimension des Kerns; bei $m$ Spalten ist $\mathrm{def}(A)=m-\mathrm{rk}(A)$. & Für $A=\left(\begin{smallmatrix}3&1\\0&2\end{smallmatrix}\right)$ gilt $\mathrm{def}(A)=0$.\\
+$\det A$ & Determinante einer quadratischen Matrix. & $\det\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)=ad-bc$.\\
+
+\symbolgruppe{Folgen, Grenzwerte und Ableitungen}
+$(a_n)_{n\in\mathbb N_0}$ & Folge: Jedem Index $n$ wird ein Folgenglied $a_n$ zugeordnet. & $a_n=2^n$ ergibt die Folge $(1,2,4,8,\ldots)$.\\
+$a_n\to a$, $\lim_{n\to\infty}a_n=a$ & Die Folge konvergiert gegen den Grenzwert $a$. & $a_n=1/n$, $n\in\mathbb N^+$: $a_n\to0$. Dagegen wächst $2^n$ unbeschränkt.\\
+$\lim_{x\to\infty}f(x)$ & Grenzwert einer Funktion für unbegrenzt wachsende Argumente. & $\lim_{x\to\infty}1/x=0$: $y=0$ ist eine horizontale Asymptote.\\
+$\infty$ & Symbol für Unendlich, keine reelle Zahl. & $a_n=2^n\to\infty$ bezeichnet hier bestimmte Divergenz.\\
+$f'$, $f''$, $f'''$ & Erste, zweite und dritte Ableitung. & $f(x)=ax^2+bx+c$: $f'(x)=2ax+b$, $f''(x)=2a$, $f'''(x)=0$.\\
+$f^{(n)}$ & $n$-te Ableitung; die Klammern unterscheiden sie von einer Potenz. & $f(x)=x^4+2x^2+(x-2)^2\Rightarrow f^{(4)}(x)=24$.\\
+$U(x_0)$ & Eine Umgebung von $x_0$, die ein offenes Intervall um $x_0$ enthält. & $(x_0-\delta,x_0+\delta)$ ist für $\delta>0$ eine Umgebung von $x_0$.\\
+$\varepsilon$, $\delta$, $h$ & Häufig Fehlergrenze, Umgebungsradius bzw. Änderung des Arguments. & Meist $\varepsilon>0$, $\delta>0$; $h$ darf positiv oder negativ sein und strebt oft gegen $0$.\\
+$\Delta x$ & Änderung des Arguments; für einen Abstand schreibt man $|\Delta x|$. & $\Delta x=x_2-x_1$; bei $x_1=a$, $x_2=a+h$ ist $\Delta x=h$ und der Abstand $|h|$.\\
+$o(h)$ & Kleiner Rest im Vergleich zu $h$ für $h\to0$. & $r(h)=o(h)\Leftrightarrow r(h)/h\to0$ für $h\ne0$; z.\,B. $h^2=o(h)$.\\
+
+\symbolgruppe{Häufige Bezeichnungen in Geometrie und Anwendungen}
+$a,b,c$; $A,B,C$ & Seitenlängen bzw. Eckpunkte eines Dreiecks. & Die Seite mit Länge $a$ liegt dem Eckpunkt $A$ gegenüber.\\
+$\lambda,\mu,\nu$; $\alpha,\beta,\gamma$ & Häufig Parameter; $\alpha,\beta,\gamma$ auch Winkel. & $f(x)=e^{\lambda x}$ oder $\boldsymbol x=\alpha(1,2,3)^\intercal$.\\
+$m,n,k,l$ & Häufig ganzzahlige Indizes; der jeweilige Wertebereich ist anzugeben. & $\sum_{k=1}^n x^k=x+x^2+\cdots+x^n$.\\
+$\varphi,\psi,\omega$ & Häufig Winkel; $\omega$ auch Kreisfrequenz. & $f(t)=\sin(\omega t+\varphi)$.\\
+$\boldsymbol x(t)$ & Ortsvektor als Funktion der Zeit; beschreibt eine Bahnkurve. & $\boldsymbol x(t)=(t,t^2,0)^\intercal$.\\
+$\boldsymbol v(t)$, $\boldsymbol a(t)$ & Geschwindigkeit und Beschleunigung als zeitliche Ableitungen. & $\boldsymbol v=\dot{\boldsymbol x}$, $\boldsymbol a=\ddot{\boldsymbol x}$; Einheit $\mathrm{m/s}$ bzw. $\mathrm{m/s^2}$.\\
+$\boldsymbol F$, $m$ & Resultierende Kraft und Masse; Newtons Bewegungsgleichung für konstante Masse. & $\boldsymbol F=m\boldsymbol a$; Kraft in Newton ($\mathrm N$).\\
+$U,I,R$ & Elektrische Spannung, Stromstärke und Widerstand. & Ohmsches Gesetz: $U=RI$; Einheiten $\mathrm V$, $\mathrm A$, $\Omega$.\\
+$T$, $t$ & Häufig Temperatur bzw. Zeit; die Bedeutung ergibt sich aus dem Kontext. & Temperatur z.\,B. in Kelvin ($\mathrm K$), Zeit in Sekunden ($\mathrm s$).\\
+$k_{\mathrm B}$ & Boltzmann-Konstante. & $k_{\mathrm B}=1{,}380649\cdot10^{-23}\,\mathrm{J/K}$.\\
+\end{longtable}
+\endgroup
+\end{landscape}

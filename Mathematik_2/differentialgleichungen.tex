@@ -1,0 +1,255 @@
+\section{Differentialgleichungen}\label{MA2-differentialgleichungen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Differentialgleichungen nach Typ und Struktur klassifizieren & \\
+    \tabitem Richtungsfelder interpretieren und Lösungskurven qualitativ skizzieren & \\
+    \tabitem Anfangswertprobleme erster Ordnung geometrisch verstehen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Ableitungen berechnen können & \abschnittsverweis{MA1-ableitungsregeln}  \\
+    \tabitem unterschiedliche Notationen für Ableitungen beliebiger Ordnung kennen &  \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-differentialgleichungen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Woher kommen Differentialgleichungen?}
+
+Deterministische dynamische Systeme [dynamical systems] modellieren zeitliche Entwicklungen und Regelungsprozesse – in der Physik, der Elektrotechnik, der Automatisierungstechnik, der Klimaforschung ebenso wie der Volkswirtschaft. Typischerweise leistet der Zufall seinen Beitrag, zum Beispiel durch Messungenauigkeiten oder quantenmechanische Effekte. Aber oft kann man den Zufall weitgehend ignorieren und sich nur mit deterministischen dynamischen Systemen befassen. Nur um diese geht es im Folgenden.
+
+Zwei Informationen definieren ein dynamisches System:
+\begin{itemize}
+	\item Die Beschreibung der Zustände [states]: Zu jedem Zeitpunkt ist das dynamische System in einem bestimmten Zustand. Der aktuelle Zustand umfasst dabei alles, was die zukünftige Entwicklung bestimmt. Die Menge aller denkbaren Zustände heißt Zustandsraum [state space] oder auch Phasenraum [phase space].
+	\item Die Angabe eines Entwicklungsgesetzes: Es gibt eine Regel, die eindeutig festlegt, wie sich der Zustand von einem Zeitpunkt zum nächsten entwickelt.
+\end{itemize}
+
+Schon einfache dynamische Systeme können nicht-triviale Phänomene modellieren. Ein wichtiges Beispiel aus der Elektrotechnik ist der Schwingkreis.
+
+\begin{exabox}{LC- bzw.\ RLC-Schwingkreis als dynamisches System}{ }
+Wir betrachten einen Schwingkreis mit Induktivität \(L\), Kapazität \(C\) und gegebenenfalls einem Widerstand \(R\). Als Zustandsgrößen eignen sich beispielsweise
+\[
+q(t)=\text{Ladung am Kondensator},
+\qquad
+i(t)=\dot q(t)=\text{Strom}.
+\]
+
+Ohne äußere Anregung gilt für den Schwingkreis:
+\[
+L\,\ddot q + R\,\dot q + \frac{1}{C}\,q = 0.
+\]
+
+\textbf{Zustandsraum:}
+\[
+(q,i)\in \mathbb R^2
+\]
+
+\textbf{Entwicklungsgesetz:}
+\[
+\dot q = i,
+\qquad
+L\,\dot i = -R\,i-\frac{1}{C}\,q.
+\]
+
+Je nach Wahl der Parameter zeigt das System unterschiedliche Phänomene:
+\begin{itemize}
+	\item Für \(R=0\) erhält man eine ungedämpfte periodische Schwingung.
+	\item Für \(R>0\) wird die Schwingung gedämpft und strebt zur Ruhelage.
+	\item Bei äußerer periodischer Anregung kann Resonanz auftreten.
+Ist die Anregungsfrequenz nahe bei der Eigenfrequenz des Systems, so wird besonders viel Energie in das System übertragen und die Schwingungsamplitude wächst stark an.
+
+		\footnote{ Trifft die Anregungsfrequenz die Eigenfrequenz des Systems, so reagiert das System besonders stark.
+
+In technischen Anwendungen ist es daher wichtig, Resonanzbereiche zu kennen und entweder zu vermeiden oder durch geeignete Dämpfung zu begrenzen.
+		Mathematisch zeigt sich das daran, dass die Anregung dieselbe Frequenz wie die Lösung der homogenen Gleichung besitzt; der gewöhnliche Ansatz für eine partikuläre Lösung muss dann angepasst werden.  Physikalisch bedeutet dies eine starke Amplitudenvergrößerung, im ungedämpften Idealfall sogar unbegrenztes Anwachsen.}
+\end{itemize}
+\end{exabox}
+
+Damit zeigt bereits ein sehr einfaches zeitkontinuierliches Modell drei zentrale Phänomene:
+\begin{enumerate}
+	\item periodische Schwingung,
+	\item Dämpfung und Streben zur Ruhelage,
+	\item Resonanz bei äußerer Anregung.
+\end{enumerate}
+
+Der Schwingkreis ist damit ein prototypisches Beispiel für ein zeitkontinuierliches dynamisches System. Was uns im Folgenden interessiert, sind genau solche Systeme, deren Zustand sich kontinuierlich in der Zeit entwickelt und deren Entwicklungsgesetz durch Ableitungen beschrieben wird. Solche Gesetze sind Differentialgleichungen.
+
+%\subsection{Woher kommen Differentialgleichungen?}
+%
+%Deterministische dynamische Systeme [dynamical systems] modellieren zeitliche Entwicklungen und Re\-gelungs\-prozesse – in der Physik, der Elektrotechnik, der Automatisierungstechnik, der Klimaforschung ebenso wie der Volkswirtschaft. Typischerweise leistet der Zufall seinen Beitrag, zum Beispiel durch Messungenauigkeiten oder durch quantenmechanische Effekte. Aber oft kann man den Zufall weitgehend ignorieren und sich nur mit deterministischen dynamischen Systemen befassen. Nur um diese geht es im Folgenden. Zwei Informationen definieren ein dynamisches System:
+%\begin{itemize}
+%	\item Die Beschreibung der Zustände [states]: Zu jedem Zeitpunkt ist das dynamische System in einem bestimmten Zustand. Der aktuelle Zustand umfasst dabei alles, was die zukünftige Entwicklung bestimmt. Die Menge aller denkbaren Zustände heißt Zustandsraum [state space] oder auch Phasenraum [phase space].
+%		%\begin{exabox}[Zustand und Zustandsraum Kegelbahn]
+%		%Was  benötigt  man,  um  den Zustand einer Kegelbahn mit neun Kegeln und einer Kugel zu beschreiben?
+%		%Pro Kegel (zehn): Masse, Position (Vektor, drei Komponenten), Geschwindigkeit (Vektor, drei Komponente), Orientierung im Raum (drei Winkel), Winkelgeschwindigkeit (drei Werte)
+%		%
+%		%Als Zustandsraum der Kegelbahn kann man also benutzen: Alle Informationen angeben: also $\mathbb R^{120}$.
+%		%\end{exabox}
+%
+%	\item Die Angabe eines Entwicklungsgesetzes: Es gibt eine Regel, die eindeutig (deshalb "\,deterministisch"\,) festlegt, wie sich der Zustand von einem Zeitpunkt zum nächsten entwickelt. Die Art des Zustandsraums und die Art des Entwicklungsgesetzes lassen sich klassifizieren in zeitlich diskrete und zeitkontinuierliche Systeme.
+%		%\begin{exabox}[Entwicklungsgesetze]
+%		%	\begin{itemize}
+%		%		\item zeitdiskret: $\boldsymbol F = m\cdot \boldsymbol a$
+%		%		\item zeitkontinuierlich: (klassische Mechanik)
+%		%	\end{itemize}
+%		%\end{exabox}
+%\end{itemize}
+%
+%Schon einfache dynamische Systeme können nicht-triviale Phänomene modellieren, wie das folgende Beispiel zeigt.
+%
+%Betrachten wir beispielsweise die "\,logistische Gleichung"\, [logistic map] zur Beschreibung der Entwicklung einer Population $x_n$ zum Zeitpunkt $t_n$. Dabei ist die Wachstumsrate $k$ fest vorgegeben .
+%
+%Die Population soll sich zum Zeitpunkt $t_{n+1}$ entsprechend der logistischen Gleichung entwickeln:
+%	\[ x_{n+1} = k\cdot x_n\cdot (1-x_n)\,.\]
+%Das System ist also diskret in der Zeit und wir untersuchen die Entwicklung der Population für unterschiedliche Wachstumsraten $k$:
+%
+%\begin{exabox}{Logistische Gleichung zur Modellierung begrenzten Wachstums}{ }
+%	Zustandsraum:
+%	\[ x \in [0,1] \]
+%
+%	Entwicklungsgesetz:
+%	\[ t_n\to t_{n+1}:\quad  x_{n+1} = k\cdot x_n\cdot (1-x_n)\,.\]
+%
+%	Entwicklung der Zustandsgröße für verschiedene Werte von $k$:
+%	\begin{center}
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder_unused/logistische_abbildung_parameter_0_9.png}
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder_unused/logistische_abbildung_parameter_1_1.png} \\
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder_unused/logistische_abbildung_parameter_3_2.png}
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder_unused/logistische_abbildung_parameter_4_0.png}
+%\end{center}
+%	Das System läßt Beobachtungen zu:
+%	\begin{itemize}
+%		\item Das Wachstum ist nach oben begrenzt durch $x=1$.
+%		\item Das Wachstum ist nach unten begrenzt durch $x=0$.
+%		\item Der Wachstumsprozess hängt von $k$ ab:
+%
+%			%Man kann die Dämpfung für $k=0.9$, die Beschränktheit für $k=1.1$ und für $k=3.2$ Oszillationen beobachten und für $k=4$ deterministisches Chaos.
+%	\end{itemize}
+%	%Je nachdem, welche Werte man für die Wachstumsrate $k$ einsetzt, verhält sich das System verschieden.
+%	%	Beispiele  \begin{itemize}
+%	%	\item $k=0,97$ \item $k=1,18$ \item $k=3,29$ \item $k=3,510$ \item $ k=3,5511$ \item $k=4,012$ \end{itemize}
+%\end{exabox}
+%
+%	Die logistische Gleichung ist offensichtlich in der Lage drei Phänomene zu modellieren:
+%\begin{enumerate}
+%	\item Streben zu einem Gleichgewichtszustand,
+%	\item Einsetzen von Schwingungen,
+%	\item deterministisches Chaos.
+%\end{enumerate}
+%	Der Begriff deterministisches Chaos beschreibt, dass winzige Unterschiede im Anfangszustand nach wenigen Schritten deutliche Auswirkungen haben (exponentielles Fehlerwachstum). Dass die Folge der Zustände des Systems wie Zufall aussehen, ist nur eine Konsequenz davon. Ein weiteres Phänomen, das mit Hilfe der logistischen Gleichung nicht sichtbar ist, ist die Resonanzkatastrophe: das praktisch unendliche Aufschaukeln von Schwingungen.
+%
+%\begin{center}
+%	\begin{tabular}{l|c|c}
+%		Zeit / Zustandsraum
+%		& diskret & kontinuierlich \\
+%		\hline
+%		diskret & Steuerungstechnik & digitale Regelungstechnik\\
+%		\hline
+%		kontinuierlich & Quantenmechanik & \textcolor{blue}{Mechanik}
+%	\end{tabular}
+%\end{center}
+%
+%Was uns im Folgenden interessiert sind dynamische Systeme, deren Zustandsraum kontinuierlich in Zeit und Raum ist. Die Entwicklungsgesetze entstammen in diesem Fall der Mechanik oder der analogen Regelungstechnik. Es sind Differentialgleichungen.
+
+\subsection{Typen von Differentialgleichungen}
+
+Zeitkontinuierliche dynamische Systeme werden typischerweise mit Differentialgleichungen beschrieben. Differentialgleichungen sind Gleichungen, in denen eine Ableitung oder mehrere Ableitungen einer Funktion und gegebenenfalls die Funktion selbst auftreten. Anders als beim Lösen einer Gleichung ist die Lösung einer Differentialgleichung eine Funktion und kein Wert. Das ist also eine Differentialgleichung [differential equation] und die gesuchte Größe ist die Funktion $f$:
+		\[
+			f'(x) = 3\cdot f(x) + x^2\,.
+		\]
+		Oft wird die Unbekannte nicht $f$ sondern $y$ genannt:
+		\[
+			y'(x) = 3\cdot y(x) + x^2 \,.
+		\]
+		In der Mechanik betrachtet man oft zeitabhängige Phänomene und die Zeitableitungen werden mit Punkten notiert, man findet also entsprechend
+		\[
+			\dot x(t) = 3\cdot x(t) + t^2 \,.
+		\]
+
+		\begin{defbox}{Klassifikationen von Differentialgleichungen}{ }
+			\begin{itemize}
+				\item Die Ordnung [order] einer Differentialgleichung gibt an, was die höchste Ableitung ist, die in der Differentialgleichung vorkommt. Zum Beispiel ist das eine Differentialgelichung der Ordung zwei:  \[ y'' - \sin(x)\cdot y = \left( y'\right)^2\,. \]
+				\item In einer expliziten [explicit] Differentialgleichung steht die höchste Ableitung isoliert auf einer Seite und kommt ansonsten nicht vor. Zum Beispiel: \[ y'' = \sin(x)\cdot y  + \left( y'\right)^2\,. \]
+				\item In einer impliziten [implicit] Differentialgleichung läßt sich die höchste Ableitung nicht isolieren. Zum Beispiel: \[\sin(y'' + x^2) = y'\,. \]
+				\item In einer linearen [linear] Differentialgleichung tritt nur eine Summe von Vielfachen der Funktion und ihrer Ableitungen auf. Diese Vielfachen dürfen allerdings Funktionen der unabhängigen Variablen sein.  Zum Beispiel  \[\sin(x) \cdot y'' - 17 \cdot y' + x^2\cdot y = \cos(x) \,.\]
+				\item Falls die Vielfachen einer linearen Differentialgleichung nicht Funktionen, sondern Konstanten sind, hat man eine lineare Differentialgleichung mit konstanten Koeffizienten [constant coefficients]. Die Inhomogenität darf dabei aber weiter eine Funktion sein. Zum Beispiel:   \[ 3\cdot y'' - 4\cdot y' + 7\cdot y = \cos(x)\,.\]
+	\end{itemize}
+		\end{defbox}
+
+		\noindent Bemerkungen:
+
+		\begin{itemize}
+			\item Die Differentialgleichungen, in denen nur nach einer Unabhängigen abgeleitet wird, heißen "\, gewöhnliche Differentialgleichungen"\, [ordinary differential equations]. Nur um solche geht es hier.
+			\item Differentialgleichungen, in denen mehrere unabhängige Variablen auftauchen, heißen partielle Differentialgleichungen. Partielle Differentialgleichungen werden hier nicht betrachtet.
+			\item Die Bezeichnung "\,explizit"\, ist nicht überall gleich definiert. Ist eine explizite Differentialgleichung eine, die nach der höchsten Ableitung aufgelöst ist? Oder aber eine wie $\frac{ \mathrm{d} y}{\mathrm{d}x} +7=x$, die man leicht nach der höchsten Ableitung auflösen kann? Einige Autoren verwenden auch den Begriff "\,explizite Form"\,, wenn die Gleichung nach der höchsten Ableitung aufgelöst ist.
+				Wir nennen eine Differentialgleichung explizit, wenn sie in expliziter Form gegeben ist.
+			\item "\,Implizit"\, kann das Gegenteil von "\,explizit"\, bedeuten, wird oft aber nur für Gleichungen der Art $\cdots=0$ verwendet, also solchen mit Null auf einer Seite. Nach der letzteren Art der Definition ist $\frac{\mathrm{d} y}{\mathrm{d}x}=0$ implizit und explizit. – Also immer erst prüfen, was der jeweilige Autor mit diesen Begriffen meint!
+		\end{itemize}
+
+\subsection{Existenz und Eindeutigkeit einer Lösung (+)}
+
+Bevor man Zeit investiert, um eine Lösung einer Differentialgleichung zu bestimmen, lohnt es sich abzuklären, unter welchen Voraussetzung denn eine Lösung existiert und wenn eine Lösung existiert, ob sie eindeutig ist.
+
+Die Existenzbeweise, die man in diesem Kontext führt, erfordern Kenntnisse über die Vollständigkeit normierter Räume und übersteigen den Rahmen dieser Vorlesung. Allerdings ist das Ergebnis für den Fall eines Anfangswertproblems erster Ordnung sehr griffig und leicht zu überprüfen und aus diesem Grund sollten wir nicht darauf verzichten.
+
+Zuvor müssen wir Funktionen charakterisieren können, die eine verschärfte Stetigkeitseigenschaft erfüllen:\marginpar{\small Aufgabe}
+\begin{defbox}{Lipschitz-stetige Funktionen}{ }
+	Es sei \( f:[a,b]\times \mathbb K \to \mathbb K\) eine stetige Funktion, für die gilt
+	\[ \exists \, L\in \mathbb R:\; \forall x\in [a,b], y_1,y_2\in \mathbb K: \quad |f(x,y_1) - f(x,y_2)| \leq L|y_1-y_2| \,. \quad (*)\]
+	Gilt $(*)$, so nennt man $f$ Lipschitz-stetig mit Lipschitz-Konstante $L$.
+\end{defbox}
+
+Es gilt der folgende Satz über Existenz und Eindeutigkeit einer Lösung eines Anfangswertprolems mit Differentialgleichung erster Ordnung.
+
+\begin{theorembox}{Existenz und Eindeutigkeit einer Lösung}{ }
+	Es sei \( f:[a,b]\times \mathbb K \to \mathbb K\) eine Lipschsitz-stetige Funktion. 	 Dann hat das Anfangswertproblem
+	\[ \begin{cases} y' &= f(x,y),\\
+			y(x_0) &= y_0 \,.
+		\end{cases}
+	\]
+	mit $x_0\in [a,b]$ und $y_0\in \mathbb K$ eine eindeutige Lösung.
+\end{theorembox}
+
+\subsection{Vektorfelder und Lösungskurve}
+
+Es gibt eine Methode, um die Lösung eines Anfangswertproblems geometrisch zu konstruieren. Bei Differentialgleichungen zweiter Ordnung läßt sich das am schönsten veranschaulichen. Die Idee ist die Differentialgleichung in ein System erster Ordnung umzuformen und zu verstehen, dass die rechte Seite gerade die Richtung angibt, in die sich die Lösung im Phasenraum entwickelt.
+
+Betrachten wir beispielsweise die Differentialgleichung, die die Bewegung eines Federpendels mit Masse $m$, Federkonstante $D$, Reibungskonstante $\rho$ und Position $x$ (gemessen ab der Ruhelage) beschreibt:
+		\[
+			\underbrace{ m \ddot x }_{\displaystyle{ = F } }  = - D\cdot x - \rho\cdot \dot x \,.
+	\]
+	Der Zustandsraum (Phasenraum) sind Vektoren mit zwei Komponenten, also der Vektorraum $\mathbb R^2$ mit folgender physikalischer Zuordnung:
+	\[ \left( \begin{array}{c} \textnormal{Position} \\ \textnormal{Geschwindigkeit} \end{array}\right) = \left( \begin{array}{c} x \\ \dot x \end{array}\right) \; \textnormal{ oder } \; \left( \begin{array}{c} \textnormal{Position} \\ \textnormal{Impuls} \end{array}\right) =\left(\begin{array}{c} x \\ p \end{array}\right), \textnormal{ mit } p = m\cdot \dot x\,. \]
+
+	Wenn man beachtet, dass die Ableitung des Impulses gerade die Newtonsche Kraft ist,
+	\[ \dot p = F\,, \]
+
+	dann lässt sich die Bewegungsgleichung so umformen, dass man sieht, wie sich der Zustandvektor \( ( x, p)^\intercal\) zeitlich entwickelt. Anstatt einer Differentialgleichung zweiter Ordnung, erhalten wir eine vektorwertige Differentialgleichung der Ordnung eins:
+	\[ \begin{array}{rcl l} \dfrac{\mathrm{d}}{\mathrm{d}t} \left( \begin{array}{c} x \\p \end{array}\right) &=& \left( \begin{array}{c}  \dfrac{p}{m} \\F\end{array}\right) & \|\; F = m\cdot \ddot x \\ &=&  \left( \begin{array}{c} \dfrac{p}{m} \\ - D\cdot x - \rho \dot x \end{array}\right) &\| \; \dot x = m\cdot p  \\   &=& \left( \begin{array}{c}  \dfrac{p}{m} \\ - D\cdot x - \rho\cdot \dfrac{p}{m} \end{array}\right) &\; \textnormal{ Identifikation der Matrix-Vektor-Multiplikation} \\  &=& \left( \begin{array}{cc} 0 & \dfrac{1}{m} \\ - D   & - \dfrac{\rho}{m} \end{array}\right)\, \left( \begin{array}{c} x \\p\end{array}\right)\,. & \end{array}    \]
+
+		Das kann man sich das Vektorfeld veranschaulichen:
+		\begin{exabox}{Phasenraum Federpendel}{ }
+			\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/gedaempfte_schwingung_phasenportrait_vektorfeld.png}
+			\end{center}
+\end{exabox}
+
+Verbindet man im Phasenraum die nacheinander zeitlich erreichten Zustände, ergibt sich eine Lösungs\-kurve. Wenn man einen Punkt im Phasenraum als Anfangszustand ("\, Anfangsbedingung"\,) vorgibt, dann ist der Zustand zu jedem beliebigen Zeitpunkten danach und davor (!) eindeutig festgelegt.
+
+Mathematisch heißt das, dass man beweisen kann, dass es zu jeder gegebenen Anfangsbedingung $x(t_0),p(t_0)$ eine eindeutige Lösung der Differentialgleichung, also eine passende Funktion $(x(t),p(t))$) gibt. Die Existenz und Eindeutigkeit einer Lösung zu jeder Anfangsbedingung ist mathematisch nicht trivial und sie gilt auch nicht immer!
+
+%Der Zustand kann zu endlicher Zeit ins Unendliche entweichen oder in eine Definitionslücke einer Funktion enden, die in der Differentialgleichung vorkommt. Theoretisch könnte es auch andere Probleme geben: Erstens könnte eine Funktion, die in der Differentialgleichung vorkommt, zu rau sein, so dass sich vielleicht gar keine Lösung finden lässt. Zweitens könnte eine Funktion, die in der Differentialgleichung vorkommt, zu steil sein, so dass die Lösung verzweigen kann und damit nicht eindeutig ist.
+
+		%Ein Beispiel für Letzteres ist die Differentialgleichung \[\frac{\mathrm{d}y}{ \mathrm{d}x}= v|y(x)|\,.\]
+		%Zum Anfangswert $x(0)\stackrel{!}{=}0$ hat diese Differentialgleichung unendlich viele Lösungen. Eine davon ist, dass $y(x)$ dauerhaft $0$ ist. Eine andere Lösung verzweigt daraus ab $x=0$ für $x\geq 0$ in $y(x)=\frac14 x^2$. In der Praxis erlebt man so etwas höchst selten. Existenz und Eindeutigkeit von Lösungen von Differentialgleichungen sind dort typischerweise anschaulich klar.
+
+%

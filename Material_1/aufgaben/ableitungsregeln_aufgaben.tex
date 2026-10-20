@@ -1,0 +1,167 @@
+
+\ifintegriereaufgaben
+\section*{Differentiation Aufgaben}\label{MA1-ableitungsregeln-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-ableitungsregeln}{ (Abschnitt \abschnittsverweis{MA1-ableitungsregeln})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-ableitungsregeln-loesungen]{hier}.
+\else
+\section{Differentiation Aufgaben}\label{MA1-ableitungsregeln-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-ableitungsregeln-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Differenzierbarkeit]
+  \begin{itemize}
+	  \item[(a)] Untersuchen Sie, ob $f$ an der Stelle  $x_0 = 1$ differenzierbar ist:
+		  \[ f:\mathbb R \to \mathbb R, x\mapsto  
+			  \begin{cases} 1-x^2, \; x \leq 1\,, \\
+    x^2 -1, \; x > 1\,.\end{cases} 
+      \]
+      \item[(b)] Bestimmen Sie die Parameter $a,b\in\mathbb R$ so, dass $g$ auf ganz $\mathbb R$ differenzierbar ist: 
+		  \[ g:\mathbb R \to \mathbb R, x\mapsto  
+			  \begin{cases} a\cdot x^2, \; x \geq 1\,, \\
+    x +b, \; x < 1\,.\end{cases} 
+      \]
+    %\item $ f(x) = x\cdot |x|, \; x_0 = 0  $
+    %\item $ f(x) = |x| \cdot (x-3), \; x_0 = 3  $
+  \end{itemize}
+\end{exercisebox} 
+
+\begin{exercisebox}[Differenzierbarkeit]
+	Bestimmen Sie die Ableitung der Funktion $f:x\mapsto \sqrt{x}$ mit Hilfe des Differenzenquotienten.
+\end{exercisebox}
+
+\begin{exercisebox}[Bedeutung der Ableitung]
+	Skizzieren Sie die Ableitung für Funktion.
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{../Mathematik_1/Bilder/ableitung_graphisch_skizzieren_aufgabe.png}
+\end{center}
+\end{exercisebox} 
+
+\begin{exercisebox}[Differenzieren]
+	Berechnen Sie von den folgenden Funktionen die Ableitungen. Es ist $a\in \mathbb R$ ein Parameter.
+	\begin{eqnarray*}
+		\begin{array}{ll}
+			(a)\; f(x) = \mathrm{cosh}(x) = \displaystyle{\frac{e^x + e^{-x}}{2}} &\quad (b)\; g(u) = \displaystyle{\frac{u^2}{u^2+a^2}} \\[2ex]
+			(c)\; h(p) = \mathrm{exp}\left(-p^2/(2a)^2\right) &\quad (d)\; i(x) = \displaystyle{\frac{(2x+3)^2-2}{\sqrt{x-1}}} \\
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Monotonie-Satz]
+Angenommen Sie wissen über eine Funktion $f$, dass ihre Ableitung auf einem Intervall $I$ negativ ist, also $f'(x) \leq 0$. Was können Sie dann über das Monotonie-Verhalten aussagen?
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Lineare Näherung]
+	Die Mittellinie einer Rennstrecke der Breite $2\, \mathrm{m}$ wird durch Funktion $x\mapsto 4-\frac12 x^2$ beschrieben. Wir beobachten einen Rennwagen der die Bahnkurve im Uhrzeigersinn entlang rast. Bei spiegelglatter Fahrbahn rutscht das Fahrzeug und landet im Punkt $Y(0|6)$ in den Strohballen. Wo hat das Fahrzeug die Straße verlassen? 
+\end{exercisebox} 
+
+
+%
+%%\begin{exercisebox}[Differenzierbarkeit]
+%%  Untersuchen Sie, ob $f$ an der Stelle $x_0$ differenzierbar ist.
+%%  \begin{enumerate}
+%%    \item $f(x) = \begin{cases} x^2-2x, x<3\\ \frac16x^3-\frac12x, x\geq 3\end{cases}, x_0 = 3$
+%%    \item $f(x) = \begin{cases} \frac{x-2}{x}, x>2\\ 2-x, x\leq 2\end{cases}, x_0 = 2$
+%%    \item $f(x) = |x-2|, \; x_0 = 2$
+%%    \item $f(x) = (x-1)\cdot |x-1|, \; x_0 = 1$
+%%    \item $f(x) = \sqrt{(x^2-1)^2}, \; x_0 = 1$
+%%    \item $f(x) = \frac{x}{|x|+1}, \; x_0 = 0$
+%%  \end{enumerate}
+%%\end{exercisebox}
+%
+%\begin{exercisebox}[Kettenregel]
+%  Leiten Sie ab und vereinfachen Sie das Ergebnis soweit wie möglich:
+%  \begin{eqnarray*}
+%	  \begin{array}{lll}  
+%		  (a)\; g(x) = \left( f(x) \right)^n, \quad n \in \mathbb N
+%    &\quad (b)\; f(x) = \frac{1}{18}(3x+2)^6
+%    &\quad (c)\; f(x) = 2(5-x)^{-1}\\
+%    (d)\; f(r) = \sqrt{7r-r^2}
+%    &\quad (e)\; f(x) = (1+\sqrt{x})^2
+%    &\quad (f)\; f(x) = \frac{1}{x^2}+\sin(\frac{1}{x})
+%    %&\quad (a) f(x) = \sin\left( (ax)^2 \right)$
+%    %\item $f(x) = \frac{1}{(x-2)^2}$
+%    %\item $f(x) = (x+x^2)^2$
+%    %\item $f(t) = \frac{5}{(t^2-1)^2}$
+%    %\item $f(x) = \frac{1}{a+bx}$
+%  \end{array}
+%  \end{eqnarray*}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Prduktregel]
+%  Leiten Sie ab und vereinfachen Sie das Ergebnis soweit wie möglich:
+%  \begin{eqnarray*}
+%	  \begin{array}{lll}  
+%		  (a)\; f(x) = x\sqrt{x} 
+%	    & \quad (b) \; g(t) = (2t^2-3)\sqrt{t} 
+%     & \quad (c) \; f(x) = x\cdot \sin(x) \\
+%     (d) \; f(x) = (kx+1)\cdot \sin(x) 
+%     & \quad (e) \; f(x) = (x^2+1)\cdot \cos(x)
+%     & \quad (f) \; f(x) = (2x+3)^3(2x-1)^2
+%     %& \quad (g) \; f(x) = \sqrt{x}(x-t)$
+%     %& \quad (h) \; f(x) = x^2\sqrt{x}$
+%     %& \quad (i) \; f(x) = \sin(2x)\cdot \cos(2x)$
+%     %& \quad (j) \; f(a) = \sqrt{a}(1-2a^3)$
+%  \end{array}
+%  \end{eqnarray*}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Quotientenregel]
+%  Leiten Sie ab und vereinfachen Sie das Ergebnis soweit wie möglich:
+%  \begin{eqnarray*}
+%	  \begin{array}{lll}  
+%	(a)\; g(t) = \frac{2-t^3}{2+t^3}  
+%    &\quad (b)\; h(r) = \frac{2r^4}{r^2-1}  
+%    &\quad (c)\; s(t) = \frac{4t^2-5}{2t+1} \\ 
+%    (d)\; z(t) = \frac{t^2-1,5t}{1+0,8t}  
+%    &\quad (e)\; f(x) = \frac{\sqrt{x}+1}{\sqrt{x}-1}  
+%    &\quad (f)\; f(x) = \frac{\sin(x)}{\cos(x)} \\ 
+%    %&\quad (g)\; f(a) = \frac{3a}{1+x^2} $ 
+%  \end{array}
+%  \end{eqnarray*}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Ableitungen]
+%  Bestimmen Sie die ersten drei Ableitungen
+%  \begin{eqnarray*}
+%	  \begin{array}{lll}  
+%		  (a)\; f(x) = \frac34 x^4 - \frac54 x^2 + 2x  & \quad 
+%		  (b)\; f(x) = (2sx^2-3tx)^2 & \quad 
+%	 	  (c)\; f(x) = \frac{a^2x^2+2ax-a}{4ax} \\
+%		  (d)\; f(s) = \frac{4rs^4+8r^4s^2}{2r^2s^3} & \quad 
+%		  (e)\; f(x) = -2a\sin(\frac34 ax) & \quad 
+%		  (f)\; f(x) = \frac{2}{t}\cos(-2tx) 
+%	%\item $ f(x) = 0,5x^3+3x^2-4  $
+%	%\item $ f(x) = 2\left( \frac15 x^7 + \frac35 x^6\right)$
+%	%\item $ f(x) = ax^3 + bx^2 +cx + d$
+%	%\item $ f(x) = 2r^2x^4-4rx^3+r$
+%	%\item $ f(s) = \frac{a^2x^2+2ax-a}{4ax} + s$
+%	  \end{array}
+%  \end{eqnarray*}
+%\end{exercisebox} 
+
+%\begin{exercisebox}[Ableitung]
+%	Exponentialfunktionen, trigonometrische Funktionen - mittels Potenzreihen ? 
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Reihendarstellung von $\exp$ aus Ableitungseigenschaft]
+%	$\exp' = \exp$ Entwicklung der Reihe. Zeige zuerst dass an der Stelle $x=0$ Tangente mit Steigung $m=1$.
+%\end{exercisebox} 
+
+%\begin{exercisebox}[Differenzierbarkeit verlangt Stetigkeit]
+%  Ist die Stetigkeit eine notwendige oder hinreichende Bedingung für Differenzierbarkeit?
+%\end{exercisebox}
+
+%\begin{exercisebox}[Ableitung von Area-Funktionen, mit Hinweis]
+%\end{exercisebox}
+
+%\begin{exercisebox}[Umkehrfunktion, strenge Montonie, strenge Montonie]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Zwischenwertsatz, Mittelwertsatz]
+%\end{exercisebox}
+
+%\begin{theorembox}[Merkregel: Kettenregel]
+%  Äußere Ableitung mal innere Ableitung.
+%\end{theorembox}
+

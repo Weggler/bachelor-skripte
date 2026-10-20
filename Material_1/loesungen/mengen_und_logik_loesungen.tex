@@ -1,0 +1,160 @@
+\section*{Mengen und Aussagenlogik Lösungen}\label{MA1-mengen-und-logik-loesungen}
+
+\ifintegriereaufgaben
+Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-mengen-und-logik}{ (Abschnitt \abschnittsverweis{MA1-mengen-und-logik})}.
+
+\else
+
+Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript. 
+
+\fi 
+
+%\begin{exercisebox}[Brainteaser - Logik]
+% Welcher Tag ist morgen, wenn vorgestern der Tag nach Montag war? Antwort Freitag
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Brainteaser - Logik]
+%	Das Einzelkind Matthias steht vor einem Ölgemälde. Er erklärt: Der Vater des Abgebildeten ist der Sohn meines Vaters. Wer ist auf dem Gemälde zu sehen? Antwort: Matthias Sohn
+%\end{exercisebox}
+
+%\begin{exercisebox}[Schubfachprinzip]
+%	Beweisen Sie: Hat man \(n+1\) Objekte in \(n\) Schubladen verteilt, so gibt es mindestens eine Schublade, in der zwei Objekte liegen.
+%
+%	\vspace{0.3cm}
+%	\noindent \textbf{Lösung:} \newline 
+%	Mit der Voraussetzung \(A\) "\(n+1\) Objekte sind in \(n\) Schubladen verteilt." und der Behauptung  \(B\) "Es gibt mindestens eine Schublade, in der mindestens zwei Objekte liegen."  bleibt zu zeigen: "\(A\Rightarrow B\)". Wir führen einen indirekten Beweis in dem wir die Annahme \(A\land \neg B\) zum Widerspruch führen. Angenommen es gelte \(A\land \neg B\), dann sind also \(n+1\) Objekte in \(n\) Schubladen verteilt, aber in allen Schubladen ist höchstens ein Objekt. Dann sind aber in allen \(n\) Schubladen zusammen höchstens \(n\) mal höchstens ein Objekt, also höchstens \(n\) Objekte. Das ist ein Widerspruch zur Annahme, dass \(n+1\) Objekte verteilt worden sind. 
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Mächtigkeit von unendlichen Mengen]
+%	In einem Hotel mit endlich vielen Zimmern können keine Gäste mehr aufgenommen werden, sobald alle Zimmer belegt sind (Schubfachprinzip). Hilberts Hotel hat nun unendlich viele Zimmer (durchnummeriert mit natürlichen Zahlen bei \(1\) beginnend). Man könnte nun annehmen, dass dasselbe Problem auch hier auftreten würde, nämlich dann, wenn alle Zimmer durch (unendlich viele) Gäste belegt sind.
+%	Es gibt jedoch einen Weg, Platz für einen weiteren Gast zu schaffen. Wie könnte das gehen?
+%
+%
+%	\vspace{0.3cm}
+%	\noindent \textbf{Lösung:} \newline 
+%	Es gibt einen Weg, Platz für einen weiteren Gast zu machen, obwohl alle Zimmer belegt sind. Der Gast von Zimmer \(1\) geht in Zimmer \(2\), der Gast von Zimmer \(2\) geht in Zimmer \(3\), der von Zimmer \(3\) nach Zimmer \(4\) usw. Damit wird Zimmer \(1\) frei für den neuen Gast. Da die Anzahl der Zimmer unendlich ist, gibt es keinen „letzten“ Gast, der nicht in ein weiteres Zimmer umziehen könnte. Wiederholt man das, erhält man Platz für eine beliebige, aber endliche Zahl neuer Gäste. Es ist sogar möglich, Platz für abzählbar unendlich viele neue Gäste zu machen: Der Gast von Zimmer \(1\) geht wie vorher in Zimmer \(2\), der Gast von Zimmer \(2\) aber in Zimmer \(4\), der von Zimmer \(3\) in Zimmer \(6\) usw. Kurz gesagt, jeder Gast multipliziert seine Zimmernummer mit \(2\), um die neue zu erhalten. Damit werden alle Zimmer mit ungerader Nummer frei für die abzählbar unendlich vielen Neuankömmlinge.
+%\end{exercisebox}
+
+\begin{exercisebox}[Mengen]
+	Die Mengen lauten:
+	\begin{itemize}
+		\item[(a)] $A = \{ x:\; x^2-3x+2 = 0\} = \{ 1, 2\}$ 
+		\item[(b)] $B = \{ x;\; x \, \textnormal{ist ein Buchstabe aus dem Wort Leipzig}\}=\{ \textnormal{L, e, i, p, z, g}\}$
+		\item[(c)] $C = \{ x:\; x^2= 9 \land  x^3=27\}=\{ 3\}$
+		\item[(d)] $D = \{ x:\; x^2= 9 \lor  x -3 =6\}=\{ 9,-3,3\} $
+		\item[(e)] $E = \{ x:\; x^2= 9 \land  x -3 =6\}=\emptyset$
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Mengenoperationen]
+	Wie lässt sich anhand der beiden Mengen $ \mathbb{M}_1 = \{ 1,\, 2,\, 3,\, 4,\, 5,\, 6\}$ und $ \mathbb{M}_2 = \{4,\, 5,\, 6,\, 7,\, 8,\, 9, 10\}$ zeigen, dass bei einer Differenzmenge $\mathbb{M}_1 \setminus \mathbb{M}_2$ die Mengen $\mathbb{M}_1$ und $\mathbb{M}_2$ im Allgemeinen nicht vertauscht werden können?
+
+	\vspace{0.3cm}
+	\noindent \textbf{Lösung:} \newline 
+	\[ \mathbb{M}_1 \setminus \mathbb{M}_2 = \{ 1,2,3\} \not= \{7,8,9,10\} = \mathbb{M}_2 \setminus \mathbb{M}_1\,.\]
+	
+\end{exercisebox}
+
+\begin{exercisebox}[Aussagenlogik]
+	Negieren Sie die folgenden Ausdrücke und vereinfachen Sie die Negation so weit wie möglich und entscheiden Sie, ob die negierte Aussage wahr oder falsch ist.  
+	\begin{itemize}
+		\item[(a)] Alle gut vorbereiteten Studierenden bestehen die Mathematikklausur. 
+		\item[(b)] Es gibt eine reelle Zahl, die gerade und Teiler von $27$ ist. (falsch)
+		\item[(c)] Alle Zahlen, deren Quersumme durch $3$ teilbar ist, sind durch $3$ teilbar. (wahr) 
+	\end{itemize}
+	\vspace{0.3cm}
+	\noindent \textbf{Lösung:} Wir wenden die Negation quantorisierter Aussagen an und es folgt:
+	\begin{itemize}
+		\item[(a)] Es gibt einen gut vorbereiteten Studenten, der die Mathematikklausur nicht besteht.
+		\item[(b)] Alle reellen Zahlen sind ungerade oder nicht Teiler von \(27\). (wahr)
+		\item[(c)] Es gibt eine Zahl deren Quersumme durch \(3\), die selbst aber nicht nicht durch \(3\) teilbar ist. (falsch)
+	\end{itemize}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Mengen und Aussagenlogik]
+	Seien $A$ und $M$ Mengen. Unter welchen Bedingungen an Elemente von \(A\) und \(M\) ist $A\not\subseteq M$ eine wahre Aussage?
+
+	\vspace{0.3cm}
+	\noindent \textbf{Lösung:} \newline 
+	Wir negieren die Definition für \(A\subseteq M\) und erhalten: \[ A\not\subseteq M \, \widehat{=} \, \neg\left( A\subseteq M\right) \; \Rightarrow  \; \neg\left( \forall \, x \in A: x\in M\right) \; \widehat{=} \; \exists \, x\in A: x\not\in M\,.\] In Worten: es gilt \(A\subsetneq M\)  genau dann, wenn es ein \(x\in A\) gibt mit \(x\not \in M\).
+\end{exercisebox}
+
+
+\begin{exercisebox}[Aussagenlogik]
+Negieren Sie die folgenden Aussagen! Schreiben Sie dabei die Aussagen und ihre Negationen auch mit Quantoren und geben Sie an, ob die Aussage oder ihre Negation wahr ist! 
+\begin{itemize}
+\item[(a)] Jede natürliche Zahl hat einen Vorgänger.
+\item[(b)] Jede natürliche Zahl hat einen Nachfolger.
+\item[(c)] Es gibt keine reelle Zahl, die zugleich positiv und negativ ist.
+\item[(d)] Es gibt keine reelle Zahl, die weder positiv noch negativ ist.
+\item[(e)] Jede nichtnegative reelle Zahl ist positiv.
+\item[(f)] Die Gleichung $x^2+2x+3=0$ hat eine reelle Lösung.
+\item[(g)] Jedes Viereck, das zugleich Rechteck und Drachenviereck ist, ist ein Quadrat.
+%\item[(h)] Jeder Student ist bei der Vorlesung anwesend.
+%\item[(i)] Es gibt einen Studenten, der nicht im Wohnheim wohnt.
+\end{itemize}
+
+	\vspace{0.3cm}
+	\noindent \textbf{Lösung:} \newline 
+	Die Negationen lauten:
+\begin{itemize}
+	\item[(a)] Es gibt eine natürliche Zahl, die keinen Vorgänger hat. (wahr, in $\mathbb N_0$: $n=0$)
+	\item[(b)] Es gibt eine natürliche Zahl, die keinen Nachfolger hat. (falsch)
+	\item[(c)] Es gibt eine reelle Zahl, die zugleich positiv und negativ ist. (falsch)
+	\item[(d)] Es gibt eine reelle Zahl, die weder positiv noch negativ ist. (wahr, nämlich \(0\))
+	\item[(e)] Es gibt eine nichtnegative reelle Zahl, die nicht positiv ist. (wahr, nämlich \(0\))
+	\item[(f)] Die Gleichung $x^2+2x+3=0$ hat keine reelle Lösung. (wahr, denn $\forall x\in \mathbb R: \; x^2+2x+3 = (x+1)^2+2 >0$)
+	\item[(g)] Es gibt ein Viereck, das zugleich Rechteck und Drachenviereck, aber kein Quadrat ist. (falsch)
+%\item[(h)] Es gibt einen Studenten, der in der Vorlesung nicht anwesend ist.
+%\item[(i)] Alle Studenten wohnen im Wohnheim.
+\end{itemize}
+Bemerkung: 
+\begin{itemize}
+	\item Negation von $\forall$ lautet "\,Nicht für alle gilt"\, oder  "\,Es gibt ein \dots, für das nicht gilt"\,
+	\item Negation von $\exists$ lautet "\,Es gibt kein \dots, für das gilt"\, oder  "\,Für alle gilt nicht"\,
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{l l | l } 
+	& Ausgangsaussage & Negation \\
+	\hline
+	(a) & $ \forall n \in \mathbb N_0: \exists m\in \mathbb N_0:\; m=n-1$ & $ \exists n\in \mathbb N_0: \not\exists m\in N_0: m= n-1 $  \\[1ex]
+	(b) & $ \forall n \in \mathbb N_0: \exists m\in \mathbb N_0:\; m=n+1$  & $ \exists n\in \mathbb N_0: \not\exists m\in N_0: m= n+1 $   \\[1ex]
+	(c) & $ \forall x\in \mathbb R: x\geq 0\lor x\leq 0 $& $ \exists x \in \mathbb R: x>0 \land x<0$   \\[1ex]
+	(d) & $ \forall x\in \mathbb R: x < 0\lor x > 0 $  & $ \exists x \in \mathbb R: x\leq 0 \land x\geq 0$ \\[1ex]
+	(e) & $ \forall x \in \mathbb R: x\geq 0:  \, x > 0$ & $ \exists x \in \mathbb R: x\geq 0 \land \, \neg(x> 0) $   \\[1ex]
+	(f) & $ \exists x \in \mathbb R: x^2+2x+3 = 0$ & $ \forall x\in \mathbb R: x^2+2x+3 < 0 \lor  x^2+2x+3 > 0  $  \\[1ex]
+	(g) & $ \forall v \in V: \left( v\in R \land v\in D\right) \Rightarrow v\in Q^{(*)}$ & $ \exists v\in V: v\in R \land v\in D\land v\not\in Q $ \\
+\end{tabular}
+\end{center}
+
+$(*)$ Hierbei sei $V$ die Menge der Vierecke, $R$ die der Rechtecke, $D$ die der Drachenvierecke und $Q$ die der Quadrate.
+\end{exercisebox}
+
+\begin{exercisebox}[Brainteaser]
+	An einer Weggabelung wohnen zwei Brüder, von denen einer die Angewohnheit hat, stets die Wahrheit zu sagen, während der andere immer lügt. Ein Wanderer, der vorbeikommt, möchte sich nach dem richtigen Weg erkundigen. Er hat von den eigentümlichen Geschwistern gehört, weiß aber nicht, welcher von beiden die Wahrheit sagt. Wie kann er mit nur einer Frage an einen der Männer herausfinden, welchen Weg er nehmen muss?
+
+	\vspace{0.3cm}
+	\textbf{Lösung:} \newline 
+	Die Idee ist eine Frage zu stellen, auf die beide Brüder \(B_1\) und \(B_2\) \textbf{dieselbe} Antwort liefern. Wenn man den Wahrheitswert der Antwort kennt, weiß man, was zu tun ist. Es gibt eigentlich nur die folgenden zwei möglichen Fragen\footnote{Andere Formulierungen sind äquivalent zu den genannten Fragen und im Grunde sind A und B äquivalent zu C.}:
+	\begin{itemize}
+		\item[A] Welchen Weg soll ich wählen?
+		\item[B] Welchen Weg soll ich nicht wählen?
+		\item[C] Welchen Weg würdest Du mir raten?
+		\item[D] Welchen Weg würde Dein Bruder mir raten?
+	\end{itemize}
+	Der systematische Weg zur Lösung ist für diese vier Fragen eine Wahrheitstabelle zu erstellen: Nehmen wir an \(B_1\) sagt immer die Wahrheit und \(B_2\) lügt. Wir fixieren einer der Fragen (erste Spalte) und überprüfen den Wahrheitsgehalt der Antwort des Bruders \(B_1\) (zweite Spalte) und des Bruders \(B_2\) (dritte Spalte): Los geht's: 
+  \begin{center}
+	  \begin{tabular}{c||>{\columncolor[gray]{0.9}} c | c }
+		  Frage & Antwort \(B_1\) & Antwort \(B_2\) \\  
+  \hline
+  A & w & f \\ 
+  B & w & f \\ 
+  C & w & f \\ 
+  D & f & f 
+\end{tabular}
+\end{center}
+Nur auf Frage D liefern beide dieselbe Antwort! Da man den falschen Weg als Antwort bekommt und muss man entsprechend den anderen Weg wählen. 
+\end{exercisebox}
+

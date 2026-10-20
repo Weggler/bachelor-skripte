@@ -1,0 +1,116 @@
+\section*{Laplace Transformation Anwendungen Aufgaben mit Lösungen}\label{MA2-laplacetransformation-und-differentialgleichungen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laplacetransformation-und-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-laplacetransformation-und-differentialgleichungen})}. \fi
+
+\begin{exercisebox}[Laplace-Transformation Rechenregeln] % Papula 2, VI, Abschnitt 2, Aufgabe 1, 2, 3, 5, 6, 7, 9, 10
+	Die Aufgaben finden Sie in Papula 2.VI.2 ab Seite \(677\) und die Lösungen ab Seite \(767\).
+	\begin{itemize}
+		\item[(a)] Papula, Aufg. 1a) $\quad \mathcal L_f(s) = \frac{24}{s^4} - \frac{2}{s^3} + \frac{2}{s^2} $
+	\item[(b)] Papula, Aufg. 1.b) $\quad \mathcal L_f(s) = C\left(\frac1s - \frac{1}{s+\lambda}\right) $
+\item[(c)] Papula, Aufg. 2.a) $\quad \mathcal L_f(s) = \frac{29160}{s^6} $
+		\item[(d)] Papula, Aufg. 2.b) $\quad \mathcal L_f(s) = \frac{s}{s^2+16}$
+	\item[(e)] Papula, Aufg. 2.d) $\quad \mathcal L_f(s) = \frac{s^2+2\omega^2}{s(s^2+4\omega^2)} $
+\item[(f)] Papula, Aufg. 3.b) $\quad \mathcal L_f(s) = \frac{2\cdot e^{-4s}}{s^3} $
+		\item[(g)] Papula, Aufg. 3.c) $\quad \mathcal L_f(s) = \frac{e^{-bs}}{s-1} $
+	\item[(h)] Papula, Aufg. 3.a) $\quad \mathcal L_f(s) = \frac{s}{s^2+1} $ (Achtung: Verschiebungsformel nicht anwendbar, weil keine Verschiebung nach rechts vorliegt!)
+\item[(i)] Papula, Aufg. 5.a) $\quad \mathcal L_f(s) = \frac{s-3}{(s-3)^2+4} $
+\item[(j)] Papula, Aufg. 5.b) $\quad \mathcal L_f(s) = \frac{A\omega}{(s+\delta)^2+\omega^2} $
+		\item[(k)] Papula, Aufg. 5.c) $\quad \mathcal L_f(s) = \frac{1}{s-3\ln(2)}$
+		\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Laplace-Transformation und Differentialgleichungen]
+	Betrachten Sie die Differentialgleichung $ y'' + \omega^2 y = 0,\; \omega>0$ mit den beiden Anfangswerten
+	\begin{enumerate}
+		\item $y(0) = 1 \land y'(0) = 0$
+		\item $y(0) = 0 \land y'(0) = 1$
+	\end{enumerate}
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die Lösung der beiden Anfangswertprobleme.
+		\item[(b)] Berechnen Sie die Laplace-Transformierte $Y(s)$ der Differentialgleichung \( y'' + \omega^2\, y = 0\). Nutzen Sie dabei die Ableitungsregeln.
+		\item[(c)] Bestimmen Sie, ausgehend von den speziellen Lösungen der Anfangswertprobleme im Bildbereich, die Lösungen im Zeitbereich. Verwenden Sie für die Rücktransformationen eine Tabelle.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)] Die Lösungen lauten
+			\[y_1(t) = \cos(\omega t), \; y_2(t) = 1/\omega \cdot \sin(\omega t)\]
+		\item[(b)] Laplace-Transformation
+			\begin{eqnarray*}
+				\mathcal L\left(y'' + \omega^2 y\right)(s) &=& \mathcal L\left(y''\right) (s) + \omega^2\mathcal L\left( y\right)(s) \\
+				&=& s^2\mathcal L\left( y\right) (s) - s y(0) + \omega^2 \mathcal L\left( y\right) (s) \\
+				&=& s^2 Y (s) - s y(0) - y'(0) + \omega^2 Y(s) \stackrel{!}{=} 0\,.
+			\end{eqnarray*}
+		\item[(c)] Erstes Anfangswertproblem
+			\[ s^2 Y_1(s) - s+ \omega^2 Y_1(s) = 0 \Leftrightarrow Y_1(s) = \frac{s}{s^2+\omega^2} \Rightarrow y_1(t) = \cos(\omega t)\,.\]
+		Zweites Anfangswertproblem
+		\[ s^2 Y_2(s) - 1 + \omega^2 Y_2(s) = 0 \Leftrightarrow Y_2(s) = \frac{1}{s^2+\omega^2} \Rightarrow y_2(t) = \frac{1}{\omega}\cdot \sin(\omega t)\,.\]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Laplace-Transformation und Differentialgleichungen]
+	Lösen Sie die folgenden Systeme mit Hilfe der Laplace-Transformation
+	\begin{eqnarray*}
+		(a)\; \begin{cases}
+			x(0) = y(0) =  0, \quad & t= 0\,,\\
+			\dot x + 2 y = e^t, \quad & t> 0\,,\\
+			\dot y + 2 x = e^{-t}, \quad & t> 0\,.
+		\end{cases} \quad\quad
+		(b)\; \begin{cases}
+			x(0) = y(0) =  0, \quad & t= 0\,,\\
+			\dot x(0) = \dot y(0) =  0, \quad & t= 0\,,\\
+			\ddot x + \dot y + 3 y = 1, \quad & t> 0\,,\\
+			\ddot y -4 \dot x + 3y = 0, \quad & t> 0\,.
+		\end{cases} \quad\quad
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)]
+			Anwendung der Laplace-Transformation und Einsetzen der Anfangsbedingungen ergibt:
+			\[
+		\begin{cases}
+			s X(s) + 2 Y(s) = \displaystyle{\frac{1}{s-1}}\,,\\
+			2 X(s) + sY(s) = \displaystyle{\frac{1}{s+1}}\,.
+	\end{cases} \]
+
+%			Und nach Einsetzen der homogenen Anfangsbedingungen erhalten wir das folgende lineare Gleichungssystem:
+%			\[
+%				\left( \begin{array}{cc} s & -2 \\ -2 & s\end{array}\right) \left( \begin{array}{c} X \\Y \end{array}\right)(s) = \frac{1}{s^2-1}\left( \begin{array}{c} s+1 \\ s-1 \end{array}\right) \,.
+%\]
+	Auflösen\footnote{ Entweder durch Einsetzen der Gleichungen ineinander oder durch Anwendung der inversen Matrix!} und Partialbruchzerlegung liefert
+			\[
+		\begin{cases}
+			X(s) = \displaystyle{\frac{s^2 - s + 2}{(s^2-1)(s^2-4)}} = \displaystyle{\frac{1}{3}}\left( \displaystyle{\frac{2}{s+1}} - \displaystyle{\frac{1}{s-1}} - \displaystyle{\frac{2}{s+2}} + \displaystyle{\frac{1}{s-2}}\right)\,,\\
+			Y(s) = \displaystyle{\frac{s^2 - 3s - 2}{(s^2-1)(s^2-4)}} = \displaystyle{\frac{1}{3}}\left( \displaystyle{\frac{1}{s+1}} + \displaystyle{\frac{2}{s-1}} - \displaystyle{\frac{2}{s+2}} - \displaystyle{\frac{1}{s-2}}\right)\,.
+	\end{cases} \]
+	Rücktransformation liefert die Lösung des Systems:
+			\[
+		\begin{cases}
+			x(t) =  \displaystyle{\frac{1}{3}}\left( 2 e^{-t} - e^{t} - 2 e^{-2t} + e^{2t} \right)\,,\\
+			y(t) =  \displaystyle{\frac{1}{3}}\left( e^{-t} +2 e^{t} - 2 e^{-2t} - e^{2t} \right)\,.
+	\end{cases} \]
+
+		\item[(b)]
+			Laplace-Transformation des Systems unter Bereücksichtigung der Anfangsbedingungen:
+			\[
+		\begin{cases}
+			\left( s^2 + 3\right) X(s) + s Y(s) = \displaystyle{\frac{1}{s}}\,,\\
+			-4s X(s) + \left( s^2 + 3\right) Y(s) = 0\,.
+	\end{cases} \]
+	Auflösen und Partialbruchzerlegung liefert
+			\[
+		\begin{cases}
+		X(s) = \displaystyle{\frac{s^2 +3}{s(s^2+9)(s^2+1)}} =\displaystyle{\frac{1}{3 s}} - \displaystyle{\frac{1}{12(s^2+9)}} - \displaystyle{\frac{s}{4(s^2+1)}}\,,\\
+	Y(s) = \displaystyle{\frac{4}{(s^2+9)(s^2+1)}} = -\displaystyle{\frac{1}{2(s^2+9)}} + \displaystyle{\frac{1}{2(s^2+1)}} \,.
+	\end{cases} \]
+	Rücktransformation liefert die Lösung des Systems:
+			\[
+		\begin{cases}
+			x(t) =  \displaystyle{\frac{1}{3}}- \displaystyle{\frac{1}{12}}\cos(3t)-\frac14\cos(t)\,,\\
+			y(t) =  -\displaystyle{\frac{1}{6}}\sin(3t) + \displaystyle{\frac12} \sin(t)\,.
+	\end{cases} \]
+	\end{itemize}
+\end{exercisebox}
+

@@ -1,0 +1,105 @@
+\section*{Differentialgleichungen Aufgaben mit Lösungen}\label{MA2-differentialgleichungen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-differentialgleichungen})}. \fi
+
+\begin{exercisebox}[Typeneinteilung]
+	Klassifizieren Sie die folgenden Differentialgleichungen:
+	\begin{itemize}
+		\item[(a)] $\dot p(t) = a\cdot p(t) - b \cdot p^2(t)$
+		\item[(b)] $M\ddot s(t) = As(t), \quad M, A \in \mathbb R^{2\times 2}, s:\mathbb R\mapsto \mathbb R^2\,.$
+		\item[(c)] $y' = x y^2\,.$
+		\item[(d)] $y\cdot y^{(4)} + x y'' + \ln(y) = 0\,.$
+		\item[(e)] $\Delta u(x,y) = 0\,, \quad (x,y)\in \Omega\subset \mathbb R^2, \quad \Delta u = \displaystyle{\frac{\partial^2 u}{\partial x^2} +\frac{\partial^2 u}{\partial y^2}} $
+	\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)] Gewöhnliche Differentialgleichung erster Ordnung, explizit, nicht-linear. (biologische Population)
+		\item[(b)] System gewöhnlicher Differentialgleichungen zweiter Ordnung: linear (zwei Linearschwinger)
+		\item[(c)] Gewöhnliche Differentialgleichung erster Ordnung, explizit, nicht-linear (Trennbare Variablen)
+		\item[(d)] Gewöhnliche Differentialgleichung vierter Ordnung, implizit, nicht-linear.
+		\item[(e)] Partielle Differentialgleichung zweiter Ordnung, linear (Laplace-Operator)
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Differentialgleichungen] %Papula IV, Abschnitt 1, Aufgabe 1/2
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass die Funktion $y: x\mapsto c_1 \cdot e^{5x} + c_2 \cdot e^{-x}$ für jede Wahl von $ c_1, c_2\in\mathbb R$ die folgende Differentialgleichung löst:
+			\[ y'' - 4y' - 5y = 0 \,.\]
+		\item[(b)] Zeigen Sie, dass $y: x\mapsto \displaystyle{ \frac{c\cdot x}{1+x}} $ für jede Wahl von $c\in\mathbb R$ die folgende Differentialgleichung löst
+			\[ x (1+x)y' - y = 0, \; x\in(-1,1) \,\]
+
+			und bestimmen Sie $c$ so, dass auch $y(1) = 8$ gilt.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	Diese Aufgaben finden Sie in Papula Band 2, Abschnitt IV.1 auf Seite \(519\) und detaillierte Lösungen auf Seite \(725\).
+	\begin{itemize}
+		\item[(a)] Papula Aufgabe IV.1.2) $\quad$ Differenzieren und Einsetzen.
+		\item[(b)] Papula Aufgabe IV.1.1) $\quad c= 16 \Rightarrow y:x\mapsto 16 x / (1+x)$
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Asymptotik]
+	Betrachten Sie das Anfangswertproblem
+	\[\begin{cases}
+			s(0) = 0, \quad & t_0=0\,,\\
+			\dot s(t) = 1+s^2(t)\,,\quad & t > t_0\,.
+	\end{cases}\]
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass $s:t\mapsto \tan(t)$ eine Lösung des Anfangswertproblems ist.
+		\item[(b)] Bestimmen Sie das asymptotische Verhalten der angegebenen Lösung für $t\to \pi/2$
+		%\item[(c)] Ist die Lösung eindeutig?
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)] Differenzieren und Einsetzen.
+		\item[(b)] Wächst die Geschwindigkeit mit dem Quadrat des Abstands vom Ursprung, so gelangt man nach endlicher Zeit ins Unendliche: \[ \lim\limits_{t\to \pi/2} s(t) = \infty \,.\]
+		Lösung ist übrigens eindeutig. Warum?
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Eindeutige Lösbarkeit]
+	Betrachten Sie das Anfangswertproblem
+	\[\begin{cases} y(1) = 1, \quad & x_0=1\,,\\
+			(y')^2 - 4xy' + 4y = 0\,,\quad & x > x_0\,.
+	\end{cases}\]
+	\begin{itemize}
+		\item[(a)] Klassifizieren Sie die Differentialgleichung.
+		\item[(b)] Zeigen Sie, dass $y: x\mapsto 2cx-c^2$ die Differentialgleichung löst und skizzieren Sie die Geradenschar.
+		\item[(c)] Bestimmen Sie die Konstante $c$ so, dass $y$ das Anfangswertproblem löst.
+		\item[(d)] Ist die Lösung des Anfangswertproblems eindeutig?
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)] Implizite, nicht-lineare, gewöhnliche Differentialgleichung erster Ordnung.
+		\item[(b)] Differenzieren und Einsetzen. Schauen Sie sich die Geradenschar an, zum Beispiel mit folgender interaktiven GeoGebra-App, in die Sie die Geradenschar als Input eintippen können - anstatt \(c\) schreiben Sie \(k\): \url{https://www.geogebra.org/m/DTNqPW52}
+		\item[(c)] $c= 1 \Rightarrow y:x\mapsto 2x-1$.
+		\item[(d)] $y:x\mapsto x^2$ löst auch das Anfangswertproblem! Es ist eine sogenannte singuläre Lösung und man kann Sie als Einhüllende der Geradenschar $y_c:x\mapsto 2cx-c^2$ der Skizze entnehmen.
+	\end{itemize}
+\end{exercisebox}
+
+%\subsection{Praxis}
+%\begin{exercisebox}[Moodle Eindeutigkeit] % HMI III; Blatt 12, Aufg. 3
+%Die allgeimeine Lösung der Differentialgleichung
+%\[ y'' + y = 1 \]
+%lautet
+%\[y(x) = c_1 \cos(x) + c_2\sin(x) + 1\,. \]
+%Untersuchen Sie die Eindeutigkeit der Lösung bei Vorgabe von Anfangsbedingungen.
+%\begin{itemize}
+%	\item[(a)] $ y(0) = 0 \land y(\pi/2) = 1 $
+%	\item[(b)] $ y(0) = 0 \land y(\pi) = 1 $
+%	\item[(c)] $ y(0) = 0 \land y(\pi) = 2 $
+%	\item[(d)] $ y(0) = 0 \land \left( y'(b)\right)^2 = 1, \quad 0 < b < \pi/2 $
+%\end{itemize}
+%\end{exercisebox}
+
+%\subsection{Theorie}
+%
+%\begin{mybox}[Übersicht über Aufgabentypen]
+%	Das Anfangswertproblem ist lösbar, falls \(f:D_f\to \mathbb R\) bezüglich \(x\) und \(y\) stetig ist, dann besietzt das Anfangswertproblem wenigstens eine Lösungskurve in \(D_f\).
+%\end{mybox}
+

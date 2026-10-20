@@ -1,0 +1,96 @@
+\section*{Komposition von Funktionen Aufgaben mit Lösungen}\label{MA1-verkettung-von-funktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-verkettung-von-funktionen}{ (Abschnitt \abschnittsverweis{MA1-verkettung-von-funktionen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+%\begin{exercisebox}[Verkettung]  %Moodle
+%	Wenn $b\circ c$ die Funktion $2\cdot c + b$ ist, welche Funktion muss dann $b$ bezeichnen, damit $b\circ c = c\circ b$ ?
+%\end{exercisebox}
+
+\begin{exercisebox}[Verkettungen]
+	Bestimmen Sie Funktionen $u_1, u_2$ so, dass $f=u_1\circ v_1 = u_2\circ v_2$ ist:
+  \begin{itemize}
+    \item[(a)] $f(x) = (2x+6)^3, \quad v_1(x) = 2x+6, \quad v_2(x) = x+3$
+    \item[(b)] $f(x) = \frac{3}{(x-1)^2}, \quad v_1(x) = x-1, \quad v_2(x) = (x-1)^2$
+  \end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] $u_1(x) = x^3$, $u_2(x) = (2\cdot x)^3$
+	  \item[(b)] $u_1(x) = \frac{3}{x^2}$, $u_2(x) =  \frac{3}{x}$
+  \end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Definitionsbereich]
+  Geben Sie den maximalen Definitionsbereich der Funktion $u\circ v$ an
+  \begin{itemize}
+    \item[(a)] $u(x) = \sqrt{x}, \quad v(x) = 3-x$
+    \item[(b)] $u(x) = \frac{1}{x}, \quad v(x) = 4-x^2$
+    \item[(c)] $u(x) = \sqrt{1-x}, \quad v(x) = x^2$
+  \end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] $ (u\circ v)(x) = \sqrt{3-x} \; \Rightarrow \; D_{u\circ v} = (-\infty,3]$
+	  \item[(b)] $ (u\circ v)(x) = \frac{1}{4-x^2} \; \Rightarrow \; D_{u\circ v} = \mathbb R \setminus \{-2, 2\}$
+	  \item[(c)] $ (u\circ v)(x) = \sqrt{1-x^2} \; \Rightarrow \; D_{u\circ v} = [-1,1]$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Definitionsbereich]
+	Gegeben sind die Funktionen $v: \mathbb R^+ \to \mathbb R,\; x\mapsto \ln(x)$ und $u:[0,2\pi] \to \mathbb [-1,1], \,x\mapsto \sin(x)$. Betrachten Sie die Funktion $f:u \circ v$. Geben Sie den maximalen Definitionsbereich von $f$ an. 
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Da der Logarithmus nur positive Zahlen verarbeitet, darf der Definitionsbereich der Funktion $f$ keine $x$ enthalten, für die der Sinus $\leq 0$ liefert. Es gilt $\sin(x) > 0 \Leftrightarrow x \in (0,\pi)$ und damit  \[ v\circ u: \;  (0,\pi) \to (-\infty, 0], \; x\mapsto \ln\left( \sin(x)\right)\,.\] 
+\end{exercisebox}
+
+\begin{exercisebox}[$g:x\mapsto 0,7\cdot (x+2)^{-2} +4$]
+	Gegeben sind die Funktionen $f:x\mapsto x^{-2}$ und $g:x\mapsto 0,7\cdot (x+2)^{-2} +4$.
+	\begin{itemize}
+		\item[(a)] Geben Sie den Definitions- und den Bildbereich der Funktionen $f$ und $g$ an. 
+		\item[(b)] Beschreiben Sie, wie die Funktion $g$ aus der Funktion $f$ hervorgeht. 
+		\item[(c)] Bestimmen Sie die Asymptoten der Funktionen $f$ und $g$.
+	\end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{center}
+	  \includegraphics[width=0.6\textwidth]{../Mathematik_1/Bilder/rationale_funktionen_transformation_inverse_quadratfunktion_loesung.png}
+  \end{center}
+	\begin{itemize}
+		\item[(a)] $f: \mathbb R\setminus\{0\} \to (0,\infty)$, $g: \mathbb R\setminus\{-2\} \to (4,\infty)$, 
+		\item[(b)] Der Funktionsgraph von $f$ wird entlang der $x$-Achse um zwei Einheiten nach links verschoben und um den Faktor $0,7$ vertikal gestaucht und schließlich entlang der $y$-Achse um vier Einheiten nach oben verschoben. 
+		\item[(c)] Horizontale Asymptoten: $w_f:x\mapsto 0, \; w_g:x\mapsto 4$; $f$ hat eine vertikale Asymptote an der Stelle $x^*=0$ und $g$ entsprechend an der Stelle $x^*=-2$.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Manipulationen eines Graphen]
+	Gegeben sei eine Funktion $f:\mathbb R \to \mathbb R, x\mapsto f(x)$. Geben Sie die Abbildungsvorschrift an, die man auswerten muss, um den Graphen von $f$ \dots
+	\begin{itemize}
+		\item[(a)] um den Faktor $5$ horizontal zu stauchen: $x\mapsto f\left(5\cdot x\right)$,
+		\item[(b)] um den Faktor $\pi$ vertikal zu strecken: $x\mapsto \pi\cdot f\left(x\right)$,
+		\item[(c)] um $2$ Längeneinheiten horizontal nach links zu verschieben: $x\mapsto f(x+2)$,
+		\item[(d)] um $3\sqrt{7}$ Längeneinheiten vertikal nach oben zu verschieben: $x\mapsto f(x)+3\sqrt{7}$
+		\item[(e)] um den Graphen an der $x$-Achse zu spiegeln:  $x\mapsto -f(x)$.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Temperaturskalen]
+  Temperaturangaben der Kelvin Skala rechnet man in solche der Celsius Skala um nach der Vorschrift $x\mapsto x- 273$, solche der Celsius Skala in die Fahrenheit Skala durch $x\mapsto 1,8x+32$. Wie lautet die Vorschrift, um von der Kelvin Skala direkt in die Fahrenheit Skala umzurechnen?
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  Es ist $T_{\mathrm K\to \mathrm C}: x\mapsto x- 273$ und  $T_{\mathrm C\to \mathrm F}: x\mapsto 1,8\cdot x- 32$. Also $T_{\mathrm K\to \mathrm F} =  T_{\mathrm C\to \mathrm F} \circ T_{\mathrm K\to \mathrm C}: x\mapsto  1,8\cdot ( x-273) - 32 = 1,8 \cdot x - 523,4$.
+\end{exercisebox}
+

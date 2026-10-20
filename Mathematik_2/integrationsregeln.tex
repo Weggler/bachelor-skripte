@@ -1,0 +1,365 @@
+\section{Integrationsregeln}\label{MA2-integrationsregeln}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem bestimmte Integrale über stückweise stetige Funktionen korrekt zerlegen und berechnen & \\
+    \tabitem unbestimmte Integrale mit Substitution und partieller Integration bestimmen & \\
+    \tabitem rationale Funktionen mittels Partialbruchzerlegung integrieren & \\
+    \tabitem rationale Funktionen mittels Partialbruchzerlegung integrieren & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem die Eigenschaften des Integrals anwenden können & \abschnittsverweis{MA2-integration}  \\
+    \tabitem die Ketten-, Produkt- und Quotientenregel anwenden können & \abschnittsverweis{MA1-ableitungsregeln} \\
+    \tabitem mit komplexen Zahlen sicher umgehen können & \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler}  \\
+    \tabitem Partialbruchzerlegungen durchführen können & \abschnittsverweis{MA2-partialbruchzerlegung} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-integrationsregeln-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Integration stückweise stetiger Funktionen}
+
+Neben den elementaren Integrationstechniken, die sich aus den Eigenschaften des Integrals ergeben, gibt es Tricks und wichtige Regeln, die in diesem Kapitel vorgestellt werden.\marginpar{\small Aufgaben}
+
+
+Wenn der Integrand $f:[a,b]\to\mathbb R$ auf $[a,b]$ einen Knick macht oder stückweise definiert ist, dann heißt es nicht, dass man keine Stammfunktion finden kann. In diesen Fall kann es helfen das Integrationsgebiet zu zerlegen. Findet man in jedem Teilintervall eine Stammfunktion, dann kann man das Integral berechnen.
+
+\begin{exabox}{Integration durch Zerlegung des Integrationsgebiets}{ }
+Integral:
+\[ \displaystyle{\int\limits_{-2}^2} |x-1|\,\mathrm{d}x = \textnormal{?}\]
+	Stammfunktionen:
+	\[
+		\begin{cases}
+			F_1(x) = x -\displaystyle{ \frac12 }x^2 + C, \quad & x\in[-2,1]\,, \\
+			F_2(x) = \displaystyle{ \frac12 }x^2 -x + C, & x \in [1,2]\,.
+		\end{cases}
+	\]
+	Lösung:
+	\[ \int\limits_{-2}^2 |x-1|\,\mathrm{d}x = \Big[ F_1(x)\Big]_{-2}^1 +  \Big[ F_2(x)\Big]_{1}^2 = 1-\frac12 - (-2) + \frac12\cdot 4 + \frac12 \cdot 4 -2 - \frac12 + 1 = 5\,.
+	\]
+\end{exabox}
+
+\begin{exabox}{Integration durch Zerlegung des Integrationsgebiets}{ }
+Integral:
+\[ \displaystyle{\int\limits_{0}^2} f(t)\,\mathrm{d}t = \textnormal{?} \quad \textnormal{mit}\quad f:t\mapsto \begin{cases} 2e\cdot t, \quad & t< 1\,,\\ 2e^t, & t\geq 1\,.\end{cases} \]
+	Stammfunktionen:
+	\[
+		\begin{cases}
+			F_1(t) = t^2 e + C, \quad & t\in[0,1]\,, \\
+			F_2(t) =  2e^t + C,  &t \in [1,2]\,.
+		\end{cases}
+	\]
+	Lösung:
+	\[ \int\limits_{0}^2 f(t)\,\mathrm{d}t = \Big[ F_1(t)\Big]_{0}^1 +  \Big[ F_2(t)\Big]_{1}^2 = e+2e^2-2e = 2e^2 -e\,.
+	\]
+\end{exabox}
+
+Wenn der Integrand $f$ auf $[a,b]$ nicht stetig, aber stückweise stetig ist, dann kann man genauso vorgehen. Zuerst die Definition einer stückweise stetigen Funktion und dann die Verallgemeinerung der Integrationstechnik.
+\begin{defbox}{Stückweise stetige Funktionen}{}
+	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/integration_stueckweise_stetige_funktion.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+	$f$ ist auf $[a,b]$ stückweise stetig, das heißt:
+	\begin{itemize}
+		\item $f$ ist bis auf höchstens endlich viele Punkte $x_1, \cdots, x_n\in [a,b]$ stetig,
+		\item der links- und der rechtsseitige Grenzwert an allen Punkten $x\in (a,b)$ existiert,
+		\item der rechtsseitige Grenzwert am linken Intervallende existiert und
+		\item der linksseitige Grenzwert am rechten Intervallende existiert.
+	\end{itemize}
+\end{minipage}
+\end{defbox}
+
+\begin{theorembox}{Integration stückweise stetiger Funktionen}{}
+	Es sei $f:[a,b]\to\mathbb R$ stückweise stetig mit $n$ Unstetigkeitsstellen $x_k\in[a,b], k=1,\cdots,n,$ und $a=x_0<x_1<x_2< \cdots < x_n<x_{n+1}=b$. Dann ist $f$ integrierbar über $[a,b]$ mit
+	\[ \int\limits_a^b f(x)\,\mathrm{d}x = \sum\limits_{k=1}^{n+1}\int\limits_{x_{k-1}}^{x_k} \overline f_k(x) \,\mathrm{d}x\,,\]
+	wobei $\overline f_k$ die stetige Fortsetzung von $f$ im Intervall $[x_{k-1}, x_k]$ bezeichnet.
+\end{theorembox}
+
+\subsection{Integration von Produkten}
+
+Wie kann man die \underline{Produktregel}\randverweis{MA1-ableitungsregeln} der Ableitung rückwärts lesen, um etwas über ein Integral zu erfahren?
+\[
+	\left( f\cdot g\right)' = f'\cdot g + f\cdot g'\,.
+\]
+Die Produktregel gibt uns eine Stammfunktion für $f'g+f g'$. Also kann man das bestimmte Integral dieser Funktion ausrechnen:
+	\[
+		\int\limits_{a}^b \left(  f'(x)\cdot g(x) + f(x)\cdot g'(x)\right) \, \mathrm{d} x = \Big[ f(x) \cdot g(x) \Big]_{a}^b \,.
+	\]
+
+Umstellen liefert die partielle Integration [integration by parts]:
+	\[
+		\int\limits_{a}^b f'(x)\cdot g(x)  \, \mathrm{d} x = \Big[ f(x) \cdot g(x) \Big]_a^b  -  \int\limits_a^b f(x)\cdot g'(x) \, \mathrm{d} x\,.
+	\]
+
+Grob gesagt, kann man also im Integral eine Ableitung auf den anderen Faktor überwälzen, wenn man das Vorzeichen ändert und noch einen Randterm dazuschreibt. Die entsprechende Stammfunktion lautet also:
+\begin{theorembox}{Partielle Integration}{}
+	\[
+		\int f'(x)\cdot g(x)  \, \mathrm{d} x = f(x) \cdot g(x)  -  \int f(x)\cdot g'(x) \, \mathrm{d} x + C\,.
+	\]
+\end{theorembox}
+
+Partielle Integration ist dann praktisch, wenn die zu integrierende Funktion ein Produkt zweier Faktoren ist, von denen einer durch Ableiten deutlich einfacher und der andere durch Integrieren nicht schlimmer wird.
+\begin{exabox}{Partielle Integration}{}
+	\[
+		\int  \cos(x) \cdot x  \, \mathrm{d} x = \sin(x)\cdot x - \int \sin(x) \, \mathrm{d} x + C = x \sin(x)+\cos(x) + C\,.
+	\]
+\end{exabox}
+
+%Beispiel: $\int_3^5 x \cos(x) \, \mathrm{d}x=5$ Wolfram  Alpha  führt  das  vor,  wenn  man  statt  des  bestimmten  Integrals \begin{verbatim} integrate x cos(x) from 3 to 5 \end{verbatim} das  unbestimmte  Integral \begin{verbatim} integrate x cos(x) \end{verbatim} abfragt und dann auf \begin{verbatim} Show steps\end{verbatim} klickt.
+
+
+\subsection*{Integration komplexwertiger Funktionen}
+
+Auch komplexwertige Funktionen lassen sich integrieren.
+Die Grundidee ist einfach:
+Man integriert Real- und Imaginärteil getrennt.
+
+\begin{defbox}{Integration komplexwertiger Funktionen}{}
+Ist \(f : [a,b] \to \mathbb C\) gegeben durch
+\[
+f(x)=u(x)+i\,v(x)
+\qquad\textnormal{mit}\qquad
+u,v:[a,b]\to\mathbb R,
+\]
+so definiert man
+\[
+\int_a^b f(x)\,dx
+:=
+\int_a^b u(x)\,dx
++i\int_a^b v(x)\,dx.
+\]
+Entsprechend ist \(F\) genau dann eine Stammfunktion von \(f\),
+wenn \(F'(x)=f(x)\) gilt.
+\end{defbox}
+
+\noindent
+Der Vorteil dieser Sichtweise mündet nicht in eine neue Rechenregel, sondern in einen Fahrplan, um trigonometrische Funktionen zu integrieren. Das, was wir brauchen ist die \underline{Eulersche Identität}\randverweis{MA1-komplexe-zahlen-polarform-und-euler} in einer der folgenden Varianten
+\[ e^{ix}= \cos(x) + i\sin(x),\qquad \sin(x) = \frac{1}{2i} \left( e^{ix}-e^{-ix}\right), \qquad \cos(x) = \frac{1}{2} \left( e^{ix}+e^{-ix}\right).\]
+
+
+\begin{exabox}{Übergang in die komplexe Ebene}{}
+Gesucht ist eine Stammfunktion von
+\[
+x \mapsto e^{-x}\cdot \cos(x).
+\]
+
+Mit der Eulerschen Identität
+\[
+e^{ix}=\cos(x)+i\sin(x)
+\]
+folgt
+\[
+	e^{-x}\cdot \cos(x) = \mathrm{Re}\left( e^{(-1+i)x} \right)
+\]
+Wir bestimmen zunächst die Stammfunktion für die komplexe Exponentialfunktion und bestimmen im anschluss nur den Realteil - das ist die Lösung des Ausgangsintegrals.
+\begin{enumerate}
+	\item Komplexe Exponentialfunktion integrieren:
+\[
+	F(x) = \int e^{(-1+i)x}\,\mathrm dx = \frac{1}{-1+i}\,e^{(-1+i)x}+C = \left(-\frac12-\frac12 i\right)\, e^{(-1+i)x}+C,
+\]
+	\item Realteil ermitteln: mit
+\[
+e^{(-1+i)x}=e^{-x}\cdot \bigl(\cos(x)+i\sin(x)\bigr)
+\]
+ergibt sich
+\[
+\begin{aligned}
+\left(-\frac12-\frac12 i\right) e^{(-1+i)x}
+&= -\frac12 e^{-x}\bigl(\cos(x)-\sin(x)\bigr) \\
+&\quad -\frac12 i\,e^{-x}\bigl(\sin(x)+\cos(x)\bigr).
+\end{aligned}
+\]
+Daraus folgt für den Realteil:
+\[
+\mathrm{Re}\left(F(x)\right) = -\frac12 e^{-x}\bigl(\cos(x)-\sin(x)\bigr).
+\]
+\item Gesuchte Stammfunktion aufschreiben: es folgt
+\[
+\int e^{-x}\cdot \cos(x)\,\mathrm dx
+=
+\frac12 e^{-x}\bigl(\sin(x)-\cos(x)\bigr)+C.
+\]
+\end{enumerate}
+\end{exabox}
+
+\noindent
+\textbf{Bemerkung:}
+Ohne die komplexe Darstellung müsste man hier typischerweise
+zweimal partielle Integration anwenden.
+Die komplexe Exponentialfunktion fasst dagegen Schwingung und Dämpfung
+in einem einzigen Ausdruck zusammen.
+Genau diese Vereinfachung macht die komplexe Darstellung
+für Schwingungen, Fourier-Analyse und Laplace-Transformation so wertvoll.
+
+\subsection{Integration von Verkettungen}
+
+Viele Integranden sind  \underline{Verkettungen}\randverweis{MA1-verkettung-von-funktionen}. Hier sind einige Beispiele
+
+\[
+\sin(3x+1), \qquad e^{x^2}, \qquad \cos(x^2).
+\]
+
+Die Ableitungsregel für solche Funktionen ist die \underline{Kettenregel}.\randverweis{MA1-ableitungsregeln}
+
+\[
+	\frac{\mathrm d}{\mathrm dx} F(u(x)) = F'(u(x))\cdot u'(x) \,.
+\]
+
+Beim Integrieren können wir diese Regel \textbf{rückwärts lesen}.
+
+Wenn ein Integrand die Form
+
+\[
+f(u(x))\cdot u'(x)
+\]
+
+hat, dann ist eine Stammfunktion
+
+\[
+	F(u(x)) +c \; \textnormal{weil} \; F^\prime(x) = f(u(x))\cdot u^\prime(x)\,.
+\]
+
+Diese Idee führt auf die sogenannte \textbf{Integration durch Substitution}.
+%\noindent
+%\textbf{Idee:}
+%
+%\begin{itemize}
+%\item Man erkennt im Integranden eine Verknüpfung mit \textbf{inneren Funktion} \(u(x)\).
+%\item Man setzt \(u=u(x)\).
+%\item Man geht zur Variable \(u\) über, wobei das Differential sich verändert:
+%\[
+%\mathrm du = u'(x)\,\mathrm dx.
+%\]
+%\end{itemize}
+
+\begin{theorembox}{Integration durch Substitution}{}
+Sei \(u=u(x)\) eine differenzierbare Funktion. Dann gilt
+
+\[
+\int f(u(x))\,u'(x)\,\mathrm dx
+=
+\int f(u)\,\mathrm du + C.
+\]
+
+Für bestimmte Integrale werden auch die Integrationsgrenzen transformiert:
+
+\[
+\int_a^b f(u(x))\,u'(x)\,\mathrm dx
+=
+\int_{u(a)}^{u(b)} f(u)\,\mathrm du.
+\]
+\end{theorembox}
+
+Es folgen Beispiele.
+
+\begin{exabox}{Integration durch Substitution}{}
+Integral:
+\[
+\int\limits_3^5 x\cdot \cos(x^2)\,\mathrm dx
+\]
+
+Innere Funktion und Differential:
+\[
+u=x^2 \quad\Rightarrow\quad \mathrm du = 2x\,\mathrm dx
+\]
+
+Der Integrand enthält bereits \(x\,\mathrm dx\), also fast \(\mathrm du\):
+
+\[
+	\begin{array}{rcl}
+\displaystyle \int_3^5 x\cos(x^2)\,\mathrm dx &=& \dfrac12 \displaystyle\int\limits_3^5 2x\cos(x^2)\,\mathrm dx  \\
+&\stackrel{\displaystyle{(*)}}{=} & \dfrac12 \displaystyle\int\limits_9^{25} \cos(u)\,\mathrm du \\
+&=& \dfrac12 \left[\sin(u)\right]_9^{25} \\
+&=& \dfrac12\,(\sin(25)-\sin(9)) \,.
+\end{array}\]
+
+(*) Substitution:
+
+\[
+u=x^2,\qquad u(3)=9,\quad u(5)=25
+\]
+\end{exabox}
+
+\begin{exabox}{Lineare Substitution}{}
+Integral:
+
+\[
+\int\limits_0^\pi \sin(3x+1)\,\mathrm dx
+\]
+
+Innere Funktion:
+
+\[
+u=3x+1 \quad\Rightarrow\quad \mathrm du = 3\,\mathrm dx
+\]
+
+\[
+	\begin{array}{rcl}
+\displaystyle \int_0^\pi \sin(3x+1)\,\mathrm dx &=& \dfrac13 \displaystyle\int\limits_0^\pi 3\sin(3x+1)\,\mathrm dx \\
+&\stackrel{\displaystyle{(*)}}{=} & \dfrac13 \displaystyle\int\limits_1^{3\pi+1}\sin(u)\,\mathrm du \\
+&=& -\dfrac13 \, \left[\cos(u)\right]_1^{3\pi+1} \,.
+\end{array}\]
+
+(*) Substitution:
+
+\[
+u(0)=1,\qquad u(\pi)=3\pi+1
+\]
+\end{exabox}
+
+\begin{exabox}{Trigonometrische Substitution}{}
+Integral:
+
+\[
+\displaystyle \int \frac{1}{\sqrt{1-x^2}}\,\mathrm dx
+\]
+
+(*) Substitution:
+
+
+\[
+x=\sin(\varphi) \quad\Rightarrow\quad \mathrm dx = \cos(\varphi)\,\mathrm d\varphi
+\]
+
+Lösung (Rücksubstitition nicht vergessen!):
+\[
+	\begin{array}{rcl}
+		\displaystyle\int \frac{1}{\sqrt{1-x^2}}\,\mathrm dx &\stackrel{\displaystyle{ (*)}}{=} & \displaystyle\int \frac{1}{\sqrt{1-\sin^2(\varphi)}}\cos(\varphi)\,\mathrm d\varphi \\
+&=& \displaystyle\int \frac{1}{\cos(\varphi)}\cos(\varphi)\,\mathrm d\varphi   \\
+&=& \varphi + C \\
+&=& \arcsin(x)+C\,..
+\end{array}
+\]
+\end{exabox}
+
+
+\begin{exabox}{Integration durch Substitution}{}
+	Integral:
+	\[
+		\int \arctan(x)\,\mathrm{d}x
+	\]
+	Identifikation:
+	\[ f(u)=\arctan(u) \land u(x) = x \Rightarrow  \left( f(u(x))\right)' = \displaystyle{\frac{1}{1+x^2}}\cdot x  \]
+	\[
+	\Rightarrow \int \arctan(x)\,\mathrm{d}x = \arctan(x)\cdot x - \int\frac{x}{1+x^2}\,\mathrm{d}x\,.
+	\]
+	Substitution: \[ t= 1+x^2 \Rightarrow \mathrm{d}t = 2x\,\mathrm{d}x \]
+	\[
+		\Rightarrow \int \frac{x}{1+x^2}\,\mathrm{d}x = \frac12 \int\frac1t\,\mathrm{d}t = \frac12 \ln|t| = \frac12\ln(1+x^2)
+	\]
+	Lösung:
+	\[
+		\int \arctan(x) \,\mathrm{d}x = \arctan(x)\cdot x - \frac12\ln(1+x^2)+ C \,.
+\]
+\end{exabox}
+

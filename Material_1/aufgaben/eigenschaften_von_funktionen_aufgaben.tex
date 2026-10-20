@@ -1,0 +1,70 @@
+
+\ifintegriereaufgaben
+\section*{Eigenschaften von Funktionen Aufgaben}\label{MA1-eigenschaften-von-funktionen-aufgaben}
+	
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-eigenschaften-von-funktionen}{ (Abschnitt \abschnittsverweis{MA1-eigenschaften-von-funktionen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-eigenschaften-von-funktionen-loesungen]{hier}.
+\else 
+\section{Eigenschaften von Funktionen Aufgaben}\label{MA1-eigenschaften-von-funktionen-aufgaben}
+	
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-eigenschaften-von-funktionen-loesungen]{hier}.
+\fi 
+
+%\begin{theorembox}[Umkehrbarkeit]{}
+%Es gilt:
+%	\begin{itemize}
+%		\item Eine Funktion $f:x\mapsto y$ mit der Definitionsmenge $D_f$ und der Wertemenge $W_f$ heißt umkehrbar, falls es zu jedem $y\in W_f$ genau ein $x\in D_f$ mit $f(x)=y$ gibt.
+%		\item Ist eine Funktion $f:x\mapsto y$ umkehrbar, so ist die umgekehrte Zuordnung $y\mapsto x$ eine Funktion. Diese heißt Umkehrfunktion von $f$ und wird $f^{-1}$ bezeichnet. Ihre Definitionsmenge ist $W_f$ und ihre Wertemenge ist $D_f$.
+%		\item Jede streng monotone Funktion $f$ ist umkehrbar. 
+%	\end{itemize}
+%\end{theorembox}
+
+%\begin{theorembox}[Umkehrbarkeit]
+%	Strenge Monotonie und damit Umkehrbarkeit kann man anhand der Ableitung diskutieren. Jede in einem Intervall $I$ differenzierbare Funktion $f$ mit $f'(x) > 0$  ($f'(x) < 0$) ist auf $I$ streng monoton steigend (fallend) und damit für alle $x\in I$ umkehrbar.
+%\end{theorembox}
+
+\begin{exercisebox}[Symmetrie]
+  Welche der folgenden Funktionen ist gerade, welche ungerade?
+  \begin{eqnarray*} \begin{array}{lll} 
+		  (a)\; x\mapsto -2\cdot x^6 + 3\cdot x^2  \quad& (b)\; x\mapsto 2-3\cdot x^4 \quad &(c)\; x\mapsto 2-3\cdot x^3 \\[1ex]
+		  (d)\; x\mapsto 3\cdot x^3-x+1 \quad & (e)\; x\mapsto x\cdot (2\cdot x^2 - \frac13\cdot  x^4) \quad & (f)\; x\mapsto (x-1)\cdot (x-2) \\[1ex]
+		  (g)\; x\mapsto (x-1)^3+3\cdot x^2+1 \quad &(h)\; x\mapsto (1-3\cdot x^2)^2 & (i)\; x\mapsto (x-x^2)^2 
+	  \end{array}
+  \end{eqnarray*}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Umkehrfunktion]
+	Gegeben sei die (diskrete) Funktion $f:\{1,2,3,4\} \to \mathbb N$ mit der Wertetabelle 
+	\begin{center}
+\begin{tabular}{l|l|l|l|l}
+$x$ & $1$ & $2$ & $3$ & $4$ \\ 
+\hline
+$f(x)$ & $9$ & $6$ & $7$ & $8$
+\end{tabular}
+\end{center}
+Bestimmen sie die Umkehrfunktion $f^{-1}$.
+\end{exercisebox}
+
+\begin{exercisebox}[Umkehrfunktion]
+  Auf welchen Intervallen ist $f$ umkehrbar? Bestimmen Sie $f^{-1}$ und geben Sie $D_{f^{-1}}$ an
+  \begin{eqnarray*}
+	  \begin{array}{lll} (a)\; f: x \mapsto 4\cdot x-x^2  & \quad \quad (b)\; f:x \mapsto \displaystyle{\frac{2\cdot x}{x-1}} & \quad \quad (c)\; f:x\mapsto x\cdot |x| \end{array}
+  \end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Verpackungsreduktion]
+	Umweltbewusste Studenten behaupten: Bei Dosen-Limo ist die Verpackung teurer als der Inhalt. Für die Überprüfung treffen die Studenten folgende Annahmen: Die Dose ist ein Zylinder, dessen Höhe doppelt so groß ist wie sein Durchmesser. Für den Hersteller kostet $1$ Liter Limo $15\,\mathrm{ct}$. Die Kosten für $1\,\mathrm{dm}^2$ Blech betragen $3 \,\mathrm{ct}$
+  \begin{itemize}
+	  \item[(a)] Überprüfen Sie die Behauptung für den Dosenradius $3 \,\mathrm{cm}$.
+	  \item[(b)] Ab welchem Dosenradius ist der Inhalt teurer als die Dose?
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Kostenreduktion]
+	Die Herstellungskosten eines Airbus-Seitenleitwerks aus Metall werden angenähert durch \[ k_1: x\mapsto \frac{20\cdot x+5000}{x+50}\,,\] wobei $x$ die Anzahl der hergestellten Leitwerke und $k_1(x)$ eine willkürliche Geldeinheit beschreibt. Nachdem $300$ Leitwerke hergestellt sind, wird erwogen, die Produktion auf Kunststoffleitwerke umzustellen. Die Stückkosten betragen dann näherungsweise \[k_2:x\mapsto \frac{15\cdot x-2500}{x-250}\,, \quad x>300\,.\]
+  \begin{enumerate}
+  	\item Zeichnen Sie die beiden Graphen, zum Beispiel mit Hilfe von Geogebra o.ä..
+	\item Wie verhalten sich die Stückkosten bei sehr großen Produktionszahlen?
+	\item Ab welcher Stückzahl ist das Kunststoffleitwerk billiger?
+  \end{enumerate}
+\end{exercisebox}

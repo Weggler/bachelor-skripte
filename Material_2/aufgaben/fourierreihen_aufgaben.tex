@@ -1,0 +1,69 @@
+
+%\subsection{Vokabular}
+%\beign{itemize}
+%\item Spektrum
+%\item Fourier-Theorie vs Potenzreihen
+%\item Analyse und Synthese
+%\item Schwingende Saite
+%\item Partielle Differentialgleichung
+%\item Diskrete Energiezustände
+%\item Randbedingung
+%\item Separationslösung
+%\item Darstellung von Grundschwingung und Oberschwingungen: Beobachtung (Randbedingungen!)
+%\item Wavelets
+%\item Vektorraum, additive geschlossen
+%\item Periode
+%\item Bestapproximation mit trigonometrischen Funktionen
+%\item Konvergenzverhalten der Fourier-Reihe
+%\item Vollständigkeit?
+%	\end{itemize}
+
+\ifintegriereaufgaben
+
+\section*{Fourierreihen Aufgaben}\label{MA2-fourierreihen-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-fourierreihen}{ (Abschnitt \abschnittsverweis{MA2-fourierreihen})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-fourierreihen-loesungen]{hier}.
+\else
+\section{Fourierreihen Aufgaben}\label{MA2-fourierreihen-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-fourierreihen-loesungen]{hier}.
+\fi
+
+	\begin{exercisebox}[Harmonische Schwingungen]
+		Bestimmen Sie die Amplitude, die Periode und die Nullphase der folgenden harmonischen Schwingungen und skizzieren sie den Funktionsverlauf
+		\begin{eqnarray*}
+		(a)\; y(t) = 2\,\sin\left(3\, t-\dfrac{\pi}{6} \right)\quad \quad (b)\; y(t) = 10\,\sin\left(\pi\, t - 3\,\pi\right)\,.
+		\end{eqnarray*}
+\end{exercisebox}
+
+	\begin{exercisebox}[komplexes Fourier-Polynom vs. reelles Fourier-Polynom]
+		\begin{itemize}
+			\item[(a)]
+		Zeigen Sie, dass man die komplexwertigen Koffizienten $c_k$ eines komplexen Fourier Polynoms
+		\[
+			p_{N,f}(t) = \sum\limits_{k=-N}^N c_k \cdot e^{i\,k\,\omega_0\, t} \,,
+		\]
+		in die reell-wertigen Koeffizieinten $a_n$ und $b_n$ des entsprechenden reellen Fourier-Polynom umrechnen kann.
+\item[(b)]
+		Zeigen Sie, dass man die reellen Koffizienten eines Fourier Polynoms
+		\[
+			p_{N,f}(t) = \frac{a_0}{2} + \sum\limits_{n=1}^N\left( a_n \cdot \cos( n\, \omega_0\, t) + b_n \cdot \sin(n \, \omega_0 \, t)\right)\,,
+		\]
+		in die komplex-wertigen Koeffizienten $c_k$ des entsprechend komplex-wertigen Fourier-Polynoms umrechnen kann.
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Fourier-Reihen]
+	Skizzieren Sie zunächst die Funktionen und berechnen Sie anschließend die Fourier-Reihen.
+	\begin{itemize}
+		\item[(a)] Periode $T=2$ und
+			\[ f(t) = t, \quad t \in [0,2]\,.\]
+		\item[(b)] Periode $T=1$ und
+			\[ f(t) = |t|, \quad t \in \left[-\frac12,\frac12\right]\,.\]
+		\item[(c)] Periode $T>0$ und
+			\[ f(t) = t\cdot (T-t), \quad t \in [0,T]\,.\]
+		\item[(d)] Periode $T=2\pi$ und
+			\[ f(t) = \max(\sin(t),0), \quad t \in [0,2\pi]\,.\]
+
+	\end{itemize}
+\end{exercisebox}

@@ -1,0 +1,172 @@
+\section*{Komplexe Zahlen I}\label{MA1-komplexe-zahlen-grundlagen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-komplexe-zahlen-grundlagen}{ (Abschnitt \abschnittsverweis{MA1-komplexe-zahlen-grundlagen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Rechenregeln] %Andreas
+	Gegeben sinde die komplexen Zahlen $z_1: = -2 + 4i$ und $z_2:= 1-3i$.
+	\begin{itemize}
+		\item[(a)] Berechnen Sie $\quad i\cdot z_1 - 2 \cdot z_2, \quad z_1 \cdot z_2, \quad \displaystyle{\frac{z_1}{z_2}}, \quad \displaystyle{\frac{2z_1 z_2}{z_1^2+z_2^2}}$.
+		\item[(b)] Bestimmen Sie $\quad |z_1|,\quad |z_2|,\quad |z_1\cdot z_2|$.
+		\item[(c)] Bestimmen Sie $\quad \overline{z_1},\quad \overline{z_2},\quad \overline{z_1}\cdot \overline{z_2}$.
+		\item[(d)] Stellen Sie die folgenden Zahlen in der kartesischen Form dar ($a,b\in\mathbb R$):
+			\[ \frac{3-21i}{4-3i} + 3(i-8), \quad (2-4i)^2+\frac{|1-\sqrt{3}i|}{i}, \quad \left| \frac{a+bi}{a-bi} + \frac{a-bi}{a+bi}\right| \]
+	\end{itemize}
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] $-6+4i, \quad  10+2i, \quad -\dfrac{7}{5} - \dfrac{1}{5}i, \quad \dfrac{2z_1 z_2}{z_1^2+z_2^2} = \dfrac{-132+90i}{221}$
+	  \item[(b)] $\sqrt{20}, \quad \sqrt{10}, \quad \sqrt{200}$
+	  \item[(c)] $\overline{z_1}=-2-4i, \quad \overline{z_2}= 1+3i, \quad  \overline{z_1}\cdot \overline{z_2} =10-10i$
+	  \item[(d)] $-21, \quad -12 + 18i, \quad 2\Big|\displaystyle{\frac{a^2-b^2}{a^2+b^2}}\Big|$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Ungleichungen] %Lucy
+Bestimmen Sie die Punkte $z\in\mathbb C$, die folgende Eigenschaften besitzen:
+\begin{itemize}
+	\item[(a)] $0<|z+i|<2$ 
+	\item[(b)] $|z-z_1| = |z-z_2|$ 
+	%\item $|z|=1$ (Kreislinie)
+	%\item $|z|\leq 1$ (Kreisschreibe)
+	%\item $|z|> 1$  %($\mathbb R^2 \setminus \{\textnormal{Kreisschreibe}\}$)
+	%\item $0<\mathrm{arg}( z) < \pi/4$  %(Ecke, $\sin(\pi/4) = \cos(\pi/4)$)
+% 	\item $\mathrm{Re}\frac{1}{z} = \frac{1}{2a}, \quad a>0, a\in \mathbb R$ (verschobene Kreislinie)\par
+%
+%			Beachte:
+%			\begin{eqnarray*}
+%				\frac{1}{x+iy} = \frac{x+iy}{x^2 - y^2} = \frac{x}{x^2 + y^2} -i \frac{y}{x^2 + y^2} = \frac{x}{x^2 + y^2}  
+%			\end{eqnarray*} 
+%			Also:
+%               \begin{eqnarray*}
+%	            \mathrm{Re}\left( \frac{1}{x+iy}\right) = \frac{x}{x^2-y^2} &=& \frac{1}{2a} \\
+%	            \Leftrightarrow 2ax &=& x^2 + y^2 \Leftrightarrow  x^2 - 2ax + a^2 - a^2 + y^2 = 0 \\
+%	            \Leftrightarrow (x-a)^2 + y^2 &=& a^2
+%                \end{eqnarray*}
+	\item[(c)] $ |z^2-\overline z^2| \geq 4 $
+	%\item[(d)] $ |z^2+\overline z^2| \geq 4 $
+	%\item[(e)] Welche Punktmenge der Gauß'schen Zahlenebene erfüllen (c) und (d)?
+	\end{itemize}
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] Die Menge aller $z\in\mathbb C$ mit $0<|z+i|<2$ entspricht einer Kreisscheibe mit Radius $2$, deren Mittelpunkt  $M(0|-i)$ ist. Der Mittelpunkt selbst ist in der Menge nicht enthalten.
+			\begin{eqnarray*}
+				0^2 = 0 <  (z+i)\overline{(z+i)}  = (x+i (y+1))\cdot(x-i(y+1)) = x^2+(y+1)^2 < 2^2=4  
+			\end{eqnarray*}
+	\item[(b)] Die Menge aller Punkte $z\in\mathbb C$ mit $|z-z_1| = |z-z_2|$ sind die Punkte, deren Abstand zu dem gegebenen Punkt $z_1$ gleich groß ist wie zu dem gegebenen Punkt $z_2$. Also die Mittelsenkrechte zwischen den gegebenen Punkten $z_1$ und $z_2$.
+	\item[(c)]  $ \{ z = x+iy \in \mathbb C:   |z^2-\overline z^2| \geq 4 \} $ 
+	\begin{eqnarray*}
+		 |z^2-\overline z^2|\geq 4 \Leftrightarrow | \underbrace{( z-\overline z)}_{\displaystyle{2\cdot y }} \cdot \underbrace{(z+\overline z)}_{\displaystyle{2\cdot x}}| \geq 4  \Leftrightarrow |4 \cdot x\cdot y |\geq 4 \Leftrightarrow |x\cdot y |\geq 1 
+	\end{eqnarray*}
+	\begin{minipage}{0.3\textwidth }
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_menge_betrag_xy_loesung.png} \hspace{0.5cm}
+\end{minipage}
+\begin{minipage}{0.7\textwidth }
+	Fallunterscheidung: 
+	\begin{eqnarray*}
+		\begin{cases} x>0, y>0:\quad |x\cdot y | = x\cdot y {\geq} 1  & \Leftrightarrow y \geq \displaystyle{\frac1x} \\[1ex]
+			x>0, y<0:\quad |x\cdot y | = -x\cdot y {\geq} 1 & \Leftrightarrow y \leq -\displaystyle{\frac1x} \\[1ex] 
+			x<0, y>0:\quad |x\cdot y | = -x\cdot y {\geq} 1 & \Leftrightarrow y \geq -\displaystyle{\frac1x} \\[1ex]
+		x<0, y<0:\quad |x\cdot y | = x\cdot y {\geq} 1  & \Leftrightarrow y \leq \displaystyle{\frac1x}  
+	\end{cases}
+	\end{eqnarray*}
+\end{minipage}
+  \end{itemize}
+\end{exercisebox}
+%\item[(d)]  $ \{ z = x+iy \in \mathbb C:   |z^2+\overline z^2| \leq 4 \} $ 
+%	\begin{eqnarray*}
+%		 |z^2+\overline z^2|\geq 4 \Leftrightarrow | ( x+iy)^2 + (x-iy)^2| \leq 4  \Leftrightarrow | 2\cdot x^2 - 2 \cdot y^2 |\leq 4 \Leftrightarrow |x^2 -  y^2 |\leq 2 
+%	\end{eqnarray*}
+%	Fallunterscheidung: 
+%	\begin{eqnarray*}
+%		\begin{cases} 
+%			x^2-y^2 < 0 \Leftrightarrow x^2<y^2 \Leftrightarrow |x| < |y|: &\quad |x^2-y^2 | = -x^2+y^2 = {\leq} 2  \\[1ex] & \Leftrightarrow |y|  \leq \sqrt{x^2+2} \Rightarrow \begin{cases} y \leq \sqrt{x^2+2},\; y \geq 0 \\[1ex] y \geq  -\sqrt{x^2+2}, \; y\leq 0 \end{cases} \\[1ex]
+%			x^2-y^2 > 0 \Leftrightarrow x^2>y^2 \Leftrightarrow |x| > |y|: &\quad |x^2-y^2 | = x^2-y^2 = {\leq} 2 \\[1ex] & \Leftrightarrow |y|  \geq \sqrt{x^2-2} \Rightarrow \begin{cases} y \geq \sqrt{x^2-2} \land |x|>\sqrt{2},\; y \geq 0 \\[1ex] y \leq  -\sqrt{x^2-2} \land |x|>\sqrt{2} \; y\leq 0 \end{cases} \\[1ex]
+%	\end{cases}
+%	\end{eqnarray*}
+%	\includegraphics[width=0.3\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_hyperbelgebiet_schraffur.png} \hspace{0.5cm}
+%	\includegraphics[width=0.3\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_hyperbelgebiet_ueberlagerung.png}
+
+\begin{exercisebox}[Die imaginäre Einheit] %Lucy
+	Berechnen Sie $i^{172}$ und $i^{175}$.
+
+  \vspace{0.3cm}
+  \textbf{Lösung:}
+	\begin{eqnarray*} 
+		i^{4m} &=& 1, \; m\in \mathbb N_0 \\
+		i^{4m+1} &=& i,  \; m\in \mathbb N_0 \\
+		i^{4m+2} &=& -1,  \; m\in \mathbb N_0 \\
+		i^{4m+3} &=& -i,  \; m\in \mathbb N_0 \\
+		&&\\
+		\Rightarrow && i^{172} = \left(i^4\right)^{43} = 1 \\
+		\Rightarrow && i^{175} = \left(i^4\right)^{43}\cdot i^3 = -i
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Kartesische und Polarkoordinaten] %Andreas
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie von folgenden komplexen Zahlen die Polarkoordinaten:
+			\[ z_1=i,\quad z_2=\sqrt{3}-i, \quad z_3=-1-i, \quad z_4=x-\sqrt{3}x\,i\; (x>0) \]
+		\item[(b)] Bestimmen Sie von folgenden komplexen Zahlen die kartesische Form:
+			%\[ z_1= 1\cdot e^{-i4\pi/3},\quad z_2=\sqrt{2}a \cdot e^{-i\pi/4} \]
+			\[ z_1 \; \widehat =\; \left( 1, -4\pi/3\right) ,\quad z_2 \; \widehat =\; \left( \sqrt{2}a,  -\pi/4\right) \]
+	  \end{itemize}
+
+\noindent\textbf{Lösung:}
+\begin{itemize}
+	\item[(a)] 
+\begin{eqnarray*}
+	z_1 &\widehat =& \left( 1, \pi/2 \right)\\[1ex]
+	z_2 &\widehat =& \left( 2,  \mathrm{atan2}(-1, \sqrt{3})= -\frac{\pi}{6}\right)\\[1ex]
+	z_3 &\widehat =& \left(\sqrt{2}, \mathrm{atan2}(-1,-1)=-\frac34\pi \right)\\[1ex]
+	z_4 &\widehat =& \left( 2x, \mathrm{atan2}(-\sqrt{3}x,x)=-\frac{\pi}{3} \right)\\[1ex]
+\end{eqnarray*}
+	\item[(b)] Nach Pythagoras gilt \(a = |z|\cos(\varphi)\) und \(b=|z|\sin(\varphi)\)
+%\begin{eqnarray*}
+%	z_1 &\widehat =& e^1 \cdot ( \cos(-4\pi/3) + i \sin(-4\pi/3)= -\frac{e}{2} + i \frac{\sqrt{3}e}{2}\\[1ex]
+%		z_2 &\widehat =& \sqrt{2}a \cdot ( \cos(-\pi/4) + i \sin(-\pi/4)) = 2a-2ai\,.
+%	\end{eqnarray*}
+\begin{eqnarray*}
+	z_1  &=&  \cos(-4\pi/3) + i \sin(-4\pi/3)= -\frac{e}{2} + i \frac{\sqrt{3}e}{2}\\[1ex]
+		z_2 &=& \sqrt{2}a \cdot ( \cos(-\pi/4) + i \sin(-\pi/4)) = 2a-2ai\,.
+	\end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Kartesische und Polarkoordinaten] %Lucy
+	Bestimmen Sie mit Hilfe der Polarkoordinaten die kartesische Form der folgenden komplexen Zahl: \[z= \left( \frac12 + \frac{\sqrt{3}}{2}i\right)^{60}\,.\]
+\noindent\textbf{Lösung:}
+\[ \tilde z = \frac{1}{2} + \frac{\sqrt{3}}{2} i \Rightarrow \; \tilde z \;  \widehat{=} \; \left( 1, \pi/3 \right) \; \Rightarrow z = \tilde z^{60} \; \widehat = \;\left( 1^{60},  60\cdot \pi/4\right) = \left( 1^{60},  20\cdot \pi\right) \Rightarrow \, z = 1\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssystem] %Andreas
+	Lösen Sie das folgende lineare Gleichungssystem
+	\begin{eqnarray*}
+		\begin{array}{r c r c l} 
+			(3-4i)\cdot z_1 &+& (2-i)\cdot z_2 &=& 4-7i \\[1ex]
+	(1-2i)\cdot z_1 &+& 4i\cdot z_2 &=& -11-15i 
+\end{array}
+\end{eqnarray*}
+  \textbf{Lösung:}
+  Die erweiterte Koeffizientenmatrix lautet 
+  \begin{eqnarray*}
+	  &\left( \begin{array}{cccc} 3-4i & 2-i &|& 4-7i \\ 1-2i & 4i & | & -11-15i \end{array}\right) \\
+	  \stackrel{(*)}{ \Leftrightarrow} \;& \left( \begin{array}{cccc} 3-4i & 2-i &|& 4-7i \\ 0 & -0.8 + 4.6i & | & 12.2-11.6i \end{array}\right) 
+  \end{eqnarray*}
+  wobei $(*)$ die folgende Äquivalenzumformung meint: Addiere das $-(1-2i)/(3-4i)$-fache der ersten Zeile zur zweiten Zeile.
+  Die zweite Zeile liefert eine lineare Gleichung für $z_2$: 
+  \begin{eqnarray*} \begin{array}{clcr r}
+	  & (-0.8+4.6i) z_2 &=& 12.2-11.6i\; & |:(-0.8+4.6i) \\
+	  \Leftrightarrow & z_2 &=& -2+3i 
+  \end{array}\end{eqnarray*}
+  Setzt man $z_2$ in die erste Zeile ein, so erhält man eine lineare Gleichung für $z_1$:
+  \begin{eqnarray*} \begin{array}{clcr r}
+		  & (3-4i)z_1 + (-1+8i) &=& 4-7i\; & |-(-1+8i) \\
+		  \Leftrightarrow & (3-4i)z_1 &=& 5-15i \; & |:(3-4i) \\
+	  \Leftrightarrow & z_1 &=& 3-i 
+  \end{array}\end{eqnarray*}
+  Die Lösung lautet $z-1=3-i, \; z_2=-2+3j\,.$
+\end{exercisebox}
+

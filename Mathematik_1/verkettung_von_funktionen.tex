@@ -1,0 +1,677 @@
+\section{Verkettung von Funktionen}\label{MA1-verkettung-von-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem verkettete Funktionen erkennen und in ihre Teilfunktionen zerlegen &\\
+\tabitem die Abbildungsvorschrift einer Verkettung bestimmen &\\
+\tabitem Definitionsbereich und Bildmenge einer Verkettung bestimmen &\\
+\tabitem Verschiebung, Skalierung und Spiegelung von Funktionsgraphen als Verkettungen darstellen &\\
+\tabitem Funktionsgraphen durch Kompositionen systematisch verändern &\\
+\tabitem harmonische Schwingungen aus der Sinusfunktion systematisch konstruieren und die Bedeutung ihrer Parameter erklären &\\[.5\normalbaselineskip]
+\midrule
+\textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+\tabitem Funktionsbegriff, Definitionsbereich und Bildmenge & \abschnittsverweis{MA1-funktionen}\\
+\tabitem Eigenschaften von Funktionen & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+\tabitem grundlegende Funktionsklassen & \abschnittsverweis{MA1-lineare-funktionen}-\abschnittsverweis{MA1-trigonometrische-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-verkettung-von-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist eine Verkettung?}
+
+Funktionen können nicht nur miteinander addiert oder multipliziert werden.
+Der Funktionswert einer Funktion kann auch als Eingabe einer weiteren
+Funktion verwendet werden.
+
+Es seien beispielsweise zwei Funktionen \(g\) und \(f\) gegeben. Zunächst
+wird \(g\) auf \(x\) angewendet:
+\[
+x\mapsto g(x).
+\]
+Das Ergebnis \(g(x)\) wird anschließend als Eingabe der Funktion \(f\)
+verwendet:
+\[
+g(x)\mapsto f(g(x)).
+\]
+
+Diese Hintereinanderausführung heißt \textbf{Verkettung} oder
+\textbf{Komposition} (\emph{composition}) der Funktionen \(f\) und \(g\).
+Sie wird mit
+\[
+f\circ g
+\]
+bezeichnet und ist selbst wieder eine Funktion:
+\[
+(f\circ g)(x)=f(g(x)).
+\]
+
+Die Schreibweise \(f\circ g\) wird dabei von rechts nach links gelesen:
+Zuerst wird \(g\), anschließend \(f\) angewendet. Daher wird
+\(f\circ g\) auch als „\(f\) nach \(g\)“ bezeichnet.
+
+\begin{exabox}{Verkettung als Maschine}{ }
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Mathematik_1/Bilder/funktionen_verkettung_maschinenmodell.png}
+\end{exabox}
+
+Die Reihenfolge ist wichtig: Verkettung ist im Allgemeinen \emph{nicht} kommutativ.
+
+\begin{exabox}{Reihenfolge ist entscheidend}{ }
+
+Es seien
+\[
+f(x)=\sin(x)
+\qquad\text{und}\qquad
+g(x)=e^x.
+\]
+Dann ergibt sich in der einen Reihenfolge
+\[
+(f\circ g)(x)
+=
+\sin(e^x),
+\qquad
+f\circ g:\mathbb R\to[-1,1].
+\]
+
+In der umgekehrten Reihenfolge entsteht dagegen
+\[
+(g\circ f)(x)
+=
+e^{\sin(x)},
+\qquad
+g\circ f:\mathbb R\to[e^{-1},e].
+\]
+
+Damit gilt im Allgemeinen
+\[
+f\circ g\neq g\circ f.
+\]
+Die Verkettung von Funktionen ist also im Allgemeinen nicht kommutativ.
+
+\end{exabox}
+
+Die unterschiedliche Reihenfolge verändert damit nicht nur die Abbildungsvorschrift, sondern auch das Verhalten und die Bildmenge der entstehenden Funktion.
+
+\subsubsection*{Definitionsbereich einer Verkettung}
+
+Bei einer Verkettung muss nicht nur die innere Funktion \(g\) an der Stelle
+\(x\) definiert sein. Ihr Funktionswert \(g(x)\) muss außerdem eine zulässige
+Eingabe für die äußere Funktion \(f\) sein.
+
+Für die Verkettung
+\[
+(f\circ g)(x)=f(g(x))
+\]
+gilt daher
+\[
+D_{f\circ g}
+=
+\{x\in D_g:g(x)\in D_f\}.
+\]
+
+\begin{exabox}{Definitionsbereich einer Verkettung bestimmen}{ }
+
+Betrachtet wird die Verkettung
+\[
+x\mapsto\sqrt{\ln(x)}.
+\]
+Die innere Funktion
+\[
+g(x)=\ln(x)
+\]
+ist zunächst nur für
+\[
+x>0
+\]
+definiert.
+
+Die äußere Funktion
+\[
+f(y)=\sqrt y
+\]
+kann außerdem nur nichtnegative Werte verarbeiten. Daher muss zusätzlich
+\[
+\ln(x)\geq0
+\]
+gelten. Dies ist genau für
+\[
+x\geq1
+\]
+der Fall.
+
+Damit besitzt die Verkettung den Definitionsbereich
+\[
+D_{f\circ g}=[1,\infty)
+\]
+und es gilt
+\[
+\sqrt{\;\cdot\;}\circ\ln:
+[1,\infty)\to[0,\infty),
+\qquad
+x\mapsto\sqrt{\ln(x)}.
+\]
+
+\end{exabox}
+
+\begin{exabox}{Eine verkettete Funktion in Teilfunktionen zerlegen}{ }
+
+Betrachtet wird die Funktion
+\[
+x\mapsto\frac{1}{(\sin x)^2+1}.
+\]
+
+Die Abbildungsvorschrift lässt sich als Folge von drei Schritten lesen:
+\[
+x
+\longmapsto
+\sin(x)
+\longmapsto
+(\sin x)^2+1
+\longmapsto
+\frac{1}{(\sin x)^2+1}.
+\]
+
+Dazu können die drei Funktionen
+\[
+h(x)=\sin(x),
+\qquad
+g(x)=x^2+1,
+\qquad
+f(x)=\frac1x
+\]
+definiert werden. Damit gilt
+\[
+(f\circ g\circ h)(x)
+=
+f(g(h(x)))
+=
+\frac{1}{(\sin x)^2+1}.
+\]
+
+Die äußerste Rechenoperation gehört dabei zur äußersten Funktion \(f\), die
+innerste Rechenoperation zur zuerst ausgeführten Funktion \(h\).
+
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+\begin{itemize}
+	\item Das Erkennen solcher Verkettungen wird später bei der Differentialrechnung erneut wichtig. Die Kettenregel beschreibt, wie die Ableitung einer verketteten Funktion aus den Ableitungen ihrer Teilfunktionen bestimmt werden
+kann.
+\item Wird eine Funktion mehrfach mit sich selbst verkettet, spricht man von einer \textbf{Iteration}. 
+Für die dreifache Iteration findet sich daher auch die Schreibweise
+\[
+f^3:=f\circ f\circ f.
+\]
+Diese Notation ist allerdings kontextabhängig und darf nicht mit der dritten Potenz des Funktionswertes, also der Zahl \( (f(x))^3 \) verwechselt werden.	
+\item Die Schreibweise \(f^{-1}\) bezeichnet die Umkehrfunktion von \(f\), sofern diese existiert.
+\end{itemize}
+
+\subsection{Systematische Veränderung von Funktionsgraphen}
+
+Viele typische Veränderungen von Funktionsgraphen lassen sich als
+Verkettungen mit linearen Funktionen verstehen. Dabei ist entscheidend, an
+welcher Stelle der Verkettung die lineare Funktion steht.
+
+Wird eine Funktion
+\[
+g(y)=my+b
+\]
+\textbf{nach} \(f\) angewendet, so gilt
+\[
+(g\circ f)(x)=m\,f(x)+b.
+\]
+Die Veränderung betrifft unmittelbar die Funktionswerte und wirkt daher in
+\textbf{vertikaler Richtung}.
+
+Wird dagegen eine lineare Funktion
+\[
+g(x)=k(x+a)
+\]
+\textbf{vor} \(f\) angewendet, so gilt
+\[
+(f\circ g)(x)=f\!\bigl(k(x+a)\bigr).
+\]
+In diesem Fall wird das Argument von \(f\) verändert. Die Veränderung wirkt
+daher in \textbf{horizontaler Richtung}.
+
+Im Folgenden werden diese Veränderungen zunächst einzeln untersucht und
+anschließend in einem gemeinsamen Transformationsbaukasten zusammengefasst.
+
+
+\subsubsection*{Veränderung in vertikaler Richtung}
+
+Wird zu jedem Funktionswert \(f(x)\) eine Konstante \(b\neq0\) addiert,
+verändert sich nicht das Argument der Funktion, sondern ausschließlich ihr
+Funktionswert. Der Graph wird dadurch in vertikaler Richtung verschoben:
+\begin{itemize}
+    \item Für \(b>0\) erfolgt die Verschiebung um \(b\) Einheiten nach oben.
+    \item Für \(b<0\) erfolgt die Verschiebung um \(|b|\) Einheiten nach unten.
+\end{itemize}
+
+\begin{exabox}{Vertikale Translation}{ }
+    \begin{minipage}{0.4\textwidth}
+        \includegraphics[width=0.95\textwidth]{../Mathematik_1/Bilder/funktionen_vertikale_verschiebung_gerade.png}
+    \end{minipage}
+    \begin{minipage}{0.6\textwidth}
+        \begin{itemize}
+            \item Originalfunktion:
+            \[
+            \textcolor{darkgreen}{f:x\mapsto x}
+            \]
+
+            \item Verschiebung um \(3\) Einheiten nach oben:
+            \[
+            \textcolor{red}{f_1:x\mapsto x+3}
+            =
+            \textcolor{darkgreen}{f}(x)+3
+            \]
+
+            \item Verschiebung um \(3\) Einheiten nach unten:
+            \[
+            \textcolor{blue}{f_2:x\mapsto x-3}
+            =
+            \textcolor{darkgreen}{f}(x)-3
+            \]
+        \end{itemize}
+    \end{minipage}
+\end{exabox}
+
+Wird der Funktionswert \(f(x)\) mit einer Konstanten \(m\) multipliziert, werden seine Werte und damit ihre Abstände von der \(x\)-Achse mit dem Faktor \(|m|\) skaliert.
+\begin{itemize}
+    \item Für \(|m|>1\) wird der Graph in vertikaler Richtung gestreckt.
+    \item Für \(0<|m|<1\) wird der Graph in vertikaler Richtung gestaucht.
+    \item Für \(m<0\) erfolgt zusätzlich eine Spiegelung an der \(x\)-Achse.
+\end{itemize}
+
+Für \(m=0\) werden dagegen alle Funktionswerte auf \(0\) abgebildet; es
+entsteht die konstante Nullfunktion.
+
+\begin{exabox}{Vertikale Streckung und Stauchung}{ }
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[width=0.95\textwidth]{../Mathematik_1/Bilder/funktionen_vertikale_skalierung_sinus.png}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{itemize}
+            \item Originalfunktion:
+            \[
+            \textcolor{blue}{f:x\mapsto\sin(x)}
+            \]
+
+            \item Streckung in \(y\)-Richtung:
+            \[
+            \textcolor{darkgreen}{f_1:x\mapsto3\sin(x)}
+            =
+            3\cdot\textcolor{blue}{f}(x)
+            \]
+
+            \item Stauchung in \(y\)-Richtung und Spiegelung an der
+            \(x\)-Achse:
+            \[
+            \textcolor{red}{f_2:x\mapsto-\frac12\sin(x)}
+            =
+            -\frac12\cdot\textcolor{blue}{f}(x)
+            \]
+        \end{itemize}
+    \end{minipage}
+\end{exabox}
+
+Beide vertikalen Veränderungen lassen sich miteinander kombinieren. Für
+\[
+g(y)=my+b
+\]
+gilt
+\[
+(g\circ f)(x)=m\,f(x)+b.
+\]
+Dabei werden die Funktionswerte zunächst mit \(m\) skaliert und anschließend
+um \(b\) verschoben.
+
+
+\subsubsection*{Veränderung in horizontaler Richtung}
+
+Wird eine Konstante \(a\) innerhalb des Arguments von \(f\) addiert,
+\[
+x\mapsto f(x+a),
+\]
+verändern sich nicht unmittelbar die Funktionswerte, sondern die Stellen,
+an denen diese Funktionswerte angenommen werden. Der Graph wird dadurch in
+horizontaler Richtung verschoben.
+
+Dabei wirkt das Vorzeichen zunächst ungewohnt. Angenommen, die ursprüngliche
+Funktion nimmt einen bestimmten Funktionswert an der Stelle \(x_0\) an. Die
+veränderte Funktion \(f(x+a)\) nimmt denselben Funktionswert genau dann an,
+wenn
+\[
+x+a=x_0.
+\]
+Daraus folgt
+\[
+x=x_0-a.
+\]
+Der ursprüngliche Punkt wird also um \(a\) Einheiten nach links verschoben.
+
+Damit gilt:
+\begin{itemize}
+    \item Für \(a>0\) wird der Graph von \(f(x+a)\) um \(a\) Einheiten nach
+          links verschoben.
+    \item Für \(a<0\) erfolgt die Verschiebung entsprechend nach rechts.
+\end{itemize}
+
+\begin{exabox}{Horizontale Translation}{ }
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[width=0.95\textwidth]{../Mathematik_1/Bilder/funktionen_horizontale_verschiebung_quadratfunktion.png}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+        \begin{itemize}
+            \item Originalfunktion:
+            \[
+            \textcolor{darkgreen}{f:x\mapsto x^2}
+            \]
+
+            \item Verschiebung um \(3\) Einheiten nach rechts:
+            \[
+            \textcolor{blue}{f_1:x\mapsto(x-3)^2}
+            =
+            \textcolor{darkgreen}{f}(x-3)
+            \]
+
+            \item Verschiebung um \(5\) Einheiten nach links:
+            \[
+            \textcolor{red}{f_2:x\mapsto(x+5)^2}
+            =
+            \textcolor{darkgreen}{f}(x+5)
+            \]
+        \end{itemize}
+    \end{minipage}
+\end{exabox}
+
+Auch eine Multiplikation innerhalb des Arguments wirkt horizontal.
+Bei
+\[
+x\mapsto f(kx)
+\]
+muss für einen ursprünglich an der Stelle \(x_0\) angenommenen Funktionswert
+nun
+\[
+kx=x_0
+\]
+gelten. Daraus folgt
+\[
+x=\frac{x_0}{k}.
+\]
+Die \(x\)-Koordinaten werden also mit dem Faktor \(1/k\) skaliert. Daher gilt:
+\begin{itemize}
+    \item Für \(|k|>1\) wird der Graph zur \(y\)-Achse hin gestaucht.
+    \item Für \(0<|k|<1\) wird der Graph von der \(y\)-Achse weg gestreckt.
+    \item Für \(k<0\) erfolgt zusätzlich eine Spiegelung an der \(y\)-Achse.
+\end{itemize}
+
+\begin{exabox}{Horizontale Streckung und Stauchung}{ }
+    \begin{minipage}{0.4\textwidth}
+        \includegraphics[width=0.95\textwidth]{../Mathematik_1/Bilder/funktionen_horizontale_skalierung_potenz_drei.png}
+    \end{minipage}
+    \begin{minipage}{0.6\textwidth}
+        \begin{itemize}
+            \item Originalfunktion:
+            \[
+            \textcolor{darkgreen}{f:x\mapsto x^3}
+            \]
+
+            \item Streckung in \(x\)-Richtung:
+            \[
+            \textcolor{blue}{
+            f_1:x\mapsto
+            \left(\frac12x\right)^3}
+            =
+            \textcolor{darkgreen}{f}\left(\frac12x\right)
+            \]
+
+            \item Streckung in \(x\)-Richtung und Spiegelung an der
+            \(y\)-Achse:
+            \[
+            \textcolor{red}{
+            f_2:x\mapsto
+            \left(-\frac12x\right)^3}
+            =
+            \textcolor{darkgreen}{f}\left(-\frac12x\right)
+            \]
+
+            \item Stauchung in \(x\)-Richtung und Spiegelung an der
+            \(y\)-Achse:
+            \[
+            \textcolor{brown}{
+            f_3:x\mapsto(-2x)^3}
+            =
+            \textcolor{darkgreen}{f}(-2x)
+            \]
+        \end{itemize}
+    \end{minipage}
+\end{exabox}
+
+Horizontale Veränderungen wirken damit in gewisser Weise umgekehrt zu
+vertikalen Veränderungen: Ein Faktor mit Betrag größer als \(1\) führt
+horizontal zu einer Stauchung, ein Faktor mit Betrag kleiner als \(1\) zu
+einer Streckung. Auch bei Verschiebungen erscheint das Vorzeichen innerhalb
+des Funktionsarguments entgegengesetzt zur geometrischen
+Verschiebungsrichtung.
+
+Beide horizontalen Veränderungen lassen sich wiederum kombinieren. Für
+\[
+g(x)=k(x+a),
+\qquad k\neq0,
+\]
+gilt
+\[
+(f\circ g)(x)=f\!\bigl(k(x+a)\bigr).
+\]
+
+\subsubsection*{Transformationsbaukasten}
+
+Vertikale und horizontale Veränderungen können gleichzeitig auftreten.
+Ausgehend von einer Funktion \(f\) lassen sie sich in der Form
+\[
+F(x)=m\cdot f\!\bigl(k(x+a)\bigr)+b
+\]
+zusammenfassen.
+
+\begin{theorembox}{Transformations-Baukasten}{ }
+
+Für
+\[
+F(x)=m\cdot f\!\bigl(k(x+a)\bigr)+b,
+\qquad
+m,a,b,k\in\mathbb R,\quad k\neq0,
+\]
+haben die Parameter folgende geometrische Bedeutung:
+
+\begin{itemize}
+		\item \(m\) verändert die Funktionswerte und damit die vertikale Skalierung:
+\begin{itemize}
+    \item \(|m|>1\): vertikale Streckung,
+    \item \(0<|m|<1\): vertikale Stauchung,
+    \item \(m<0\): zusätzliche Spiegelung an der \(x\)-Achse,
+    \item \(m=0\): alle Funktionswerte werden auf \(0\) abgebildet.
+\end{itemize}
+
+    \item \(b\) verschiebt den Graphen vertikal:
+          \begin{itemize}
+              \item \(b>0\): nach oben,
+              \item \(b<0\): nach unten.
+          \end{itemize}
+
+    \item \(k\) verändert das Argument und damit die horizontale Skalierung:
+          \begin{itemize}
+              \item \(|k|>1\): horizontale Stauchung,
+              \item \(0<|k|<1\): horizontale Streckung,
+              \item \(k<0\): zusätzliche Spiegelung an der \(y\)-Achse.
+          \end{itemize}
+
+    \item \(a\) verschiebt den Graphen horizontal:
+          \begin{itemize}
+              \item \(a>0\): um \(a\) Einheiten nach links,
+              \item \(a<0\): um \(|a|\) Einheiten nach rechts.
+          \end{itemize}
+\end{itemize}
+
+Die äußere Veränderung
+\[
+y\mapsto my+b
+\]
+wirkt auf die Funktionswerte und damit in vertikaler Richtung. Die innere
+Veränderung
+\[
+x\mapsto k(x+a)
+\]
+wirkt auf das Argument der Funktion und damit in horizontaler Richtung.
+
+\end{theorembox}
+
+
+\subsection{Harmonische Schwingungen als Verknüpfungen}
+
+Die zuvor untersuchten Transformationen können nun auf die Sinusfunktion angewendet werden. Ausgehend von
+\[
+t\mapsto\sin(t)
+\]
+kann das Argument durch
+\[
+t\mapsto\omega\cdot  t+\varphi_0
+\]
+verändert werden. Anschließend können die entstehenden Funktionswerte skaliert und verschoben werden:
+\[
+y\mapsto A\cdot y+d.
+\]
+
+Die Verkettung dieser drei Funktionen führt auf eine \emph{harmonische Schwingung}
+\[
+	s(t)=A\sin(\omega t+\varphi_0)+d\,.
+\]
+Harmonische Schwingungen treten häufig auf und die Parameter besitzten eine klare Bedeutung:
+
+\begin{itemize}
+  \item \(A\not=0\) ist die \textbf{Amplitude}. Für \(A<0\) kommt eine Spiegelung an der horizontalen Mittellinie hinzu.
+  \item \(\omega>0\) ist die \textbf{Kreisfrequenz}. Sie bestimmt die \textbf{Periodendauer} \( T=\frac{2\pi}{|\omega|}\).
+  \item \(\varphi_0\) ist die \textbf{Nullsphase}. Da \(\omega\neq0\) kann \( \omega t+\varphi_0 = \omega\left(t+\frac{\varphi_0}{\omega}\right) \) geschrieben werden. Dies entspricht einer horizontalen Verschiebung um \( -\frac{\varphi_0}{\omega}\).
+  \item \(d\) verschiebt die Schwingung vertikal. Die Gerade \(y=d\) bildet die Mittellinie der Schwingung.
+\end{itemize}
+
+\begin{exabox}{Parameter einer harmonischen Schwingung interpretieren}{ }
+
+Betrachtet wird die harmonische Schwingung
+\[
+s(t)
+=
+2\sin\left(3t-\frac{\pi}{2}\right)+1.
+\]
+
+Um die geometrische Bedeutung der einzelnen Parameter zu erkennen, wird die
+Funktion mit der allgemeinen Form
+\[
+s(t)
+=
+A\sin(\omega t+\varphi_0)+d
+\]
+verglichen.
+
+Für die Amplitude gilt
+\[
+A=2.
+\]
+Die Schwingung besitzt daher die \textbf{Amplitude}
+\[
+|A|=2.
+\]
+Ausgehend von der Mittellinie liegen die größten und kleinsten Funktionswerte
+somit jeweils \(2\) Einheiten entfernt.
+
+Die Kreisfrequenz beträgt
+\[
+\omega=3.
+\]
+Damit ergibt sich die Periodendauer zu
+\[
+T
+=
+\frac{2\pi}{\omega}
+=
+\frac{2\pi}{3}.
+\]
+Nach einer Zeitspanne von \(2\pi/3\) wiederholt sich die Schwingung.
+
+Für die horizontale Verschiebung wird das Argument der Sinusfunktion
+umgeformt:
+\[
+3t-\frac{\pi}{2}
+=
+3\left(t-\frac{\pi}{6}\right).
+\]
+Die Funktion kann daher auch in der Form
+\[
+s(t)
+=
+2\sin\left(
+3\left(t-\frac{\pi}{6}\right)
+\right)+1
+\]
+geschrieben werden. Der Graph der Sinusfunktion ist somit um
+\[
+\frac{\pi}{6}
+\]
+nach rechts verschoben.
+
+Schließlich gilt
+\[
+d=1.
+\]
+Die gesamte Schwingung ist daher um eine Einheit nach oben verschoben. Ihre
+Mittellinie ist
+\[
+y=1.
+\]
+
+Damit lassen sich die charakteristischen Eigenschaften der Schwingung
+zusammenfassen:
+\[
+\begin{aligned}
+\text{Amplitude:}\qquad &2,\\
+\text{Periodendauer:}\qquad &\frac{2\pi}{3},\\
+\text{horizontale Verschiebung:}\qquad &\frac{\pi}{6}\text{ nach rechts},\\
+\text{Mittellinie:}\qquad &y=1.
+\end{aligned}
+\]
+
+Aus der Mittellinie \(y=1\) und der Amplitude \(2\) folgen außerdem unmittelbar
+der maximale und der minimale Funktionswert:
+\[
+s_{\max}=1+2=3,
+\qquad
+s_{\min}=1-2=-1.
+\]
+
+Das Beispiel zeigt, wie die Parameter einer harmonischen Schwingung
+systematisch aus ihrer Funktionsgleichung gelesen und als Veränderungen der
+Grundfunktion \(t\mapsto \sin(t)\) interpretiert werden können.
+
+\end{exabox}
+
+\noindent \textbf{Merke:} 
+Das Beispiel der harmonischen Schwingung zeigt, wie aus einer einfachen
+Grundfunktion durch Verkettungen eine andere Funktion entsteht.
+
+Die Verkettung von Funktionen ist damit nicht nur eine formale Operation.
+Sie ermöglicht, komplexere Funktionen aus einfachen Grundfunktionen
+systematisch aufzubauen und die Wirkung einzelner Parameter auf den
+Funktionsgraphen zu verstehen. Diese Sichtweise wird später insbesondere bei
+der Differentialrechnung wieder wichtig, wenn verkettete Funktionen mithilfe
+der Kettenregel abgeleitet werden.
+

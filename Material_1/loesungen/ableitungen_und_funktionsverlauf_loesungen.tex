@@ -1,0 +1,188 @@
+\section*{Kurvendiskussion Lösungen}\label{MA1-ableitungen-und-funktionsverlauf-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-ableitungen-und-funktionsverlauf}{ (Abschnitt \abschnittsverweis{MA1-ableitungen-und-funktionsverlauf})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Grenzwerte mit L'Hospital] %Andreas
+	Berechnen Sie die folgenden Grenzwerte mit der Regel von L'Hospital. %Hinweis zu $(d)$: Untersuchen Sie $\log$\dots
+	\begin{eqnarray*}
+		(a)\; \displaystyle{\lim\limits_{x\to 0}}\; \displaystyle{\frac{\sin(\sin(x))}{x}}  \quad\quad  (b)\; \displaystyle{\lim\limits_{x\to \infty}}\;\displaystyle{x^2 \cdot 2^{-x}}  \quad\quad\quad\quad (c)\; \displaystyle{\lim\limits_{x\downarrow 0}}\; x \cdot \ln(x) 
+	\end{eqnarray*}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] 
+		Die Regel ist anwendbar, da 
+		\begin{eqnarray*}
+			\begin{cases} \displaystyle{\lim\limits_{x\to 0}} \sin(\sin(x)) = \sin(\sin(0)) = 0 \\  \displaystyle{\lim\limits_{x\to 0}} x = 0 \,. \end{cases} 
+		\end{eqnarray*}
+		Die Ableitungen von Zähler und Nenner lauten 
+		\begin{eqnarray*}
+			\begin{cases} \left( \sin(\sin(x))\right)' = \cos(\sin(x)) \cdot \cos(x) \\   \left( x \right)' = 1  \,. \end{cases} 
+		\end{eqnarray*}
+		Der Grenzwert 
+		\begin{eqnarray*}
+			\lim\limits_{x\to 0 } \frac{\cos(\sin(x)) \cdot \cos(x) }{1} = \frac{\cos(\sin(0))}{1} = 1 
+		\end{eqnarray*}
+		existiert und mit L'Hospital folgt 
+		\[ \lim\limits_{x\to 0} \frac{\sin(\sin(x))}{x} = 1 \,.\]
+	\item[(b)]
+		Die Regel ist anwendbar, da 
+		\begin{eqnarray*}
+			\displaystyle{\lim\limits_{x\to \infty}} x^2\cdot 2^{-x} = \displaystyle{\lim\limits_{x\to \infty}} \frac{x^2}{ 2^{x}}  \textnormal{ mit }  
+			\begin{cases} 
+				\displaystyle{\lim\limits_{x\to \infty}} x^2 = \infty  \\  \displaystyle{\lim\limits_{x\to \infty}} 2^x = \infty \,. \end{cases} 
+		\end{eqnarray*}
+		Die Ableitungen von Zähler und Nenner lauten 
+		\begin{eqnarray*}
+			\begin{cases} 
+				\left( x^2 \right)' = 2 x \\  \left( 2^x \right)' = \left( \exp(x\cdot \ln(2) \right)' = \ln(2) \cdot 2^x  \,. \end{cases} 
+		\end{eqnarray*}
+		Es zeigt sich, dass auch der Grenzwert der ersten Ableitungen vom Typ "$\infty/\infty$" ist. Deswegen betrachten wir die zweiten Ableitungen. 
+		\begin{eqnarray*}
+			\begin{cases} 
+				\left( x^2 \right)'' = 2 \\  \left( 2^x \right)'' = \ln(2)^2 \cdot 2^x  \,. \end{cases} 
+		\end{eqnarray*}
+		Der Grenzwert 
+		\begin{eqnarray*}
+			\lim\limits_{x\to \infty } \frac{2 }{(\ln(2)^2\cdot 2^x} = 0 
+		\end{eqnarray*}
+		existiert und mit L'Hospital folgt 
+		\[ \lim\limits_{x\to \infty} x^2 \cdot 2^{-x}= 0 \,.\]
+	\item[(c)] 
+		Der Grenzwert ist äquivalent zu 
+		\[ \lim\limits_{x\downarrow 0} x \cdot \ln(x) = -\lim\limits_{x\downarrow 0} \frac{-\ln(x)}{\frac1x} \]
+		mit den Grenzwerten
+		\begin{eqnarray*}
+			\begin{cases} \displaystyle{\lim\limits_{x\downarrow 0}} (-\ln(x))  =  \infty   \\  \displaystyle{\lim\limits_{x\downarrow 0}} \displaystyle{\frac1x} = \infty \,. \end{cases} 
+		\end{eqnarray*}
+		Die Regel ist anwendbar und wir berechnen die  Ableitungen von Zähler und Nenner 
+		\begin{eqnarray*}
+			\begin{cases} \left(-\ln(x)\right)' = -\displaystyle{\frac1x} \\   \left( \displaystyle{\frac1x} \right)' = -\displaystyle{\frac{1}{x^2}}  \,. \end{cases} 
+		\end{eqnarray*}
+		Der Grenzwert 
+		\begin{eqnarray*}
+			\lim\limits_{x\downarrow 0 } \frac{-1/x  }{ - 1/x^2} = 0 
+		\end{eqnarray*}
+		existiert und mit L'Hospital folgt 
+		\[ \lim\limits_{x\downarrow 0} x\cdot \ln(x)  = 0 \,.\]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Extremwerte] %p. 103 LS
+    Zerlegen Sie die Zahl $12$ so in zwei Summanden, dass ihr Produkt möglichst groß wird. 
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+			Gesucht sind Zahlen \(x,y\in\mathbb R\), so dass \( x+y=12\) und gleichzeitig \(x\cdot y = \mathrm{min}\). Aus der ersten Gleichung folgt \(y = 12-x\) und damit suchen wir ein Minimum der Funktion \(f:x\mapsto x\cdot (1-x)\):   
+			\[ f(x) = x\cdot (12 - x ) \Rightarrow f'(x_0) \stackrel{!}{=}0 \Leftrightarrow = 12-2\cdot x = 0 \Leftrightarrow x = 6 \land f''(6) = 12 > 0 \Rightarrow \textnormal{ Minimum} \] 
+Die Antwort ist \(x=y=6\).
+
+\end{exercisebox} 
+
+\begin{exercisebox}[Abbildungsvorschrift] %p. 111 LS
+	Begründen Sie, warum es keine ganzrationale Funktion $f$ gibt mit folgenden Eigenschaften: $f$ hat Grad $2$, $f$ hat Nullstellen für $x=2$ und $x=4$ und ein Maximum für $x=0$.
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\[ f:x\mapsto c \cdot (x-2)\cdot (x-4) \Rightarrow f(x) = c (x^2 - 6 \cdot x + 8) \Rightarrow f'(x) = 2 \cdot c\cdot (x-3) = 0 \Leftrightarrow x = 3 \land f''(3) \not=0\] Das heißt, dass $f$ eine Extremstelle nur an der STelle $x=3$ haben kann und nicht für $x=0$.   
+\end{exercisebox} 
+
+\begin{exercisebox}[Extrema] %p131 LS
+  Es sei $f=u\circ v$ und die Funktionen $u,v$ und $f$ seien auf $\mathbb R$ differenzierbar. Beweisen oder widerlegen Sie die Aussage:
+  \begin{itemize}
+	  \item[(a)] Ist $x_0$ eine Extremstelle von $f$, dann ist $x_0$ auch eine Extremstelle von $v$
+    \item[(b)] Ist $x_0$ eine Extremstelle von $v$, dann ist $x_0$ auch eine Extremstelle von $f$
+  \end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Für die Ableitung der verketteten Funktion gilt $f': x \mapsto u'(v(x)) \cdot v'(x)$
+\begin{itemize}
+	\item[(a)] $f'(x_0) = 0 \Leftrightarrow  u'(v(x_0)) = 0 \lor v'(x_0) \quad  \Rightarrow $ die Aussage unter $(a)$ ist falsch (Bsp. $f(x) = (\sin(x))^2$).
+	\item[(b)] $v'(x_0) = 0 \Rightarrow  u'(v(x_0)) \cdot v'(x_0) = f'(x_0) = 0 \quad  \Rightarrow  x_0$ ist ein kritischer Punkt von $f$. Zusätzlich wissen wir, dass $v'$ an der Stelle $x_0$ einen Vorzeichenwechsel hat. Also hat auch $f'$ an der Stelle $x_0$ einen Vorzeichenwechsel und damit ist $x_0$ auch eine Extremstelle von $f$. Die Aussage unter $(b)$ ist wahr.
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Wendepunkte] %p133 LS
+  Bei einer Funktion $f$ gelte für alle $x\in \mathbb R: f(x)\not = 0$. $f$ ist differenzierbar udn $f'(x) = x\cdot f(x)$.
+  \begin{itemize}
+	  \item[(a)] Stellen Sie $f''(x)$ und $f'''(x)$ durch $f(x)$ dar.
+    \item[(b)] Zeigen Sie, dass $f$ an der Stelle $0$ ein lokales Extremum hat. Welche Bedingung muss $f$ erfüllen, dass es sich um ein Maximum handelt?
+    \item[(c)] Begründen Sie, dass $f$ keine Wendestelle besitzt.
+  \end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] \begin{eqnarray*}
+			f''(x) &=& f(x) + x\cdot f'(x) = f(x) \cdot (1+x^2) \\ 
+			f'''(x) &=& x \cdot f(x) \cdot (3 + x^2) 
+		\end{eqnarray*}
+	\item[(b)] $x_0 = 0$ ist ein kritischer Punkt von $f$, da  $f'(0) = 0\cdot f(0) = 0$. Außerdem gilt $f''(0) = f(0) \not=0$ laut Voraussetzung, also liegt an der Stelle $x_0=0$ ein lokales Extremmum vor. Es handelt sich um ein Maximum, wenn $f(0) < 0$ ist.  
+	\item[(c)] Die notwendige Bedingung luatet $f''(x) = 0$. Da $f''(x) \not= 0$ für alle $x\in \mathbb R$, hat $f$ keine Wendestelle.
+\end{itemize}
+\end{exercisebox} 
+
+\begin{exercisebox}[Kurvendiskussion]
+	Führen Sie für die Funktion $f$ eine Kurvendiskussion durch: \[ f: x\mapsto \frac{x^3}{x^2-1}\] %Bestimmen Sie den Definitionsbereich das Symmetrieverhalten, die Nullstellen, das Verhalten an etwaigen Polstellen, das asymptotische Verhalten für $|x| \to \infty$, Extremwerte, Wendepunkte und den Bildbereich. Skizzieren Sie die dann die Funktion. 
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Die  ersten zwei Ableitungen von $f$ lauten: 
+\begin{eqnarray*}
+	f'(x) &=& \frac{x^4-3\cdot x^2}{(x^2-1)^2} \\
+	f''(x) &=& \frac{2\,x\cdot (x^2+3)}{(x^2-1)^3}
+\end{eqnarray*} 
+\begin{enumerate}
+	\item (Definitionsbereich) $f$ ist überall definiert, wo der Nenner null wird, also \[ x^2-1 = 0 \Leftrightarrow x=\pm 1 \Rightarrow D_f = \mathbb R \setminus\{-1,1\} \,.\]
+	\item (Symmetrie) $f$ ist ungerade, denn \[ f(-x) = \frac{(-x)^3}{(-x)^2-1} = - \frac{x^3}{x^2-1} = -f(x)\,.\]
+	\item (Nullstellen) $f$ hat eine dreifache Nullstelle für $x=0$, denn 
+		\[ f(x) = 0 \Leftrightarrow x^3 = 0 \Leftrightarrow x=0\,.\]
+	\item (Polstellen) $f$ hat in $x=\pm 1$ jeweils eine Polstelle mit Vorzeichenwechsel, denn 
+		\begin{eqnarray*}
+			\lim\limits_{x\downarrow 1 } \frac{x^3}{x^2-1} = \infty \land \lim\limits_{x\uparrow 1 } \frac{x^3}{x^2-1} = -\infty\,, \\
+			\lim\limits_{x\downarrow -1 } \frac{x^3}{x^2-1} = -\infty \land \lim\limits_{x\uparrow -1 } \frac{x^3}{x^2-1} = \infty\,.
+		\end{eqnarray*}
+	\item (Waagerechte Asymptoten) Die Grenzwerte für $|x|\to \infty$ ergeben sich zu 
+		\[ \lim\limits_{x\to \infty}\frac{x^3}{x^2-1} =  \lim\limits_{x\to \infty} x \frac{1}{1-1/x^2} = \infty \land \lim\limits_{x\to -\infty}\frac{x^3}{x^2-1} = - \infty\,. \]
+	\item (Extremstellen) $f$ hat ein lokales Minium bei $(\sqrt{3}|3\sqrt{3}/2)$ und ein lokales Maximum bei $(-\sqrt{3}, -3\sqrt{3}/2)$, denn 
+		\begin{itemize}
+			\item[(a)] Kandidaten für Extremstellen \[ f'(x) = 0 \Leftrightarrow \frac{x^4-3x^2}{(x^2-1)^2} = 0 \Leftrightarrow x^2(x^2-3) = 0 \Leftrightarrow x \in \{ -\sqrt{3}, 0, \sqrt{3}\}\,.\]
+				\item[(b)] Analyse der Kandidaten mit Hilfe der zweiten Ableitung 
+					\begin{eqnarray*}
+						f''(0) &=& 0 \Rightarrow \textnormal{ keine Entscheidung möglich}\,,\\
+						f''(-\sqrt{3}) &=& -3\sqrt{3}/2 \Rightarrow \textnormal{ lokales Minimum}\,,\\
+						f''(\sqrt{3}) &=& 3\sqrt{3}/2 \Rightarrow \textnormal{ lokales Maximum}\,.
+					\end{eqnarray*}
+					Für $x=0$ kann man entweder die dritte Ableitung anschauen oder prüfen, ob die zweite Ableitung einen Vorzeichenwechsel hat beim Übergang von $x=-h$ zu $x=h$. $f''$ hat keinen Vorzeichenwechsel an der Stelle $x=0$, denn \[  f''(x) = \frac{x^2\cdot (x^2-3)}{(x^2-1)^2} < 0 \quad x\in(-\sqrt{3},\sqrt{3}) \setminus\{0\} \] und damit ist $x=0$ keine Extremstelle.
+       		\end{itemize}
+				\item (Wendestellen) Kandidaten für Wendestellen sind die kritischen Puntke der zweiten Ableitung, also \[ f''(x) = 0 \Leftrightarrow \frac{2x(x^2+3)}{(x^2-1)^2} = 0\,, \] das heißt im Definitionsbereich nur für $x=0$. Die zweite Ableitung ändert dort ihr Vorzeichen, also liegt in $(0|0) $ ein Wendepunkt vor.
+				\item (Bildbereich) Der Bildbereich ist $\mathbb R$.
+			\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Newton-Verfahren] %Andreas
+	Gegeben ist die Funktion 
+	\[ f:\mathbb R \to \mathbb R, \; x\mapsto f(x) = e^{-x} - \sin(x)\]
+	und $x_0 = 0$. Gesucht ist eine Nullstelle $\tilde x $ der Funktion f. 
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die lineare Approximation $t(x) = mx+b$ an der Stelle $x_0$.
+		\item[(b)] Stellen Sie die Iterationsvorschrift für das Newtonverfahren auf.
+		\item[(c)] Berechnen Sie die ersten Iterierten des Newton-Verfahrens und geben Sie eine Schätzung für die Lösung an.
+	\end{itemize}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] Es ist  
+		\[ f'(x) = -e^{-x} - \cos(x), \; f'(x_0) = f'(0) = -2\] 
+		und damit lautet die Tangentengleichung 
+		\[ t(x) = f'(x_0) (x-x_0) + f(x_0) = (-2) x (x-0) +1 = 1-2x\,.\] 
+	\item[(b)] Es gilt 
+		\[ x_{k+1} = x_k - \frac{e^{-x_k} - \sin(x_k) }{-e^{-x_k} - \cos(x_k)}\,.\]
+		\item[(c)] Eine Näherung für die Nullstelle ist $\tilde x \approx 0.58853274398 $.
+	\end{itemize}
+\end{exercisebox}

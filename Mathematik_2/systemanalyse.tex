@@ -1,0 +1,324 @@
+\section{Systemanalyse}\label{MA2-systemanalyse}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem ein lineares zeitinvariantes System (LTI-System) als Abbildung $u(t)\mapsto y(t)$ interpretieren & \\
+    \tabitem aus einer linearen Differentialgleichung die Übertragungsfunktion $H(s)$ bestimmen & \\
+    \tabitem Polstellen einer Übertragungsfunktion berechnen und deren Bedeutung erklären & \\
+    \tabitem das Polstellenkriterium zur Beurteilung der asymptotischen Stabilität anwenden & \\
+    \tabitem den Frequenzgang $H(i\omega)$ berechnen und Betrag sowie Phase physikalisch interpretieren & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem lineare Differentialgleichungen lösen können & \abschnittsverweis{MA2-lineare-differentialgleichungen} \\
+    \tabitem die Laplace-Transformation und ihre Eigenschaften anwenden können & \abschnittsverweis{MA2-laplacetransformation} \\
+    \tabitem mit komplexen Zahlen und Exponentialfunktionen umgehen können & \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-systemanalyse-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Übertragungsfunktion}
+
+In der Elektrotechnik, Informationstechnik und Regelungstechnik bezeichnet man als
+\emph{System} eine Abbildung, die einem Eingangssignal \(u(t)\) ein Ausgangssignal
+\(y(t)\) zuordnet,
+\[
+u(t)\longmapsto y(t).
+\]
+
+Das Eingangssignal beschreibt die äußere Anregung des Systems, das Ausgangssignal dessen Reaktion. Beispiele sind
+
+\begin{itemize}
+\item ein elektrisches Netzwerk (Spannung \(\rightarrow\) Strom),
+\item ein Feder-Dämpfer-System (Kraft \(\rightarrow\) Auslenkung),
+\item ein digitaler Filter (Messsignal \(\rightarrow\) gefiltertes Signal).
+\end{itemize}
+
+Viele technische Systeme lassen sich durch lineare Differentialgleichungen beschreiben, etwa
+
+\[
+y''(t)+a\,y'(t)+b\,y(t)=u(t),
+\qquad
+y(0)=y_0,\quad y'(0)=y_1.
+\]
+
+Mit Hilfe der Laplace-Transformation wird dieses Anfangswertproblem in eine algebraische Gleichung im \(s\)-Bereich überführt:
+
+\begin{align}
+y''+ay'+by=u
+&\Longrightarrow
+Y(s)(s^2+as+b)
+=
+U(s)+(s+a)y_0+y_1.
+\end{align}
+
+Zur Beschreibung des Systemverhaltens interessiert man sich häufig ausschließlich für den Einfluss des Eingangssignals. Deshalb betrachtet man den Spezialfall der
+\emph{Nullanfangsbedingungen}\footnote{Mit Nullanfangsbedingungen ist die homogene Lösung trivial \(y_h = 0\). \(y_h\) spielt innerhalb der speziellen Lösung  des Anfangswertproblems, \(y = y_h + y_p\), keine Rolle und die Übertragungsfunktion offenbart die Charakteristik allein der partikuläre Lösung.}
+\[
+y(0)=0,\qquad y'(0)=0.
+\]
+
+Dann gilt
+
+\[
+Y(s)(s^2+as+b)=U(s),
+\]
+
+und die \textbf{Übertragungsfunktion} ist definiert als
+
+\[
+H(s)=\frac{Y(s)}{U(s)}
+=\frac{1}{s^2+as+b}.
+\]
+
+Sie beschreibt das Eingang--Ausgangsverhalten eines linearen Systems bei Nullanfangsbedingungen.
+
+\subsection{Stabilität}
+
+Die Stabilität eines \emph{linearen zeitinvarianten} (LTI) Systems ist leicht zu analysieren. Das schauen wir uns nun an, zuvor aber noch die Definition für ein LTI-System:
+
+\begin{defbox}{Lineares zeitinvariantes System (LTI-System)}{ }
+Ein System heißt \emph{linear zeitinvariant} (LTI), wenn gilt:
+
+\begin{itemize}
+	\item \textbf{Linearität:}
+	Für alle Eingangssignale $u_1,u_2$ und Skalare $\alpha,\beta$
+	gilt
+	\[
+		S(\alpha u_1 + \beta u_2)
+		=
+		\alpha S(u_1) + \beta S(u_2).
+	\]
+
+	\item \textbf{Zeitinvarianz:}
+	Wird das Eingangssignal um $\tau$ verschoben,
+	so verschiebt sich das Ausgangssignal um denselben Betrag:
+	\[
+		u(t-\tau) \longrightarrow y(t-\tau).
+	\]
+\end{itemize}
+\end{defbox}
+Für ein LTI-System lassen sich viele Eigenschaften unmittelbar aus der
+Übertragungsfunktion ablesen. Besonders wichtig ist die Lage ihrer Polstellen,
+also der Nullstellen des Nennerpolynoms.
+
+Für
+
+\[
+H(s)=\frac{1}{s^2+as+b}
+\]
+
+ergeben sich die Pole als Lösungen der Gleichung
+
+\[
+s^2+as+b=0,
+\]
+
+also
+
+\[
+s_{1,2}
+=
+\frac{-a\pm\sqrt{a^2-4b}}{2}.
+\]
+
+Je nach Diskriminante treten reelle oder komplex konjugierte Polstellen auf.
+
+Jede Polstelle \(s=\alpha+i\beta\) erzeugt im Zeitbereich einen Faktor
+\(e^{\alpha t}\). Deshalb entscheidet allein der Realteil der Pole über das
+Langzeitverhalten des Systems:
+
+\begin{itemize}
+\item \(\alpha<0\): exponentielles Abklingen (asymptotisch stabil),
+\item \(\alpha>0\): exponentielles Wachstum (instabil),
+\item \(\alpha=0\): keine Abklingen.
+\end{itemize}
+
+\begin{theorembox}{Polstellenkriterium (LTI)}{ }
+Ein LTI-System ist \emph{asymptotisch stabil} genau dann, wenn alle Polstellen
+von $H(s)$ in der linken Halbebene liegen:
+\[
+	\mathrm{Re}(s_k)<0\,.
+\]
+\end{theorembox}
+
+
+\noindent{\textbf{Bemerkung:}}
+Bei Differentialgleichungen höherer Ordnung kann auch der Fall \(\operatorname{Re}(\lambda)=0\) zu einem instabilen Verhalten führen, wenn eine Polstelle auf der imaginären Achse mehrfach auftritt.  Der Grund ist, dass bei einer Polstelle der Vielfachheit \(l\) zusätzliche Lösungen der Form
+\[
+t^{k}e^{\lambda t}, \qquad k=1,\dots,l-1,
+\]
+zum homogenen Lösungsraum gehören. Da diese Terme für
+\(\operatorname{Re}(\lambda)=0\) unbeschränkt wachsen, ist das System
+instabil.
+
+
+\begin{exabox}[Gedämpftes Federpendel: Pole der Übertragungsfunktion]
+
+Betrachten wir nun dasselbe gedämpfte Federpendel mit äußerer Anregung:
+
+\[
+m\,\ddot x+\rho\,\dot x+D\,x=u(t) \,.
+\]
+
+Dividiert man durch \(m\), so erhält man
+
+\[
+\ddot x+\frac{\rho}{m} \, \dot x+\frac{D}{m} \,x=\frac{1}{m} \, u(t) \,.
+\]
+
+Mit den Bezeichnungen
+
+\[
+2\zeta\omega_0=\frac{\rho}{m}\, ,
+\qquad
+\omega_0^2=\frac{D}{m}
+\]
+
+lässt sich dies schreiben als
+
+\[
+\ddot x+2\zeta\omega_0 \,\dot x+\omega_0^2 \,x=\frac{1}{m} \,u(t) \,.
+\]
+
+Die zugehörige Übertragungsfunktion besitzt im Nenner dasselbe charakteristische Polynom wie das homogene System:
+
+\[
+H(s)
+=
+\frac{1/m}{s^2+2\zeta\omega_0 \, s+\omega_0^2} \,.
+\]
+
+Die Pole der Übertragungsfunktion sind daher
+
+\[
+s_{1,2}
+=
+-\zeta\omega_0
+\pm
+\omega_0\sqrt{\zeta^2-1}.
+\]
+
+Diese Pole entsprechen genau den Eigenwerten der Systemmatrix:
+
+\[
+s_{1,2}=\lambda_{1,2} \,.
+\]
+
+Damit ergibt sich:
+
+\begin{itemize}
+\item \(\zeta>1\):
+	zwei verschiedene negative reelle Pole \(\Rightarrow\)  Überdämpfung, monotones Abklingen,
+
+\item \(\zeta=1\):
+	doppelter negativer reeller Pol  \(\Rightarrow\) kritische Dämpfung,
+
+\item \(\zeta<1\):
+	komplex konjugierte Pole mit negativem Realteil  \(\Rightarrow\) gedämpfte Schwingung.
+\end{itemize}
+
+Die Übertragungsfunktion bestätigt das, was bereits die Eigenwerte des homogenen Systems aus Abschnitt \abschnittsverweis{MA2-systemanalyse} gezeigt haben:
+Das zeitliche Verhalten des Systems wird durch die Lage der Nullstellen des charakteristischen Polynoms bestimmt.
+\end{exabox}
+%\begin{exabox}[Gedämpfter Oszillator]
+%
+%Gegeben:
+%
+%\[
+%y'' + 2\zeta\omega_0 \cdot  y' + \omega_0^2 \cdot y = u(t).
+%\]
+%
+%Übertragungsfunktion:
+%
+%\[
+%H(s) = \frac{1}{s^2 + 2\zeta\omega_0 s + \omega_0^2}.
+%\]
+%
+%Polstellen:
+%
+%\[
+%s_{1,2} = -\zeta\omega_0 \pm \omega_0\sqrt{\zeta^2 - 1}.
+%\]
+%
+%Fälle:
+%
+%\begin{itemize}
+%\item $\zeta > 1$: Überdämpfung (reelle Pole)
+%\item $\zeta = 1$: Kritische Dämpfung
+%\item $\zeta < 1$: Schwingung (komplexe Pole)
+%\end{itemize}
+%
+%Die Pole der Übertragungsfunktion erklären direkt das physikalische Verhalten.
+%\end{exabox}
+\subsection{Frequenzgang}
+
+Neben der Stabilität interessiert häufig die Reaktion eines LTI-Systems auf
+harmonische Eingangssignale. Dazu wertet man die Übertragungsfunktion auf der
+imaginären Achse aus,
+
+\[
+s=i\omega,\qquad \omega\in\mathbb R.
+\]
+
+Die Funktion
+
+\[
+H(i\omega)
+\]
+
+heißt \emph{Frequenzgang}.
+
+Für eine harmonische Anregung
+
+\[
+u(t)=\cos(\omega t)
+\]
+
+ergibt sich im eingeschwungenen Zustand
+
+\[
+y(t)
+=
+|H(i\omega)|
+\cos\!\bigl(\omega t+\varphi(\omega)\bigr),
+\]
+
+wobei
+
+\[
+H(i\omega)
+=
+|H(i\omega)|\,e^{i\varphi(\omega)}.
+\]
+
+Damit beschreibt
+
+\begin{itemize}
+\item \(|H(i\omega)|\) die Amplitudenverstärkung,
+\item \(\varphi(\omega)\) die Phasenverschiebung.
+\end{itemize}
+
+In der Praxis zeichnet man häufig Betrag und Phase als Funktionen von $\omega$ (z.\,B.\ als Bode-Diagramm).
+So kann man auf einen Blick ablesen,
+bei welchen Frequenzen das System verstärkt bzw. dämpft
+und welche Verzögerung (Phasenlage) dabei entsteht.
+
+\begin{itemize}
+	\item In der Elektrotechnik erkennt man, welche Frequenzen ein Filter verstärkt oder dämpft.
+	\item In der Regelungstechnik entscheidet der Frequenzgang über Stabilität und Robustheit eines Reglers.
+	\item In der Mechanik lassen sich Resonanzfrequenzen als starke Amplitudenmaxima im Frequenzgang erkennen.
+\end{itemize}
+
+Die Frequenzganganalyse untersucht somit, wie ein System auf sinusförmige Eingangssignale unterschiedlicher Frequenz reagiert.
+

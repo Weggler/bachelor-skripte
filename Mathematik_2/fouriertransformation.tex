@@ -1,0 +1,143 @@
+\section{Fourier-Transformation (+)}\label{MA2-fouriertransformation}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem die Fourier-Transformierte einer absolut integrierbaren Funktion berechnen & \\
+    \tabitem grundlegende Eigenschaften der Fourier-Transformation anwenden & \\
+    \tabitem die Bedeutung der Fourier-Transformation im Frequenzraum erläutern & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem uneigentliche Integrale berechnen können & \abschnittsverweis{MA2-integration}  \\
+    \tabitem Grenzwerte sicher bilden können & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}  \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-fouriertransformation-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Fragestellung}
+
+Kann man auch für Funktionen, die nicht periodisch, sind ein Spektrum finden? Wenn ja, wie sieht das Spektrum aus und wie berechnet man es? Mit diesen Fragen werden wir uns in diesem Abschnitt beschäftigen. Die Antwort auf die Frage lautet "\,ja, kann man"\, und das Ergebnis ist eine Funktion, die sogenannte Fourier-Transformierte.
+
+\subsection{Definition}
+
+Betrachten wir eine Funktion \(f: \mathbb R \to \mathbb C, t \mapsto f(t)\), die nicht periodisch ist, aber für die gilt:
+\begin{itemize}
+	\item[(a)] $f$ ist stetig differenzierar und
+	\item[(b)] \(f\) ist absolut integrierbar  \(\quad \displaystyle \int\limits_{-\infty}^\infty |f(t)|\,\mathrm{d}t < \infty \,. \)
+\end{itemize}
+
+Mit dem folgenden Trick nähern wir uns langsam der Frage nach dem Spektrum von \(f\):
+\begin{enumerate}
+	\item Wir wählen eine positive, reelle Zahl $T>0$ und fixieren das Intervall $\left(-\frac{T}{2}, \frac{T}{2}\right)$.
+	\item Wir definieren eine periodische Funktion $g$, \(g(t) = g(t+T)\),  die \(f\) periodisch fortsetzt:
+	\[ \forall t\in \left(-\frac{T}{2}, \frac{T}{2}\right): \; g(t) = f(t)\,.  \]
+\end{enumerate}
+
+Die Funktion $g$ erfüllt alle Voraussetzung aus dem vorigen Abschnitt und wir erhalten eine Darstellung von \(g\) als Fourierreihe, insbesondere gilt für alle \(t\in \left(-\frac{T}{2}, \frac{T}{2}\right) \):
+\[\begin{array}{l rcl}
+		-\frac{T}{2} < t < \frac{T}{2}:  & g(t) &=& \displaystyle\sum\limits_{k=-\infty}^\infty \textcolor{blue}{c_k} \cdot  e^{i \, \omega_k \, t} \\
+	\textnormal{Formel für } c_k: & &=& \displaystyle\sum\limits_{k=-\infty}^\infty \left(\textcolor{blue}{\dfrac1T \displaystyle \int\limits_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot  e^{-i \, \omega_k \, t}\, \mathrm{d}t} \right) \cdot  e^{i \, \omega_k \, t}, \quad \omega_k = k\cdot \dfrac{2\pi}{T}\\
+ \textnormal{Relation zu }f: & &=& f(t) \end{array}\]
+
+ Das letzte Gleichheitszeichen gilt per Konstruktion: \(f\) stimmt auf \( \left(-\frac{T}{2}, \frac{T}{2}\right)\) ja mit \(g\) überein! Naja, wenn das so ist, dann schicken wir \(T\) gegen Unendlich und erhalten eine eine Darstellung von \(f\) für alle \(t\in \mathbb R\), oder? Die Idee ist genial und schlägt zwei Fligen mit einer Klappe:
+ \begin{enumerate}
+	 \item wir würden verstehen, was das \textcolor{blue}{Spektrum} von \(f\) ist,
+	 \item wir hätten eine der Fourier-Synthese ähnlich Darstellung von \(f\) gefunden.
+ \end{enumerate}
+ Leider handelt sich bei dem Grenzübergang \(T\to \infty\) um eine mathematisch heikle Angelegenheit: die Variable \(T\) steckt ja überall drin: im Integranden und in den Integrationsgrenzen. Der Grenzübergang klappt für Funktionen, die die Voraussetzungen (a) und (b) erfüllen. Um die Details zu verstehen braucht man mehr mathematische Kenntnisse als wir sie zur Verfügung haben. Versuchen wir trotzdem ein grundsätzliches Verständnis dafür zu entwickeln, was für \(T\to \infty\) passiert.
+
+ Offensichtlich wird für \(T\to\infty\) der Abstand zwischen zwei Kreisfrequenzen beliebig klein! Wir lösen die Bindung an eine diskrete Variable \(\omega_k\) auf, indem wir auf den Laufindex \(k\) verzichten und das geht so:
+ \begin{itemize}
+	 \item Die Kreisfrequenz \(\omega = \omega(k)\) wird als Laufvarible in der Summe benutzt und auf den ganzzahligen Laufindex wird komplett verzichtet,
+	 \item Anstatt \(k\) führen die Weite \(\Delta\omega\) zwischen zwei Frequenzen explizit ein \[ \Delta\omega = \omega_{k+1} - \omega_k = \frac{2\pi}{T} \; \Rightarrow \; \frac{1}{T} = \frac{\Delta \omega}{ 2\pi} \,.\]
+ \end{itemize}
+ Damit
+\[\begin{array}{l rcl}
+\forall t \in \left(-\frac{T}{2}, \frac{T}{2}\right) : & f(t) &=& \displaystyle\sum\limits_{k=-\infty}^\infty \left( \dfrac{1}{T} \,  \displaystyle \int\limits_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot  e^{-i \, \omega_k \, t}\, \mathrm{d}t \right) \cdot  e^{i \, \omega_k \, t} \\
+& &=& \displaystyle\sum\limits_{\omega=-\infty}^\infty \left( \dfrac{\Delta\omega}{2\pi} \,  \displaystyle \int\limits_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot  e^{-i \, \omega \, t}\, \mathrm{d}t \right) \cdot  e^{i \, \omega \, t} \\
+& &=& \displaystyle\sum\limits_{\omega=-\infty}^\infty \dfrac{1}{\sqrt{2\pi}} \left(\dfrac{1}{\sqrt{2\pi}} \,  \displaystyle \int\limits_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cdot  e^{-i \, \omega \, t}\, \mathrm{d}t \right) \cdot  e^{i \, \omega \, t} \cdot \Delta\omega\,,
+\end{array} \]
+das Summensymbol bedeutet, dass $\omega$ schrittweise um $\Delta \omega$ nach \(+\infty\) inkrementiert bzw nach \(-\infty\) dekrementiert wird. Schickt man \(T\to \infty\), so wird aus der Summe ein Integral über die stetige Variable \(\omega\). Es gilt
+\[
+\lim\limits_{T\to\infty} \,\sum\limits_{\omega=-\infty}^\infty \left( \dfrac{1}{2\pi} \int\limits_{-\frac{T}{2}}^{\frac{T}{2}} e^{-i\omega t} f(t) \, \mathrm{d}t\right) \cdot e^{i\omega t} \cdot \Delta \omega = \int\limits_{-\infty}^\infty \left( \dfrac{1}{2\pi} \int\limits_{-\infty}^{\infty} e^{-i\omega t} f(t) \, \mathrm{d}t\right)  e^{i\omega t} \,\mathrm{d}\omega
+\] und \[ \begin{array}{rcl} \forall t \in \mathbb R: \quad f(t) &=& \displaystyle \int\limits_{-\infty}^\infty \left( \dfrac{1}{2\pi}\displaystyle \int\limits_{-\infty}^{\infty} e^{-i\omega t} f(t) \, \mathrm{d}t\right)  e^{i\omega t} \,\mathrm{d}\omega \\ &=& \dfrac{1}{\sqrt{2\pi}} \, \displaystyle \int\limits_{-\infty}^\infty \left( \textcolor{blue}{ \dfrac{1}{\sqrt{ 2\pi}} \, \displaystyle \int\limits_{-\infty}^{\infty} e^{-i\omega t} f(t) \, \mathrm{d}t } \right)  e^{i\omega t} \,\mathrm{d}\omega =  \dfrac{1}{\sqrt{2\pi}} \, \displaystyle \int\limits_{-\infty}^\infty \textcolor{blue}{ \hat f(\omega) } \cdot e^{i\omega t} \,\mathrm{d}\omega \,. \end{array} \]
+Der \textcolor{blue}{ blau eingefärbte Term} ist die Fourier-Transformierte \( \hat f: \omega \to \hat f(\omega)\). Die Fourier-Transformierte stellt das stetige Spektrum zu \(f\) dar.
+
+Die (kontinuierliche) Fourier-Transformierte $\hat f$ einer Funktion $f$ (zu Einschränkungen siehe den vorigen Abschnitt) wird definiert durch:
+\begin{defbox}{Fourier-Transformation und inverse Fourier-Transformation}{ }
+	\begin{itemize}
+		\item Die Abbildung \(\mathcal F: f\to \hat f\) nennt man die Fouiertransformation [Fourier transform]. Die Fouriertransformation ist ein Basiswechsel: vom Zeitbereich in den Frequenzbereich.
+		\item Die Fourier-Transformierte \(\hat f\) zu einer Funktion $f$ berechnet sich wie folgt:
+	\[
+		\hat f(\omega) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} f(t)\cdot e^{-i\, \omega\, t}\, \mathrm{d}t\,.
+	\]
+\item Die Abbildung \(\mathcal F^{-1}: \hat f\to f\) nennt man die inverse Fouiertransformation [inverse Fourier transform]. Die inverse Fouriertransformation ist ein Basiswechsel: vom Frequenzbereich in den Zeitbereich.
+\item Die Funktion \(f\) kann man bei gegebener Fourier-Transformierten \(\hat f\) wie folgt berechnen:
+	\[
+		f(t) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} \hat f(\omega)\cdot  e^{i\,\omega\, t} \, \mathrm{d}\omega\,.
+	\]
+	\end{itemize}
+\end{defbox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Ähnlich wie bei der Berechnung der Fourierkoeffizienten, ist der Fall \(\omega = 0 \) separat zu betrachten: \[ \begin{cases} \omega=0:\quad \hat f(0) &= \dfrac{1}{\sqrt{2\pi}} \displaystyle{ \int\limits_{-\infty}^\infty } f(t) \, \mathrm{d} t\,, \\ \omega\not=0:\quad \hat f(\omega) &= \dfrac{1}{\sqrt{2\pi}} \displaystyle{ \int\limits_{-\infty}^\infty } f(t) \cdot e^{-i\,\omega\, t}\,\mathrm{d}t\,. \end{cases}\] Mit einem Grenzprozess läßt sich verifizieren, dass gilt \[ \lim\limits_{\omega\to 0} \hat f(\omega) = \hat f(0)\,.\]
+	\item Wie die Fourier-Analyse eines periodischen Signals ist die Fourier-Transformation eine Umwandlung des Signal von Zeit- in Frequenzdarstellung (Basiswechsel).
+	\item Die inverse Fourier-Transformation macht das Umgekehrte. Anders als bei periodischen Signalen ist die Synthese vollkommen äquivalent zur Analyse! (Bei periodischen Signalen ist die Fourier-Synthese das Rekonstruieren des Signals im Zeitbereich mittels Fourier-Reihe.)
+	\item In der Literatur sieht man die Fourier-Transformierte auch mit anderen Vorfaktoren. %ist der Faktor $\frac12 \pi$ nicht immer per Quadratwurzel zu gleichen Teilen in die Fourier-Transformation und die inverse Fourier-Transformation eingebaut. Es können also andere Vorfaktoren auftauchen.
+	\item Und statt $\hat f$ mit Hut sieht man auch $\tilde f$ mit Tilde.
+	\item Was ein Echtzeit-Spectrum-Analyzer zeigt,  ist nicht die  Fourier-Transformation, sondern immer nur die Fourier-Reihe eines kurzen, weich abgeschnittenen Ausschnitts des Signals, praktisch immer per FFT berechnet.
+	\item Die Fourier-Transformation ist eine lineare Abbildung:\marginpar{\small Aufgabe}
+		 \[
+			 \begin{cases} \mathcal F(f+g) = \mathcal F(f) + \mathcal F(g) \,,\\[2ex]
+				 \mathcal F(\lambda\cdot f) = \lambda\cdot \mathcal F(f) \,.
+		 \end{cases}
+		 \]
+	 \item Die Fourier-Transformation verändert die Länge nicht, sie verhält sich wie eine Drehung. Es gilt der Satz von Plancherel (entsprechendes gilt für die Fourier-Reihe und heißt der Satz von Parseval):\marginpar{\small Aufgabe}
+		\[
+			\|f\|^2 = \|\mathcal F(f)\|^2 \Leftrightarrow \langle f, f \rangle = \langle \hat f, \hat f\rangle  \Rightarrow \int_{-\infty}^{\infty} |f(t)|^2 \,\mathrm{d}t = \int_{-\infty}^{\infty} |\hat f(\omega)|^2 \,\mathrm{d}\omega \,.
+		\]
+Praktisch bedeutet dies, dass man die physikalische Arbeit sowohl in der Zeit- als auch Frequenzdarstellung berechnen kann.
+\end{itemize}
+
+\begin{exabox}{Fourier-Transformation}{}
+	Funktion:
+	\[ f:\mathbb R \to \mathbb R, t\mapsto e^{-|t|} \]
+	Fourier-Transformation:
+	\begin{eqnarray*}
+		\omega=0: \quad \hat f(0) &=& \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f(t) \, \mathrm{d} t =  \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^0 e^t \, \mathrm{d} t +  \frac{1}{\sqrt{2\pi}}\int\limits_{0}^\infty e^{-t} \, \mathrm{d} t \\
+	&=&  \frac{1}{\sqrt{2\pi}}\Big[ e^t \Big]_{-\infty}^0 +  \frac{1}{\sqrt{2\pi}}\Big[-e^{-t} \Big]_{0}^\infty  =  \frac{1}{\sqrt{2\pi}}\left( 1 - 0 \right) +  \frac{1}{\sqrt{2\pi}}\left( 0 + 1 \right)   = \frac{2}{\sqrt{2\pi}}\,.
+\end{eqnarray*}
+	\begin{eqnarray*}
+	\omega\not=0:\quad \hat f(\omega) &=& \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f(t) \cdot e^{-i\omega t} \, \mathrm{d} t =  \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^0 e^t \cdot e^{-i\omega t} \, \mathrm{d} t +  \frac{1}{\sqrt{2\pi}}\int\limits_{0}^\infty e^{-t} \cdot e^{-i\omega t} \, \mathrm{d} t \\
+	&=&  \frac{1}{\sqrt{2\pi}}\Big[\frac{e^{(1-i\omega)t}}{1-i\omega} \Big]_{-\infty}^0 +  \frac{1}{\sqrt{2\pi}}\Big[\frac{e^{-(1+i\omega)t}}{-(1+i\omega)} \Big]_{0}^\infty \\
+	&=&  \frac{1}{\sqrt{2\pi}} \frac{1}{1-i\omega}\left( 1 - \underbrace{\lim\limits_{t\to-\infty}e^{(1-i\omega)t}}_{\displaystyle{\stackrel{(*)}{=}} 0 } \right)-  \frac{1}{\sqrt{2\pi}} \frac{1}{1+i\omega}\left( \underbrace{\lim\limits_{t\to \infty} e^{-(1+i\omega)t}}_{\displaystyle{\stackrel{(*)}{=} 0}} - 1\right)  \\
+		&=&  \frac{1}{\sqrt{2\pi}}\frac{1}{1-i\omega} +  \frac{1}{\sqrt{2\pi}}\frac{1}{1+i\omega}  =  \frac{1}{\sqrt{2\pi}}\frac{2}{1+\omega^2} = \sqrt{\frac{2}{\pi}} \frac{1}{1+\omega^2}\,,
+	\end{eqnarray*}
+	wobei die Grenzwerte in \( (*)\)  null sind, weil die komplexe Exponentialfunktion beschränkt ist und der reelle Anteil gegen null konvergiert: \[ \lim\limits_{t\to\pm\infty} \left| e^{\mp t \mp i \omega t} \right| \leq \lim\limits_{t\to\infty}e^{-|t|} \cdot 1  = 0\,. \]
+\end{exabox}
+
+
+Anders als bei der Fourier-Reihe entwickelt man seltener die Fourier-Transformierte in reeller Form. Für Signale mit Symmetrieeigenschaften kann das aber sinnvoll sein. Es gilt\marginpar{\small Aufgabe}
+
+\begin{defbox}{Fourier-Transformation für Signale mit Symmetrieeigenschaften}{ }
+	\begin{itemize}
+		\item[(a)] Die Fourier-Transformierte einer Funktion $f$ mit \( f(t) = f(-t)\) lautet:
+	\[
+		\hat f(\omega) = \frac{2}{\sqrt{2\pi}} \int\limits_{0}^{\infty} f(t) \cdot \cos(\omega \, t) \, \mathrm{d}t\,.
+	\]
+		\item[(b)] Die Fourier-Transformierte einer Funktion $f$ mit \( f(t) = -f(-t)\) lautet:
+	\[
+		\hat f(\omega) = \frac{-2\,i}{\sqrt{2\pi}} \int\limits_{0}^{\infty} f(t) \cdot \sin(\omega \, t) \, \mathrm{d}t\,.
+	\]
+	\end{itemize}
+\end{defbox}

@@ -1,0 +1,231 @@
+\section*{Vektorräume Lösungen}\label{MA1-vektorraum-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-vektorraum}{ (Abschnitt \abschnittsverweis{MA1-vektorraum})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Körperaxiome]
+  Ist die folgende Aussage wahr oder falsch? 
+  \begin{center} "\,Das Skalarprodukt ist eine Multiplikation von Vektoren."\end{center}
+	\noindent\textbf{Lösung:}\newline
+	Diese Aussage ist falsch. Wäre es eine Multiplikation von Vektoren, dann müsste das Ergebnis wieder ein Vektor sein. 
+\end{exercisebox}
+
+\begin{exercisebox}[Vektorraum]
+	Prüfen Sie, ob die folgenden Mengen Vektorräume über \(\mathbb R\) sind oder nicht, geben Sie ggf die Dimension und eine Basis an. 
+	\begin{itemize}
+		\item[(a)] \( M = \{ \left(  a,\; 0, \;b\right)^\intercal,\; a, b\in\mathbb R\} \)
+		\item[(b)] \( M = \{ \left( x, \; y\right)^\intercal:\; 2x-3y = 0,\; x,y\in\mathbb R\} \)
+		\item[(c)] \( M = \{ \left( a, \; a^2\right)^\intercal,\; a\in\mathbb R\} \)
+	\end{itemize}
+	\noindent\textbf{Lösung:}\newline
+	\begin{itemize}
+		\item[(a)] \(M\) ist ein Vektorraum über \(\mathbb R\), weil 
+			\begin{itemize}
+				\item die Summe zweier beliebiger Vektoren aus \(M\) wieder in \(M\) liegt: \[ \forall\; \boldsymbol v_1 = \left(\begin{array}{c} a_1 \\ 0 \\ b_1\end{array}\right), \boldsymbol v_2 = \left(\begin{array}{c} a_2 \\0 \\ b_2\end{array}\right)  \in M:\quad   \left(\begin{array}{c} a_1 \\ 0 \\ b_1\end{array}\right) + \left(\begin{array}{c} a_2 \\0 \\ b_2\end{array}\right) = \left( \begin{array}{c} a_1 + a_2 \\0 \\ b_1 + b_2 \end{array}\right) \in M\,. \]    \( M = \{ \left(  a,\; 0, \;b\right)^\intercal,\; a, b\in\mathbb R\} \)
+				\item jedes skalare Vielfache eines Vektors aus \(M\) wieder in \(M\) liegt: \[ \forall\; \lambda \in \mathbb R: \; \lambda \left( \begin{array}{c} a \\0 \\b\end{array}\right) = \left( \begin{array}{c} \lambda a \\0 \lambda b\end{array}\right) \in M \,.\]
+			\end{itemize}
+			Jeder Vektor aus \(M\) ist als lineare Kombination der Einheitsvektoren \(\boldsymbol e_1 \) und \( \boldsymbol e_3\) darstellbar: \[ \forall \; \boldsymbol v= \left(\begin{array}{c} a \\ 0 \\ b\end{array}\right)\in M:\quad  \boldsymbol v = a\left( \begin{array}{c} 1 \\0 \\0\end{array}\right) + b\left( \begin{array}{c} 0 \\0 \\1\end{array}\right) \] und damit spannt \( \{ \boldsymbol e_1, \boldsymbol e_3\} \) den Vektorraum \(M\) auf und \(M\) ist von der Dimension zwei. 
+		\item[(b)] \(M\) ist ein Vektorraum über \(\mathbb R\), weil 
+			\begin{itemize}
+				\item die Summe zweier beliebiger Vektoren \(\boldsymbol v_1, \boldsymbol v_2\) aus \(M\) wieder in \(M\) liegt: \(\boldsymbol v_1 + \boldsymbol v_2 \in M\)? Zwei beliebige Vektoren aus \(M\) sehen so aus \[\boldsymbol v_1 = \left(\begin{array}{c} x_1 \\ y_1\end{array}\right), \boldsymbol v_2 = \left(\begin{array}{c} x_2 \\y_2\end{array}\right) \] und erfüllen \[  2x_1 - 3y_1 = 0 \; \land 2x_2 - 3y_1 = 0\,.\] Die Koeffizienten der Summe der Vektoren, \[ \boldsymbol v_s = \left(\begin{array}{c} x_s \\ y_s \end{array}\right)= \boldsymbol v_1 + \boldsymbol v_2 = \left(\begin{array}{c} x_1 + x_2 \\ y_1 + y_2 \end{array}\right) \] erfüllen also \[  2 x_s - 3y_s = 2\left( x_1 + x_2\right) - 3 \left(y_1+y_2\right) = \left( 2x_1 -3y_1 \right) +  \left( 2x_2 -3y_2 \right) = 0+0 = 0\] und ist damit  Element der Menge \(M\). 
+			\item jedes skalare Vielfache eines Vektors aus \(M\) wieder in \(M\) liegt: \[ \forall\; \lambda \in \mathbb R: \; \lambda \left( \begin{array}{c} x \\y\end{array}\right) = \left( \begin{array}{c} \lambda x \\\lambda y\end{array}\right) \in M \textnormal{mit}\; 2(\lambda x) - 3 ( \lambda y) = \lambda (2x-3y) = \lambda \cdot 0 = 0 \,.\]
+			\end{itemize}
+			Die Bedingung, die die Vektoren aus \(M\) erfüllen bedeutet aber, dass die Komponenten der Vektoren linear voneinander abhängen und zwar so: \[ 2x-3y= 0 \Rightarrow x = \dfrac32 y\,.\] Im anderen Worten: jeder Vektor, der in \(M\) liegt sieht so aus \[ \boldsymbol v = \left(\begin{array}{c} \dfrac32 \lambda \\  \lambda \end{array}\right) = \lambda \left( \begin{array}{c} \dfrac32 \\1 \end{array}\right)\,, \quad \lambda \in \mathbb R\,.\] Der Vektorraum \(M \subsetneq \mathbb R^2\) wird also von dem Vektor \(\boldsymbol e = \left( \dfrac32, \; 1\right)^\intercal \) aufgespannt (erzeugt) und \(M\) ist von der Dimension eins: \( \mathrm{dim}(M) = 1\).
+		\item[(c)] \( M \) ist kein Vektorraum und das zeigt man am schnellsten, indem man zwei konkrete Vektoren wählt und zeigt, dass deren Summe nicht wieder in \(M\) liegt. Beispielsweise für \(a_1=2\) und \(a_2=1\) \[ \boldsymbol v_1 + \boldsymbol v_2 = \left( \begin{array}{c} 2 \\4\end{array}\right) + \left( \begin{array}{c} 1 \\1\end{array}\right) =  \left( \begin{array}{c} 3 \\5\end{array}\right) \not\in M\,,\] da \(3^2 \not=5\). 
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Vektorraum]
+	Es seien $\boldsymbol p$ und $\boldsymbol n$ Vektoren des $\mathbb R^3$. Dabei sei \(\boldsymbol n\neq\boldsymbol 0\). \begin{itemize}
+		\item[(a)] Welches geometrische Objekt stellt die Lösungsmenge \(E\) der folgenden Gleichung(en) dar? 
+	\[ \boldsymbol x \in \mathbb R^3: \; \langle \left( \boldsymbol x - \boldsymbol p \right), \boldsymbol n \rangle = 0\]
+\item[(b)] Ist \(E\) ein reeller Vektorraum? Falls ja, geben Sie die Dimension und eine Basis an.
+	\end{itemize}
+	\noindent\textbf{Lösung:}\newline
+	 \begin{itemize}
+		 \item[(a)]  
+	\begin{minipage}{0.40\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_ebene_normalenform.png}
+\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+\( \langle \left( \boldsymbol x - \boldsymbol p \right), \boldsymbol n \rangle = 0 \) bedeutet geometrisch,
+		\begin{itemize}
+			\item dass alle Vektoren \(\boldsymbol x - \boldsymbol p\) senkrecht zu dem Vektor \(\boldsymbol n\) liegen.
+			\item dass alle Vektoren der Form \(\boldsymbol x -\boldsymbol p\) komplett in einer Ebene liegen (\(\boldsymbol p\) ist der Aufhängepunkt der Ebene).
+			\item dass die Vektoren \(\boldsymbol x\) gerade die Raumpunkte sind, die zu der Ebene gehören. 
+\end{itemize}
+\end{minipage}
+Eine Ebene in \(\mathbb R^3\) ist also die Angabe eines Aufhängepunkts und eines Normalenvektors eindeutig bestimmt. \[ E= \left\{ \boldsymbol x\in \mathbb R^3: \quad \langle \boldsymbol x- \boldsymbol p, \boldsymbol n\rangle = 0 \right\}\,.\]
+\item[(b)] 
+	\begin{minipage}{0.40\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_ebene_parameterdarstellung.png}
+\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+		\begin{itemize}
+            \item \textbf{Die abgebildete Ebene ist kein Vektorraum:}
+            Sie geht nicht durch den Ursprung und enthält deshalb den
+            Nullvektor nicht. Damit fehlt das neutrale Element der üblichen
+            Vektoraddition.
+            \item Die Vektoren \(\boldsymbol u\) und \(\boldsymbol v\) sind
+            Richtungsvektoren der Ebene. Für die dargestellte Ebene gilt
+            \[
+            E=\boldsymbol p+\mathrm{LH}\{\boldsymbol u,\boldsymbol v\}.
+            \]
+            \item Allgemein ist \(E\) genau dann ein Untervektorraum von
+            \(\mathbb R^3\), wenn
+            \[
+            \boldsymbol 0\in E
+            \quad\Longleftrightarrow\quad
+            \langle\boldsymbol p,\boldsymbol n\rangle=0.
+            \]
+            Dann geht die Ebene durch den Ursprung, hat Dimension zwei und
+            zwei linear unabhängige Richtungsvektoren bilden eine Basis.
+\end{itemize}
+\end{minipage}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Basis]
+		Gegeben sei der Vektor \( \boldsymbol a^\intercal = \left( \sqrt{3}, 1\right)^\intercal\). Bestimmen Sie zwei Vektoren \(\boldsymbol  v\) und \(\boldsymbol w\), die eine Orthonormalbasis des \(\mathbb R^2\) sind und \(\boldsymbol v \parallel \boldsymbol a\).
+		\vspace{0.2cm}
+	\noindent\textbf{Lösung:}\newline
+	Merken Sie sich: zu gegebenen Vektor in \(\mathbb R^2\) ist ein senkrechter Vektor einfach zu bestimmen: man dreht einfach die Koeffizienten um und fügt zu einem ein Minuszeichen hinzu:\marginnote{Nur \(\mathbb R^2\)}   
+	\[ \forall\; x_1, x_2 \in \mathbb R:\quad  \left(\begin{array}{c} x_1 \\x_2 \end{array} \right) \perp \left( \begin{array}{c} -x_2 \\x_1\end{array}\right) \]
+	Und damit lösen wir die Aufgabe in zwei Schritten:
+	\begin{enumerate} 
+		\item Normierung des Vektors \(\boldsymbol a\) liefert den ersten Basisvektor: \[ \hat {\boldsymbol e}_2 = \dfrac{1}{\sqrt{ (\sqrt{3})^2 + 1^2} } \left( \begin{array}{c} \sqrt{3} \\ 1\end{array}\right) = \dfrac12 \left( \begin{array}{c} \sqrt{3} \\ 1\end{array}\right) \,.\]
+		\item Bestimmung eines normierten Vektors, der zu \(\boldsymbol a\) senkrecht ist: \[ \boldsymbol e_2 = \left( \begin{array}{c}-1 \\  \sqrt{3} \end{array}\right) \Rightarrow \hat{ \boldsymbol e}_2 = \dfrac{1}{2}\left( \begin{array}{c}-1 \\  \sqrt{3} \end{array}\right)\,.\]
+	\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Dimension]
+	Welche Dimension haben die folgenden reellen Vektorräume?
+	\begin{itemize}
+		\item[(a)] $ \mathbb V_1 = \left\{ \boldsymbol x \in \mathbb R^n: \boldsymbol x = \alpha \boldsymbol a\,, \; \boldsymbol a \in \mathbb R^n\setminus\{\boldsymbol 0\} \right\} $
+		\item[(b)] $ \mathbb V_2 = \left\{ \boldsymbol x \in \mathbb R^3: \boldsymbol x = \alpha \boldsymbol a + \beta \boldsymbol b\,, \; \boldsymbol b,\boldsymbol a \in \mathbb R^3\setminus\{ \boldsymbol 0 \}, \; \boldsymbol a \times \boldsymbol b =0 \right\}$
+	\end{itemize}
+
+\noindent \textbf{Lösung:}
+	\begin{itemize}
+		\item[(a)] Die Menge $M_1:=\left\{ \boldsymbol x \in \mathbb R^n: \boldsymbol x = \alpha \boldsymbol a\,, \; \boldsymbol a \in \mathbb R^n\setminus\{\boldsymbol 0\}\right\}$ beschreibt eine Gerade im Raum, die durch den Ursprung verläuft. Es gibt einen frei wählbaren Parameter, also gilt $\mathrm{dim}M = 1$.
+		\item[(b)] Die Menge $M_2:=\left\{ \boldsymbol x \in \mathbb R^3: \boldsymbol x = \alpha \boldsymbol a + \beta \boldsymbol b\,, \; \boldsymbol a, \boldsymbol b \in \mathbb R^3\setminus\{\boldsymbol 0\}, \boldsymbol a\times \boldsymbol b = 0\right\}$ beschreibt dieselbe Gerade wie die Menge $M_1$ und hat damit auch Dimension eins. Da die Vektoren $\boldsymbol a$ und $\boldsymbol b$ parallel zueinander sind, gilt \[ \boldsymbol x = \alpha \boldsymbol a + \beta \boldsymbol b = \alpha \boldsymbol a + \beta (\lambda \boldsymbol a) = \underbrace{(\alpha + \beta\cdot \lambda)}_{\displaystyle{=t}} \boldsymbol a\] 
+				Bemerkung: wären die Vektoren $\boldsymbol a$ und $\boldsymbol b$ linear unabhängig, dann wäre $M_2$ eine Ebene im Raum mit Dimension zwei.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Krummlinige Koordinaten]
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die Polarkoordinaten eines beliebigen Vektors \(\boldsymbol x \in \mathbb R^2\setminus \{\boldsymbol 0\}\).
+		\item[(b)] Zeigen Sie, dass  die Vektoren \[ \boldsymbol e_{\varphi} = \left( \begin{array}{c} -\sin(\varphi) \\\cos(\varphi) \end{array}\right), \; \boldsymbol e_{r} = \left( \begin{array}{c} \cos(\varphi) \\\sin(\varphi) \end{array}\right) \; \textnormal{mit}\; r\in [0,\infty), \; \varphi\in (-\frac{\pi}{2}, \frac{\pi}{2}] \] eine Orthonormalbasis des \(\mathbb R^2\) sind.
+			\item[(c)] Skizzieren Sie für \(r=1\) und \(\varphi = \pi/4\) die Orthonormalbasen \( \{\boldsymbol e_x, \boldsymbol e_y\}  \) und \( \{\boldsymbol e_r, \boldsymbol e_\varphi\}  \) in einem gemeinsamen Koordinatensystem.  
+	\end{itemize}
+\noindent \textbf{Lösung:}
+	\begin{itemize}
+		\item[(a)] Die kartesischen Koordinaten von \(\boldsymbol x\) seien \(x_1\) und \(x_2\), also \( \boldsymbol x \widehat = (x_1, x_2\). Die Polarkoordinaten \( (r, \varphi)\) lauten \[ (r, \varphi) = ( \sqrt{ x_1^2 + x_2^2} , \mathrm{atan2}\left(x_2, x_1\right) \] 
+				\item[(b)] Zu zeigen ist, dass die Vektoren aufeinander senkrecht stehen (Skalarprodukt!) und jeweils die Norm eins besitzten, also 
+					\begin{eqnarray*} \langle \boldsymbol e_\varphi, \boldsymbol e_r\rangle &=& -\sin(\varphi) \cdot \cos(\varphi) + \cos(\varphi) \cdot \sin(\varphi) = 0\,,\\ 
+						|\boldsymbol e_\varphi| &=& \sqrt{ (-\sin(\varphi))^2 + (\cos(\varphi))^2} =  \sqrt{1} = 1\,,\\ 
+						|\boldsymbol e_r| &=& \sqrt{ (\cos(\varphi))^2 + (\sin(\varphi))^2} =  \sqrt{1} = 1\,. 
+					\end{eqnarray*}
+				\item[(c)] 
+	\begin{minipage}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_polarbasis_bahnkurve.png}
+\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+		\begin{itemize}
+			\item Der Vektor \(\boldsymbol e_r\) ist parallel zum Ortsvektor \(\boldsymbol P\).
+			\item Der Vektor \(\boldsymbol e_\varphi\) ist senkrecht zum Ortsvektor \(\boldsymbol P\).
+	\end{itemize}
+\end{minipage}
+					
+\textbf{Bemerkung:} Die Polarbasis richtet sich nach dem Ortsvektor:
+\(\boldsymbol e_r\) zeigt radial vom Ursprung zum Punkt,
+\(\boldsymbol e_\varphi\) steht dazu senkrecht und zeigt in Richtung
+zunehmenden Winkels. Diese Richtungen stimmen im Allgemeinen nicht mit der
+Tangential- und Normalenrichtung einer Bahnkurve überein. Bei einer
+Kreisbahn um den Ursprung ist \(\boldsymbol e_\varphi\) tangential und
+\(\boldsymbol e_r\) radial nach außen gerichtet; die nach innen gerichtete
+Normale ist dann \(-\boldsymbol e_r\). Die Polarbasis hängt vom Winkel
+\(\varphi\) ab und ändert sich entlang einer Bahn nur dann, wenn sich dieser
+Winkel ändert.
+	\end{itemize}
+\end{exercisebox}
+\begin{exercisebox}[Analytische Geometrie]
+	Es sei $\boldsymbol r, \boldsymbol n\in\mathbb R^3$. Welches geometrische Objekt stellt die Lösungsmenge der folgenden Gleichung(en) dar? 
+	\[ \boldsymbol x \in \mathbb R^3: \; \left( \boldsymbol x - \boldsymbol r \right) \boldsymbol \cdot \boldsymbol n = 0\]
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Ebene mit Aufhängepunkt $\boldsymbol r$ und Normale $\boldsymbol n$.
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Funktion]
+	Wie läßt sich eine Funktion $f:\mathbb R^n \to \mathbb R$ beschreiben, die in jedem Argument linear ist? Es gelte also \[ f( x_1, x_2, \dots, \alpha x_i, \dots, x_n) = \alpha f(x_1,x_2,\dots, x_i, \dots, x_n)\quad i=1,\dots,n\,.\]
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Um eine Abbildungsvorschrift für $f$ zu bekommen, ist es geschickt sich zu überlegen, wie $f$ mit nur einem Argument umgeht. Was macht die Anwendung von $f$ aus dem Vektor $\boldsymbol x_i: = (0,0,\dots,0,x_i,0,\dots,0)^\intercal$? Laut Voraussetzung ist das Bild dieser Anwendung linear von $x_i$ abhängig, also  \[ f( \boldsymbol x_i) = a_i x_i \quad \textnormal{mit}\; a_i \in \mathbb R\,. \] Dieses Verhalten gilt in jedem Argument, also $i=1,\dots,n$ \[ f: \mathbb R^n \to \mathbb R, \boldsymbol x \mapsto f(\boldsymbol x) = a_1 x_1 +  a_2 x_2 + \dots + a_nx_n =  \sum\limits_{i=1}^{n}a_i x_i = \langle \boldsymbol a, \boldsymbol x\rangle \quad \textnormal{mit}\; \boldsymbol a\in \mathbb R^n\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Tangenten]
+	Gegeben ist die Funktion $f: \mathbb R \to \mathbb R, \; x\mapsto \frac14 x^2$. Ihr Graph sei $K$. 
+  \begin{enumerate}
+    \item Zeigen Sie, dass die Tangenten an $K$ in den Punkten $B_1\left(-3|\frac94\right)$ und  $B_2\left(\frac43|\frac49\right)$ orthogonal zueinander sind. Zeichnen Sie $K$ zusammen mit diesen Tangenten. 
+    \item Es seien $S_1\left(a|f(a)\right)$ und  $S_2\left(b|f(b)\right)$ Punkte auf $K$. Welche Beziehung besteht zwischen $a$ und $b$, wenn die Tangenten an $K$ in $S_1$ und $S_2$ orthogonal sind?
+    \item Bestimmen Sie die Punkte  $S_1\left(a|f(a)\right)$ und  $S_2\left(b|f(b)\right)$ so, dass die Tangenten in $S_1$ und $S_2$ orthogonal zueinander sind und die Strecke $S_1S_2$ parallel zur $x$-Achse ist. 
+  \end{enumerate}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{enumerate}
+		\item Es gilt  $f'(x) = \frac12 x$. Also besitzen die  Tangenten in den Punkten $B_1$ und $B_2$ die Gleichungen 
+			\begin{eqnarray*} 
+				t_1(x) &=& f'(-3)(x + 3) + \frac94 =-\frac32 (x+3) + \frac94\,, \\
+				t_2(x) &=& f'(\frac43)(x + \frac43) + \frac49 =\frac23 (x+ \frac43) + \frac49\,.
+			\end{eqnarray*}
+			Mit Hilfe zweier beliebiger Punkte auf den Gerade kann man die Richtungsvektoren ausrechnen  \begin{eqnarray*} 
+				\boldsymbol r_1 &=& \left(\begin{array}{c} -3 \\ \frac94\end{array} \right) - \left(\begin{array}{c}0\\ -\frac94\end{array}\right) = \left( \begin{array}{c} -3 \\ \frac{9}{2} \end{array}\right)\,,\\
+				\boldsymbol r_2 &=& \left(\begin{array}{c} \frac43 \\ \frac49\end{array} \right) - \left(\begin{array}{c}0\\ -\frac49\end{array}\right) = \left( \begin{array}{c} \frac43 \\ \frac89 \end{array}\right)\,.
+			\end{eqnarray*}
+			Die Tangenten stehen senkrecht aufeinander, da das Skalarprodukts zwischen $\boldsymbol r_1 $ und $\boldsymbol r_2$ verschwindet:
+			\[ \boldsymbol r_1 \boldsymbol \cdot \boldsymbol r_2 = \left(\begin{array}{c} \frac43 \\ \frac89\end{array} \right)\boldsymbol \cdot \left(\begin{array}{c} -3 \\ \frac92\end{array} \right) = \frac43\cdot (-3) + \frac89 \cdot \frac92 = -4 + 4 = 0\,.\]
+			Bemerkung: alternativ kann man das Produkt der Steigungen überprüfen. Es gilt $f'(-3)\cdot f'(\frac43)=-1$, d.h. die Tangenten in $B_1$ und $B_2$ sind orthogonal. 
+		\item Wegen $f'(a) = \frac12 a $ und $f'(b) = \frac12 b$ folgt aus $f'(a) \cdot f'(b) = -1 $ die gesuchte BEziehung $a\cdot b = -4$.
+		\item $\overline{S_1S_2} $ ist parallel zur $x$-Achse, wenn $f(a) = f(b)$ gilt, also $\frac14 a^2 = \frac14 b^2$ und damit $a^2=b^2$ Mit $a\cdot b = -4$ aus dem zweiten Aufgabenteil erhält man $S_1(2|1)$ und $S_2(-2|1)$.
+	\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Tangenten]
+  \begin{enumerate}
+	  \item Gegeben ist die Funktion \[ f: \mathbb R \to \mathbb R, x \mapsto \frac14 x^2 + cx\,.\] 
+		  Der Graph von $f$ schneidet die $x$-Achse im Ursprung $O(0|0)$ und im Punkt $A(a|0)$. Die Tangenten an den Graphen in $O$ und $A$ schneiden sich im Punkt $B$. Zeigen Sie, dass das Dreieck $OAB$ stets gleichschenklig ist. Bestimmen Sie den Koeffizienten $c$ so, dass das Dreieck $OAB$ auch rechtwinklig ist.
+	  \item Gegeben ist die Funktion \[ g: \mathbb R \to \mathbb R, \; x \mapsto 2 \sin(cx), \quad c \in (0,\infty)\,. \] Der Graph von $g$ schneidet die $x$-Achse im Ursprung $O=(0|0)$ und im Punkt $A(\frac{\pi}{c}|0)$. Die Tangenten an den Graphen in $O$ und $A$ schneiden sich im Punkt $B$. Bestimmen Sie den Koeffizienten $c$ so, dass das Dreieck $OAB$ gleichseitig ist. 
+  \end{enumerate}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{enumerate}
+		\item Es ist $a=-4c$ und $f'(x) = \frac12+c$. Die Tangentengleichungen in den Punkten $O$ und $A$ und der Schnittpunkt $B$ lauten 
+			\begin{eqnarray*}
+				t_1(x) &=& f'(0)x = cx \\ t_2(x) &=& f'(a) (x-a) = (\frac12 \cdot (-4c) + c) (x-a) = -c (x-a)\\
+				t_1(x) &=& t_2(x) \Leftrightarrow x = \frac12 ca  \Rightarrow B(\frac12 a| \frac12 c a)
+			\end{eqnarray*}
+			Die $x$-Koordinate von $B$ teilt gerade die Strecke $OA$. Damit ist das Dreieck gleichschenklig. Damit as Dreieck rechtwinklig ist, muss $c$ so eingerichtet werden, dass die Tangenten im Punkt $B$ senkrecht aufeinander stehen. Die Richtungsvektoren lauten:
+			\begin{eqnarray*}
+				\boldsymbol r_2 =\left( \begin{array}{c} a - \frac12 a \\ -\frac12 ca \end{array}\right)  \quad \textnormal{und} \quad 
+				\boldsymbol r_1 =\left( \begin{array}{c} \frac12 a \\ \frac12 ca \end{array}\right) 
+			\end{eqnarray*}
+			Also gilt   $\boldsymbol r_1 \boldsymbol \cdot \boldsymbol r_2 = 0$ genau dann, wenn $\frac14 a^2 - \frac14 c^2 a^2 = 0 \Leftrightarrow c= 1\,.$ 
+		\item Es ist $f'(x) = 2c\cdot \cos(cx)$. 
+		Die Tangentengleichungen in den Punkten $O$ und $A$ und der Schnittpunkt $B$ lauten 
+			\begin{eqnarray*}
+				t_1(x) &=& f'(0)x = 2c x \\ t_2(x) &=& f'(\frac{\pi}{2}) (x-\frac{\pi}{2}) = -2c (x-\frac{\pi}{c})\\
+				t_1(x) &=& t_2(x) \Leftrightarrow cx = -2c(x-\frac{\pi}{c})  \Rightarrow B(\frac{\pi}{2c}| \pi)
+			\end{eqnarray*}
+			Die $x$-Koordinate von $B$ teilt gerade die Strecke $OA$. Damit ist das Dreieck gleichschenklig. Das Dreieck ist gleichseitig, wenn alle Winkel im Dreieck $\frac23\pi \widehat = 60^\circ$ betragen, d.h. \[ \tan(\frac23\pi) = \sqrt{3} \stackrel{!}{=} \frac{\pi}{\frac{\pi}{2c}} \Rightarrow c = \frac12\sqrt{3}\]
+	\end{enumerate}
+\end{exercisebox}
+

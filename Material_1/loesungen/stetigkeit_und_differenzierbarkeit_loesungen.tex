@@ -1,0 +1,119 @@
+\section*{Stetigkeit Lösungen}\label{MA1-stetigkeit-und-differenzierbarkeit-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-stetigkeit-und-differenzierbarkeit}{ (Abschnitt \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Stetigkeit]
+
+	\begin{itemize}
+		\item[(a)] Es sei $f:D \subseteq \mathbb R\to \mathbb R$ und $x_0 \in D$. Was bedeutet die folgende Aussage:
+		\[ \exists \varepsilon > 0 \forall \delta > 0 \exists x\in D : |x-x_0| < \delta \land |f(x) - f(x_0)|\geq \varepsilon\,. \]
+	\item[(b)] Betrachten Sie die Funktion $f:\mathbb R\to \mathbb R$ mit $f: x \mapsto \frac13 x$. Gibt es eine Stelle $x_0 \in \mathbb R$, an der die Bedingung unter $(a)$ erfüllt ist?
+\end{itemize}
+
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+	\begin{itemize}
+		\item[(a)] Die Aussage definert die Unstetigkeit der Funktion $f$ an der Stelle $x_0$. Es ist die Negation der Stetigkeits-Definition und lautet: Es existiert ein $\epsilon > 0$, so dass es für alle $\delta > 0$ ein $x\in D$ mit $|x-x_0| < \delta $ und $|f(x) - f(x_0)| \geq \varepsilon$ gibt. 
+		\item[(b)] Es kann keine Stelle geben, an der die Bedingung erfüllt ist, weil $f: \mathbb R \to \mathbb R, x\mapsto \frac13 x$ stetig ist: 
+			\[ \forall \varepsilon > 0 \exists \delta > 0 \forall x\in D: |x-x_0| < \delta \Rightarrow |f(x) - f(x_0)|<\varepsilon\,.\]
+			Sei $x_0\in \mathbb R$ und $\varepsilon >0 $ beliebig. Unsere Aufgabe liegt jetzt darin, ein hinreichend kleines $\delta > 0$ zu finden, so dass $|f(x)- f(x_0)| < \varepsilon$ für alle Argumente $x$ mit $|x-x_0| < \delta$ ist. 
+			\begin{eqnarray*}
+				|f(x)-f(x_0)| < \varepsilon \Leftrightarrow | \frac13 x - \frac13 x_0| < \varepsilon \Leftrightarrow |x-x_0| <3 \varepsilon \Rightarrow \delta:= 3 \varepsilon\,.
+			\end{eqnarray*}
+ \end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Stetigkeit]
+	Untersuchen Sie die Funktion $f$ mit \[f: x \mapsto \begin{cases} 1, &\quad x \in \mathbb Q\,, \\ 0, &\quad x \in \mathbb R\setminus \mathbb Q\,,\end{cases}\] auf Stetigkeit an einer beliebigen Stelle $x_0$.
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+$f$ ist in jeder Stelle unstetig und das zeigen wir mit dem Folgenkriterium. Wäre $f$ stetig, dann müßte $f(x_n)$ für jede Folge $(x_n)$, die gegen $x_0$ konvergiert, einen eindeutigen Grenzwert haben. Wir wählen beispielsweise die Stelle $x_0 = 2$ und betrachten eine Folge mit echt irrationalen Werten und eine mit rationalen Werten, dann nimmt $f$ zwei unterschiedliche Grenzwerte an:  
+\begin{eqnarray*}
+	\begin{cases}
+		x_n = 2-\pi/n, \; x_n \in \mathbb R\setminus \mathbb Q,\; \lim\limits_{n\to \infty} x_n = 2 \land \lim\limits_{n\to \infty} f(x_n) = 0\,,\\
+	\tilde x_n = 2-1/n, \; \tilde x_n \in \mathbb Q,\; \lim\limits_{n\to \infty} \tilde x_n = 2 \land \lim\limits_{n\to \infty} f(\tilde x_n) = 1\,.\end{cases}
+\end{eqnarray*}
+$f$ kann also nicht stetig sein. Anders gesagt: in jeder noch so kleinen Umgebung von $x_0=2$ nimmt $f$ die Funktionswerte $0$ und $1$ an und hat $f$ in $x_0$ keinen Grenzwert.
+\end{exercisebox} 
+
+
+\begin{exercisebox}[Stetigkeit]
+	Für welche $x\in [0,\infty)$ ist $f$ stetig?
+  \begin{eqnarray*}
+	  f: x\mapsto \begin{cases}
+      1 \quad &x>1\\
+      \frac{1}{|x|} \quad & 0 <x\leq 1\\
+      0 \quad & x\leq 0\\
+    \end{cases}
+  \end{eqnarray*}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{eqnarray*}
+	  \lim\limits_{x\downarrow 1} f(x) &=& 1 = f(1) = \frac{1}{|1|} \\
+	  \lim\limits_{x\downarrow 0} f(x) &=& \lim\limits_{x\downarrow 0} \frac{1}{|x|} = \infty \not= f(0) = 0 
+  \end{eqnarray*}
+  Die Funktion ist stetig auf $\mathbb R \setminus\{ 0\}$.
+\end{exercisebox} 
+
+\begin{exercisebox}[Stetigkeit]
+  Bestimmen Sie $t\in \mathbb R$ so, dass die Funktion $f$ an der Stelle $x_0$ stetig ist.
+  \begin{enumerate}
+	  \item[(a)] Es sei $x_0=1$ und 
+      $
+  	  f: x\mapsto \begin{cases}
+  	    x+1 \quad &x\leq 1\\
+  	    x^2+t \quad & x > 1
+	  \end{cases}
+	    $
+    \item[(b)]  Es sei $x_0 = t$ und 
+      $
+  	  f: x\mapsto \begin{cases}
+  	    x^2-2tx \quad &x\geq t\\
+  	    2x-t \quad & x < t
+	  \end{cases}
+	    $
+  \end{enumerate}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+\begin{itemize}
+	\item[(a)] Für $t=1$ ist $f$ stetig auf $\mathbb R$. Das folgt aus 
+  \begin{eqnarray*}
+	  \lim\limits_{x\downarrow 1} f(x) = \lim\limits_{x\downarrow 1} (x^2+t) =  1+t \stackrel{!}{=} f(1) = 2 \Rightarrow t=1\,.
+  \end{eqnarray*}
+	\item[(b)] Die Funktion ist für $t = 0 \lor t=-1$ stetig. Das folgt aus 
+  \begin{eqnarray*}
+	  \lim\limits_{x\uparrow t} f(x) = \lim\limits_{x\uparrow t} (2x-t) =  t \stackrel{!}{=} f(t) = -t^2 \Leftrightarrow t\cdot (1+t) = 0 \Leftrightarrow  t=0 \lor t=-1\,.
+  \end{eqnarray*}
+  \end{itemize}
+\end{exercisebox} 
+\begin{exercisebox}[Stetigkeit]
+	Bestimmen Sie für $f$ den Parameter $a$ so, dass $f$ auf ganz $\mathbb R$ stetig ist:
+	\[ f: x\mapsto \begin{cases} \frac12 x, &\quad x\geq 1 \\2\cdot \exp(a\cdot x), &\quad x< 1 \,. \end{cases} \]
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:} $a= -\ln(4)\,.$
+
+\end{exercisebox}
+
+
+\begin{exercisebox}[Stetige Fortsetzung]
+	Vervollständigen Sie $f$ so, dass $f$ auf ganz $\mathbb R$ stetig ist:
+	\[ f: x\mapsto \begin{cases} x+1, \quad &x\leq 1 \\x^2, \quad &x> 2 \,.\end{cases} \]
+
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Um die Funnktion auf eine auf ganz $\mathbb R$ stetige Funktion zu erweitern, muss für das Intervall $(1,2]$ eine Funktion $g$ gefunden werden mit 
+\[ \lim\limits_{x\downarrow 1} g(x) = f(1), \quad \lim\limits_{x\uparrow 2} g(x) = \lim\limits_{x\downarrow 2} f(x) \,.\] 
+Als Ansatz wird $g$ als lineare Funktion gewählt, die stetig ist. Da auch $f$ auf den jeweiligen Intervallen stetig ist, muss gelten \[ g(1) = 2, \quad g(2) = 4\,. \] Die lineare Funktion $ g: x\mapsto 2\cdot (x-1) + 2 = 2x $ erfüllt diese Bedingungen. Eine stetige Fortsetzung von $f$ auf ganz $\mathbb R$ ist damit  \[ \tilde f(x) = \begin{cases} x+1, &\quad x\leq 1 \\ 2x, &\quad 1< x \leq 2\\ x^2, &\quad x> 2 \,. \end{cases}\]
+\end{exercisebox}
+

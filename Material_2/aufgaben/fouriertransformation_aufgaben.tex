@@ -1,0 +1,66 @@
+
+% Faltung: warum? Anwendung!
+% Unbedingt hinzufügen: Leck-Effekt, schön dargestellt auf Wikipedia und
+% aus meiner Sicht schön in eine Aufgabe zu packen.
+% https://de.wikipedia.org/wiki/Leck-Effekt
+% ---> Lernziel: Strom an, Strom aus. Energiesignale haben ein verschmiertes Spektrum
+% ---> Mathematisch führt das auf die Faltung. FT( Heavyside-Funktion x Signal) = \ldots
+
+\ifintegriereaufgaben
+\section*{Fouriertransformation Aufgaben}\label{MA2-fouriertransformation-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-fouriertransformation}{ (Abschnitt \abschnittsverweis{MA2-fouriertransformation})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-fouriertransformation-loesungen]{hier}.
+\else
+\section{Fouriertransformation Aufgaben}\label{MA2-fouriertransformation-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-fouriertransformation-loesungen]{hier}.
+\fi
+\begin{exercisebox}[Fourier-Transformation]
+	Berechnen Sie die Fourier-Transformierte von folgenden Funktionen.
+\begin{itemize}
+	\item[(a)] $\delta > 0,\quad $
+		\( f:t\mapsto \begin{cases} e^{-\delta t}, \quad &t\geq 0\,,\\
+				0\quad & t< 0\,.
+			\end{cases}
+		\)
+	\item[(b)]
+		\( f:t\mapsto \begin{cases} \cos^2(t), \quad &|t| \leq \pi/2\,,\\
+				0\quad & \textnormal{sonst}
+			\end{cases}
+		\)
+
+		\vspace{0.2cm}
+		\noindent{ Hinweis: Benutzen Sie zur Integration das Additionstheorem \( \cos^2(t) = \dfrac12\left( 1 + \cos(2\, t) \right)\,.\)}
+	\item[(c)] $f: t\mapsto t\cdot e^{-|t|}$
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Fourier-Transformation der Gaußschen Funktion]
+	Bestimmen Sie die Fourier-Transformierte der Gaußschen Glockenkurve \( f: t \mapsto e^{-\frac{t^2}{2}} \). Benutzen Sie ohne Beweis die folgende Identität \( \int\limits_{-\infty}^\infty e^{-z^2}\mathrm{d} z = \sqrt{\pi}\) wobei  \(z\in \mathbb C\,.\)
+\end{exercisebox}
+
+\begin{exercisebox}[Fourier-Transformation]
+	Im Skript wurde die Idee verfolgt die Fourier-Transformation mathematisch als Grenzprozess aus der Fourier-Reihe zu entwickeln. Den Grenzprozess schauen wir uns an einem konkreten Beispiel jetzt an.
+\begin{itemize}
+	\item[(a)] Zeigen Sie, dass gilt \[ c_{k} = \frac{\Delta \omega}{\sqrt{2\pi}} \cdot \tilde c_{k}, \quad \tilde c_{k} = \frac{1}{\sqrt{2\pi}} \cdot\int\limits_{-\frac{T}{2}}^{\frac{T}{2}} f(t)\cdot e^{-i\, \omega_k \,t} \,\mathrm{d} t, \quad \textnormal{mit Kreisfrequenz}\; \omega_k = \frac{2\pi k}{T}\,.\]
+	\item[(b)] Betrachten Sie nun die $T$-periodische Funktion $f$ mit \( f|_{T}:[-T/2, T/2)\to \mathbb R,   t\mapsto e^{-|t|}\) und bestimmen Sie eine Formel für die Fourierkoeffizienten \(\tilde c_k\).
+%\item[(c)] Zeigen Sie, dass gilt  \[ \tilde c_{k} = \sqrt{\frac{2}{\pi}}\left( 1- (-1)^k e^{-T/2}\right) \cdot \frac{1}{1+ \omega_k^2} \,.\]
+	\item[(c)] Berechnen Sie die Fourier-Transformierte $\hat g$ von $g: \mathbb R \to \mathbb R, t\mapsto e^{-|t|}$.
+	\item[(d)] Setzen Sie \(T=50\) und bestimmen Sie mit Hilfe einer Software die Punkte \( \left( \omega_k, \tilde c_k \right), \, 1\leq k \leq 50\). Erzeugen Sie ein Bild, das die Punkte und die den Graph von \(\hat g\) zeigt.
+	\item[(e)] Interpretieren Sie das Ergebnis.
+\end{itemize}
+
+\end{exercisebox}
+
+
+%\begin{exercisebox}[Diskrete Fourier-Transformation]
+%	Nehmen wir an das kontinuierlich gegebene Signal
+%	\[ f: t\mapsto 5 + 2\cos(2\pi t - \pi/2) + 3\cos(4\pi t) \]
+%	wird pro Sekunde vier Mal abgetastet.
+%	\begin{itemize}
+%		\item[(a)] Bestimmen Sie die Samples, die in einer Sekunde gemessen werden.
+%		\item[(b)] Bestimmen Sie die diskrete Fourier-Transformation und zeigen Sie, dass sich die diskrete Fourier-Transformation als Matrix-Vektor-Multiplikation schreiben läßt.
+%		\item[(c)] Wie läßt sich das Ergebnis interpretieren?
+%	\end{itemize}
+%\end{exercisebox}
+
+

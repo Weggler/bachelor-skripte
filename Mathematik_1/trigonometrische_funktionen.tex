@@ -1,0 +1,380 @@
+\section{Trigonometrische Funktionen}\label{MA1-trigonometrische-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem Seiten und Winkel in rechtwinkligen Dreiecken mithilfe trigonometrischer Beziehungen bestimmen &\\
+\tabitem Winkel zwischen Gradmaß und Bogenmaß umrechnen &\\
+\tabitem Sinus, Kosinus, Tangens und Kotangens am Einheitskreis interpretieren &\\
+\tabitem trigonometrische Funktionen beschreiben und skizzieren &\\
+\tabitem Arkusfunktionen als Umkehrfunktionen eingeschränkter trigonometrischer Funktionen interpretieren &\\
+\tabitem trigonometrische Gleichungen unter Berücksichtigung von Symmetrie und Periodizität lösen &\\
+\tabitem kartesische Koordinaten und Polarkoordinaten ineinander umrechnen &\\[.5\normalbaselineskip]
+    \midrule
+	  \textbf{Voraussetzungen}& \\[.5\normalbaselineskip]
+\tabitem Eigenschaften von Funktionen & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Die Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-trigonometrische-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Rechtwinklige Dreiecke}
+
+Zur Einführung der trigonometrischen Beziehungen werden zunächst \textbf{rechtwinklige Dreiecke} (\emph{right triangles}) betrachtet.
+Per Konvention werden die Seiten, Eckpunkte und Winkel eines rechtwinkligen Dreiecks wie folgt bezeichnet:
+\begin{exabox}{Übliche Bezeichnungen im Rechtwinkligen Dreieck}{ }
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/trigonometrie_rechtwinkliges_dreieck_bezeichnungen.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+
+		Die Hypotenuse $c$ ist die Seite im Dreieck, die  dem rechten Winkel gegenüber liegt. 
+Die Bezeichnungen Gegenkathete und Ankathete beziehen sich jeweils auf einen der anderen Winkel. Bezogen auf den Winkel \(\alpha\) ist \(a\) die
+Gegenkathete und \(b\) die Ankathete.
+\end{minipage}
+\end{exabox}
+
+Der \textbf{Satz des Pythagoras} setzt die Seitenlängen im rechtwinkligen Dreieck in Beziehung zueinander. Er lautet:
+\begin{theorembox}{Satz des Pythagoras}{ }
+  Das Quadrat der Hypotenuse ist die Summe aus den Quadraten der Katheten, also $$c^2 = a^2 + b^2\,.$$
+\end{theorembox}
+
+Rechtwinklige Dreiecke mit demselben Winkel \(\alpha\) sind ähnlich.  Ihre absoluten Seitenlängen können daher unterschiedlich sein, die Verhältnisse entsprechender Seiten sind jedoch gleich.
+
+Diese vom betrachteten Winkel abhängigen Seitenverhältnisse werden durch \textbf{Sinus} (\emph{sine}) und \textbf{Kosinus} (\emph{cosine}) beschrieben:
+
+\begin{theorembox}{Geometrische Bedeutung von $\sin$ und $\cos$}{ }
+  \begin{eqnarray*}
+	  \sin(\alpha) &=& \frac{\textnormal{Gegenkathete}}{\textnormal{Hypthenuse}} = \frac{a}{c}\,,\\
+    \cos(\alpha) &=& \frac{\textnormal{Ankathete}}{\textnormal{Hypotenuse}} = \frac{b}{c}\,.
+  \end{eqnarray*}
+\end{theorembox}
+
+Wegen des Satzes des Pythagoras gilt:
+\begin{theorembox}{Trigonometrischer Pythagoras - Kreisgleichung}{ }
+	\[  (\sin(\alpha))^2 + (\cos(\alpha))^2 = \dfrac{a^2}{c^2} + \dfrac{b^2}{c^2} = \dfrac{a^2+b^2}{c^2}  = 1\,.\]
+\end{theorembox}
+
+Das Verhältnis der Katheten zueinander heißt \textbf{Tangens} (\emph{tangent}) bzw. \textbf{Kotangens} (\emph{cotangent}). Das kann man auch mit Sinus und Kosinus ausdrücken:
+\begin{theorembox}{geometrische Bedeutung von $\tan$ und $\cot$}{ }
+  \begin{eqnarray*}
+    \tan(\alpha) &=&  \frac{\textnormal{Gegenkathete}}{\textnormal{Ankathete}} = \frac{a}{b}\,,\\
+    \cot(\alpha) &=&  \frac{\textnormal{Ankathete}}{\textnormal{Gegenkathete}}  = \frac{b}{a}\,.
+  \end{eqnarray*}
+\end{theorembox}
+
+Für die Winkel $0^\circ$, $30^\circ$, $45^\circ$, $60^\circ$, $90^\circ$ lassen sich Sinus, Kosinus, Tangens und Kotangents gemetrisch bestimmen:
+\begin{center}
+  \begin{tabular}{c | c | c | c | c}
+    $\alpha$ & $\sin(\alpha)$ & $\cos(\alpha)$ & $\tan(\alpha) $ & $\cot(\alpha)$ \\
+    \hline
+    $0^\circ$ & $0$ & $1$ & $0$ & -- \\ 
+    $30^\circ$ & $1/2$ & $\sqrt{3}/2$ & $1/\sqrt{3}$ & $\sqrt{3}$ \\ 
+    $45^\circ$ & $1/\sqrt{2}$ & $1/\sqrt{2}$ & $1$ & $1$ \\ 
+    $60^\circ$ & $\sqrt{3}/2$ & $1/2$ & $\sqrt{3}$ & $1/\sqrt{3}$ \\ 
+    $90^\circ$ & $1$ & $0$ & -- & $0$ 
+  \end{tabular}
+\end{center}
+
+\subsection{Allgemeine Dreiecke (+)}
+
+Betrachtet man allgemeine, ebene Dreiecke, so lassen gilt der \textbf{Sinussatz}: die Höhe in einem allgemeinen, ebenen Dreieck läßt sich auf zwei Arten berechnen:
+$$
+    h = b \cdot \sin(\alpha) = a \cdot \sin(\beta) \quad \Rightarrow \frac{\sin(\alpha)}{a} =  \frac{\sin(\beta)}{b}\,.
+$$
+
+Weil im allgemeinen Dreieck keine der drei Seiten eine Sonderrolle hat, muss insgesamt gelten:
+\begin{theorembox}{Sinussatz}{ }
+  $
+  \displaystyle{\frac{\sin(\alpha)}{a}} =  \displaystyle{\frac{\sin(\beta)}{b}} = \displaystyle{\frac{\sin(\gamma)}{c}} \quad 
+  \Leftrightarrow \displaystyle{\frac{a}{\sin(\alpha)}} = \displaystyle{\frac{b}{\sin(\beta)}} = \displaystyle{\frac{c}{\sin(\gamma)}}\,.
+  $
+\end{theorembox}
+Der Sinussatz dient dazu eine unbekannte Größe eines allgemeinen Dreiecks zu bestimmen.
+
+Eine Verallgemeinerung des Satzes von Pythagoras auf allgemeine, ebene Dreiecke ist der \textbf{Kosinussatz}. Er beschreibt, wie die Quadrate der Seiten eines allgemeinen Dreiecks zueinander in Beziehung stehen. 
+\vspace{0.2cm}
+
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/trigonometrie_kosinussatz_hoehenzerlegung.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+	$$\begin{array}{rcl} b^2 &=& h^2+d^2 = \left(a\cdot \sin(\beta)\right)^2 + \left( c-a\cdot \cos(\beta)\right)^2 \\
+		&=& c^2 - 2\cdot a \cdot c\cos(\beta) + a^2 \underbrace{\left( (\sin(\beta))^2 + (\cos(\beta))^2 \right)}_{\displaystyle{=1}} \\
+		&&\Rightarrow b^2 = c^2 - 2\cdot a \cdot c\cos(\beta) + a^2
+	\end{array} $$
+\end{minipage}
+\vspace{0.2cm}
+
+Das muss für alle Seiten gleichermaßen gelten. Der Kosinussatz verallgemeinert den Satz des Pythagoras auf allgemeine Dreiecke. In diesen Situationen kann man damit eine unbekannte Größe eines allgemeinen Dreiecks bestimmen:
+\begin{theorembox}{Kosinussatz}{ }
+  \begin{eqnarray*}
+    b^2 &=& a^2 + c^2 - 2\cdot a\cdot c \cos\beta\,, \\
+    a^2 &=& b^2 + c^2 - 2\cdot b\cdot c \cos\alpha\,, \\
+    c^2 &=& a^2 + b^2 - 2\cdot a\cdot b \cos\gamma\,.
+  \end{eqnarray*}
+\end{theorembox}
+
+\subsection{Was ist das Bogenmaß?}
+
+%Dass eine volle Umdrehung als $360^\circ$ bezeichnet wird, ist ein Erbstück von den Babyloniern mit ihrem $60$er-Zahlensystem (Einstellung $\mathrm{Deg}$ auf dem Taschenrechner). Man könnte zum Beispiel auch $400\mathrm{gon}$ für eine Umdrehung nehmen, so dass ein rechter Winkel $100\mathrm{gon}$ oder Neugrad hat (Einstellung $\mathrm{Grad}$ auf dem Taschenrechner). 
+
+Die  natürliche  Art,  Winkel  anzugeben,  ist das \textbf{Bogenmaß} (\emph{radian}) (Einstellung $\mathrm{Rad}$ auf dem Taschenrechner). Das Bogenmaß gibt an, welchen Bogen der Winkel aus dem Einheitskreis abschneidet:\marginpar{\small Aufgaben}
+\begin{exabox}{Bogenmaß}{ }
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/trigonometrie_gradmass_bogenmass.png}
+  \end{minipage}
+	\begin{minipage}{0.6\textwidth}
+    \begin{tabular}{c c c}
+    Gradmaß & Bogenmaß \\
+    \hline
+    $360^\circ$ & $\widehat = $ & $2\pi $ \\
+    $180^\circ$ & $\widehat = $ & $\pi  $ \\
+    $90^\circ $ & $\widehat = $ & $\pi/2$ \\
+    $60^\circ $ & $\widehat = $ & $\pi/3$ \\
+    $45^\circ $ & $\widehat = $ & $\pi/4$
+  \end{tabular}
+\end{minipage}
+\end{exabox}
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+	\item Mit Hilfe des Dreisatzes kann man leicht jeden Winkel in Bogenmaß umrechnen. Es gilt 
+		\[ \varphi_{\mathrm{rad}} = \varphi_{\mathrm{deg}} \cdot \dfrac{\pi}{180^\circ} \] und umgekehrt 
+		\[ \varphi_{\mathrm{deg}} = \varphi_{\mathrm{rad}} \cdot \dfrac{180^\circ}{\pi}. \] 
+
+\item Bis auf wenige Ausnahmen %(zum Beispiel einige Teile der 3D-Programmierschnittstelle  OpenGL)  
+gibt  man  beim  Programmieren  und  in mathematischer Software Winkel im Bogenmaß an. Viele Formeln vereinfachen sich drastisch im Bogenmaß und insbesondere gilt $\sin'=\cos$ nur im Bogenmaß.
+%\begin{center}
+%	\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/14_Ableitung_sinus.png}
+%\end{center}
+\end{itemize}
+
+\subsection{Trigonometrische Funktionen}
+
+Die Definition mithilfe rechtwinkliger Dreiecke beschreibt Sinus und Kosinus zunächst nur für Winkel zwischen \(0\) und \(\pi/2\). Mithilfe des Einheitskreises lassen sich beide Funktionen auf beliebige reelle Winkel erweitern.
+
+Zu einem Winkel \(\varphi\in\mathbb R\) gehört auf dem Einheitskreis der Punkt
+\[
+P(\varphi)
+=
+\bigl(\cos(\varphi),\sin(\varphi)\bigr).
+\]
+Der Kosinus ist damit die \(x\)-Koordinate und der Sinus die \(y\)-Koordinate des zugehörigen Punktes auf dem Einheitskreis.
+
+\begin{defbox}{Winkelfunktionen für \(\varphi \in \mathbb R\)}{ }
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Mathematik_1/Bilder/trigonometrie_einheitskreis_sinus_kosinus.png}
+\end{defbox}
+Und so werden trigonometrische Funktionen zu periodischen Funktionen:
+\begin{defbox}{Periodische Funktion}{ }
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Mathematik_1/Bilder/trigonometrie_einheitskreis_sinusverlauf.png}
+\end{defbox}
+
+In der folgenden Box sind Eigenschaften der trigonometrischen Funktionen zusammengefasst:
+
+\begin{theorembox}{Eigenschaften trigonometrischer Funktionen}{ }
+	Für alle $k\in \mathbb Z$ gilt:
+	\begin{center}
+		\begin{tabular}{l | l | l | l | l | l | l}
+			 & Definitionsbereich & Bildmenge & Symmetrie & Periode & Nullstellen & Pole \\
+			\hline
+			$\sin$ & $\mathbb R$ & $[-1,1]$ & ungerade & $2\pi$ & $k\cdot \pi$ & -- \\
+			$\cos$ & $\mathbb R$ & $[-1,1]$ & gerade & $2\pi$ & $\pi/2 + k\cdot \pi$ & -- \\
+			$\tan$ & $\mathbb R\setminus \{ \pi/2+k\cdot \pi\}$ & $\mathbb R$ & ungerade & $\pi$ & $k\cdot \pi$ & $\pi/2+k\cdot \pi$ \\
+			$\mathrm{cot}$ & $\mathbb R\setminus \{ k\cdot \pi\}$ & $\mathbb R$ & ungerade & $\pi$ & $\pi/2+k\cdot \pi$ & $k\cdot \pi$ 
+		\end{tabular}
+	\end{center}
+\end{theorembox}
+
+% Den Sinus und den Kosinus braucht man in den Naturwissenschaften zur Beschreibung von harmonischen Schwingungen und deren Überlagerungen. Eine Schwingung ist eine sich zeitlich wiederholende Veränderung einer Zustandsgröße. 
+% \begin{defbox}{Harmonische Schwingung}{ }
+% 	Eine harmonische Schwingung wird durch 
+% 	$$ s(t) = A\cdot \sin(\omega\cdot t + \varphi_0)\quad \textnormal{bzw.}\quad c(t) = A\cdot \cos(\omega\cdot t+ \varphi_0) $$
+% 	beschrieben, wobei
+% 	\begin{itemize}
+% 		\item \(A\) die Amplitude,
+% 		\item $\varphi_0$ die Nullphase und 
+% 		\item \(\omega\) die Kreisfrequenz der Schwingung ist.
+% 	\end{itemize}
+% 	Das zeitabhängige Argument einer harmonischen Schwingung, $\varphi(t) = \omega\cdot t + \varphi_0$, bezeichnet man als Phase. 
+% 	Die Schwingungsdauer oder Periode $T$ und die Frequenz $f$ betragen $$ T = \frac{2\pi}{\omega}, \quad f= \frac{1}{T} = \frac{\omega}{2\pi}\,. $$
+% \end{defbox}
+
+\subsection{Arkusfunktionen}\label{MA1-trigonometrische-funktionen-arkusfunktionen}
+
+Um von Seitenverhältnissen oder mit dem Sinus- oder dem Kosinussatz auf Winkel zu schließen, muss man die Winkelfunktion umkehren. Allerdings sind trigonometrische Funktionen periodisch, also \underline{nicht umkehrbar}\randverweis{MA1-eigenschaften-von-funktionen}. Die Idee besteht darin, einen sinnvollen Winkel zurückzuliefern -- auch wenn das nicht der einzig mögliche ist. Und genau das machen die Arkusfunktionen\footnote{Arkus $=$ Bogen, also Winkel}.
+
+\begin{defbox}{Arkusfunktionen}{ }
+	\begin{eqnarray*}
+		\begin{array}{lcl l }
+			\arcsin: [-1,1] &\to& [-\pi/2, \pi/2], \; &x\mapsto \arcsin(x) \\[1ex]
+			\arccos: [-1,1] &\to& [0, \pi], \; &x\mapsto \arccos(x)  \\[1ex]
+			\arctan: (-\infty,\infty) &\to& (- \pi/2, \pi/2), \; &x\mapsto \arctan(x)\\[1ex]
+			\mathrm{arccot}: (-\infty,\infty) &\to& (0,\pi), \; &x\mapsto \mathrm{arccot}(x) 
+\end{array}
+\end{eqnarray*}
+\textbf{Bemerkung:} es gilt $\mathrm{arccot}(x) = \frac{\pi}{2} - \arctan(x)$.
+\end{defbox}
+
+\noindent \textbf{Bemerkungen:}
+\begin{itemize}
+	\item Ähnlich wie bei geradzahligen \underline{Potenzfunktionen}\randverweis{MA1-potenz-und-wurzelfunktionen} ist die Idee eine trigonometrische Funktion auf ein maximales Intervall einzuschränken, auf dem sie injektiv ist. Das Intervall ist zunächst willkürlich.
+	Der Sinus ist auf dem Intervall
+\[
+I=[-\pi/2,\pi/2]
+\]
+streng monoton steigend und damit injektiv. Gleichzeitig nimmt er dort alle
+Werte aus \([-1,1]\) an. Die Einschränkung
+\[
+\sin:[-\pi/2,\pi/2]\to[-1,1]
+\]
+ist daher bijektiv und besitzt eine Umkehrfunktion. Die Umkehrfunktion, die den Sinus auf \(I\) umkehrt, nennt sich \textbf{Arkussinus}.  
+
+	\item Dass die  Arkussinus Funktion  keine  Winkel  über  $90^\circ$ liefert, ist  dann  gefährlich, wenn man mit dem Sinussatz arbeitet: Bei der Anwendung des Sinussatzes kann aus
+\[
+\sin(\beta)=s
+\]
+nicht unmittelbar auf einen eindeutigen Winkel geschlossen werden. Für
+\(0<s<1\) besitzen im Intervall \((0,\pi)\) im Allgemeinen die beiden Winkel
+\[
+\beta
+\qquad\text{und}\qquad
+\pi-\beta
+\]
+denselben Sinuswert. Je nach den übrigen gegebenen Größen können daher zwei verschiedene Dreiecke möglich sein.	
+	\item Der Arkustangens liefert also nur Werte von $-90^\circ \widehat= -\pi/2$ bis $90^\circ \widehat =\pi/2$ und keine gesamte Umdrehung von $-180^\circ=-\pi$ bis $180^\circ =\pi$. Das Problem ist, dass der Tangens nicht unterscheiden kann, ob ein Punkt \( (x|y)\) im ersten oder dritten bzw. im zweiten oder vierten Quadranten liegt, denn die Vorzeicheninformation geht bei der Division verloren:
+$$\tan(\varphi) = \frac{y_1}{x_1} =\frac{y_2}{x_2} = \tan(\varphi +\pi), \quad \mathrm{mit} \; y_2=-y_1, \quad x_2=-x_1\,.$$ 
+\end{itemize}
+
+Das zuletzt genannte Problem kann behoben werden, wenn man die Vorzeicheninformation der Koordinaten \(x\) und \(y\) weiß und genau das wird in der Praxis auch getan: in fast allen Programmiersprachen gibt es eine Funktion namens $\verb-atan2-$. Diese Funktion liefert Werte aus $(-\pi,\pi]$ zurück, also eine komplette Umdrehung. Die getrennte Übergabe der Koordinaten \(x\) und \(y\) erhält die Vorzeicheninformation: \footnote{Normalerweise ist die Reihenfolge $y$ dann $x$,  entsprechend $"\dfrac{y}{x}"$, aber man muss aufpassen, denn manchmal ist die Reihenfolge auch "$x,y$".}
+
+\begin{exabox}{\(\mathrm{atan2}\)}{ }
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/trigonometrie_atan2_quadranten_winkel.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		Der herkömmliche Arkustangens kann Punkte im ersten und dritten Quadranten nicht unterscheiden: 
+		\[ 
+			\begin{array}{rcl} 
+				(3|3) &\Rightarrow & \begin{cases} \verb-atan2-(3,3) &= \frac14 \pi \,,\\ \arctan(1) &= \frac14 \pi \end{cases}\\[2ex] 
+				(-3|-3) &\Rightarrow & \begin{cases} \verb-atan2-(-3,-3) &= -\frac34 \pi \,,\\ \arctan(1) &= \frac14 \pi \end{cases}\\[2ex] 
+			\end{array}
+		\]
+		Der herkömmliche Arkustangens kann Punkte im zweiten und vierten Quadranten nicht unterscheiden: 
+		\[ 
+			\begin{array}{rcl} 
+				(-3|3) &\Rightarrow & \begin{cases} \verb-atan2-(3,-3) &= \frac34 \pi \,,\\ \arctan(-1) &= -\frac{1}{4} \pi \end{cases}\\[2ex] 
+				(3|-3) &\Rightarrow & \begin{cases} \verb-atan2-(-3,3) &= -\frac14 \pi \,,\\ \arctan(-1) &= -\frac14 \pi \end{cases}
+			\end{array}
+		\]
+	\end{minipage}
+\end{exabox}
+
+Der Arkustangens kommt dann zum Einsatz, wenn man von kartesischen Koordinaten in Polarkoordinaten umrechnen möchte. 
+\begin{defbox}{Polarkoordinaten mit Hilfe von \(\mathrm{atan2}\) }{ }
+	Jeder Punkt $(x,y) \in \mathbb R^2$ kann in der Form 
+	$$ 
+	x= r\cdot \cos(\varphi), \quad y=r\cdot \sin(\varphi)
+	$$ 
+	mit $r\in \mathbb R^+_0$ und $\varphi \in (-\pi, \pi]$ dargestellt werden. Es gilt 
+	$$
+	r=\sqrt{x^2+y^2}, \quad 
+\varphi=\operatorname{atan2}(y,x):=
+\begin{cases}
+\arctan(y/x), & x>0,\\[1ex]
+\arctan(y/x)+\pi, & x<0,\;y\geq0,\\[1ex]
+\arctan(y/x)-\pi, & x<0,\;y<0,\\[1ex]
+\pi/2, & x=0,\;y>0,\\[1ex]
+-\pi/2, & x=0,\;y<0.
+\end{cases}
+	$$
+	\noindent{\textbf{Bemerkungen}}
+	\begin{itemize}
+		\item Die Werte $(r,\varphi)$ heißen Polarkoordinaten von $(x,y)$.
+		\item Für den Ursprung \( (0,0)\) ist der Winkel \(\varphi \) nicht definiert.
+		\item Die Funktion \(\operatorname{atan2}\) besitzt damit die folgende Signatur: \[ \operatorname{atan2}: \mathbb R^2 \setminus \{ (0, 0 )\} \to (-\pi, \pi]\].
+	\end{itemize}
+\end{defbox}
+
+
+\begin{exabox}{Lösen einer trigonometrischen Gleichung}{ }
+
+	Gesucht sind \emph{alle} reellen Lösungen der Gleichung
+\[
+\sin(x)=\frac12.
+\]
+
+Aus den bekannten Werten der Sinusfunktion folgt zunächst
+\[
+\sin\left(\frac{\pi}{6}\right)=\frac12.
+\]
+Damit ist
+\[
+x_1=\frac{\pi}{6}
+\]
+\emph{eine} Lösung der Gleichung.
+
+Diese Lösung ist jedoch nicht die einzige. Am Einheitskreis entspricht der Sinus der \(y\)-Koordinate eines Punktes. Die \(y\)-Koordinate \(\frac12\) wird innerhalb einer vollständigen Periode an zwei verschiedenen Stellen angenommen. Aufgrund der Symmetrie des Sinus gilt
+\[
+\sin(x)=\sin(\pi-x).
+\]
+Aus
+\[
+x_1=\frac{\pi}{6}
+\]
+ergibt sich daher als zweite Lösung innerhalb des Intervalls
+\([0,2\pi)\)
+\[
+x_2
+=
+\pi-\frac{\pi}{6}
+=
+\frac{5\pi}{6}.
+\]
+
+Damit besitzt die Gleichung innerhalb einer vollständigen Periode zwei Lösungen, \( x_1 = \frac{\pi}{6}\) und \(x_2 = \frac{5\pi}{6}\).
+
+Da die Sinusfunktion die Periode \(2\pi\) besitzt, wiederholen sich diese
+Lösungen nach jeder vollständigen Umdrehung:
+\[
+\sin(x+2k\pi)=\sin(x),
+\qquad k\in\mathbb Z.
+\]
+Damit ergeben sich alle reellen Lösungen zu
+\[
+x=\frac{\pi}{6}+2k\pi
+\quad\text{oder}\quad
+x=\frac{5\pi}{6}+2k\pi,
+\qquad k\in\mathbb Z.
+\]
+
+Die Lösungsmenge kann entsprechend geschrieben werden als
+\[
+\mathbb L
+=
+\left\{
+\frac{\pi}{6}+2k\pi:k\in\mathbb Z
+\right\}
+\cup
+\left\{
+\frac{5\pi}{6}+2k\pi:k\in\mathbb Z
+\right\}.
+\]
+
+Das Beispiel zeigt einen wesentlichen Unterschied zu vielen bisher
+betrachteten Gleichungen: Aufgrund der Periodizität einer trigonometrischen
+Funktion können aus einer Lösung unendlich viele weitere Lösungen entstehen.
+Für die vollständige Lösungsmenge müssen daher sowohl die verschiedenen
+Lösungen innerhalb einer Periode als auch die periodischen Wiederholungen
+berücksichtigt werden.
+
+\end{exabox}

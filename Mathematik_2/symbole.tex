@@ -1,0 +1,107 @@
+% Gemeinsame Quelle fuer Gesamtskript und eigenstaendige Symboluebersicht.
+\begin{landscape}
+\ifdefined\chapter
+  \chapter{Symbolübersicht Mathematik 2}
+\else
+  \section{Symbolübersicht Mathematik 2}
+\fi
+\begingroup
+\ifdefined\oldlongtable
+  \let\longtable\oldlongtable
+  \let\endlongtable\endoldlongtable
+\fi
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\rowcolors{2}{white}{black!4}
+\newcommand{\symbolgruppe}[1]{%
+  \rowcolor{black!10}\multicolumn{3}{@{}l@{}}{\rule{0pt}{2.6ex}\textbf{#1}}\\*}
+\begin{longtable}{@{}p{0.17\linewidth}p{0.35\linewidth}p{\dimexpr0.48\linewidth-4\tabcolsep\relax}@{}}
+\caption{Zeichen und Notation in Mathematik 2}\label{MA2-Symbole}\\
+\toprule
+\textbf{Symbol} & \textbf{Bedeutung} & \textbf{Beispiel}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l@{}}{\textbf{Zeichen und Notation in Mathematik 2} -- Fortsetzung}\\
+\toprule
+\textbf{Symbol} & \textbf{Bedeutung} & \textbf{Beispiel}\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{\footnotesize Fortsetzung auf der nächsten Seite}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\symbolgruppe{Grundnotation und Integration}
+$a\stackrel{!}{=}b$ & Eine Gleichheit wird gefordert, etwa zur Bestimmung eines Parameters. & $2c\stackrel{!}{=}1\Rightarrow c=1/2$.\\
+$\approx$ & Näherungsweise gleich; die Genauigkeit hängt vom Verfahren ab. & $\sqrt2\approx1{,}4142$.\\
+$f'$, $f''$, $f^{(n)}$ & Erste, zweite bzw. $n$-te Ableitung; $f^{(n)}$ ist keine Potenz. & Für $f(x)=x^3$ gilt $f''(x)=6x$ und $f^{(3)}(x)=6$.\\
+$\dot y$, $\ddot y$ & Ableitungen nach der Zeit $t$. & $y(t)=\sin t\Rightarrow\dot y(t)=\cos t$, $\ddot y(t)=-\sin t$.\\
+$\mathrm dx$ & Differential; kennzeichnet beim Integrieren die Integrationsvariable. & Bei $u=x^2$ ist $\mathrm du=2x\,\mathrm dx$.\\
+$\int f(x)\,\mathrm dx$ & Unbestimmtes Integral: Familie der Stammfunktionen; die Integrationskonstante gehört dazu. & $\int x^2\,\mathrm dx=x^3/3+C$, $C\in\mathbb R$.\\
+$F'=f$ & $F$ ist eine Stammfunktion von $f$. & $F(x)=x^3/3$ ist eine Stammfunktion von $f(x)=x^2$.\\
+$\int_a^b f(x)\,\mathrm dx$ & Bestimmtes Integral; bei $a<b$ der vorzeichenbehaftete Flächeninhalt unter einem stetigen Graphen. & $\int_{-1}^{1}x\,\mathrm dx=0$.\\
+$\int_a^b |f(x)|\,\mathrm dx$ & Geometrischer Flächeninhalt zwischen Graph und $x$-Achse, $a<b$. & $\int_{-1}^{1}|x|\,\mathrm dx=1$.\\
+$[F(x)]_a^b$ & Kurzschreibweise für $F(b)-F(a)$. Bei stetigem $f=F'$ gilt der Hauptsatz. & $\int_0^1 x^2\,\mathrm dx=[x^3/3]_0^1=1/3$.\\
+$\int_a^\infty f(x)\,\mathrm dx$ & Uneigentliches Integral: Grenzwert von $\int_a^b f(x)\,\mathrm dx$ für $b\to\infty$, sofern endlich. & $\int_0^\infty e^{-x}\,\mathrm dx=1$; $\int_0^b\cos x\,\mathrm dx=\sin b$ hat keinen Grenzwert.\\
+$\int_{-\infty}^\infty f(x)\,\mathrm dx$ & Beide einseitigen uneigentlichen Integrale müssen einzeln konvergieren. & $\int_{-\infty}^{\infty}e^{-|x|}\,\mathrm dx=2$.\\
+$L$ & Länge eines differenzierbaren Funktionsgraphen auf $[a,b]$; hier $f\in C^1([a,b])$. & $L=\int_a^b\sqrt{1+(f'(x))^2}\,\mathrm dx$; für $f(x)=x$ auf $[0,1]$ ist $L=\sqrt2$.\\
+
+\symbolgruppe{Reihen und Taylorapproximation}
+$\sum_{k=0}^n a_k$ & Endliche Summe; $k$ ist der Summationsindex. & $\sum_{k=0}^3 2^k=1+2+4+8=15$.\\
+$\sum_{k=0}^\infty a_k$ & Unendliche Reihe: Grenzwert der Partialsummen, falls dieser existiert. & $\sum_{k=0}^{\infty}(1/2)^k=2$.\\
+$n!$ & Fakultät: Produkt der Zahlen $1$ bis $n$; $0!:=1$. & $4!=24$, $\binom43=4!/(3!\,1!)=4$.\\
+$\sum_{k=0}^\infty a_k(x-x_0)^k$ & Potenzreihe mit Entwicklungspunkt $x_0$. & $\sum_{k=0}^{\infty}x^k=1/(1-x)$ für $|x|<1$.\\
+$R$ & Konvergenzradius: Konvergenz für $|x-x_0|<R$, Divergenz für $|x-x_0|>R$; Randpunkte separat prüfen. & $\sum_{k=1}^{\infty}x^k/k$ hat $R=1$; bei $x=-1$ konvergent, bei $x=1$ divergent.\\
+$p_n$, $T_n$ & Taylorpolynom vom Grad höchstens $n$ am Entwicklungspunkt $x_0$. & $p_n(x)=\sum_{k=0}^n\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$; für $e^x$, $x_0=0$: $p_2(x)=1+x+x^2/2$.\\
+$\sum_{k=0}^\infty\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$ & Taylorreihe von $f$. Sie stellt $f$ dort dar, wo $f$ mit dieser Reihe übereinstimmt. & $e^x=\sum_{k=0}^{\infty}x^k/k!$ für alle $x\in\mathbb R$.\\
+$R_n(x)$ & Restglied: Differenz zwischen Funktion und Taylorpolynom. & $R_n(x)=f(x)-p_n(x)$.\\
+$\xi$, $M_{n+1}$ & Zwischenstelle zwischen $x_0$ und $x$ bzw. obere Schranke für $|f^{(n+1)}|$ auf dem verbindenden Intervall. & Bei hinreichender Glattheit: $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$ und $|R_n(x)|\leq\frac{M_{n+1}}{(n+1)!}|x-x_0|^{n+1}$.\\
+
+\symbolgruppe{Funktionenräume und Orthogonalprojektion}
+$\mathbb K$, $V$, $U\subseteq V$ & Skalarkörper, Vektorraum und Untervektorraum; im Skript auch $\mathbb V$, $\mathbb U$. & $\mathbb K=\mathbb R$ oder $\mathbb C$; $U=\operatorname{span}\{1,x\}\subset C([-1,1],\mathbb R)$.\\
+$C([a,b],\mathbb R)$ & Raum der stetigen reellwertigen Funktionen auf $[a,b]$; auch $\mathcal C([a,b],\mathbb R)$. & $x\mapsto|x|$ liegt in $C([-1,1],\mathbb R)$.\\
+$\mathcal R([a,b],\mathbb R)$ & Raum der Riemann-integrierbaren Funktionen auf $[a,b]$. & Eine stückweise stetige Funktion mit endlich vielen Sprüngen ist Riemann-integrierbar.\\
+$\mathcal P_n$ & Polynome vom Grad höchstens $n$, einschließlich des Nullpolynoms. & $\mathcal P_2=\operatorname{span}\{1,x,x^2\}$.\\
+$\langle f,g\rangle$ & Skalarprodukt auf einem geeigneten Funktionenraum; Intervall und Normierung sind zu beachten. & Auf $C([-1,1],\mathbb R)$: $\langle f,g\rangle=\int_{-1}^1 f(x)g(x)\,\mathrm dx$; $\langle1,x\rangle=0$.\\
+$\|v\|$, $\|f\|$ & Vom Skalarprodukt erzeugte Norm: $\|v\|=\sqrt{\langle v,v\rangle}$. & Für das obige Integral-Skalarprodukt: $\|x\|=\sqrt{2/3}$.\\
+$\hat v$, $\hat f$ & Normierung eines von null verschiedenen Vektors bzw. einer Funktion. Ein Dach kann andernorts auch eine Fourier-Transformierte kennzeichnen. & $\hat v=v/\|v\|$; für $v=(i,0,1+i)^\top$ ist $\|v\|=\sqrt3$.\\
+$\overline z$, $\overline{v}$ & Komplexe Konjugation; bei Vektoren komponentenweise. & $\overline{1+2i}=1-2i$; im komplexen Fourier-Skalarprodukt wird der zweite Faktor konjugiert.\\
+$f\perp g$ & Orthogonalität: Das Skalarprodukt ist null. & Auf $[-1,1]$: $\int_{-1}^1 1\cdot x\,\mathrm dx=0$.\\
+$\operatorname{proj}_U v$ & Orthogonalprojektion auf einen endlichdimensionalen Unterraum $U$ mit Orthonormalbasis $(e_j)$. & $\operatorname{proj}_U v=\sum_j\langle v,e_j\rangle e_j$; das Residuum $v-\operatorname{proj}_U v$ ist orthogonal zu $U$.\\
+$A^\top A x_*=A^\top b$ & Normalengleichung zur reellen Ausgleichsrechnung; bei vollem Spaltenrang ist $x_*$ eindeutig. & $x_*$ minimiert $\|Ax-b\|^2$; $A^\top(b-Ax_*)=0$.\\
+
+\symbolgruppe{Fourierreihen und diskrete Fouriertransformation}
+$T$, $\omega_0$ & Periode und zugehörige Grundkreisfrequenz $\omega_0=2\pi/T$. Die kleinste positive Periode heißt Grundperiode. & $\sin(3t)$ hat Grundperiode $T=2\pi/3$ und $\omega_0=3$.\\
+$\mathcal P_T$ & Raum der $T$-periodischen Funktionen: $f(t+T)=f(t)$; $T$ muss nicht die kleinste Periode sein. & $t\mapsto\sin(2\pi nt/T)\in\mathcal P_T$ für $n\in\mathbb N^+$.\\
+$\omega_k=k\omega_0$ & Diskrete Kreisfrequenzen; $k$ bezeichnet die Harmonische. & $T=2\pi\Rightarrow\omega_k=k$.\\
+$a_0,a_k,b_k$ & Reelle Fourierkoeffizienten in $a_0/2+\sum_{k\geq1}(a_k\cos(k\omega_0t)+b_k\sin(k\omega_0t))$. & $a_k=\frac2T\int_0^T f(t)\cos(k\omega_0t)\,\mathrm dt$, $k\geq0$; für $b_k$ Sinus statt Kosinus, $k\geq1$.\\
+$c_k$, $k\in\mathbb Z$ & Komplexe Fourierkoeffizienten; die Reihe lautet $\sum_{k\in\mathbb Z}c_ke^{ik\omega_0t}$. & $c_k=\frac1T\int_0^T f(t)e^{-ik\omega_0t}\,\mathrm dt$; für $k\geq1$: $c_k=(a_k-i b_k)/2$, $c_0=a_0/2$.\\
+$N$, $t_n$, $u_n$ & Anzahl der Samples, Abtastzeitpunkte und Signalwerte im Beobachtungsfenster der Länge $T$, beginnend bei $0$. & $t_n=nT/N$, $u_n=u(t_n)$, $n=0,\ldots,N-1$.\\
+$W_N=e^{-2\pi i/N}$ & Für die DFT verwendete $N$-te Einheitswurzel; $W_N^N=1$. & $W_4=-i$; seine Potenzen sind $1,-i,-1,i$.\\
+$\tilde c_k$ & Diskrete Fourierkoeffizienten in der Normierung des Skripts. & $\tilde c_k=\sum_{n=0}^{N-1}u_nW_N^{kn}$; für $(u_0,u_1)=(1,3)$ ist $(\tilde c_0,\tilde c_1)=(4,-2)$.\\
+$\operatorname{iDFT}$ & Inverse diskrete Fouriertransformation; der Faktor $1/N$ steht hier bei der Rücktransformation. & $u_n=\frac1N\sum_{k=0}^{N-1}\tilde c_kW_N^{-kn}$; aus $(4,-2)$ wird wieder $(1,3)$.\\
+$T_N$ & DFT-Matrix mit Einträgen $(T_N)_{kn}=W_N^{kn}$, $k,n=0,\ldots,N-1$. & $T_2=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$; $T_2^{-1}=\tfrac12T_2$.\\
+
+\symbolgruppe{Fouriertransformation und Laplacetransformation}
+$\hat f$, $\mathcal F(f)$ & Fourier-Transformierte; hier symmetrische Normierung. Das Integrationssymbol verwendet dieselbe Variable wie $f$. & $\hat f(\omega)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\,\mathrm dt$.\\
+$\omega$ & Kontinuierliche Kreisfrequenz, im Unterschied zu den diskreten $\omega_k$. & Für $f(t)=e^{-|t|}$ ist $\hat f(\omega)=\sqrt{2/\pi}/(1+\omega^2)$.\\
+$\mathcal F^{-1}$ & Inverse Fouriertransformation; die Formel gilt unter geeigneten Integrabilitäts- und Regularitätsbedingungen. & $f(t)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}\hat f(\omega)e^{i\omega t}\,\mathrm d\omega$.\\
+$Y(s)$, $\mathcal L(y)(s)$ & Einseitige Laplace-Transformierte; $s$ ist im Allgemeinen komplex, der Konvergenzbereich ist anzugeben. & $Y(s)=\int_0^\infty y(t)e^{-st}\,\mathrm dt$; für $y(t)=1$ gilt $Y(s)=1/s$, $\operatorname{Re}s>0$.\\
+$H(t)$ & Heaviside-Funktion: hier $0$ für $t<0$ und $1$ für $t\geq0$. & $\mathcal L(H(t-a)\cos(t-a))(s)=e^{-as}s/(s^2+1)$ für $a>0$, $\operatorname{Re}s>0$.\\
+$f\star g$ & Faltung; bei kausalen Funktionen genügt ein Integral von $0$ bis $t$, $t\geq0$. & $(f\star g)(t)=\int_0^t f(t-\tau)g(\tau)\,\mathrm d\tau$; $f(t)=g(t)=1$ für $t\geq0$ liefert $(f\star g)(t)=t$.\\
+
+\symbolgruppe{Differentialgleichungen, Numerik und Systemanalyse}
+$y'=f(y,x)$ & Explizite Differentialgleichung erster Ordnung; die Reihenfolge der Argumente von $f$ ist hier festgelegt. & $f(y,x)=y+x^2$ bedeutet $y'=y+x^2$.\\
+$y(x_0)=y_0$ & Anfangsbedingung; zusammen mit der Differentialgleichung ein Anfangswertproblem. & $y'=y$, $y(0)=1$ hat die Lösung $y(x)=e^x$.\\
+$h$, $x_k$, $y_k$ & Schrittweite, Gitterpunkt $x_k=x_0+kh$ und Näherung $y_k\approx y(x_k)$. & Explizites Euler-Verfahren: $y_{k+1}=y_k+h f(y_k,x_k)$.\\
+$\dot{\boldsymbol x}=A\boldsymbol x$ & Lineares homogenes System mit konstanter Matrix $A$. & Für $A=\operatorname{diag}(-1,-2)$ gilt $\boldsymbol x(t)=(c_1e^{-t},c_2e^{-2t})^\top$.\\
+$\lambda$, $v$ & Eigenwert und zugehöriger Eigenvektor $v\neq0$: $Av=\lambda v$. & Dann ist $\boldsymbol x(t)=e^{\lambda t}v$ eine Lösung von $\dot{\boldsymbol x}=A\boldsymbol x$.\\
+$\det(A-\lambda I)$ & Charakteristisches Polynom; seine Nullstellen sind die Eigenwerte von $A$. & $A=\operatorname{diag}(-1,-2)$ liefert $(\lambda+1)(\lambda+2)$ mit Nullstellen $-1,-2$.\\
+$\operatorname{Re}\lambda$ & Realteil eines Eigenwerts. Sind alle Realteile negativ, ist das konstante lineare System asymptotisch stabil. & $\lambda_{1,2}=-1\pm2i$ beschreiben gedämpfte Schwingungen.\\
+$H(s)$ & Übertragungsfunktion eines linearen zeitinvarianten Systems bei verschwindenden Anfangsbedingungen; von $H(t)$ oben zu unterscheiden. & Aus $\dot y+2y=u$ folgt $H(s)=Y(s)/U(s)=1/(s+2)$.\\
+$H(i\omega)$ & Frequenzgang: Übertragungsfunktion auf der imaginären Achse, sofern dort definiert. & Für $H(s)=1/(s+2)$ gilt $|H(i\omega)|=1/\sqrt{4+\omega^2}$.\\
+
+\end{longtable}
+\endgroup
+\end{landscape}

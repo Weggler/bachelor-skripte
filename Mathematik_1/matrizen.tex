@@ -1,0 +1,659 @@
+\section{Matrizen}\label{MA1-matrizen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem den Begriff der Matrix und grundlegende Matrixoperationen erklären &\\
+    \tabitem Matrizen als Darstellungen linearer Abbildungen zwischen endlichdimensionalen Vektorräumen interpretieren &\\
+    \tabitem die Matrix-Vektor-Multiplikation als Wirkung einer linearen Abbildung interpretieren
+    \tabitem die Matrix-Vektor-Multiplikation als Linearkombination der Spaltenvektoren verstehen &\\
+    \tabitem Bild und Rang einer Matrix definieren und ihre Bedeutung erklären &\\
+    \tabitem Kern und Defekt einer Matrix definieren und ihre Bedeutung erklären &\\
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Grundlagen & \abschnittsverweis{MA1-mengen-und-logik}-\abschnittsverweis{MA1-aequivalenzumformungen}\\
+    \tabitem Vektoren & \abschnittsverweis{MA1-vektoren}\\
+    \tabitem Vektorraum & \abschnittsverweis{MA1-vektorraum}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema finden Sie hier:
+\hyperref[MA1-matrizen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+%----------------------------------------------------------
+\subsection{Was ist eine Matrix?}
+
+Eine \textbf{Matrix} (\emph{matrix}) ordnet Zahlen in Zeilen und Spalten an. Die rechteckige Anordnung ermöglicht es, mehrere zusammengehörige Zahlen in einem einzigen mathematischen Objekt zusammenzufassen.
+
+Eine Matrix mit \(m\) Zeilen und \(n\) Spalten heißt \(m\times n\)-Matrix. Für reelle Einträge wird die Menge aller solcher Matrizen mit \(\mathbb R^{m\times n}\) bezeichnet, für komplexe Einträge entsprechend mit \(\mathbb C^{m\times n}\).
+
+\begin{exabox}{Matrix \(A\)}{ }
+
+Die Matrix
+\[
+A=
+\left(
+\begin{array}{ccc}
+32 & -1 & \pi\\
+5 & -\sqrt{17} & 78
+\end{array}
+\right)
+\]
+besitzt zwei \textbf{Zeilen} (\emph{rows}) und drei \textbf{Spalten} (\emph{columns}). Sie ist damit eine
+\(2\times3\)-Matrix und ein Element von \(\mathbb R^{2\times3}\).
+
+Für Matrizen sind sowohl runde als auch eckige Klammern gebräuchlich.
+
+\end{exabox}
+
+Die einzelnen \textbf{Einträge} einer Matrix werden durch zwei Indizes bezeichnet.  Dabei gibt der erste Index die Zeile und der zweite Index die Spalte an.
+
+\begin{exabox}{Einträge einer Matrix}{ }
+
+Für
+\[
+A=
+\left(
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}
+\end{array}
+\right)
+\]
+bezeichnet beispielsweise
+\[
+(A)_{23}=a_{23}
+\]
+den Eintrag in der zweiten Zeile und dritten Spalte.
+
+\end{exabox}
+
+
+\subsection{Matrizen als Elemente eines Vektorraums}
+
+Matrizen gleicher Größe können addiert und mit Skalaren multipliziert werden. Beide Operationen werden eintragsweise ausgeführt.
+
+\begin{exabox}{Matrizen addieren und skalieren}{ }
+
+\begin{eqnarray*}
+\left(\begin{array}{ccc}1&2&5\\3&4&-6\end{array}\right)
++
+\left(\begin{array}{ccc}0&2&3\\1&0&-4\end{array}\right)
+&=&
+\left(\begin{array}{ccc}1&4&8\\4&4&-10\end{array}\right),\\[1ex]
+3\cdot
+\left(\begin{array}{ccc}1&2&5\\3&4&-6\end{array}\right)
+&=&
+\left(\begin{array}{ccc}3&6&15\\9&12&-18\end{array}\right).
+\end{eqnarray*}
+
+\end{exabox}
+
+Die Vektorraumaxiome gelten auch für diese beiden Operationen. Damit ist
+\(\mathbb R^{m\times n}\) selbst ein \underline{Vektorraum}\randverweis{MA1-vektorraum} über \(\mathbb R\); entsprechend ist \(\mathbb C^{m\times n}\) ein Vektorraum über \(\mathbb C\).
+
+Matrizen bilden damit ein weiteres Beispiel dafür, dass die Elemente eines Vektorraums nicht notwendig geometrische Pfeile oder Zahlenspalten sein müssen. Auch Funktionen und Matrizen können Vektoren einer linearen Struktur sein.
+
+
+\subsubsection*{Transposition}
+
+Eine weitere grundlegende Operation vertauscht die Rollen von Zeilen und
+Spalten. Sie heißt \textbf{Transposition} (\emph{transposition}).
+
+Für eine Matrix \(A\in\mathbb K^{m\times n}\) bezeichnet
+\(A^\intercal\in\mathbb K^{n\times m}\) die transponierte Matrix.
+
+\begin{exabox}{Transponieren \(A\mapsto A^\intercal\)}{ }
+
+\[
+A=
+\left(
+\begin{array}{ccc}
+\pi&3&-5\\
+\sqrt2&100&0
+\end{array}
+\right)
+\quad\Rightarrow\quad
+A^\intercal=
+\left(
+\begin{array}{cc}
+\pi&\sqrt2\\
+3&100\\
+-5&0
+\end{array}
+\right).
+\]
+
+\end{exabox}
+
+
+\subsection{Lineare Abbildungen}
+
+Im vorangegangenen Abschnitt wurde die lineare Struktur eines Vektorraums durch zwei grundlegende Operationen beschrieben: Vektoren können addiert und mit Skalaren multipliziert werden.
+
+Nun können Abbildungen zwischen solchen Räumen betrachtet werden. Von besonderem Interesse sind Abbildungen, welche die lineare Struktur erhalten.  Dabei spielt es keine Rolle, ob Vektoren zunächst addiert beziehungsweise skaliert und anschließend abgebildet werden oder ob zunächst die einzelnen Vektoren abgebildet und ihre Bilder danach entsprechend kombiniert werden.  
+
+\begin{defbox}{Lineare Abbildung}{ }
+
+Es seien \(\mathbb V\) und \(\mathbb W\) Vektorräume über demselben Körper \(\mathbb K\). Eine Abbildung
+\[
+\mathcal A:\mathbb V\to\mathbb W
+\]
+heißt \textbf{linear} (\emph{linear}), wenn für alle
+\(\vec x,\vec y\in\mathbb V\) und alle \(\lambda\in\mathbb K\) gilt:
+\[
+\mathcal A(\vec x+\vec y)
+=
+\mathcal A(\vec x)+\mathcal A(\vec y)
+\]
+und
+\[
+\mathcal A(\lambda\cdot\vec x)
+=
+\lambda\cdot\mathcal A(\vec x).
+\]
+
+\end{defbox}
+
+Die beiden Bedingungen bedeuten gemeinsam, dass eine lineare Abbildung Linearkombinationen erhält. Für \(\vec v_1,\ldots,\vec v_r\in\mathbb V\) und \(\lambda_1,\ldots,\lambda_r\in\mathbb K\) gilt daher
+\[
+\mathcal A
+\left(
+\lambda_1\vec v_1+\cdots+\lambda_r\vec v_r
+\right)
+=
+\lambda_1\mathcal A(\vec v_1)
++\cdots+
+\lambda_r\mathcal A(\vec v_r).
+\]
+
+Die lineare Struktur der Vektoren bleibt damit beim Abbilden erhalten.
+
+Eine unmittelbare Konsequenz der Linearität ergibt sich für den Nullvektor.  Es gilt
+\[
+\mathcal A(\vec 0)=\vec 0.
+\]
+Jede lineare Abbildung bildet also den Nullvektor des Definitionsbereichs auf den Nullvektor der Zielmenge ab.
+
+
+\subsection{Matrizen als Darstellung linearer Abbildungen}
+
+Für endlichdimensionale Vektorräume erhält die Linearität eine besonders konkrete Bedeutung. Dazu sei zunächst eine lineare Abbildung
+\[
+\mathcal A:\mathbb K^n\to\mathbb K^m
+\]
+gegeben.
+
+Jeder Vektor \(\vec x\in\mathbb K^n\) besitzt bezüglich der \underline{Standardbasis}\randverweis{MA1-vektorraum} die Darstellung
+\[
+\vec x
+=
+x_1\cdot \vec e_1+x_2\cdot \vec e_2+\cdots+x_n\cdot \vec e_n.
+\]
+
+Da \(\mathcal A\) linear ist, folgt
+\[
+\mathcal A(\vec x)
+=
+x_1 \cdot \mathcal A(\vec e_1)
++x_2\cdot \mathcal A(\vec e_2)
++\cdots+
+x_n\cdot \mathcal A(\vec e_n).
+\]
+
+Die Wirkung der Abbildung auf einen beliebigen Vektor ist damit bereits vollständig bekannt, sobald die Bilder der Standardbasisvektoren bekannt sind.
+
+Diese Bilder können als Spalten einer Matrix angeordnet werden.
+
+\begin{theorembox}{Darstellende Matrix}{ }
+
+Zu jeder linearen Abbildung
+\[
+\mathcal A:\mathbb K^n\to\mathbb K^m
+\]
+existiert genau eine Matrix
+\(A\in\mathbb K^{m\times n}\), sodass
+\[
+\mathcal A(\vec x)=A\vec x
+\]
+für alle \(\vec x\in\mathbb K^n\) gilt.
+
+Die Spalten von \(A\) sind die Bilder der Standardbasisvektoren:
+\[
+A=
+\left(
+\begin{array}{cccc}
+\vert & \vert && \vert\\
+\mathcal A(\vec e_1) &
+\mathcal A(\vec e_2) &
+\cdots &
+\mathcal A(\vec e_n)\\
+\vert & \vert && \vert
+\end{array}
+\right).
+\]
+
+\end{theorembox}
+
+Die Matrix ist damit eine konkrete Darstellung der linearen Abbildung bezüglich der verwendeten Basen. Für die Standardbasen von \(\mathbb K^n\) und \(\mathbb K^m\) besteht die Matrix unmittelbar aus den Bildern der Standardbasisvektoren.
+
+
+\subsection{Die Matrix-Vektor-Multiplikation}
+
+Die Darstellung durch eine Matrix führt unmittelbar zur Matrix-Vektor-Multiplikation.
+
+Seien
+\[
+A=
+\left(
+\begin{array}{cccc}
+\vert & \vert && \vert\\
+\vec a_1 & \vec a_2 & \cdots & \vec a_n\\
+\vert & \vert && \vert
+\end{array}
+\right)
+\in\mathbb K^{m\times n}
+\]
+und
+\[
+\vec x=
+\begin{pmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n
+\end{pmatrix}.
+\]
+
+Da die Spalten \(\vec a_i\) die Bilder der Standardbasisvektoren sind, ergibt sich
+\[
+A\vec x
+=
+x_1\cdot\vec a_1
++x_2\cdot\vec a_2
++\cdots+
+x_n\cdot\vec a_n.
+\]
+
+Die Matrix-Vektor-Multiplikation ist damit nicht nur eine Rechenvorschrift.  Sie bildet aus den Spaltenvektoren der Matrix eine \underline{Linearkombination}\randverweis{MA1-vektorraum}, deren Koeffizienten durch die Komponenten des Vektors \(\vec x\) gegeben sind.
+
+\begin{exabox}{Eine Matrix als lineare Abbildung}{ }
+
+Für
+\[
+A=
+\left(
+\begin{array}{ccc}
+-1&0&5\\
+0&\sqrt2&\pi
+\end{array}
+\right)
+\in\mathbb R^{2\times3}
+\]
+beschreibt
+\[
+\mathcal A:\mathbb R^3\to\mathbb R^2,
+\qquad
+\vec x\mapsto A\vec x
+\]
+eine lineare Abbildung.
+
+Beispielsweise wird
+\[
+\begin{pmatrix}
+1\\
+\cos(2)\\
+e^5
+\end{pmatrix}
+\]
+auf
+\[
+\begin{pmatrix}
+-1+5e^5\\
+\sqrt2\cos(2)+\pi e^5
+\end{pmatrix}
+\]
+abgebildet.
+
+\end{exabox}
+
+\begin{exabox}{Matrix-Vektor-Multiplikation}{ }
+
+\[
+\left(
+\begin{array}{ccc}
+\pi&3&-5\\
+0&100&0
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+2\\
+1\\
+0
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+3+2\pi\\
+100
+\end{array}
+\right).
+\]
+
+\end{exabox}
+
+Besonders wichtig ist die Wirkung auf die Standardbasisvektoren. Für die
+\(i\)-te Spalte \(\vec a_i\) einer Matrix gilt
+\[
+	A\, \vec e_i=\vec a_i.
+\]
+
+Die Spalten einer Matrix zeigen damit unmittelbar, wohin die Standardbasisvektoren durch die zugehörige lineare Abbildung abgebildet werden. Da jeder Vektor eine Linearkombination der Basisvektoren ist, ist dadurch die Wirkung der linearen Abbildung auf den gesamten Raum bestimmt.
+
+
+\subsection{Geometrische Wirkung linearer Abbildungen}
+
+Werden Punkte der Ebene durch ihre Ortsvektoren beschrieben, kann eine lineare Abbildung auf jeden Punkt einer geometrischen Figur angewendet werden. Dadurch entstehen geometrische Transformationen der gesamten Figur.
+
+Typische lineare Abbildungen der Ebene sind Skalierungen, Scherungen, Drehungen und Spiegelungen.
+
+\begin{exabox}{Skalierung}{ }
+
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/lineare_abbildungen_skalierung_ebene.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\[
+\begin{pmatrix}
+x\\y
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+3&0\\
+0&2
+\end{pmatrix}
+\begin{pmatrix}
+x\\y
+\end{pmatrix}
+=
+\begin{pmatrix}
+3x\\2y
+\end{pmatrix}.
+\]
+\end{minipage}
+
+\end{exabox}
+
+\begin{exabox}{Drehung}{ }
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/lineare_abbildungen_drehung_42_grad.png}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+\[
+\begin{pmatrix}
+x\\y
+\end{pmatrix}
+\mapsto
+\underbrace{
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha&\cos\alpha
+\end{pmatrix}
+}_{\textnormal{Drehmatrix}}
+\begin{pmatrix}
+x\\y
+\end{pmatrix}.
+\]
+\end{minipage}
+
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+Eine Verschiebung um einen von Null verschiedenen Vektor ist keine lineare Abbildung. Jede lineare Abbildung erfüllt \(\mathcal A(\vec 0)=\vec 0\), während eine solche Verschiebung den Ursprung auf einen anderen Punkt abbildet.
+
+
+\subsection{Matrix-Matrix-Multiplikation: Hintereinanderausführen}
+
+Lineare Abbildungen können wie andere Funktionen miteinander verkettet werden. Sind
+\[
+\mathcal A:\mathbb K^n\to\mathbb K^p
+\qquad\text{und}\qquad
+\mathcal B:\mathbb K^p\to\mathbb K^m
+\]
+lineare Abbildungen, so ist auch ihre Komposition
+\[
+\mathcal B\circ\mathcal A:
+\mathbb K^n\to\mathbb K^m
+\]
+linear.
+
+Werden \(\mathcal A\) und \(\mathcal B\) durch die Matrizen \(A\) und \(B\) dargestellt, so gilt
+\[
+\mathcal B(\mathcal A(\vec x))
+=
+B(A\,\vec x)
+=
+(B\,A)\,\vec x.
+\]
+
+Die Matrixmultiplikation beschreibt damit das \textbf{Hintereinanderausführen linearer Abbildungen}.
+
+\begin{defbox}{Matrix-Matrix-Multiplikation}{ }
+
+Für
+\[
+A\in\mathbb K^{m\times n},
+\qquad
+B\in\mathbb K^{n\times p}
+\]
+ist das Produkt
+\[
+	A\,B\in\mathbb K^{m\times p}
+\]
+durch
+\[
+	(A\,B)_{ij}
+=
+\sum_{k=1}^{n}a_{ik}b_{kj}
+\]
+definiert.
+
+\end{defbox}
+
+\begin{exabox}{Multiplikation}{ }
+
+\[
+\left(
+\begin{array}{ccc}
+\textcolor{brown}{1}&\textcolor{brown}{2}&\textcolor{brown}{3}\\
+4&5&6
+\end{array}
+\right)
+\left(
+\begin{array}{cccc}
+1&\textcolor{red}{0}&0&1\\
+0&\textcolor{red}{3}&0&0\\
+2&\textcolor{red}{4}&0&0
+\end{array}
+\right)
+=
+\left(
+\begin{array}{cccc}
+7&\textcolor{blue}{18}&0&1\\
+16&39&0&4
+\end{array}
+\right),
+\]
+wobei beispielsweise
+\[
+(AB)_{\textcolor{blue}{12}}
+=
+\textcolor{brown}{1}\cdot\textcolor{red}{0}
++\textcolor{brown}{2}\cdot\textcolor{red}{3}
++\textcolor{brown}{3}\cdot\textcolor{red}{4}.
+\]
+
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+Die Matrixmultiplikation ist assoziativ und distributiv, aber im Allgemeinen nicht kommutativ. Dies entspricht auch ihrer Interpretation als Hintereinanderausführen von Abbildungen: Die Reihenfolge der ausgeführten Transformationen kann das Ergebnis verändern.
+
+\begin{exabox}{Matrixmultiplikation ist im Allgemeinen nicht kommutativ}{ }
+
+\[
+{\color{brown}
+\begin{pmatrix}
+2&3\\4&5
+\end{pmatrix}}
+{\color{red}
+\begin{pmatrix}
+1&1\\0&1
+\end{pmatrix}}
+\neq
+{\color{red}
+\begin{pmatrix}
+1&1\\0&1
+\end{pmatrix}}
+{\color{brown}
+\begin{pmatrix}
+2&3\\4&5
+\end{pmatrix}}.
+\]
+
+\end{exabox}
+
+
+\subsection{Bild und Rang: Welche Vektoren können herauskommen?}
+
+Eine Matrix
+\[
+A\in\mathbb K^{m\times n}
+\]
+beschreibt eine lineare Abbildung von \(\mathbb K^n\) nach \(\mathbb K^m\). Dabei müssen jedoch nicht alle Vektoren der Zielmenge \(\mathbb K^m\) tatsächlich als Ergebnis der Abbildung auftreten.
+
+Damit stellt sich die Frage, welche Vektoren durch die Abbildung überhaupt erreicht werden können.
+
+Die Menge aller Vektoren, die als \(A\vec x\) entstehen können, heißt \textbf{Bild} (\emph{image}) der linearen Abbildung.
+
+\begin{defbox}{Bild einer Matrix}{ }
+
+Für \(A\in\mathbb K^{m\times n}\) ist
+\[
+\operatorname{im}(A)
+=
+\left\{
+\vec y\in\mathbb K^m:
+\exists\,\vec x\in\mathbb K^n
+\text{ mit }
+\vec y=A\,\vec x
+\right\}.
+\]
+
+\end{defbox}
+
+Die zuvor betrachtete Spaltendarstellung liefert unmittelbar eine zweite Beschreibung des Bildes. Sind
+\(\vec a_1,\ldots,\vec a_n\) die Spalten von \(A\), so gilt
+\[
+A\vec x
+=
+x_1\vec a_1+\cdots+x_n\vec a_n.
+\]
+
+Jeder Vektor im Bild ist daher eine Linearkombination der Spaltenvektoren.  Umgekehrt entsteht jede Linearkombination der Spalten durch eine geeignete Wahl der Komponenten von \(\vec x\). Damit gilt
+\[
+\operatorname{im}(A)
+=
+\operatorname{span}
+\{\vec a_1,\ldots,\vec a_n\}.
+\]
+
+Das Bild einer Matrix ist somit ein Untervektorraum der Zielmenge \(\mathbb K^m\).
+
+Die Dimension dieses Untervektorraums heißt \textbf{Rang} (\emph{rank}) der Matrix.
+
+\begin{defbox}{Rang einer Matrix}{ }
+
+Für \(A\in\mathbb K^{m\times n}\) ist
+\[
+\operatorname{rk}(A)
+=
+\dim\bigl(\operatorname{im}(A)\bigr).
+\]
+
+\end{defbox}
+
+Der Rang beschreibt damit, wie viele voneinander unabhängige Richtungen im Bild der linearen Abbildung entstehen können. Wie der Rang einer konkreten Matrix systematisch bestimmt werden kann, wird im Zusammenhang mit linearen Gleichungssystemen untersucht.
+
+
+\subsection{Kern und Defekt: Welche Vektoren verschwinden?}
+
+Neben der Frage, welche Vektoren durch eine lineare Abbildung entstehen können, ist eine zweite Frage von grundlegender Bedeutung:
+
+Welche Vektoren des Definitionsbereichs werden auf den Nullvektor \(\vec 0\) abgebildet?
+
+Die Menge dieser Vektoren heißt \textbf{Kern} (\emph{kernel}) der linearen Abbildung.
+
+\begin{defbox}{Kern einer Matrix}{ }
+
+Für \(A\in\mathbb K^{m\times n}\) ist
+\[
+\ker(A)
+=
+\left\{
+\vec x\in\mathbb K^n:
+A\vec x=\vec 0
+\right\}.
+\]
+
+\end{defbox}
+
+Der Kern ist ein \underline{Untervektorraum}\randverweis{MA1-vektorraum} des Definitionsbereichs \(\mathbb K^n\). Enthält der Kern außer dem Nullvektor weitere Vektoren, so werden verschiedene Vektoren durch die Abbildung auf denselben Vektor abgebildet. Denn aus
+\[
+	A\, \vec v=\vec0
+\]
+folgt für jeden Vektor \(\vec x\)
+\[
+	A\,(\vec x+\vec v) = A\,\vec x+A\,\vec v = A\vec x.
+\]
+
+Die Dimension des Kerns heißt \textbf{Defekt} der Matrix.
+
+\begin{defbox}{Defekt einer Matrix}{ }
+
+Für \(A\in\mathbb K^{m\times n}\) ist
+\[
+\operatorname{def}(A)
+=
+\dim\bigl(\ker(A)\bigr).
+\]
+
+\end{defbox}
+
+Bild und Kern beschreiben damit zwei unterschiedliche Aspekte derselben linearen Abbildung: Das Bild beschreibt, welche Richtungen durch die Abbildung erreicht werden, während der Kern beschreibt, welche Richtungen bei der Abbildung auf den Nullvektor abgebildet werden.
+
+Zwischen den Dimensionen dieser beiden Unterräume besteht ein grundlegender Zusammenhang.
+
+\begin{theorembox}{Rangsatz}{ }
+
+Für \(A\in\mathbb K^{m\times n}\) gilt
+\[
+\operatorname{rk}(A)+\operatorname{def}(A)=n.
+\]
+
+\end{theorembox}
+
+Der Rangsatz zerlegt die Dimension des Definitionsbereichs in zwei Anteile: die Dimension des Bildes und die Dimension des Kerns. Wie diese Größen für konkrete Matrizen bestimmt werden können, führt unmittelbar zu den Methoden für lineare Gleichungssysteme.
+

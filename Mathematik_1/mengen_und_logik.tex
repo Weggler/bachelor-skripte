@@ -1,0 +1,640 @@
+\section{Mengen und Logik}\label{MA1-mengen-und-logik}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem Mengen in mathematischer Symbolsprache korrekt formulieren &\\
+    \tabitem mathematische Aussagen präzise aufschreiben &\\ 
+    \tabitem mathematische Formelsprache lesen und interpretieren &\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-mengen-und-logik-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist eine Menge in der Mathematik?}
+
+Mit Hilfe von Mengen kann man fast alle mathematischen Objekte beschreiben. Ob die Zahl $7$, ein Kreis in der Ebene, die Relation "$\leq$"\, oder die Sinus-Funktion: all diese Objekte kann man als mehr oder weniger komplizierte Menge angeben! In der Mathematik wird eine Menge durch geschwungene Klammern angezeigt: \( \{ \}\). Zwischen den Klammern notiert man die Elemente der Menge. Eine Menge (\emph{set}) kann man sich vorstellen wie einen Beutel, in dem Elemente drin stecken und für die Elemente gelten folgende Eigenschaften:  
+\begin{theorembox}{Eigenschaften einer Menge}{}
+  \begin{itemize}
+	  \item Die Reihenfolge der Elemente einer Menge ist egal. Für eine Menge $M$, deren Elemente die drei Zahlen  \(1, 2 \) und \(3\) sind, gilt also: 
+      $$ M = \{ 1, 2, 3\} = \{ 2, 1, 3\} = \{ 3, 1, 2\}= \{ 1, 3, 2\}= \{ 2, 3, 1\}= \{ 3, 2, 1\}\,. $$
+    \item Wird ein Element in einer Menge mehrfach notiert, ändert dies die Menge nicht. Beispielsweise gilt 
+	    $$ M = \{ 1, 2, 2, 3\} = \{ 1, 2, 3\}\,. $$ 
+	    Entscheidend ist also nur, \textbf{ob} ein Elmeent zur Menge gehört, nicht wie oft es bei der Beschreibung aufgeführt wird.
+  \end{itemize}
+  \end{theorembox}
+  
+  \noindent{\textbf{Bemerkungen:}}
+
+\begin{itemize} 
+	\item Mengen verhalten sich also anders als Zahlenpaare (Tupel wie \((1,2)\) oder Tripel \( (1,2,3)\)), die man von Koordinaten kennt - da spielt nämlich die Reihenfolge eine wesentliche Rolle. 
+	\item Um auszuschließen, dass Elemente einer Menge doppelt vorkommen, müsste man immer explizit sagen, dass die Elemente unterschiedlich sind. Oft wird das implizit vorausgesetzt. Auf jeden Fall sollte man aufpassen, gilt zum Beispiel $x=y=z$, dann enthält die Menge $\{x,y,z\}$ nur ein Element und nicht drei. 
+\end{itemize}
+
+Für  "$x$ ist Element von $M$"\, bzw. "$x$ ist nicht Element von $M$"\, schreibt man: 
+
+\begin{defbox}{(kein) Element einer Menge}{}
+  $x \in M \textnormal{ bzw. } x \not \in M\,.$
+\end{defbox}
+
+Es gibt nur eine Menge ohne Elemente: die leere Menge. Sie wird auf zwei Weisen geschrieben:
+
+\begin{defbox}{Leere Menge}{ }
+  $\emptyset$ oder $\{ \}\,.$
+\end{defbox}
+
+Für die Mächtigkeit, also die Anzahl der Elemente einer Menge $M$, schreibt man \(|M|\), also:
+
+\begin{exabox}{M\"achtigkeit}{ }
+	$ \big|\emptyset \big| = 0, \quad \big|\{ -2,\frac32, 0, *\}\big| = 4 \,.$
+\end{exabox}
+
+Im  Falle  einer unendlichen Menge, also  einer  Menge  mit  unendlich  vielen Elementen, ergibt das keine endliche Zahl, sondern "\,unendlich"\footnote{Es gibt verschiedene Arten von Unendlich, wie Georg Cantor schon $1877$ herausgefunden hat.}. In dem Fall schreiben wir  $|M| = \infty$.
+
+\subsubsection*{Verknüpfungen von Mengen}
+
+Wenn jedes Element einer Menge $A$ auch Element einer Menge $B$ ist, dann ist $A$ eine Teilmenge von $B$ und $B$ eine Obermenge von $A$. Man schreibt $A\subset B$. Am schnellsten lässt sich das erfassen mit einer Skizze: 
+  
+\begin{exabox}{Teilmenge und Obermenge}{ }
+\begin{minipage}{0.3\textwidth}
+\includegraphics{../Mathematik_1/Bilder/mengen_echte_teilmenge.png} %Diagramm / Beispiel
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+	\begin{itemize} 
+	\item \(A\) ist eine Teilmenge von \(B\): \(A\subseteq B\)
+	\item \(B\) ist eine Obermenge von \(A\): \(A\subseteq B\)
+	\item \(A\) ist nicht gleich \(B\): \(A\not = B\)
+	\item \(A\) ist eine \textbf{echte} Teilmenge von \(B\): \(A\subsetneq B\)
+\end{itemize}
+\end{minipage}
+\end{exabox}
+  
+Zwei Mengen \(A\) und \(B\) sind gleich, \(A=B\), wenn sie dieselben Elemente enthalten. 
+
+In der Mengenlehre gibt es vier grundlegende Mengenoperationen, nämlich: Vereinigung, Schnitt, Differenz und Komplement: 
+
+\begin{exabox}{Mengenoperationen}{}
+	\begin{itemize}
+		\item Die Vereinigung  (\emph{union}) zweier Mengen wird mit dem Symbol \(\cup\) angezeigt. Die Vereinigungsmenge enthält jedes Element der beiden Mengen genau einmal, beispielsweise
+	\[ \{ 1, 2, 4\} \cup \{2, 5, 3, 4\} = \{1,2,3,4,5\}\,. \]
+\item Der Schnitt (\emph{intersection}) zweier Mengen wird mit dem Symbol \(\cap\) angezeigt. Die Schnittmenge enthält jedes Element, das in beiden Mengen vorkommt, beispielsweise 
+	\[ \{ 1, 2, 4\} \cap \{2, 5, 3, 4\} = \{2,4\}\,. \]
+\item Die Differenz (\emph{difference}) zweier Mengen wird mit einem Backslash angezeigt. Die Differenzmenge enthält jedes Element, das in der ersten Menge vorkommt, aber nicht in der zweiten, beispielsweise 
+	\[ \{ 1, 2, 4\} \setminus \{2, 5, 3, 4\} = \{1\}\,.\]
+\item Das Komplement (\emph{complement}) einer Menge \(A\) wird mit einem waagerechten Strich über der Menge angezeigt, also \(\overline A\). Ist eine Obermenge \(B\) von \(A\) fixiert, dann bedeutet das Komplement \(\overline A\) die Differenz von Obermenge \(B\) und \(A\). Aus der Schreibweise \(\overline A\) geht die Obermenge nicht hervor - die Obermenge muss also implizit bekannt sein! Im folgenden Beispiel ist die Obermenge die Menge der natürlichen Zahlen ohne die Null, also $\mathbb N = \{ 1, 2, 3, 4, 5, 6, \dots\}$: 
+	\[ \overline{\{2, 4, 6, 8\}} = \mathbb N \setminus \{2, 4, 6, 8\} = \{1,3,5,7\} \cup \{9,10,11,12, \dots\}\,. \]
+	\end{itemize}
+\end{exabox}
+
+Neben den bisher betrachteten Mengenoperationen gibt es eine weitere wichtige Möglichkeit, aus gegebenen Mengen eine neue Menge zu bilden. Dabei werden die Elemente der beiden Mengen nicht vereinigt oder miteinander verglichen, sondern zu \textbf{geordneten Paaren} zusammengesetzt.
+
+Für zwei Mengen \(A\) und \(B\) heißt
+
+$$
+A\times B
+=
+\{(a,b):a\in A \text{ und } b\in B\}
+$$
+
+das \textbf{kartesische Produkt} (\emph{cartesian product}) von \(A\) und \(B\).
+
+Anders als bei den Elementen einer Menge spielt innerhalb eines geordneten Paares die Reihenfolge eine Rolle. Im Allgemeinen gilt daher
+
+$$
+(a,b)\neq(b,a).
+$$
+
+Das passt zu dem bereits bekannten Unterschied zwischen Mengen und Tupeln: Während beispielsweise
+
+$$
+\{2,3\}=\{3,2\}
+$$
+
+gilt, sind die geordneten Paare
+
+$$
+(2,3)\neq(3,2)
+$$
+
+verschieden.
+
+\begin{exabox}{Kartesisches Produkt}{ }
+Für
+
+$$
+A=\{\circ,\diamond,M\}
+\qquad\text{und}\qquad
+B=\{3,7\}
+$$
+
+ergibt sich
+
+$$
+\begin{aligned}
+A\times B
+=
+\{&
+(\circ,3),(\circ,7),
+(\diamond,3),(\diamond,7),\\
+&
+(M,3),(M,7)
+\}.
+\end{aligned}
+$$
+
+Jedes Element aus \(A\) wird dabei mit jedem Element aus \(B\) kombiniert.
+\end{exabox}
+
+Besonders wichtig ist das kartesische Produkt einer Menge mit sich selbst. Für die reellen Zahlen gilt beispielsweise
+
+$$
+\mathbb R^2
+:=
+\mathbb R\times\mathbb R
+=
+\{(x,y):x\in\mathbb R \text{ und } y\in\mathbb R\}.
+$$
+
+Die Elemente von \(\mathbb R^2\) sind also geordnete Paare reeller Zahlen. Sie können geometrisch als Punkte der Ebene interpretiert werden.
+
+Entsprechend entstehen durch weitere kartesische Produkte geordnete Tripel und allgemein geordnete \(n\)-Tupel. Beispielsweise ist
+
+$$
+\mathbb R^3
+=
+\{(x,y,z):x,y,z\in\mathbb R\}
+$$
+
+die Menge aller geordneten Tripel reeller Zahlen und kann als Menge der Punkte des dreidimensionalen Raumes aufgefasst werden.
+  
+Entsprechend zu "\,Punktrechnung vor Strichrechnung"\, wird der Schnitt vor der Vereinigung ausgeführt:
+\begin{theorembox}{Rechenregel: Schnitt vor Vereinigung}{ }
+$  A \cup B \cap C = A \cup \left( B \cap C\right) \,.  $
+\end{theorembox}
+
+\subsection{Was ist eine mathematische Aussage?}
+
+Eine  mathematische Aussage (\emph{statement,  proposition}) ist eine Aussage, der man einen Wahrheitswert zuordnen kann. Entweder ist die Aussage wahr (\emph{true}) oder falsch (\emph{false}). Eine mathematische Aussage kann aus diesem Grund \textbf{keine} freien Variablen enthalten. Wenn freie Variablen vorkommen, handelt es sich um ein Prädikat. Man nennt ein Prädikat auch "\,eine Aussageform"\, oder einfach "\,ein mathematischer Ausdruck"\,:
+  
+\begin{exabox}{Aussagen und Prädikate}{ }
+  \begin{itemize}
+  \item "$2^2 = 5$"\, ist eine falsche Aussage.
+    \item "$2^2 \not= 5$" \; ist eine wahre Aussage.
+    \item "$x^2 \in \mathbb N$" \; ist ein Prädikat.
+  \end{itemize}
+\end{exabox}
+
+  
+\begin{exabox}{Aussagen}{ }
+  \begin{itemize}
+	  \item "\,Für eine beliebige natürliche Zahl $x\in \mathbb N$ gilt $x^2 \in \mathbb N$"\; ist eine wahre Aussage.
+	  \item "\,Für eine beliebige rationale Zahl $x\in \mathbb Q$ gilt  $x^2 \in \mathbb N$"\; ist eine falsche Aussage.
+  \end{itemize}
+\end{exabox}
+Mathematische Aussagen treten selten isoliert auf. Häufig möchte man Aussagen \textbf{verneinen} oder mehrere Aussagen miteinander \textbf{verknüpfen}. Auch dafür besitzt die Mathematik eine eigene Kurzschreibweise.
+
+Beginnen wir mit der Verneinung. Betrachten wir die Aussage
+
+$$
+p:\qquad x\geq 0.
+$$
+
+Diese Aussage ist beispielsweise für \(x=3\) wahr und für \(x=-2\) falsch. Möchte man genau das Gegenteil von \(p\) ausdrücken, so lautet die entsprechende Aussage:
+
+$$
+x<0.
+$$
+
+In Worten könnte man auch sagen: „Es gilt \textbf{nicht} \(x\geq0\).“
+
+Für die Verneinung einer Aussage verwendet man in der mathematischen Formelsprache das Symbol \(\neg\). Man schreibt also
+
+$$
+\neg p.
+$$
+
+Die Aussage \(\neg p\) ist genau dann wahr, wenn die ursprüngliche Aussage \(p\) falsch ist -- und umgekehrt.
+
+\begin{exabox}{Verneinung einer Aussage}{ }
+Für
+
+$$
+p:\qquad x\geq 0
+$$
+
+lautet die Verneinung
+
+$$
+\neg p:\qquad x<0.
+$$
+
+Beispielsweise ist für \(x=-2\) die Aussage \(p\) falsch und die Aussage \(\neg p\) wahr.
+\end{exabox}
+
+Neben der Verneinung einer einzelnen Aussage möchte man Aussagen auch miteinander verbinden. Betrachten wir dazu die beiden Aussagen
+
+$$
+p:\quad x>2,
+\qquad\text{und}\qquad
+q:\quad x<5.
+$$
+
+Suchen wir alle reellen Zahlen, für die \textbf{beide} Aussagen gleichzeitig wahr sind, so erhalten wir
+
+$$
+x>2 \quad\textbf{und}\quad x<5.
+$$
+
+In mathematischer Kurzschreibweise ersetzt man das Wort „und“ durch das Symbol \(\land\):
+
+$$
+x>2\land x<5.
+$$
+
+Diese zusammengesetzte Aussage ist genau für alle Zahlen  wahr, die größer als zwei und kleiner als fünf sind. 
+
+Möchten wir ausdrücken, dass \textbf{mindestens eine} der beiden Aussagen wahr sein soll, verwenden wir das logische Oder. Das Wort „oder“ wird in mathematischer Kurzschreibweise durch das Symbol \(\lor\) ersetzt.
+
+\begin{defbox}{Logische Operatoren}{ }
+Es seien \(p\) und \(q\) mathematische Aussagen.
+\begin{itemize}
+	\item Die \textbf{Verneinung} (\emph{negation}) von \(p\) wird mit \( \neg p \) bezeichnet. Sie ist genau dann wahr, wenn \(p\) falsch ist.
+
+	\item Die \textbf{Und-Verknüpfung} (\emph{and}) von \(p\) und \(q\) wir mit \(p\land q \) bezeichnet. Sie ist genau dann wahr, wenn sowohl \(p\) als auch \(q\) wahr sind.
+
+	\item Die \textbf{Oder-Verknüpfung} (\emph{or}) von \(p\) \(q\) wir mit \(p\land q \) bezeichnet. Sie ist genau dann wahr, wenn  mindestens eine der beiden Aussagen \(p\) und \(q\) wahr ist.
+
+\end{itemize}
+\end{defbox}
+
+Beim mathematischen Oder ist das Wort „oder“ einschließlich zu verstehen: Sind \(p\) und \(q\) beide wahr, dann ist auch \(p\lor q\) wahr. Das unterscheidet das mathematische Oder von Formulierungen wie „entweder -- oder“, bei denen häufig gemeint ist, dass genau eine von zwei Möglichkeiten eintreten soll.
+
+\begin{exabox}{Und und Oder lesen}{ }
+	Es seien $ p:\quad x>2$ und $q:\quad x<5 $.
+	\begin{itemize}
+		\item $ p\land q $ bedeutet in Worten  „\(x\) ist größer als \(2\) und gleichzeitig kleiner als \(5\).“ und  diese Aussage ist  genau dann wahr wenn $ 2<x<5 $.  
+		\item $ p\lor q $ bedeutet in Worten  „\(x\) ist größer als \(2\) oder kleiner als \(5\).“ und diese Aussage ist genau dann wahr wenn \(x>2\) oder \(x<5\) wahr ist, wobei auch beide Bedingungen gleichzeitig erfüllt sein dürfen (aber nicht müssen).
+	\end{itemize}
+\end{exabox}
+
+Die Symbole \(\neg\), \(\land\) und \(\lor\) werden uns immer wieder begegnen. Sie sind nicht nur Bestandteil der Aussagenlogik, sondern gehören zur mathematischen Formelsprache. Insbesondere bei der Beschreibung von Mengen werden wir Bedingungen mit diesen Operatoren verknüpfen. Deshalb ist es wichtig, solche Ausdrücke nicht nur selbst aufschreiben, sondern auch sicher in natürliche Sprache zurückübersetzen zu können.
+
+Entsprechend zu „Punktrechnung vor Strichrechnung“ gibt es auch für logische Operatoren eine festgelegte Reihenfolge: Zuerst wird die Negation ausgeführt, danach das Und und zuletzt das Oder.
+
+\begin{exabox}{Klammern weglassen?}{ }
+Betrachten wir den vollständig geklammerten Ausdruck
+
+$$
+\bigl(\neg(x\geq 6)\bigr)\lor\bigl((x\geq 10)\land(x<20)\bigr).
+$$
+
+Welche Klammern können weggelassen werden, ohne die Bedeutung des Ausdrucks zu verändern?
+
+Da die Negation \(\neg\) vor dem Und \(\land\) und das Und vor dem Oder \(\lor\) ausgeführt wird, kann man kürzer schreiben:
+
+$$
+\neg(x\geq6)\lor (x\geq10)\land(x<20).
+$$
+
+Die Klammer um \(x\geq6\) bleibt stehen, da sich die Negation auf die gesamte Aussage \(x\geq6\) bezieht.
+\end{exabox}
+
+Liest man zwischen zwei Ausdrücken \(p\) und \(q\) das Symbol $"\Rightarrow"$, dann ist das Konstrukt \( p\Rightarrow q\)  eine logische Schlussfolgerung oder Implikation. Ein Beispiel: 
+\begin{exabox}{Schlussfolgerung (Implikation)}{ }
+  $ x \geq 7 \Rightarrow x > 5$
+\end{exabox}
+
+Mit Worten liest man die Implikation \("p\Rightarrow q"\) wie folgt:
+\begin{itemize}
+	\item aus $p$ folgt $q$,
+	\item wenn $p$ wahr ist, dann ist $q$ wahr,
+	\item die Gültigkeit von $p$ reicht aus \footnote{Öfter - aber irgendwie verwirrend - ist hinreichend} (\emph{sufficient}) für die Gültigkeit von \(q\),
+\end{itemize}
+
+Es ist wichtig zu bemerken, dass man die Reihenfolge der Ausdrücke \(p\) und \(q\) in einer Implikation nicht vertauchen darf:
+\begin{exabox}{Implikation ist keine kommutative Verknüpfung}{ }
+	Es regnet $\begin{array}{c}\Rightarrow \\\not \Leftarrow\end{array}$ Der Himmel ist bewölkt.
+\end{exabox}
+
+
+
+Liest man zwischen zwei Aussagen \(p\) und \(q\) das Symbol \(\Leftrightarrow\), dann handelt es sich um eine Äquivalenz. Die Schreibweise
+
+$$
+p\Leftrightarrow q
+$$
+
+bedeutet, dass \(p\) und \(q\) immer denselben Wahrheitswert besitzen: Entweder sind beide Aussagen wahr oder beide Aussagen sind falsch.\footnote{Das Äquivalenzzeichen ist damit für die Logik das, was das Gleichheitszeichen \(=\) für die Algebra ist.}
+
+Äquivalenzen treten beispielsweise beim Umformen von Gleichungen auf. Wird eine Gleichung durch Äquiva\-lenz\-umformungen gelöst, dann beschreiben die einzelnen Zeilen jeweils dieselbe Lösungsmenge:
+
+\begin{exabox}{Äquivalenz beim Lösen einer Gleichung}{ }
+
+$$
+3x-1=2
+\quad\Leftrightarrow\quad
+3x=3
+\quad\Leftrightarrow\quad
+x=1
+\quad\Leftrightarrow\quad
+\mathbb L=\{1\}.
+$$
+
+\end{exabox}
+
+Eine Äquivalenz kann aber auch zwei unterschiedlich formulierte Aussagen miteinander verbinden:
+
+\begin{exabox}{Äquivalenz beim Lösen einer Gleichung}{ }
+
+$$
+x^2=4
+\quad\Leftrightarrow\quad
+x\in\{-2,2\}.
+$$
+
+\end{exabox}
+
+Warum darf hier tatsächlich ein Äquivalenzpfeil stehen? Dafür müssen beide Richtungen der Aussage gelten.
+
+Von links nach rechts ist zu zeigen:
+
+$$
+x^2=4
+\quad\Rightarrow\quad
+|x|=2
+\quad\Rightarrow\quad
+x=\pm2
+\quad\Rightarrow\quad
+x\in\{-2,2\}.
+$$
+
+Von rechts nach links ist zu zeigen:
+
+$$
+x\in\{-2,2\}
+\quad\Rightarrow\quad
+x=-2\ \lor\ x=2
+\quad\Rightarrow\quad
+x^2=4.
+$$
+
+Eine Äquivalenz
+
+$$
+p\Leftrightarrow q
+$$
+
+besteht also aus zwei Schlussfolgerungen:
+
+$$
+p\Rightarrow q
+\qquad\text{und}\qquad
+q\Rightarrow p.
+$$
+
+Um eine Äquivalenz nachzuweisen, müssen daher immer beide Richtungen gelten.
+
+Mit Worten liest man die Äquivalenz \( p \Leftrightarrow q\) wie folgt: 
+\begin{itemize}
+  \item $p$ ist genau dann wahr, wenn $q$ wahr ist, 
+  \item $p$ gilt dann und nur dann, wenn $q$ gilt (\emph{$p$ if and only if $q$}),
+  \item $p$ ist notwendig und hinreichend (\emph{necessary and sufficient}) für $q$.  
+\end{itemize}
+
+\subsection{Mengen und Aussagen}
+
+Der Gedanke, mit dem wir den Abschnitt eingeleitet haben, klang so, als wären Mengen von extremer Bedeutung in der Mathematik: "\,Mengen sind die Grundlage aller mathematischen Objekte."\, Die Mengen, die wir bislang notiert haben, hatten alle weniger als fünf Elemente und scheinen diese Bedeutung nicht widerzuspiegeln. Mit den Begriffen der Logik haben wir jetzt das Werkzeug an der Hand, um noch einmal über Mengen nachzudenken und um zu verstehen, dass sie Grundlage der mathematischen Fachsprache sind. 
+
+Was ist eine Menge nochmal? Eine Menge ist eine Ansammlung von Objekten. Kennt man alle Objekte, dann kennt man die Menge - oder anders ausgedrückt: man kennt eine Menge, wenn man von einem Objekt sagen kann, ob es zur Menge gehört oder nicht. 
+
+Zwei Varianten, die es zulassen zu entscheiden, ob ein Objekt dazugehört oder nicht sind die folgenden: 
+\begin{itemize}
+	\item Die Menge bzw. deren Elemente sind explizit gegeben. Eine Menge in \emph{expliziter} Schreibweise lautet beispielsweise so:
+\[ M = \{0,1,2,3,4,5,6,7,8,9\}\,, \]
+	\item Die Menge wird mit Worten beschrieben. Eine Menge in sogenannter \emph{intensionaler} Schreibweise lautet beispielsweise so: 
+		\[ M = \{ \textnormal{Menge aller nat\"urlichen Zahlen, die kleiner als zehn sind.}\} \]
+\end{itemize}
+Etwas umständlicher, aber gleichbedeutend ist  
+\[ M = \{ \textnormal{Alle Zahlen } \textcolor{blue}{x\,, \textnormal{f\"ur gilt: }} \textcolor{darkgreen}{ x \textnormal{ ist nat\"urlich und } x \textnormal{ ist kleiner als zehn.}}\ \}  \]  
+Diese Beschreibung ist zwar verständlich, aber für mathematische Texte unnötig umständlich. Sie lässt sich unmittelbar in mathematischer Formelsprache übersetzen. 
+\[ M =  \{ \textcolor{blue}{x:} \; \textcolor{darkgreen}{x\in\mathbb N_0 \land x< 10} \}\,. \]  
+\begin{itemize}
+	\item Das Fragment "\,Alle Zahlen"\,, mit dem die Beschreibung der Menge startet, wurde einfach weggelassen.  
+	\item Anstatt "\( x\), für die gilt:"\, schreibt man "\( x:\)".\footnote{ manchmal auch "\( x\;|\)".} 
+	\item Und "\(x\) ist nat\"urlich und \(x\) ist kleiner als zehn"\, übersetzt man in mathematische Kurzschreibweise, also "\(x\in\mathbb N_0 \land x<10\)".
+\end{itemize}
+
+\noindent{\textbf{ Bemerkungen:}}
+\begin{itemize}
+	\item Wenn die Menge, die man betrachtet, eine Teilmenge einer bekannten Grundmenge\footnote{\(\mathbb N_0, \mathbb Z, \mathbb Q, \mathbb R, \mathbb C, \cdots\)} ist, beispielsweise eine Teilmenge der natürlichen Zahlen, dann schreibt man die Grundmenge auch oft vor die \textbf{eigentliche Bedingung}, also 
+\[ M =  \{ x\in \mathbb N_0: x< 10 \}\,. \]  
+	\item Die Elemente einer Menge erfüllen eine oder mehrere Bedingungen. Diese Erkenntnis ermöglicht es komplexe Mengen und Mengen mit unendlich vielen Elementen präzise anzugeben.     
+	\item "\,Bedingung erfüllen"\, bedeutet in der Aussagenlogik, dass eine Aussage wahr wird. Mit Bedingung sind sich all die Eigenschaften gemeint, die die Elemente der Menge haben sollen. 
+\end{itemize}
+
+Mengen beschreibt man also im Allgemeinen mit Hilfe von logischen Ausdrücken. Hier ein paar Beispiele:
+\begin{exabox}{Mengen in mathematischer Kurzschreibweise}{ }
+	\begin{itemize}
+		\item Die Menge aller reellen Zahlen zwischen $3$ (einschließlich) und $5$ (ausschließlich)
+			\[ M = \{ x \in \mathbb R: x \geq 3 \land x < 5 \} = \{ x \in \mathbb R: 3\leq x < 5 \}\,, \]
+		\item Die obere Hälfte der Kreisscheibe ohne Rand. Die Kreisscheibe besitze Radius \(R=1\) und Mittelpunkt \( (0|0)\):
+			\[M = \{ (x,y) \in \mathbb R^2: y \geq 0 \land x^2+y^2 < 1\}\,. \]
+		\item Streng genommen muss man die Grundmenge angeben, aus der die Elemente zu nehmen sind:
+	\[ 
+	\begin{array}{rcl}
+		\left\{ x \in \mathbb Q: x^2 = 2\right\} &=& \emptyset \,, \\ [1ex]
+ \left\{ x \in \mathbb R: x^2 = 2\right\} &=& \left\{ -\sqrt{2}, \sqrt{2} \right\}\,.  
+\end{array}
+\]
+\end{itemize}
+\end{exabox}
+
+Um komplexe Konstruktionen solcher Art mathematisch wasserdicht zu machen, muss man von der naiven Mengenlehre zur axiomatischen Mengenlehre übergehen. Dass ein axiomatischer Zugang nötig ist, sieht man am Beispiel \href{https://de.wikipedia.org/wiki/Russellsche_Antinomie}{der Russellschen Antinomie }. In der Praxis kommt man mit der naiven Mengenlehre zurecht.
+
+Wenn man Schlussfolgerungen 
+\begin{itemize} 
+	\item für alle Elemente einer Menge treffen möchte, dann benutzt man in der mathematischen Kurzschreibweise das Symbol $"\forall"$. \(\forall\) ist ein \emph{Quantor} und man übersetzt ihn mit den Worten "\,für alle",
+	\item für ein Element einer Menge treffen möchte, dann benutzt man in der mathematischen Kurzschreibweise das Symbol $"\exists"$. \(\exists\) ist ein Quantor und man übersetzt ihn mit den Worten "\,es existiert (mindestens) ein".
+\end{itemize}
+
+\begin{exabox}{Quantoren $\forall$ und $\exists$}{ }
+	\begin{itemize}
+		\item $A = \{2,4,6\} \; \Rightarrow\; \forall\, x \in A: \dfrac{x}{2} \in \mathbb N^+ .$
+		\item $B = \{-3, 2,4,6\} \; \Rightarrow \; \exists\; x \in B: \; x<0 \,.$
+	\end{itemize}
+\end{exabox}
+Ein Quantor hat noch eine weitere wichtige Funktion: Er \textbf{bindet} eine Variable. Betrachten wir beispielsweise das Prädikat
+
+$$
+p(x):\qquad x^2\geq 0.
+$$
+
+Solange nicht festgelegt ist, für welche Zahl \(x\) die Bedingung betrachtet wird, besitzt dieser Ausdruck keinen eigenen Wahrheitswert. Es handelt sich um ein Prädikat und noch nicht um eine Aussage.
+
+Setzt man für \(x\) einen konkreten Wert ein, entsteht eine Aussage. Beispielsweise ist
+
+$$
+p(-2):\qquad (-2)^2\geq0
+$$
+
+eine wahre Aussage.
+
+Eine Aussage entsteht aber auch, wenn die Variable durch einen Quantor gebunden wird. So ist
+
+$$
+\forall\,x\in\mathbb R:\quad x^2\geq0
+$$
+
+eine wahre Aussage. Sie bedeutet: „Für jede reelle Zahl \(x\) gilt \(x^2\geq0\).“
+
+Auch
+
+$$
+\exists\,x\in\mathbb R:\quad x^2=4
+$$
+
+ist eine Aussage. Sie bedeutet: „Es gibt mindestens eine reelle Zahl \(x\), für die \(x^2=4\) gilt.“ Diese Aussage ist ebenfalls wahr.
+
+Ein Prädikat wird also zu einer Aussage, wenn für die vorkommenden freien Variablen konkrete Werte eingesetzt werden oder wenn die freien Variablen beispielsweise durch Quantoren gebunden werden. Erst dann lässt sich der entstandenen Aussage eindeutig ein Wahrheitswert zuordnen.
+
+
+Bei der Negation von Aussagen mit Quantoren ist besondere Vorsicht notwendig. Betrachten wir beispielsweise die Aussage
+
+$$
+\text{„Alle Zahlen in der Menge \(M=\{2,4,6,7\}\) sind gerade.“}
+$$
+
+Um zu zeigen, dass diese Aussage falsch ist, müssen nicht alle Elemente der Menge untersucht und verneint werden. Es genügt, ein einziges Element zu finden, das nicht gerade ist. Hier ist \(7\) ein solches Element. Die Negation der Aussage lautet daher:
+
+$$
+\text{„Es gibt mindestens eine Zahl in \(M\), die nicht gerade ist.“}
+$$
+
+In mathematischer Kurzschreibweise wird aus
+
+$$
+\forall\,x\in M:\quad x\text{ ist gerade}
+$$
+
+bei der Negation also
+
+$$
+\exists\,x\in M:\quad x\text{ ist nicht gerade}.
+$$
+
+Die Negation einer Aussage mit dem Quantor \(\forall\) führt zu einer Aussage mit einem Existenzquantor \(\exists\).
+
+Umgekehrt funktioniert derselbe Gedanke. Die Aussage
+
+$$
+\text{„Es gibt mindestens eine Zahl in \(M\), die ungerade ist.“}
+$$
+
+ist genau dann falsch, wenn keine einzige Zahl in \(M\) ungerade ist. Ihre Negation lautet daher:
+
+$$
+\text{„Alle Zahlen in \(M\) sind nicht ungerade.“}
+$$
+
+Beim Negieren wird also aus dem Existenzquantor \(\exists\) ein Allquantor \(\forall\) und gleichzeitig wird die zugehörige Aussage negiert.
+
+Allgemein gilt:
+
+\begin{theorembox}{Negation quantifizierter Aussagen}{ }
+
+$$
+\begin{array}{rcl}
+\neg\left(\forall\,x\in M:\;p(x)\right)
+&\Leftrightarrow&
+\exists\,x\in M:\;\neg p(x),
+\\[1ex]
+\neg\left(\exists\,x\in M:\;p(x)\right)
+&\Leftrightarrow&
+\forall\,x\in M:\;\neg p(x).
+\end{array}
+$$
+
+\end{theorembox}
+
+In Worten bedeutet dies:
+
+$$
+\text{„Nicht alle erfüllen \(p\)“}
+\quad\Leftrightarrow\quad
+\text{„Mindestens eines erfüllt \(p\) nicht“,}
+$$
+
+und
+
+$$
+\text{„Es gibt keines, das \(p\) erfüllt“}
+\quad\Leftrightarrow\quad
+\text{„Alle erfüllen \(p\) nicht“.}
+$$
+
+\begin{exabox}{Mathematische Kurzschreibweise}{ }
+Wie lauten die Definitionen für "\,gleiche Mengen"\, oder "\,Mengenoperationen"\, in mathematischer Kurzschreibweise?
+	\begin{itemize}
+		\item Zwei identische Mengen: \[ A = B: \, \Leftrightarrow\; A\subset B \land B \subset A \;\Leftrightarrow \; \left( \forall \, x \in A: \; x \in B\right) \land \left( \forall \, x \in B: \; x \in A\right)\,. \]
+		\item Die Vereinigungsmenge:
+			\[  A \cup B = \{ x:\; x \in A \lor x \in B\}\,.\]
+		\item Die Schnittmenge:
+			\[ A \cap B = \{ x:\; x \in A \land x \in B\}\,. \]
+		\item Die Differenzmenge:
+			\[ A \setminus B = \{x:\; x\in A \land x \not\in B \}\,. \]
+		\item Die Komplementmenge (bei gegebener Menge $B$ und bekannter Obermenge $A$ mit $B\subset A$):
+			\[ \overline B = \{ x: x\in A\land x\not \in B\}\,. \]
+	\end{itemize}
+\end{exabox}
+
+\subsubsection*{Rechenregeln für Mengen und Aussagenlogik}
+
+Man kann sagen, dass es zu jedem Mengenoperator einen logischen Operator gibt, der ihm algebraisch entspricht. In der Elektronik muss man logische Operatoren realisieren und das macht man durch Reihen- und/oder Parallelschaltungen. Eine detaillierte Übersicht über Logikgatter findet man \href{https://de.wikipedia.org/wiki/Logikgatter}{hier} und die Kurzvariante ist
+\begin{center}
+  \begin{tabular} {c c c c c }
+	  Mengen &  &  Logik & & Elektronik\\
+  \hline
+  $\cap$ & $ \widehat = $ & $\land$ & $ \widehat = $ & Serie-Schaltung \\
+  $\cup$ & $ \widehat = $ &  $\lor$ & $\widehat = $& Parallel-Schaltung\\
+  $\overline{\{\}}$ & $ \widehat = $ &  $\neg$ & & \ldots\\
+\end{tabular}
+\end{center}
+
+Logik "\,unterliegt"\, strengen Gesetzmäßigkeiten und wenn man diese kennt, dann wird das "\,logische Argumentieren"\, einfacher:
+\begin{theorembox}{Assoziativgesetze und die de Morgansche Gesetze}{ }
+  \begin{center}
+  \begin{tabular}{c|c|c|c}
+  Name & Mengen & Logik & Bedeutung\\
+  \hline
+  \hline
+  \multirow{2}{*}{Assoziativgesetze} & $ (A\cap B) \cap C = A\cap (B \cap C) $ & $ (p \land q) \land r \Leftrightarrow p \land (q \land r)$ & \multirow{2}{*}{ Reihenfolge egal}\\[1ex]
+  & $ (A\cup B) \cup C = A\cup (B \cup C) $ & $ (p \lor q) \lor r \Leftrightarrow p \lor (q \lor r)$  & \\[2ex]
+  \hline
+  \multirow{2}{*}{De Morgansche Gesetze} & $ \overline {A\cap B}  = \overline A\cup  \overline B $ & $  \neg \, ( p \land q)  \Leftrightarrow \neg p \lor \neg q$ & \multirow{2}{*}{Logik der Negation} \\[1ex]
+  & $ \overline {A\cup B}  = \overline A\cap  \overline B $ & $  \neg \, ( p \lor q)  \Leftrightarrow \neg p \land \neg q$ &
+\end{tabular}
+\end{center}
+\end{theorembox}
+
+Um die De Morganschen Gesetze zu beweisen, kann man eine Wahrheitstabelle aufstellen! Die Idee ist den logischen Ausdruck $\neg\, (p \land q)$ in Teilaussagen zu zerlegen und dann alle möglichen Fälle zu betrachten\footnote{Die möglichen Fälle sind immer  entweder "\,wahr"\, oder "\,falsch"\,, also überschaubar in Komplexität!}: 
+
+\begin{exabox}{Wahrheitstabelle zum Beweis des $1.$ Morganschen Gesetzes}{ }
+  \begin{center}
+  \begin{tabular}{cc||c|>{\columncolor[gray]{0.9}} c|c|c|>{\columncolor[gray]{0.9}}c} 
+	  Input $p$ &  Input $q$ & Output $p\land q$ & Output $\neg (p \land q)$ & Output $\neg p $ & Output $\neg q $ & Output $\neg p \lor \neg q$ \\  
+  \hline
+  f & f & f & w & w & w & w\\ 
+  f & w & f & w & w & r & w\\ 
+  w & f & f & w & f & w & w\\ 
+  w & w & w & f & f & f & f
+\end{tabular}
+\end{center}
+\end{exabox}

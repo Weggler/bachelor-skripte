@@ -1,0 +1,246 @@
+\section{Partialbruchzerlegung}\label{MA2-partialbruchzerlegung}
+
+%Die folgende Tabelle fasst stichwortartig die Fertigkeiten zusammen, die in diesem Kapitel vermittelt bzw. vorausgesetzt werden. Das zum Thema gehörige Übungsblatt zeigt Aufgaben zum Anwenden der Fertigkeiten.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem rationale Funktionen in Partialbrüche zerlegen & \\[.5\normalbaselineskip]
+    \tabitem die geeignete Zerlegungsform anhand der Faktorisierung des Nenners bestimmen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Polynome faktorisieren & \abschnittsverweis{MA1-polynome}  \\
+    \tabitem Polynomdivisionen durchführen & \abschnittsverweis{MA1-polynome} \\
+    \tabitem lineare Gleichungssysteme lösen & \abschnittsverweis{MA1-lineare-gleichungssysteme} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-partialbruchzerlegung-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Aufgabenstellung}
+
+Erinnern Sie sich an die Faktorisierung von Polynomen?
+Die Idee war sogenannte \underline{Linearfaktoren}\randverweis{MA1-polynome} von einem Polynom abzuspalten:
+\[ 4 x^3 - 28 x^2 + 28x +60 = (x-3)\cdot (4x^2-16-20) = 4 \cdot (x-3) \cdot (x-5) \cdot (x+1)\,. \]
+
+Der letzte Faktor in der Zerlegung ist gegebenenfalls ein Produkt quadratischer Terme, die in $\mathbb R$ nicht weiter zerlegbar sind:
+\[ x^4 + 8 x^3 + x^2 + 6 x+13 = ( x-7) \cdot (x^3-x^2-x-1) = (x-1) \cdot ( x-7) \cdot (x^2+1) \,.\]
+
+%Für komplexe Zahlen, gelingt diese Linearfaktorzerlegung immer vollständig, da ein Polynom vom Grad $n$ genau $n$ komplexe Nullstellen hat.
+Ähnlich wie man Polynome in Faktoren zerlegt, kann man \underline{gebrochenrationale Funktionen}\randverweis{MA1-rationale-funktionen} in Partialbrüche [partial fractions] zerlegen:
+\[
+	\frac{1}{x^2-1}  = \frac{1}{2} \cdot \frac{1}{x-1} - \frac{1}{2} \cdot \frac{1}{x+1}\,.
+\]
+
+Es wird sich herausstellen, dass wir diese Partialbruchzerlegung brauchen, um gebrochenrationale Funktionen integrieren zu können. Damit wir die Partialbruchzerlegung dann parat haben, führen wir sie jetzt ein.
+
+\subsection{Vorgehensweise}
+
+Für eine echtgebrochenrationale Funktion $f$ mit $f=\displaystyle{\frac{p}{q}}$, für die also gilt, dass der Grad von $q$ größer ist als der Grad von $p$, schauen wir uns nacheinander die folgenden Fälle beispielhaft an:
+\begin{enumerate}
+	\item Beispiel 1: $q$ hat einfache Nullstellen,
+	\item Beispiel 2: $q$ hat mehrfache Nullstellen,
+	\item Beispiel 3: $q$ hat quadratische Faktoren ohne reelle Nullstellen.
+\end{enumerate}
+Die allgemeine Herangehensweise läßt sich aus den Beispielen ablesen.
+%Ausgehend von der Linearfaktorzerlegung des Nennerpolynoms wird immer ein Ansatz für die Zerlegung gewählt. Der Ansatz enthält unbekannte Koeffizienten, also Zahlen, die man zu bestimmen hat.
+
+
+\begin{exabox}{Partialbruchzerlegung bei einfachen Polstellen}{ }
+	Partialbruchzerlegung:
+	\[ f: \mathbb R\setminus\{-1,1\}\to \mathbb R,\, x \mapsto \displaystyle{\frac{x}{ (x+1)\cdot (x-1) }} \textnormal{?}\]
+Ansatz:
+			\[ \textcolor{blue}{
+				\displaystyle{\frac{x}{(x+1)\cdot (x-1)}}  = \displaystyle{\frac{A}{x+1}} + \displaystyle{\frac{B}{x-1}}\,.}
+\]
+Bestimmung der Koeffizienten:
+\begin{eqnarray*}
+	\frac{x}{(x+1)\cdot (x-1)} &\stackrel{!}{=}& \frac{A}{x+1} + \frac{B}{x-1} \\
+	\Leftrightarrow \, \frac{x}{(x+1)\cdot (x-1)} &\stackrel{!}{=}&  %\frac{A \cdot (x-1) + B\cdot (x+1)}{(x+1)\cdot (x-1)}
+	\frac{ (A + B)\cdot  x + (B-A)}{(x+1)\cdot (x-1)}\\[2ex]
+	\Rightarrow \; x &\stackrel{!}{=}& (A+B)\cdot x + (B-A)   \Leftrightarrow \begin{cases} (A - B) &= 0 \\  (A+B) &=1  \end{cases} \Leftrightarrow A=\frac12 \land B=\frac12\,.
+\end{eqnarray*}
+Lösung:
+	\[
+	\displaystyle{\frac{x}{(x+1)\cdot (x-1)}}  = \displaystyle{ \frac{\frac12}{x+1}} + \displaystyle{ \frac{\frac12}{x-1}} \,.
+\]
+\end{exabox}
+
+	\begin{exabox}{Partialbruchzerlegung bei zweifachen Polstellen}{ }
+		Partialbruchzerlegung:
+		\[ f: \mathbb R\setminus\{1\}\to \mathbb R,\, x \mapsto \displaystyle{\frac{2\cdot x-1}{(x-1)^2 }}\textnormal{?}\]
+		Ansatz:
+		\[
+			\textcolor{blue}{
+	\displaystyle{\frac{2\cdot x-1}{(x-1)^2}}  = \displaystyle{\frac{A}{x-1}} + \displaystyle{\frac{B}{(x-1)^2}} \,.}
+\]
+Bestimmung der Koeffizienten:
+\begin{eqnarray*}
+	\frac{2\cdot x-1}{(x-1)^2} &\stackrel{!}{=}& \frac{A}{x-1} + \frac{B}{(x-1)^2} \\
+	\Leftrightarrow \frac{2x-1}{(x-1)^2} &\stackrel{!}{=}& \frac{A \cdot x- A + B}{(x-1)^2} \\[2ex]
+	\Rightarrow \; 2x -1 &\stackrel{!}{=}& A\cdot(x-1) + B = A\cdot x + (B-A) \Leftrightarrow \begin{cases} A &= 2\,, \\  B-A & =-1\end{cases} \Leftrightarrow A=2 \land B=1\,.
+\end{eqnarray*}
+Lösung:
+	\[
+	\displaystyle{\frac{2\cdot x-1}{(x-1)^2}}  = \displaystyle{\frac{2}{x-1}} + \displaystyle{\frac{1}{(x-1)^2}} \,.
+\]
+\end{exabox}
+
+\begin{exabox}{Partialbruchzerlegung bei quadratischen Termen}{ }
+	Partialbruchzerlegung:
+	\[f: \mathbb R\setminus\{0, 1\}\to \mathbb R,\, x \mapsto \displaystyle{\frac{(1+x)^2}{x\cdot(x^2+1) }} \textnormal{?} \]
+
+	Ansatz:
+		\[ \textcolor{blue}{
+			\displaystyle{\frac{(1+x)^2}{x\cdot (x^2+1)}} = \displaystyle{\frac{A}{x}} + \displaystyle{\frac{B\cdot x + C}{x^2+1}} \,.}
+\]
+
+Bestimmung der Koeffizienten:
+\begin{eqnarray*}
+	\frac{(1+x)^2 }{ x\cdot (x^2 + 1)} &\stackrel{!}{=}& \frac{A \cdot ( x^2 + 1) + (B\cdot x+C)\cdot x}{x\cdot (x^2+1)} \\
+\Leftrightarrow \frac{(1+x)^2 }{ x\cdot (x^2 + 1)} &\stackrel{!}{=}& \frac{ (A + B)\cdot x^2 +C\cdot x+ A}{x\cdot (x^2+1)} \\[2ex]
+	\Rightarrow \;
+	x^2 + 2\cdot x + 1 &\stackrel{!}{=}& (A+B)\cdot x^2 + C\cdot x + A
+	\Leftrightarrow \begin{cases} A &= 1\,, \\  C & =2\,, \\ A+B &=1\,. \end{cases}
+	\end{eqnarray*}
+	Lösung:
+\[
+\displaystyle{\frac{(1+x)^2}{x\cdot (x^2+1)}} = \displaystyle{\frac{1}{x}} + \displaystyle{\frac{2 }{x^2+1}} \,.
+\]
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Im Allgemeinen treten die vorigen Fälle alle zusammen auf.
+	\item Die Betrachtungen gelten nur für echtgebrochenrationale Funktionen, andernfalls muss eine Polynomdivision durchgeführt werden.
+\end{itemize}
+
+Die allgemeine Vorgehensweise ist also immer:
+\begin{enumerate}
+	\item Eventuell \underline{Polynomdivision}\randverweis{MA1-polynome} durchführen.
+		\item Eventuell die \underline{Linearfaktorzerlegung}\randverweis{MA1-polynome} des Nenners bestimmen.
+		\item Sinnvollen \underline{Ansatz} für die Zerlegung machen.\marginpar{\small \hyperlink{pbz}{Regel 1}}
+			\item \underline{Gleichungssystem} für die unbekannten Koeffizienten bestimmen und lösen.\randverweis{MA1-lineare-gleichungssysteme}
+	\item Partialbruchzerlegung aufschreiben.
+\end{enumerate}
+
+\begin{theorembox}{\hypertarget{pbz}{Ansätze}}{}
+			\begin{itemize}
+				\item Zu jedem Faktor $(x-x_i)^{k_i}$ mit $k_i \geq 1$ des Nennerpolynoms gehört der Ansatz
+					\[ \frac{A_1}{x-x_i} +\frac{A_2}{(x-x_i)^2}  +\cdots +    \frac{A_{k_i}}{(x-x_i)^{k_i}} \]
+				\item Zu jedem Faktor $ (x^2 + a_i x + b_i)^{k_i}$ mit $(a_i^2-4b_i) < 0$ des Nennerpolynoms gehört der Ansatz
+				\[ \frac{B_1x + C_1 }{x^2 + a_i x + b_i} +\frac{B_2 x + C_2}{(x^2 + a_i x + b_i)^2} +\cdots +    \frac{B_{k_i} x + C_{k_i} }{(x^2 + a_i x + b_i)^{k_i}} \]
+		\end{itemize}
+\end{theorembox}
+
+Die Frage, auf die wir bislang nicht konkret eingegangen sind, ist: Wie bestimmt man auf geschickte Weise die Zerlegungskoeffizienten, die im Ansatz auftauchen?
+ Es gibt zwei Möglichkeiten:
+  \begin{itemize}
+	  \item man kann entweder einen Koeffizientenvergleich durchführen wie in den vorigen Beispielen, oder,
+	  \item man kann durch Einsetzen spezieller $x$-Werte Gleichungen ableiten.
+  \end{itemize}
+
+  Entscheidet man sich für die zweite Möglichkeit, dann kommt man ganz ohne einen Koeffizientenvergleich aus, wie das folgende Beispiel zeigt:
+  \begin{exabox}{Partialbruchzerlegung: Bestimmung der Koeffizienten durch Einsetzen}{ }
+	  Partialbruchzerlegung:
+	  \[f: \mathbb R \setminus\{1,2\}\to \mathbb R, x\mapsto \displaystyle{\frac{x}{(x-1)^3 \cdot (x-2)}} := \displaystyle{\frac{p(x)}{q(x)}}\textnormal{?}\]
+	  Ansatz:
+		\[\textcolor{blue}{
+			\frac{x}{(x-1)^3\cdot  (x-2)} = \frac{A_{1}}{x-1} + \frac{B_{1}}{(x-1)^2}  + \frac{C_{1}}{(x-1)^3}  + \frac{A_{2}}{x-2}\,. }
+		\]
+		Bestimmung der Koeffizienten:
+\begin{eqnarray*}
+	\frac{x}{(x-1)^3\cdot (x-2)} &\stackrel{!}{=}& \frac{ A_1\cdot ( x-1)^2\cdot (x-2) + B_1 \cdot (x-1)\cdot(x-2) + C_1\cdot (x-2) + A_2\cdot (x-1)^3 }{(x-1)^3\cdot (x-2)} \\[2ex]
+	\Rightarrow \;
+	x &\stackrel{!}{=} & A_1\cdot ( x-1)^2\cdot (x-2)
+			B_1\cdot ( x-1)\cdot (x-2) +
+			C_1\cdot (x-2) +
+			A_2\cdot ( x-1)^3 \; (*)
+		\end{eqnarray*}
+		Und $(*)$ muss für alle $x$ gelten! Die Idee ist nun vier Werte für $x$ zu wählen und damit vier Gleichungen zu erhalten. Geschickt ist es die Nullstellen von $p$ und $q$ zu betrachten:
+		\begin{eqnarray*}
+			\begin{array}{rlrcl}
+				q(1)=0: &\Rightarrow  x=1  \textnormal{ in } (*) \Rightarrow &  -C_1 &=& 1 \Rightarrow C_1 = -1\,, \\[1ex]
+				q(2)=0: &\Rightarrow  x=2  \textnormal{ in } (*) \Rightarrow & A_2 &=& 2 \Rightarrow A_2= 2\,,\\[1ex]
+				p(0)=0: &\Rightarrow  x=0  \textnormal{ in } (*) \Rightarrow &  -2 A_1 + 2 B_1 &=& 0 \Rightarrow A_1 = B_1\,.
+			\end{array}
+		\end{eqnarray*}
+		Nun fehlt uns noch eine Gleichung. In der Hoffnung auf kleine Zahlen setzen wir $x=-1$ in $(*)$ ein und erhalten:
+		\begin{eqnarray*}
+				-12 A_1 + 6 B_1 = -2 \Rightarrow 6A_1 = -2 \Rightarrow A_1 = \displaystyle{\frac13}
+		\end{eqnarray*}
+		Lösung:
+		\begin{eqnarray*}
+		\frac{x}{(x-1)^3\cdot  (x-2)} = \frac{1}{3(x-1)} + \frac{1}{3(x-1)^2}  - \frac{1}{(x-1)^3}  + \frac{2}{x-2}\,.
+		\end{eqnarray*}
+	\end{exabox}
+
+	In der Praxis setzt man diese beiden Ideen zur Bestimmung der Konstanten simultan ein.
+
+\subsection{Anwendung: Integration gebrochenrationaler Funktionen}
+
+Die Partialbruchzerlegung ist ein Werkzeug, das wir benötigen, um gebrochenrationale Funktionen zu integrieren. Die folgenden zwei Beispiele veranschaulichen die Vorgehensweise.
+
+\begin{exabox}{Integration durch Partialbruchzerlegung}{}
+	Integral:
+	\[
+		\int \frac{(x-3)^5+ (x-3)}{(x-3)\cdot (x-3)^5} \, \mathrm{d}x = \textnormal{?}
+	\]
+	Partialbruchzerlegung des Integranden:
+	\[
+		\frac{(x-3)^5+ (x-3)}{(x-3)\cdot (x-3)^5} = \frac{1}{x-3}  + \frac{1}{(x-3)^5}
+	\]
+		Lösung:
+	\[
+		\int \frac{(x-3)^5+ (x-3)}{(x-3)\cdot (x-3)^5} \, \mathrm{d}x = \int\frac{1}{x-3} \, \mathrm{d}x + \int\frac{1}{(x-3)^5} \, \mathrm{d}x = \ln|x-3| - \frac14 \cdot \frac{1}{(x-3)^4} + C \,.
+	\]
+\end{exabox}
+
+
+\begin{exabox}{Integration durch Partialbruchzerlegung}{}
+	Integral:
+	\[
+		\int \frac{2x^3-14 x^2 + 14 x + 30 }{x^2-4} \, \mathrm{d}x = \textnormal{?}
+	\]
+	Polynomdivision:
+	\[
+		\frac{2x^3-14 x^2 + 14 x + 30 }{x^2-4} = 2x - 14 + \frac{22x-26}{x^2-4}
+	\]
+	Faktorisierung des Nenners:
+	\[
+		x^2-4 = (x-2)\cdot (x+2)
+	\]
+	Partialbruchzerlegung:
+	\[
+		\frac{22x-26}{x^2-4} = \frac92 \cdot \frac{1}{x-2} + \frac{35}{2}\cdot \frac{1}{x+2}
+	\]
+		Lösung:
+	\[
+		\int \frac{2x^3-14 x^2 + 14 x + 30 }{x^2-4} \, \mathrm{d}x =  x^2 - 14 x + \frac92 \ln|x-2| + \frac{35}{2}\ln|x+2| + C\,.
+	\]
+\end{exabox}
+
+%\begin{exabox}{Integration durch Partialbruchzerlegung}{}
+%\[
+%\int \frac{2^x+5}{x^2+3x+7}\,\mathrm{d}x=\ln|x^2+3x+7|+\frac{4}{\sqrt{19}} \arctan \left(\frac{2x+3}{\sqrt{19}}\right)+C\,.
+%\]
+%Denn die Probe zeigt es :)
+%	\begin{eqnarray*}
+%		&&\frac{\mathrm{d}}{\mathrm{d}x}  \left(\ln |x^2+3x+7|+\frac{4}{\sqrt{19}} \arctan \left(\frac{2x+3}{\sqrt{19}}\right)+C\right) =\\
+%		&=&  \frac{1}{x^2+3x + 7} \cdot (2x + 3) + \frac{4}{\sqrt{19}}\cdot \frac{1}{ 2 + (2x+3)^2/19 }\cdot \frac{2}{\sqrt{19}} \\
+%			&=& \frac{2x+3}{x^2+3x+7} + \frac{8}{19} \cdot \frac{1}{1+ 1/19(4x^2+12x+9)} \\
+%			&=& \frac{2x+3}{x^2+3x+7} + \frac{2}{x^2+3 x+7} \\
+%			&=& \frac{2x+5}{x^2+3x+7}\,.
+%	\end{eqnarray*}
+%\end{exabox}
+
+%Offensichtlich sorgt der $\ln$ für den Term mit $x$ in Zähler und der $\arctan $ für den konstanten Term in Zähler. Das kann man allgemein so machen. Im Prinzip könnte auch etwas wie $\int \frac{2x^3+5x^2-2x+3}{ (x^2+3x+7)^2}\, \mathrm{d}x$ usw. auftreten. Aber dann zerlegt man die rationale Funktion besser komplett mit Hilfe komplexer Nullstellen.
+

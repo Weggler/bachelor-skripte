@@ -1,0 +1,497 @@
+% Idee zur Herleitung (nach dem Prinzip: wir beherrschen nur Grundrechenarten): auswerten von 2^1, 2^2, 2^4, 2^5 - also 2^n als Funktion von n
+\section{Exponentialfunktionen und Logarithmusfunktionen}\label{MA1-exponential-und-logarithmusfunktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem Exponentialfunktionen und Logarithmusfunktionen erkennen und skizzieren &\\
+\tabitem Definitionsbereich, Bildmenge und Monotonieverhalten von Exponential- und Logarithmusfunktionen beschreiben &\\
+\tabitem Logarithmusfunktionen als Umkehrfunktionen von Exponentialfunktionen interpretieren &\\
+\tabitem Rechenregeln für Exponential- und Logarithmusfunktionen anwenden &\\
+\tabitem Gleichungen mit Exponential- und Logarithmusfunktionen lösen &\\
+\tabitem Logarithmen zu verschiedenen Basen ineinander umrechnen &\\
+\tabitem logarithmische und doppelt logarithmische Darstellungen interpretieren &\\[.5\normalbaselineskip]
+    \midrule
+	  \textbf{Voraussetzungen}& \\[.5\normalbaselineskip]
+	  \tabitem Grundlagen & \abschnittsverweis{MA1-mengen-und-logik}-\abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Injektivität, Bijektivität und Umkehrbarkeit & \abschnittsverweis{MA1-eigenschaften-von-funktionen}\\
+	  \tabitem Potenzregeln & \abschnittsverweis{MA1-potenz-und-wurzelfunktionen}\\
+	\tabitem algebraische Gleichungen & \abschnittsverweis{MA1-algebraische-gleichungen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-exponential-und-logarithmusfunktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+ \fi
+
+\subsection{Exponentialfunktionen}
+
+Eine Funktion der Form
+\[
+f:\mathbb R\to(0,\infty),
+\qquad
+x\mapsto b^x,
+\]
+mit
+\[
+b>0,\qquad b\neq1,
+\]
+heißt \textbf{Exponentialfunktion} (\emph{exponential function}).  Die Zahl \(b\) heißt \textbf{Basis} (\emph{base}) der Exponentialfunktion.
+
+Charakteristisch ist, dass die Variable \(x\) im Exponenten steht. Darin unterscheiden sich Exponentialfunktionen beispielsweise von Potenzfunktionen der Form 
+\[
+x\mapsto x^n,
+\]
+bei denen die Variable die Basis bildet.
+
+Die Bedingung \(b>0\) stellt sicher, dass \(b^x\) für alle reellen Exponenten \(x\) definiert werden kann. Für \(b=1\) entsteht die konstante Funktion
+\[
+x\mapsto1^x=1.
+\]
+Da hier kein Wachstum oder Zerfall vorliegt, wird \(b=1\) bei der Definition von Exponentialfunktionen ausgeschlossen.
+
+\begin{theorembox}{Eigenschaften der Exponentialfunktionen}{ }
+	\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/exponentialfunktionen_wachstum_zerfall.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		\begin{itemize}
+			\item Definitionsbereich \(D = \mathbb R\). 
+			\item Bildmenge $W = (0,\infty)$. 
+			\item \(y\)-Achsenabschnitt an der Stelle $y = 1$. 
+			\item \textcolor{darkgreen}{streng monoton steigend für \(b>1\)}.
+			\item \textcolor{blue}{streng monoton fallend für \(0<b<1\)}.
+		\end{itemize}
+\end{minipage}
+  
+\end{theorembox}
+
+Im vorigen Bild sieht man die Graphen der Funktionen 
+\begin{eqnarray*}
+	f: x &\mapsto &\textcolor{darkgreen}{2}^{\displaystyle x}\,,\\[2ex]
+g: x&\mapsto &\left(\textcolor{blue}{\dfrac12}\right)^{\displaystyle x}\,.
+\end{eqnarray*}
+Die Graphen der Funktionen spiegeln sich an der \(y\)-Achse und das ist nicht überraschend, denn 
+$$ g(x) = \left(\frac1b\right)^x= b^{-x} = f(-x)\,.$$
+Für das Umformen von Gleichungen mit Exponentialfunktionen sind insbesondere die bereits bekannten Potenzregeln von Bedeutung.\marginpar{Aufgaben} 
+
+\begin{theorembox}{Rechenregeln Exponentialfunktionen}{ }
+	Es sei $b\in (0,1)\cup (1,\infty)$ und $x, y \in\mathbb R$. Betrachte die Funktion $x\mapsto b^x\,.$ Es gilt:
+\begin{eqnarray*}
+		b^0 &=& 1 \\
+		b^{x+y} &=& b^x \cdot b^y\\
+		b^{-x} &=& \displaystyle{\frac{1}{b^x}}\\ 
+		\left( b^x \right)^y &=& b^{x\cdot y}
+	\end{eqnarray*}
+\end{theorembox}
+
+\subsection{Die Exponentialfunktion $\exp: x\to e^x$}
+
+Unter allen Exponentialfunktionen gibt es eine von besonderer Wichtigkeit. Es ist "\,die Exponentialfunktion"\, mit der Basis \(e\). \(e\) ist eine \textbf{irrationale Zahl} und das heißt, dass wir Sie nie exakt als Dezimalzahl angeben können. Aber wir können sie approxmieren und hierfür dient das folgende Experiment. Berechnen wir den Ausdruck
+\begin{eqnarray*}
+	(*) \quad a_n:= \left( 1+\frac1n\right)^n\,, 
+\end{eqnarray*}
+für ein paar $n \in \mathbb N$ aus, beispielsweise für $ n = 1,10,100,1000, 10000,100000 $: 
+
+\begin{center}
+	\begin{tabular}{c || c|c|c|c|c|c}
+		$n$   & $1$ & $10$    & $100$   & $1000$  & $10000$ & $100000$ \\ \hline
+	        $a_n$ & $2$ & $2,594$ & $2,705$ & $2,717$ & $2,718$ & $2,718$  
+	\end{tabular}
+\end{center}
+
+Die Werte legen nahe, dass sich die Zahlen
+\[
+a_n=\left(1+\frac1n\right)^n
+\]
+für immer größere \(n\) einer festen Zahl annähern. Diese Zahl heißt \textbf{Eulersche Zahl} (\emph{Euler's number}) und wird mit \(e\) bezeichnet.
+
+Mit dem später eingeführten Begriff des Grenzwerts lässt sich dies schreiben als
+\[
+e
+=
+\lim_{n\to\infty}
+\left(1+\frac1n\right)^n.
+\]
+Numerisch gilt
+\[
+e\approx2{,}718281828459\ldots
+\]
+
+Das Verhalten, das wir hier beobachtet haben, werden wir in Abschnitt \abschnittsverweis{MA1-lineare-gleichungssysteme} unter dem Begriff Folgenkonvergenz definieren.  Interessanterweise erhalten wir eine Darstellung für jedes Folgenglied \(a_n\) in \( (*)\) mit Hilfe des \underline{Binomischen Satzes}\randverweis{MA1-zahlenmengen}:
+\[  
+	\left( 1 + \displaystyle{\frac1n} \right)^n = \displaystyle{ \sum\limits_{k=0}^n} \binom{n}{k} \cdot \left( \displaystyle{\frac1n}\right)^k \cdot \left( 1\right)^{n-k} \,.
+\]
+Dies liefert eine alternative Approximation für die Eulersche Zahl, zum Beispiel für \(n=1000\):
+  \begin{eqnarray*}
+	  e = e^{\frac{1000}{1000}} &=& \left(e^{\frac{1}{1000}}\right)^{1000}  = \left(1,0010005\cdots\right)^{1000} \\ & \approx & \left( 1 + \frac{1}{1000}\right)^{1000} = \sum\limits_{k=0}^{1000} \binom{1000}{k} \cdot \frac{1}{1000^k} \\
+		  & \approx & 1 + 1 + \frac{1}{2!}\frac{999}{1000}  + \frac{1}{3!}\frac{999\cdot 998}{1000\cdot 1000} + \frac{1}{4!}\frac{999\cdot 998\cdot 997}{1000\cdot 1000 \cdot 1000} + \cdots\\
+		  & \approx & 1 + 1 + \frac{1}{2!}  + \frac{1}{3!} + \frac{1}{4!} + \cdots\,.
+  \end{eqnarray*}
+
+%Zwischen $2$ und $3$ wird also eine Zahl $e$ liegen, so dass $x\mapsto e^x$ an $x=0 $ genau in einem Winkel von $45^\circ$ steigt. Diese Zahl $e$ heißt Eulersche Zahl [Euler’s number]. Die Funktion $x \mapsto e^x$ heißt . 
+%
+%Aus der Eigenschaft $e\in(2,3)$ läßt sich eine näherungsweise Berechnung von $e$ herleiten 
+%  \begin{eqnarray*}
+%    e = e^1 = e^{\frac{1}{1000}\cdot 1000} = \left( e^{\frac{1}{1000}}\right)^{1000}\; \Rightarrow \; e \approx \left( 1 +  \frac{1}{1000} \right)^{1000}\,.
+%  \end{eqnarray*}
+
+Dasselbe Prinzip legt für die Exponentialfunktion die Approximation
+\[
+e^x
+\approx
+\left(1+\frac{x}{n}\right)^n
+\]
+für große \(n\) nahe. Mit dem \underline{binomischen Satz}\randverweis{MA1-zahlenmengen} ergibt sich
+\[
+\left(1+\frac{x}{n}\right)^n
+=
+\sum\limits_{k=0}^n
+\binom nk\frac{x^k}{n^k}.
+\]
+
+Für große \(n\) nähern sich die ersten Koeffizienten den Werten
+\[
+1,\quad 1,\quad \frac1{2!},\quad\frac1{3!},\quad\dots
+\]
+an. Dies deutet auf die später exakt zu begründende Darstellung
+\[
+e^x
+=
+\sum\limits_{k=0}^{\infty}\frac{x^k}{k!}
+=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots
+\]
+hin.
+
+%Mit demselben Trick kann man die Exponentialfunktion $\exp: x\mapsto e^x$ für jedes \(x\in\mathbb R\) beliebig genau berechnen, ohne jemals krumme Potenzen zu bilden:
+%\begin{eqnarray*}
+%	e^x & \approx & \left( 1 + \frac{x}{1000}\right)^{1000} =  \sum\limits_{k=0}^{1000} \binom{1000}{k} \cdot \frac{x}{1000^k}\\
+%& \approx & 1 + x + \frac{x^2}{2!}\frac{999}{1000}  + \frac{x^3}{3!}\frac{999\cdot 998}{1000\cdot 1000} + \frac{x^4}{4!}\frac{999\cdot 998\cdot 997}{1000\cdot 1000 \cdot 1000} + \cdots\\
+%  &\approx&  1 + x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + \frac{1}{4!}x^4 \cdots \,.
+%\end{eqnarray*}
+
+%Man kann zeigen, dass die obigen Approximationen für \(n\to\infty\) tatsächlich die Eulersche Zahl bzw. die Exponentialfunktion darstellen:\footnote{Um das zu beweisen fehlt uns im Moment das Handwerkszeug.}
+%	\[ \begin{array}{rcl}
+%		e  &=& \displaystyle{ \sum\limits_{k=0}^\infty} \displaystyle{\frac{1}{k!}}\,,\\
+%	e^x  &=& \displaystyle{\sum\limits_{k=0}^\infty}\displaystyle{ \frac{x^k}{k!}}\,. \end{array}
+%\]
+
+Die Exponentialfunktionen beschreiben Wachstums- oder Zerfallsprozesse. 
+\begin{itemize} 
+	\item Die Zinsen werden hier einem Kapital \(K\) über einen gewissen Zeitraum zugeschlagen und mit verzinst. Dies führt zu exponentiellem Wachstum des Kapitals. Die Zinseszinsformel lautet: $$K(t) = K(0)\cdot \left(1+\displaystyle{\frac{p}{100}}\right)^t\,,$$ wobei \(p\) die Zinszahl und \(K(0)\) das Anfangskapital darstellt. Bei einem Sparbuch mit \(5\%\) Zinsen pro Jahr hat sich Anfangskapital nach ca. \(14\) Jahren verdoppelt: $$ K(14) = K(0)\cdot \left(1+\displaystyle{\frac{5}{100}}\right)^{14} \approx 1,98\cdot K(0)\,.$$
+	\item Das Zerfallsgesetz ist die in der Physik übliche Bezeichnung der Gleichung, die eine exponentielle zeitliche Abnahme von Größen beschreibt. In der Kernphysik gibt das Zerfallsgesetz die Anzahl \(N\) der zu einem Zeitpunkt \(t\) noch nicht zerfallenen Atomkerne einer radioaktiven Substanzprobe an. Diese Anzahl beträgt $$ N(t) = N(0)\cdot e^{-\lambda t}\,, $$ wobei \(N(0)\) die Anzahl der zum Zeitpunkt \(t=0\) vorhandenen Atomkerne und \(\lambda\) die Zerfallsrate des betreffenden Nuklids ist.
+%\item In der Thermodynamik betrachtet man häufig Verteilungen von Teilchen auf Niveaus verschiedener Energie $E$. Sind quantenmechanische Effekte egal und ist die Zahl der Teilchen fest und ist die Gesamtenergie fest und ist die Unordnung (Entropie) maximal, ist das Energieniveau $E$ proportional zu $e^{-E/kT}$ besetzt. Dazu kommen noch weitere Faktoren, zum Beispiel, um die Zustandsdichten zu berücksichtigen. Dabei ist $k$ die Boltzmann-Konstante, 
+%	$$ k = 1,380649 \dot 10^{-23} \mathrm{J}/\mathrm{K}\,.$$ 
+%	Diese Verteilung schlägt sich an vielen Stellen nieder. Die Arrhenius-Gleichung modelliert, wie eine Reaktionsgeschwindigkeit \(v_{\mathrm{reac}}\) von der Temperatur abhängt:
+%	\begin{exabox}{Arrhenius-Gleichung}{ }
+%	$ v_{\mathrm{reac}} \approx e^{-\frac{E}{R\dot T}}\,,$
+%\end{exabox}
+%wobei \( R=N\cdot k\) die universelle Gaskonstante bezeichnet.  
+%\item In  der  Halbleiterdiode  wirkt  die  Raumladungszone  am  $pn$-Übergang  wie  die Aktivierungsenergie in einer chemischen Reaktion. Die benötigte Energie wird durch eine in Durchlassrichtung angelegte Spannung $U$ vermindert. Das übliche Modell für kleine Ströme durch eine Diode ist damit:
+%
+%
+%Was sind offensichtlichen Grenzen dieses Modells?
+\end{itemize}
+
+\subsection{Logarithmusfunktionen}
+
+Da die Exponentialfunktion
+\[
+f:\mathbb R\to(0,\infty),
+\qquad
+x\mapsto b^x,
+\]
+für \(b>0\) und \(b\neq1\) streng monoton und damit bijektiv ist, besitzt sie
+eine \underline{Umkehrfunktion}\randverweis{MA1-eigenschaften-von-funktionen}.
+
+Diese Umkehrfunktion heißt \textbf{Logarithmusfunktion}
+(\emph{logarithmic function}) zur Basis \(b\):
+\[
+\log_b:(0,\infty)\to\mathbb R.
+\]
+
+Dabei gilt
+\[
+y=b^x
+\qquad\Longleftrightarrow\qquad
+x=\log_b(y).
+\]
+
+\noindent{\textbf{Merke:}} 
+\begin{itemize}
+        \item Ein Logarithmus beantwortet die Frage: Womit muss man die Basis $b$ potenzieren, damit $y$ herauskommt? 
+        \item Eine Exponentialfunktion bildet nur auf positive Zahlen ab, also können Logarithmusfunktionen nur positive Zahlen verarbeiten. 
+\end{itemize}
+
+Einige Logarithmusfunktionen sind besonders wichtig und haben deshalb spezielle Bezeichnungen:
+\begin{defbox}{Bezeichnungen wichtiger Logarithmusfunktionen}{ }
+  \begin{enumerate}
+    \item Den Logarithmus zur Basis $e$ schreibt man $\ln:= \log_e$ und nennt ihn den natürlichen Logarithmus,
+    \item Den Logarithmus zur Basis $10$ schreibt man $\mathrm{lg}:= \log_{10}$,
+    \item Den Logarithmus zur Basis $2$ schreibt man $\mathrm{lb}:= \log_2$.
+  \end{enumerate}
+\end{defbox}
+
+\noindent{\textbf{Vorsicht:}} In Programmiersprachen und in der fortgeschrittenen Mathematik heißt der natürliche Logarithmus oft $\log$. 
+
+Exponentialfunktionen wachsen für Basen \(b>1\) sehr schnell, während Logarithmusfunktionen nur sehr langsam wachsen. Anschaulich gesprochen: Exponentialfunktionen „explodieren“, Logarithmusfunktionen „kriechen“.  Trotz dieses langsamen Wachstums ist die Logarithmusfunktion nach oben unbeschränkt.
+\begin{exabox}{Monotonie des Logarithmus - es kriecht}{ }
+	\begin{minipage}{0.7\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/logarithmus_wachstumsvergleich_exponentialfunktion_quadratwurzel.png}
+\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		\begin{itemize} 
+			\item \textcolor{violett}{Exponentialfunktion} 
+			\item \textcolor{darkgreen}{Quadratwurzel}
+			\item \textcolor{blue}{Logarithmusfunktion}
+		\end{itemize}
+\end{minipage}
+\end{exabox}
+
+Weil die Logarithmusfunktionen die jeweiligen Exponentialfunktionen umkehren, kann  man  aus  den  Potenzrechengesetzen  die  Rechenregeln  für  Logarithmusfunktionen folgern:\marginpar{Aufgaben}
+\begin{theorembox}{Rechenregeln Logarithmusfunktionen}{ }
+	Für alle $x,y > 0$, $b>0$, $b\not=1$, $z\in \mathbb R$ gilt:
+  \begin{eqnarray*}
+    \log_b(x\cdot y) &=& \log_b(x) + \log_b(y)\\ 
+    \log_b\left(\displaystyle{\frac{x}{y}}\right) &=& \log_b(x) - \log_b(y)\\ 
+    \log_b\left(x^z\right) &=&  z\log_b(x)\\ 
+    \log_b\left(\sqrt[n]{x}\right) &=&  \displaystyle{\frac1n} \log_b(x), \quad n\in \mathbb N^+\,.
+  \end{eqnarray*}
+\end{theorembox}
+
+Oft sind am Rechner nur $\mathrm{lg}$ und $\ln$ verfügbar, keine Logarithmusfunktion zubeliebigen Basen $b$. Dann kann man sich so behelfen: $x=\log_3(7)$, also $7=3^x$, also:
+\begin{exabox}{$x=\log_3(7)$}{ }
+  $
+  \left. \begin{array}{rcl} 7 &=& 10^{\mathrm{lg}(7)}\\
+3^x &=& \left( 10^{\mathrm{lg}(3)}\right)^x
+\end{array} \right\} \quad \Rightarrow \; \mathrm{lg}(7) = x\cdot \mathrm{lg}(3)  \; \Rightarrow \;  x = \displaystyle{\frac{\mathrm{lg}(7)}{\mathrm{lg}(3)}}\,.
+$
+\end{exabox}
+
+\begin{theorembox}{Basiswechsel}{ }
+	Es gilt 
+	\[ \log_b(x) = \dfrac{\log_a(x)}{\log_a(b)} \] 
+	für alle \(a>0\), \(a\not =1\) und damit insbesondere für \(a=e\)
+	\[ \log_b(x) = \dfrac{\ln(x)}{\ln(b)} \] 
+
+\end{theorembox}
+
+Auch die Logarithmusfunktionen kommen auf natürliche Weise vor:
+
+\begin{itemize}
+	\item Schallpegel werden aufgrund der sehr großen auftretenden Wertebereiche logarithmisch angegeben. Der Schalldruckpegel ist beispielsweise durch 
+		\[ 
+			L_p = 20\lg\left(\frac{p}{p_0}\right)\,\mathrm{dB}, \qquad p_0=20\,\mu\mathrm{Pa},
+\]
+definiert.
+\item Außerdem verhält sich der Informationsgehalt logarithmisch:
+  $$ \mathrm{lb}\left( \textnormal{Anzahl der Zust\"ande} \right) \; \mathrm{Bits}\,.$$
+Zum Beispiel kann man die Zahlen von $0$ bis $255$ in $8$ Bits (Ja-Nein Informationen) speichern.  
+\end{itemize}
+
+\begin{exabox}{Gleichungen mit Exponential- und Logarithmusfunktionen}{ }
+
+\textbf{1. Exponentialgleichung}
+
+Gegeben sei die Gleichung
+\[
+3^{2\cdot x-1}=7.
+\]
+Die Unbekannte \(x\) steht im Exponenten. Da sich beide Seiten nicht als
+Potenzen derselben Basis darstellen lassen, wird die Gleichung logarithmiert:
+\[
+	\begin{array}{c rcl l}
+	& 3^{2\cdot x-1}&=& 7 &\quad\quad \big\|\,\ln(\cdot )\\
+\Leftrightarrow\quad  & \ln\left(3^{2\cdot x-1}\right)&=&\ln(7) &\quad\quad \big\|\,\text{Logarithmengesetz anwenden}\\
+\Leftrightarrow\quad  & (2\cdot x-1)\ln(3)&=&\ln(7) &\quad\quad \big\|\,\text{vereinfachen}\\
+\Leftrightarrow\quad  & 2\cdot x-1&=&\frac{\ln(7)}{\ln(3)} &\quad\quad \big\|\,+1\\
+\Leftrightarrow\quad  & 2x&=&1+\frac{\ln(7)}{\ln(3)} &\quad\quad \big\|\, :2\\
+\Leftrightarrow\quad  & x&=&\frac12\left(1+\frac{\ln(7)}{\ln(3)}\right). &
+\end{array}
+\]
+Damit lautet die Lösungsmenge \( \mathbb L = \left\{ \frac12\left(1+\frac{\ln(7)}{\ln(3)}\right) \right\}\).
+
+\noindent{\textbf{Fazit:}} Das Logarithmieren ermöglicht hier, den Exponenten mithilfe der Regel \( \ln(a^z)=z\ln(a) \) aus der Potenz herauszulösen. Die Exponentialgleichung wird dadurch auf eine lineare Gleichung zurückgeführt.
+
+\bigskip
+\textbf{2. Logarithmusgleichung}
+
+Gegeben sei die Gleichung
+\[
+\ln(x-1)+\ln(x+1)=\ln(8)
+\]
+Bevor die Gleichung umgeformt wird, muss ihr Definitionsbereich bestimmt
+werden. Die Argumente der Logarithmen müssen positiv sein: 
+\[
+x-1>0
+\qquad\text{und}\qquad
+x+1>0.
+\]
+Beide Bedingungen sind genau dann erfüllt, wenn \(x>1\).
+Damit gilt \( D=(1,\infty) \).  
+Innerhalb dieses Definitionsbereichs können die Logarithmusregeln angewendet
+werden:
+\[
+	\begin{array}{c rcl l}
+	& \ln(x-1)+\ln(x+1) &=& \ln(8) &\quad \| \,\text{Logarithmengesetz anwenden}\\
+	\Leftrightarrow \quad & \ln\bigl((x-1)(x+1)\bigr) &=& \ln(8) &\quad \| \exp(\cdot ) \\
+	\Leftrightarrow \quad & (x-1)(x+1) &=8 &\quad \| \, \text{Eigenschaft Umkehrfunktion} \\ 
+	\Leftrightarrow \quad & x^2 &=& 9 &\quad \| \sqrt{\cdot } \\
+\Leftrightarrow \quad & |x| &=3.&
+\end{array}
+\]
+
+Die algebraische Gleichung besitzt damit zunächst die beiden Lösungen \(x=-3\) und \(x=3\).  Für die ursprüngliche Logarithmusgleichung muss jedoch zusätzlich der Definitionsbereich \( x>1\) berücksichtigt werden. Daher entfällt \(x=-3\), und es bleibt \(\mathbb L=\{3\}\).
+
+\noindent{\textbf{Fazit:}} Eine Logarithmusgleichung kann durch die Logarithmusregeln auf eine algebraische Gleichung zurückgeführt werden.  Die Lösungen der algebraischen Gleichung sind anschließend mit dem Definitionsbereich der ursprünglichen Gleichung abzugleichen.
+
+\end{exabox}
+
+
+\subsection{Logarithmische Darstellung}
+
+Exponentialfunktionen und Potenzfunktionen können sich über große Wertebereiche
+erstrecken. In einer gewöhnlichen linearen Darstellung sind kleine
+Funktionswerte dann häufig kaum noch zu erkennen, während große Funktionswerte
+den Graphen dominieren.
+
+Eine logarithmische Skalierung der Achsen ermöglicht nicht nur eine
+übersichtlichere Darstellung solcher Wertebereiche. Sie besitzt außerdem eine
+wichtige mathematische Eigenschaft: Bestimmte nichtlineare Zusammenhänge
+erscheinen bei geeigneter logarithmischer Darstellung als Geraden. Dadurch
+können exponentielle Zusammenhänge und Potenzgesetze in Messdaten leichter
+erkannt und untersucht werden.
+
+\subsubsection*{Exponentielle Zusammenhänge}
+
+Es sei ein exponentieller Zusammenhang der Form
+\[
+y=C\cdot b^x,
+\qquad
+C>0,\quad b>0,\quad b\neq1,
+\]
+gegeben. Durch Logarithmieren folgt
+\[
+\begin{aligned}
+y&=C\cdot b^x\\
+\Longrightarrow\qquad
+\ln(y)
+&=\ln\left(C\cdot b^x\right)\\
+&=\ln(C)+\ln\left(b^x\right)\\
+&=\ln(C)+x\ln(b).
+\end{aligned}
+\]
+
+Damit besteht zwischen \(x\) und \(\ln(y)\) ein linearer Zusammenhang:
+\[
+\ln(y)=\ln(C)+\ln(b)\cdot x.
+\]
+
+Wird also die \(x\)-Achse linear und die \(y\)-Achse logarithmisch skaliert,
+erscheint der Graph eines exponentiellen Zusammenhangs als Gerade. Eine solche
+Darstellung heißt \textbf{halblogarithmische Darstellung}
+(\emph{semi-logarithmic plot}).
+
+Aus der Geraden lassen sich die Parameter der Exponentialfunktion ablesen:
+Der Achsenabschnitt entspricht \(\ln(C)\), die Steigung entspricht
+\(\ln(b)\).
+
+\begin{exabox}{Exponentieller Zusammenhang in halblogarithmischer Darstellung}{ }
+
+Für
+\[
+y=5\cdot 2^x
+\]
+ergibt das Logarithmieren
+\[
+\begin{aligned}
+\ln(y)
+&=\ln\left(5\cdot2^x\right)\\
+&=\ln(5)+x\ln(2).
+\end{aligned}
+\]
+In einer Darstellung von \(\ln(y)\) gegen \(x\) entsteht daher eine Gerade
+mit dem Achsenabschnitt
+\[
+\ln(5)
+\]
+und der Steigung
+\[
+\ln(2).
+\]
+
+Ein exponentieller Zusammenhang, der in einer gewöhnlichen Darstellung
+gekrümmt erscheint, wird durch das Logarithmieren der \(y\)-Werte also
+linearisiert.
+
+\end{exabox}
+
+\subsubsection*{Potenzgesetze}
+
+Ein ähnlicher Zusammenhang entsteht bei Potenzfunktionen. Es sei
+\[
+y=C\cdot x^\alpha,
+\qquad
+C>0,\quad x>0.
+\]
+Durch Logarithmieren folgt
+\[
+\begin{aligned}
+y&=C\cdot x^\alpha\\
+\Longrightarrow\qquad
+\ln(y)
+&=\ln\left(C\cdot x^\alpha\right)\\
+&=\ln(C)+\ln\left(x^\alpha\right)\\
+&=\ln(C)+\alpha\ln(x).
+\end{aligned}
+\]
+
+Damit besteht zwischen \(\ln(x)\) und \(\ln(y)\) wiederum ein linearer
+Zusammenhang:
+\[
+\ln(y)=\ln(C)+\alpha\ln(x).
+\]
+
+Werden sowohl die \(x\)-Achse als auch die \(y\)-Achse logarithmisch skaliert,
+erscheint ein Potenzgesetz als Gerade. Eine solche Darstellung heißt
+\textbf{doppelt logarithmische Darstellung}
+(\emph{log-log plot}).
+
+Die Steigung dieser Geraden entspricht unmittelbar dem Exponenten
+\(\alpha\). Der Achsenabschnitt entspricht \(\ln(C)\).
+
+\begin{exabox}{Doppelt logarithmische Darstellung}{ }
+
+Für den Zusammenhang
+\[
+y=2x^2
+\]
+gilt
+\[
+\begin{aligned}
+\ln(y)
+&=\ln(2x^2)\\
+&=\ln(2)+2\ln(x).
+\end{aligned}
+\]
+In einer doppelt logarithmischen Darstellung entsteht daher eine Gerade mit
+der Steigung
+\[
+2.
+\]
+Der Exponent des Potenzgesetzes kann somit unmittelbar aus der Steigung der
+Geraden bestimmt werden.
+
+\medskip
+\centering
+\includegraphics[width=0.6\textwidth]
+{../Mathematik_1/Bilder/logarithmische_darstellung_potenzgesetze.png}
+
+\end{exabox}

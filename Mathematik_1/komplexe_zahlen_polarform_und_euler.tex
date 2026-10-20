@@ -1,0 +1,1399 @@
+
+\section{Komplexe Zahlen II: Polarform, Euler und Schwingungen}\label{MA1-komplexe-zahlen-polarform-und-euler}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem die Polarform komplexer Zahlen zum Potenzieren und Wurzelziehen nutzen &\\
+    \tabitem alle Lösungen einer Gleichung der Form \(z^n=c\) bestimmen und geometrisch interpretieren &\\
+    \tabitem die Eulersche Formel erklären und komplexe Zahlen in Exponentialdarstellung schreiben &\\
+    \tabitem die komplexe Exponentialfunktion geometrisch interpretieren &\\
+    \tabitem harmonische Schwingungen mithilfe komplexer Amplituden (Phasoren) darstellen &\\
+    \tabitem harmonische Schwingungen gleicher Frequenz mithilfe komplexer Amplituden überlagern &\\
+    \tabitem Polynome über \(\mathbb C\) vollständig in Linearfaktoren zerlegen &\\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Betrag, Argument und Polarform komplexer Zahlen & \abschnittsverweis{MA1-komplexe-zahlen-grundlagen}\\
+    \tabitem Multiplikation und Division komplexer Zahlen in geometrischer Darstellung & \abschnittsverweis{MA1-komplexe-zahlen-grundlagen}\\
+    \tabitem Potenzen und Wurzeln reeller Zahlen & \abschnittsverweis{MA1-potenz-und-wurzelfunktionen}\\
+    \tabitem Exponentialfunktion & \abschnittsverweis{MA1-exponential-und-logarithmusfunktionen}\\
+    \tabitem trigonometrische Funktionen und harmonische Schwingungen & \abschnittsverweis{MA1-trigonometrische-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zu diesem Abschnitt:
+\hyperref[MA1-komplexe-zahlen-polarform-und-euler-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+% --------------------------------------------------------------------------
+\subsection{Potenzen und Wurzeln in Polarform}
+
+Im vorangegangenen Abschnitt wurden komplexe Zahlen sowohl in kartesischer
+Form \(z=a+i\,b\) als auch mithilfe von Betrag und Winkel dargestellt. Für
+\(z\neq0\) gilt
+\[
+z=r\bigl(\cos(\varphi)+i\sin(\varphi)\bigr),
+\qquad
+r=|z|,
+\qquad
+\varphi=\arg(z).
+\]
+
+Dabei zeigte sich bereits ein wesentlicher Vorteil der Polardarstellung. Für
+zwei komplexe Zahlen
+\[
+z_1\;\widehat=\;(r_1\,|\,\varphi_1),
+\qquad
+z_2\;\widehat=\;(r_2\,|\,\varphi_2)
+\]
+gilt
+\[
+z_1z_2
+\;\widehat=\;
+(r_1r_2\,|\,\varphi_1+\varphi_2).
+\]
+Bei einer Multiplikation werden also die Beträge multipliziert und die Winkel
+addiert.
+
+Diese geometrische Interpretation führt unmittelbar zu zwei weiteren Fragen:
+Was geschieht, wenn eine komplexe Zahl mehrfach mit sich selbst multipliziert
+wird? Und wie lassen sich umgekehrt alle komplexen Zahlen bestimmen, deren
+\(n\)-te Potenz eine vorgegebene komplexe Zahl ergibt?
+
+Damit führen Multiplikation und Polardarstellung auf natürliche Weise zum
+\textbf{Potenzieren} und zum \textbf{Wurzelziehen} in \(\mathbb C\).
+
+
+% --------------------------------------------------------------------------
+\subsubsection*{Positive ganzzahlige Potenzen}
+
+Wird eine komplexe Zahl \(z\;\widehat=\;(r\,|\,\varphi)\) mit sich selbst
+multipliziert, ergibt sich
+\[
+z^2=z\cdot z
+\;\widehat=\;
+(r^2\,|\,2\varphi).
+\]
+Eine weitere Multiplikation mit \(z\) liefert
+\(z^3\;\widehat=\;(r^3\,|\,3\varphi)\). Dieses Muster setzt sich für jede
+positive ganzzahlige Potenz fort.
+
+\begin{theorembox}{Potenzieren in Polarkoordinaten}{ }
+
+Für \(z\;\widehat=\;(r\,|\,\varphi)\) und \(n\in\mathbb N^+\) gilt
+\[
+z^n
+\;\widehat=\;
+(r^n\,|\,n\varphi).
+\]
+
+Beim Potenzieren wird der Betrag zur \(n\)-ten Potenz erhoben, während der
+Winkel mit \(n\) multipliziert wird.
+
+\end{theorembox}
+
+\begin{exabox}{Potenzen einer komplexen Zahl}{ }
+
+Betrachtet wird die komplexe Zahl
+\[
+z
+\;\widehat=\;
+\left(
+\sqrt2\,\middle|\,\frac{\pi}{4}
+\right).
+\]
+
+Für die zweite Potenz ergibt sich
+\[
+\begin{aligned}
+z^2
+&\;\widehat=\;
+\left(
+(\sqrt2)^2
+\,\middle|\,
+2\frac{\pi}{4}
+\right)\\
+&=
+\left(
+2\,\middle|\,\frac{\pi}{2}
+\right).
+\end{aligned}
+\]
+
+Für die dritte Potenz folgt entsprechend
+\[
+\begin{aligned}
+z^3
+&\;\widehat=\;
+\left(
+(\sqrt2)^3
+\,\middle|\,
+3\frac{\pi}{4}
+\right)\\
+&=
+\left(
+2\sqrt2
+\,\middle|\,
+\frac{3\pi}{4}
+\right).
+\end{aligned}
+\]
+
+Das Beispiel macht beide Wirkungen des Potenzierens sichtbar: Der Betrag
+verändert sich durch die Potenz \(r^n\), während sich der Winkel mit jeder
+weiteren Multiplikation um \(\varphi\) vergrößert.
+
+\end{exabox}
+
+Die geometrischen Wirkung des Potenzierens lässt sich interaktiv untersuchen, beispielsweise in der GeoGebra Anwendung
+\href{https://www.geogebra.org/m/jsda7yjz}{Potenzieren komplexer Zahlen}.
+
+\subsubsection*{Negative ganzzahlige Potenzen}
+
+Für \(z\neq0\) sind auch negative ganzzahlige Potenzen definiert. Dabei gilt
+beispielsweise \(z^{-1}=1/z\). Die Division komplexer Zahlen wurde im
+vorangegangenen Abschnitt bereits geometrisch als Division der Beträge und
+Subtraktion der Winkel interpretiert.
+
+Für \(z\;\widehat=\;(r\,|\,\varphi)\) folgt daher
+\[
+z^{-1}
+\;\widehat=\;
+\left(
+\frac{1}{r}\,\middle|\,-\varphi
+\right).
+\]
+
+Allgemeiner gilt für \(n\in\mathbb N^+\)
+\[
+z^{-n}
+\;\widehat=\;
+(r^{-n}\,|\,-n\varphi).
+\]
+
+\begin{exabox}{Negative Potenzen}{ }
+
+Für
+\[
+z
+\;\widehat=\;
+\left(
+\sqrt2\,\middle|\,\frac{\pi}{4}
+\right)
+\]
+gilt zunächst
+\[
+z^0=1
+\;\widehat=\;
+(1\,|\,0).
+\]
+
+Für den Kehrwert ergibt sich
+\[
+z^{-1}
+\;\widehat=\;
+\left(
+\frac{1}{\sqrt2}
+\,\middle|\,
+-\frac{\pi}{4}
+\right).
+\]
+
+Der Betrag wird beim Bilden des Kehrwerts also invertiert, während sich das
+Vorzeichen des Winkels ändert.
+
+\end{exabox}
+
+Positive, negative und die nullte Potenz lassen sich damit gemeinsam
+beschreiben: Für \(z\neq0\) und \(n\in\mathbb Z\) gilt
+\[
+z^n
+\;\widehat=\;
+(r^n\,|\,n\varphi).
+\]
+
+
+\subsubsection*{Die Umkehrfrage: Wurzeln komplexer Zahlen}
+
+Das Potenzieren führt unmittelbar auf die Umkehrfrage. Gesucht seien
+beispielsweise alle komplexen Zahlen \(z\), für die
+\[
+z^3=8i
+\]
+gilt.
+
+Die rechte Seite besitzt den Betrag \(8\) und den Winkel \(\pi/2\), also
+\[
+8i
+\;\widehat=\;
+\left(
+8\,\middle|\,\frac{\pi}{2}
+\right).
+\]
+
+Für die gesuchte Zahl wird
+\(z\;\widehat=\;(r\,|\,\varphi)\) angesetzt. Dann gilt
+\[
+z^3
+\;\widehat=\;
+(r^3\,|\,3\varphi).
+\]
+
+Ein erster Vergleich von Betrag und Winkel liefert
+\[
+r^3=8
+\qquad\text{und}\qquad
+3\varphi=\frac{\pi}{2}.
+\]
+Damit ergibt sich \(r=2\) und \(\varphi=\pi/6\). Eine Lösung lautet also
+\[
+z_0
+\;\widehat=\;
+\left(
+2\,\middle|\,\frac{\pi}{6}
+\right).
+\]
+
+Damit ist die Gleichung jedoch noch nicht vollständig gelöst. Der Winkel
+\(\pi/2\) beschreibt dieselbe Richtung wie jeder Winkel
+\[
+\frac{\pi}{2}+2\pi k,
+\qquad k\in\mathbb Z.
+\]
+Für die gesuchten Winkel muss daher allgemeiner
+\[
+3\varphi_k
+=
+\frac{\pi}{2}+2\pi k
+\]
+gelten. Somit folgt
+\[
+\varphi_k
+=
+\frac13
+\left(
+\frac{\pi}{2}+2\pi k
+\right).
+\]
+
+Für \(k=0,1,2\) entstehen drei verschiedene komplexe Zahlen.
+
+\begin{exabox}{Die drei Lösungen von \(z^3=8i\)}{ }
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_dritte_wurzeln_acht_i.png}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+
+Für \(k=0\) gilt
+\[
+\varphi_0
+=
+\frac13\frac{\pi}{2}
+=
+\frac{\pi}{6},
+\]
+also
+\[
+z_0
+\;\widehat=\;
+\left(
+2\,\middle|\,\frac{\pi}{6}
+\right).
+\]
+
+Für \(k=1\) ergibt sich
+\[
+\varphi_1
+=
+\frac13
+\left(
+\frac{\pi}{2}+2\pi
+\right)
+=
+\frac{5\pi}{6},
+\]
+also
+\[
+z_1
+\;\widehat=\;
+\left(
+2\,\middle|\,\frac{5\pi}{6}
+\right).
+\]
+
+Für \(k=2\) folgt zunächst
+\[
+\varphi_2
+=
+\frac13
+\left(
+\frac{\pi}{2}+4\pi
+\right)
+=
+\frac{3\pi}{2}.
+\]
+Da \(\frac{3\pi}{2}\) und \(-\frac{\pi}{2}\) dieselbe Richtung beschreiben,
+kann die dritte Lösung im gewählten Hauptintervall als
+\[
+z_2
+\;\widehat=\;
+\left(
+2\,\middle|\,-\frac{\pi}{2}
+\right)
+\]
+geschrieben werden.
+
+\end{minipage}
+
+\end{exabox}
+
+Alle drei Lösungen besitzen denselben Betrag \(2\). Sie liegen daher auf
+einem Kreis mit Radius \(2\) um den Ursprung. Gleichzeitig unterscheiden
+sich ihre Winkel jeweils um \(2\pi/3\). Die Lösungen sind also gleichmäßig
+auf diesem Kreis verteilt.
+
+Das Beispiel zeigt, warum das Wurzelziehen in \(\mathbb C\) anders behandelt
+werden muss als in \(\mathbb R\): Die Mehrdeutigkeit der Winkel führt dazu,
+dass eine Gleichung der Form \(z^n=c\) im Allgemeinen mehrere verschiedene
+komplexe Lösungen besitzt.
+
+
+\subsubsection*{Allgemeine \(n\)-te Wurzeln}
+
+Das Vorgehen aus dem vorangegangenen Beispiel lässt sich auf eine beliebige
+komplexe Zahl übertragen. Gesucht seien alle Lösungen von
+\[
+z^n=c,
+\qquad
+c\in\mathbb C\setminus\{0\}.
+\]
+
+Die rechte Seite werde durch
+\[
+c
+\;\widehat=\;
+(\rho\,|\,\psi),
+\qquad
+\rho=|c|>0,
+\]
+beschrieben. Für die gesuchte Zahl wird
+\(z\;\widehat=\;(r\,|\,\varphi)\) angesetzt. Dann gilt
+\[
+z^n
+\;\widehat=\;
+(r^n\,|\,n\varphi).
+\]
+
+Da neben \(\psi\) auch alle Winkel \(\psi+2\pi k\) dieselbe komplexe Zahl
+\(c\) beschreiben, müssen die Bedingungen
+\[
+r^n=\rho
+\qquad\text{und}\qquad
+n\varphi=\psi+2\pi k
+\]
+erfüllt sein.
+
+Daraus folgen
+\[
+r=\sqrt[n]{\rho}
+\qquad\text{und}\qquad
+\varphi_k=\frac{\psi+2\pi k}{n}.
+\]
+
+\begin{theorembox}{\(n\)-te Wurzeln einer komplexen Zahl}{ }
+
+Für
+\[
+c
+=
+\rho\bigl(\cos(\psi)+i\sin(\psi)\bigr)
+\neq0
+\]
+besitzt die Gleichung \(z^n=c\) genau \(n\) verschiedene Lösungen
+\[
+z_k
+=
+\sqrt[n]{\rho}
+\left(
+\cos\left(\frac{\psi+2\pi k}{n}\right)
++
+i\sin\left(\frac{\psi+2\pi k}{n}\right)
+\right),
+\]
+wobei
+\[
+k=0,1,\ldots,n-1.
+\]
+
+Alle \(n\) Lösungen besitzen denselben Betrag \(\sqrt[n]{\rho}\) und liegen
+daher auf einem Kreis um den Ursprung. Die Winkel zweier aufeinanderfolgender
+Lösungen unterscheiden sich um \(2\pi/n\). Die \(n\) Wurzeln sind somit
+gleichmäßig auf diesem Kreis verteilt.
+
+\end{theorembox}
+
+Die \(n\) verschiedenen Lösungen entstehen also nicht durch verschiedene
+Beträge, sondern durch die verschiedenen Winkel, die sich aus der
+Mehrdeutigkeit des Arguments ergeben.
+
+\noindent\textbf{Bemerkung:}
+Das Symbol \(\sqrt[n]{c}\) ist bei komplexen Zahlen mit Vorsicht zu
+interpretieren. Während eine Gleichung wie \(z^n=c\) alle \(n\) Lösungen
+beschreibt, bezeichnet ein Wurzelsymbol je nach Konvention häufig nur einen
+ausgewählten Hauptwert. Bei der Lösung komplexer Gleichungen ist die
+Formulierung \(z^n=c\) daher häufig eindeutiger.
+
+
+\subsection{Von der Polarform zur komplexen Exponentialfunktion}
+
+Die Polardarstellung hat gezeigt, dass die Multiplikation komplexer Zahlen
+eine besonders einfache Wirkung auf ihre geometrischen Größen besitzt:
+Beträge werden multipliziert und Winkel addiert.
+
+Damit erinnert das Verhalten der Winkel an eine bereits bekannte Eigenschaft
+der Exponential- beziehungsweise Logarithmusrechnung. Auch dort wird eine
+Addition im Exponenten bei der Exponentialfunktion zu einer Multiplikation:
+\[
+e^{x+y}=e^x e^y.
+\]
+
+Es liegt daher nahe, nach einer Darstellung zu suchen, in der auch die
+Addition von Winkeln durch die bekannten Potenzgesetze beschrieben werden
+kann. Genau diese Verbindung wird durch die komplexe Exponentialfunktion
+hergestellt.
+
+
+\subsubsection*{Motivation auf dem Einheitskreis}
+
+Auf dem Einheitskreis besitzt jede komplexe Zahl den Betrag \(1\) und ist
+damit vollständig durch ihren Winkel bestimmt. Für einen Winkel \(\alpha\)
+gilt
+\[
+c
+=
+\cos(\alpha)+i\sin(\alpha).
+\]
+
+Die folgende Überlegung motiviert, warum an dieser Stelle gerade die
+Exponentialfunktion auftritt. Sie dient als anschaulicher Zugang und ersetzt
+keinen vollständigen analytischen Beweis.
+
+Wird der Winkel \(\alpha\) in \(n\) kleine gleich große Winkel zerlegt, so
+besitzt die zugehörige komplexe Zahl
+\[
+z
+\;\widehat=\;
+\left(
+1\,\middle|\,\frac{\alpha}{n}
+\right)
+\]
+die Eigenschaft \(z^n=c\).
+
+Für große \(n\) ist der Winkel \(\alpha/n\) klein. Auf dem Einheitskreis liegt
+der zugehörige Punkt dann nahe bei \(1\). Für kleine Winkel gilt näherungsweise
+\[
+\cos\left(\frac{\alpha}{n}\right)\approx1
+\qquad\text{und}\qquad
+\sin\left(\frac{\alpha}{n}\right)\approx\frac{\alpha}{n}.
+\]
+Damit ergibt sich
+\[
+z
+=
+\cos\left(\frac{\alpha}{n}\right)
++
+i\sin\left(\frac{\alpha}{n}\right)
+\approx
+1+i\frac{\alpha}{n}.
+\]
+
+Da \(c=z^n\) gilt, folgt näherungsweise
+\[
+c
+\approx
+\left(
+1+i\frac{\alpha}{n}
+\right)^n.
+\]
+
+Dieser Ausdruck erinnert an die bekannte Grenzwertdarstellung der
+Exponentialfunktion
+\[
+e^x
+=
+\lim_{n\to\infty}
+\left(
+1+\frac{x}{n}
+\right)^n.
+\]
+Wird diese Struktur auf das komplexe Argument \(x=i\alpha\) erweitert, führt
+sie auf die Verbindung zwischen Exponentialfunktion und Einheitskreis.
+
+
+\subsubsection*{Eulersche Formel}
+
+\begin{theorembox}{Eulersche Formel}{ }
+
+Für jeden reellen Winkel \(\varphi\) gilt
+\[
+e^{i\varphi}
+=
+\cos(\varphi)+i\sin(\varphi).
+\]
+
+\end{theorembox}
+
+Die Eulersche Formel verbindet drei zuvor getrennt betrachtete mathematische
+Objekte: die Exponentialfunktion, die trigonometrischen Funktionen und die
+Geometrie des Einheitskreises.
+
+Da
+\[
+|e^{i\varphi}|=1,
+\]
+liegt \(e^{i\varphi}\) für jedes \(\varphi\in\mathbb R\) auf dem
+Einheitskreis. Sein Argument ist \(\varphi\) bis auf ganzzahlige Vielfache
+von \(2\pi\).
+
+Für den besonderen Winkel \(\varphi=\pi\) gilt
+\[
+e^{i\pi}
+=
+\cos(\pi)+i\sin(\pi)
+=
+-1.
+\]
+Damit folgt
+\[
+e^{i\pi}+1=0.
+\]
+Diese besondere Beziehung wird als \textbf{Eulersche Identität}
+(\emph{Euler's identity}) bezeichnet.
+
+
+\subsubsection*{Exponentialdarstellung komplexer Zahlen}
+
+Eine beliebige komplexe Zahl \(z\neq0\) besitzt in Polardarstellung die Form
+\[
+z
+=
+r\bigl(\cos(\varphi)+i\sin(\varphi)\bigr).
+\]
+Mit der Eulerschen Formel kann der Ausdruck in der Klammer durch
+\(e^{i\varphi}\) ersetzt werden. Damit ergibt sich
+\[
+z=r\,e^{i\varphi}.
+\]
+
+\begin{theorembox}{Exponentialdarstellung komplexer Zahlen}{ }
+
+Für jede komplexe Zahl \(z\neq0\) gilt
+\[
+z=r\,e^{i\varphi},
+\]
+wobei \(r=|z|>0\) und \(\varphi\) ein Argument von \(z\) ist.
+
+Die Winkel \(\varphi+2\pi k\) mit \(k\in\mathbb Z\) beschreiben dieselbe
+komplexe Zahl, denn
+\[
+e^{i(\varphi+2\pi k)}
+=
+e^{i\varphi}.
+\]
+
+\end{theorembox}
+
+Die Exponentialdarstellung ist damit keine neue geometrische Darstellung, sondern eine besonders kompakte Schreibweise der bereits bekannten Polardarstellung.
+
+Ihr Vorteil zeigt sich unmittelbar beim Rechnen. Für \(z_1=r_1e^{i\varphi_1}\) und \(z_2=r_2e^{i\varphi_2}\) gilt
+\[
+z_1z_2
+=
+r_1r_2e^{i(\varphi_1+\varphi_2)}
+\]
+und für \(z_2\neq0\)
+\[
+\frac{z_1}{z_2}
+=
+\frac{r_1}{r_2}
+e^{i(\varphi_1-\varphi_2)}.
+\]
+
+Auch die zuvor geometrisch entwickelte Potenzregel erhält nun eine besonders kurze algebraische Form:
+\[
+\left(re^{i\varphi}\right)^n
+=
+r^n e^{in\varphi}.
+\]
+
+Die Exponentialdarstellung liefert damit dieselben Regeln, die zuvor aus der Geometrie der komplexen Zahlen gewonnen wurden. Sie fasst diese Regeln jedoch in der bekannten Algebra der Exponentialfunktion zusammen.
+
+
+\subsubsection*{Sinus und Kosinus mithilfe der Exponentialfunktion}
+
+Die Eulersche Formel kann auch verwendet werden, um Sinus und Kosinus durch komplexe Exponentialfunktionen darzustellen. Neben
+\[
+e^{i\varphi}
+=
+\cos(\varphi)+i\sin(\varphi)
+\]
+gilt wegen der Symmetrieeigenschaften von Sinus und Kosinus
+\[
+e^{-i\varphi}
+=
+\cos(\varphi)-i\sin(\varphi).
+\]
+
+Durch Addition beider Gleichungen folgt
+\[
+e^{i\varphi}+e^{-i\varphi}
+=
+2\cos(\varphi),
+\]
+also
+\[
+\cos(\varphi)
+=
+\frac12
+\left(
+e^{i\varphi}+e^{-i\varphi}
+\right).
+\]
+
+Durch Subtraktion ergibt sich
+\[
+e^{i\varphi}-e^{-i\varphi}
+=
+2i\sin(\varphi)
+\]
+und damit
+\[
+\sin(\varphi)
+=
+\frac{1}{2i}
+\left(
+e^{i\varphi}-e^{-i\varphi}
+\right).
+\]
+
+Diese Darstellungen spielen insbesondere bei der Untersuchung von
+Schwingungen eine wichtige Rolle.
+
+\subsection{Die komplexe Exponentialfunktion}
+
+Die Eulersche Formel beschreibt zunächst die Exponentialfunktion für rein
+imaginäre Zahlen. Sie ermöglicht zugleich, die Exponentialfunktion auf
+beliebige komplexe Zahlen zu erweitern.
+
+Für
+\[
+z=a+i\,b,
+\qquad
+a,b\in\mathbb R,
+\]
+gilt
+\[
+e^z
+=
+e^{a+ib}
+=
+e^a e^{ib}.
+\]
+Mit der Eulerschen Formel folgt
+\[
+e^z
+=
+e^a\bigl(\cos(b)+i\sin(b)\bigr).
+\]
+
+\begin{defbox}{Komplexe Exponentialfunktion}{ }
+
+Die \textbf{komplexe Exponentialfunktion}
+(\emph{complex exponential function}) ist die Abbildung
+\[
+\exp:\mathbb C\to\mathbb C,
+\qquad
+z\mapsto e^z,
+\]
+mit
+\[
+e^{a+ib}
+=
+e^a\bigl(\cos(b)+i\sin(b)\bigr).
+\]
+
+\end{defbox}
+
+Diese Darstellung zeigt, dass Real- und Imaginärteil des Exponenten
+unterschiedliche geometrische Wirkungen besitzen. Für \(z=a+i\,b\) bestimmt
+der Realteil \(a\) über den Faktor \(e^a\) den Betrag, während der
+Imaginärteil \(b\) den Winkel bestimmt.
+
+Insbesondere gilt
+\[
+|e^{a+ib}|=e^a.
+\]
+Eine Veränderung des Realteils verändert somit den Betrag, während eine
+Veränderung des Imaginärteils eine Drehung in der komplexen Ebene bewirkt.
+
+
+% --------------------------------------------------------------------------
+\subsubsection*{Komplexe Exponentialfunktionen einer reellen Variablen}
+
+Für die Beschreibung zeitabhängiger Vorgänge wird nun die komplexe
+Exponentialfunktion mit einer reellen Variablen \(t\) verbunden. Dazu sei
+\[
+\lambda=\sigma+i\omega
+\]
+eine feste komplexe Zahl. Betrachtet wird die Funktion
+\[
+f:\mathbb R\to\mathbb C,
+\qquad
+t\mapsto e^{\lambda t}.
+\]
+
+Da
+\[
+\lambda t
+=
+(\sigma+i\omega)t
+=
+\sigma t+i\omega t,
+\]
+ergibt sich
+\[
+\begin{aligned}
+e^{\lambda t}
+&=
+e^{(\sigma+i\omega)t}\\
+&=
+e^{\sigma t}e^{i\omega t}\\
+&=
+e^{\sigma t}
+\bigl(\cos(\omega t)+i\sin(\omega t)\bigr).
+\end{aligned}
+\]
+
+Diese Darstellung verbindet zwei geometrisch unterschiedliche Vorgänge.
+Der Faktor \(e^{\sigma t}\) bestimmt die Länge des zugehörigen Zeigers,
+während \(e^{i\omega t}\) seine Drehung beschreibt.
+
+Für den Betrag gilt
+\[
+|e^{\lambda t}|=e^{\sigma t}.
+\]
+Damit hängt die zeitliche Entwicklung der Zeigerlänge vom Vorzeichen von
+\(\sigma\) ab. Für \(\sigma<0\) nimmt der Betrag exponentiell ab, für
+\(\sigma>0\) wächst er exponentiell. Im Fall \(\sigma=0\) bleibt der Betrag
+konstant.
+
+Der Winkel verändert sich gleichzeitig mit \(\omega t\). Der Parameter
+\(\omega\) bestimmt damit die Winkelgeschwindigkeit der Drehung.
+
+Die Funktion
+\[
+t\mapsto e^{(\sigma+i\omega)t}
+\]
+verbindet somit exponentielles Wachstum beziehungsweise exponentielle
+Dämpfung mit einer gleichförmigen Drehung in der komplexen Ebene.
+
+
+% --------------------------------------------------------------------------
+\subsubsection*{Der Spezialfall \(e^{i\omega t}\): rotierender Zeiger}
+
+Für \(\sigma=0\) vereinfacht sich die komplexe Exponentialfunktion zu
+\[
+e^{i\omega t}
+=
+\cos(\omega t)+i\sin(\omega t).
+\]
+
+Da
+\[
+|e^{i\omega t}|=1,
+\]
+bleibt die Länge des zugehörigen Zeigers konstant. Mit wachsendem \(t\)
+verändert sich ausschließlich sein Winkel. Die Spitze des Zeigers bewegt
+sich daher auf dem Einheitskreis.
+
+\begin{exabox}{Rotierender Zeiger und harmonische Schwingung}{ }
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_rotierender_zeiger.png}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+
+Der komplexe Ausdruck
+\[
+e^{i\omega t}
+\]
+beschreibt einen Zeiger, der sich mit der Winkelgeschwindigkeit \(\omega\)
+auf dem Einheitskreis dreht.
+
+Sein Realteil ist
+\[
+\mathrm{Re}\left(e^{i\omega t}\right)
+=
+\cos(\omega t),
+\]
+sein Imaginärteil ist
+\[
+\mathrm{Im}\left(e^{i\omega t}\right)
+=
+\sin(\omega t).
+\]
+
+Die Projektion des rotierenden Zeigers auf die reelle Achse ergibt somit eine
+Kosinusschwingung, die Projektion auf die imaginäre Achse eine
+Sinusschwingung.
+
+\end{minipage}
+
+\end{exabox}
+
+Damit erhält die zuvor untersuchte harmonische Schwingung eine geometrische
+Interpretation: Sinus und Kosinus können als Projektionen einer
+gleichförmigen Kreisbewegung aufgefasst werden.
+
+Genau diese Verbindung bildet die Grundlage dafür, harmonische Schwingungen
+mithilfe komplexer Zahlen besonders kompakt zu beschreiben.
+
+%\subsection{Die komplexe Exponentialfunktion}
+
+%Die Eulersche Formel beschreibt zunächst die Exponentialfunktion für rein
+%imaginäre Argumente \(i\varphi\). Allgemeiner kann die Exponentialfunktion
+%auch für beliebige komplexe Argumente betrachtet werden.
+%
+%Für
+%\[
+%z=a+i\,b,
+%\qquad
+%a,b\in\mathbb R,
+%\]
+%gilt
+%\[
+%e^z
+%=
+%e^{a+ib}
+%=
+%e^a e^{ib}.
+%\]
+%Mit der Eulerschen Formel folgt
+%\[
+%e^z
+%=
+%e^a
+%\bigl(
+%\cos(b)+i\sin(b)
+%\bigr).
+%\]
+%
+%\begin{defbox}{Komplexe Exponentialfunktion}{ }
+%
+%Die \textbf{komplexe Exponentialfunktion}
+%(\emph{complex exponential function}) ist die Abbildung
+%\[
+%\exp:\mathbb C\to\mathbb C,
+%\qquad
+%z\mapsto e^z,
+%\]
+%mit
+%\[
+%e^{a+ib}
+%=
+%e^a
+%\bigl(
+%\cos(b)+i\sin(b)
+%\bigr).
+%\]
+%
+%\end{defbox}
+%
+%Die Darstellung zeigt unmittelbar die unterschiedliche Wirkung von Real- und
+%Imaginärteil des Arguments. Der Realteil \(a\) bestimmt über den Faktor
+%\(e^a\) den Betrag, während der Imaginärteil \(b\) den Winkel bestimmt.
+%
+%Damit gilt
+%\[
+%|e^{a+ib}|=e^a.
+%\]
+%Der Imaginärteil des Exponenten verändert also nicht den Betrag, sondern nur
+%die Richtung in der komplexen Ebene.
+%
+%
+%\subsubsection*{Komplexe Exponentialfunktionen einer reellen Variablen}
+%
+%Für dynamische Vorgänge ist insbesondere eine komplexe Zahl der Form
+%\[
+%\lambda=\sigma+i\omega
+%\]
+%von Bedeutung. Wird sie mit einer reellen Variablen \(t\) multipliziert,
+%entsteht die Funktion
+%\[
+%t\mapsto e^{\lambda t}
+%=
+%e^{(\sigma+i\omega)t}.
+%\]
+%
+%Durch Zerlegen des Exponenten ergibt sich
+%\[
+%\begin{aligned}
+%e^{(\sigma+i\omega)t}
+%&=
+%e^{\sigma t}e^{i\omega t}\\
+%&=
+%e^{\sigma t}
+%\bigl(
+%\cos(\omega t)+i\sin(\omega t)
+%\bigr).
+%\end{aligned}
+%\]
+%
+%Damit werden zwei unterschiedliche Vorgänge in einem einzigen Ausdruck
+%verbunden:
+%
+%\begin{itemize}
+%    \item Der Faktor \(e^{\sigma t}\) bestimmt die zeitliche Veränderung des
+%    Betrags.
+%
+%    \item Der Faktor \(e^{i\omega t}\) beschreibt eine Rotation mit der
+%    Winkelgeschwindigkeit \(\omega\).
+%\end{itemize}
+%
+%Für \(t\to+\infty\) hängt das Verhalten des Betrags vom Vorzeichen von
+%\(\sigma\) ab. Ist \(\sigma<0\), so gilt \(e^{\sigma t}\to0\); die Bewegung
+%wird exponentiell gedämpft. Für \(\sigma>0\) wächst der Betrag exponentiell.
+%Im Fall \(\sigma=0\) bleibt der Betrag konstant und es entsteht eine reine
+%Rotation auf einem Kreis.
+%
+%
+%\subsubsection*{Rotierender Zeiger und harmonische Schwingung}
+%
+%Besonders wichtig ist der Fall \(\sigma=0\). Dann gilt
+%\[
+%e^{i\omega t}
+%=
+%\cos(\omega t)+i\sin(\omega t).
+%\]
+%
+%Die komplexe Zahl \(e^{i\omega t}\) besitzt zu jedem Zeitpunkt den Betrag
+%\(1\). Mit wachsendem \(t\) verändert sich lediglich ihr Winkel. Sie kann
+%daher als Zeiger interpretiert werden, der sich auf dem Einheitskreis dreht.
+%
+%\begin{exabox}{Rotierender Zeiger und harmonische Schwingung}{ }
+%
+%\begin{minipage}{0.4\textwidth}
+%\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_rotierender_zeiger.png}
+%\end{minipage}
+%\begin{minipage}{0.58\textwidth}
+%
+%Der komplexe Ausdruck
+%\[
+%e^{i\omega t}
+%\]
+%beschreibt einen Zeiger, der sich mit der Winkelgeschwindigkeit \(\omega\)
+%auf dem Einheitskreis dreht.
+%
+%Sein Realteil ist
+%\[
+%\mathrm{Re}\left(e^{i\omega t}\right)
+%=
+%\cos(\omega t),
+%\]
+%sein Imaginärteil
+%\[
+%\mathrm{Im}\left(e^{i\omega t}\right)
+%=
+%\sin(\omega t).
+%\]
+%
+%Die Projektion des rotierenden Zeigers auf die reelle Achse ergibt somit eine
+%Kosinusschwingung, die Projektion auf die imaginäre Achse eine
+%Sinusschwingung.
+%
+%\end{minipage}
+%
+%\end{exabox}
+%
+%Damit erhält die im Kapitel über Funktionen untersuchte harmonische Schwingung
+%eine neue geometrische Interpretation: Eine Sinus- oder Kosinusschwingung
+%kann als Projektion einer gleichförmigen Kreisbewegung aufgefasst werden.
+%
+%Die komplexe Exponentialfunktion verbindet somit Rotation in der komplexen
+%Ebene und harmonische Schwingung auf der reellen Achse.
+
+
+%\noindent\textbf{Ausblick:}
+%Die Funktionen
+%\[
+%t\mapsto e^{(\sigma+i\omega)t}
+%\]
+%verbinden exponentielles Wachstum beziehungsweise exponentielle Dämpfung mit
+%einer Rotation. Dadurch können Wachstum, Dämpfung und Schwingung in einem
+%einzigen mathematischen Ausdruck beschrieben werden.
+%
+%Diese Struktur tritt insbesondere bei der Lösung linearer
+%Differentialgleichungen auf und bildet später auch eine Grundlage der
+%Fourier-Analyse und der Laplace-Transformation.
+
+
+\subsection{Harmonische Schwingungen und komplexe Amplituden}
+
+Im Kapitel über Funktionen wurden harmonische Schwingungen in der Form
+\[
+s(t)
+=
+A\sin(\omega t+\alpha)
+\]
+beschrieben. Dabei bestimmt \(A\) die Amplitude, \(\omega\) die
+Kreisfrequenz und \(\alpha\) die Phase.
+
+Mithilfe der Eulerschen Formel kann dieselbe Schwingung durch eine komplexe
+Exponentialfunktion dargestellt werden. Es gilt
+\[
+\begin{aligned}
+s(t)
+&=
+A\sin(\omega t+\alpha)\\
+&=
+\mathrm{Im}
+\left(
+A e^{i(\omega t+\alpha)}
+\right)\\
+&=
+\mathrm{Im}
+\left(
+A e^{i\alpha}e^{i\omega t}
+\right).
+\end{aligned}
+\]
+
+Dabei enthält der Faktor \(e^{i\omega t}\) die zeitabhängige Rotation. Die
+beiden Parameter Amplitude \(A\) und Phase \(\alpha\) können dagegen in der
+zeitunabhängigen komplexen Zahl
+\[
+\underline A
+:=
+A e^{i\alpha}
+\]
+zusammengefasst werden.
+
+\begin{defbox}{Komplexe Amplitude}{ }
+
+Die komplexe Zahl
+\[
+\underline A
+=
+A e^{i\alpha}
+\]
+heißt \textbf{komplexe Amplitude} beziehungsweise \textbf{Phasor}
+(\emph{phasor}).
+
+Ihr Betrag ist die Amplitude der Schwingung,
+\[
+|\underline A|=A,
+\]
+und ihr Argument beschreibt die Phase,
+\[
+\arg(\underline A)=\alpha
+\]
+bis auf ganzzahlige Vielfache von \(2\pi\).
+
+Die zugehörige Sinusschwingung kann damit in der Form
+\[
+s(t)
+=
+\mathrm{Im}
+\left(
+\underline A e^{i\omega t}
+\right)
+\]
+geschrieben werden.
+
+\end{defbox}
+
+Diese Darstellung trennt zwei unterschiedliche Informationen voneinander:
+Die gemeinsame zeitliche Rotation steckt in \(e^{i\omega t}\), während
+Amplitude und Phase vollständig durch die komplexe Zahl \(\underline A\)
+beschrieben werden.
+
+Gerade bei der Überlagerung mehrerer Schwingungen gleicher Frequenz führt
+diese Trennung zu einer erheblichen Vereinfachung.
+
+
+% --------------------------------------------------------------------------
+\subsubsection*{Überlagerung harmonischer Schwingungen gleicher Frequenz}
+
+Es seien zwei harmonische Schwingungen mit derselben Kreisfrequenz
+\(\omega\) gegeben. Ihre komplexen Darstellungen lauten
+\[
+\underline s_1(t)
+=
+\underline A_1e^{i\omega t}
+\qquad\text{und}\qquad
+\underline s_2(t)
+=
+\underline A_2e^{i\omega t}.
+\]
+
+Bei der Addition kann der gemeinsame zeitabhängige Faktor ausgeklammert
+werden:
+\[
+\begin{aligned}
+\underline s(t)
+&=
+\underline s_1(t)+\underline s_2(t)\\
+&=
+\underline A_1e^{i\omega t}
++
+\underline A_2e^{i\omega t}\\
+&=
+(\underline A_1+\underline A_2)e^{i\omega t}.
+\end{aligned}
+\]
+
+Die resultierende komplexe Amplitude ist daher einfach
+\[
+\underline A
+=
+\underline A_1+\underline A_2.
+\]
+
+\begin{theorembox}{Überlagerung gleicher Frequenz}{ }
+
+Für zwei komplex dargestellte harmonische Schwingungen
+\[
+\underline s_1(t)
+=
+\underline A_1e^{i\omega t},
+\qquad
+\underline s_2(t)
+=
+\underline A_2e^{i\omega t}
+\]
+gilt
+\[
+\underline s_1(t)+\underline s_2(t)
+=
+(\underline A_1+\underline A_2)e^{i\omega t}.
+\]
+
+Die resultierende komplexe Amplitude ist
+\[
+\underline A
+=
+\underline A_1+\underline A_2.
+\]
+Damit ergeben sich die Amplitude und die Phase der resultierenden Schwingung
+aus
+\[
+A=|\underline A|
+\qquad\text{und}\qquad
+\alpha=\arg(\underline A).
+\]
+
+\end{theorembox}
+
+Die Überlagerung harmonischer Schwingungen gleicher Frequenz wird damit auf
+die Addition zweier komplexer Zahlen zurückgeführt. Geometrisch entspricht
+dies der bereits bekannten Pfeiladdition in der Gaußschen Zahlenebene.
+
+\begin{exabox}{Addition komplexer Amplituden}{ }
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_addition_komplexer_amplituden.png}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+
+Die komplexen Amplituden
+\[
+\underline A_1
+\qquad\text{und}\qquad
+\underline A_2
+\]
+werden als Pfeile in der komplexen Ebene dargestellt.
+
+Ihre Summe
+\[
+\underline A
+=
+\underline A_1+\underline A_2
+\]
+entsteht durch Pfeiladdition.
+
+Der Betrag des resultierenden Pfeils bestimmt die Amplitude der überlagerten
+Schwingung, sein Winkel bestimmt ihre Phase.
+
+\end{minipage}
+
+\end{exabox}
+
+
+% --------------------------------------------------------------------------
+\subsubsection*{Ein vollständig gerechnetes Beispiel}
+
+Betrachtet werden die beiden Schwingungen
+\[
+s_1(t)=\sin(\omega t)
+\]
+und
+\[
+s_2(t)
+=
+\sin\left(
+\omega t+\frac{\pi}{2}
+\right).
+\]
+
+Für die erste Schwingung gilt \(A_1=1\) und \(\alpha_1=0\). Ihre komplexe
+Amplitude ist daher
+\[
+\underline A_1
+=
+e^{i\cdot0}
+=
+1.
+\]
+
+Für die zweite Schwingung gilt \(A_2=1\) und
+\(\alpha_2=\pi/2\). Damit ergibt sich
+\[
+\underline A_2
+=
+e^{i\pi/2}
+=
+i.
+\]
+
+Die resultierende komplexe Amplitude lautet
+\[
+\underline A
+=
+\underline A_1+\underline A_2
+=
+1+i.
+\]
+
+Um daraus Amplitude und Phase der resultierenden Schwingung abzulesen, wird
+\(1+i\) in Polarform dargestellt. Der Betrag ist
+\[
+A
+=
+|1+i|
+=
+\sqrt{1^2+1^2}
+=
+\sqrt2.
+\]
+
+Der Punkt \((1\,|\,1)\) liegt im ersten Quadranten und besitzt den Winkel
+\[
+\alpha
+=
+\frac{\pi}{4}.
+\]
+Damit gilt
+\[
+\underline A
+=
+\sqrt2\,e^{i\pi/4}.
+\]
+
+Die Überlagerung der beiden ursprünglichen Schwingungen ergibt somit
+\[
+s(t)
+=
+\sqrt2
+\sin\left(
+\omega t+\frac{\pi}{4}
+\right).
+\]
+
+Das Ergebnis zeigt unmittelbar den Vorteil der komplexen Darstellung. Anstatt
+zwei trigonometrische Funktionen mithilfe von Additionstheoremen
+zusammenzufassen, werden ihre komplexen Amplituden addiert. Betrag und Winkel
+der resultierenden komplexen Zahl liefern anschließend Amplitude und Phase
+der überlagerten Schwingung.
+
+
+% --------------------------------------------------------------------------
+\subsection{Linearfaktorzerlegung über \(\mathbb C\)}
+
+Die Einführung der komplexen Zahlen begann mit einer algebraischen Frage:
+Bestimmte Gleichungen besitzen innerhalb der reellen Zahlen keine Lösung.
+Bereits eine quadratische Gleichung kann eine negative Diskriminante besitzen
+und damit keine reellen Nullstellen haben.
+
+In den komplexen Zahlen können solche Gleichungen weiter gelöst werden. So
+besitzt beispielsweise
+\[
+z^2+6z+13=0
+\]
+die beiden komplexen Lösungen
+\[
+z_1=-3+2i
+\qquad\text{und}\qquad
+z_2=-3-2i.
+\]
+
+Damit lässt sich das zugehörige Polynom vollständig in Linearfaktoren
+zerlegen:
+\[
+z^2+6z+13
+=
+(z+3-2i)(z+3+2i).
+\]
+
+Das Beispiel ist Teil eines wesentlich allgemeineren Zusammenhangs. Während
+ein reelles Polynom in \(\mathbb R\) nicht notwendigerweise eine Nullstelle
+besitzt, ist die Situation über \(\mathbb C\) grundlegend anders.
+
+\begin{theorembox}{Fundamentalsatz der Algebra}{ }
+
+Jedes nichtkonstante Polynom mit komplexen Koeffizienten besitzt mindestens
+eine komplexe Nullstelle.
+
+Daraus folgt, dass sich jedes Polynom \(p\in\mathbb C[z]\) vom Grad
+\(n\geq1\) vollständig in Linearfaktoren zerlegen lässt. Mit geeigneten
+komplexen Zahlen \(z_1,\ldots,z_n\) gilt
+\[
+p(z)
+=
+a_n
+(z-z_1)(z-z_2)\cdots(z-z_n).
+\]
+
+Dabei werden die Nullstellen entsprechend ihrer Vielfachheit gezählt. Ein
+Polynom vom Grad \(n\) besitzt über \(\mathbb C\) somit genau \(n\)
+Nullstellen, wenn Vielfachheiten berücksichtigt werden.
+
+\end{theorembox}
+
+Für Polynome mit reellen Koeffizienten treten nichtreelle Nullstellen dabei
+paarweise als komplex konjugierte Zahlen auf. Ist beispielsweise
+\(a+i\,b\) mit \(b\neq0\) eine Nullstelle eines reellen Polynoms, so ist auch
+\(a-i\,b\) eine Nullstelle.
+
+Dies erklärt auch das vorangegangene Beispiel:
+\[
+-3+2i
+\qquad\text{und}\qquad
+-3-2i
+\]
+bilden ein komplex konjugiertes Paar.
+
+Der Fundamentalsatz der Algebra schließt damit den Kreis zur ursprünglichen
+Motivation für die Einführung der komplexen Zahlen. Die Erweiterung von
+\(\mathbb R\) zu \(\mathbb C\) ermöglicht nicht nur die Lösung einzelner
+Gleichungen wie \(z^2=-1\). Sie schafft einen Zahlenbereich, in dem jedes
+nichtkonstante Polynom vollständig in Linearfaktoren zerlegt werden kann.

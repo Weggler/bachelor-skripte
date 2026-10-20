@@ -1,0 +1,71 @@
+\section*{Anwendungen Aufgaben mit Lösungen}\label{MA2-laengen-flaechen-und-volumina-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laengen-flaechen-und-volumina}{ (Abschnitt \abschnittsverweis{MA2-laengen-flaechen-und-volumina})}. \fi
+
+\begin{exercisebox}[Kegelvolumen]
+	Wie läßt sich ohne Integration beweisen, dass das Volumen eines Kegels mit Grundfläche \(A\) und Höhe \(h\) gerade \(V= \displaystyle{\frac13} A \cdot h\) beträgt? Hinweis: Benutzen Sie, was Sie über das Volumen einer Pyramide mit quadratischer Grundfläche wissen!
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Das Volumen einer Pyramide mit quadratischer Grundfläche \(a^2\) und Höhe \(a/2\)  beträgt \( V_{\mathrm P} = 1/6 a^3\). Hat ein Kegel die Grundfläche \(A\), dann entspricht das der Grundfläche einer Pyramide mit quadratischer Grundfläche mit Seitenlänge \(a = \sqrt{A}\). Zieht man an der Kegelspitze, dann vergrößert sich das Kegelvolumen. Es gilt offenbar \[ \frac{V_{\mathrm K} }{ h} = \frac{V_{\mathrm P}}{ \frac{a}{2} } \Rightarrow V_{\mathrm{K}} = V_{\mathrm P}\frac{2\cdot h}{a} \Rightarrow  V_{\mathrm{K}} =\frac{\sqrt{A}^3}{6}\frac{2\cdot h}{\sqrt{A}} = \frac13 A\cdot h\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Bogenlänge] %Papula I, V.10, Aufgabe 15 und 16
+	\begin{itemize}
+		\item[(a)] Geben Sie das Integral an, das die Bogenlänge der Kurve \( y = \ln(x^3)\) für \( 1 \leq x \leq e\) beschreibt.
+		\item[(b)] Geben Sie das Integral an, das die Bogenlänge der Kurve  \( y = \sqrt{ x^3 } \) für \( 1 \leq x \leq 3\) beschreibt.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	Diese Aufgaben mit anderen Konstanten bzw. Integrationsgrenzen finden Sie in Papula, Band 1, Abschnitt V.\(10\) auf Seite \(566\) und detaillierte Lösungswege auf Seite \( 802f\).
+\begin{itemize}
+		\item[(a)] entspricht Papula Aufg. 15) \[ y(x) = 3 \cdot \ln(x) \Rightarrow  y'(x) = \frac{3}{x} \Rightarrow L = \int_1^e \sqrt{ 1 + (y'(x))^2} \,\mathrm{d} x = \int_1^e \frac{\sqrt{9 + x^2}}{x}\,\mathrm{d} x\,. \]
+	\item[(b)] entspricht Papula Aufg. 16) \[ y(x) = \sqrt{x^3} \Rightarrow  y'(x) = \frac32 x  \Rightarrow L = \int_1^3 \sqrt{ 1 + (y'(x))^2} \,\mathrm{d} x = \frac12 \int_1^3 \sqrt{9x + 4}\,\mathrm{d} x\,. \]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Flächeninhalt zwischen Graphen] %Papula V, Abschnitt 10 Aufgabe 5 und 7
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie für die Funktionen
+			\[ f:x\mapsto x^2-2x-1,\quad g:x\mapsto -x+5\]
+			den Flächeninhalt zwischen den Graphen und ihren Schnittpunkten.
+		\item[(b)] Bestimmen Sie die Fläche \(A\) (!) zwischen der Funktion
+			\[ f:x\mapsto \frac15 x ( x^2-4) \]
+			und der $x$-Achse im Intervall $x\in [-3,3]$.
+
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula, Band 1, Abschnitt V.\(10\) auf Seite \(565f\) und detaillierte Lösungswege auf Seite \(800f\).
+\begin{itemize}
+	\item[(a)] Papula Aufg. 7) Durch Gleichsetzen der Funktionsabbildungen erhält man die Schnittpunkte zu \( (-2|7)\) und \( (3|2)\), also \[ A = \int\limits_{-2}^3 \left( (-x+5) - (x^2-2x+1)\right) \,\mathrm{d} x = \frac{125}{6}\,.\]
+\item[(b)] Papula Aufg. 5) Die Funktion \(f\) ist punktsymmetrisch und wir haben in einem um den Nullpunkt symmetrischen Intervall zu integrieren: es genügt also die Fläche auf einer Seite der \(x\)-Achse zu berechnen und dann zu verdoppeln: \(A = 2 \cdot \tilde A\), wobei \(\tilde A\) bzgl \(x\in [0,3]\) ist. Der Funktionsgraph schneidet an der Stelle \(x_1=2\) die \(x\)-Achse: um die Fläche zu berechnen muss das Integral an der Stelle \(x_1\) aufgespalten werden - denn eine Fläche ist immer etwas Positives:
+\[ \tilde A = \Big| \frac15 \int\limits_0^2 (x^3-4x)\,\mathrm{d}x\Big|  + \Big| \frac15 \int\limits_2^3 (x^3-4x)\,\mathrm{d}x \Big| = 0,8 + 1,25 = 2,05 \Rightarrow A = 4,1\,.\]
+\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Rotationsvolumen] % Papula I, V.10, Aufgabe 13
+	Bestimmen Sie das Rotationsvolumen eines Körpers, der durch Drehung des Kurvenstücks \(y= \sqrt{ x^2 - 9 }\) für \(3\leq x \leq 5\)
+	\begin{itemize}
+		\item[(a)] um die \(x\)-Achse entsteht.
+		\item[(b)] um die \(y\)-Achse entsteht.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	Das ist Aufgabe \(13\) in Papula, Band 1, Abschnitt V.\(10\) auf Seite \(566\). Eine detaillierten Lösungsweg finden Sie auf Seite \(802\).
+	\begin{itemize}
+		\item[(a)] \( \quad V_{x} = \pi \displaystyle{\int\limits_3^5} (x^2-9)\,\mathrm{d} x = \displaystyle{\frac{44}{3}} \pi \,.\)
+		\item[(b)] \(\quad x^2 = y^2+9, \quad 0\leq y \leq 4 \;  \Rightarrow V_{y} = \pi \displaystyle{\int\limits_0^4} (y^2+9)\,\mathrm{d} y = \displaystyle{\frac{172}{3}} \pi \,.\)
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+	Auf einem Schrottplatz werden Autofracks mit einer Presse zusammengestampft. Jede Karosserie wird dabei in jede Richtung gleichmäßig umgeformt und das Volumen, das es ursprünglich einnahm, wird durch die Presse um $80\%$ verringert.
+	Geben Sie eine lineare Abbildung an, die den Effekt der Presse simulieren kann (keine eindeutige Lösung).
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Es sei $A: \mathbb R^3 \to \mathbb R^{3}$ die Matrix, die der linearen Abbildung zugeordnet ist. Es gilt \[ \mathrm{det}(A) \stackrel{!}{=} \left( 1-\frac{8}{10}\right)  = \frac{1}{5} = \left( \sqrt[3]{\frac15}\right)^3 \Rightarrow  A = \sqrt[3]{\frac15} \left( \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right) \,. \]
+	\end{exercisebox}
+

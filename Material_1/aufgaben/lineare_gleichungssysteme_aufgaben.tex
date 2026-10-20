@@ -1,0 +1,143 @@
+	
+\ifintegriereaufgaben
+\section*{Lineare Gleichungssysteme Aufgaben}\label{MA1-lineare-gleichungssysteme-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-lineare-gleichungssysteme}{ (Abschnitt \abschnittsverweis{MA1-lineare-gleichungssysteme})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-lineare-gleichungssysteme-loesungen]{hier}.
+\else
+\section{Lineare Gleichungssysteme Aufgaben}\label{MA1-lineare-gleichungssysteme-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-lineare-gleichungssysteme-loesungen]{hier}.
+
+\fi 
+
+\begin{exercisebox}[Rechenregeln]
+	Wie muss $\boldsymbol b$ gewählt werden, dass gilt $A\boldsymbol x =\boldsymbol b$ mit \[ \left( \begin{array}{ccccc} -1 & 0 & 0 & 3 & -2 \\  2 & -1 & 1 & 0 & 0 \\ 1 & 1 & -1 & -2 & 0 \end{array}\right), \quad \boldsymbol x = \left( -1, 2,-2,3,5\right)^\intercal\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Lösbarkeitsanalyse]
+	Gegeben seien \[ A = \left( \begin{array}{cc} 1 & 1 \\ 2 & \alpha \end{array}\right), \quad \boldsymbol b = \left( \begin{array}{c} -2 \\ \beta \end{array}\right)\] mit Parametern $\alpha, \beta\in \mathbb R$. 
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie den Rang der Matrix $A$ in Abhängigkeit von $\alpha$.
+		\item[(b)] Bestimmen Sie den Rang der erweiterten Matrix $(A|b)$ in Abhängigkeit von $\alpha$ und $\beta$.
+		\item[(c)] Bestimmen Sie in Abhängigkeit der beiden Parameter, wann das lineare Gleichugnssystem $A\boldsymbol x = \boldsymbol b$ lösbar ist und wann es genau eine Lösung gibt.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssysteme]
+	Analysieren Sie die Lösbarkeit der folgenden Gleichungssysteme und bestimmen Sie die Lösungsmenge:
+	\begin{eqnarray*}
+		\begin{array}{ll} 
+			(a) \; \begin{cases}
+				x_1 -x_2 - x_3 &= 0\\
+				x_1 +x_2 + 3x_3 &= 4\\
+				     x_2 + 2x_3 &= 2\\
+				     2x_1 + x_3 &= 3\\
+    \end{cases} 
+   &\quad  
+    (b)\; \begin{cases}
+	    x_1 + x_2 - x_3 + x_4 - x_5 &= 1\\
+    -x_1 + x_2 - 3 x_3 + 3x_5 &= 2\\
+    x_2 - 2 x_3 + x_4 - x_5 &= -1\\
+    2x_1 + 2 x_3 + x_4 - 2 x_5 &= 1
+  \end{cases} \\[3ex]
+  (c)\; \begin{cases}
+	x_1 + x_2 - x_3 &=1 \\
+	2x_1 + 3x_2 + px_3 &= 3 \\
+	x_1 + px_2 + 3x_3 &= 2
+    \end{cases}   
+   &\quad  
+	(d)\; \begin{cases}
+    3x_1 + x_2-4x_3 &= 2\\
+    x_1 + x_2&= 0\\
+    4x_1 +5x_3 + x_4 &= 1 \\
+    6x_2 +x_3 + 2x_4 &= 1
+  \end{cases} \\[3ex]
+  (e)\;\begin{cases}
+	  (2+i)\cdot z_1 + i\cdot z_3 &= -4+3i \\ 
+		(1+3i)\cdot z_1 + (-1-i)\cdot z_2  - z_3 &= -6-2i \\ 
+		(4+2i)\cdot z_2 + (3+3i)\cdot z_3 &= -2+4i 
+	\end{cases} 
+  \end{array}
+   &\quad  
+  \end{eqnarray*}
+
+  \end{exercisebox}
+
+\begin{exercisebox}[Gleichungssysteme]
+	Gesucht ist eine Matrix $X\in \mathbb R^{2\times 2}$ so, dass \[ A X + X A^\intercal = C, \quad A=\left( \begin{array}{cc} 1 & -1 \\ 2 & 2 \end{array}\right), \; C = \left( \begin{array}{cc} 4 & 0 \\ 6 & 4 \end{array}\right) \,. \]
+	Bestimmen Sie ein lineares Gleichungssystem für die unbekannten Koeffizienten $x_{ij},\; i,j=1,2$ der Matrix $X$ und lösen Sie es.
+  \end{exercisebox}
+
+%\begin{exabox}[Überbestimmtes Gleichungssystem]
+%	Bestimme die Normalform einer Ebene, wenn die Ebene durch drei Punkte festgelegt ist. 
+%  \begin{eqnarray*}
+%	  \boldsymbol w = \left( \begin{array}{c} u_2 v_3 - u_3 v_2 \\ u_3 v_1 - u_1 v_3 \\u_1 v_2 - u_2 v_1\end{array}\right) 
+%  \end{eqnarray*}
+%\end{exabox}
+
+%\begin{exabox}[Analytische Geometrie]
+%	Lineares Gleichungssystem lösen zur expliziten Ebenengleichung bei gegebenen drei Punkten.  - Später noch mit Determinante?
+%\end{exabox}
+
+%\begin{exabox}[Kreuzprodukt] 
+%	Geben Sie alle Vektoren $\boldsymbol b\in\mathbb R^3$ an, so dass folgende Bedingungen gelten: 
+%	\[ \boldsymbol e_1 \times \boldsymbol b = \boldsymbol e_3, \quad \boldsymbol b \perp \left( \begin{array}{c} 1 \\1 \\ 1\end{array}\right)\,, \] wobei $\boldsymbol e_i$ den $i$-ten Einheitsvektor bezeichnet. Hinweis: Machen Sie hierfür den Ansatz $\boldsymbol b = \left( b_1, b_2, b_3\right)^\intercal$ und bestimmen Sie ein lineares Gleichungsystem.
+%\end{exercisebox}
+
+%\begin{exercisebox}[Direkte Verfahren: bringe auf Dreiecksform]
+%	\begin{itemize}
+%		\item Gaußsches Eliminationsverfahren 
+%		\item Givens-Rotationen
+%		\item Householderverfahren
+%		\item Cholesky-Zerlegung (positive definite Matrix)
+%	\end{itemize}
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Direkte Verfahren, numerischer Aufwand]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[LU-Zerlegung, numerischer Aufwand]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[LR-Zerlegung, numerischer Aufwand]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Beispiel Matrix aufstellen]
+%\end{exercisebox}
+%
+%\begin{theorembox}[Iterative Methoden - GC-Verfahren, numerischer Aufwand]
+%\end{theorembox}
+%
+%\begin{theorembox}[Iterative Methoden - GMRES, numerischer Aufwand]
+%\end{theorembox}
+%
+%\begin{theorembox}[Norm einer Matrix]
+%\end{theorembox}
+%
+%\begin{exercisebox}[Konditionszahl]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Vorkonditionierung]
+%\end{exercisebox}
+%
+%\begin{theorembox}[Parallelisierung von Prozessen]
+%\end{theorembox}
+%
+%\begin{exercisebox}[Mathematik lesen, keine eindeutige Lösung]
+%\end{exercisebox}
+%
+%\begin{theorembox}[Rang - MC]
+%	\begin{itemize}
+%		\item Der Rang der Matrix $A$ ist die Anzahl der nichttrivialen Zeilen in ihrer Zeilennormalform. 
+%		\item Der Rang der Matrix $A$ ist die Anzahl der linear unabhängigen Spalten. 
+%		\item Der Rang der Matrix $A$ ist die Anzahl der linear unabhängigen Zeilen. 
+%		\item Der Rang einer Matrix ist die Dimension des Bildes. 
+%	\end{itemize}
+%\end{theorembox}
+%
+%\begin{theorembox}[Fredholmsche Alternative - Beweis vorführen bitte]
+%  Entweder $A\boldsymbol x = b$ ist eindeutig lösbar für alle $\boldsymbol b \in \mathbb R^n$ oder $A\boldsymbol x = \boldsymbol 0$ hat eine nichttriviale Lösung. 
+%  \[ \Rightarrow A\boldsymbol x = \boldsymbol b \textnormal{ eindeutig für alle } \boldsymbol b\in\mathbb R^n, \textnormal{ d.h. } A\boldsymbol x = 0 \textnormal{ eindeutig lösbar, d.h. } \mathrm{ker}A = \{\boldsymbol 0\}\]
+%  \[ \Leftarrow \mathrm{ker}A = \{\boldsymbol 0\}, \textnormal{ so folgt } \mathrm{def}A = 0 \Rightarrow \mathrm{rk}A = n \Rightarrow \textnormal{ eindeutige Lösung}\,. \]
+%\end{theorembox}
+

@@ -1,0 +1,102 @@
+
+\ifintegriereaufgaben
+
+\section*{Differentialgleichungen mit trennbaren Variablen Aufgaben}\label{MA2-trennbare-differentialgleichungen-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-trennbare-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-trennbare-differentialgleichungen})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-trennbare-differentialgleichungen-loesungen]{hier}.
+\else
+\section{Differentialgleichungen mit trennbaren Variablen Aufgaben}\label{MA2-trennbare-differentialgleichungen-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-trennbare-differentialgleichungen-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Trennung der Variablen] %Papula IV, Abschnitt 2, Aufgabe 4
+Lösen Sie die folgenden Differentialgleichungen durch Trennung der Variablen:
+\begin{eqnarray*}
+	\begin{array}{ll}
+		(a)\; y' = \displaystyle{\frac{y^2}{x^2}}, \; x\in (0,\infty) \quad \quad & (b)\; y'= \displaystyle{\frac{x\cdot y}{1+x^2}} \\
+			(c)\; y' = (1-y)^2 \quad \quad & (d)\; y'\cdot \sin(y)= -x,  \; y\in (0,\pi)
+		\end{array}
+\end{eqnarray*}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Inhomogenität] %Papula IV, Abschnitt 2, Aufgabe 16
+	Lösen Sie folgenden Anfangswertprobleme durch Variation der Konstanten:
+\begin{eqnarray*}
+	\begin{array}{l c l}
+		(a) \quad  xy'-y = x^2 \cdot \cos(x)  & \land & y(\pi) = 2\pi \\[1ex]
+		(b) \quad  xy'+y = \ln(x) & \land & y(1) = 1\\[1ex]
+		% (b) Papula \quad  y'+\tan(x)\cdot y = 5\cdot \sin(2x)  & \land & y(3\pi) = 2 \\[1ex]
+		(c) \quad  y'-\tan(x)\cdot y = 5\cdot \sin(2x)  & \land & y(3\pi) = 2 % Veränderung
+	\end{array}
+\end{eqnarray*}
+\small{Hinweis zur Integration in Aufgabenteil (c): benuzten Sie ein Additionstheorem! }
+\end{exercisebox}
+
+\begin{exercisebox}[Substitution] %Papula IV, Abschnitt 2, Aufgabe 3
+	Lösen Sie das folgende Anfangswertproblem:
+	$
+	y' = \displaystyle{\frac{y}{x} } +\displaystyle{\frac{x}{y} }, \quad y(1) = \sqrt{2}\,.
+	$
+\end{exercisebox}
+
+\begin{exercisebox}[Substitution] %Papula IV, Abschnitt 2, Aufgabe 2
+	Lösen Sie die folgenden Differentialgleichungen mit Hilfe einer geeigneten Substitution. Schlagen Sie die auftretenden Integrale gegebenenfalls in einer Formelsammlung nach:
+\begin{eqnarray*}
+	\begin{array}{ll}
+		(a)\; y' = \displaystyle{\frac{y}{x} + 4}, \; x\in (0,\infty) \quad \quad & (b)\; y'= (x+y+1)^2 \\
+		(c)\; y' = \displaystyle{\frac14} + \displaystyle{\frac{y^2}{x^2}}, x\in (0,\infty) \quad \quad & (d)\; y' = \sin(\frac{y}{x}) + \frac{y}{x},  \; x\in (0,\infty)
+		\end{array}
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Logistisches Wachstum]
+	Die Anzahl der von einem Virus infizierten Personen $x(t)$ zum Zeitpunkt $t$ in einer Bevölkerung der Größe $N$ kann folgendermaßen modelliert werden: Pro Tag habe jede Person $k>0$ zufällige Kontakte, wobei der Virus bei jedem Kontakt übertragen wird.
+	\begin{itemize}
+		\item[(a)] Wie viele nicht infizierte Personen gibt es in Abhängigkeit von $x(t)$ zum Zeitpunkt $t$? Wie groß ist der Anteil der nicht infizierten Personen zum Zeitpunkt $t$?
+		\item[(b)] Wie viele Personen trifft eine infizierte Person in einer kleinen Zeitpanne $[t, t+\Delta t]$? Wieviele nicht infizierte Personen trifft eine infizierte Person in $[t, t+\Delta t]$?
+		\item[(c)] Wie viele Kontakte von infizierten Personen mit nicht infizierten Personen gibt es insgesamt in $[t,t+\Delta t]$? Wie viele Personen werden daher in $[t, t+\Delta t]$ neu angesteckt?
+		\item[(d)] Drücken Sie $x(t+\Delta t)$ durch $x(t)$ und die Anzahl der neu infizierten Personen in $[t, t+\Delta t]$ aus.
+	\item[(e)] Führen Sie den Grenzwert $\Delta t\to 0$ aus, um eine Differentialgleichung zu erhalten. Wie lautet die Lösung des zugehörigen Anfangswertproblemes wenn $x(0)=1$ war?
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Differentialgleichungen erster Ordnung] %Papula IV, Abschnitt 2, Aufgabe 20
+	\small{Lösen Sie folgenden Differentialgleichungen mit Hilfe einer geeigneten Methode:}
+\begin{eqnarray*}
+	\begin{array}{ll l }
+		(a)\; y' = x(y^2+1) \;  & (b)\; y'= y\cdot \sin(x) \; & (c)\; y' = xy \\
+		(d)\; xy' + y = 2\ln(x) \; (e)\; y' = 5x^4(y+1) \; & (f)\; y' - 5y = 2\cos(x) - \sin(3x)
+		\end{array}
+\end{eqnarray*}
+\end{exercisebox}
+
+%\subsection{Praxis}
+
+%\begin{exercisebox}[Moolde Eindimensionaler harmonischer Oszillator] % HMI III, Blatt 11, Aufgabe 1
+%	Die Bewegung eines eindimensionalen harmonischen Oszillators wird durch die Differentialgleichung
+%	\[ \ddot x = -2x \] beschrieben. Bestimmen Sie:
+%	\begin{itemize}
+%		\item[(a)] das zugehörige lineare Gleichungssystem erster Ordnung.
+%		\item[(b)] die Differentialgleichung $f(x,v,v') = 0$ der Phasenbahnb,
+%		\item[(c)] die allgemeine Lösung dieser Differentialgleichung und damit das Phasenportrait der Bewegung,
+%		\item[(d)] die Phasenkurve für die Anfangswerte $x(0)=1\land \dot x(0) = -1$,
+%		\item[(e)] die Skizze dieser Phasenkurve mit Umlaufsinn,
+%		\item[(f)] die zugehörige Bahnkurve $x=x(t)$.
+%	\end{itemize}
+%
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\begin{itemize}
+%	\item[(a)]
+%		\[ \dot x = y \land \dot y = -2x \Rightarrow \left( \begin{array}{c} \dot x \\\dot y \end{array}\right) = \left( \begin{array}{cc} 0 & 1 \\ -2 & 0\end{array}\right) \left( \begin{array}{c} x \\ y \end{array}\right) \,.
+%		\]
+%	\item[(b)] \[ \frac{\mathrm{d} y}{\mathrm{d} x} = \frac{-2x}{y} \Rightarrow y' = \frac{-2x}{y} \Rightarrow f(x, y, y') = y'\cdot y + 2x = 0\]
+%	\item[(c)] (Ellipse) \[ y' = \frac{-2x}{y} \Rightarrow y\mathrm{d}y = -2x \mathrm{d}x \Leftrightarrow \frac12 y^2 = - x^2 + c \Leftrightarrow \frac{1}{2c}y^2 + \frac{1}{c} x^2 = 1 \,.
+%		\]
+%	\item[(d)] Bestimmung der Integrationskonstante: \[x(0) = 1 \land y(0) = \dot x(0) = -1 \Rightarrow c = \frac32\]
+%		Phasenkurve: \[ \frac13 y^2+ \frac23 x^2 = 1 \,.\]
+%		Skizzte: Elipse, die im Uhrzeigersinn durchlaufen wird. Tangentialvektor $\boldsymbol t = \left( \dot x , \dot y\right)^\intercal = (0,-2\sqrt{3/2})^\intercal $.
+%\end{itemize}
+%\end{exercisebox}
+

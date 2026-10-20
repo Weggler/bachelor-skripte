@@ -1,0 +1,91 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+
+\usepackage[ngerman,english]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\usepackage{graphicx}
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+
+\begin{document}
+{
+	\noindent{\bf Aufgabe: Rang und Defekt einer Matrix ablesen}
+
+	\vspace{0.5cm}
+
+
+	\[ 
+		\begin{array}{rcl c rcl rcl}
+		A_1 &=& \left( \begin{array}{cccc c} 1 & 2 & 0 & 2 & 2 \\ 0 & 1 & 1 & 2 & 6 \\ 0 & 0 & -1 & 1 & 3 \\ 0 & 0 & 0 & 1 & 2 \end{array}\right) \quad  &\Rightarrow& \quad
+			\mathrm{rang}(A_1) &=& 4\,,\quad \mathrm{def}(A_1)= &=& 1\,,    \\[2ex]
+			&&&&&& \\
+		A_2 &=& \left( \begin{array}{cccc c} 1 & 2 & -1 & 1 & 1 \\ 0 & 1 & 2 &3 &7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right) &\Rightarrow &
+			\mathrm{rang}(A_2) &=& 3\,,\quad \mathrm{def}(A_2)= &=& 2\,,    \\[2ex]
+			&&&&&& \\
+		A_3 &=& \left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 5 & 6 \end{array}\right) &\Rightarrow & 
+			\mathrm{rang}(A_3) &=& 2\,,\quad \mathrm{def}(A_3)= &=& 3\,,    \\[2ex]
+			&&&&&& \\
+		A_4 &=& \left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 1 & 6 \\ 0 & 0 & 0 & 0 & 3 \end{array} \right)  &\Rightarrow & 
+			\mathrm{rang}(A_4) &=& 3\,,\quad \mathrm{def}(A_4)= &=& 2\,.
+	\end{array}
+\]
+
+
+
+	\noindent{\bf Aufgabe: Rang und Defekt einer Matrix bestimmen}
+
+	\vspace{0.5cm}
+
+
+	\[ 
+		\begin{array}{rcl c rcl}
+		A_1 &=& \left( \begin{array}{cccc c} 2 & 4 & 0 & 4 & 8 \\ 1 & 3 & 1 & 4 & 10 \\ -2 & -2 & 1 & 1 & 7 \\ 0 & -1 & 0 & 1 & -1 \end{array}\right) \quad &{\Leftrightarrow}& \quad \tilde A_1 &=& \left( \begin{array}{cccc c} 1 & 2 & 0 & 2 & 2 \\ 0 & 1 & 1 & 2 & 6 \\ 0 & 0 & -1 & 1 & 3 \\ 0 & 0 & 0 & 1 & 2 \end{array}\right)\,,\\[2ex]
+			&&&&&& \\
+		A_2 &=&  \left( \begin{array}{cccc c} 1 & 2 & -1 & 1 & 1 \\ 3 & 6 & -3 & 4 & 5 \\ 1 & 4 & 3 & 1 & 3 \\ -1 & -1 & 3 & 2 & 6 \end{array}\right) \quad &{\Leftrightarrow}& \quad \tilde A_2 &=&\left( \begin{array}{cccc c} 1 & 2 & -1 & 1 & 1 \\ 0 & 1 & 2 &3 &7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right) \\[2ex]
+			&&&&&& \\
+		A_3 &=& \left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ -4 & 2 & 3 & 3 & 4 \end{array}\right) &{\Leftrightarrow}&  \tilde A_3 &=&\left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 5 & 6 \end{array}\right) \\[2ex] 
+			&&&&&& \\
+		A_4 &=&  \left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ -4 & 2 & 3 & 3 & 4 \\ 0 & 0 & 1 & 5 & 9 \end{array} \right)  &\Leftrightarrow &  \tilde A_4 &=& \left( \begin{array}{cccc c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 1 & 6 \\ 0 & 0 & 0 & 0 & 3 \end{array} \right)
+	\end{array}
+\]
+
+	\vspace{0.5cm}
+	\noindent{\bf Aufgabe: Lineare Gleichungssysteme lösen}
+
+	\vspace{0.5cm}
+
+
+	\[ 
+		\begin{array}{rcl c rcl}
+			A_1 \boldsymbol x  = \boldsymbol b, \quad \left( A_1, \boldsymbol b\right) &=& \left( \begin{array}{cccc| c} 2 & 4 & 0 & 4 & 8 \\ 1 & 3 & 1 & 4 & 10 \\ -2 & -2 & 1 & 1 & 7 \\ 0 & -1 & 0 & 1 & -1 \end{array}\right) \quad &{\Leftrightarrow}& \quad \left( \tilde A_1, \tilde{\boldsymbol b}\right) &=& \left( \begin{array}{cccc |c} 1 & 2 & 0 & 2 & 2 \\ 0 & 1 & 1 & 2 & 6 \\ 0 & 0 & -1 & 1 & 3 \\ 0 & 0 & 0 & 1 & 2 \end{array}\right) \\[2ex]
+			&&&&&& \\
+		A_2 \boldsymbol x  = \boldsymbol b, \quad \left( A_2, \boldsymbol b\right) &=& \left( \begin{array}{cccc| c} 1 & 2 & -1 & 1 & 1 \\ 3 & 6 & -3 & 4 & 5 \\ 1 & 4 & 3 & 1 & 3 \\ -1 & -1 & 3 & 2 & 6 \end{array}\right) \quad &{\Leftrightarrow}& \quad \left( \tilde A_2, \tilde{\boldsymbol b}\right) &=&\left( \begin{array}{cccc |c} 1 & 2 & -1 & 1 & 1 \\ 0 & 1 & 2 &3 &7 \\ 0 & 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right)  \\[2ex]
+			&&&&&& \\
+		A_3 \boldsymbol x  = \boldsymbol b, \quad \left( A_3, \boldsymbol b\right) &=& \left( \begin{array}{cccc| c} 2 & -1 & -1 & 1 & 1 \\ -4 & 2 & 3 & 3 & 4 \end{array}\right) & \Leftrightarrow & \left( \tilde A_3, \tilde{\boldsymbol b}\right) &=&\left( \begin{array}{cccc| c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 5 & 6 \end{array}\right) \\[2ex] 
+			&&&&&& \\
+		A_4 \boldsymbol x  = \boldsymbol b, \quad \left( A_4, \boldsymbol b\right) &=& \left( \begin{array}{cccc| c} 2 & -1 & -1 & 1 & 1 \\ -4 & 2 & 3 & 3 & 4 \\ 0 & 0 & 1 & 5 & 9 \end{array} \right)  &\Leftrightarrow & \left(  \tilde A_4, \tilde{\boldsymbol b}\right) &=& \left( \begin{array}{cccc| c} 2 & -1 & -1 & 1 & 1 \\ 0 & 0 & 1 & 1 & 6 \\ 0 & 0 & 0 & 0 & 3 \end{array} \right)
+		\end{array}
+	\]
+
+
+	\[
+		\begin{array}{rcl l}
+			A_1 \boldsymbol x  &=& \boldsymbol b\; &\Rightarrow \; \mathbb L_1 = \left\{ \left( \begin{array}{c} -6 \\ 3 \\ -1 \\ 2 \end{array} \right) \right\} \\[2ex]
+			A_2 \boldsymbol x  &=& \boldsymbol b\; &\Rightarrow \; \mathbb L_2 = \left\{ \boldsymbol x \in \mathbb R^4: \quad \boldsymbol x = \left( \begin{array}{c} -3 \\ 1 \\ 0 \\ 2 \end{array} \right) + \lambda \left( \begin{array}{c} 5 \\ -2 \\ 1 \\ 0 \end{array}\right), \; \lambda \in \mathbb R \right\} \\[2ex]
+			A_3 \boldsymbol x  &=& \boldsymbol b\; &\Rightarrow \; \mathbb L_3 = \left\{ \boldsymbol x \in \mathbb R^4: \quad \boldsymbol x = \left( \begin{array}{c} 7/2 \\ 0 \\ 6 \\ 0 \end{array} \right) + \lambda_1 \left( \begin{array}{c} -3 \\ 0 \\ -5 \\ 1 \end{array}\right) + \lambda_2 \left( \begin{array}{c} 1/2 \\1 \\ 0 \\ 0 \end{array}\right), \; \lambda_1, \lambda_2 \in \mathbb R \right\} \\[2ex]
+			A_4 \boldsymbol x  &=& \boldsymbol b\; &\Rightarrow \; \mathbb L_4 = \emptyset
+		\end{array}
+	\]
+
+
+			
+}
+\end{document}

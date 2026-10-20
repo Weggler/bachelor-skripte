@@ -1,0 +1,125 @@
+\section*{Lineare Differentialgleichungen Aufgaben mit Lösungen}\label{MA2-lineare-differentialgleichungen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-differentialgleichungen})}\wennreferenzvorhanden{MA2-lineare-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-lineare-differentialgleichungen})}.\fi
+
+\begin{exercisebox}[Lösungskurve] %Papula, IV Abschnitt 2, Aufgabe 1
+	Skizzieren Sie das Richtungsfeld der folgenden Differentialgleichungen und zeichnen Sie eine Lösungskurve für den gegebenen Anfangswert ein.
+	\begin{eqnarray*}
+		\begin{array}{lr}
+			(a)\; y' = y, \; y(0) = 2  &  (b)\; y'=\displaystyle{\frac{y}{2x}}, \quad x\in(0,\infty), \; y(1) = 1\,.
+	\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+	Diese Aufgaben finden Sie in Papula Band 2, Abschnitt IV.2 auf Seite \(520\) und detaillierte Lösungen ab Seite \(725\)f.
+	\begin{itemize}
+		\item[(a)] Aufgabe 1b) $\quad y(x) = 2e^x$
+		\item[(b)] Aufgabe 1a) $\quad y(x) = \sqrt{x}$
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lipschitz-Stetigkeit]
+Überprüfen Sie, ob die folgenden Funktionen auf $D_f:= [0,0]\times [1,1]$  Lipschitz-stetig sind, ob also gilt
+	\[
+		\exists \, L\leq 0: \; \forall y_1, y_2 \in D_f:\quad |f(x,y_1) - f(x,y_2)|\leq L |y_1 - y_2| \,,
+	\]
+	und geben Sie gegebenenfalls die Lipschitz-Konstante an.
+	\begin{eqnarray*}
+		\begin{array}{lr}
+			(a)\; f: (x,y) \mapsto y^2  &  (b)\; f: (x,y) \mapsto 2\sqrt{y} \,.
+	\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+	\begin{itemize}
+		\item[(a)] $|f(x,y_1) - f(x,y_2)| = |y_1^2 - y_2^2| = |y_1 - y_2| \cdot |y_1 + y_2| \; \Rightarrow $ da $D_f$ beschränkt mit $|y_1 + y_2| \leq 2$ gilt  $L:=2$ .
+		\item[(b)] Das Problem ist der Nullpunkt $(0,0) \in D_f$:  \[|f(0,0) - f(0,y_2)| = 2\sqrt{|0-y_2|} = \frac{2}{\sqrt{| 0 - y_2|}} \cdot |0 - y_2|\]
+			Allerdings ist $f$ im Nullpunkt unbeschränkt,
+			\[ \lim\limits_{y_2 \downarrow 0} \frac{2}{\sqrt{|0-y_2|}} = \infty\,, \]
+				und damit erfüllt $f$ keine Lipschitz-Bedinung.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogenität] %Papula IV, Abschnitt 2, Aufgabe 18
+	Lösen Sie die folgende inhomogene Differentialgleichung
+\begin{eqnarray*}
+	y' - 3y = x\cdot e^x
+\end{eqnarray*}
+durch (a)  Variation der Konstanten und (b) Ansatz vom Typ der rechten Seite.
+
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+Diese Aufgaben entspricht Aufgabe \(18a)-b)\) in Papula Band 2, Abschnitt IV.1 auf Seite \(523\). Lösungen finden Sie ab Seite \(729\).
+\begin{itemize}
+	\item[(a)] Sie bestimmen zunächst die allgemeine Lösung der homogenen Gleichung und dann eine partikuläre Lösung durch Variation der Integrationskonstante:
+		\begin{eqnarray*}
+		y_h(x) &=& C\cdot e^{3x}\\
+		\Rightarrow y_p(x) &=& C(x) \cdot e^{3x} \Rightarrow  C'(x) \stackrel{!}{=} x\cdot e^{-2x} \Rightarrow C(x) = \int x\cdot e^{-2x}\,\mathrm{d}x \stackrel{P.I.}{=} -\frac14\left( 2x+1\right) e^{x} \\
+		\Rightarrow y(x) &=& y_h(x) + y_p(x) = C\cdot e^{3x} - \frac14(2x+1)\cdot e^{x}
+	\end{eqnarray*}
+\item[(b)] Sie bestimmen zunächst die allgemeine Lösung der homogenen Gleichung und dann eine partikuläre Lösung durch einen Ansatz vom Typ der rechten Seite: \begin{eqnarray*}
+		y_h(x) &=& C\cdot e^{3x}\\
+		\mathrm{r.S} \; x\cdot e^x \Rightarrow y_p(x) &=& (ax+b)\cdot e^x \Rightarrow \left( a-2b -2ax \right) \cdot e^x \stackrel{!}{=} x\cdot e^x \Rightarrow \begin{cases} a& =-\frac12 \\ b=-\frac14 \end{cases}  \\
+		\Rightarrow y(x) &=& y_h(x) + y_p(x) = C\cdot e^{3x} - \frac14(2x+1)\cdot e^{x}
+	\end{eqnarray*}
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogenität] % Papula IV, Abschnitt 2, Aufgabe 19
+	Lösen Sie folgenden Differentialgleichungen mit Hilfe des Ansatz vom Typ der rechten Seite
+\begin{eqnarray*}
+	\begin{array}{ll l }
+		(a)\; y' =  2x-y \;  & (b)\; y' + 2y= 4 \cdot e^{5x} \; & (c)\; y' + y = e^{-x} \\
+		(d)\; y' - 4y = 5\sin(x) \; (e)\; y' - 5y = \cos(x) + 4 \sin(x)\; & (f)\; y' - 6y = 3 e^{6x}
+		\end{array}
+\end{eqnarray*}
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+Diese Aufgaben entsprechen Aufgabe \(19a)-f)\) in Papula Band 2, Abschnitt IV.1 auf Seite \(523\). Detaillierte Lösungen finden Sie ab Seite \(729\).
+\begin{itemize}
+	\item[(a)] \( y(x) = C\cdot e^{-x} + 2x - 2 \)
+	\item[(b)] \( y(x) = C\cdot e^{-2x} + \frac47\cdot e^{5x} \)
+	\item[(c)] \( y(x) = (x+C)\cdot e^{-x} \)
+	\item[(d)] \( y(x) = C\cdot e^{4x} - \frac{20}{17} \sin(x) - \frac{5}{17} \cos(x) \)
+	\item[(e)] \( y(x) = C\cdot e^{5x} - \frac{19}{26} \sin(x) - \frac{9}{26} \cos(x) \)
+	\item[(f)] \( y(x) = (3x+C)\cdot e^{6x} \)
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogenität] % Papula IV, Abschnitt 2, Aufgabe 21
+	Lösen Sie folgende Anfangswertprobleme mit Hilfe des Ansatz vom Typ der rechten Seite
+\begin{eqnarray*}
+	(a)\; y' + 4y = x^3 - x \land y(1) = 2 \;  (b)\; y'-y= e^x \land y(0) = 1 \; (c)\; y'+3y = -\cos(x)\land y(0) = 5
+\end{eqnarray*}
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+Diese Aufgaben entspricht Aufgabe \(21\) in Papula Band 2, Abschnitt IV.1 auf Seite \(524\). Detaillierte Lösungen finden Sie ab Seite \(730\).
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen höherer Ordnung] % Papula IV, Abschnitt 3, Aufgabe 12, Abschnitt 5, Aufgabe 11 oder Abschnitt 4 eine der Aufgabe 4,6,8
+	Geben Sie für folgende Differentialgleichungen jeweils die allgemeine Lösung an und lösen Sie anschließend das zugehörige Anfangswertproblem
+\begin{eqnarray*}
+	(a) && \ddot x + 4\dot x + 29x=0 \quad   x(0)=1 \quad \dot x(0) =-2\\[1ex]
+	(b) && \ddot x + 6 \dot x + 10 x = \cos(t)\quad x(0) = 0\quad \dot x(0) = 4  \\[1ex]
+	(c) && y'' + 2y' + 3y = e^{-2x} \quad  y(0) = 0 \quad  y'(0) = 1 \\[1ex]
+	(d) && \ddot x + \dot x + \frac14 x=0  \quad  x(0)=1 \quad  \dot x(0) =-1\\[1ex]
+	(e) && \ddot x + 2 \dot x + 17 x = 2\sin(5t)  \quad  x(\pi) = 0  \quad  \dot x(\pi) = 1  \\[1ex]
+	(f) && y''' + 9y' = 18 x,\; y(\pi) = \pi^2 \quad  y'(\pi) = 2\pi  \quad  y''(\pi) = 10 \\[1ex]
+	(g) && y''' + 8 y'' + 17 y' + 10 y = 34 \sin(x) + 12 \cos(x)  \quad  y(0) = 1  \quad  y'(0) = -3 ,\; y''(0) = 8  \\[1ex]
+		(h) && \ddot x + 7\dot x + 12x=0  \quad  x(0)=5 \quad  \dot x(0) =0
+\end{eqnarray*}
+\vspace{0.3cm}
+\noindent \textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula Band 2, Abschnitt IV. Detaillierte Lösungen finden Sie ab Seite \(730\).
+\begin{itemize}
+	\item[(a)] Papula 2 Abschnitt IV.4. Aufg. 4 a) Seite \(529\) Lösung Seite \(737\)
+	\item[(b)] Papula 2 Abschnitt IV.3. Aufg. 12 a) Seite \(528\) Lösung Seite \(735\)
+	\item[(c)] Papula 2 Abschnitt IV.3. Aufg. 12 b) Seite \(528\) Lösung Seite \(735\)
+	\item[(d)] Papula 2 Abschnitt IV.4. Aufg. 6 b) Seite \(529\) Lösung Seite \(737\)
+	\item[(e)] Papula 2 Abschnitt IV.3. Aufg. 12 c) Seite \(528\) Lösung Seite \(735\)
+	\item[(f)] Papula 2 Abschnitt IV.5. Aufg. 11 a) Seite \(534\) Lösung Seite \(744\)
+	\item[(g)] Papula 2 Abschnitt IV.5. Aufg. 11 b) Seite \(534\) Lösung Seite \(744\)
+	\item[(h)] Papula 2 Abschnitt IV.4. Aufg. 8 c) Seite \(530\) Lösung Seite \(738\)
+\end{itemize}
+\end{exercisebox}
+

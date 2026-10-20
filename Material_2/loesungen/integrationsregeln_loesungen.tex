@@ -1,0 +1,224 @@
+\section*{Integrationsregeln Aufgaben mit Lösungen}\label{MA2-integrationsregeln-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-integrationsregeln}{ (Abschnitt \abschnittsverweis{MA2-integrationsregeln})}. \fi
+
+\begin{exercisebox}[Stückweise stetige Funktionen] %A.Z. Erweiterungen
+	Gegeben seien die folgenden stückweise definierten Funktionen
+	\begin{eqnarray*}
+		f:x\mapsto \begin{cases} x, \quad &x<1\,,\\ x-1, \quad &x\geq 1 \end{cases}\quad \quad g:x\mapsto \begin{cases} x, \quad & x<1\,,\\ 2, \quad & x=1\,,\\ \cos(x),\quad & x>1 \end{cases}
+	\end{eqnarray*}
+			\begin{itemize}
+				\item[(a)] Integrieren Sie diese Funktionen stückweise.
+				\item[(b)] Sind die Funktionen, die Sie unter \( (a)\) entwickelt haben Stammfunktionen?
+			\end{itemize}
+
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)] Wir integrieren stückweise und erhalten
+\begin{eqnarray*}
+	F(x) &=& \begin{cases} \displaystyle{\int} x \,\mathrm{d}x = \frac12 x^2+ c_1, \quad & x< 1\,,\\ \displaystyle{\int} x-1 \,\mathrm{d}x = \frac12 x^2 - x +c_2, \quad & x > 1 \end{cases} \\[1ex]
+	G(x) &=& \begin{cases} \displaystyle{\int} x\,\mathrm{d}x = \frac12 x^2+c_1, \quad & x< 1\,,\\[1ex] \displaystyle{\int} \cos(x) \,\mathrm{d}x = \sin(x) +c_2,\quad & x> 1\end{cases}
+\end{eqnarray*}
+
+\item[(b)] Achtung! Die Funktionen \(F\) und \(G\), die unter \( (a)\) durch eine stückweise Integration ermittelt worden sind, sind keine Stammfunktionen - denn sie sind nicht stetig geschweige denn differenzierbar.
+\end{itemize}
+Bemerkung: man kann für diesen Fall sogenannte verallgemeinerte Stammfunktionen definieren, aber diese benötigen wir nicht.
+%Sie lauten
+%\begin{eqnarray*}
+%	\tilde F(x) &=& \begin{cases}\frac12 x^2+ c, \quad & x< 1\,,\\ (x-1)^2 +c, \quad & x\geq 1 \end{cases} \\
+%	\tilde G(x) &=& \begin{cases} x^2+c, \quad & x< 1\,,\\ \sin(x) - \sin(1) +1 +c,\quad & x\geq 1\end{cases}
+%\end{eqnarray*}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Partielle Integration] % Papula 1, V, Abschnitt 8, Aufgabe /6
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		(a)\; \int x \ln(x) \, \mathrm{d}x \quad
+		(b)\; \int_1^5 \ln(t) \, \mathrm{d}t \quad
+		(c)\; \int_0^{0,8} x e^x \, \mathrm{d}x\quad
+		(d)\; \int e^x \cos(x) \, \mathrm{d}x
+	\end{eqnarray*}
+	Finden Sie eine Rekursionsformel zur Berechnung von \[ \int x^n\cdot e^x \, \mathrm d x, \quad n\in \mathbb N^+\,.\]
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula, Band 1, Abschnitt V.\(8\) auf Seite \(562\) und detaillierte Lösungswege auf Seite \(792\)ff.
+\begin{itemize}
+	\item[(a)] Papula Aufg. 5.a) $\quad  \frac14 x^2(2\ln(x) -1)+C $
+\item[(b)] Den Logarithmus kann man integrieren mit Hilfe einer partiellen Integration. Wähle
+	\[\begin{cases} \ln(t) & \stackrel{\frac{\mathrm d }{\mathrm d t}}{\rightarrow} \dfrac{1}{t}\\
+					1 & \stackrel{\int \cdot \mathrm d t}{\rightarrow} t
+				\end{cases}\; \Rightarrow \;
+			\int 1 \cdot \ln(t) \,\mathrm d t = \ln(t)\cdot t - t + c \; \Rightarrow \; \int\limits_1^5 \ln(t) \, \mathrm{d}t = 5\ln(5)-4\,.\]
+	\item[(c)] Papula Aufg. 5.e) $\quad  -0,2 \cdot e^{0,8} + 1 $
+	\item[(d)] Papula Aufg. 6.a) $\quad  \frac12 e^x( \sin(x) + \cos(x)) +C $
+\end{itemize}
+Zur Rekursionsformel:
+\[ \begin{array}{rcl} I_0 &=& \displaystyle \int e^x \, \mathrm{d}x = e^x \\ n\geq 1:\quad  I_n  &=& \displaystyle \int x^n\cdot e^x\, \mathrm d x\,, \quad \mbox{P.I. mit }\left\{ \begin{array}{r rcl} \dfrac{\mathrm d \; \cdot}{\mathrm d x} &  x^n &\longrightarrow& n\, x^{n-1} \\ \int \; \cdot \; \mathrm{d} x & e^x &\longrightarrow& e^x \end{array}\right. \\
+&=& x^n\cdot e^x - \displaystyle \int n\, x^{n-1}\cdot e^x \, \mathrm d x\\ &=& x^n\cdot e^x - n \cdot \color{blue}{ \displaystyle \int x^{n-1}\cdot e^x \, \mathrm d x } =  x^n\cdot e^x - n\cdot \color{blue}{ I_{n-1}  }\,. \end{array}\]
+\end{exercisebox}
+
+\begin{exercisebox}[Integrationsregeln] % Papula 1, V Abschnitt 8, Aufg. 1
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		(a)\; \int x \sin(x^2) \, \mathrm{d}x \quad
+		(b)\; \int_{-1}^{1} \frac{t}{\sqrt{1+t^2}}\, \mathrm{d}t \quad
+			(c)\; \int_{-1}^{1} \frac{5+x}{5-x} \, \mathrm{d}x\quad
+			(d)\; \int \frac{\sqrt{4-x^2}}{x^2} \, \mathrm{d}x
+		\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula, Band 1, Abschnitt V.\(8\) auf Seite \(562\) und detaillierte Lösungswege auf Seite \(790\)ff.
+\begin{itemize}
+	\item[(a)] Führen wir eine Intgration durch Substitution durch: \(u=x^2 \; \Rightarrow \; \mathrm{d}u = 2x\mathrm{d}x\)
+		\[ \int x\cdot \sin(x^2)\, \mathrm{d}x = \dfrac12 \int \sin(x^2) \cdot 2\cdot x \, \mathrm{d}x = \dfrac12 \int \sin(u)\,\mathrm{d}u = - \dfrac12 \cos(u) = -\frac12\cos(x^2)+c \,.\]
+	\item[(b)] Der Integrand enthält einen Bruch, und es ist wichtig mögliche Polstellen im Integrationsgebiet zu identifizieren bevor wir integrieren. Da der Nenner für alle \(t\in \mathbb R\) größer null ist, liegt hier kein Pol vor und wir können loslegen. Die Substitution \(u=1+t^2\) führt auf das Differential \( \mathrm{d}u = 2t\,\mathrm{d}t\) und die neuen Integrationsgrenzen \(u(-1) = u(1) = 2\):
+		\[ \int_{-1}^{1} \frac{t}{\sqrt{1+t^2}} \mathrm{d}t = \dfrac12 \int_{-1}^{1} \frac{1}{\sqrt{1+t^2}} \cdot 2\,t\, \mathrm{d}t= \dfrac12 \int_{2}^{2} \frac{1}{\sqrt{u}} \,\mathrm{d}u = 0 \,.\]
+	\item[(c)] Der Integrand ist eine gebrochenrationale Funktion, die noch nicht vollständig gekürzt ist. Die Polynomdivision zerlegt den Integranden in seinen granzrationalen und echtgebrochenrationalen Anteil:
+		\[ (x+5):(-x+5) = -1 + \dfrac{10}{5-x}\,.\]
+		Und damit
+		\[\int_{-1}^{1} \frac{5+x}{5-x} \, \mathrm{d}x = \int_{-1}^{1} \left( -1 + \dfrac{10}{5-x}\right) \, \mathrm{d}x = \Big[ -x +10 \cdot \ln|5-x|\cdot\textcolor{blue}{(-1)} \Big]_{-1}^1\int_{-1}^{1} =  10\cdot \ln(3/2) - 2 \,.\] Die blau hervorgehobene \(\textcolor{blue}{-1}\) darf nicht fehlen: sie gleicht die innere Ableitung des Arguments im Logarithmus aus!
+
+		Ein Integral läßt sich unter Umständen auf viele verschiedene Arten lösen. Im vorliegenden Fall führt auch die Formel der partiellen Integration zum Erfolg: für \(x \in [-1,1]\) gilt
+		\[\begin{cases} (5+x) & \stackrel{\frac{\mathrm d }{\mathrm d x}}{\rightarrow} +1\\
+					\dfrac{1}{5-x} & \stackrel{\int \cdot \mathrm d x}{\rightarrow} -\ln(5-x) \quad \textnormal{da}\; (5-x) > 0 \,.
+				\end{cases}
+			\]
+		Mit Aufgabe 2.b folgt
+		\[ \int_{-1}^1 \ln(5-x)\,\mathrm{d} x = \Big[\left( \ln(5-x)\cdot (5-x) - (5-x) \right) (-1)\Big]_{-1}^1 = -4\ln(4) + 6\ln(6) - 2\,.\]
+Also
+		\begin{eqnarray*}
+			\int\limits_{-1}^1 \dfrac{5+x}{5-x} \, \mathrm{d}x &=& \Big[ -\ln(5-x)\Big]_{-1}^1 + \int\limits_{-1}^1 \ln(5-x)\,\mathrm{d} x \\
+		&=&  -\ln(4) + \ln(6) -4\ln(4) + 6\ln(6) - 2 = 10(\ln(3)-\ln(2))-2\,.\end{eqnarray*}
+
+
+	\item[(d)] Bei Wurzelausdrücken der Form \( \sqrt{a^2-x^2}\) ist es klug sich an die Kreisgleichung zu erinnern: \[ x^2 + y^2 = a^2 \; \Rightarrow \; \begin{cases} x &= a\cos(\alpha)\,, \\ y &=a \sin(\alpha) \end{cases} \] Sieht man diesen Zusammenhang, dann liegt die folgende Substitution nah:
+		\[ x=2\cos(\alpha) \; \Rightarrow \; \mathrm{d}x = -2\sin(\alpha) \,\mathrm{d}\alpha \]
+		Das Differential wird einen weiteren Faktor im Integranden erzeugen und das mag auf den ersten Blick ein no-go sein, aber auf den zweiten Blick ist es ein Glücksgriff, denn
+	\[ \int \dfrac{\sqrt{4-x^2}}{x^2} \, \mathrm{d}x = \int \dfrac{\sqrt{4\sin^2(\alpha)}}{4 \cdot \cos^2(\alpha)} \, (-2\cdot \sin(\alpha))\,\mathrm{d}\alpha = \textcolor{blue}{\int \dfrac{\sin(\alpha)}{\cos^2(\alpha)} \, (-\sin(\alpha))\,\mathrm{d}\alpha} = - \int \tan^2(\alpha))\,\mathrm{d}\alpha \,.\]
+	Und nun? Wir haben das Integral jetzt transformiert auf ein neues Integral - wie lösen wir es? Anstatt den Integranden als \(\tan^2(\alpha)\) zu identifizieren, möchte ich hier eine partielle Integration zur Integration des blau leuchtenden Integrals zeigen. Die Idee zur Wahl von \(f'\) und \(g\) resultiert aus
+	\[ \left( \dfrac{1}{\cos(\alpha)}\right)' = -\dfrac{1}{\cos^2(\alpha)}\cdot \left(-\sin(\alpha)\right) \Rightarrow \; \int -\dfrac{1}{\cos^2(\alpha)}\cdot \left(-\sin(\alpha)\right) \, \mathrm{d}x = \dfrac{1}{\cos(\alpha)} + c\,.\]
+	Also
+	\[\begin{array}{rcl} \textcolor{blue}{\displaystyle{ \int \underbrace{ \dfrac{\sin(\alpha)}{\cos^2(\alpha)}}_{=:f'}} \, \underbrace{(-\sin(\alpha))}_{=:g}\,\mathrm{d}\alpha} &=&  - \sin(\alpha)\cdot \dfrac{1}{\cos(\alpha)} + \displaystyle{\int} \left(-\cos(\alpha)\right)\cdot \dfrac{1}{\cos(\alpha)} \,\mathrm{d}\alpha \\ &=& - \dfrac{\sin(\alpha)}{\cos(\alpha)} + \alpha + c \end{array}\,.\]
+	Um die gesuchte Stammfunktion in Termen von \(x\) anzugeben, muss rücksubstituiert \(x = \arccos(x)\).
+	\[\int \dfrac{\sqrt{4-x^2}}{x^2} \, \mathrm{d}x = - \tan\left( \arccos(x)\right) + \arccos(x) +c \,.\]
+		%$\quad  -\frac{\sqrt{4-x^2}}{x} - \arcsin(x/2)+C $
+	Formal läßt sich die Rücksubstitution natürlich leicht durchführen, aber bei bestimmten Integralen muss man an der Stelle immer aufpassen. Die Arkusfunktionen kehren die trigonometrischen Funktionen nur in eingeschränkten Intervallen um!
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Integrationsregeln] % Papula 1, V Abschnitt 8, Aufg. 10
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		\begin{array}{rl rl rl}
+			(a)\; &\displaystyle{\int} \mathrm{cot}(x) \, \mathrm{d}x \quad
+			& (b)\;&\displaystyle{\int} x\mathrm{cosh}(x) \, \mathrm{d}x \quad & (c) \; & \displaystyle{\int} \displaystyle{\frac{(\ln(x))^3}{x}}\,\mathrm{d}x \\
+			(d)\;& \displaystyle{\int} \displaystyle{\frac{12 x^2}{2x^3-1}} \, \mathrm{d}x  &(e)\; &\displaystyle{\int} \sqrt{x^2 - 2x} \, \mathrm{d}x \quad & (f)\;&\displaystyle{\int} \mathrm{arctan}(x) \, \mathrm{d}x
+		\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben finden Sie in Papula, Band 1, Abschnitt V.\(8\) auf Seite \(563\) und detaillierte Lösungswege auf Seite \(795\)ff.
+\begin{itemize}
+	\item[(a)] Papula Aufg. 10.b) $\quad F(x) = \ln| \sin(x)| + C  $
+\item[(b)] Papula Aufg. 10.c) $\quad F(x) = x\,\mathrm{sinh}(x) - \mathrm{cosh}(x) + C $
+	\item[(c)] Papula Aufg. 10.g) $\quad F(x) = \frac14(\ln(x))^4 + C $
+	\item[(d)] Papula Aufg. 10.h) $\quad F(x) = 2\ln| 2x^3 - 1| + C $
+\item[(e)] Papula Aufg. 10.j) $\quad F(x) = \frac12(x-1) \cdot \sqrt{x^2 - 2x} - \frac12 \,\mathrm{arcosh}(x-1) + C $
+	\item[(f)] Papula Aufg. 10.l) $\quad F(x) = x\cdot \arctan(x) - \frac12 \ln(1+x^2) + C $
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Integrationsregeln]
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		\begin{array}{rl rl}
+			(a)\; &\displaystyle{\int_{1/2}^1} \displaystyle{\frac{\sqrt{\frac1x + 1}}{x^2}} \, \mathrm{d}x, \quad y=\displaystyle{\frac1x} +1
+			& (b)\;&\displaystyle{\int_0^{1/b}} \displaystyle{\frac{ax}{bx+c}} \, \mathrm{d}x,  \quad b\not=0, c>0, x = \displaystyle{\frac{t-c}{b}} \\
+				(c) \; & \displaystyle{\int} \displaystyle{\frac{1}{\sqrt{x^2-4}}}\,\mathrm{d}x &(d)\;& \displaystyle{\int} \displaystyle{\sqrt{18 + 2x^2}} \, \mathrm{d}x
+		\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)]
+		\begin{eqnarray*}
+			\int\frac{\sqrt{\frac1x + 1}}{x^2}\,\mathrm{d}x &=& -\int\sqrt{y} \, \mathrm{d}y = -\frac23y^{3/2} + c = - \frac23\left( \frac1x + 1\right)^{3/2} + c  \\
+		\Rightarrow \; \int\limits_{1/2}^1\frac{\sqrt{\frac1x + 1}}{x^2}\,\mathrm{d}x &=& \Big[ -\frac23 \left( \frac1x + 1\right)^{3/2}\Big]_{1/2}^1 = 2\sqrt{3} - \frac{4\sqrt{2}}{3}
+	\end{eqnarray*}
+	Alternativ - direkt durch Transformation der Grenzen:
+		\begin{eqnarray*}
+		\int\limits_{1/2}^1\frac{\sqrt{\frac1x + 1}}{x^2}\,\mathrm{d}x =  - \int\limits_{2}^3\sqrt{y}\,\mathrm{d}y =  \Big[ -\frac23 y^{3/2}\Big]_{2}^3 = 2\sqrt{3} - \frac{4\sqrt{2}}{3}
+	\end{eqnarray*}
+	\item[(b)]
+		\begin{eqnarray*}
+			\int\displaystyle{\frac{ax}{bx+c}} \, \mathrm{d}x &=& \int \frac{a \frac{t-c}{b}}{b\frac{t-c}{b} + c } \cdot \frac1b \,\mathrm{d}x  = \frac{a}{b^2} \int \frac{t-c}{t}\,\mathrm{d}t = \frac{a}{b^2} \int (1-\frac{c}{t})\,\mathrm{d}t \\
+				&=&  \frac{a}{b^2}\cdot ( t-c\ln(|t|) +C \frac{a}{b} x -\frac{ac}{b^2} \ln|bx+c| +C \\
+					\Rightarrow \int \displaystyle{\frac{ax}{bx+c}} \, \mathrm{d}x &=& \Big[ \frac{a}{b} x - \frac{ac}{b^2} \ln|bx+c| +C \Big]_0^{1/b} =\frac{a}{b^2} \left( 1-c\ln\frac{c}{1+c}\right)
+					\end{eqnarray*}
+	Alternativ - direkt durch Transformation der Grenzen:
+	\begin{eqnarray*}
+		\int\limits_0^{1/b} \displaystyle{\frac{ax}{bx+c}} \, \mathrm{d}x = \int_{c}^{1+c} \frac{a\frac{1-c}{b}}{b\frac{t-c}{b} + b}\cdot \frac{1}{b} \,\mathrm{d}t = \Big[ \frac{a}{b^2}\left( t-c\ln|t|\right) \Big]_c^{1+c} =\frac{a}{b^2} \left( 1-c\cdot \ln\frac{c}{1+c}\right)
+		\end{eqnarray*}
+
+	\item[(c)]
+		\begin{eqnarray*}
+			\int\frac{1}{\sqrt{x^2-4}}\,\mathrm{d}x &=&  \int\frac{1}{\sqrt{4\mathrm{cosh}^2(t)-4}}\cdot 2 \cdot \mathrm{sinh}(t)\,\mathrm{d}t = \int \frac{1}{\mathrm{sinh}(t)}\mathrm{sinh}(t)\,\mathrm{d}t \\
+			&=& t+c = \mathrm{arcosh}(x/2)+c
+		\end{eqnarray*}
+	\item[(d)]
+		\begin{eqnarray*}
+			\int\sqrt{18 + 2x^2}\,\mathrm{d}x &=&
+			\frac{1}{\sqrt{2}} \int \sqrt{9+x^2}\,\mathrm{d}x = \frac{1}{\sqrt{2}} \int \sqrt{9+9\,\mathrm{sinh}^2(t)} \cdot 3\, \mathrm{cosh}(t) \, \mathrm{d}t \\
+			&=& \frac{1}{\sqrt{2}} \int\mathrm{cosh}(t) \cdot \mathrm{cosh}(t)\,\mathrm{d}t \\
+			\Rightarrow \int\mathrm{cosh}^2(t)\,\mathrm{d}t &=& \frac14\int\left( e^{2t} + 2 + e^{-2t}\right) \, \mathrm{d}t = \frac{\mathrm{sinh}(2t)}{4} + \frac12 t + c = \frac12(\mathrm{cosh}(t) \mathrm{sinh}(t) + t ) + c \\
+			\Rightarrow  \int\sqrt{18 + 2x^2}\,\mathrm{d}x &=& \frac{1}{2\sqrt{2}}\left( \mathrm{cosh}\left( \mathrm{arsinh}(x/2)\right)/2 - \mathrm{arsinh}(x/2)\right) + c
+		\end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+%\begin{exercisebox}[Gebrochenrationale Funktionen]
+%	Berechnen Sie folgende Integrale. Hinweis: Nutzen Sie die Ergebnsise auf Blatt $1$.
+%	\begin{eqnarray*}
+%		\begin{array}{l l l}
+%			(a)\; \displaystyle{ \int \frac{-x^4-2x^3+7x^2-5x+3}{ x^2+3x-4}} \, \mathrm{d}x \quad & (b)\; \displaystyle{\int \frac{x^2+x+1}{x^3-3x+2}}\,\mathrm{d}x  & (c) \; \displaystyle{\int \frac{1}{x^3+x}}\,\mathrm{d}x \\[1ex]
+%			(d)\; \displaystyle{\int \frac{x^2-5x}{(x-2)^3}} \,\mathrm{d}x &(e)\; \displaystyle{ \int \frac{1}{ x^2-a^2}} \, \mathrm{d}x, \; a>0 & (f)\; \displaystyle{\int \frac{4x^3}{x^3+2x^2-x-2}}\,\mathrm{d}x \\[2ex]
+%			(g) \; \displaystyle{\int \frac{3z}{z^3-3z^2-4}}\,\mathrm{d}x  & (h)\; \displaystyle{\int \frac{4x-2}{x^2-2x-63}}\, \mathrm{d}x \quad & (i)\; \displaystyle{\int \frac{2x+1}{x^3-6x^2+9x}}  \, \mathrm{d}x
+%		\end{array}
+%	\end{eqnarray*}
+%\vspace{0.3cm}
+%\textbf{Lösung:} \newline
+%Detaillierte Lösungen zu den Aufgabenteilen \((e) -(i)\) finden Sie in Papula, Band \(1\) auf Seite \(793\)ff.
+%\begin{itemize}
+%	\item[(a)] $ F(x) = - \displaystyle{\frac{7}{5}}\ln|x+4| - \displaystyle{\frac{x^3}{3}} + \displaystyle{\frac{x^2}{2}}  + \displaystyle{\frac{2}{5}} \ln|x-1| + c $
+%	\item[(b)] $ F(x) = \displaystyle{\frac{1}{3}} \ln|x+2| - \displaystyle{\frac{1}{x-1}} + \displaystyle{\frac{2}{3}}\ln|x-1| + c $
+%	\item[(c)] $ F(x) = -\displaystyle{\frac{1}{2}} \ln(x^2+2) + \ln|x| + c $
+%	\item[(d)] $ F(x) = \displaystyle{\frac{1}{x-2}} + \displaystyle{\frac{3}{(x-2)^2}} + \ln|x-2| c $
+%	\item[(e)] $ F(x) = \displaystyle{\frac{1}{2a}} \ln\Big| \displaystyle{\frac{x-a}{x+a}}\Big| + c $
+%	\item[(f)] $ F(x) = \displaystyle{\frac{2}{3}} \ln| x-1| + 2 \ln|x+1| - \displaystyle{\frac{32}{3}}\ln|x+2| + 4x + c $
+%	\item[(g)] $ F(x) = \displaystyle{\frac{1}{3}} \ln\Big| \displaystyle{\frac{z-1}{z+2}}\Big| - 2 \displaystyle{\frac{2}{z+2}} + c $
+%	\item[(h)] $ F(x) = \displaystyle{\frac{17}{8}} \ln|x-9| + \displaystyle{\frac{15}{8}}\ln|x+7| + c $
+%	\item[(i)] $ F(x) = \displaystyle{\frac{1}{9}} \ln\Big| \displaystyle{\frac{x}{x-3}}\Big| - \displaystyle{\frac{7}{3(x-3)}} + c $
+%\end{itemize}
+%\end{exercisebox}
+
+\begin{exercisebox}{Kurvendiskussion mit Flächenberechnung}{ } %p. 176
+		Gegeben ist die Funktion \(f\) mit \(f:x\mapsto x^2(x^2-4)\). Ihr Graph sei \(K\).
+		\begin{itemize}
+			\item[(a)] Untersuchen Sie \(f\) und zeichenn Sie den Graphen.
+			\item[(b)] Wie groß ist der Inhalt der Fläche, die \(K\) mit der \(x\)-Achse einschließt?
+			\item[(c)] Dei Tangente in den Tiefpunkten von \(K\) begrenzt mit \(K\) eine Fläche. Berechnen Sie den Inhalt dieser Fläche.
+		\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)] \[ T_1\left(-\sqrt{2}| -4\right), T_2\left(\sqrt{2}|-4\right), H\left(0|0\right), W_1\left(-\frac{\sqrt{6}}{3}|-\frac{20}{9}\right), W_2\left(\frac{\sqrt{6}}{3}|-\sqrt{20}{9}\right) \]
+	\item[(b)] \[ A= 2\int\limits_0^2 (-f(x))\,\mathrm{d}x = \frac{128}{15} \approx 8,53 \]
+	\item[(c)] \[ A= \int\limits_{-\sqrt{2}}^{\sqrt{2}} \left( f(x) - (-4)\right) \,\mathrm{d}x = \frac{64}{15}\cdot \sqrt{2} \approx 6,03\]
+\end{itemize}
+\end{exercisebox}
+

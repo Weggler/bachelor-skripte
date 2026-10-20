@@ -1,0 +1,153 @@
+\section*{Potenz- und Wurzelfunktionen Lösungen}\label{MA1-potenz-und-wurzelfunktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-potenz-und-wurzelfunktionen}{ (Abschnitt \abschnittsverweis{MA1-potenz-und-wurzelfunktionen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[$f:x\mapsto  3\cdot \sqrt{4-x^2}$]
+  Gegeben ist die Funktion $f:x\mapsto  3\sqrt{4-x^2}$.
+  \begin{itemize}
+	  \item[(a)] Geben Sie die Funktionswerte an den Stellen $-1$ und $\sqrt{3}$ an.
+    \item[(b)] Berechnen Sie $f(0)$, $f(2)$, und $f(\frac23)$.
+    \item[(c)] Bestimmen Sie die maximale Definitionsmenge und die Wertemenge von $f$.
+    \item[(d)] Prüfen Sie rechnerisch, ob der Punkt $P(-\sqrt 2| 3\sqrt 2)$ auf dem Graphen von $f$ liegt.
+  \end{itemize}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] $f(-1) = 3 \sqrt{3}$, $f(\sqrt{3}) = 3$
+	  \item[(b)] $f(0) = 6, \, f(2) = 0, \, f(3/2) = 3/2 \sqrt{7}$ 
+	  \item[(c)] $ 4-x^2 \stackrel{!}{\geq} 0 \Rightarrow D_f=[-2,2]$.
+	  \item[(d)] $f(-\sqrt{2}) = 3\cdot \sqrt{4-2} = 3\cdot \sqrt{2} \; \Rightarrow$ $P$ liegt auf dem Graphen von $f$ liegt.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Symmetrie]
+	Bestimmen Sie das Symmetrieverhalten der folgenden Funktionen in ihrem maximalen Definitionsbereich
+  \begin{eqnarray*}
+	  \begin{array}{lll} 
+		  (a)\, f:x\mapsto 4\cdot x^2-16 &\quad (b) f:x\mapsto \displaystyle{\frac{x^3}{x^2+1}} &\quad (c)\; f:x\mapsto |x^2-4|\\ (d)\; f:x\mapsto \displaystyle{\frac{x^2-1}{1+x^2}} &\quad (e)\, f:x\mapsto \sqrt{x^2-25} &\quad (f)\,f:x\mapsto \displaystyle{\frac{1}{x-1}}
+	  \end{array}
+  \end{eqnarray*}
+
+ \hspace{0.3cm}
+\noindent \textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] $y(-x)=4\cdot (-x)^2-16 = y(x)$, d.h. gerade
+	  \item[(b)] $y(-x)=\frac{(-x)^3}{(-x)^2+1} = -y(x)$, d.h. ungerade
+	  \item[(c)] $y(-x)=|(-x)^2-4|=y(x)$, d.h. gerade
+	  \item[(d)] $y(-x)=\frac{(x-)^2-1}{1+(-x)^2} = y(x)$, d.h. gerade
+	  \item[(e)] $y(-x)=\sqrt{ (-x)^2-25} = y(x)$, d.h. gerade
+	  \item[(f)] $y(-x)=\frac{1}{-x-1}$ und damit $y(-x)\not= y(x) \land y(x)\not= -y(x) $, d.h. weder gerade noch ungerade
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Monotonie]
+	Untersuchen Sie die folgenden Funktionen auf Monotonie
+  \begin{eqnarray*}
+	  \begin{array}{llll} 
+		  (a)\, f:x\mapsto x^4 &\quad (b)\; f:x\mapsto \displaystyle{\sqrt{x-1}} &\quad (c)\; f:x\mapsto x^3+2\cdot x \quad (d)\; f:x\mapsto \displaystyle{| x^2-2\cdot x+1|} 
+	  \end{array}
+  \end{eqnarray*}
+
+ \hspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] streng monoton fallend auf $(-\infty, 0]$ und streng monoton steigend auf $[0,\infty)$
+	  \item[(b)] streng monoton steigend: die Wurzelfunktion $\sqrt{x}$ ist auf $\mathbb R^+_0$ streng monoton steigend, da aus $x_1 <x_2$ folgt, dass $(\sqrt{x_1})^2 < (\sqrt{x_2})^2$. Da beide Argumente nichtnegativ sind und die Funktion $x\mapsto x^2$ auf $\mathbb R^+_0$ streng monoton steigend ist, folgt damit auch $\sqrt{x_1} < \sqrt{x_2}$. Setzt man $x_1= 1+h_1$ und $x_2=1+h_2$ mit $0\leq h_1 <h_2$ ein, so folgt hiermit $\sqrt{x_1-1} = \sqrt{1+h_1-1} = \sqrt{h_1} < \sqrt{h_2} = \sqrt{x_2+1}$ und damit die Behauptung.
+	  \item[(c)] Sowohl $y_1(x) =x^3$ als auch $y_2(x) = x$ sind streng monoton wachsend auf $\mathbb R$. Da aus $x_1<x_2$ auch $y_1(x_1) + 2\cdot y_2(x_1) < y_1(x_2) + 2\cdot y_2(x_2)$ folgt (Addieren Sie hier zwei Ungleichungen mit demselben Ungleichheitszeichen), dass die Funktion auf ganz $\mathbb R$ streng monoton wächst.
+	  \item[(d)] Es gilt $y(x) = |(x-1)^2|=(x-1)^2$, da Quadrate immer nichtnegativ sind. Das bedeutet, dass die Funktion eine um eine Stelle nach rechts verschobene Normalparabel ist. Damit ist sie auf $(-\infty, 1]$ streng monoton fallend und auf $[1,\infty)$ streng monoton steigend.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Umkehrfunktion]
+  \begin{itemize}
+	  \item[(a)] Welche der Potenzfunktionen $f$ mit $f(x) = x^n,\; n\in\mathbb N\setminus\{0\}$  sind umkehrbar?
+	  \item[(b)] Wie lauten die Umkehrfunktionen von folgenden Funktionen? \[ (a) \; f:x\mapsto \frac{1}{2\cdot x}\quad \quad (b)\; g:x\mapsto \sqrt{3\cdot x}\]
+  \end{itemize}
+
+ \hspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] Potenzfunktionen mit ungeradem Exponenten $n$ sind umkehrbar auf $\mathbb R$.
+	  \item[(b)] $(a) \; f^{-1}: \mathbb R\setminus\{0\} \to \mathbb R\setminus\{0\}, \; x\mapsto \displaystyle{\frac{1}{2\cdot x}} \quad\quad (b)\; g^{-1}: [0,\infty) \to [0,\infty), \; x\mapsto \displaystyle{\frac{x^2}{3}}$
+		  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen]
+	Lösen Sie folgende Gleichungen
+  \begin{eqnarray*}
+	  \begin{array}{llll} 
+		  (a)\, \sqrt{ -3 +2\cdot x} = 2 &\quad (b)\; \sqrt{x^2+4} -x = -2 &\quad (c)\; \sqrt{x-1} = \sqrt{x+1}\quad& (d)\; \sqrt{2\cdot x^2-1}+x=0 
+	  \end{array}
+  \end{eqnarray*}
+
+ \hspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] 
+		  \begin{eqnarray*}
+			  \begin{array}{c r c l l }
+				  & \sqrt{-3+2\cdot x} &=& 2 & |(\cdot)^2 \\
+				  \Rightarrow & -3+2\cdot x &=& 4 &|+3 \\
+				  \Leftrightarrow & 2\cdot x &=& 7 &| :2 \\
+				  \Leftrightarrow & x &=& 7/2 
+			  \end{array}
+		  \end{eqnarray*}
+		  Die Probe ergibt $\sqrt{-3+2\cdot 7/2}=2$ eine wahre Aussgae. Also ist $\mathbb L=\{7/2\}$.
+	  \item[(b)] 
+		  \begin{eqnarray*}
+			  \begin{array}{c r c l l }
+				  &\sqrt{x^2+4}-x &=& -2& | +x \\
+				  \Leftrightarrow &\sqrt{x^2+4} &=& x-2& | (\cdot)^2 \\
+				  \Rightarrow & x^2+4 &=& x^2-4\cdot x+4 &|-x^2-4 \\
+				  \Leftrightarrow & 0 &=& -4\cdot x & |:(-4) \\
+				  \Leftrightarrow & x&=& 0 
+			  \end{array}
+		  \end{eqnarray*}
+		  Die Probe ergibt $\sqrt{0^2+4} = 0-2$ eine falsche Aussage. Also ist $\mathbb L=\emptyset$.
+	  \item[(c)] 
+		  \begin{eqnarray*}
+			  \begin{array}{c r c l l }
+				  &\sqrt{x-1} &=& \sqrt{x+1} |(\cdot)^2 \\
+				  \Rightarrow & x-1 &=& x+1 & |-x \\
+				  \Leftrightarrow & -1 &=& 1 
+			  \end{array}
+		  \end{eqnarray*}
+		  Also ist $\mathbb L = \emptyset$.
+	  \item[(d)] 
+		  \begin{eqnarray*}
+			  \begin{array}{c r c l l }
+				  &\sqrt{2\cdot x^2-1} + x &=& 0 &|-x \\
+				  \Leftrightarrow &\sqrt{2\cdot x^2-1} &=& -x &|(\cdot)^2 \\
+				  \Rightarrow & 2\cdot x^2-1 &=& x^2 &|-x^2+1 \\
+				  \Leftrightarrow & x^2 &=& 1 
+			  \end{array}
+		  \end{eqnarray*}
+		  also $x=\pm 1$. Die Probe ergibt für $x=1 $ $ \sqrt{2\cdot 1^2-1}+1 = 0$ eine falsche Aussage und für $x=-1\sqrt{2(-1)^2 -1 } -1 =0 $ eine wahre Aussage. Also ist $\mathbb L=\{-1\}$.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen]
+	\begin{enumerate}
+		\item[(a)] Bestimmen Sie alle Lösungen der Gleichung \[ -2\cdot x^2+6 = 4\cdot x \]
+		\item[(b)] Für welchen Parameter $p$ hat die folgende Gleichung genau eine Lösung? \[ x^2 + p\cdot x+3 \cdot p = 0\]
+		\item[(c)] Für welche Werte von $c$ hat die folgende Gleichung keine reelle Lösung? \[ x^2 + 2\cdot c \cdot x+c = 0\]
+  \end{enumerate}
+
+ \hspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] $\mathbb L = \{ -3, 1\}$
+	  \item[(b)] $p=0$ oder $p=12$
+	  \item[(c)] Die Diskriminante ist \[ D=(2\cdot c)^2-4\cdot c = 4\cdot c^2-4\cdot c = 4\cdot c \cdot (c-1)\,.\]
+		  Es existiert mindestens eine reelle Lösung falls $D\geq 0$, also für folgende Fälle:
+		  \begin{itemize}
+			  \item $c\geq0 \land c-1\geq 0\; \Rightarrow c\geq 1$
+			  \item $c\leq 0 \land c-1 \leq 0\; \Rightarrow c\leq 0$
+		  \end{itemize}
+  \end{itemize}
+\end{exercisebox}

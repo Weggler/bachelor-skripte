@@ -1,0 +1,86 @@
+\ifintegriereaufgaben
+\section*{Integrationsregeln Aufgaben}\label{MA2-integrationsregeln-aufgaben}
+
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-integrationsregeln}{ (Abschnitt \abschnittsverweis{MA2-integrationsregeln})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA2-integrationsregeln-loesungen]{hier}.
+\else
+\section{Integrationsregeln Aufgaben}\label{MA2-integrationsregeln-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-integrationsregeln-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Stückweise stetige Funktionen]
+	Gegeben seien die folgenden stückweise definierten Funktionen
+	\begin{eqnarray*}
+		f:x\mapsto \begin{cases} x, \quad &x<1\,,\\ x-1, \quad &x\geq 1 \end{cases}\quad \quad g:x\mapsto \begin{cases} x, \quad & x<1\,,\\ 2, \quad & x=1\,,\\ \cos(x),\quad & x>1 \end{cases}
+	\end{eqnarray*}
+			\begin{itemize}
+				\item[(a)] Integrieren Sie diese Funktionen stückweise.
+				\item[(b)] Sind die Funktionen, die Sie unter \( (a)\) entwickelt haben Stammfunktionen?
+			\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Partielle Integration] % Papula 1, V, Abschnitt 8, Aufgabe %/6
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}i
+		(a)\; \int x \ln(x) \, \mathrm{d}x \quad
+		(b)\; \int_1^5 \ln(t) \, \mathrm{d}t \quad
+		(c)\; \int_0^{0,8} x e^x \, \mathrm{d}x\quad
+		(d)\; \int e^x \cos(x) \, \mathrm{d}x
+	\end{eqnarray*}
+	Finden Sie eine Rekursionsformel zur Berechnung von \[ \int x^n\cdot e^x \, \mathrm d x, \quad n\in \mathbb N^+\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Substitution] % Papula 1, V Abschnitt 8, Aufg. 1
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		(a)\; \int x \sin(x^2) \, \mathrm{d}x \quad
+		(b)\; \int_{-1}^{1} \frac{t}{\sqrt{1+t^2}}\, \mathrm{d}t \quad
+			(c)\; \int_{-1}^{1} \frac{5+x}{5-x} \, \mathrm{d}x\quad
+			(d)\; \int \frac{\sqrt{4-x^2}}{x^2} \, \mathrm{d}x
+		\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Integrationsregeln] % Papula 1, V Abschnitt 8, Aufg. 10
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		\begin{array}{rl rl rl}
+			(a)\; &\displaystyle{\int} \mathrm{cot}(x) \, \mathrm{d}x \quad
+			& (b)\;&\displaystyle{\int} x\mathrm{cosh}(x) \, \mathrm{d}x \quad & (c) \; & \displaystyle{\int} \displaystyle{\frac{(\ln(x))^3}{x}}\,\mathrm{d}x \\
+			(d)\;& \displaystyle{\int} \displaystyle{\frac{12 x^2}{2x^3-1}} \, \mathrm{d}x  &(e)\; &\displaystyle{\int} \sqrt{x^2 - 2x} \, \mathrm{d}x \quad & (f)\;&\displaystyle{\int} \mathrm{arctan}(x) \, \mathrm{d}x
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Integrationsregeln]
+	Berechnen Sie die folgenden Integrale:
+	\begin{eqnarray*}
+		\begin{array}{rl rl}
+			(a)\; &\displaystyle{\int_{1/2}^1} \displaystyle{\frac{\sqrt{\frac1x + 1}}{x^2}} \, \mathrm{d}x, \quad y=\displaystyle{\frac1x} +1
+			& (b)\;&\displaystyle{\int_0^{1/b}} \displaystyle{\frac{ax}{bx+c}} \, \mathrm{d}x,  \quad b\not=0, c>0, x = \displaystyle{\frac{t-c}{b}} \\
+				(c) \; & \displaystyle{\int} \displaystyle{\frac{1}{\sqrt{x^2-4}}}\,\mathrm{d}x &(d)\;& \displaystyle{\int} \displaystyle{\sqrt{18 + 2x^2}} \, \mathrm{d}x
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+%\begin{exercisebox}[Gebrochenrationale Funktionen]
+%	Berechnen Sie folgende Integrale. Hinweis: Nutzen Sie die Ergebnsise auf Blatt $1$.
+%	\begin{eqnarray*}
+%		\begin{array}{l l l}
+%			(a)\; \displaystyle{ \int \frac{-x^4-2x^3+7x^2-5x+3}{ x^2+3x-4}} \, \mathrm{d}x \quad & (b)\; \displaystyle{\int \frac{x^2+x+1}{x^3-3x+2}}\,\mathrm{d}x  & (c) \; \displaystyle{\int \frac{1}{x^3+x}}\,\mathrm{d}x \\[1ex]
+%			(d)\; \displaystyle{\int \frac{x^2-5x}{(x-2)^3}} \,\mathrm{d}x &(e)\; \displaystyle{ \int \frac{1}{ x^2-a^2}} \, \mathrm{d}x, \; a>0 & (f)\; \displaystyle{\int \frac{4x^3}{x^3+2x^2-x-2}}\,\mathrm{d}x \\[2ex]
+%			(g) \; \displaystyle{\int \frac{3z}{z^3-3z^2-4}}\,\mathrm{d}x  & (h)\; \displaystyle{\int \frac{4x-2}{x^2-2x-63}}\, \mathrm{d}x \quad & (i)\; \displaystyle{\int \frac{2x+1}{x^3-6x^2+9x}}  \, \mathrm{d}x
+%		\end{array}
+%	\end{eqnarray*}
+%\end{exercisebox}
+
+\begin{exercisebox}{Kurvendiskussion mit Flächenberechnung}{ } %p. 176
+		Gegeben ist die Funktion \(f\) mit \(f:x\mapsto x^2(x^2-4)\). Ihr Graph sei \(K\).
+		\begin{itemize}
+			\item[(a)] Untersuchen Sie \(f\) und zeichenn Sie den Graphen.
+			\item[(b)] Wie groß ist der Inhalt der Fläche, die \(K\) mit der \(x\)-Achse einschließt?
+			\item[(c)] Dei Tangente in den Tiefpunkten von \(K\) begrenzt mit \(K\) eine Fläche. Berechnen Sie den Inhalt dieser Fläche.
+		\end{itemize}
+\end{exercisebox}
+
+
+

@@ -1,0 +1,1085 @@
+\section{Lineare Gleichungssysteme}\label{MA1-lineare-gleichungssysteme}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem lineare Gleichungssysteme in Gleichungs-, Vektor- und Matrixform darstellen &\\
+    \tabitem lineare Gleichungssysteme mit dem Gaußschen Eliminationsverfahren systematisch lösen &\\
+    \tabitem die Lösbarkeit und Eindeutigkeit eines linearen Gleichungssystems mithilfe von Rang und Kern untersuchen &\\
+    \tabitem die Struktur der Lösungsmenge eines linearen Gleichungssystems bestimmen und interpretieren &\\
+    \tabitem Rang, Kern und Defekt einer Matrix mithilfe des Gaußschen Eliminationsverfahrens bestimmen &\\
+    \tabitem die lineare Unabhängigkeit beziehungsweise Abhängigkeit gegebener Vektoren systematisch untersuchen &\\
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Vektoren & \abschnittsverweis{MA1-vektoren}\\
+    \tabitem Vektorräume, Linearkombinationen und lineare Unabhängigkeit & \abschnittsverweis{MA1-vektorraum}\\
+    \tabitem Matrizen, lineare Abbildungen, Bild, Rang, Kern und Defekt & \abschnittsverweis{MA1-matrizen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema finden sich hier:
+\hyperref[MA1-lineare-gleichungssysteme-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+%----------------------------------------------------------
+\subsection{Was ist ein lineares Gleichungssystem?}
+
+Ein \textbf{lineares Gleichungssystem} (\emph{system of linear equations}) besteht aus mehreren linearen Gleichungen, die gleichzeitig erfüllt sein sollen. Die gesuchten Größen treten dabei nur in erster Potenz und jeweils mit konstanten Koeffizienten auf.
+
+Ein Beispiel mit drei Gleichungen und vier Unbekannten ist
+\[
+(*)\qquad
+\left\{
+\begin{array}{rcrcrcrcl}
+23x &+&45y&-&3z&+&4w&=&7,\\
+    &&2y&-&z&+&6w&=&-3,\\
+-15x&+&5y&&&-&3w&=&5.
+\end{array}
+\right.
+\]
+
+Eine Lösung des Gleichungssystems ist ein Vektor
+\[
+\begin{pmatrix}x&y&z&w\end{pmatrix}^{\intercal}\in\mathbb R^4,
+\]
+dessen Komponenten alle drei Gleichungen gleichzeitig erfüllen. Die Lösungsmenge \(\mathbb L\) ist daher eine Teilmenge von \(\mathbb R^4\).  Es ist zunächst nicht klar, ob diese Menge überhaupt Elemente enthält und, falls dies der Fall ist, ob sie aus einem einzigen oder aus mehreren Vektoren besteht.
+
+Die Linearität der Gleichungen zeigt sich darin, dass ausschließlich konstante Vielfache der Unbekannten addiert werden. Terme wie \(\sin(x)\), \(y^2\) oder \(xz\) würden zu nichtlinearen Gleichungen führen.
+
+Das Gleichungssystem kann zunächst als Vektorgleichung gelesen werden.  Werden die Koeffizienten jeder Unbekannten zu einem Vektor zusammengefasst, so entsteht
+\[
+(*)\quad\Longleftrightarrow\quad
+x
+\begin{pmatrix}
+23\\0\\-15
+\end{pmatrix}
++
+y
+\begin{pmatrix}
+45\\2\\5
+\end{pmatrix}
++
+z
+\begin{pmatrix}
+-3\\-1\\0
+\end{pmatrix}
++
+w
+\begin{pmatrix}
+4\\6\\-3
+\end{pmatrix}
+=
+\begin{pmatrix}
+7\\-3\\5
+\end{pmatrix}.
+\]
+
+Damit erhält das Lösen des Gleichungssystems eine bereits bekannte Bedeutung: Gesucht sind Koeffizienten \(x,y,z,w\), mit denen sich der Vektor auf der rechten Seite als Linearkombination der vier Vektoren auf der linken Seite darstellen lässt.
+
+Werden diese vier Vektoren als Spalten einer Matrix angeordnet, entsteht schließlich die Matrixform des Gleichungssystems.
+
+\begin{exabox}{Lineares Gleichungssystem in Matrixform}{ }
+
+\[
+(*)\quad\Longleftrightarrow\quad
+\underbrace{
+\begin{pmatrix}
+23&45&-3&4\\
+0&2&-1&6\\
+-15&5&0&-3
+\end{pmatrix}}_{\displaystyle A}
+\underbrace{
+\begin{pmatrix}
+x\\y\\z\\w
+\end{pmatrix}}_{\displaystyle\vec x}
+=
+\underbrace{
+\begin{pmatrix}
+7\\-3\\5
+\end{pmatrix}}_{\displaystyle\vec b}.
+\]
+
+Kurz geschrieben lautet das Gleichungssystem damit
+\[
+A\vec x=\vec b.
+\]
+
+\end{exabox}
+
+Die drei Schreibweisen beschreiben dasselbe mathematische Problem. Sie heben jedoch unterschiedliche Aspekte hervor: Die Gleichungsform zeigt die einzelnen Bedingungen, die Vektorform zeigt die gesuchte Linearkombination und die Matrixform ermöglicht eine systematische algebraische Bearbeitung.
+
+Die zuvor eingeführten Begriffe\wennreferenzvorhanden{MA1-vektoren}{\wennreferenzvorhanden{MA1-matrizen}{ (Abschnitte \abschnittsverweis{MA1-vektoren}--\abschnittsverweis{MA1-matrizen})}} ermöglichen bereits eine strukturelle Beschreibung dieses Problems. Für
+\[
+A\vec x=\vec b
+\]
+stellen sich insbesondere die Fragen, ob \(\vec b\) im Bild von \(A\) liegt und ob der Kern von \(A\) außer dem Nullvektor weitere Vektoren enthält.  Damit hängen Existenz und Eindeutigkeit einer Lösung unmittelbar mit Bild, Rang, Kern und Defekt der Matrix zusammen.
+
+Bisher wurden diese Begriffe vor allem inhaltlich beschrieben. Nun kommt eine systematische Rechenmethode hinzu. Das Gaußsche Eliminationsverfahren ermöglicht nicht nur das Lösen linearer Gleichungssysteme. Mit derselben Grundidee lassen sich auch Rang und Kern einer Matrix bestimmen und Fragen nach linearer Abhängigkeit, Erzeugendensystemen und Basen rechnerisch untersuchen.
+
+Lineare Gleichungssysteme bilden damit den konkreten Ausgangspunkt für eine Rechenmethode, mit der sich mehrere der zuvor eingeführten Begriffe der linearen Algebra praktisch untersuchen lassen.
+
+
+%----------------------------------------------------------
+\subsection{Existenz und Eindeutigkeit von Lösungen}
+
+Bevor konkrete Gleichungssysteme gelöst werden, lassen sich die Fragen nach Existenz und Eindeutigkeit bereits mithilfe von Bild und Kern einer Matrix beschreiben.
+
+Es sei
+\[
+A\in\mathbb R^{m\times n},
+\qquad
+\vec x\in\mathbb R^n,
+\qquad
+\vec b\in\mathbb R^m.
+\]
+Das lineare Gleichungssystem
+\[
+A\vec x=\vec b
+\]
+ist genau dann lösbar, wenn es einen Vektor \(\vec x\) gibt, der durch \(A\) auf \(\vec b\) abgebildet wird.
+
+Nach der Definition des Bildes bedeutet dies gerade, dass \(\vec b\) im Bild von \(A\) liegen muss.
+
+\begin{theorembox}{Bedingung für die Lösbarkeit eines linearen Gleichungssystems}{ }
+
+Das lineare Gleichungssystem
+\[
+A\vec x=\vec b
+\]
+besitzt mindestens eine Lösung genau dann, wenn
+\[
+\vec b\in\operatorname{im}(A).
+\]
+
+\end{theorembox}
+
+Damit beantwortet der Begriff des Bildes die Frage nach der \textbf{Existenz} einer Lösung.
+
+Nach der Existenz stellt sich die Frage nach der Eindeutigkeit. Angenommen, \(\vec x_1\) und \(\vec x_2\) seien zwei Lösungen desselben Gleichungssystems. Dann gilt
+\[
+A\vec x_1=A\vec x_2=\vec b.
+\]
+Durch Subtraktion folgt
+\[
+A(\vec x_1-\vec x_2)=\vec0.
+\]
+
+Die Differenz zweier Lösungen liegt also im Kern von \(A\).
+
+Ein Gleichungssystem mit rechter Seite \(\vec0\),
+\[
+A\vec x=\vec0,
+\]
+heißt \textbf{homogenes lineares Gleichungssystem} (\emph{homogeneous system of linear equations}). Ein Gleichungssystem mit einer von Null verschiedenen rechten Seite wird entsprechend \textbf{inhomogen} genannt.
+
+Besitzt das homogene Gleichungssystem nur die triviale Lösung \(\vec x=\vec0\), so kann die Differenz zweier Lösungen nur der Nullvektor sein. In diesem Fall müssen zwei mögliche Lösungen identisch sein.
+
+Besitzt das homogene Gleichungssystem dagegen eine nichttriviale Lösung \(\vec v\neq\vec0\), so gilt
+\[
+A\vec v=\vec0.
+\]
+Ist \(\vec x_s\) eine Lösung von \(A\vec x=\vec b\), dann ist auch
+\[
+A(\vec x_s+\vec v)
+=
+A\vec x_s+A\vec v
+=
+\vec b.
+\]
+Eine vorhandene Lösung kann dann also nicht eindeutig sein.
+
+\begin{theorembox}{Bedingung für die Eindeutigkeit einer Lösung}{ }
+
+Das lineare Gleichungssystem
+\[
+A\vec x=\vec b
+\]
+besitzt höchstens eine Lösung genau dann, wenn
+\[
+\ker(A)=\{\vec0\}.
+\]
+
+Besitzt das Gleichungssystem zusätzlich mindestens eine Lösung, so ist diese Lösung eindeutig.
+
+\end{theorembox}
+
+Damit beantworten zwei der Begriffe aus dem vorangegangenen Abschnitt die beiden grundlegenden Fragen:
+\[
+\vec b\in\operatorname{im}(A)
+\quad\Longleftrightarrow\quad
+\text{Existenz einer Lösung},
+\]
+während
+\[
+\ker(A)=\{\vec0\}
+\quad\Longleftrightarrow\quad
+\text{höchstens eine Lösung}
+\]
+gilt.
+
+Für eine eindeutig bestimmte Lösung müssen beide Bedingungen gleichzeitig erfüllt sein.
+
+
+%----------------------------------------------------------
+\subsection{Das Gaußsche Eliminationsverfahren}
+
+Die bisherigen Überlegungen beschreiben, welche Bedingungen über Lösbarkeit und Eindeutigkeit entscheiden. Für eine konkrete Matrix fehlt jedoch noch ein systematisches Verfahren, mit dem diese Bedingungen überprüft und die Lösungen tatsächlich bestimmt werden können.
+
+Dazu sei ein allgemeines lineares Gleichungssystem
+\[
+\begin{pmatrix}
+a_{11}&\cdots&a_{1n}\\
+\vdots&\ddots&\vdots\\
+a_{m1}&\cdots&a_{mn}
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\
+\vdots\\
+x_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{pmatrix}
+\]
+mit
+\[
+A\in\mathbb R^{m\times n},
+\qquad
+\vec x\in\mathbb R^n,
+\qquad
+\vec b\in\mathbb R^m
+\]
+gegeben.
+
+Je nach Anzahl der Gleichungen und Unbekannten heißt das Gleichungssystem
+
+\begin{itemize}
+  \item \textbf{unterbestimmt}, wenn es mehr Unbekannte als Gleichungen gibt,
+  also \(n>m\),
+  \item \textbf{quadratisch}, wenn es ebenso viele Unbekannte wie Gleichungen
+  gibt, also \(n=m\),
+  \item \textbf{überbestimmt}, wenn es mehr Gleichungen als Unbekannte gibt,
+  also \(m>n\).
+\end{itemize}
+
+Allein aus dieser Einteilung lässt sich im Allgemeinen noch nicht entscheiden, ob ein konkretes Gleichungssystem lösbar ist. Dafür müssen die Gleichungen selbst untersucht werden.
+
+Das grundlegende Verfahren dafür ist das \textbf{Gaußsche Eliminationsverfahren} (\emph{Gaussian elimination}).  Seine Idee besteht darin, ein Gleichungssystem durch Äquivalenzumformungen schrittweise in eine Form zu überführen, aus der sich die Lösungen und weitere Eigenschaften des Systems leichter ablesen lassen.
+
+
+%----------------------------------------------------------
+\subsubsection*{Elementare Zeilenumformungen}
+
+Bereits bei einzelnen Gleichungen wurden Äquivalenzumformungen verwendet: Eine Gleichung wird verändert, ohne ihre Lösungsmenge zu verändern. Beim Gaußschen Eliminationsverfahren wird dieselbe Idee auf ein ganzes Gleichungssystem übertragen.
+
+Dabei sind drei grundlegende Umformungen zulässig:
+
+\begin{enumerate}
+  \item Zwei Gleichungen können miteinander vertauscht werden.
+  \item Eine Gleichung kann mit einem von Null verschiedenen Skalar multipliziert werden.
+  \item Zu einer Gleichung kann ein Vielfaches einer anderen Gleichung
+  addiert werden.
+\end{enumerate}
+
+Diese Operationen verändern die Lösungsmenge des Gleichungssystems nicht.  In Matrixdarstellung entsprechen sie den \textbf{elementaren Zeilenumformungen} (\emph{elementary row operations}).
+
+Da beim Lösen eines inhomogenen Gleichungssystems auch die rechte Seite von jeder Umformung betroffen ist, werden Koeffizientenmatrix und rechte Seite gemeinsam in der \textbf{erweiterten Matrix} (\emph{augmented matrix}) zusammengefasst:
+
+\[
+A\vec x=\vec b
+\qquad\longrightarrow\qquad
+A_{\vec b}:=
+\left(
+\begin{array}{ccc|c}
+a_{11}&\cdots&a_{1n}&b_1\\
+\vdots&\ddots&\vdots&\vdots\\
+a_{m1}&\cdots&a_{mn}&b_m
+\end{array}
+\right).
+\]
+
+Jede Zeile dieser erweiterten Matrix steht weiterhin für eine Gleichung des ursprünglichen Gleichungssystems.
+
+
+%----------------------------------------------------------
+\subsubsection*{Zeilenstufenform}
+
+Ziel des Gaußschen Eliminationsverfahrens ist es zunächst, durch elementare Zeilenumformungen unterhalb geeigneter führender Einträge Nullen zu erzeugen.  Dadurch entsteht schrittweise eine \textbf{Zeilenstufenform} (\emph{row echelon form}), die auch als Trapezform bezeichnet wird.
+
+In einer Zeilenstufenform liegen die führenden von Null verschiedenen Einträge aufeinanderfolgender Zeilen jeweils weiter rechts. Vollständig aus Nullen bestehende Zeilen stehen am unteren Ende der Matrix.  
+
+Das Lösen erfolgt damit in zwei Schritten:
+
+\begin{enumerate}
+  \item Die erweiterte Matrix \(A_{\vec b}\) wird durch elementare Zeilenumformungen in Zeilenstufenform gebracht.
+  \item Anschließend werden die zugehörigen Gleichungen von unten nach oben aufgelöst.
+\end{enumerate}
+
+Die Zeilenstufenform liefert jedoch mehr als nur einen bequemeren Weg zur Lösung. An ihr werden auch Rang, freie Unbekannte und mögliche Widersprüche sichtbar. Dadurch verbindet das Gaußsche Eliminationsverfahren das eigentliche Lösen mit den zuvor eingeführten strukturellen Begriffen.
+
+
+%----------------------------------------------------------
+\subsubsection*{Lösbarkeit und Eindeutigkeit aus dem Rang}
+
+Die erweiterte Matrix erlaubt es, die Frage
+\[
+\vec b\in\operatorname{im}(A)
+\]
+rechnerisch zu untersuchen.
+
+Die Spalten von \(A\) spannen das Bild von \(A\) auf. Wird die rechte Seite \(\vec b\) als zusätzliche Spalte ergänzt, gibt es zwei Möglichkeiten: Entweder liegt \(\vec b\) bereits im von den Spalten von \(A\) aufgespannten Raum, oder durch die zusätzliche Spalte entsteht eine weitere unabhängige Richtung.
+
+Im ersten Fall verändert sich der Rang nicht. Im zweiten Fall erhöht sich der Rang durch das Hinzufügen von \(\vec b\). Genau dann kann \(\vec b\) nicht als Linearkombination der Spalten von \(A\) dargestellt werden und das Gleichungssystem besitzt keine Lösung.
+
+\begin{theorembox}{Lösbarkeit und Eindeutigkeit aus dem Rang}{ }
+
+Es sei
+\[
+A\in\mathbb R^{m\times n}.
+\]
+Dann gilt:
+
+\begin{itemize}
+  \item
+  \(\operatorname{rk}(A)\neq\operatorname{rk}(A_{\vec b})\)
+
+  \(\Rightarrow\) Das Gleichungssystem ist nicht lösbar.
+
+  \item
+  \(\operatorname{rk}(A)=\operatorname{rk}(A_{\vec b})<n\)
+
+  \(\Rightarrow\) Das Gleichungssystem besitzt unendlich viele Lösungen.
+
+  \item
+  \(\operatorname{rk}(A)=\operatorname{rk}(A_{\vec b})=n\)
+
+  \(\Rightarrow\) Das Gleichungssystem besitzt genau eine Lösung.
+\end{itemize}
+
+\end{theorembox}
+
+Damit werden die abstrakten Bedingungen über Bild und Kern durch ein konkretes Rechenverfahren zugänglich.
+
+
+%----------------------------------------------------------
+\subsection{Beispiele zum Gaußschen Eliminationsverfahren}
+
+Die verschiedenen Möglichkeiten für die Lösungsmenge werden nun an konkreten Gleichungssystemen sichtbar.
+
+
+%----------------------------------------------------------
+\begin{exabox}{Beispiel \(1\): \(\operatorname{rk}(A)\neq\operatorname{rk}(A_{\vec b})\)}{ }
+
+Es ist \(A\in\mathbb R^{2\times2}\) beziehungsweise \(A_{\vec b}\in\mathbb R^{2\times3}\) mit
+\[
+A_{\vec b}
+=
+\left(
+\begin{array}{cc|c}
+1&3&5\\
+2&6&7
+\end{array}
+\right).
+\]
+
+Durch äquivalente Zeilenumformungen entsteht die Zeilenstufenform
+\[
+\left(
+\begin{array}{cc|c}
+1&3&5\\
+0&0&-3
+\end{array}
+\right).
+\]
+
+Die zweite Zeile entspricht der Gleichung
+\[
+0=-3.
+\]
+Damit ist unmittelbar ein Widerspruch entstanden. Das Gleichungssystem ist also nicht lösbar.
+
+Dies lässt sich zugleich über die Ränge ausdrücken:
+\[
+\operatorname{rk}(A)=1
+\neq
+\operatorname{rk}(A_{\vec b})=2.
+\]
+
+Die zusätzliche Spalte \(\vec b\) erhöht den Rang. Der Vektor \(\vec b\) liegt daher nicht im Bild von \(A\), und die Lösungsmenge ist
+\[
+\mathbb L=\emptyset.
+\]
+
+\end{exabox}
+
+
+%----------------------------------------------------------
+\begin{exabox}{Beispiel \(2\): \(\operatorname{rk}(A)=\operatorname{rk}(A_{\vec b})<n\)}{ }
+
+Es ist \(A\in\mathbb R^{3\times4}\) beziehungsweise \(A_{\vec b}\in\mathbb R^{3\times5}\) mit
+\[
+A_{\vec b}
+=
+\left(
+\begin{array}{rrrr|r}
+1&0&0&1&0\\
+0&1&0&1&1\\
+2&0&1&0&-4
+\end{array}
+\right).
+\]
+
+Durch äquivalente Zeilenumformungen entsteht die Zeilenstufenform
+\[
+\left(
+\begin{array}{rrrr|r}
+1&0&0&1&0\\
+0&1&0&1&1\\
+0&0&1&-2&-4
+\end{array}
+\right).
+\]
+
+Damit gilt
+\[
+\operatorname{rk}(A)
+=
+\operatorname{rk}(A_{\vec b})
+=
+3<n=4.
+\]
+
+Das Gleichungssystem ist also lösbar, aber die Lösung ist nicht eindeutig.  Da vier Unbekannte vorhanden sind, aber nur drei führende Unbekannte auftreten, bleibt eine Unbekannte frei.
+
+Für \(x_4\) kann daher ein Parameter
+\[
+x_4=\alpha\in\mathbb R
+\]
+gewählt werden. Die übrigen Gleichungen werden von unten nach oben aufgelöst:
+\[
+\begin{cases}
+x_4 &= \alpha,\\
+x_3 &= -4+2x_4
+      \Rightarrow x_3=-4+2\alpha,\\
+x_2 &= 1-x_4
+      \Rightarrow x_2=1-\alpha,\\
+x_1 &= -x_4
+      \Rightarrow x_1=-\alpha.
+\end{cases}
+\]
+
+Damit ergibt sich
+\[
+\vec x
+=
+\begin{pmatrix}
+-\alpha\\
+-4+2\alpha\\
+1-\alpha\\
+\alpha
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+0\\
+-4\\
+1\\
+0
+\end{pmatrix}}_{\displaystyle\vec x_s}
++
+\alpha
+\underbrace{
+\begin{pmatrix}
+-1\\
+2\\
+-1\\
+1
+\end{pmatrix}}_{\displaystyle\vec x_h}.
+\]
+
+Dabei gilt
+\[
+A\vec x_s=\vec b
+\]
+und
+\[
+A\vec x_h=\vec0.
+\]
+
+Der Vektor \(\vec x_s\) ist also eine spezielle Lösung des inhomogenen Gleichungssystems. Der Vektor \(\vec x_h\) ist eine nichttriviale Lösung des zugehörigen homogenen Gleichungssystems und liegt damit im Kern von \(A\).  
+
+Da in diesem Beispiel nur ein freier Parameter auftritt, gilt sogar
+\[
+\ker(A)
+=
+\operatorname{span}\{\vec x_h\}.
+\]
+
+\medskip
+\noindent\textbf{Erkenntnis:}
+
+Die gesamte Lösungsmenge entsteht aus einer speziellen Lösung und allen Vektoren des Kerns:
+\[
+\mathbb L
+=
+\vec x_s+\ker(A)
+=
+\left\{
+\vec x_s+\vec x_h:
+\vec x_h\in\ker(A)
+\right\}.
+\]
+
+In diesem Beispiel besitzt der Kern die Dimension \(1\). Daher gilt
+\[
+\operatorname{def}(A)=1.
+\]
+
+\end{exabox}
+
+
+%----------------------------------------------------------
+\begin{exabox}{Beispiel \(3\): quadratisches Gleichungssystem mit nicht eindeutiger Lösung}{ }
+
+Es ist \(A\in\mathbb R^{4\times4}\) beziehungsweise
+\(A_{\vec b}\in\mathbb R^{4\times5}\) mit
+\[
+A_{\vec b}
+=
+\left(
+\begin{array}{rrrr|r}
+1&2&-1&1&1\\
+1&4&3&1&3\\
+-1&-1&3&2&6\\
+3&6&-3&4&5
+\end{array}
+\right)
+\Longleftrightarrow
+\left(
+\begin{array}{rrrr|r}
+1&2&-1&1&1\\
+0&1&2&0&1\\
+0&0&0&1&2\\
+0&0&0&0&0
+\end{array}
+\right).
+\]
+
+Aus der Zeilenstufenform folgt
+\[
+\operatorname{rk}(A)
+=
+\operatorname{rk}(A_{\vec b})
+=
+3<n=4.
+\]
+
+Das Gleichungssystem ist damit lösbar, aber nicht eindeutig. Obwohl das ursprüngliche Gleichungssystem ebenso viele Gleichungen wie Unbekannte besitzt, sind nicht alle vier Gleichungen voneinander unabhängig. Der Rang beträgt nur \(3\).
+
+Die Variable \(x_3\) kann frei gewählt werden:
+\[
+x_3=\alpha\in\mathbb R.
+\]
+Von unten nach oben folgt
+\[
+\begin{cases}
+x_4 &= 2,\\
+x_3 &= \alpha,\\
+x_2 &= 1-2x_3
+      \Rightarrow x_2=1-2\alpha,\\
+x_1 &= 1-2x_2+x_3-x_4
+      \Rightarrow x_1=-3+5\alpha.
+\end{cases}
+\]
+
+Damit ergibt sich
+\[
+\vec x
+=
+\begin{pmatrix}
+-3+5\alpha\\
+1-2\alpha\\
+\alpha\\
+2
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+-3\\
+1\\
+0\\
+2
+\end{pmatrix}}_{\displaystyle\vec x_s}
++
+\alpha
+\underbrace{
+\begin{pmatrix}
+5\\
+-2\\
+1\\
+0
+\end{pmatrix}}_{\displaystyle\vec x_h}.
+\]
+
+Wieder gilt
+\[
+A\vec x_s=\vec b,
+\qquad
+A\vec x_h=\vec0.
+\]
+
+Damit ist
+\[
+\ker(A)
+=
+\operatorname{span}
+\left\{
+\begin{pmatrix}
+5\\-2\\1\\0
+\end{pmatrix}
+\right\}
+\]
+und
+\[
+\operatorname{def}(A)=1.
+\]
+
+\medskip
+\noindent\textbf{Erkenntnis:}
+
+Auch ein quadratisches Gleichungssystem muss nicht eindeutig lösbar sein.  Entscheidend ist nicht allein die Anzahl der Gleichungen und Unbekannten, sondern der Rang der Koeffizientenmatrix.
+
+Ist der Kern nicht trivial, so besitzt ein lösbares Gleichungssystem mehrere Lösungen. Allgemein gilt wiederum
+\[
+\mathbb L=\vec x_s+\ker(A).
+\]
+
+\end{exabox}
+
+
+%----------------------------------------------------------
+\begin{exabox}{Beispiel \(4\): eindeutig lösbares quadratisches Gleichungssystem}{ }
+
+Es ist \(A\in\mathbb R^{4\times4}\) beziehungsweise \(A_{\vec b}\in\mathbb R^{4\times5}\) mit
+\[
+A_{\vec b}
+=
+\left(
+\begin{array}{rrrr|r}
+2&4&0&4&8\\
+1&3&1&4&10\\
+-2&-2&1&1&7\\
+0&-1&0&1&-1
+\end{array}
+\right)
+\Longleftrightarrow
+\left(
+\begin{array}{rrrr|r}
+2&4&0&4&8\\
+0&-2&-2&-4&-12\\
+0&0&-1&1&3\\
+0&0&0&8&16
+\end{array}
+\right).
+\]
+
+In jeder der vier Spalten der Koeffizientenmatrix befindet sich eine Pivotposition. Daher gilt
+\[
+\operatorname{rk}(A)
+=
+\operatorname{rk}(A_{\vec b})
+=
+4=n.
+\]
+
+Damit ist das Gleichungssystem eindeutig lösbar. Gleichzeitig folgt aus dem Rangsatz
+\[
+\operatorname{def}(A)
+=
+n-\operatorname{rk}(A)
+=
+4-4
+=
+0,
+\]
+also
+\[
+\ker(A)=\{\vec0\}.
+\]
+
+Die Lösung wird von unten nach oben bestimmt:
+\[
+\begin{cases}
+8x_4 &=16
+       \Rightarrow x_4=2,\\
+-x_3 &=3-x_4=3-2
+       \Rightarrow x_3=-1,\\
+-2x_2 &=-12+2x_3+4x_4
+       =-12-2+8
+       \Rightarrow x_2=3,\\
+2x_1 &=8-4x_2-4x_4
+       =8-12-8
+       \Rightarrow x_1=-6.
+\end{cases}
+\]
+
+Damit lautet die eindeutig bestimmte Lösung
+\[
+\vec x
+=
+\begin{pmatrix}
+-6\\
+3\\
+-1\\
+2
+\end{pmatrix}.
+\]
+
+\medskip
+\noindent\textbf{Erkenntnis:}
+
+In diesem Beispiel ist \(A\) quadratisch und besitzt vollen Rang:
+\[
+\operatorname{rk}(A)=4.
+\]
+Damit gilt sowohl
+\[
+\ker(A)=\{\vec0\}
+\]
+als auch
+\[
+\operatorname{im}(A)=\mathbb R^4.
+\]
+
+Das bedeutet: Für jede rechte Seite \(\vec b\in\mathbb R^4\) besitzt das Gleichungssystem \(A\vec x=\vec b\) genau eine Lösung.
+
+Diese besondere Eigenschaft quadratischer Matrizen führt im folgenden Abschnitt zum Begriff der inversen Matrix.
+
+\end{exabox}
+
+
+%----------------------------------------------------------
+\begin{exabox}{Beispiel \(5\): überbestimmtes, nicht lösbares Gleichungssystem}{ }
+
+Es ist \(A\in\mathbb R^{4\times3}\) beziehungsweise \(A_{\vec b}\in\mathbb R^{4\times4}\) mit
+\[
+A_{\vec b}
+=
+\left(
+\begin{array}{rrr|r}
+1&-1&1&0\\
+3&2&1&2\\
+1&2&4&0\\
+-1&7&1&2
+\end{array}
+\right)
+\Longleftrightarrow
+\left(
+\begin{array}{rrr|r}
+1&-1&1&0\\
+0&5&-2&2\\
+0&0&-7&2\\
+0&0&-11&1
+\end{array}
+\right).
+\]
+
+Die letzten beiden Zeilen enthalten Bedingungen an dieselbe verbleibende Unbekannte, die nicht gleichzeitig erfüllt werden können. Durch eine weitere Zeilenumformung entsteht entsprechend eine Widerspruchszeile.
+
+Dies zeigt sich auch an den Rängen:
+\[
+\operatorname{rk}(A)=3
+\neq
+\operatorname{rk}(A_{\vec b})=4.
+\]
+
+Die rechte Seite \(\vec b\) liegt also nicht im Bild von \(A\). Für die gegebene rechte Seite ist das Gleichungssystem nicht lösbar und
+\[
+\mathbb L=\emptyset.
+\]
+
+\medskip
+\noindent\textbf{Erkenntnis:}
+
+Bei einem überbestimmten Gleichungssystem mit \(m>n\) gibt es mehr Gleichungen als Unbekannte. Ob eine Lösung existiert, hängt davon ab, ob die rechte Seite mit allen Bedingungen verträglich ist.
+
+Überbestimmt bedeutet daher nicht automatisch unlösbar. Entscheidend bleibt die Bedingung
+\[
+\operatorname{rk}(A)=\operatorname{rk}(A_{\vec b}).
+\]
+
+\end{exabox}
+
+
+\subsection{Das Gaußverfahren als Werkzeug der linearen Algebra}
+
+Das Gaußsche Eliminationsverfahren wurde ausgehend von linearen
+Gleichungssystemen entwickelt. Mit derselben Systematik lassen sich jedoch
+auch mehrere der zuvor eingeführten Begriffe der linearen Algebra
+rechnerisch untersuchen.
+
+Ausgangspunkt sei eine Matrix
+\[
+A\in\mathbb R^{m\times n}
+\]
+mit Rang \(k\). Durch elementare Zeilenumformungen kann \(A\) in
+Zeilenstufenform gebracht werden. Die umgeformte Matrix wird im Folgenden
+mit \(\widetilde A\) bezeichnet. Schematisch hat sie die Form
+\[
+A
+\quad\longrightarrow\quad
+\widetilde A
+=
+\left(
+\begin{array}{cccccc}
+a_{11} & a_{12} & \cdots & a_{1k} & \cdots & a_{1n}\\
+0 & \widetilde a_{22} & \cdots & \widetilde a_{2k}
+  & \cdots & \widetilde a_{2n}\\
+\vdots & \ddots & \ddots & \vdots & \ddots & \vdots\\
+0 & \cdots & 0 & \widetilde a_{kk}
+  & \cdots & \widetilde a_{kn}\\
+\vdots & \ddots & \ddots & 0 & \ddots & 0\\
+0 & \cdots & 0 & 0 & \cdots & 0
+\end{array}
+\right).
+\]
+
+Die Tilde kennzeichnet dabei Einträge, die durch die Zeilenumformungen
+verändert wurden. Da \(\operatorname{rk}(A)=k\) gilt, besitzt
+\(\widetilde A\) genau \(k\) von Null verschiedene Zeilen beziehungsweise
+\(k\) Pivotpositionen.
+
+Diese Struktur ermöglicht es, Rang, Bild, Kern und Defekt sowie Fragen nach
+linearer Unabhängigkeit mit demselben Verfahren systematisch zu
+untersuchen.
+
+
+%----------------------------------------------------------
+\subsubsection*{Den Rang einer Matrix bestimmen}
+
+Der Rang einer Matrix wurde als Dimension ihres Bildes definiert:
+\[
+\operatorname{rk}(A)
+=
+\dim\bigl(\operatorname{im}(A)\bigr).
+\]
+
+Das Gaußsche Eliminationsverfahren liefert nun eine systematische
+Möglichkeit, diesen Rang zu bestimmen. Wird eine Matrix durch elementare
+Zeilenumformungen in Zeilenstufenform überführt, so werden die voneinander
+unabhängigen Bedingungen sichtbar.
+
+Besitzt die Zeilenstufenform \(k\) von Null verschiedene Zeilen, so befinden
+sich darunter nur noch Nullzeilen.
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]
+{../Mathematik_1/Bilder/matrizen_rang_zeilenstufenform.png}
+\end{center}
+
+Die Anzahl \(k\) der von Null verschiedenen Zeilen entspricht der Anzahl
+der Pivotpositionen und damit dem Rang der Matrix:
+\[
+\operatorname{rk}(A)=k.
+\]
+
+Der zuvor abstrakt als Dimension des Bildes definierte Rang kann damit
+mithilfe des Gaußschen Eliminationsverfahrens konkret bestimmt werden.
+
+
+\subsubsection*{Kern und Defekt bestimmen}
+
+Der Kern einer Matrix wurde definiert durch
+\[
+\ker(A)
+=
+\{\vec x\in\mathbb R^n:A\vec x=\vec0\}.
+\]
+
+Die Bestimmung des Kerns ist damit nichts anderes als das Lösen des
+homogenen linearen Gleichungssystems
+\[
+A\vec x=\vec0.
+\]
+
+Wird \(A\) in Zeilenstufenform gebracht und besitzt die Matrix den Rang
+\(k\), so gibt es \(k\) Pivotvariablen. Die übrigen \(n-k\) Variablen sind
+freie Variablen.
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]
+{../Mathematik_1/Bilder/matrizen_defekt_freie_variablen.png}
+\end{center}
+
+Jede freie Variable liefert einen freien Parameter in der allgemeinen
+Lösung des homogenen Gleichungssystems. Die Anzahl dieser freien Parameter
+entspricht der Dimension des Kerns. Damit gilt
+\[
+\operatorname{def}(A)
+=
+\dim\bigl(\ker(A)\bigr)
+=
+n-k.
+\]
+
+Da gleichzeitig
+\[
+\operatorname{rk}(A)=k
+\]
+gilt, folgt
+\[
+\operatorname{rk}(A)+\operatorname{def}(A)=n.
+\]
+
+Der Rangsatz erhält damit eine unmittelbar sichtbare Bedeutung: Die
+\(n\) Variablen zerfallen in \(k\) durch Pivotpositionen bestimmte
+Variablen und \(n-k\) freie Variablen. Die Anzahl der freien Parameter
+entspricht der Dimension des Kerns.
+
+\subsubsection*{Lineare Unabhängigkeit systematisch untersuchen}
+
+Auch die Frage nach der linearen Unabhängigkeit mehrerer Vektoren lässt sich auf ein lineares Gleichungssystem zurückführen.
+
+Gegeben seien
+\[
+\vec a_1,\ldots,\vec a_n\in\mathbb R^m.
+\]
+Nach der Definition sind diese Vektoren genau dann linear unabhängig, wenn
+aus
+\[
+x_1\vec a_1+\cdots+x_n\vec a_n=\vec0
+\]
+notwendig
+\[
+x_1=\cdots=x_n=0
+\]
+folgt.
+
+Werden die Vektoren als Spalten einer Matrix
+\[
+A=
+\begin{pmatrix}
+\vert&&\vert\\
+\vec a_1&\cdots&\vec a_n\\
+\vert&&\vert
+\end{pmatrix}
+\]
+angeordnet, so wird die Bedingung zur Matrixgleichung
+\[
+A\vec x=\vec0.
+\]
+
+Damit gilt:
+\[
+\vec a_1,\ldots,\vec a_n
+\text{ sind linear unabhängig}
+\quad\Longleftrightarrow\quad
+\ker(A)=\{\vec0\}.
+\]
+
+Die abstrakte Frage nach linearer Unabhängigkeit wird dadurch zu einer konkreten Rechenaufgabe: Das zugehörige homogene lineare Gleichungssystem wird mit dem Gaußschen Eliminationsverfahren gelöst.
+
+Besitzt es nur die triviale Lösung, sind die Vektoren linear unabhängig.  Treten freie Parameter und damit nichttriviale Lösungen auf, sind die Vektoren linear abhängig.
+\subsubsection*{Das Bild und eine Basis des Bildes bestimmen (+)}
+
+Die Spalten einer Matrix
+\[
+A=
+\begin{pmatrix}
+\vert && \vert\\
+\vec a_1&\cdots&\vec a_n\\
+\vert && \vert
+\end{pmatrix}
+\]
+spannen das Bild der zugehörigen linearen Abbildung auf:
+\[
+\operatorname{im}(A)
+=
+\operatorname{span}\{\vec a_1,\ldots,\vec a_n\}.
+\]
+
+Damit bilden die Spalten von \(A\) zunächst ein Erzeugendensystem des
+Bildes. Dieses Erzeugendensystem muss jedoch nicht linear unabhängig sein.
+Für eine Basis des Bildes werden daher gerade so viele linear unabhängige
+Vektoren benötigt, wie der Rang der Matrix angibt.
+
+Das Gaußsche Eliminationsverfahren kann auch verwendet werden, um solche
+Basisvektoren systematisch zu bestimmen. Dabei ist zu beachten, dass die
+gesuchten Vektoren als \emph{Spalten} in \(A\) stehen, während das
+Gaußverfahren mit \emph{Zeilen} arbeitet.
+
+Deshalb wird zunächst die transponierte Matrix
+\[
+A^{\intercal}
+\]
+gebildet. Die Spaltenvektoren von \(A\) erscheinen darin als Zeilenvektoren.
+Anschließend wird \(A^{\intercal}\) durch elementare Zeilenumformungen in
+Zeilenstufenform überführt \(A^\intercal \longrightarrow \widetilde{ ( A^\intercal) } \).
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]
+{../Mathematik_1/Bilder/matrizen_bildbasis_transponierte_zeilenstufenform.png}
+\end{center}
+
+Die elementaren Zeilenumformungen verändern den von den Zeilen aufgespannten
+Vektorraum nicht. In der Zeilenstufenform bleiben daher genau \(k\)
+linear unabhängige Nichtnullzeilen übrig, wenn
+\[
+\operatorname{rk}(A)=k.
+\]
+
+Diese \(k\) Zeilen bilden eine Basis des Zeilenraums von
+\(A^{\intercal}\). Durch erneutes Transponieren werden daraus
+Spaltenvektoren in \(\mathbb R^m\). Diese Vektoren bilden eine Basis des
+Bildes von \(A\).
+
+Damit liefert das Gaußsche Eliminationsverfahren nicht nur die Dimension
+des Bildes. Durch die Anwendung auf die transponierte Matrix können auch
+konkrete Basisvektoren des Bildes bestimmt werden.
+
+
+\subsubsection*{Eine gemeinsame Systematik}
+
+Mehrere zuvor getrennt eingeführte Begriffe lassen sich damit auf dieselbe Rechenmethode zurückführen:
+
+\[
+A\vec x=\vec b
+\quad\longrightarrow\quad
+\text{Lösbarkeit und Lösungsmenge},
+\]
+
+\[
+A\vec x=\vec0
+\quad\longrightarrow\quad
+\text{Kern und Defekt},
+\]
+
+und die Zeilenstufenform von \(A\) liefert Informationen über Rang, Pivotspalten und damit über lineare Unabhängigkeit und eine Basis des Bildes.
+
+Das Gaußsche Eliminationsverfahren ist deshalb nicht nur ein Verfahren zum Lösen linearer Gleichungssysteme. Es ist ein grundlegendes Rechenwerkzeug der linearen Algebra, das die abstrakten Begriffe der vorangegangenen Abschnitte konkret zugänglich macht.
+
+
+%----------------------------------------------------------
+\subsection*{Ausblick}
+
+Überbestimmte Gleichungssysteme müssen nicht lösbar sein. In vielen Anwendungen entsteht dann die Frage, ob zumindest ein Vektor gefunden werden kann, der die Gleichungen möglichst gut erfüllt. Dies führt zur \textbf{Methode der kleinsten Fehlerquadrate} (\emph{least squares}), die beispielsweise bei der linearen Regression eine
+zentrale Rolle spielt.
+
+Das Gaußsche Eliminationsverfahren ist ein \textbf{direktes Lösungsverfahren}. Bei exakter Arithmetik wird nach endlich vielen Eliminationsschritten eine Form erreicht, aus der sich die Lösungsstruktur bestimmen lässt. Bei numerischen Rechnungen mit Gleitkommazahlen kommen zusätzlich Rundungsfehler und Fragen der numerischen Stabilität hinzu.
+
+Für sehr große lineare Gleichungssysteme können dagegen \textbf{iterative Verfahren} (\emph{iterative methods}) zweckmäßig sein.  Dabei wird ausgehend von einem Startwert eine Folge von Näherungen erzeugt, die unter geeigneten Voraussetzungen gegen die gesuchte Lösung konvergiert.
+
+Ein grundlegendes Beispiel ist das \textbf{Jacobi-Verfahren} (\emph{Jacobi method}). Für bestimmte Klassen quadratischer Matrizen konvergiert dieses Verfahren zur Lösung des Gleichungssystems. Eine hinreichende Bedingung ist beispielsweise strikte Diagonaldominanz der Matrix. Die Untersuchung solcher Verfahren und ihrer Konvergenzeigenschaften gehört zur numerischen Mathematik.
+

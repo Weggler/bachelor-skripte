@@ -1,0 +1,142 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+
+\usepackage[ngerman,english]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\usepackage{graphicx}
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+
+\begin{document}
+{
+	\begin{eqnarray*}
+		\begin{array}{l r c l}
+			(a) \, & \dot y + 7 y &=& - \sin(3t) + t \\[1ex]
+			(b) \, & y''' + y'' - 6x &=& e^{-x} \\[1ex]
+			(c) \, & y'' + 6 y' + 13 y &=& 4 e^{2x} \\[1ex]
+			(d) \, & y'' - 9 y' + 20 y &=& 2 e^{4x} \\[1ex]
+			(e) \, & y' &=& 2 \sqrt{y} \cdot \ln(x) \\[1ex]
+		(f) \, & x \cdot y' - y &=& x^3 \cdot \sin(x)
+	\end{array}
+	\end{eqnarray*}
+
+	\begin{itemize}
+		\item[(a)]
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Ja. \par
+			\colorbox{yellow}{Ist die Differentialgleichung linear mit konstanten Koeffizienten?} Ja.\newline
+			\colorbox{green}{Bestimmung der allgemeinen, reellen Lösung der homogenen Gleichung \(y_h\):}
+				\begin{eqnarray*}
+					\textnormal{Ansatz?}                      && \begin{cases} y_h(t) &= ce^{\lambda t}, c>0 \\ y_h^{(k)}(t) &= c\lambda^k e^{\lambda x}, k\geq 1 \end{cases}\\
+					\textnormal{Nullstellen?}  && p(\lambda) = \lambda + 7 \quad  \Rightarrow p(\lambda) = 0 \Leftrightarrow \lambda = -7 \\
+				        y_h\textnormal{?}                      && \Rightarrow y_h(t) = c \displaystyle{e^{-7t}}
+			\end{eqnarray*}
+
+		\colorbox{yellow}{Gibt es eine Inhomogenität?}Ja, nämlich \(g(t) = g_1(t) + g_2(t) = -\sin(3t)+t \) \par
+		\colorbox{green}{Bestimmung einer partikulären Lösung der inhomogenen Gleichung \(y_p\) (Ansatz vom Typ der rechten Seite):}
+			\begin{eqnarray*}
+				\textnormal{Resonanz?}      && g_1, g_2 \not \in \mathrm{LH}\left\{ e^{-7t} \right\} \Rightarrow \; \textnormal{keine Resonanz} \\
+				\textnormal{Ansatz?}        && y_p(t) = A\sin(3t) + B\cos(3t) + C + Dt \\
+				\textnormal{Koeffizienten?} && A = -\frac{7}{58} \land B = \frac{3}{58} \land D = 1 \land C=-1 \\
+				y_p\textnormal{?}        &&\Rightarrow y_p(t) = -\frac{7}{58} \sin(3t) + \frac{3}{58} \cos(3t)
+			\end{eqnarray*}
+			\colorbox{green}{ Superposition der Lösungskomponenten:} \( y(t) = y_h(t) + y_p(t) = ce^{-7t} - \frac{7}{58} \sin(3t) + \frac{3}{58} \cos(3t) \)
+
+		\item[(b)] (mehrfache reelle Nullstelle und einfache reelle Nullstelle mit Resonanz)\\
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Ja.\par
+			\colorbox{yellow}{Ist die Differentialgleichung linear mit konstanten Koeffizienten?} Ja.\par
+			\colorbox{green}{Bestimmung der allgemeinen, reellen Lösung der homogenen Gleichung \(y_h\):}
+				\begin{eqnarray*}
+					\textnormal{Ansatz?}                     && \begin{cases} y_h(x) &= ce^{\lambda x}, c>0 \\ y_h^{(k)}(x) &= c\lambda^k e^{\lambda x}, k\geq 1 \end{cases}\\
+					\textnormal{Nullstellen?} && p(\lambda) = \lambda^3+ \lambda^2\quad \Rightarrow p(\lambda) = 0 \Leftrightarrow \lambda_{1,2} = 0 \lor \lambda_3 = -1\\
+					y_h\textnormal{?}                     && \Rightarrow y_h(x) = c_1 + c_2 x +  c_3\displaystyle{e^{-x}}
+			\end{eqnarray*}
+
+		\colorbox{yellow}{Gibt es eine Inhomogenität?} Ja, nämlich \(g(x) = g_1(x) + g_2(x) = e^{-x} + 6x \)\\
+		\colorbox{green}{Bestimmung einer partikulären Lösung der inhomogenen Gleichung \(y_p\) (Ansatz vom Typ der rechten Seite):}
+			\begin{eqnarray*}
+				\textnormal{Resonanz?}      && g_1 \in \mathrm{LH}\left\{1, x, e^{-x} \right\} \Rightarrow \; \textnormal{Resonanz} \\
+				\textnormal{Ansatz?}        && y_p(x) =  A \cdot x \cdot e^{-x} + B\cdot x^3 + C\cdot x^2 + D \cdot x + E \\
+				\textnormal{Koeffizienten?} && A = 1 \land B = 1 \land C = -3  \land D = 0   \land E = 0 \\
+				y_p\textnormal{?}        &&\Rightarrow y_p(x) = x\cdot e^{-x} + x^3 - 3 x^2
+			\end{eqnarray*}
+			\colorbox{green}{ Superposition der Lösungskomponenten:} \( y(x) = y_h(x) + y_p(x) = c_1 + c_2 x + c_3e^{-x} +  x\cdot e^{-x} + x^3 - 3 x^2  \)
+
+		\item[(c)] (komplexes Nullstellenpärchen) \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Ja. \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear mit konstanten Koeffizienten?} Ja. \\
+			\colorbox{green}{Bestimmung der allgemeinen, reellen Lösung der homogenen Gleichung \(y_h\):}
+				\begin{eqnarray*}
+					\textnormal{Ansatz?}                      && \begin{cases} y_h(x) &= ce^{\lambda x}, c>0 \\ y_h^{(k)}(x) &= c\lambda^k e^{\lambda x}, k\geq 1 \end{cases}\\
+					\textnormal{Nullstellen?}  && p(\lambda) = \lambda^2 + 6 \lambda + 13\quad \Rightarrow p(\lambda) = 0 \Leftrightarrow \lambda_{1,2} = -3 \pm 2i\\
+					y_h\textnormal{?}                      && \Rightarrow y_h(x) = e^{-3x} \left( c_1 \cos(2x) + c_2 \sin(2x) \right)
+			\end{eqnarray*}
+		\colorbox{yellow}{Gibt es eine Inhomogenität?} Ja, nämlich \(g(x) = 4e^{2x} \) \\
+		\colorbox{green}{Bestimmung einer partikulären Lösung der inhomogenen Gleichung \(y_p\) (Ansatz vom Typ der rechten Seite):}
+			\begin{eqnarray*}
+				\textnormal{Resonanz?}       &&  g \not \in \mathrm{LH}\left\{ e^{-3x}\cdot \cos(2x), e^{-3x}\cdot \sin(2x) \right\} \Rightarrow \; \textnormal{keine Resonanz} \\
+				\textnormal{Ansatz?}         && y_p(x) =  A \cdot e^{2x} \\
+				\textnormal{Koeffizienten?}  && A = \frac{4}{29} \\
+				y_p\textnormal{?}         &&\Rightarrow y_p(x) = \frac{4}{29} e^{2x}
+			\end{eqnarray*}
+	 \colorbox{green}{ Superposition der Lösungskomponenten:} \( y(x) = y_h(x) + y_p(x) = e^{-3x}\left( c_1\cos(2x) + c_2\sin(2x)\right) + \frac{4}{29} e^{2x}  \)
+
+		\item[(d)] (einfache, reelle Nullstellen mit Resonanz) \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Ja.  \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear mit konstanten Koeffizienten?} Ja. \\
+			\colorbox{green}{Bestimmung der allgemeinen, reellen Lösung der homogenen Gleichung \(y_h\):}
+				\begin{eqnarray*}
+					\textnormal{Ansatz?}                       && \begin{cases} y_h(x) &= ce^{\lambda x}, c>0 \\  y_h^{(k)}(x) &= c\lambda^k e^{\lambda x}, k\geq 1 \end{cases}\\
+					\textnormal{Nullstellen?}   && p(\lambda) = \lambda^2 -9 \lambda + 20 \quad \Rightarrow  p(\lambda) = 0 \Leftrightarrow \lambda_{1,2} = \begin{cases} 5 \\4 \end{cases}\\
+					y_h\textnormal{?}                       && \Rightarrow y_h(x) = c_1 e^{5x} + c_2 e^{4x}
+			\end{eqnarray*}
+		\colorbox{yellow}{Gibt es eine Inhomogenität?} Ja, nämlich \(g(x) = 2 e^{4x} \) \\
+		\colorbox{green}{Bestimmung einer partikulären Lösung der inhomogenen Gleichung \(y_p\) (Ansatz vom Typ der rechten Seite):}
+			\begin{eqnarray*}
+				\textnormal{Resonanz?}         &&  g \in \mathrm{LH}\left\{ e^{4x} \right\} \Rightarrow \; \textnormal{Resonanz} \\
+				\textnormal{Ansatz?}       && y_p(x) =  x \cdot A \cdot e^{4x} \\
+				\textnormal{Koeffizienten?}  && A = -2 \\
+				y_p\textnormal{?}         &&\Rightarrow y_p(x) = -2 \cdot x \cdot e^{4x}
+			\end{eqnarray*}
+		\colorbox{green}{ Superposition der Lösungskomponenten:} \( y(x) = y_h(x) + y_p(x) = c_1 e^{5x} + c_2 e^{4x} - 2 x e^{4x} \)
+
+		\item[(e)] (nichtlinear) \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Nein. \\
+			\colorbox{yellow}{Ist die Differentialgleichung von erster Ordnung?} Ja. \\
+			\colorbox{yellow}{Besitzt die Differentialgleichung trennbare Variablen?} Ja. \\
+			\colorbox{green}{Bestimmung der allgemeinen, reellen Lösung der homogenen Gleichung \(y_h\):}
+				\begin{eqnarray*}
+					\textnormal{Trennung der Variablen?}                       && \frac{1}{\sqrt{y}}\, \mathrm{d}y = 2 \ln(x) \,\mathrm{d}x \\
+					\textnormal{Integration?}                  && \sqrt{y} = \ln(x)\cdot x - x + c\\
+					y\textnormal{?}                       && \Rightarrow y(x) = \left( \ln(x)\cdot x - x + c\right)^2, \; x>0
+			\end{eqnarray*}
+		\item[(f)]
+			\colorbox{yellow}{Ist die Differentialgleichung linear?} Ja. \\
+			\colorbox{yellow}{Ist die Differentialgleichung linear mit konstanten Koeffizienten? } Nein. \\
+			\colorbox{yellow}{Ist die Differentialgleichung von erster Ordnung? } Ja. \\
+			\colorbox{green}{Bestimmung der allgemeinen Lösung der homogenen Gleichung \(y_h\) (alternativ: Trennung der Variablen):}
+				\begin{eqnarray*}
+					\textnormal{Ansatz?}                       && \begin{cases} y_h(x) &= ce^{\lambda(x)}, c>0 \\  y_h'(x) &= c\lambda'(x) e^{\lambda(x)} \end{cases}\\
+					\textnormal{A+E?}   && \forall \, x\not=0:\quad \lambda'(x) = \frac1x \Rightarrow \lambda(x) = \ln|x|\\
+					y_h\textnormal{?}                       && \Rightarrow y_h(x) = c e^{\ln|x|} = c\cdot |x| \\
+					\textnormal{Erweiterung des Loesungsraums?}                       && \Rightarrow y_h(x) = c\cdot x
+			\end{eqnarray*}
+		\colorbox{yellow}{Gibt es eine Inhomogenität?} Ja, nämlich \(g(x) = x^3\sin(x) \)\\
+		\colorbox{green}{Bestimmung einer partikulären Lösung der inhomogenen Gleichung \(y_p\) (Variation der Konstante):}
+			\begin{eqnarray*}
+				\textnormal{Ansatz?}       && y_p(x) =  c(x) \cdot x \\
+				\textnormal{A+E?}          && \forall \, x\not = 0:\quad c'(x) = x \cdot \sin(x)\Rightarrow c(x) = -x\cos(x) + \sin(x)\\
+				y_p\textnormal{?}       &&\Rightarrow y_p(x) =  \left(-x\cos(x) + \sin(x) \right) \cdot x
+			\end{eqnarray*}
+		\colorbox{green}{ Superposition der Lösungskomponenten:}\( y(x) = y_h(x) + y_p(x) = \left( c - x\cdot \cos(x) + \sin(x) \right) \cdot x \)
+	\end{itemize}
+
+}
+\end{document}

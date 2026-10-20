@@ -1,0 +1,82 @@
+\section*{Algebraische Gleichungen Lösungen}\label{MA1-algebraische-gleichungen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-algebraische-gleichungen}{ (Abschnitt \abschnittsverweis{MA1-algebraische-gleichungen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Gleichungen] %LS p.29, Aufgabe 7
+  \begin{itemize}
+	  \item[(a)] Zeigen Sie, dass der Graph der Funktion $f: x\mapsto x^3-2x^2-3x+10$ die $x$-Achse nur im Punkt $S(-2|0)$ schneidet.
+	  \item[(b)] Die Gerade $g$ geht durch $S$ und hat die Steigung $2$. Berechnen Sie alle Schnittpunkte von $g$ mit dem Graphen von $f$.
+  \end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] Es gilt $f(-2)=0$. Gibt es noch andere Nullstellen? Wir führen eine Polynomdivision durch und berechnen die Diskriminante der resultierenden quadratische Gleichung: 
+		  \[ (x^3-2x^2-3x+10):(x+2) = x^2-4x+5 \quad \Rightarrow D= 4 - 4\cdot 1 \cdot 5 = -16 < 0 \,.\] Aus $D<0$ folgt, dass es keine weiteren reellen Nullstellen gibt.
+	  \item[(b)] Die Geradengleichung lautet $g: x\mapsto 2x+4$. Die Schnittpunkte mit $f$ sind die drei Lösungen der Gleichung $f(x) = g(x)$ und wir erhalten  $ S(-2|0), \; P(1|6), \; Q(3|10)\,.$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen] %LS p. 29, Aufgabe 6 b) und d)
+  Bestimmen Sie durch Probieren eine Nullstelle und berechnen Sie danach die weiteren Nullstellen.
+  \begin{itemize}
+	  \item[(a)] $f(x) = x^3+x^2-4x-4$
+	  \item[(b)] $f(x) = 4x^3-20x^2-x + 110$
+  \end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] $f(x) = 0 \Leftrightarrow x\in \{ -1, -2, 2\}$
+	  \item[(b)] $f(x) = 0 \Leftrightarrow x\in \{ -2\}$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen] %Andreas
+	Geben Sie die Lösungsmengen der folgenden Gleichungen an:
+	\begin{eqnarray*}
+		\begin{array}{ll} (a) \; x^2-2 x -7 = 0  \quad \quad \quad & (b)\; x^3-6 x^2 - x + 30 = 0 \\[1ex]
+			(c) \; 2x^3-5 x^2 -10 x = 0 \quad \quad \quad \quad & (d) \; x^4-13 x^2+36 = 0
+		\end{array}
+	\end{eqnarray*}
+		
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{itemize}
+	  \item[(a)] $x_{1,2}= \displaystyle{ \frac{2 \pm \sqrt{(-2)^2 - 4\cdot 1 \cdot (-7) }}{2\cdot 1}} = 1 \pm 2\sqrt{2}\,.$
+	  \item[(b)] $x_1=3$ ist Nullstelle (raten und überprüfen!). Wir führen die Polynomdivision aus \[ (x^3-6x^2-x+30):(x-3) = x^2-3x-10 \Rightarrow x_{2,3} = \displaystyle{ \frac{3\pm \sqrt{49}}{2}} = \frac12\cdot (3\pm 7)\,.\] Also $x_2 = -2$, $x_3=5$ und damit $\mathbb L = \{-2, 3, 5\}$
+	  \item[(c)] Ein $x$ läßt sich ausklammern \[ 2x^3-5x^2-10x = x\cdot (2x^2-5x-10) = 0 \Leftrightarrow x=0 \lor 2x^2-5x-10 = 0\,.\] Das Polynom links ist quadratisch und hat die Nullstellen $x_2 = \frac14(5-\sqrt{105})$ und $x_3=\frac14(5+\sqrt{105}) $ Also $\mathbb L = \{0,\frac14(5-\sqrt{105}), \frac14(5+\sqrt{105})\}$
+	  \item[(d)] Wir substituieren $z:=x^2$ und lösen die quadratische Gleichung in $z$, also \[ z^2-13z+36 = 0 \Rightarrow  z_1 = 4, \; z_2=9\,.\] Die Rücksubstitution liefert die vier Lösungen in $x$:  $x_1 = 2, x_2 = -2, x_3=3, x_4=-3$.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Newton-Verfahren]
+	\begin{itemize}
+		\item[(a)] Betrachten Sie die Funktion \[ f: x\mapsto \sin(x) - \frac12 x - \frac{1}{10}\,.\] Formulieren Sie das Newton-Verfahren zur Bestimmung einer Nullstelle von $f$ für den Startwert $x_0 = \frac{1}{10}$. Führen Sie drei Iterationen durch. Hinweis: $f': x\mapsto \cos(x) - \frac12$. 
+		\item[(b)] 
+			Bestimmen Sie eine Folge, die sich für große $n$ an $\sqrt{5}$ annähert. Hinweis: Betrachten Sie $f:x\mapsto x^2-5$ mit $f': x\mapsto 2x$.
+\item[(c)]
+	Berechnen Sie die ersten drei Iterierten des Newton-Verfahrens zur Funktion \[ f:x\mapsto x^3-2y+2\] mit Startwert $x_0=0$. Konvergiert das Newton-Verfahren? Interpretieren Sie das Ergebnis.
+	\end{itemize}
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+	\begin{itemize}
+		\item[(a)] Es gilt $f'(x) = \cos(x) - \frac12$ und wir erhalten \[ x_{m+1} = x_m - \frac{f(x_m)}{f'(x_m)} = x_m - \frac{\sin(x_m) - \frac12 x_m - \frac{1}{10} }{\cos(x_m) - \frac12 }\] Die ersten drei Iterierten lauten \[ x_1 \approx 0.202, \quad x_2\approx 0.203, \quad x_3\approx 0.202\,.\]
+		\item[(b)] Die Idee ist das Newton-Verfahren zu bemühen. Man wählt zum Beispiel $x_0 = \frac12$  und iteriert wie folgt:  \[ x_{m+1} = x_m - \frac{f(x_m)}{f'(x_m)} = x_m - \frac{x_m^2 - 5 }{ 2 x_m}\,.\]  
+		\item[(c)] Die Newton-Iteration lautet \[ x_{m+1} = x_m - \frac{f(x_m)}{f'(x_m)} = x_m - \frac{x_m^2 - 2x_m + 2 }{ 3 x_m^2 -2}\,.\] Es gilt also \[ x_0 = 1, \quad x_1 = 1-\frac11 = 0,\quad x_2 = 0 - \frac{2}{-2} = 1, \quad x_3 = 0\,.\] Es werden abwechselnd die Werte $0$ und $1$ angenommen, so dass eine Konvergenz der Iterierten ausgeschlossen ist. Der Startwert $x_0 =0$ war offenbar nicht nah genug an der Lösung dran. 
+	\end{itemize}
+\end{exercisebox}
+
+%
+%\begin{exercisebox}[Mathematik lesen, Fehlerabschätzung]
+%  $|\left(x-f(x)f'(x)\right) - \underline x| \leq c\,|x-\underline x|^2\,.$ 
+%  \end{exercisebox}

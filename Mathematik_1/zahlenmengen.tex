@@ -1,0 +1,233 @@
+\section{Zahlenmengen}\label{MA1-zahlenmengen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem die Zahlenmengen \(\mathbb N_0, \mathbb N^+, \mathbb Z, \mathbb Q\) unterscheiden und korrekt verwenden &\\
+    \tabitem die wesentlichen Eigenschaften eines Körpers am Beispiel von
+\(\mathbb Q\) und \(\mathbb R\) erklären & \\
+    \tabitem Fakultäten und Binomialkoeffizienten berechnen &\\
+    \tabitem Rechengesetze in \(\mathbb R\) sicher anwenden &\\
+    \tabitem Summen- und Produktsymbole ausschreiben und vereinfachen &\\
+    \tabitem den Binomischen Satz anwenden &\\
+    \midrule
+	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
+    \tabitem Grundrechenarten &\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-zahlenmengen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Natürliche, ganze und rationale Zahlen}
+
+Zum Zählen benötigt man die Zahlen $1,  2,  3,\dots$. Diese Menge von Zahlen nennt man die \textbf{natürlichen Zahlen} (\emph{natural numbers}) und führt das Symbol \(\mathbb N\) ein. Allerdings ist unklar, ob \(\mathbb N\) die Null beinhaltet oder nicht\footnote{In der Informatik zählt die Null meist dazu und in der Mathematik mal so mal so.} In diesem Skript werden Indizes eingeführt, die die Frage präzise klären: $\mathbb N_0$ enthält die Null und $\mathbb N^+$ nicht.\footnote{Wie lauten die Bedingungen in mathematischer Kurzschrift? \(0\in \mathbb N_0\) und \( \forall n\in \mathbb N^+: n>0\).}
+
+Im Zahlenbereich $\mathbb Z$ der  \textbf{ganzen Zahlen}  (\emph{integers}) kommen die negativen ganzen Zahlen hinzu. 
+
+Kommen noch alle positiven und negativen Brüche hinzu, erhält man den Bereich der \textbf{rationalen Zahlen} \(\mathbb Q\) (\emph{rational numbers}).
+
+\begin{defbox}{Natürliche, ganze und rationale Zahlen: $\mathbb N$, $\mathbb Z$ und $\mathbb Q$}{ }
+\begin{eqnarray*}
+	\mathbb N_0 &=& \{ 0,1,2,3, 4\dots \}\,, \\
+	\mathbb N^+ &=&  \{ 1,2,3, 4\dots \}\,, \\
+	\mathbb Z &=& \left\{ \dots,-3,-2,-1,0,1,2,3,\dots \right\} = \mathbb N_0 \cup \{-1,-2,-3,-4,\cdots\}\,,\\
+   \mathbb Q &=& \left\{ \displaystyle{\frac{m}{n}}, \quad m \in \mathbb Z \land n \in \mathbb N^+\right\}\,.
+  \end{eqnarray*}
+\end{defbox}
+
+Wenn eine Rechenoperation in der Mathematik immer wieder auftaucht, dann ist es sinnvoll ein Symbol einzuführen. Solche zwei Rechenoperationen mit natürlichen Zahlen sind die Fakultät und der Binomialkoeffizient.\marginpar{\small Aufgabe} Sie sind wie folgt definiert:   
+
+\begin{defbox}{Fakultät und Binomialkoeffizient}{ }
+	\begin{center}
+	\begin{tabular}{l|l|l|l}
+Name & Symbol & Wertebereich &  Besonderheit  \\
+\hline
+Fakultät & \(n! = n\cdot (n-1) \cdot (n-2)  \dots  1 \) & \(n\in \mathbb N_0\) &  \(0! = 1! = 1\) \\[2ex]
+Binomialkoeffizient &  \(\displaystyle{\binom{n}{k}} = \displaystyle{\frac{ n!}{ k!\cdot (n-k)!}} \) & \( n,k\in\mathbb N_0 : \;k\leq n \)    & \( \displaystyle{\binom{n}{0}} = \displaystyle{\binom{n}{n}} = 1  \)
+\end{tabular}
+\end{center}
+\end{defbox}
+
+\noindent {\textbf{ Bemerkungen: }}
+\begin{itemize}
+	\item Die Anzahl der Möglichkeiten $n$ verschiedene Objekte in einer Reihe anzuordnen ist \(n\)-Fakultät.
+	\item Die Anzahl der Möglichkeiten aus einer $n$-elementigen Menge $k$ Elemente auszuwählen ist \(n\) über \(k\).
+\end{itemize}
+
+\subsection{Reelle Zahlen}
+
+
+Um $x^{2}=2$ lösen zu können oder den Umfang eines Kreises mit Durchmesser $1$ als Zahl anzugeben, benötigt man einen größeren Zahlenbereich: den der \textbf{reellen Zahlen} $\mathbb R$ (\emph{real numbers}). 
+
+\begin{exabox}{Reelle Zahlen}{ }
+	$\displaystyle{\left\{-\ln(77)\,, \; \sqrt{2}\,, \; \pi\,, \; \frac{4}{28}\,, \; 38624983 \right\} \subset \mathbb R\,. }$
+\end{exabox}
+
+Die reellen Zahlen besitzen gegenüber den rationalen Zahlen eine weitere wichtige Eigenschaft: Sie sind \textbf{vollständig}\footnote{Vereinfacht gesprochen bedeutet die Vollständigkeit von \(\mathbb R\): Konvergente Näherungsverfahren, deren Werte reelle Zahlen sind und die sich immer weiter auf einen Wert festlegen, führen nicht aus dem Zahlenbereich \(\mathbb R\) hinaus.} Anschaulich bedeutet dies, dass der reelle Zahlenstrahl keine „Lücken“ besitzt. Eine solche Lücke tritt beispielsweise auf, wenn man versucht, \(\sqrt{2}\) ausschließlich mit rationalen Zahlen zu erfassen. Durch immer genauere rationale Näherungen kann man sich der Zahl \(\sqrt{2}\) beliebig weit annähern. Der Grenzwert dieser Näherungen ist jedoch selbst keine rationale Zahl. Innerhalb von \(\mathbb Q\) fehlt also genau die Zahl, auf die die Näherungen zulaufen.
+
+\begin{exabox}{Die Zahl \(\sqrt{2}\)}{ }
+Ein klassisches Beispiel für eine reelle Zahl, die nicht rational ist, ist \(\sqrt{2}\). Angenommen, es gäbe einen vollständig gekürzten Bruch
+
+$$
+\sqrt{2}=\frac pq,\qquad p,q\in\mathbb N^+.
+$$
+
+Dann folgt
+
+$$
+	\begin{array}{rcrcl l} 
+		\sqrt{2}=\dfrac pq & \Rightarrow & 2\cdot q^2 &=& p^2 & \Rightarrow p^2\text{ gerade}, p\text{ gerade}\\
+		&\Rightarrow & \exists \, k \in \mathbb N^+: \,  p &=& 2\cdot k \\
+		&\Rightarrow & 2\cdot q^2=&=& 4\cdot k^2 & \\  & \Leftrightarrow & q^2 &=& 2 \cdot k^2  &\Rightarrow q^2\text{ gerade}, \, q\text{ gerade}.
+\end{array}
+$$
+
+Damit sind \(p\) und \(q\) beide durch \(2\) teilbar -- im Widerspruch zur Annahme, dass \(p/q\) vollständig gekürzt ist. Also gilt
+
+$$
+\sqrt{2}\notin\mathbb Q.
+$$
+
+Trotzdem lässt sich \(\sqrt{2}\) durch rationale Zahlen beliebig genau eingrenzen:
+
+$$
+1<\sqrt{2}<2,\qquad
+1{,}4<\sqrt{2}<1{,}5,\qquad
+1{,}41<\sqrt{2}<1{,}42,\quad\dots
+$$
+
+Es entstehen ineinander geschachtelte Intervalle mit rationalen Grenzen, die \(\sqrt{2}\) immer genauer festlegen. Dieses Verfahren heißt \textbf{Intervallschachtelung}.
+\end{exabox}
+
+Ein zusammenhängendes Stück der reellen Zahlen nennt man ein Intervall. Es gibt offene, halboffene oder abgeschlossene Intervalle -- je nachdem ob beide, nur eines oder beide Intervallenden dazugehören oder nicht. Möchte man ein Intervall aufschreiben, das bis ins Unendliche geht, dann benutzen wir für plus Unendlich das Unendlichkeitsymbol $\infty$ und für minus Unendlich entsprechend \(-\infty\).\footnote{Aufpassen: Unendlich ist keine reelle Zahl, sondern ein Symbol!} 
+\begin{exabox}{Intervalle}{ }
+  \begin{itemize}
+    \item $[0,1] = \{x\in \mathbb R: 0 \leq x \leq 1\}$,
+    \item $(0,1] = \{x\in \mathbb R: 0 < x \leq 1\}$,
+    \item $(0,1) = \{x\in \mathbb R: 0 < x < 1\}$,
+    \item $(-\infty ,1) = \{x\in \mathbb R: x < 1\}$,
+    \item $(-\infty ,+\infty) = \mathbb R$.
+  \end{itemize}
+\end{exabox}
+
+Eine abschließende Bemerkung: viele reelle Zahlen haben zwei Schreibweisen - schauen Sie sich das an: \[\displaystyle{ 1 = 3\cdot \frac13 = 3 \cdot 0,\bar 3 = 0,\bar 9 \,.}\]
+
+\subsection{Rechenregeln}
+
+In den bisher genannten Zahlenbereichen gelten diese Regeln:  
+\begin{theorembox}{Addition und Multiplikation}{ }
+\begin{itemize}
+  \item Die Addition ist assoziativ: \quad $a+ (b+c) = (a+b)+c $.
+  \item Die Multiplikation ist assoziativ: \quad $a\cdot (b\cdot c) = (a \cdot b) \cdot c$.
+  \item Die Addition ist kommutativ:\quad $a+b = b+a$.
+  \item Die Multiplikation ist kommutativ:\quad $a\cdot b = b \cdot a$
+  \item Es gilt das Distributivgesetz: \quad $a \cdot (b+c) = a \cdot b  +  a \cdot c = (b+c) \cdot a = b \cdot a + c \cdot a$.
+\end{itemize}
+\end{theorembox}
+
+Subtraktion und Division sind dagegen weder assoziativ noch kommutativ!
+\begin{exabox}{Häufige Fehler}{ }
+\begin{itemize}
+  \item Die Subtraktion ist nicht assoziativ: \quad $3-(4+6)= -7 \not= (3-4)+6 = 5 $.
+  \item Die Subtraktion ist nicht kommutativ: \quad $3-4 = -1 \not= 4-3 = 1 $.
+  \item Die Division ist nicht distributiv: \quad $25 : ( 5 + 25)  = 25:30 = 5:6 \not= 25:5 + 25:25 = 6 $.
+  \item Die Division ist nicht kommutativ: \quad  $5:25 = 1:5 \not= 25:5 = 5 $.
+\end{itemize}
+\end{exabox}
+
+Die Zahlenbereiche $\mathbb{Q}$ und $\mathbb{R}$ besitzen eine wichtige zusätzliche Eigenschaft,
+die $\mathbb{N}_0$ und $\mathbb{Z}$ nicht haben:
+
+In $\mathbb{Q}$ und $\mathbb{R}$ kann man durch jede von $0$ verschiedene Zahl teilen.
+
+Der Grund dafür ist, dass zu jeder Zahl $a\neq 0$ eine Zahl $a^{-1}$ existiert,
+so dass
+
+\[
+a \cdot a^{-1} = 1.
+\]
+
+Diese Zahl nennt man das \textbf{multiplikative Inverse} von $a$.
+Division durch $a$ entspricht also der Multiplikation mit $a^{-1}$:
+
+\[
+\frac{b}{a} = b \cdot a^{-1}.
+\]
+
+In den natürlichen Zahlen $\mathbb{N}_0$ oder den ganzen Zahlen $\mathbb{Z}$ ist
+dies im Allgemeinen nicht möglich. Die Gleichung 
+
+\[
+2 \cdot x = 1
+\]
+
+hat keine Lösung in $\mathbb{Z}$ - die Lösung \(x = \frac12\) ist eine rationale Zahl. 
+
+In den Zahlenbereichen $\mathbb{Q}$ und $\mathbb{R}$ gelten die üblichen Rechenregeln (Assoziativ-, Kommutativ- und Distributivgesetz), und jede von $0$ verschiedene Zahl besitzt ein multiplikatives Inverses.  Deshalb kann man in diesen Zahlenbereichen beliebig addieren, subtrahieren, multiplizieren und durch von $0$ verschiedene Zahlen teilen.
+
+Die Zahlenbereiche \(\mathbb Q\) und \(\mathbb R\) besitzen damit eine gemeinsame algebraische Struktur: Beide sind sogenannte \textbf{Körper} (\emph{fields}). Der Begriff fasst genau die Eigenschaften zusammen, die für das Rechnen mit Addition, Subtraktion, Multiplikation und Division benötigt werden.
+
+\begin{defbox}{Körper}{ }
+Eine Menge \(\mathbb K\) mit einer Addition \(+\) und einer Multiplikation \(\cdot\) heißt Körper, wenn für alle \(a,b,c\in\mathbb K\) gilt:
+
+\begin{itemize}
+\item Die Addition und die Multiplikation sind assoziativ und kommutativ.
+\item Es gibt neutrale Elemente \(0,1\in\mathbb K\) mit \(0\neq1\), sodass für all \(a\in \mathbb K\) gilt
+\[
+a+0=a
+\qquad\text{und}\qquad
+a\cdot1=a.
+\]
+\item Zu jedem \(a\in\mathbb K\) gibt es ein additives Inverses \(-a\in\mathbb K\).
+\item Zu jedem \(a\in\mathbb K\setminus\{0\}\) gibt es ein multiplikatives Inverses \(a^{-1}\in\mathbb K\).
+\item Addition und Multiplikation sind durch das Distributivgesetz miteinander verbunden:
+
+$$
+a\cdot(b+c)=a\cdot b+a\cdot c.
+$$
+
+\end{itemize}
+\end{defbox}
+
+Entscheidend ist dabei, dass die Ergebnisse der Rechenoperationen wieder im selben Zahlenbereich liegen. 
+
+Im Unterschied zu \(\mathbb Q\) ist \(\mathbb R\) vollständig. Die Begriffe \textbf{Körper} und \textbf{Vollständigkeit} beschreiben also unterschiedliche Eigenschaften eines Zahlenbereichs.
+
+Der Begriff des Körpers wird später bei der Definition eines Vektorraums wieder auftreten: Die Skalare, mit denen Vektoren multipliziert werden, stammen aus einem Körper \(\mathbb K\). In diesem Skript wird dabei meist \(\mathbb K=\mathbb R\) gelten.
+
+\subsubsection*{Summen- und Produktzeichen}
+
+Die Liste an mathematischen Symbolen, die man aus Effizienzgründen einführt, erweitern wir noch um das Summen- und das Produktzeichen.\marginpar{Aufgabe} 
+
+	Es sei \(f_k\) ein mathematischer Ausdruck, der von der Variable \(k\) abhängt. Mit \(f_1\) ist dann gemeint: setze in dem mathematischen Ausdruck  \(k=1\), mit \(f_a\) ist entsprechend \(k=a\) zu setzen.
+\begin{defbox}{Summen- und Produktzeichen}{ }
+	\begin{center}
+	\begin{tabular}{l|l|l }
+Name & Symbol & Wertebereich  \\
+\hline
+Summenzeichen & \(\displaystyle{ \sum_{k=a}^b} f_k = f_a + f_{a+1} + \dots + f_b \) &  \(f_k \in \mathbb R, \; a\leq b \in \mathbb N_0\) \\[2ex] 
+Produktzeichen & \(\displaystyle{ \prod_{k=a}^b} f_k = f_a \cdot f_{a+1} \cdot \dots \cdot f_b \) &  \(f_k\in \mathbb R, \, a\leq b \in \mathbb N_0\) 
+\end{tabular}
+\end{center} 
+\end{defbox}
+
+\begin{exabox}{Summen- und Produktzeichen}{ }
+	\begin{eqnarray*} 
+		\sum\limits_{k=3}^{6} (1+k)^{k-1} &=& (1+3)^{3-1} + (1+4)^{4-1} + (1+5)^{5-1}+ (1+6)^{6-1} = 4^2+5^3+6^4+7^5 \,,\\
+		\prod\limits_{k=1}^{3} x^k &=& x\cdot x^2\cdot x^3 = x^{6}\,.
+	\end{eqnarray*}
+\end{exabox}
+
+Ein "Binom"\, ist in der Mathematik ein Ausdruck der Form \( (a+b)^n\). Der nun folgende Binomische Satz erklärt, warum der Binomialkoeffizient und die aus der Schule bekannten Binomischen Formeln nicht nur scheinbar zusammengehören.\marginpar{Aufgabe}
+
+\begin{theorembox}{Binomischer Satz}{ }
+	$$\forall \, a,b\in\mathbb R, \; n\in \mathbb N_0:\quad  (a+b)^n = \sum\limits_{k=0}^{n} \binom{n}{k} a^k \cdot  b^{n-k}$$
+\end{theorembox}

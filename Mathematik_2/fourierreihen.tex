@@ -1,0 +1,521 @@
+\section{Fourier-Reihen}\label{MA2-fourierreihen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Fourier-Koeffizienten periodischer Funktionen berechnen &\\
+    \tabitem eine periodische Funktion aus ihrer Fourier-Reihe rekonstruieren &\\
+    \tabitem zwischen reeller und komplexer Darstellung von Fourier-Reihen wechseln &\\
+    \tabitem das Konvergenzverhalten einer Fourier-Reihe qualitativ beurteilen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem mit harmonischen Schwingungen umgehen können & \abschnittsverweis{MA1-trigonometrische-funktionen} \\
+    \tabitem mit der komplexen Exponentialfunktion sicher umgehen können & \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
+    \tabitem Integrale berechnen können & \abschnittsverweis{MA2-integrationsregeln} \\
+    \tabitem mit Skalarprodukten in Funktionenräumen umgehen können  & \abschnittsverweis{MA2-integrierbare-funktionen} \\
+    \tabitem Orthonormalität von Funktionen überprüfen können & \abschnittsverweis{MA2-integrierbare-funktionen} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-fourierreihen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Mathematisches Prisma}
+
+Periodische Funktionen begegnen uns überall in Natur und Technik: bei der Erdrotation, beim Herzschlag, bei elektrischen Wechselspannungen oder bei Licht- und Schallwellen. Trotz sehr unterschiedlicher physikalischer Hintergründe besitzen all diese Vorgänge eine gemeinsame mathematische Struktur: Sie wiederholen sich nach einer festen Periode \(T\). Meist ist diese Periode eine Zeitdauer, sie kann jedoch ebenso gut ein Winkel oder eine räumliche Länge sein – etwa bei der Temperaturverteilung auf einem Metallring.
+
+Die elementaren Bausteine solcher periodischen Vorgänge sind \emph{harmonische Schwingungen}. Mathematisch haben sie die Form
+\[
+a\cdot \cos(\omega \cdot t)+b \cdot \sin(\omega \cdot t),
+\]
+also eine Überlagerung von Sinus- und Kosinusfunktionen mit Kreisfrequenz \(\omega\). Mithilfe der Eulerschen Formel lassen sich diese reellen Schwingungen\footnote{Die komplexe Darstellung macht deutlich, dass eine harmonische Schwingung einer rotierenden Bewegung in der komplexen Ebene entspricht.} äquivalent als komplexe Exponentialfunktionen schreiben:
+\[
+	a\cdot \cos(\omega \cdot t)+b \cdot \sin(\omega \cdot t) = c\cdot e^{i\omega \, t}+\overline c\cdot e^{-i\omega\, t}, \qquad c=\dfrac12\cdot (a-ib)\,.
+\]
+
+Viele physikalische Signale sind keine einzelnen harmonischen Schwingungen, sondern \emph{Überlagerungen} solcher Grundbausteine. Ein klassisches Beispiel ist weißes Licht.
+
+\begin{exabox}{Frequenzzerlegung durch ein Prisma}{}
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/fourieranalyse_prisma_spektralzerlegung.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+Weißes Licht wird im Prisma in seine Spektralfarben zerlegt. Unterschiedliche Wellenlängen werden unterschiedlich stark gebrochen. Physikalisch bedeutet das: Weißes Licht ist eine Überlagerung harmonischer elektromagnetischer Wellen mit verschiedenen Frequenzen.
+
+Genau diese Idee – ein Signal in seine Frequenzbestandteile zu zerlegen – verfolgt die Fourier-Analyse.
+\end{minipage}
+\end{exabox}
+\bigskip
+
+Die Fourier-Analyse beantwortet die Frage:
+\begin{center}
+\emph{Welche Sinus- und Kosinus-Anteile stecken in einem periodischen Signal \(u\)?}
+\end{center}
+
+
+\subsection{Fourierkoeffizienten}
+
+Sei \(u(t)\) ein \(T\)-periodisches Signal. Dann lautet seine Fourier-Reihe formal
+\begin{equation}\label{FR_formal}
+u(t)
+=
+\dfrac{a_0}{2}
++
+\sum_{n=1}^{\infty}
+\left(
+a_n \cdot \cos(n\cdot \omega_0 \, t)
++
+b_n \cdot \sin(n\cdot \omega_0 \, t)
+\right),
+\qquad
+\omega_0=\frac{2\pi}{T} \,.
+\end{equation}
+
+\begin{itemize}
+\item \(\frac{a_0}{2}\) ist der Gleichanteil (Mittelwert über eine Periode).
+\item Die Koeffizienten \(a_n\) und \(b_n\) sind die Amplituden der jeweiligen Kosinus- bzw. Sinusanteile.
+\end{itemize}
+
+
+Die Zahl \(\omega_0\) nennnt man die \emph{Grundkreisfrequenz} und die zugehörigen Funktionen
+\[
+\cos(\omega_0 \,t)
+\quad \text{und} \quad
+\sin(\omega_0 \, t)
+\]
+heißen die \emph{Grundschwingung}. Die Grundschwingungen besitzen die kleinste Periode \(T\) und damit die kleinste im Signal vorkommende Frequenz.
+
+Multipliziert man die Grundkreisfrequenz mit einer natürlichen Zahl \(n\), so erhält man
+\[
+	\omega_n = n \cdot \omega_0, \qquad n\in\mathbb N^+ \,.
+\]
+Die Funktionen
+\[
+\cos(\omega_n t)
+\quad \text{und} \quad
+\sin(n\omega_n t)
+\]
+heißen Oberschwingung, die \emph{\(n\)-te harmonische Schwingung} oder kurz die \emph{\(n\)-te Harmonische}.
+
+Alle Harmonischen sind ebenfalls \(T\)-periodisch, durchlaufen die Periode \(T\) jedoch \(n\)-mal schneller als die Grundschwingung. Mit wachsendem \(n\) steigt also die Frequenz, während die Periode gleich bleibt.
+
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/harmonische_schwingungen_grund_und_oberschwingung.png}
+\end{center}
+
+Die Fourier-Reihe ist eine Superposition von unendlich vielen harmonischen Schwingungen - kennt man die Grundkreisfrequenz \(\omega_0\), dann ist die Struktur der Fourier-Reihe festgelegt. Einzig die Amplituden der harmonischen Schwingungen sind variabel! Die Gesamtheit der Amplituden, also der Zahlen \(a_n\) und \(b_n\) nennt man das \emph{Spektrum} des Signals. Kennt man das Spektrum, so kennt man das Signal – genau wie beim Prisma die Kenntnis der Spektralfarben die Zusammensetzung des weißen Lichts beschreibt.
+
+\bigskip
+
+\begin{exabox}{Fourierpolynom eines Rechtecksignals mit Periode \(2\pi\)}{}
+Wir betrachten die \(2\pi\)-periodische Fortsetzung
+\[
+u_T(t)=
+\begin{cases}
+1,& t\in[0,\pi),\\
+-1,& t\in[\pi,2\pi).
+\end{cases}
+\qquad
+(T=2\pi,\;\omega_0=1).
+\]
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/fourierreihe_analyse_und_synthese.png}
+\end{center}
+
+Dieses Signal besitzt folgende Eigenschaften:
+
+\begin{itemize}
+	\item Der Mittelwert ist null, also \(\textcolor{blue}{a_0}=\textcolor{blue}{0}\).
+\item Wegen der Punktsymmetrie treten keine Kosinusanteile auf: \(\textcolor{blue}{a_n} = \textcolor{blue}{0}\).
+\item Es erscheinen nur ungerade Sinusanteile.
+\end{itemize}
+
+Die Fourier-Synthese bis zur fünften Harmonischen lautet
+\[ \begin{array}{rcl l }
+u_5(t) &=&  \dfrac{\textcolor{blue}{a_0} }{2} +  \displaystyle\sum\limits_{n=1}^5 \textcolor{blue}{a_n} \, \cos( n\, t) + \textcolor{blue}{b_n} \, \sin( n\, t) &\|\; \textcolor{blue}{a_n} = \textcolor{blue}{0}, n=0,1,2,3,4,5 \\[2ex]
+&=&  \displaystyle\sum\limits_{n=1}^5 \textcolor{blue}{b_n} \, \sin( n\, t) &\|\;  \textcolor{blue}{b_n} = \textcolor{blue}{0}, n=2,4 \\[2ex]
+&=& \textcolor{blue}{b_1} \,\sin(t) + \textcolor{blue}{b_3} \,\sin(3\,t) + \textcolor{blue}{b_5} \,\sin(5\,t)  &\\[2ex]
+&=& \textcolor{blue}{1.27324} \,\sin(t) + \textcolor{blue}{0.42441}\,\sin(3\,t) + \textcolor{blue}{0.25465}\,\sin(5\,t)\,. &
+\end{array}\]
+
+Mit wachsender Frequenz nehmen die Amplitude ab. Die Summe weniger Harmonischer liefert bereits eine gute Approximation des Signals.
+\end{exabox}
+
+
+Die harmonischen Schwingungen mit Periode \(T\) bilden bezüglich des Skalarprodukts
+\begin{equation}\label{skalarprodukt_fr_reell} \langle u, v \rangle = \dfrac{2}{T} \cdot \int\limits_0^{T}  u(t) \cdot v(t) \,\mathrm d t\,,\end{equation}
+ein \underline{Orthonormalsystem}\randverweis{MA2-integrierbare-funktionen}. Genau hier liegt der strukturelle Kern der Fourier-Theorie.
+
+\bigskip
+\noindent \textbf{Projektionsprinzip aus der linearen Algebra}
+\bigskip
+
+Ist \(\{\hat e_1,\dots, \hat e_n\}\) eine Orthonormalbasis eines endlichdimensionalen Vektorraums und
+\[
+	\vec v=\sum_{k=1}^n v_k \cdot \hat e_k\,,
+\]
+so gilt
+\[
+	v_k=\langle \vec v,\hat e_k\rangle \,.
+\]
+Die Koeffizienten entstehen also durch Orthogonalprojektion auf die Basisvektoren und genau dasselbe passiert im Funktionenraum.
+
+\bigskip
+\noindent \textbf{Projektionsprinzip für Fourier-Polynome}
+\bigskip
+
+Betrachten wir ein Fourier-Polynom vom Grad \(N\)
+\[\begin{array}{rcl l}
+p(t) &=&  \dfrac{a_0}{2} + \displaystyle\sum\limits_{n=1}^{N} \bigl( a_n \cdot \cos(\omega_n \, t)  + b_n \cdot  \sin(\omega_n \, t) \bigr) & \|\; \textnormal{Fokus harmonische Schwingungen} \\[2ex]  &=&  \dfrac{a_0}{2} + \displaystyle\sum\limits_{n=1}^{N} \bigl( a_n \cdot \hat c_n  + b_n \cdot \hat s_n \bigr) & \|  \; \textnormal{Fokus orthonormierte Vektoren}\,. \end{array} \]
+
+Wenn das Projektionsprinzip gilt, dann müssten wir zeigen können, dass folgendes gilt:
+\[
+	a_3=\langle p,\hat c_3\rangle\,.
+\]
+
+Wir kennen das Skalarprodukt und wir wissen wie \(p\) aussieht - dann haben wir alles beisammen, um diese Behauptung zu prüfen.
+
+\bigskip
+\noindent \textbf{1. Einsetzen des Polynoms und Ausnutzen der Linearität des Skalarprodukts}
+\bigskip
+
+Das Skalarprodukt ist linear im ersten Argument. Daher dürfen wir die Summe auseinanderziehen:
+
+\[ \begin{array}{rcl}
+		\langle p,\hat c_3\rangle &= & \left\langle \dfrac{a_0}{2} + \displaystyle\sum_{n=1}^{N} \bigl( a_n \cdot \hat c_n + b_n \cdot \hat s_n \bigr), \hat c_3 \right\rangle \\[2ex]
+		&=& \textcolor{blue}{\dfrac{a_0}{2}\,\langle 1 , \hat c_3\rangle + \displaystyle\sum_{n=1}^{N} a_n \cdot \langle \hat c_n, \hat c_3\rangle + \displaystyle\sum_{n=1}^{N} b_n \cdot  \langle \hat s_n, \hat c_3\rangle }
+\end{array} \]
+
+
+\bigskip
+\noindent \textbf{2. Eigenschaften des Orthonormalsystems ausnutzen}
+\bigskip
+
+Die Funktionen
+\[ 1, \hat c_n(t), \hat s_n(t), n\in\mathbb N^+\,, \quad  \begin{cases} \hat c_n(t) & = \cos(n \omega_0 \, t) \,, \\[1ex] \hat s_n(t) &= \sin(n \omega_0\, t)\,, \end{cases}\]
+sind bezüglich des Skalarprodukts \ref{skalarprodukt_fr_reell} paarweise orthonormal und aus diesem Grund gilt:
+
+\[
+	\begin{array}{rcl}
+		\langle 1 ,\hat c_3\rangle &=& \dfrac{2}{T} \cdot \displaystyle \int\limits_{0}^T 1 \cdot \cos(\omega_3 \, t)\, \mathrm d t =  0\,, \\[2ex]
+		\langle \hat s_n ,\hat c_3\rangle &=& \dfrac{2}{T} \cdot \displaystyle \int\limits_{0}^T \sin(\omega_n \, t) \cdot \cos(\omega_3 \,t)\, \mathrm d t =  0\,, \quad n \geq 1 \\[2ex]
+		\langle \hat c_n ,\hat c_3\rangle &=& \dfrac{2}{T} \cdot \displaystyle \int\limits_{0}^T \cos(\omega_n \, t) \cdot \cos(\omega_3 \,t)\, \mathrm d t  = \begin{cases} 1, & n=3,\\ 0, & n\neq 3\,.  \end{cases}
+	\end{array}
+\]
+
+Damit bleibt in der obigen \textcolor{blue}{Summe} genau ein einziger Summand übrig, nämlich der für \(n=3\) und es gilt
+
+\[
+	\textcolor{blue}{\langle p,\hat c_3\rangle} = \dfrac{a_0}{2}\,\langle 1,\hat c_3\rangle + \sum_{n=1}^{N} a_n \cdot \langle \hat c_n, \hat c_3\rangle + \sum_{n=1}^{N} b_n \cdot \langle \hat s_n,\hat c_3\rangle = a_3\cdot  \langle \hat c_3, \hat c_3\rangle = a_3\,.
+\]
+
+Gleichzeitig haben wir eine konkrete Berechnungsformel für den Fourierkoeffizient \(a_3\)! Setzen wir das Skalarprodukts in dem \textcolor{blue}{Ausdruck} links erhalten wir
+
+\[
+a_3 =\textcolor{blue}{\langle p, \hat c_3\rangle} = \frac{2}{T} \cdot \int\limits_0^T p(t)\cdot \cos(\omega_3 \,t)\,\mathrm d t\,.  \]
+
+\bigskip
+\noindent \textbf{Interpretation}
+\bigskip
+
+\begin{itemize}
+	\item Der Koeffizient \(a_3\) misst den Anteil der Schwingung \(\hat c_3\) im Signal \(p\).
+	\item Das Integral ist nichts anderes als die Orthogonalprojektion von \(p\) auf diese Basisfunktion.
+\end{itemize}
+
+Was wir für den Koeffizienten \(a_3\) explizit durchdacht haben, gilt für alle anderen Koeffizienten eines Fourierpolynoms:
+\[
+	\begin{array}{rcl}
+p(t)
+&=&
+\dfrac{a_0}{2}
++
+\displaystyle \sum\limits_{n=1}^{N}
+\left(
+	a_n\cdot \cos(\omega_n \, t)
++
+b_n \cdot \sin(\omega_n\, t)
+\right) \\
+&=&
+\dfrac{a_0}{2}
++
+\displaystyle\sum\limits_{n=1}^{N}
+\left(
+	a_n\cdot \hat c_n + b_n \cdot \hat s_n
+\right) \quad \textnormal{mit } \quad  \begin{cases} a_0 = \langle p, 1\rangle\,, \\ a_n = \langle p,\hat c_n\rangle\,, \\  b_n=\langle p,\hat s_n\rangle\,.\end{cases}
+\end{array}\]
+
+Für eine beliebige \(T\)-periodische, stückweise stetig differenzierbare Funktion \(u\), definieren wir die  Fourier-Koeffizienten ganz genauso:
+\[
+a_n
+=
+\frac{2}{T}
+\int\limits_0^T
+u(t)\cdot \cos(\omega_n \, t)\,\mathrm dt,
+\qquad
+b_n
+=
+\dfrac{2}{T}
+\int\limits_0^T
+u(t)\cdot \sin(\omega_n \, t)\,\mathrm dt\,,
+\]
+
+und auch deren Interpretation überträgt sich auf den allgemeinen Fall:
+
+\begin{itemize}
+	\item Die Fourierkoeffizienten sind Projektionen von \(u\) auf die jeweilige Basisfunktion.
+	\item Unter Fourier-Analyse verstehen wir die Bestimmung der Fourierkoeffizienten \(b_n, n\geq 0\) und \(a_n, n\geq 1\).
+	\item Die Menge aller Fourierkoeffizienten nennt man das Spektrum des Signals.
+	\item Das Spektrum ist diskret und umfasst im Allgemeinen unendlich viele Zahlen. Man sagt es ist unendlich.
+	\item Kennt man das Spektrum, so kennt man die Zerlegung des Signals in harmonische Schwingungen.
+	\item Ist \(u-\dfrac{a_0}{2}\) \underline{gerade}, so verschwinden alle \(b_n\). \randverweis{MA1-eigenschaften-von-funktionen}
+	\item Ist \(u-\dfrac{a_0}{2}\) \underline{ungerade}, so verschwinden alle \(a_n\). \randverweis{MA1-eigenschaften-von-funktionen}
+\end{itemize}
+
+\begin{exabox}{Spektrum eines Rechtecksignals mit Periode \(T=2\)}{}
+Wir betrachten die \(2\)-periodische Fortsetzung
+\[
+u_T(t)=
+\begin{cases}
+1,& t\in[0,1),\\
+0,& t\in[1,2).
+\end{cases}
+\qquad
+(\omega_0=\pi).
+\]
+
+\textbf{Gleichanteil}
+\[
+a_0=\int\limits_0^1 1\,dt=1.
+\]
+
+\textbf{Kosinusanteile}
+\[
+a_n
+=
+\int\limits_0^1 \cos(n\pi t)\,dt
+=
+\Bigl[\frac{\sin(n\pi t)}{n\pi}\Bigr]_0^1
+=
+0\,, \; n\geq 1\,.
+\]
+
+\textbf{Sinusanteile}
+\[
+b_n
+=
+\int\limits_0^1 \sin(n\pi t)\,dt
+=
+\Bigl[\frac{-\cos(n\pi t)}{n\pi}\Bigr]_0^1
+=
+\frac{1-(-1)^n}{n\pi} = \begin{cases} 0, \quad n \textnormal{ gerade} \\ \frac{2}{n\pi},\quad n \textnormal{ ungerade}\,. \end{cases}
+\]
+
+Das Spektrum von \(u\) lautet \[ \left\{ b_{2n-1} =  \frac{2}{(2\,n-1)\,\pi}, \; n\in\mathbb N_0\right\}\,. \]
+\end{exabox}
+\bigskip
+
+
+\subsection{Fourier-Reihe}
+
+Formal lässt sich aus einem gegebenen Spektrum, das zu einem Signal \(u\) gehört, die Fourier-Reihe zu \(u\) hinschreiben. Sie lautet:
+\[
+\mathrm{FR}_u(t)
+=
+\dfrac{a_0}{2}
++
+\sum\limits_{n=1}^{\infty}
+\left(
+	a_n\cdot \cos(\omega_n\, t)
++
+b_n\cdot \sin(\omega_n\, t)
+\right).
+\]
+\bigskip
+
+\begin{exabox}{Fourier-Reihe eines Signals}{}
+\textbf{Gleichanteil}
+\[ a_0 = 1 \]
+\textbf{Spektrum}
+\[ \left\{ b_{2n-1} =  \frac{2}{(2\,n-1)\,\pi}, \; n\in\mathbb N_0\right\}\,. \]
+\textbf{Fourier-Reihe}
+\[
+\mathrm{FR}_u(t)
+=
+\dfrac12
++
+\dfrac{2}{\pi}\sin(\pi \,t)
++
+\dfrac{2}{3\pi}\sin(3\pi\, t)
++
+\dfrac{2}{5\pi}\sin(5\pi \,t)
++\cdots\,.
+\]
+\end{exabox}
+\bigskip
+
+Die Tatsache, dass die Fourier-Reihe \(\mathrm{FR}_n\) und das Signal \(u\) miteinander verknüpft sind, liegt auf der Hand, aber was heißt das konkret?
+\begin{center}
+	\emph{Was hat die Fourier-Reihe eines Singals \(u\) mit der dem Signal \(u\) zu tun?}
+\end{center}
+
+Die Antwort ist: die Fourier-Reihe stellt das Signal fast überall dar:
+
+\begin{theorembox}{Konvergenz (Merksatzform)}{}
+Sei $u$ $T$-periodisch und stückweise stetig differenzierbar. Dann gilt:
+\begin{itemize}
+\item Ist $u$ in $t_*$ stetig, so konvergiert die Fourier-Reihe $\mathrm{FR}_u(t_*)$ gegen $u(t_*)$.
+\item An allen Sprungstellen konvergiert die Fourier-Reihe gegen den Mittelwert von links- und rechsseitigem Grenzwert von $u$.  Hat \(u\) in $t_*$ einen Sprung, so gilt also
+\[
+	\mathrm{FR}_u(t_*)=\frac12\cdot \left(\lim\limits_{t\uparrow t_*} u(t)+\lim\limits_{t\downarrow t_*} u(t)\right).
+\]
+\end{itemize}
+\begin{figure}[H]
+  \caption{Konvergenz der Fourier-Reihe an Sprungstellen}
+  \centering
+  \includegraphics[width=0.5\textwidth]{../Mathematik_2/Bilder/fourierreihe_sprungstellen_positivitaet.png}
+\end{figure}
+\end{theorembox}
+
+\bigskip
+\noindent{\textbf{Bemerkungen:}}
+\begin{itemize}
+	\item Unter Fourier-Synthese verstehen wir die Rekonstruktion eines periodischen Signals bei gegebenem Spektrum.
+	\item Das Ergebnis der Fourier-Synthese ist im Allgemeinen eine Fourier-Reihe, bricht man die Fourier-Reihe nach dem \(N\)-ten Glied ab, dann erhält man ein Fourier-Polynom.
+	\item Die Fourier-Reihe ist eine Darstellungsform eines periodischen Singals, aus dem die Frequenzanteile, die im Signal vorhanden sind, ablesbar sind .
+\end{itemize}
+
+
+\subsection*{Komplexe Fourier-Reihe}
+\paragraph{Exponentialdarstellung von Schwingungen}
+
+Sinus und Kosinus können als Real- und Imaginärteil einer komplexen Exponentialfunktion geschrieben werden\wennreferenzvorhanden{MA1-komplexe-zahlen-polarform-und-euler}{ (vgl. Abschnitt \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler})}:
+
+\[
+e^{i\omega t}=\cos(\omega t)+i\sin(\omega t).
+\]
+
+Damit lassen sich harmonische Schwingungen auch als komplexe Exponentialfunktionen darstellen.
+
+Der große Vorteil dieser Darstellung ist:
+Exponentialfunktionen lassen sich besonders einfach differenzieren und miteinander kombinieren.
+
+Aus diesem Grund formuliert man viele Ergebnisse der Fourier-Analyse
+und der Systemtheorie in der Form
+
+\[
+e^{i\omega t}.
+\]
+
+Die trigonometrischen Funktionen erscheinen dann automatisch als Real- oder Imaginärteil.
+
+Da die Funktionen
+\[
+	\hat \varphi_k: \mathbb R \to \mathbb C, t\mapsto e^{ik\omega_0\, t},\qquad k\in\mathbb Z\,,
+\]
+bezüglich des Skalarprodukts
+\[
+\langle u,v\rangle:=\frac{1}{T}\int\limits_0^T u(t)\,\overline{v(t)}\,\mathrm dt.
+\]
+orthonormiert sind, lässt sich das Konstruktionsprinzip einfach übertragen: Für ein \(T\)-periodisches Signal definieren wir die Fourier-Koeffizienten als Projektion von \(u\) auf die Basisfunktion \(\hat \varphi_k\)
+\[
+	c_k=\langle u,\hat \varphi_k\rangle=\frac{1}{T}\int\limits_0^T u(t)\,e^{-ik\omega_0 t}\,\mathrm dt\,,
+\]
+und die Fourier-Reihe lautet entsprechend
+\[
+	\mathrm{FR}_u(t)=\sum_{k=-\infty}^{\infty} c_k\,e^{ik\omega_0 \,t}\,..
+\]
+Die komplexe Form der Fourier-Reihe ist äquivalent zur reellen Darstellung und wird häufig für Rechnungen und in der Signalverarbeitung verwendet.
+
+\begin{exabox}{Fourier-Reihe eines Rechtecksignals mit Periode \(T=2\)}{ }
+	\(2\)-periodische Fortsetzung der Funktion:
+	\begin{eqnarray*}
+		u: [0,2)\to \mathbb R, t\mapsto  \begin{cases} 1,\quad &t\in ([0, 1)\,,\\
+			0,\quad &t\in [1,2)\end{cases} \,.
+			\end{eqnarray*}
+			Grundfrequenz : \(\omega_0 = \dfrac{2\pi}{2} = \pi\,.\)
+
+			\noindent Komplexe Fourier-Koeffizienten:
+			\begin{eqnarray*}
+				c_0 &=& \frac12\int\limits_{0}^2 u(t)\, \mathrm{d}t = \frac12\int\limits_{0}^1 \, \mathrm{d}t = \frac12\,,\\
+				c_k &=& \frac12\int\limits_{0}^2 u(t) \cdot e^{-i\, k\, \pi t} \, \mathrm{d}t = \frac12 \, \int\limits_{0}^1 e^{-i\,k\,\pi\, t} \, \mathrm{d}t = \frac12\, \left[ \frac{e^{-i\, k \,\pi \, t}}{-i \, k \, \pi}\right]_0^1 = \frac12\, \frac{1-(-1)^k}{ i \,k\, \pi} = \begin{cases} \displaystyle{\frac{1}{ i\, k\pi}}, \quad & k\; \textnormal{ungerade} \,,\\
+				0, \quad & k\; \textnormal{gerade}\,.\end{cases} \\ &&\Rightarrow c_{2k+1} = \frac{1}{i \,(2\,k+1) \,\pi}\,.
+			\end{eqnarray*}
+			Lösung:
+			\begin{eqnarray*}
+				\mathrm{FR}_u(t) &=& \frac12 +\sum\limits_{k \in \mathbb Z\setminus\{0\} } \frac{1}{i \, (2 \, k+1) \, \pi} \cdot e^{i \,  (2\, k+1) \, \pi \, t} \\
+				&=& \frac12 + \sum\limits_{k = 1}^{\infty} \left( \frac{1}{i\, (2\, k+1) \, \pi} \cdot e^{i \, (2\,k +1) \, \pi \, t} - \frac{1}{i \, (2\,k+1)\, \pi} \cdot e^{-i\pi (2k +1)t} \right) \\
+				&=& \frac12 + \sum\limits_{k = 1}^{\infty}\frac{1}{i (2k+1) \pi} \cdot   \underbrace{\left( e^{i \,\pi \, (2 \,k +1) \,t} -  e^{-i \, (2k +1) \,\pi \,t}\right)}_{\displaystyle{ = 2\,i \cdot \sin\left( (2k+1) \, \pi t\right)} } \\
+				&=& \frac12 + \frac2\pi\sum\limits_{k = 1}^{\infty}\frac{1}{2\, k+1} \cdot  \sin\left( (2\, k+1) \,\pi\, t\right)\,.
+			\end{eqnarray*}
+
+		\end{exabox}
+
+\subsection{Zusammenfassung}
+
+In der linearen Algebra haben wir gelernt, dass ein Vektorraum besonders übersichtlich wird, wenn wir eine \emph{Orthonormalbasis} kennen. Ist $\{\hat e_1,\dots, \hat e_n\}$ eine Orthonormalbasis des $\mathbb R^n$, so besitzt jeden Vektor $\vec v \in \mathbb R^n$ in dieser Basis eine eindeutige Darstellung und die lautet
+
+\[
+	\vec v = \sum\limits_{k=1}^n \underbrace{ \langle v,\hat e_k\rangle}_{\displaystyle{=v_k}} \, \hat e_k\,.
+\]
+
+Die Koeffizienten \(v_k, \, k=1,\cdots,n\) entstehen durch Projektion mithilfe des Skalarprodukts und die Orthogonalität der Basisvektoren sorgt dafür, dass sich die einzelnen Komponenten nicht gegenseitig beeinflussen.
+
+Dasselbe Strukturprinzip haben wir auf periodische Funktionen übertragen, wobei folgende Analogien gelten
+
+\begin{center}
+\begin{tabular}{l c l}
+$\mathbb R^n$ & & Funktionenraum \\[6pt]
+\hline
+Vektor $\vec v$ & $\longleftrightarrow$ & Periodische Funktion $u$ \\[6pt]
+Einheitsvektoren $\{\vec e_k\,, k=1,\cdots,n\}$ & $\longleftrightarrow$ & Basisfunktionen $\{\hat \varphi_k \; k\in \mathbb Z\}$ \\[6pt]
+Skalarprodukt Summe & $\longleftrightarrow$ & Skalarprodukt Integral \\[6pt]
+Zerlegungskoeffizient $v_k = \langle \vec v,\vec e_k\rangle$ & $\longleftrightarrow$ & Fourier-Koeffizient \(c_k = \langle u, \hat \varphi_k\rangle\)\\[6pt]
+Zerlegung $ \vec v = \sum\limits_{k=1}^n v_k \cdot \hat e_k $ & $\longleftrightarrow$ & Zerlegung \( u \approx \mathrm{FR}_u = \sum\limits_{k=-\infty}^\infty c_k \cdot \hat \varphi_k \)
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent \textbf{Bemerkungen:}
+
+\begin{itemize}
+	\item Harmonische Schwingungen spielen im Funktionenraum dieselbe Rolle wie Einheitsvektoren im $\mathbb R^n$.
+	\item Wie im endlichdimensionalen Fall entstehen die „Koordinaten“ einer Funktion durch Projektion.
+	\item Für eine geeignete periodische Funktion lässt sich formal eine Fourier-Reihe entwickeln.
+	\item Die Fourier-Reihe ist eine Überlagerung von im Allgemeinen unendlich vielen harmonischen Schwingungen mit gleicher Periode.
+	\item Die Fourier-Reihe stellt die Ausgangsfunktion fast überall dar.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Formeln kompakt:}
+
+\begin{theorembox}{Fourier-Reihe}{}
+\begin{itemize}
+\item $\omega_0=\dfrac{2\pi}{T}$
+\item $\omega_k=k\cdot \dfrac{2\pi}{T}, \quad k\in \mathbb Z$
+\item Reelle Fourier-Reihe:
+\[
+	\mathrm{FR}_u(t)=\frac{a_0}{2}+\sum_{n=1}^{\infty}\bigl(a_n\cdot \cos(n\omega_0 t)+b_n \cdot \sin(n\omega_0 t)\bigr)\,,\; \textnormal{mit}
+\]
+\[
+	a_0=\frac{2}{T}\int_0^T u(t) \, \mathrm d t,\quad
+	a_n=\frac{2}{T}\int_0^T u(t) \cdot \cos(\omega_n\, t) \, \mathrm d t ,\quad
+	b_n=\frac{2}{T}\int_0^T u(t) \cdot \sin(\omega_n\, t)\, \mathrm d t
+\]
+\item Komplexe Fourier-Reihe:
+\[
+	\mathrm{FR}_u(t)=\sum_{k=-\infty}^{\infty}c_k \cdot e^{i\,\omega_k\, t},
+\qquad
+c_k=\frac{1}{T}\int_0^T u(t) \cdot e^{- i\omega_k\, t}\,\mathrm d t.
+\]
+\end{itemize}
+\end{theorembox}
+

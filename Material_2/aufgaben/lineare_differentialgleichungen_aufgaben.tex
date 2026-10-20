@@ -1,0 +1,126 @@
+
+%\subsection{Vokabular}
+%\begin{itemize}
+%	\item Ansatz
+%	\item Superpositionsprinzip
+%	\item homogene und spezielle Lösung - Wiederholung LA
+%	\item Charakteristischer Verlauf von Lösungen, gedämpfte Schwingung (komplexe Exponentialfunktion^G)
+%	\item partikuläre Lösung
+%	\item Determinante
+%	\item Nullstellenbestimmung
+%	\item Gleichungssystem lösen
+%	\item Differenzieren
+%	\item Beobachtung asymptotischer Verlauf der Amplitude
+%	\item Abklingverhalten einer Lösung
+%\end{itemize}
+
+\ifintegriereaufgaben
+
+\section*{Lineare Differentialgleichungen Aufgaben}\label{MA2-lineare-differentialgleichungen-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-differentialgleichungen})}\wennreferenzvorhanden{MA2-lineare-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-lineare-differentialgleichungen})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-lineare-differentialgleichungen-loesungen]{hier}.
+
+\else
+\section{Lineare Differentialgleichungen Aufgaben}\label{MA2-lineare-differentialgleichungen-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-lineare-differentialgleichungen-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Lösungskurve] %Papula, IV Abschnitt 2, Aufgabe 1
+	Skizzieren Sie das Richtungsfeld der folgenden Differentialgleichungen und zeichnen Sie eine Lösungskurve für den gegebenen Anfangswert ein.
+	\begin{eqnarray*}
+		\begin{array}{lr}
+			(a)\; y' = y, \; y(0) = 2  &  (b)\; y'=\displaystyle{\frac{y}{2x}}, \quad x\in(0,\infty), \; y(1) = 1\,.
+	\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Lipschitz-Stetigkeit]
+	Überprüfen Sie, ob die folgenden Funktionen auf $D_f:= [0,0]\times [1,1]$  Lipschitz-stetig sind - ob also gilt
+	\[
+		\exists \, L\leq 0: \; \forall y_1, y_2 \in D_f:\quad |f(x,y_1) - f(x,y_2)|\leq L |y_1 - y_2| \,,
+	\]
+	und geben Sie gegebenenfalls die Lipschitz-Konstante an.
+	\begin{eqnarray*}
+		\begin{array}{lr}
+			(a)\; f: (x,y) \mapsto y^2  &  (b)\; f: (x,y) \mapsto 2\sqrt{y} \,.
+	\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogenität] %Papula IV, Abschnitt 2, Aufgabe 18
+	Lösen Sie die folgende inhomogene Differentialgleichung
+\begin{eqnarray*}
+	y' - 3y = x\cdot e^x
+\end{eqnarray*}
+durch (a)  Variation der Konstanten und (b) Ansatz vom Typ der rechten Seite.
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogen] % Papula IV, Abschnitt 2, Aufgabe 21
+	Lösen Sie folgenden Differentialgleichungen mit Hilfe des Ansatz vom Typ der rechten Seite
+\begin{eqnarray*}
+	\begin{array}{ll l }
+		(a)\; y' =  2x-y \;  & (b)\; y' + 2y= 4 \cdot e^{5x} \; & (c)\; y' + y = e^{-x} \\
+		(d)\; y' - 4y = 5\sin(x) \; (e)\; y' - 5y = \cos(x) + 4 \sin(x)\; & (f)\; y' - 6y = 3 e^{6x}
+		\end{array}
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogen] % Papula IV, Abschnitt 2, Aufgabe 21
+	Lösen Sie folgende Anfangswertprobleme mit Hilfe des Ansatz vom Typ der rechten Seite
+\begin{eqnarray*}
+	(a)\; y' + 4y = x^3 - x \land y(1) = 2 \;  (b)\; y'-y= e^x \land y(0) = 1 \; (c)\; y'+3y = -\cos(x)\land y(0) = 5
+\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen höherer Ordnung] % Papula IV, Abschnitt 3, Aufgabe 12, Abschnitt 5, Aufgabe 11 oder eine der Aufgabe 4,6,8
+	Geben Sie für folgende Differentialgleichungen jeweils die allgemeine Lösung an und lösen Sie anschließend das zugehörige Anfangswertproblem
+\begin{eqnarray*}
+	(a) && \ddot x + 4\dot x + 29x=0 \quad   x(0)=1 \quad \dot x(0) =-2\\[1ex]
+	(b) && \ddot x + 6 \dot x + 10 x = \cos(t)\quad x(0) = 0\quad \dot x(0) = 4  \\[1ex]
+	(c) && y'' + 2y' + 3y = e^{-2x} \quad  y(0) = 0 \quad  y'(0) = 1 \\[1ex]
+	(d) && \ddot x + \dot x + \frac14 x=0  \quad  x(0)=1 \quad  \dot x(0) =-1\\[1ex]
+	(e) && \ddot x + 2 \dot x + 17 x = 2\sin(5t)  \quad  x(\pi) = 0  \quad  \dot x(\pi) = 1  \\[1ex]
+	(f) && y''' + 9y' = 18 x,\; y(\pi) = \pi^2 \quad  y'(\pi) = 2\pi  \quad  y''(\pi) = 10 \\[1ex]
+	(g) && y''' + 8 y'' + 17 y' + 10 y = 34 \sin(x) + 12 \cos(x)  \quad  y(0) = 1  \quad  y'(0) = -3 ,\; y''(0) = 8  \\[1ex]
+		(h) && \ddot x + 7\dot x + 12x=0  \quad  x(0)=5 \quad  \dot x(0) =0
+\end{eqnarray*}
+\end{exercisebox}
+
+%\subsection{Praxis}
+%\begin{exercisebox}[Moodle Homogene Differentialgleichung]
+%	Homogene Differentialgleichung zweiter Ordnung  mit konstanten Koeffizienten:
+%	\[ y''-2y'+5y = 0\,.\]
+%	\begin{itmemize}
+%	\item Wahl eines sinnvollen Ansatz: $y(x) = A e^{\lambda x}$
+%	\item Charakteristisches Polynom: $\lambda^2-2\lambda+5 \stackrel{!}{=} 0 \Leftrightarrow \lambda_{1,2} = 1\pm2i \,.$
+%	\item Lösung: $y_s(x) = A_1 e^x\cos(2x) + A_2 e^x\sin(2x)$
+%\end{itemize}
+%\end{exercisebox}
+
+%
+%\begin{exercisebox}[Moodle Homogene Differentialgleichung] % HMI III; Blatt 12, Aufgabe 2
+%Bestimmen Sie die Lösung von $y'' + \frac{4\pi^2}{l^2} y = 0$ für die Randbedingungen
+%	\begin{itmemize}
+%	\item $y(0) = y(l) = 0$
+%	\item $y(0) + y'(9) = y'(l) = 0$
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Moodle Stabilität] %HMI III; Blatt 11, Aufgabe 4
+%Die Differentialgleichung des Stroms $I$ in einem $RCL$-Kreis ohne elektromotische Kraft \(E\) ist gegeben durch
+%\[
+%	\ddot I + \frac{R}{L} \dot I + \frac{1}{LC} I = 0
+%\]
+%wobei $R, L, C > 0$.
+%	\begin{itmemize}
+%	\item Wie lautet das Gleichungssystem erster Ordung?
+%	\item Besetimmen Sie die Nullstellen des charaktereistischen Polyoms.
+%	\item Unter welcher Bedingung ist die Lösung asymptotisch stabil?
+%\end{itemize}
+%\begin{itemize}
+%	\item
+%		\[ \dot x = y \land \dot y = - \left( \frac{R}{L} y + \frac{1}{LC} X\right) \Rightarrow \left( \begin{array}{c}\dot x \\\dot y \end{array}\right) = \left( \begin{array}{cc} 0 & 1 \\ -\frac{1}{U} & -\frac{R}{L} \end{array}\right) \left( \begin{array}{c} x \\y \end{array}\right) \]
+%	\item \[ p(\lambda) = \lambda^2 + \frac{R}{L}\lambda + \frac{1}{LC} \Rightarrow \p(\lambda) = 0 \Leftrightarrow \lambda_{1,2} = \frac{-\frac{R}{L} \pm \sqrt{ \left(\frac{R}{L}\right)^2 - 4\cdot \frac{1}{LC}}{2} \]
+%		\item Die Lösung ist asymptotisch stabil falls $\mathrm{Re}(\lambda_{1,2} <0$, also $ x_0 = 0 \land y_0 = 0$.
+%		\end{itemize}
+%\end{exercisebox}

@@ -1,0 +1,245 @@
+\section*{Partialbruchzerlegung Aufgaben mit Lösungen}\label{MA2-partialbruchzerlegung-loesungen}
+
+\ifintegriereaufgaben Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-partialbruchzerlegung}{ (Abschnitt \abschnittsverweis{MA2-partialbruchzerlegung})}.\fi
+
+\begin{exercisebox}[Faktorisierung]
+	Zerlegen Sie die folgenden Polynome weitestgehend in {Linearfaktoren}.
+	\begin{eqnarray*}
+			(a)\;4y^3-8y^2-3y+9 \quad (b)\; a^4+3a^2-10 \quad (c) \; x^4+2x^3-35x^2  \quad (d)\; -64+b^2
+	\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Erinnern Sie sich an die Standard-Tricks zum Lösen algebraischer Gleichungen:
+\begin{enumerate}
+	\item bei einem linearen Polynom ist die Vorgehensweise klar: Gleichung auflösen.
+	\item bei einem quadratischen Polynom ist die Vorgehensweise klar: Gleichung auflösen (allgemeine Lösungsformel).
+	\item machmal lassen sich gemeinsame Potenz von der Variable ausklammern und der Rest ist ein quadratisches Polynom, was mit der allgemeinen Lösungsformel zu behandeln ist.
+	\item bei Polynomen, die nur gerade Potenzen von x aufweisen, bietet sich eine Substitution der Form \(x^2= y\), damit wird der Polynomgrad um zwei reduziert und Sie erhälten im besten Fall ein quadratisches Polynom in \(y\) - hier ist die Rücksubstitution nicht zu vergessen!
+	\item Binomische Formeln sollten Sie erkennen können.
+	\item Wenn all das nicht hilft, hilft nur noch eine Nullstelle zu raten und da beginnen Sie mit \(x=1\), dann \(x=-1\) vielleicht noch \(x=2\) und \(x=-2\) und wenn da nichts zum Erfolg führt, dann prüfen Sie, ob Sie einen Abschreibfehler drin haben :)
+	\end{enumerate}
+So, jetzt geht es los:
+\begin{itemize}
+	\item[(a)] Fall \(6\) und \(y_1=-1\) ist eine Nullstelle! Also ist die Strategie: erst eine Polynomdivision (die muss ohne Rest aufgehen, sonst haben Sie einen Fehler gemacht!) und dann die allgemeine Lösungsformel für das Restpolnyom durchführen\ldots
+		\begin{eqnarray*}
+			\left( 4y^3 - 8y^2 -3y + 9\right) : \left( y+1\right) = 4y^2-12y+9 \Rightarrow y_{2,3} = \frac{12 \pm \sqrt{ 144 - 4 \cdot 4 \cdot 9 } }{ 2 \cdot 4 } = \frac32
+			\end{eqnarray*}
+			Die Linearfaktorzerlegung des Polnyoms lautet also
+			\[4y^3 - 8y^2 -3y + 9 = 4 \cdot \left( y - \frac32\right)^2 \cdot \left( y+1\right)\]
+			Vorsicht: denken Sie daran, dass die allgemeine Lösungsformel Ihnen die Nullstellen des Polynoms liefert - an den Faktor vor der höchsten Potenz, im Beispiel \(4\), müssen Sie selbst denken, wenn eine äquivalente Darstellung des Polynoms gesucht ist!
+		\item[(b)] Fall \(4\): setzen wir \(a^2 = x\), dann erhalten wir ein quadratisches Polynom in \(x\), dessen Nullstellen wir mit der allgemeinen Lösungsformel berechnen können:
+			\begin{eqnarray*} a^4+3a^2-10 \Leftrightarrow a^2 = x \land x^2 + 3x-10 &=& ( x+5)\cdot( x-2),\\
+			\textnormal{denn} \quad x_{1,2} &=& \frac{ -3 \pm \sqrt{ 9 -4\cdot 1 \cdot (-10)}}{2} = \begin{cases} -5 \\ 2 \end{cases}\end{eqnarray*}
+				Die  Rücksubstitution liefert
+				\[ a^4+3a^2 -10 = (a^2+5)\cdot (a^2-2) = (a-\sqrt{2})\cdot (a+\sqrt{2}) \cdot (a^2+5)\,, \]
+				wobei der Faktor \( (a^2 - 2)\) in die Linearfaktoren \( (a-\sqrt{2}) \) und \( (a+\sqrt{2})\) zerlegt werden kann und der andere Faktor als quadratischer Term ohne reelle Nullstellen stehen bleiben muss.
+			\item[(c)] Fall \(3\) tritt ein und wir erhalten
+				\begin{eqnarray*} x^4+2x^3-35x^2 = x^2 \cdot ( x^2+2x-35) &=& x^2 \cdot (x-5)\cdot (x+7), \\ \mathrm{denn}\; x_{1,2} &=& \frac{-2\pm \sqrt{4-4\cdot 1 \cdot (-35)}}{2} = \frac{-2\pm 12}{2} = \begin{cases} -7 \\ 5\,.\end{cases} \end{eqnarray*}
+				\item[(d)] Fall \(5\) (\(3\). Binomische Formel): \( -64+b^2 = (b+8)\cdot (b-8)\)
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Polynomdivision]
+	Führen Sie folgende {Polynomdivisionen} aus.
+	\begin{eqnarray*}
+		\begin{array}{l l }
+			(a)\;(x^2+x):(x-1) \quad & (b)\; (x^3-x^2-x+1):(x-1) \\[2ex] (c) \; (x^3+x^2-5x+3) : (x-1)^2  \quad & (d)\; (x^4+x^3-2x) :(x-1)
+		\end{array}
+	\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)] $(x^2+x):(x-1) = x+2 + \displaystyle{\frac{2}{x-1}} $
+	\item[(b)] $(x^3-x^2-x+1):(x-1) = x^2-1$
+	\item[(c)] $(x^3+x^2-5x+1):(x-1)^2 = x+3$
+	\item[(d)] $(x^4+x^3-2x):(x-1) = x^3+2x^2+2x$
+\end{itemize}
+\end{exercisebox}
+\begin{exercisebox}[Gauß-Algorithmus]
+	Lösen Sie die folgenden Gleichungsysteme:
+	\begin{eqnarray*}
+		(a)\; \left\{ \begin{array}{cccccrcl}
+	 &A_1 &  &      & + & B_2 & =& 0 \\
+	 &4A_1& +& 4A_2 & + & 2B_2& =& -2 \\
+	 &4A_1&- & 2A_2 & + & 8B_2& =& -38
+ \end{array} \right.\quad \quad
+		(b)\;  \left\{ \begin{array}{crcrcrcl}
+	 -&x & + & y & +& z &=& 0 \\
+	 &x & -&3y & -&2z & =& 5 \\
+	 &5x & +&y & +&z &=& -6
+ \end{array} \right.
+ \end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Lösung durch Anwendung des Gauß-Algorthmus, das heißt die erweiterte Matrix wird auf Trapezform gebracht und das Gleichungssystem wird von unten nach oben gelöst:
+\begin{itemize}
+       	 \item[(a)]
+ \begin{eqnarray*}
+	 &&\left( \begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 4 & 4 & 2 & -2 \\ 4 & -2 & 8 & -38 \end{array}\right) \Leftrightarrow  \left( \begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 2 & 2 & 1 & -1 \\ 2 & -1 & 4 & -19 \end{array}\right) \\\Leftrightarrow &&  \left( \begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 0 & 2 & -1 & -1 \\ 0 & 0 & 3 & -39 \end{array}\right) \Rightarrow  \begin{cases} A_1 &= 13 \\ A_2 & = -7 \\ B_2 &= -13 \end{cases}
+ \end{eqnarray*}
+       	 \item[(b)]
+ \begin{eqnarray*}
+	 &&\left( \begin{array}{ccc|c} -1 & 1 & 1 & 0 \\ 1 & -3 & -2 & 5 \\ 5 & 1 & 1 & -6 \end{array}\right) \Leftrightarrow  \left( \begin{array}{ccc|c} -1 & 1 & 1 & 0 \\ 0 & -2 & -1 & 5 \\ 0 & 1 & 1 & -1 \end{array}\right) \\\Leftrightarrow &&  \left( \begin{array}{ccc|c} -1 & 1 & 1 & 0 \\ 0 & -2 & -1 & 5 \\ 0 & 0 & 1 & 3 \end{array}\right) \Rightarrow  \begin{cases} x &= -1 \\ y & = -4 \\ z &= 3 \end{cases}
+ \end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Partialbruchzerlegung]
+	Führen Sie eine Partialbruchzerlegung durch.
+	\begin{eqnarray*}
+		(a)\; \frac{2x^3-x^2-6x+2}{(x-5)^2(x^2+3x+4)} \quad\quad (b)\; \displaystyle{ \frac{x+1}{x(x^2+1)^2}}
+\quad & (d)\; \displaystyle{\frac{x^2-5x}{(x-2)^3}}
+		\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Die Nennerpolynome der gebrochenrationalen Ausdrücke liegen schon in faktorisierter Form vor und der Quotient ist vollständig gekürzt. Die Partialbruchzerlegung startet also mit dem Ansatz für die Zerlegung.
+  \begin{itemize}
+	  \item[(a)] Der Ansatz lautet:
+  \[
+  \frac{2x^3-x^2-6x+2}{(x-5)^2(x^2+3x+4)} = \frac{A}{ (x-5)^2 } + \frac{B}{x-5 } + \frac{Cx+D}{x^2+3x+4 }\,.
+  \]
+Um die vier Konstanten $A$ bis $D$ zu bestimmen, fasst man das wieder zu einem Bruch zusammen:
+  \[
+\frac{2x^3-x^2-6x+2}{(x-5)^2(x^2+3x+4)} = \frac{A  (x^2+3x+4) + B (x-5) (x^2+3x+4) +( Cx+D) (x-5)^2}{(x-5)^2(x^2+3x+4)}
+  \]
+
+Also muss für die Zähler gelten:
+\[ 2x^3-x^2-6x+2 \stackrel{!}{=} A  (x^2+3x+4) + B (x-5) (x^2+3x+4) +( Cx+D) (x-5)^2\,. \]
+
+Das muss für alle reellen Zahlen $x$ gelten. Daraus muss man nun vier Gleichungen für die vier Konstanten $A$ bis $D$ basteln. Dafür gibt es zwei Wege:
+\begin{itemize}
+  \item Verschiedene Werte für $x$ einsetzen: Zum Beispiel findet man für $x=5$
+  \[
+  2 \cdot 125- 25 -30+2 \stackrel{!}{=} A (25+15+4) \,.
+  \]
+
+\item Links und rechts Potenzen von $x$ zusammenfassen und einen Koeffizientenvergleich machen: Zum Beispiel steht links $2x^3$ und rechts
+\[
+	2x^3 \stackrel{!}{=} (B+C) x^3  \Rightarrow B+C\stackrel{!}{=} 2\,.
+  \]
+\end{itemize}
+\item[(b)]
+ Der Ansatz für die Partialbruchzerlegung lautet
+		\[ \frac{x+1}{x(x^2+1)^2} = \frac{A_1}{x} + \frac{B_1x+C_1}{x^2+1} +  \frac{B_2x+C_2}{(x^2+1)^2}\,. \]
+		Ein Koeffizientenvergleich führt auf das Gleichungssystem zur Bestimmung des Vektors $(A_1, B_1, B_2, C_1, C_2)^\intercal$
+		\begin{eqnarray*}
+			\left( \begin{array}{ccccc|c } 1 & 1 & 0 & 0 & 0 & 0 \\
+					0 & 0 & 0 & 1 & 0 & 0 \\
+					2 & 1 & 1 & 0 & 0 & 0 \\
+					0 & 0 & 0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 0 & 0 & 1 \end{array}\right) \Rightarrow A_1 = C_2 =  1, B_1 = B_2 = -1, C_1 = 0
+		\end{eqnarray*}
+ Die  Partialbruchzerlegung lautet
+		\[
+		\frac{x+1}{x(x^2+1)^2} = \frac{1}{x} - \frac{1}{x^2+1} -  \frac{x-1}{(x^2+1)^2}\,. \]
+\item[(c)]
+Der Ansatz lautet:
+		\[ \frac{x^2-5x}{(x-2)^3} = \frac{A}{x-2} + \frac{B}{(x-2)^2} + \frac{C}{(x-2)^3} \]
+ Die Partialbruchzerlegung ist:
+		\[ \frac{x^2-5x}{(x-2)^3} = \frac{1}{x-2} - \frac{1}{(x-2)^2} - \frac{6}{(x-2)^3} \]
+\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Partialbruchzerlegung]
+	Führen Sie eine Partialbruchzerlegung durch. Hinweis: Die Nennerpolynome haben mindestens eine ganzzahlige Nullstellen.
+	\begin{eqnarray*}
+		\begin{array}{l l l }
+			(a) \; \displaystyle{ \frac{1}{x^3+x}}  \quad\quad & (b)\; \displaystyle{ \frac{(4x^5-6x+13)(x-1)(x^2-1)}{x^3-x^2-x+1}} (c) \;  \displaystyle{ \frac{2x^2+x+1}{x^3+x^2-5x+3}} \\[2ex]
+			(d)\; \displaystyle{ \frac{-x^4-2x^3+7x^2-5x+3}{ x^2+3x-4}} \quad\quad & (e)\; \displaystyle{ \frac{x^2+x+1}{x^3-3x+2}}
+		\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)]
+		Faktorisierung des Nennerpolynoms
+		\[ x^3 + x = x(x^2+1) \]
+		Partialbruchzerlegung
+		\[ \frac{1}{x(x^2+1)} = \frac1x - \frac{x}{x^2+1} \]
+\item[(b)]
+	Die Faktorisierung des Nenners lautet $(x-1)(x^2-1)$, das Nennerpolynom läßt sich also komplett wegkürzen und es ist nichts weiter zu tun:
+	\[ \displaystyle{ \frac{(4x^5-6x+13)(x-1)(x^2-1)}{x^3-x^2-x+1}} = \frac{(4x^5-6x+13)(x-1)(x^2-1)}{(x^2-1)(x-1)} = 4x^5-6x+13\,.\]
+\item[(c)]
+	\begin{itemize}
+		\item Die Faktorisierung des Nennerpolynoms lautet
+	\[x^3+x^2-5x+3 = (x-1)^2\cdot (x+3)\]
+\item Der Nenner besitzt also eine zweifache Nullstelle in $x=1$ und eine einfache Nullstelle in $x=-3$. Der Ansatz für die Partialbruchzerlegung lautet also
+	\[
+	\displaystyle{ \frac{2x^2+x+1}{(x-1)^2\cdot (x+3)} = \displaystyle{\frac{A_1}{x-1}} +  \displaystyle{\frac{A_2}{(x-1)^2}} +  \displaystyle{\frac{B_1}{x+3}}}\]
+\item
+	Ein Koeffizientenvergleich zwischen den Zählern beider Seiten führt auf das folgende lineare Gleichungssystem für den Vektor $(A_1, A_2, B_1)^\intercal$
+	\begin{eqnarray*}
+		\left( \begin{array}{ccc |c}
+				1 & 0 & 1  & 2 \\
+				2 & 1 & -2 & 1\\
+		-3 & 3 & 1  & 1 \end{array}\right) \Leftrightarrow
+		\left( \begin{array}{ccc | c}
+				1 & 0 & 1 & 2  \\
+				0 & 1 & -4 & -3 \\
+		0 & 0 & 16 & 16 \end{array}\right) \Rightarrow  A_1 = A_2 = B_1 = 1\,.
+	\end{eqnarray*}
+\item Die Partialbruchzerlegung gemäß unseres Ansatzes lautet
+	\[
+	\displaystyle{ \frac{2x^2+x+1}{x^3+x^2-5x+3}}  = \displaystyle{\frac{1}{x-1}} +  \displaystyle{\frac{1}{(x-1)^2}} +  \displaystyle{\frac{1}{x+3}}
+	\]
+	\end{itemize}
+	\item[(d)]
+		Polynomdivision
+		\[ \frac{-x^4-2x^3+7x^2-5x+3}{ x^2+3x-4} = \frac{3-x}{x^2+3x-4} - x^2 +x \]
+		Faktorisierung des Nennerpolynoms
+		\[ x^2+3x-4 = (x-1)(x+4) \]
+		Partialbruchzerlegung
+		\[ \frac{3-x}{x^2+3x-4} = \frac{2}{5(x-1)} - \frac{7}{5(x+4)} \]
+	\item[(e)]
+		Faktorisierung des Nennerpolynoms
+		\[ x^3-3x+2 = (x-1)^2(x+2) \]
+		Partialbruchzerlegung
+		\[ \frac{x^2+x+1}{(x-1)^2(x+2)} = \frac{1}{3(x+2)} + \frac{2}{3(x-1)} + \frac{1}{(x-1)^2} \]
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Partialbruchzerlegung]
+% Papula Band 1, Kapitel V, Abschnitt 8, Aufgabe 7 Aufgabe Seite  563, Lösung Seite 793 ff
+	Führen Sie eine Partialbruchzerlegung durch.
+	\begin{eqnarray*}
+		\begin{array}{l l l}
+			(a)\; \displaystyle{ \frac{1}{ x^2-a^2}}, \; a>0 \;  \quad \quad & (b)\; \displaystyle{ \frac{4x^3}{x^3+2x^2-x-2}} \quad\quad & (c) \; \displaystyle{ \frac{3z}{z^3-3z^2-4}} \\[2ex]
+			(d)\; \displaystyle{\frac{4x-2}{x^2-2x-63}} \; & (e)\; \displaystyle{\frac{2x+1}{x^3-6x^2+9x} }  &
+		\end{array}
+	\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Detaillierte Lösungen zu dieser Aufgabe finden Sie in Papula, Band \(1\). Die Partialbruchzerlegungen sind Teil der Aufgabe \(7\) auf Seite \(563\) im Abschnitt V.\(8\). Den Lösungsweg finden Sie auf den Seiten \(793-794\).
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung Partialbruchzerlegung]
+	Berechnen Sie folgende Integrale. Hinweis: Nutzen Sie die Ergebnsise aus der vorigen Aufgabe.
+	\begin{eqnarray*}
+		\begin{array}{l l l}
+			(a)\; \displaystyle{ \int \frac{-x^4-2x^3+7x^2-5x+3}{ x^2+3x-4}} \, \mathrm{d}x \quad & (b)\; \displaystyle{\int \frac{x^2+x+1}{x^3-3x+2}}\,\mathrm{d}x  & (c) \; \displaystyle{\int \frac{1}{x^3+x}}\,\mathrm{d}x \\[1ex]
+			(d)\; \displaystyle{\int \frac{x^2-5x}{(x-2)^3}} \,\mathrm{d}x &(e)\; \displaystyle{ \int \frac{1}{ x^2-a^2}} \, \mathrm{d}x, \; a>0 & (f)\; \displaystyle{\int \frac{4x^3}{x^3+2x^2-x-2}}\,\mathrm{d}x \\[2ex]
+			(g) \; \displaystyle{\int \frac{3z}{z^3-3z^2-4}}\,\mathrm{d}x  & (h)\; \displaystyle{\int \frac{4x-2}{x^2-2x-63}}\, \mathrm{d}x \quad & (i)\; \displaystyle{\int \frac{2x+1}{x^3-6x^2+9x}}  \, \mathrm{d}x
+		\end{array}
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Detaillierte Lösungen zu den Aufgabenteilen \((e) -(i)\) finden Sie in Papula, Band \(1\) auf Seite \(793\)ff.
+\begin{itemize}
+	\item[(a)] $ F(x) = - \displaystyle{\frac{7}{5}}\ln|x+4| - \displaystyle{\frac{x^3}{3}} + \displaystyle{\frac{x^2}{2}}  + \displaystyle{\frac{2}{5}} \ln|x-1| + c $
+	\item[(b)] $ F(x) = \displaystyle{\frac{1}{3}} \ln|x+2| - \displaystyle{\frac{1}{x-1}} + \displaystyle{\frac{2}{3}}\ln|x-1| + c $
+	\item[(c)] $ F(x) = -\displaystyle{\frac{1}{2}} \ln(x^2+2) + \ln|x| + c $
+	\item[(d)] $ F(x) = \displaystyle{\frac{1}{x-2}} + \displaystyle{\frac{3}{(x-2)^2}} + \ln|x-2| c $
+	\item[(e)] $ F(x) = \displaystyle{\frac{1}{2a}} \ln\Big| \displaystyle{\frac{x-a}{x+a}}\Big| + c $
+	\item[(f)] $ F(x) = \displaystyle{\frac{2}{3}} \ln| x-1| + 2 \ln|x+1| - \displaystyle{\frac{32}{3}}\ln|x+2| + 4x + c $
+	\item[(g)] $ F(x) = \displaystyle{\frac{1}{3}} \ln\Big| \displaystyle{\frac{z-1}{z+2}}\Big| - 2 \displaystyle{\frac{2}{z+2}} + c $
+	\item[(h)] $ F(x) = \displaystyle{\frac{17}{8}} \ln|x-9| + \displaystyle{\frac{15}{8}}\ln|x+7| + c $
+	\item[(i)] $ F(x) = \displaystyle{\frac{1}{9}} \ln\Big| \displaystyle{\frac{x}{x-3}}\Big| - \displaystyle{\frac{7}{3(x-3)}} + c $
+\end{itemize}
+\end{exercisebox}
+
+

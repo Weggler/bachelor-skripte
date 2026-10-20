@@ -1,0 +1,211 @@
+\section{Numerische Lösung von Differentialgleichungen (+)}\label{MA2-numerische-loesung-von-differentialgleichungen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Anfangswertprobleme numerisch approximieren & \\
+    \tabitem das explizite Euler-Verfahren anwenden & \\
+    \tabitem das implizite Euler-Verfahren anwenden & \\
+    \tabitem den Einfluss der Schrittweite auf Genauigkeit und Stabilität beurteilen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem das Konzept der Linearisierung anwenden können & \abschnittsverweis{MA1-lokale-linearitaet}\\
+    \tabitem Differentialgleichungen erster Ordnung kennen & \abschnittsverweis{MA2-differentialgleichungen} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-numerische-loesung-von-differentialgleichungen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+
+\subsection{Keine Lösungstrategie passt - was nun?}
+
+Die Differentialgleichungen der meisten interessanten Modelle können nicht mit Bleistift und Papier gelöst werden (etwa mittels Variation der Konstanten oder mittels Trennung der Variablen). Die Lösungs\-funktionen von Differentialgleichungen lassen sich typischerweise nicht einmal mit Standardfunktionen wie $\sin$ und $\exp$ hinschreiben. Also versucht man, die Lösungs\-funktionen numerisch zu bestimmen, also Wertetabellen aufzustellen. Das geht immer nur mehr oder weniger genau!
+% Demo für eine Physik-Simulation mit Maxon Cinema 4D.
+
+Die Differentialgleichung wird in einen numerischen Löser hineingegeben [numerical integrator], der dann eine Wertetabelle bestimmt. Typischerweise erwarten numerische Löser Anfangswertprobleme in der Form
+\[ \begin{cases}
+		y(x_0) = y_0\,,\quad & x=x_0\,,\\
+		y'(x) =  f(y(x),x)\,, \quad & x>x_0\,.
+	\end{cases}
+\]
+wobei der Startpunkt $(x_0,y_0)$ vorgegeben werden muss. Die Funktion $f$ wird programmiert, so dass sie der Löser für alle $(x,y)$ auswerten kann, für die er das will.
+
+Die Differentialgleichung wird oft auch mit anderen Variablen, nämlich $\dot x = f(x,t)$ geschrieben, also mit $t$ statt $x$ und mit $x$ statt $y$. Also Vorsicht mit der Rolle von $x$.
+
+Für die Differentialgleichung $x^2 y'+\sin(y)-x^5 = 0$  wäre die Funktion $f$ beispielsweise
+\[
+	f(y(x),x) = x^3- x^{-2} \sin(y)\,.
+\]
+
+GeoGebra bietet die Funktion \verb-LöseDgl- an, die Ihnen die Lösung eines Anfangswertproblems per Knopfdruck liefert. Versuchen Sie es.
+%Um das Anfangswertproblem
+%\[ \begin{cases}
+%		y(2) =3\,,\quad &x=2\,,\\
+%		y'(x)= x^3- x^{-2} \sin(y)\,, \quad & x>2\,.
+%	\end{cases}
+%\]
+%mit GeoGeobra zu lösen, tippt man "\,\verb+LöseDgl(x*x*x-1/(x*x)*sin(x),(2,3))+"\, ein und erhält die Lösung in folgender Form
+%\begin{exabox}[GeoGebra Löser]
+%	\begin{center}
+%		\includegraphics[width=0.9\textwidth]{../Mathematik_2/Bilder_unused/differentialgleichung_geogebra_loesungskurven.png}
+%	\end{center}
+%\end{exabox}
+
+%Gibt man zu wenige Anfangsbedingungen vor wie bei \begin{verbatim} solve y''+y=0\end{verbatim} and \begin{verbatim} y(0)=1 \end{verbatim} zeigt Wolfram Alpha eine Schar möglicher Lösungen. Das Programm klassifiziert sogar ansatzweise, um welche Art von Differentialgleichung es sich handelt. Ärgerlich ist nur, dass man die Kurven, die Wolfram Alpha plottet, nicht sinnvoll weiterverarbeiten kann. Wenn man Glück hat, findet Wolfram Alpha eine symbolische Lösung (also eine Formel) statt einer numerischen Lösung (also einer Wertetabelle). So eine Formel lässt sich natürlich gut weiterverarbeiten.
+
+\subsection{Explizites Euler-Verfahren}
+
+Gegeben ist eine explizite Differentialgleichung erster Ordnung mit Anfangsbedingung:
+\[
+	\begin{cases}
+		y(x_0) = y_0\,, \quad &x = x_0\,,\\
+		y'(x) = f(y,x)\,, \quad & x>x_0\,.
+	\end{cases}
+\]
+Gesucht ist die Funktion $y(x)$ für $x\geq x_0$. Der Wert von $y(x_0)$ ist vorgegeben. Wenn man in $x$ nun ein kleines Stückchen $h$ weitergeht, also zu $x=x_0+h$, kennt man für sehr kleines $h$ die Änderung von $y$ in guter Näherung und kann damit sagen:
+\[
+	y(x_0+h) \approx y_1:= y_0 + h\cdot f(y_0,x_0)
+\]
+
+Nun kann man schätzen, was $y$ sein soll, wenn man noch einen Schritt $h$ weitergeht:
+\[
+	y(x_1+h) \approx y_2:= y_1 + h\cdot f(y_1,x_1)\,.
+\]
+
+Und nach $k+1$ Schritten
+\[
+	y(x_{k}+h) \approx y_{k+1}:= y_k + h\cdot f(y_k,x_k)\,.
+\]
+
+Dies ist das explizite Euler-Verfahren.
+\begin{exabox}{Explizites Euler-Verfahren für Differentialgleichung erster Ordnung}{ }
+	\begin{minipage}{0.35\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/eulerverfahren_schrittweite_0_1.png}
+\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		Anfangswertproblem:
+\[ \begin{cases}
+		y(2)  = 3\,, \quad &x=2\,,\\[1ex]
+		y'(x) = x^3- x^{-2} \sin(y)\,, \quad &x>2\,.
+	\end{cases}
+\]
+Iterationsvorschrift Euler-Verfahren:
+\[
+		y_{k+1}= y_k + h\cdot ( x_{k}^3- x_k^{-2} \sin(y_k) )\,.
+\]
+\end{minipage}
+\end{exabox}
+
+Wenn man die Schrittweite $h$ halbiert, verdoppelt sich die Zahl der Schritte, um einen bestimmten $x$-Wert von $x_0$ aus zu erreichen. Andererseits halbiert sich dabei ungefähr der Fehler der Näherung.
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder/eulerverfahren_schrittweite_0_5.png} \hspace{0.5cm}
+		\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder/eulerverfahren_schrittweite_0_025.png} \\
+		\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder/eulerverfahren_schrittweite_0_0125.png} \hspace{0.5cm}
+		\includegraphics[width=0.4\textwidth]{../Mathematik_2/Bilder/eulerverfahren_schrittweite_0_00625.png}
+\end{center}
+
+Das stößt allerdings an eine Grenze, wenn die Schrittweite $h$ zu klein wird: Dann addiert man in dem Iterationsschritt Zahlen in sehr unterschiedlicher Größenordnung, so dass die Rundungsfehler überhand nehmen. Erinnern Sie sich daran, dass man Nachkommastellen verlieren kann, wenn man normal große Zahlen mit kleinen Zahlen addiert:
+\[
+	13 + 0,000000001\cdot 42 = 13,00000000\textcolor{blue}{42\cdots}\,.
+\]
+Das explizite Euler-Verfahren kann also fehlerhaft sein. Das ist eine numerische Instabilität. Diese Instabilität kann man vermeiden, wenn man das implizite Euler-Verfahren betrachtet.
+
+
+\subsection{Andere Löser für Differentialgleichungen erster Ordnung}
+
+Um das $y(x)$ zu einem vorgegebenen $x$ sehr genau zu bestimmen und auch noch schnell zu rechnen, benötigt man deshalb Verfahren, die mit recht groben Schrittweiten $h$ auskommen.
+
+Ein gängiges Verfahren ist das Runge-Kutta Verfahren von vierter Appoximationsordnung. Wenn man hier die Schrittweite $h$ halbiert, sinkt der Fehler etwa auf ein Sechzehntel. Allerdings muss man die Funktion $f$ dazu pro Schritt viermal auswerten.\marginpar{\small Aufgabe}
+\begin{theorembox}{Runge-Kutta Verfahren vierter Ordnung}{ }
+	Anfangswertproblem
+	\[
+		\begin{cases}
+			y(x_0) = y_0 \,,\quad &x = x_0\,,\\
+			y'(x) = f(y(x),x)\,,\quad &x> x_0\,.
+	\end{cases}
+\]
+	Iterationsvorschrift Runge-Kutta-Verfahren:
+	\[
+		y_{k+1} = y_k + h\cdot \left( \frac16 k_1 + \frac13 k_2 + \frac13 k_3 + \frac16 k_4 \right)\,,
+	\]
+	mit
+	\begin{eqnarray*}
+		k_1 &=& f(y_k,x_k)\,,\\
+		k_2 &=& f(y_k + \displaystyle{\frac{h}{2}} k_1,x_k + \displaystyle{\frac{h}{2}})\,,\\
+		k_3 &=& f(y_k + \displaystyle{\frac{h}{2} k_2}, x_k + \displaystyle{\frac{h}{2}})\,,\\
+		k_4 &=& f(y_k + h k_3, x_k + h)\,.
+	\end{eqnarray*}
+\end{theorembox}
+
+Neben  der  Genauigkeit  von $y(x)$ zu  einem  vorgegeben $x$ kann  man  auch  das asymptotische Verhalten für $x\to \infty$ untersuchen: Die genäherte Lösung soll nicht explodieren. Hierzu kann man implizite Löser einsetzen.  Die Iteration beim implizite Euler-Verfahren lautet beispielsweise:
+\[
+\textcolor{blue}{y_k} = y_{k-1} + h\cdot f(\textcolor{blue}{y_k}, x_{k-1})\,.
+\]
+Anders als beim expliziten Verfahren, ist ein Gleichungssystem zu lösen\randverweis{MA1-determinante-und-inverse} - das ist der Preis den man für numerische Stabilität zu zahlen hat.\marginpar{\small Aufgabe}
+
+	\noindent Bemerkungen:
+	\begin{itemize}
+		\item Implizite Löser sind hilfreich beim Umgang mit steifen [stiff] Systemen. So heißen Systeme von Differentialgleichungen, in denen sehr verschieden schnelle Abklingverhalten gemischt werden. Die Anteile mit dem schnellen Abklingverhalten erzwingen gegebenenfalls eine entsprechend kleine Schrittweite.
+	\end{itemize}
+
+\subsection{Symplektische Verfahren für Differentialgleichungen zweiter Ordnung}
+
+Gerade in der Mechanik ist man an Differentialgleichungen zweiter Ordnung interessiert. Man kann sich hier die symplektische Struktur der Differentialgleichungen der Mechanik zu Nutze machen.
+
+Betrachten wir beispielsweise ein ungedämpftes Pendel der Masse $m$ mit Federkonstante $D>0$.
+\begin{exabox}{Explizites Euler-Verfahren für System erster Ordnung}{ }
+	\begin{minipage}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/federpendel_explizites_eulerverfahren.png}
+\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		Anfangswertproblem:
+\[
+	\begin{cases}
+		x(t_0)=x_0\,, \quad &t=t_0\,, \\[1ex]
+		p(t_0)=p_0\,, \quad &t=t_0\,,\\[2ex]
+		\dot x(t) = \displaystyle{\frac{p(t)}{m}}\,, \quad &t>t_0\,,\\[1ex]
+		\dot p(t) =  -D\cdot x(t)\,, \quad &t>t_0\,.
+\end{cases}
+ \]
+Iterationsvorschrift Euler-Verfahren:
+\[
+	\left( \begin{array}{c} x_{k+1} \\ p_{k+1} \end{array}\right) := \left( \begin{array}{c} x_k \\ p_k \end{array}\right) + h \left( \begin{array}{c} p_k/m \\ D\cdot x_k\end{array}\right)\,.
+\]
+\end{minipage}
+\end{exabox}
+Aus der Abbildung ist ersichtlich, dass das explizite Eulerverfahren eine unphysikalische Lösung produziert: die \underline{Amplitude der Schwingung}\randverweis{MA1-trigonometrische-funktionen} wird immer größer!
+
+Witzigerweise stellt sich heraus, dass der Löser wesentlich besser funktioniert, wenn man das neue $x$ in die Gleichung für $p$ einsetzt - oder umgekehrt. So ergibt sich das symplektische Euler-Verfahren:
+\begin{exabox}{Symplektisches Verfahren für ein System erster Ordnung}{}
+	\begin{minipage}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/federpendel_symplektisches_verfahren.png}
+\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		Anfangswertproblem:
+\[
+	\begin{cases}
+		x(t_0)=x_0\,, \quad &t=t_0\,, \\[1ex]
+		p(t_0)=p_0\,, \quad &t=t_0\,,\\[2ex]
+		\dot x(t) = \displaystyle{\frac{p(t)}{m}}\,, \quad &t>t_0\,,\\[1ex]
+		\dot p(t) =  -D\cdot x(t)\,, \quad &t>t_0\,.
+\end{cases}
+\]
+Iterationsvorschrift symplektisches Verfahren:
+\[
+	\left( \begin{array}{c} \textcolor{blue}{x_{k+1}} \\ p_{k+1} \end{array}\right) := \left( \begin{array}{c} x_k \\ p_k \end{array}\right) + h \left( \begin{array}{c} p_k/m \\ D\cdot \textcolor{blue}{x_{k+1}}\end{array}\right)\,.
+\]
+\end{minipage}
+\end{exabox}
+

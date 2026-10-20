@@ -1,0 +1,158 @@
+
+\section*{Eigenschaften von Funktionen Lösungen}\label{MA1-eigenschaften-von-funktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-eigenschaften-von-funktionen}{ (Abschnitt \abschnittsverweis{MA1-eigenschaften-von-funktionen})}.
+\else 
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Symmetrie]
+  Welche der folgenden Funktionen ist gerade, welche ungerade?
+  \begin{eqnarray*} \begin{array}{lll} 
+		  (a)\; x\mapsto -2\cdot x^6 + 3\cdot x^2  \quad& (b)\quad x\mapsto 2-3\cdot x^4  \quad & (c)\; x\mapsto 2-3\cdot x^3 \\[1ex]
+		  (d)\; x\mapsto 3\cdot x^3-x+1 \quad & (e)\; x\mapsto x\cdot (2\cdot x^2 - \frac13 \cdot x^4) \quad & (f)\; x\mapsto (x-1)\cdot(x-2) \\[1ex]
+		  (g)\; x\mapsto (x-1)^3+3\cdot x^2+1 \quad &(h)\; x\mapsto (1-3\cdot x^2)^2 & (i)\; x\mapsto (x-x^2)^2 
+	  \end{array}
+  \end{eqnarray*}
+ 
+
+  \hspace{0.3cm}
+  \newline
+  \textbf{Lösung:}
+  \begin{center}
+	  \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+	  & $a)$ & $b)$ & $c)$ & $d)$ & $e)$ & $f)$ & $g)$ & $h)$ & $i)$ \\
+	  \hline
+	  \hline
+	  gerade & $\bullet$ & $\bullet$ &  &  &  &  &  & $\bullet$ & \\
+	  \hline
+	  ungerade &  &  &  &  & $\bullet$ &  &  $\bullet^{(*)}$&  &  \\
+	  \hline
+	  weder noch &  &  & $\bullet$ & $\bullet$ & & $\bullet$ &  & & $\bullet$ 
+  \end{tabular}
+  \end{center}
+  $(*)$ $(x-1)^3+3\cdot x^2+1  = (x-1)\cdot (x^2-2\cdot x+1) = x^3-2\cdot x^2+x^2 - x^2 +2\cdot x^2 -1  +3\cdot x^2+1  = x^3 -2\cdot x$
+\end{exercisebox}
+
+\begin{exercisebox}[Umkehrfunktion] %Andreas
+Gegeben sei die (diskrete) Funktion $f:\{1,2,3,4\} \to \mathbb N$ mit der Wertetabelle 
+\begin{center}
+\begin{tabular}{l|l|l|l|l}
+$x$ & $1$ & $2$ & $3$ & $4$ \\ 
+\hline
+$f(x)$ & $9$ & $6$ & $7$ & $8$
+\end{tabular}
+\end{center}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+Die Umkehrfunktion $f^{-1}:\{6,7,8,9\} \to \{1,2,3,4\}$ besitzt die folgende Wertetabelle 
+\begin{center}
+\begin{tabular}{l|l|l|l|l}
+$x$ & $9$ & $6$ & $7$ & $8$ \\
+\hline
+$f^{-1}(x)$ & $1$ & $2$ & $3$ & $4$ 
+\end{tabular}
+\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}[Umkehrfunktion] 
+  Auf welchen Intervallen ist $f$ umkehrbar? Bestimmen Sie $f^{-1}$ und geben Sie $D_{f^{-1}}$ an
+  \begin{eqnarray*}
+	  \begin{array}{lll} (a)\; f: x \mapsto 4x-x^2  & \quad \quad (b)\; f:x \mapsto \displaystyle{\frac{2\cdot x}{x-1}} & \quad \quad (c)\; f:x\mapsto x\cdot |x| \end{array}
+  \end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{itemize}
+		\item[(a)] Offenbar gilt \[f: \mathbb R \to (-\infty, 4], x\mapsto x\cdot ( 4-x)\] $f$ besitzt dasselbe asymptotische Verhalten wie \(x\mapsto -x^2\) und ist demnach auf \(\mathbb R\) nicht injektiv und damit nicht invertierbar. Aber man kann \(f\) auf zwei Intervalle einschränken, auf denen Injektivität sicher gestellt ist, nämlich auf dem Intervall $I_1:= (-\infty,2]$ und auf dem Intervall $I_2:=[2,\infty)$. Die Abbildungsvorschriften der entsprechenden Umkehrfunktionen erhält man, in dem man die Gleichung \(y=4\cdot x-x^2\) nach \(x\) auflöst: 
+\begin{equation*}
+	\begin{array}{rr rcl l}
+		\forall x\geq 2: && y &=& 4\cdot x-x^2 &  \\
+		&\Leftrightarrow &y &=& \left( -x^2+4\cdot x \color{red}{-4} \right) \color{red}{+ 4} & \\
+		&\Leftrightarrow &y &=& -(x-2)^2 + 4 & || - 4 \\
+		&\Leftrightarrow &4-y &=& (x-2)^2 & || \sqrt{\cdot} \\[2ex]
+		&\stackrel{ x\geq2 !}{\Leftrightarrow} &\sqrt{4-y} &=& x-2 & || +2 \\
+		&\Leftrightarrow &\pm\sqrt{4-y}+2 &=& x & 
+	\end{array}
+  \end{equation*}
+  Entsprechend löst man für \(x<2\) auf und erhält:
+  \begin{eqnarray*}
+	  \begin{array}{l l l}
+  f_1^{-1}: &(-\infty, 4] \to (-\infty, 2], &\; x\mapsto 2-\sqrt{4-x} \\  
+  f_2^{-1}: &(-\infty, 4] \to  [2, \infty),&\; x\mapsto 2+\sqrt{4-x}  \\
+  \end{array}
+  \end{eqnarray*}
+  \item[(b)] $f$ ist auf $\mathbb R\setminus\{1\}$ invertierbar und es gilt:
+	  \begin{eqnarray*}
+  f^{-1}: \mathbb R\setminus\{1\} \to \mathbb R\setminus\{ 1\}, \, x\mapsto \frac{x}{x-2}  
+  \end{eqnarray*}
+  \item[(c)] Um die Abbildung \(f\) zu verstehen, lösen wir den Betragsstrich auf: 
+	  \begin{equation*}
+		  f(x) = \begin{cases} x^2, \; x\geq0\,,\\ -x^2, \; x<0\,.\end{cases}
+	  \end{equation*}
+	  \(f\) ist eine auf ganz \(\mathbb R\) definierte streng monoton steigende Funktion (für \(x\geq 0\) entspricht sie der Normalparabel und für \(x<0\) der, an der \(x\)-Achse gespiegelten Normalparabel). Also $f$ ist auf $\mathbb R$ invertierbar und wir bestimmen die Abbildungsvorschrift der Umkehrfunktion stückweise wie folgt: 
+	  \begin{eqnarray*}
+		  x\geq 0 \Rightarrow y\geq 0: \quad y = x^2 \Rightarrow +\sqrt{y} = x\,.\\
+		  x< 0 \Rightarrow y<0: \quad y = -x^2 \Leftrightarrow |y| = x^2 \Leftrightarrow -\sqrt{|y|} = x\,.
+	  \end{eqnarray*}
+	  Nach der Variablenumbennenung erhalten wir insgesamt
+	  \begin{eqnarray*}
+  f^{-1}: \mathbb R \to \mathbb R, x\mapsto \begin{cases} \sqrt{x}, &x\geq 0 \\ -\sqrt{|x|}, &x<0 \end{cases} 
+  \end{eqnarray*}
+  \end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Anwendung: Verpackungsreduktion] %LS p.37
+Umweltbewusste Studenten behaupten: Bei Dosen-Limo ist die Verpackung teurer als der Inhalt. Für die Überprüfung treffen die Studenten folgende Annahmen: Die Dose ist ein Zylinder, dessen Höhe doppelt so groß ist wie sein Durchmesser. Für den Hersteller kostet $1$ Liter Limo $15\,\mathrm{ct}$. Die Kosten für $1\,\mathrm{dm}^2$ Blech betragen $3 \,\mathrm{ct}$
+  \begin{itemize}
+	  \item[(a)] Überprüfen Sie die Behauptung für den Dosenradius $r=3 \,\mathrm{cm}$.
+	  \item[(b)] Ab welchem Dosenradius ist der Inhalt teurer als die Dose?
+  \end{itemize}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{enumerate}
+		\item Die Behauptung trifft zu!  Mit $h=4r [\mathrm{dm}]$ erhält man 
+			\begin{center}
+	\begin{tabular}{l|l|l}
+		& Funktionaler Zusammenhang & Einheit \\[1ex]
+		\hline
+		Materialbedarf $M$ & $\displaystyle{M: r\mapsto 2 \cdot(\pi\cdot r^2) + (2\pi \cdot r)\cdot h =  10\pi \cdot r^2}$  &$ [\mathrm{dm}^2]$\\[1ex]
+		Doseninhalt $V$ & $\displaystyle{V: r\mapsto (\pi\cdot r^2)\cdot h=4\pi \cdot r^3 }$  &$[\mathrm{dm}^3] = [\mathrm{l}]$\\[1ex]
+		Materialkosten $K_M$ & $\displaystyle{K_M: r\mapsto 3 \cdot M(r) = 30\pi \cdot r^2 }$ &$[\mathrm{ct}] $\\[1ex]
+		Kosten für Limo $K_L$ & $\displaystyle{K_L: r\mapsto 15 \cdot V(r) = 60\pi \cdot r^3 }$ &$[\mathrm{ct}] $
+	\end{tabular}
+\end{center}
+Und für $r = 3 \,\mathrm{cm} = 0.3\, \mathrm{dm}$ folgt
+	\begin{center}
+	\begin{tabular}{l|l}
+		Materialkosten & $\displaystyle{K_M(0.3\, \mathrm{dm} ) = 2.7\pi \approx 8.48 \,\mathrm{ct} }$ \\
+		Kosten für Limo & $\displaystyle{K_L(0.3 \, \mathrm{dm}) = 1.62\pi \approx 5.09 \, \mathrm{ct} }$ \\
+	\end{tabular}
+\end{center}
+\item  Die Bedingung $K_L(r) > K_M(r)$ wird für $r>\frac12 \mathrm{dm}$ erfüllt.
+	\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Kostenreduktion] %LS p.38
+	Die Herstellungskosten eines Airbus-Seitenleitwerks aus Metall werden angenähert durch \[ k_1: x\mapsto \frac{20\cdot x+5000}{x+50}\,,\] wobei $x$ die Anzahl der hergestellten Leitwerke und $k_1(x)$ eine willkürliche Geldeinheit beschreibt. Nachdem $300$ Leitwerke hergestellt sind, wird erwogen, die Produktion auf Kunststoffleitwerke umzustellen. Die Stückkosten betragen dann näherungsweise \[k_2:x\mapsto \frac{15\cdot x-2500}{x-250}\,, \quad x>300\,.\]
+  \begin{enumerate}
+ \item Zeichnen Sie die beiden Graphen, zum Beispiel mit Hilfe von Geogebra o.ä..
+    \item Wie verhalten sich die Stückkosten bei sehr großen Produktionszahlen?
+    \item Ab welcher Stückzahl ist das Kunststoffleitwerk billiger?
+  \end{enumerate}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{center}
+	\includegraphics[width=0.9\textwidth]{../Mathematik_1/Bilder/rationale_funktionen_stueckkosten_leitwerke_loesung.png}
+	\end{center}
+	\begin{itemize}
+	\item[2.] $\displaystyle{\lim\limits_{x\to\infty} k(x) = 20}$ und $\displaystyle{\lim\limits_{x\to\infty} k^*(x) = 15}$ und 
+	\item[3.] $k^*(x) < k(x) $ für $x>330$.
+  \end{itemize}
+	
+\end{exercisebox}

@@ -1,0 +1,113 @@
+\ifintegriereaufgaben
+\section*{Taylorpolynome und Taylorreihen Aufgaben}\label{MA2-taylorpolynome-aufgaben}
+
+ Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-taylorpolynome}{ (Abschnitt \abschnittsverweis{MA2-taylorpolynome})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-taylorpolynome-loesungen]{hier}.
+
+\else
+\section{Taylorpolynome und Taylorreihen Aufgaben}\label{MA2-taylorpolynome-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-taylorpolynome-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Taylorpolynom und Restgliedabschätzung] %HMI I Blatt 12, Aufgabe 1
+	Bestimmen Sie für die Funktion \(f:x\mapsto \ln\left( x\cdot e^{-2x}\right) \) das Taylorpolynom \(3.\) Grades in \(x_0=1\) und berechnen Sie damit näherungsweise \(f(6/5)\). Geben Sie anschließend eine Restgliedabschätzung an.
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 5
+	Geben Sie die ersten vier Glieder der Taylorreihe folgender Funktionen mit Entwicklungspunkt $x_0$ an:
+\begin{eqnarray*}
+	(a)\; f:x\mapsto \mathrm{cos}(x), \; x_0 = \frac{\pi}{3} \quad\quad
+	(b)\; f:x\mapsto \sqrt{x}, \; x_0 = 1 \quad\quad
+	(c)\; f:x\mapsto \frac{1}{x^2} - \frac{2}{x}, \; x_0 = 1
+\end{eqnarray*}
+\end{exercisebox}
+
+
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 3
+	Bestimmen Sie die Taylorreihe von $f:x\mapsto \displaystyle{\frac{1}{\sqrt{1-x^3}}} $ mit Entwicklungspunkt $x_0=0$ mit Hilfe des Binomischen Lehrsatzes und berechnen Sie die ersten vier Glieder explizit.
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung] %Papula I, VI, Abschnitt 3, Aufgabe 2 und 10
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die Taylorreihe von $f:x\mapsto \displaystyle{\mathrm{cosh}(x)} $ mit Entwicklungspunkt $x_0=0$.
+		\item[(b)] Untersuchen Sie mit Hilfe des Restglieds $R_{n-1}$ für welche Werte $x$ die Potenzreihe gegen $\mathrm{cosh}(x)$ konvergiert. Schätzen Sie dazu $R_{n-1}$ geeignet ab und stellen Sie fest für welche \(x\in\mathbb R\) gilt \(\lim\limits_{n\to\infty} R_{n-1}=0\).
+		\item[(c)] Lösen Sie die Gleichung
+			\[
+			\mathrm{cosh}(x) = 4-x^2\]
+			näherungsweise mit Hilfe der nach der vierten Potenz abgebrochenen Potenzreihenentwicklung von $\mathrm{cosh}(x)$. Geben Sie die Lösung mit vier Nachkommastellen an.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Taylor-Entwicklung Anwendung] %Papula I, VI, Abschnitt 3, Aufgabe 12
+	Berechnen Sie einen Näherungswert der folgenden Integrale. Bestimmen Sie dazu das Taylorpolynom  mit Entwicklungspunkt $x_0=0$ bis zur angegebenen Ordnung $n$ mit Hilfe bekannter Taylorreihen und integrieren Sie dieses. Geben Sie das Ergebnis mit $4$ Nachkommmastellen an.
+	\begin{eqnarray*}
+		(a)\; \int\limits_0^{1/2} \cos(\sqrt{x})\,\mathrm{d}x, \; n=3\quad\quad (b)\; \int\limits_{0}^{2/10}\frac{e^x}{x+1}\,\mathrm{d}x,\; n=3\quad\quad (c)\; \int\limits_{0}^1\frac{\sin(x)}{x}\,\mathrm{d}x, \; n=4
+	\end{eqnarray*}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Taylor-Entwicklung Anwendung] %Papula I, VI, Abschnitt 3, Aufgabe 13
+	Bestimmen Sie die Taylorreihe von $f: x\mapsto \ln(1-x)$ mit $x_0=0$ und differenzieren Sie diese gliedweise. Welche Potenzreihe erhalten Sie?
+\end{exercisebox}
+
+%\begin{exercisebox}[Taylor-Entwicklung]
+%	Betrachten Sie die Funktion $f: \mathbb R \to \mathbb R, t\mapsto \displaystyle{\frac{\sin(t)}{t}}$.
+%	\begin{itemize}
+%		\item[(a)] Wie lautet die formale Taylor-Entwicklung von $f$ in der Variable $t^2$?
+%		\item[(b)] Begründen Sie, warum \(f\) eine analytische Funtion in der Variable $t^2$ ist.
+%	\end{itemize}
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\begin{itemize}
+%	\item[(a)] Für die \(k\)-te Ableitung von \(f\) $f(t) = \displaystyle{\sum\limits_{k=0}^\infty (-1)^k \frac{( t^2)^k}{(2k+1)!} } $
+%	\item[(b)] $f$ ist unendlich oft stetig differenzierbar
+%\end{itemize}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Taylor-Entwicklung Anwendung]
+%	Das explizite Eulerverfahren ist von der Ordnung eins. %Nehmen Sie an die Differentialgleichung \( y' = f(x,y)\) besitzt eine lineare Lösung, also \(y(x) = ax+b\). Zeigen Sie, dass das explizite Eulerverfahren die Differentialgleichung exakt löst.
+%%
+%%\vspace{0.3cm}
+%%{\bf Lösung:} \newline
+%	%Ziel ist es also zu zeigen, dass der Fehler an allen Stützstellen \( x_k = x_0 + kh\) verschwindet, also
+%	%\[\forall \, k=0,\cdots,n: \quad  |y_k - y(x_k)| = 0\quad \textnormal{ mit } \(y_{k+1} = y_k + f(x_k,y_k)\,.\]
+%	%	Denken Sie einen Augenblick über diese Aussage nach: Die Lösungskurve, die das explizite Eulerverfahren konstruiert, ist der Polygonzug zwischen den geordneten Punkten \(P_k(x_k|y_k)\). Wenn die exakte Lösung eine Gerade ist, dann macht das Verfahren offensichtlich keinen Fehler! Lassen Sie uns das beweisen!
+%	%
+%	%	Die Idee ist auf jedem Teilintervall \( [x_{k}, x_{k+1}]\) eine Taylorentwicklung von \(y\) mit Entwicklungspunkt \(x_{k}\) anzuschauen. Wir brechen die Taylorreihe nach den ersten zwei Gliedern ab und fügen das Lagrange-Restglied hinzu, um keinen Fehler zu machen:
+%	%	\begin{eqnarray*} y(x_{k+1}) &=& y(x_k) + y'(x_k) (x_{k+1}-x_k) + \underbrace{\frac12 y''(\xi) (x_{k+1} - x_k)^2}_{\displaystyle{ = R_2(x_{k+1})}}  \\
+%	%	&=& y(x_k) + h\cdot a + o(h^2)
+%	%	\end{eqnarray*}
+%\end{exercisebox}
+
+
+%Moodle Blatt 12, Aufgabe 1, 2,
+
+%\begin{exercisebox}[Güte unterschiedlicher Approximationen]
+%	Die Funktion $f:t\mapsto \displystyle{\frac{\sin(t)}{t}}$ soll im Intervall \([0,\pi/2]\) durch eine Parabel der Form $p: t\mapsto x_0 + x_1 t^2$ approximiert werden.
+%\begin{itemize}
+%	\item[(a)] durch ihr Taylor-Polynom $p_T$ vom Grad $2$.
+%	\item[(b)] durch die Best-Approximation $p_2* \in \mathbb V:= \{ p:t\mapsto x_0+x_1 t^2, \; x_i\in\mathbb R\}$ bezüglich der $L_2$-Norm
+%		\[ \| f - p\|_2:= \left(  \int\limit_0^{\pi/2} (f(t) - p(t))^2 \, \mathrm{d}t \right)^{1/2}\,. \] % Lineares Gleichungssystem Hessematrix
+%	\item[(c)] durch die Best-Approximation $p_\infty* \in \mathbb V:= \{ p:t\mapsto x_0+x_1 t^2, \; x_i\in\mathbb R\}$ bezüglich der Maximumsnorm
+%		\[ \| f - p\|_\infty:=  \max\{ |f(t)- p(t)|, 0\leq t \leq \pi/2\}\,. \] % Lineares Gleichungssystem: geforderte Maximalabweichung an drei Stellen: \tau_0 = 0, \tau_1 \in (0, (\pi/2)^2), \tau_2 = (\pi/2)^2 Newton-Verfahren.
+%%https://www.math.uni-hamburg.de/home/oberle/skripte/approximation/approx.pdf\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\end{exercisebox}
+
+%\begin{exercisebox}[Taylorreihe] %Papula I, VI, Abschnitt 3, Aufgabe 1
+%Bestimmen Sie die Taylorreihe von folgenden Funktionen um den Punkt $x_0=0$:
+%\begin{eqnarray*}
+%	(a)\; f:x\mapsto \mathrm{sinh}(x) \quad\quad
+%	(b)\; f:x\mapsto \mathrm{arctan}(x) \quad\quad
+%	(c)\; f:x\mapsto \mathrm{ln}(1+x^2)
+%\end{eqnarray*}
+%%\vspace{0.3cm}
+%%{\bf Lösung:} \newline
+%%\begin{eqnarray*}
+%%	(a)\; \mathrm{sinh}(x) = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots
+%%	(b)\; \mathrm{arctan}(x) = x - \frac{x^3}{3} + \frac{x^5}{5} \pm \dots
+%%	(c)\; \mathrm{ln}(1+x^2) = x^2 - \frac{x^4}{2} + \frac{x^6}{3\pm \dots
+%%\end{eqnarray*}
+%\end{exercisebox}
+

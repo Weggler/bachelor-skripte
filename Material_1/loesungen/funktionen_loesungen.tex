@@ -1,0 +1,160 @@
+\section*{Funktionen Lösungen}\label{MA1-funktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-funktionen}{ (Abschnitt \abschnittsverweis{MA1-funktionen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+%\begin{exercisebox}[Funktion - ja oder nein?]
+%	Entscheiden Sie, ob die folgenden Skizzen Graphen einer Funktion \(f: X \to Y\) sein können. 
+%	\begin{center}
+%	\includegraphics[width=0.9\textwidth]{../Mathematik_1/Bilder/Funktionen_ja_oder_nein.png}
+%	\end{center}
+%
+%	\vspace{0.3cm}
+%	\noindent\textbf{Lösung:}\newline
+%Zeilenweise von links nach rechts: 
+%\begin{itemize}
+%	\item ja, nein, nein 
+%	\item nein, ja, nein 
+%\end{itemize}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Eigenschaften]
+%	\begin{center}
+%		\includegraphics[width=0.5\textwidth]{../Mathematik_1/Bilder/Rennstrecke.png} \hspace{1cm}
+%	\includegraphics[width=0.3\textwidth]{../Mathematik_1/Bilder/Rennstrecken.png}
+%	\end{center}
+%  Der Graph zeigt, wie sich die Geschwindigkeit $\boldsymbol v$ eines Rennwagens während seiner zweiten Runde auf einer ebenen Rennstrecke verändert.
+%  \begin{enumerate}
+%	  \item Wie lang ist eine Runde? $3\mathrm{km}$
+%	  \item niedrigste Geschwindigkeit $60\mathrm{km/h}$, höchste Geschwindigkeit $160\mathrm{km/h}$  
+%	  \item Wie oft wird gebremst und warum? $3$ Mal pro Runde $\Rightarrow$ $3$ Kurven
+%    \item Welche Strecke? B
+%\end{enumerate} 
+%\end{exercisebox} 
+
+\begin{exercisebox}[Funktionale Abhängigkeiten]
+  Die Tabelle gibt den Verpackungsverbrauch pro Jahr von Privathaushalten und Kleinbetrieben in Millionen Tonnen an. 
+  \begin{enumerate}
+    \item Veranschaulichen Sie die Werte der Tabelle durch einen Graphen.
+    \item Wann wurde vermutlich die neue Verpackungsverordnung (Grüner Punkt) eingeführt?
+    \item Wie hoch wäre der Verpackungsverbrauch $1993$ wohl gewesen, wenn man die neue Verpackungsverordnung nicht eingeführt hätte? Wie viel Prozent an Verpackungsmaterial wurde dadurch etwa eingespart?
+  \end{enumerate}
+  \begin{center}
+  \begin{tabular}{c|c}
+    Jahr & Verbrauch in Mio. Tonnen \\
+    \hline
+    $1988$ & $5.7$\\
+    $1989$ & $6.4$\\
+    $1990$ & $7.1$\\
+    $1991$ & $7.6$\\
+    $1992$ & $7.2$\\
+    $1993$ & $7.0$\\
+    $1994$ & $6.9$\\
+    $1995$ & $6.7$
+  \end{tabular}
+  \end{center}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+		  \begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/funktionen_verpackungsverbrauch_zeitverlauf_loesung.png} \hspace{0.5cm}
+\end{center}
+  \begin{itemize}
+	  \item[2.]  $1992$
+	  \item[3.] Ohne den Grünen Punkt hätte man mit einer jährlichen Steigerung um ca $0.5\,\mathrm{Mio}\,\mathrm{t}$ rechnen müssen. Die Prognose für $1993$ ergibt sich aus dem Verbrauch aus dem Jahr $1991$ plus ca $1.0\, \mathrm{Mio} \, \mathrm{t}$ für die Jahre $1992$ und $1993$:  $ 7.6\, \mathrm{Mio}\,\mathrm{t} + 1.0\,\mathrm{Mio}\,\mathrm{t} = 8.6 \,\mathrm{Mio}\,\mathrm{t}$. Die Ersparnis bis zum Jahr $1993$ beträgt also ca $8.6 \,\mathrm{Mio}\,\mathrm{t} - 7.0\, \mathrm{Mio}\,\mathrm{t} = 1.6 \,\mathrm{Mio}\,\mathrm{t}$, das entspricht einer Einsparung von Verpackung von ca $ \frac{1.6}{8.6} \cdot 100 \% \approx 16\%$.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Mathematische Kurzschreibweise]
+	Drücken Sie die Aussagen in mathematischer Kurzschreibweise aus.
+  \begin{enumerate}
+    \item Durch die Funktion $f$ wird der Zahl $3$ die Zahl $10$ zugeordnet.
+    \item Die Funktion $g$ nimmt an der Stelle $5$ den Funktionswert $12$ an.
+    \item Die Zahl $3$ gehört nicht zur Definitionsmenge der Funktion $f$.
+    \item Die Funktion $f$ ordnet der Zahl $4$ einen größeren Funktionswert zu als der Zahl $5$.
+    \item Die Funktionen $f$ und $g$ nehmen für $x=2$ denselben Funktionswert an.
+    \item Alle Funktionswerte der Funktion $g$ sind positiv.
+  \end{enumerate}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+  \begin{enumerate}
+	  \item $ f(3) =10$
+	  \item $g(5) = 12$
+    \item $3\not\in D_f$
+    \item $f(4) > f(5)$
+    \item $f(2) = g(2)$
+    \item $W_g\subseteq \mathbb R^+$
+  \end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Definitionsbereich]
+	Bestimmen Sie den maximalen Definitionsbereich der folgenden Abbildungen:
+  \begin{eqnarray*}
+          \begin{array}{lll}
+        	  (a) \; x\mapsto (x-1)^2 &\quad \quad (b)\; x\mapsto 3-5\cdot x-x^2 & \quad \quad (c)\; x\mapsto \displaystyle{\frac{1}{x}} \\[2ex]
+        	  (d) \; x\mapsto \displaystyle{\frac{1}{3-x}} & \quad \quad (e)\; x\mapsto \displaystyle{\frac{1}{(x-1)^2}} &\quad \quad (f) \; x\mapsto \displaystyle{\frac{1}{x^2-1}} \\[2ex]
+        	  (g) \; x\mapsto \sqrt{x-3} &\quad \quad (h) \; x\mapsto \displaystyle{\frac{1}{\sqrt{x-3}}} &\quad \quad (i)\; x\mapsto \ln( x +3) 
+          \end{array}
+  \end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+  \begin{eqnarray*}
+          \begin{array}{lll}
+		  (a) \mathbb R &\quad \quad (b)\; \mathbb R & \quad \quad (c)\; \mathbb R\setminus \{0\} \\[2ex]
+		  (d) \; \mathbb R\setminus \{3\} & \quad \quad (e)\; \mathbb R \setminus \{ 1\} &\quad \quad (f) \; \mathbb R\setminus \{ -1, 1\} \\[2ex]
+		  (g) \; [3,\infty) &\quad \quad (h) \; (3,\infty) &\quad \quad (i)\; (-3,\infty) 
+          \end{array}
+  \end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Bildbereich]
+	Bestimmen Sie den Bildbereich (die Bildmenge) der folgenden Abbildungen:
+  \begin{eqnarray*}
+          \begin{array}{lll}
+        	  (a)\; x\mapsto x^2 & \quad \quad (b)\; x\mapsto x^2 +1 & \quad \quad (c)\; x\mapsto 2 - x^2 \\[2ex]
+		  (d)\; x\mapsto -(x+2)^2+3 &\quad \quad (e)\; x\mapsto 3\cdot x-0.5 &\quad\quad (f)\; x\mapsto \sin(x) \\[2ex]
+    (g)\; x\mapsto 3^x &\quad \quad (h)\; x\mapsto 3 
+    \end{array}
+  \end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+  \begin{eqnarray*}
+          \begin{array}{lll}
+		  (a)\; \mathbb R^+_0 & \quad \quad (b)\; [1,\infty) & \quad \quad (c)\; (-\infty,2] \\[2ex]
+		  (d)\; (-\infty,3] &\quad \quad (e)\; \mathbb R &\quad\quad (f)\; [-1,1] \\[2ex]
+		  (g)\; \mathbb R^+ &\quad \quad (h)\; \{3\} 
+    \end{array}
+  \end{eqnarray*}
+\end{exercisebox}
+
+
+
+%\begin{exercisebox}[Graphen lesen, Maxima, Minima, Symmetrie]
+%	\begin{center}
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/Mountainbike.png}
+%	\end{center}
+%  Eine Mountainbike Tour in dem spanischen El-Ports-Gebirge hat das abgebildete Höhenprofil. 
+%  \begin{enumerate}
+%    \item Wie viele Höhenmeter sind beim ersten Anstieg zu überwinden?
+%    \item Wie groß ist der Gesamtanstieg, der bei der Tour zu überwinden ist?
+%    \item Wie steil ist die letzte Abfahrt ab Streckenkilometer $26$? Geben Sie das Gefälle in Prozent und den Steigungswinkel an.
+%    \item Zur Quelle Canaleta führt nur eine Sackgasse. Wie äußert sich das im Graphen? Wie lang ist vermutliche diese Sackgasse?
+%    \item Wo kann es noch eine Weitere Sackgasse geben?
+%  \end{enumerate}
+%
+%%  \begin{tabular}{c|c}
+%%    Kilometer & Höhenmeter \\
+%%    $0$ & $550$\\
+%%    $1$ & $700$\\
+%%    $4$ & $800$\\
+%%    $5$ & $630$\\
+%%    $6$ & $\ldots$
+%%  \end{tabular}
+% Lampbacher Schweitzer, p. 12
+%\end{exercisebox} 

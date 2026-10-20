@@ -1,0 +1,715 @@
+\section{Ableitungsregeln}\label{MA1-ableitungsregeln}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Ableitungen elementarer Funktionen bestimmen &\\
+    \tabitem Summen-, Produkt-, Quotienten- und Kettenregel sicher anwenden &\\
+    \tabitem Ableitungen verschachtelter Funktionen systematisch bestimmen &\\
+\tabitem die Bedeutung der Exponentialfunktion für proportionale Änderungsprozesse erklären (+)&\\
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem Grenzwerte von Funktionen & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}\\
+    \tabitem Ableitung als lokale Änderungsrate und lokale Linearisierung
+    & \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit}\\
+    \tabitem Verkettung von Funktionen & \abschnittsverweis{MA1-verkettung-von-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema:
+\hyperref[MA1-ableitungsregeln-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Vom Differenzenquotienten zu Ableitungsregeln}
+
+Die Ableitung wurde im vorigen Abschnitt über den Grenzwert des
+Differenzenquotienten definiert:
+\[
+f'(x)
+=
+\lim_{h\to0}
+\frac{f(x+h)-f(x)}{h}.
+\]
+
+Diese Definition erklärt, \emph{was} eine Ableitung ist: Sie beschreibt
+die lokale Änderungsrate einer Funktion und damit die Steigung ihrer
+Tangente.
+
+Für praktische Berechnungen wäre es jedoch aufwendig, für jede Funktion
+den Differenzenquotienten erneut von Grund auf zu untersuchen. Stattdessen
+werden Ableitungen einiger elementarer Funktionen einmal bestimmt und
+anschließend mithilfe von \textbf{Ableitungsregeln} kombiniert.
+
+Die zentrale Idee ist dabei dieselbe wie bei Funktionstermen selbst:
+Komplizierte Funktionen entstehen häufig aus einfachen Funktionen durch
+Addition, Multiplikation, Division oder Verkettung. Die Struktur des
+Funktionsterms bestimmt deshalb, welche Ableitungsregel benötigt wird.
+
+So entsteht ein Werkzeugkasten:
+\[
+\begin{array}{c}
+\text{elementare Funktionen}\\
+\downarrow\\
+\text{Standardableitungen}
+\end{array}
+\qquad+\qquad
+\begin{array}{c}
+\text{Verknüpfungen von Funktionen}\\
+\downarrow\\
+\text{Ableitungsregeln}.
+\end{array}
+\]
+
+Die Regeln werden zunächst für die Anwendung zusammengestellt. Ihre
+Herleitungen aus der lokalen Linearisierung beziehungsweise aus der
+Definition der Ableitung stehen im \textbf{(+)-Teil} am Ende dieses
+Abschnitts.
+
+
+\subsection{Ableitungsregeln}
+
+\subsubsection*{Summen und skalare Vielfache}
+
+Addition und Multiplikation mit einer festen Zahl übertragen sich besonders
+einfach auf die Ableitung.
+
+Sind \(f\) und \(g\) differenzierbar und ist \(C\in\mathbb R\) konstant,
+so folgen aus den Grenzwertsätzen:
+
+\begin{theorembox}{Summenregel und skalare Vielfache}{ }
+\[
+\begin{array}{rcl}
+(Cf)' &=& C f',\\[0.5ex]
+(f+g)' &=& f'+g'.
+\end{array}
+\]
+\end{theorembox}
+
+Insbesondere können Polynome dadurch gliedweise abgeleitet werden, sobald
+die Ableitung der Potenzfunktionen bekannt ist.
+
+
+\subsubsection*{Produkte}
+
+Bei einem Produkt zweier Funktionen reicht es dagegen nicht aus, beide
+Faktoren getrennt abzuleiten und anschließend zu multiplizieren. Ändern
+sich beide Faktoren, so tragen beide Änderungen zur Änderung des Produkts
+bei.
+
+\begin{theorembox}{Produktregel}{ }
+Sind \(f\) und \(g\) differenzierbar, so gilt
+\[
+(fg)'
+=
+f'g+fg'.
+\]
+\end{theorembox}
+
+Die Struktur der Formel lässt sich bereits an einem Rechteck
+veranschaulichen: Ändern sich beide Seitenlängen, so verändert sich die
+Fläche durch die Änderung beider Seiten.
+
+\begin{exabox}{Produktregel geometrisch interpretiert}{ }
+\centering
+\includegraphics[width=0.5\textwidth]
+{../Mathematik_1/Bilder/ableitung_produktregel_flaechenzerlegung.png}
+\end{exabox}
+
+
+\subsubsection*{Verkettungen}
+
+Besonders häufig entstehen Funktionen dadurch, dass das Ergebnis einer
+Funktion als Argument einer weiteren Funktion verwendet wird:
+\[
+x\longmapsto g(x)\longmapsto f(g(x)).
+\]
+
+Eine kleine Änderung von \(x\) verändert zunächst den Wert von \(g\).
+Diese Änderung wird anschließend durch \(f\) weiterverarbeitet. Die
+gesamte lokale Änderungsrate entsteht deshalb aus beiden lokalen
+Änderungsraten.
+
+\begin{theorembox}{Kettenregel}{ }
+Ist \(g\) in \(x\) und \(f\) in \(g(x)\) differenzierbar, so gilt
+\[
+(f\circ g)'(x)
+=
+f'(g(x))\,g'(x).
+\]
+Kurz:
+\[
+(f\circ g)'=(f'\circ g)\,g'.
+\]
+\end{theorembox}
+
+Die Kettenregel ist besonders wichtig, weil viele in Anwendungen
+auftretende Funktionen Verkettungen elementarer Funktionen sind.
+
+\begin{exabox}{Kettenregel}{ }
+Für
+\[
+F(x)=e^{-2x}
+\]
+besteht die Funktion aus der äußeren Funktion
+\[
+f(u)=e^u
+\]
+und der inneren Funktion
+\[
+g(x)=-2x.
+\]
+Damit folgt
+\[
+F'(x)
+=
+e^{-2x}\cdot(-2)
+=
+-2e^{-2x}.
+\]
+\end{exabox}
+
+
+\subsubsection*{Quotienten}
+
+Ein Quotient kann als Produkt mit dem Kehrwert aufgefasst werden. Aus
+Produkt- und Kettenregel ergibt sich dadurch die Quotientenregel.
+
+\begin{theorembox}{Quotientenregel}{ }
+Sind \(f\) und \(g\) differenzierbar und gilt \(g(x)\neq0\), so ist
+\[
+\left(\frac fg\right)'(x)
+=
+\frac{f'(x)g(x)-f(x)g'(x)}
+     {(g(x))^2}.
+\]
+\end{theorembox}
+
+
+\subsection{Standardableitungen}
+
+Die Ableitungsregeln beschreiben, wie sich bereits bekannte Ableitungen
+kombinieren lassen. Zusätzlich werden daher die Ableitungen einiger
+elementarer Funktionen benötigt.
+
+Die folgende Übersicht bildet zusammen mit den Ableitungsregeln den
+grundlegenden Werkzeugkasten für die folgenden Rechnungen.
+
+\begin{theorembox}{Standardableitungen}{ }
+\[
+\begin{array}{rcl}
+(C)' &=& 0,\\[0.5ex]
+(x^n)' &=& nx^{n-1},
+\qquad n\in\mathbb N,\\[0.5ex]
+(e^x)' &=& e^x,\\[0.5ex]
+(b^x)' &=& \ln(b)b^x,
+\qquad b>0,\\[0.5ex]
+(\ln x)' &=& \displaystyle\frac1x,
+\qquad x>0,\\[1ex]
+(\sin x)' &=& \cos x,\\
+(\cos x)' &=& -\sin x,\\
+(\tan x)' &=& \displaystyle\frac1{\cos^2x},\\[1ex]
+(\arcsin x)' &=&
+\displaystyle\frac1{\sqrt{1-x^2}},
+\qquad -1<x<1,\\
+(\arccos x)' &=&
+-\displaystyle\frac1{\sqrt{1-x^2}},
+\qquad -1<x<1,\\
+(\arctan x)' &=&
+\displaystyle\frac1{1+x^2}.
+\end{array}
+\]
+\end{theorembox}
+
+Die Herleitungen ausgewählter Standardableitungen stehen im
+\textbf{(+)-Teil}. Dort wird insbesondere sichtbar, wie die bekannten
+Eigenschaften von Exponential-, Logarithmus- und trigonometrischen
+Funktionen mit ihren Ableitungen zusammenhängen.
+
+
+\subsection{Zusammengesetzte Funktionen systematisch ableiten}
+
+Bei komplizierteren Funktionstermen besteht die eigentliche Aufgabe häufig
+nicht in der Durchführung einer einzelnen Ableitungsregel, sondern im
+Erkennen der Struktur des Terms.
+
+Beispielsweise besitzt
+\[
+	F(x)=3\cdot e^{-(2\cdot x+1)^2}
+\]
+vier Ebenen:
+
+\[
+x
+\longmapsto
+2\cdot x + 1
+\longmapsto
+-(2\cdot x + 1)^2
+\longmapsto
+e^{-(2\cdot x + 1)^2}
+\longmapsto
+3 \cdot e^{-(2\cdot x + 1)^2} .
+\]
+
+Die Ableitung wird entsprechend von außen nach innen aufgebaut. 
+
+\begin{exabox}{Zusammengesetzte Funktion}{ }
+Für
+\[
+	F(x)=3\cdot e^{-(2\cdot x+1)^2}
+\]
+gilt
+\[
+F'(x)
+=
+3\cdot e^{-(2\cdot x+1)^2}\cdot(-2\cdot (2\cdot x+1))\cdot 2
+=
+- 12 \cdot (2\cdot x+1) \cdot e^{-(2\cdot x+1)^2}.
+\]
+\end{exabox}
+
+Bei stärker verschachtelten Termen wird dieses Prinzip wiederholt. Die
+äußere Struktur entscheidet über die zuerst anzuwendende Regel; innere
+Funktionen werden anschließend auf dieselbe Weise weiter zerlegt.
+
+\subsection{Exponentialfunktionen und proportionale Änderung}
+\label{MA1-ableitungsregeln-exponentialfunktion}
+
+Die Exponentialfunktion besitzt eine für viele Anwendungen besonders
+wichtige Eigenschaft: Ihre Ableitung ist wieder eine Exponentialfunktion.
+
+Für \(a>0\) gilt
+\[
+\frac{\mathrm d}{\mathrm dx}a^x
+=
+\ln(a)\,a^x.
+\]
+
+Die Ableitung ist also proportional zum Funktionswert. Für
+\(f(x)=a^x\) gilt
+\[
+f'(x)=\ln(a)\,f(x).
+\]
+
+Damit lässt sich eine einfache Faustregel formulieren:
+
+\medskip
+\noindent
+\textbf{Faustregel:}
+Immer wenn die momentane Änderungsrate einer Größe proportional zu ihrem
+aktuellen Wert ist, ist eine Exponentialfunktion zu erwarten.
+\medskip
+
+Ein typisches Modell hat daher die Form
+\[
+y'(t)=\lambda y(t).
+\]
+Dabei beschreibt \(y(t)\) den aktuellen Wert der betrachteten Größe und
+\(y'(t)\) ihre momentane Änderungsrate. Der Faktor \(\lambda\) gibt an,
+wie groß die Änderungsrate im Verhältnis zum aktuellen Wert ist.
+
+Ein typisches Modell hat daher die Form
+\[
+y'(t)=\lambda y(t).
+\]
+Dabei beschreibt \(y(t)\) den aktuellen Wert der betrachteten Größe und
+\(y'(t)\) ihre momentane Änderungsrate. Der Faktor \(\lambda\) gibt an,
+wie groß die Änderungsrate im Verhältnis zum aktuellen Wert ist.
+
+Die Lösungen dieser Gleichung sind genau die Funktionen
+\[
+y(t)=Ce^{\lambda t},
+\qquad C\in\mathbb R.
+\]
+Tatsächlich gilt
+\[
+y'(t)
+=
+\lambda Ce^{\lambda t}
+=
+\lambda y(t).
+\]
+
+Für \(\lambda>0\) wächst die Größe, für \(\lambda<0\) nimmt sie ab.
+Je größer dabei der aktuelle Betrag von \(y(t)\) ist, desto größer ist
+auch der Betrag ihrer momentanen Änderung.
+
+
+\begin{exabox}{Proportionales Wachstum}{}
+Eine Größe \(y(t)\) erfülle
+\[
+y'(t)=y(t),
+\qquad
+y(0)=y_0.
+\]
+Die Änderungsrate ist hier zu jedem Zeitpunkt gleich dem aktuellen Wert.
+Die Funktion
+\[
+y(t)=y_0e^t
+\]
+besitzt genau diese Eigenschaft, denn
+\[
+y'(t)=y_0e^t=y(t)
+\]
+und \(y(0)=y_0\).
+\end{exabox}
+
+\subsubsection*{Die natürliche Exponentialfunktion}
+
+Für die natürliche Exponentialfunktion ist der Proportionalitätsfaktor
+gleich eins:
+\[
+\left(e^x\right)'=e^x.
+\]
+
+Funktionswert und momentane Änderungsrate stimmen daher bei \(e^x\)
+überein. Diese Eigenschaft erklärt, weshalb die natürliche
+Exponentialfunktion bei der Beschreibung von Wachstums- und
+Zerfallsprozessen eine besondere Rolle spielt.
+
+
+\noindent\textbf{Ausblick (+):}
+Die Verbindung zwischen Exponentialfunktionen und Änderungsprozessen wird
+später bei Differentialgleichungen wieder aufgegriffen. Eine komplexe
+Exponentialfunktion der Form
+\[
+e^{(\sigma+i\omega)t}
+=
+e^{\sigma t}\,e^{i\omega t}
+\]
+verbindet dabei zwei grundlegende Verhaltensweisen: Der reelle Faktor
+\(e^{\sigma t}\) beschreibt Wachstum oder Dämpfung. Wegen
+\[
+e^{i\omega t}
+=
+\cos(\omega t)+i\sin(\omega t)
+\]
+beschreibt der zweite Faktor eine Schwingung.
+
+\subsection{Herleitungen und Beweisideen (+)}
+
+Die bisher zusammengestellten Regeln reichen aus, um Ableitungen
+praktisch zu berechnen. Ihre Herleitungen zeigen zusätzlich, weshalb
+diese Regeln gelten und wie sie mit der Definition der Ableitung und der
+lokalen Linearisierung zusammenhängen.
+
+Dieser Teil ist für die Anwendung der Regeln nicht erforderlich, macht
+aber die gemeinsame mathematische Struktur sichtbar.
+
+
+\subsubsection*{Herleitung der Produktregel}
+
+Sind \(f\) und \(g\) in \(x\) differenzierbar, so besitzen beide eine
+lokale Linearisierung:
+\[
+f(x+h)
+=
+f(x)+f'(x)h+o(h)
+\]
+und
+\[
+g(x+h)
+=
+g(x)+g'(x)h+o(h).
+\]
+
+Für das Produkt ergibt sich damit
+\begin{eqnarray*}
+f(x+h)g(x+h)
+&=&
+\left(f(x)+f'(x)h+o(h)\right)
+\left(g(x)+g'(x)h+o(h)\right)\\[1ex]
+&=&
+f(x)g(x)
++
+\left(f'(x)g(x)+f(x)g'(x)\right)h
++
+o(h).
+\end{eqnarray*}
+
+Der lineare Anteil der Änderung besitzt somit den Koeffizienten
+\[
+f'(x)g(x)+f(x)g'(x).
+\]
+Nach der Charakterisierung der Differenzierbarkeit durch lokale
+Linearisierung ist genau dieser Koeffizient die Ableitung des Produkts.
+
+\begin{theorembox}{Produktregel}{ }
+\[
+(fg)'
+=
+f'g+fg'.
+\]
+\end{theorembox}
+
+
+\subsubsection*{Herleitung der Kettenregel}
+
+Nun wird die Verkettung
+\[
+x\mapsto f(g(x))
+\]
+betrachtet. Die Funktion \(g\) sei in \(x\) differenzierbar und \(f\) in
+\(g(x)\).
+
+Für die innere Funktion gilt
+\[
+g(x+h)
+=
+g(x)+g'(x)h+o(h).
+\]
+Die Änderung des Arguments der äußeren Funktion ist daher
+\[
+h_2
+:=
+g(x+h)-g(x)
+=
+g'(x)h+o(h).
+\]
+
+Da auch \(f\) differenzierbar ist, gilt
+\[
+f(g(x)+h_2)
+=
+f(g(x))+f'(g(x))h_2+o(h_2).
+\]
+
+Einsetzen von \(h_2\) liefert
+\[
+f(g(x+h))
+=
+f(g(x))
++
+f'(g(x))g'(x)h
++
+o(h).
+\]
+
+Der lineare Koeffizient ist somit
+\[
+f'(g(x))g'(x).
+\]
+
+\begin{theorembox}{Kettenregel}{ }
+\[
+(f\circ g)'(x)
+=
+f'(g(x))g'(x).
+\]
+\end{theorembox}
+
+Die Kettenregel macht damit mathematisch präzise, was bereits bei ihrer
+Einführung anschaulich sichtbar war: Eine kleine Änderung von \(x\) wird
+zunächst durch \(g\) und anschließend durch \(f\) weitergegeben. Die
+beiden lokalen Änderungsfaktoren multiplizieren sich.
+
+
+\subsubsection*{Herleitung der Quotientenregel}
+
+Zunächst wird die Ableitung der Kehrwertfunktion betrachtet. Aus
+\[
+x\cdot\frac1x=1
+\]
+folgt mit der Produktregel
+\[
+0
+=
+\left(x\cdot\frac1x\right)'
+=
+\frac1x
++
+x\left(\frac1x\right)'.
+\]
+Damit gilt
+\[
+\left(\frac1x\right)'
+=
+-\frac1{x^2}.
+\]
+
+Für eine differenzierbare Funktion \(g\) folgt mit der Kettenregel
+\[
+\left(\frac1{g(x)}\right)'
+=
+-\frac{g'(x)}{(g(x))^2}.
+\]
+
+Schließlich wird
+\[
+\frac{f(x)}{g(x)}
+=
+f(x)\frac1{g(x)}
+\]
+als Produkt aufgefasst. Die Produktregel ergibt
+\[
+\left(\frac fg\right)'
+=
+\frac{f'g-fg'}{g^2}.
+\]
+
+
+\subsubsection*{Herleitungen ausgewählter Standardableitungen}
+
+\paragraph{Exponentialfunktion.}
+
+Aus dem \underline{bekannten Grenzwert}\randverweis{MA1-grenzwerte-von-folgen-und-funktionen}
+\[
+\lim_{h\to0}\frac{e^h-1}{h}=1
+\]
+folgt unmittelbar
+\begin{eqnarray*}
+\frac{e^{x+h}-e^x}{h}
+&=&
+e^x\frac{e^h-1}{h}.
+\end{eqnarray*}
+Damit ergibt sich für \(h\to0\)
+\[
+(e^x)'=e^x.
+\]
+Damit ergibt sich für \(h\to0\)
+\[
+(e^x)'=e^x.
+\]
+
+\begin{theorembox}{Ableitung der Exponentialfunktion}{ }
+\[
+\exp'=\exp.
+\]
+\end{theorembox}
+
+Für eine beliebige Basis \(b>0\) gilt
+\[
+b^x=e^{x\ln b}.
+\]
+Mit der Kettenregel folgt
+\[
+(b^x)'
+=
+e^{x\ln b}\ln b
+=
+\ln(b)b^x.
+\]
+
+
+\paragraph{Logarithmusfunktion.}
+
+Exponentialfunktion und natürlicher Logarithmus sind Umkehrfunktionen.
+Für \(x>0\) gilt
+\[
+e^{\ln x}=x.
+\]
+Ableiten beider Seiten und Anwenden der Kettenregel liefert
+\[
+e^{\ln x}(\ln x)'=1.
+\]
+Wegen \(e^{\ln x}=x\) folgt
+\[
+(\ln x)'=\frac1x.
+\]
+
+
+\paragraph{Potenzfunktionen.}
+
+Für \(x>0\) lässt sich
+\[
+x^n=e^{n\ln x}
+\]
+schreiben. Mit der Kettenregel folgt
+\begin{eqnarray*}
+\frac{\mathrm d}{\mathrm dx}x^n
+&=&
+\frac{\mathrm d}{\mathrm dx}e^{n\ln x}\\
+&=&
+e^{n\ln x}\frac{n}{x}\\
+&=&
+nx^{n-1}.
+\end{eqnarray*}
+
+Für \(n\in\mathbb N\) gilt diese Ableitungsregel auf dem gesamten
+Definitionsbereich der jeweiligen Potenzfunktion.
+
+
+\paragraph{Trigonometrische Funktionen.}
+
+Eine besonders kompakte Herleitung ergibt sich mithilfe der Eulerschen
+Identität
+\[
+e^{ix}=\cos x+i\sin x.
+\]
+Ableiten liefert
+\[
+\frac{\mathrm d}{\mathrm dx}e^{ix}
+=
+ie^{ix}
+=
+i(\cos x+i\sin x)
+=
+-\sin x+i\cos x.
+\]
+
+Durch Vergleich von Real- und Imaginärteil folgt
+\[
+(\cos x)'=-\sin x,
+\qquad
+(\sin x)'=\cos x.
+\]
+
+Für den Tangens ergibt sich anschließend mit der Quotientenregel
+\begin{eqnarray*}
+(\tan x)'
+&=&
+\left(\frac{\sin x}{\cos x}\right)'\\
+&=&
+\frac{\cos^2x+\sin^2x}{\cos^2x}\\
+&=&
+\frac1{\cos^2x}.
+\end{eqnarray*}
+
+
+\paragraph{Inverse trigonometrische Funktionen.}
+
+Die Ableitungen der inversen trigonometrischen Funktionen lassen sich
+ähnlich wie die Ableitung des Logarithmus aus der Beziehung zwischen
+einer Funktion und ihrer Umkehrfunktion gewinnen.
+
+Für den Arkussinus gilt
+\[
+\sin(\arcsin x)=x.
+\]
+Ableiten liefert
+\[
+\cos(\arcsin x)(\arcsin x)'=1.
+\]
+Da
+\[
+\cos(\arcsin x)=\sqrt{1-x^2}
+\qquad\textnormal{für }-1<x<1,
+\]
+folgt
+\[
+(\arcsin x)'
+=
+\frac1{\sqrt{1-x^2}}.
+\]
+
+Entsprechend ergeben sich
+\[
+(\arccos x)'
+=
+-\frac1{\sqrt{1-x^2}},
+\qquad -1<x<1,
+\]
+und
+\[
+(\arctan x)'
+=
+\frac1{1+x^2}.
+\]

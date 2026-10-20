@@ -1,0 +1,65 @@
+%\subsection{Aufgaben}
+%	Laplace-Transformierte berechnen, zum Beispiel für folgende Manipulationen:
+%\begin{itemize}
+%	\item Transformation des Integrals zeigen
+%	\item Differentiation der Bildfuktion zeigen
+%	\item Integration des Bildfunktion
+%	\item Dämpfung
+%	\item Periodische Funktionen
+%\end{itemize}
+
+\ifintegriereaufgaben
+
+\section*{Laplace Transformation Aufgaben}\label{MA2-laplacetransformation-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laplacetransformation}{ (Abschnitt \abschnittsverweis{MA2-laplacetransformation})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-laplacetransformation-loesungen]{hier}.
+\else
+\section{Laplace Transformation Aufgaben}\label{MA2-laplacetransformation-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-laplacetransformation-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Uneigentliche Integrale] %A.Z. Integralrechnung  % Papula I.V, Abschnitt 9, Aufgabe 1 und 2
+	Bestimmen Sie den Wert der folgenden uneigentlichen Integrale, falls er existiert.
+	\begin{eqnarray*}
+		(a)\;\int_0^\infty e^{-x}\,\mathrm{d}x\quad
+		(b)\;\int_0^\infty x\cdot e^{-x}\,\mathrm{d}x\quad
+		(c)\;\int_{-\infty}^2 e^{x}\,\mathrm{d}x\quad
+		(d)\;\int_{0}^\infty x^2\cdot e^{-2x}\,\mathrm{d}x
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Uneigentliche Integrale] %A.Z. Integralrechnung  % Papula I.V, Abschnitt 9, Aufgabe 4
+	Bestimmen Sie den Wert der folgenden uneigentlichen Integrale, falls er existiert.
+	\begin{eqnarray*}
+		(a)\;\int_{-1}^0 \frac{1}{\sqrt{1+x}}\,\mathrm{d}x\quad
+		(b)\;\int_{-1}^{1} \frac{1}{x^2}\,\mathrm{d}x\quad
+		(c)\;\int_{0}^{10} \frac{e^{x}}{e^x-1}\,\mathrm{d}x
+	\end{eqnarray*}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Laplace-Transformation] % Papula 2 VI, Abschnitt 1, Aufgabe 1 und 3
+	Bestimmen Sie für folgende Funktionen die Laplace-Transformierte durch explizite Berechnung.
+	\begin{itemize}
+	\item[(a)] $f(t) = 2t\cdot e^{-4t}$
+	\item[(b)] $f(t) = e^{-\delta t} \cdot \sin(\omega t), \; \delta, \omega >0$
+	\item[(c)] $f(t) = \mathrm{sinh}(at),\, a>0$
+	\item[(d)] $f(t) = \sin^2(t)$
+\item[(e)] (Rechteckimpuls) Für $a>0$
+			\[ f(t) = \begin{cases} A, \quad & 0<t<a\,,\\
+					-A, \quad & a< t < 2a\,,\\
+			0, \quad \mathrm{sonst}\,. \end{cases}\]
+		\item[(f)] (Sinusimpuls) Für $a>0$
+			\[ f(t) = \begin{cases} A\cdot \sin\left( \frac{\pi\cdot t}{a}\right), \quad & 0\leq t \leq a\,,\\
+			0, \quad \mathrm{sonst}\,. \end{cases}\]
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Laplace-Transformation] % Papula 2, VI, Abschnitt 2, Aufgabe 4
+	Bestimmen Sie
+	%mit Hilfe von
+	%\[ \sin(t) \,\laplace\, \frac{1}{s^2+1} \]
+	die Laplace-Transformierte von
+	\[ f(t) = \sin(\omega t + \varphi), \; \omega,\varphi >0\,. \]
+	%indem Sie zuerst eine Verschiebung und dann eine Skalierung verwenden.
+\end{exercisebox}

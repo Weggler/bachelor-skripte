@@ -1,0 +1,138 @@
+
+\ifintegriereaufgaben
+\section*{Komplexe Zahlen I Aufgaben}\label{MA1-komplexe-zahlen-grundlagen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-komplexe-zahlen-grundlagen}{ (Abschnitt \abschnittsverweis{MA1-komplexe-zahlen-grundlagen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-komplexe-zahlen-grundlagen-loesungen]{hier}.
+\else
+\section{Komplexe Zahlen I Aufgaben}\label{MA1-komplexe-zahlen-grundlagen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-komplexe-zahlen-grundlagen-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Rechenregeln] %Andreas
+	Gegeben sinde die komplexen Zahlen $z_1: = -2 + 4i$ und $z_2:= 1-3i$.
+	\begin{itemize}
+		\item[(a)] Berechnen Sie $\quad i\cdot z_1 - 2 \cdot z_2, \quad z_1 \cdot z_2, \quad \displaystyle{\frac{z_1}{z_2}}, \quad \displaystyle{\frac{2z_1 z_2}{z_1^2+z_2^2}}$.
+		\item[(b)] Bestimmen Sie $\quad |z_1|,\quad |z_2|,\quad |z_1\cdot z_2|$.
+		\item[(c)] Bestimmen Sie $\quad \overline{z_1},\quad \overline{z_2},\quad \overline{z_1}\cdot \overline{z_2}$.
+		\item[(d)] Stellen Sie die folgenden Zahlen in der kartesischen Form dar ($a,b\in\mathbb R$):
+			\[ \frac{3-21i}{4-3i} + 3(i-8), \quad (2-4i)^2+\frac{|1-\sqrt{3}i|}{i}, \quad \left| \frac{a+bi}{a-bi} + \frac{a-bi}{a+bi}\right| \]
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Ungleichungen] %Lucy
+Bestimmen Sie die Punkte der Gaußschen Zahlenebene, die folgende Eigenschaften besitzen:
+\begin{itemize}
+	%\item $|z|=1$ (Kreislinie)
+	%\item $|z|\leq 1$ (Kreisschreibe)
+	%\item $|z|> 1$  %($\mathbb R^2 \setminus \{\textnormal{Kreisschreibe}\}$)
+	%\item $0<\mathrm{arg}( z) < \pi/4$  %(Ecke, $\sin(\pi/4) = \cos(\pi/4)$)
+	\item[(a)]$0<|z+i|<2$ %(verschobene Kreisscheibe ohne $(0,-i)$) 
+			%\begin{eqnarray*}
+			%	|z-z_0| < r \Rightarrow (z+i)\overline{(z+i)} = z\overline z + i(-i) = z^2+1 < 2 \Leftrightarrow z^2 < 1 \Leftrightarrow |z| <1 
+			%\end{eqnarray*}
+	\item[(b)] $|z-z_1| = |z-z_2|$ %(Mittelsenkrechte zwischen $z_1$ und $z_2$)
+% 	\item $\mathrm{Re}\frac{1}{z} = \frac{1}{2a}, \quad a>0, a\in \mathbb R$ (verschobene Kreislinie)\par
+%
+%			Beachte:
+%			\begin{eqnarray*}
+%				\frac{1}{x+iy} = \frac{x+iy}{x^2 - y^2} = \frac{x}{x^2 + y^2} -i \frac{y}{x^2 + y^2} = \frac{x}{x^2 + y^2}  
+%			\end{eqnarray*} 
+%			Also:
+%               \begin{eqnarray*}
+%	            \mathrm{Re}\left( \frac{1}{x+iy}\right) = \frac{x}{x^2-y^2} &=& \frac{1}{2a} \\
+%	            \Leftrightarrow 2ax &=& x^2 + y^2 \Leftrightarrow  x^2 - 2ax + a^2 - a^2 + y^2 = 0 \\
+%	            \Leftrightarrow (x-a)^2 + y^2 &=& a^2
+%                \end{eqnarray*}
+	\item[(c)] \(|z^2-\overline z^2| \geq 4\)
+	%\item[(d)] \( |z^2+\overline z^2| \geq 4\)
+	%\item[(e)] Welche Punktmenge der Gauß'schen Zahlenebene erfüllen (c) und (d)?
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Die imaginäre Einheit] %Lucy
+	Berechnen Sie $i^{172}$ und $i^{175}$.
+\end{exercisebox}
+
+\begin{exercisebox}[Kartesische und Polarkoordinaten] %Andreas
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie von folgenden komplexen Zahlen die Polarkoordinaten:
+			\[ z_1=i,\quad z_2=\sqrt{3}-i, \quad z_3=-1-i, \quad z_4=x-\sqrt{3}x\,i\; (x>0) \]
+%$z_1=\cos(\pi/2) + i\sin(\pi/2)$
+%\begin{eqnarray*}
+%	z_2 = 2\cdot \left( \cos\left(-\frac{\pi}{6}\right) + i \sin\left(-\frac{\pi}{6}\right)\right)
+%\end{eqnarray*}
+		\item[(b)] Bestimmen Sie von folgenden komplexen Zahlen die kartesische Form:
+			\[ z_1 \; \widehat= \; 1\cdot e^{-i4\pi/3},\quad z_2 \; \widehat = \; \sqrt{2}a \cdot e^{-i\pi/4} \]
+	  \end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Kartesische und Polarkoordinaten] %Lucy
+	Bestimmen Sie mit Hilfe der Polarkoordinaten die kartesische Form der folgenden komplexen Zahl: \[z= \left( \frac12 + \frac{\sqrt{3}}{2}i\right)^{60}\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssystem] %Andreas
+	Lösen Sie das folgende lineare Gleichungssystem
+	\begin{eqnarray*}
+		\begin{array}{r c r c l} 
+			(3-4i)\cdot z_1 &+& (2-i)\cdot z_2 &=& 4-7i \\[1ex]
+	(1-2i)\cdot z_1 &+& 4i\cdot z_2 &=& -11-15i 
+\end{array}
+\end{eqnarray*}
+\end{exercisebox}
+
+
+%\begin{exercisebox}[Schatzsuche]
+%\end{exercisebox}
+
+%\begin{exercisebox}[Binonialkoeffizient]
+%	\begin{eqnarray*} 
+%	(z_1+z_2)^n = \sum\limits_{k=0}^{n} \binom{n}{k} z_1^{n-k} z_2^k\,.
+%	\end{eqnarray*}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Parallelogramm]
+%	In einem Parallelogramm ist die Sume der Quadrate über den Diagonalen gleich der Summe der Quadrate über allen der Seiten.
+%	\begin{eqnarray*}
+%		|z_1+z_2|^2 + |z_1 - z_2|^2 &=& (z_1+z_2)\overline{(z_1+z_2)} + (z_1-z_2)\overline{(z_1-z_2)} \\ 
+%		&=& (z_1+z_2)\left( \overline{z_1} + \overline{z_2}\right) +   (z_1-z_2)\left( \overline{z_1} - \overline{z_2}\right)\\  
+%	&=& z_1\overline{z_1} + z_1\overline{z_2} + z_2\overline{z_1} + z_2\overline{z_2} + z_1\overline{z_1} - z_2\overline{z_1} - z_1\overline{z_2} + z_2\overline{z_2} \\  
+%	&=& 2 z_1\overline{z_1} + 2 z_2\overline{z_2} = 2\left( |z_1|^2 + |z_2|^2\right)\,.
+%\end{eqnarray*}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Kräfteparallelogramm/ Addition von Vektoren]
+%\end{exercisebox}
+
+%\begin{exercisebox}[Zahlenbereiche]
+%  Welche Aussage ist richtig? 
+%  \begin{enumerate}
+%	  \item $\mathbb R \subset \mathbb C$?
+%	  \item $z\in \mathbb R \Rightarrow z = \overline{z}$
+%  \end{enumerate}
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Rechnen mit komplexen Zahlen]
+%  Welche Aussage ist richtig?
+%  \begin{enumerate}
+%	  \item $\overline{\overline z} = z$
+%  	  \item $\frac{\overline{z_1}}{\overline{z_2}} = \overline{\frac{z_1}{z_2}}$
+%  	  \item $\overline{z_1} \cdot \overline{z_2} = \overline{z_1 \cdot z_2}$
+%  	  \item $\overline{z_1} + \overline{z_2} = \overline{z_1 + z_2}$
+%  \end{enumerate}
+%\end{exercisebox}
+
+%\begin{exercisebox}[Komplexe Zahlen]
+%	Es sei \(z\in \mathbb C\):\begin{enumerate}
+%		\item Welche Punktmenge der Gauß'schen Zahlenebene wird durch die folgende Bedingung bestimmt?\[ |z^2-\overline z^2| \geq 4\]
+%		\item Welche Punktmenge der Gauß'schen Zahlenebene wird durch die folgende Bedingung bestimmt?\[ |z^2+\overline z^2| \geq 4\]
+%		\item Welche Punktmenge der Gauß'schen Zahlenebene erfüllt beide zuvor genannten Bedingungen?
+%	\end{enumerate}
+%
+%	\vspace{0.3cm}
+%	\noindent{\bf Lösung:} \newline
+%
+%\end{exercisebox}
+
+

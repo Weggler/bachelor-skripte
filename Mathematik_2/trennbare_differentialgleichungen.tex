@@ -1,0 +1,123 @@
+
+\section{Differentialgleichungen mit trennbaren Variablen (+)}\label{MA2-trennbare-differentialgleichungen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Differentialgleichungen mit trennbaren Variablen durch Separation der Variablen lösen & \\
+    \tabitem Anfangswertprobleme dieses Typs vollständig bestimmen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Integrale sicher berechnen können & \abschnittsverweis{MA2-integrationsregeln}  \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-trennbare-differentialgleichungen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Trennbare Variablen}
+
+Die sogenannte "\,Trennung der Variablen"\, [separation of variables] ist ein beliebter Trick, um Anfangswertprobleme erster Ordnung (und nur erster Ordnung) zu lösen. Differentialgleichungen erster Ordnung haben trennbare Variablen [separable variables], wenn gilt:
+\begin{defbox}{Differentialgleichung mit trennbaren Variablen}{ }
+	Die Differentialgleichung läßt sich eine Form bringen, in der
+	\begin{itemize}
+		\item auf der linken Seite das Produkt der Ableitung $y'$ mit einer Funktion $h$ steht, wobei $h$ nur von $y$ abhängt,
+		\item auf der rechten Seite nur eine Funktion $f$ der unabhängigen Variable $x$ auftaucht.
+	\end{itemize}
+	Schematisch sieht sie dann so aus:
+	\[ h(y(x)) \cdot y'(x) = f(x)\,.\]
+\end{defbox}
+
+\subsection{Lösungsstrategie}
+
+Die grundsätzliche Idee ist beide Seiten der Gleichung zu integrieren und die \underline{Substitutionsregel}\randverweis{MA2-integrationsregeln} anzuwenden. Die Substitution lautet
+\[
+	s = y(x) \Rightarrow \mathrm{d}s = y'(x)\, \mathrm d x\,.
+\]
+Anstatt $s$ schreibt man einfach $y$, also
+\[
+	y = y(x) \Rightarrow \mathrm{d}y = y'(x)\, \mathrm d x\,. \quad(*)
+\]
+
+Wir schauen uns das Vorgehen für das folgende Anfangswertproblem an:
+\[
+\begin{cases}
+	y(3) =  7\,, \quad & x=3\,,\\[1ex]
+	\displaystyle{e^{y(x)}} y'(x) = x^5, \quad & x > 3\,.
+\end{cases}
+\]
+Wir integrieren beide Seiten der Differentialgleichung vom Startpunkt $(x,y)=(3,7)$ zu einem beliebigen Endpunkt $(x_1,y_1)$ und integrieren durch Substitution:
+\begin{eqnarray*}
+	\begin{array}{l rcl c rcl}
+		& \displaystyle{\int\limits_{3}^{x_1}} e^y \displaystyle{\frac{\mathrm{d}y}{\mathrm{d}x}}\,\mathrm{d}x &=& \displaystyle{\int\limits_{3}^{x_1}} x^5 \, \mathrm{d}x  &\stackrel{\displaystyle{ (*)}}{\Leftrightarrow} & \displaystyle{\int\limits_{7}^{y_1}} e^y \,\mathrm{d}y &=& = \displaystyle{\int\limits_{3}^{x_1}} x^5 \, \mathrm{d}x \\[2ex]
+		& & &  &\Leftrightarrow  & \Big[ \displaystyle{e^{y}}\Big]_{7}^{y_1} &=& \Big[ \displaystyle{\frac16 x^6}\Big]_{3}^{x_1} \\
+		&&&&\Leftrightarrow  & \displaystyle{e^{y_1} - e^{7}} &=& \displaystyle{7\frac{x_1^6}{6} - \frac{3^6}{6}}
+\end{array}
+		\end{eqnarray*}
+Und es ergibt sich die Lösung:
+\[
+ y_1 =\ln\left( e^7 + \frac{x_1^6}{6} - \frac{3^6}{6} \right) \,.
+\]
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Das Auflösen nach $y_1$ im letzten Schritt kann problematisch sein - denken Sie an den Definitionsbereich der \underline{Umkehrfunktionen}\randverweis{MA1-eigenschaften-von-funktionen}.
+	\item Der Name der Lösungmethode kommt daher, dass man die Differentialgleichung formal umformen kann zu
+		\[
+			e^y y' = x^5 \Leftrightarrow e^y \frac{\mathrm{d}y}{\mathrm{d}x} = x^5 \Rightarrow  e^y \mathrm{d}y = x^5 \mathrm{d}x\,.
+	\]
+In dieser Form sind die Variablen $x$ und $y$ getrennt und dann auf beiden Seiten von $(x,y)=(3,7)$ bis $(x_1,y_1)$ integriert:
+			\[
+			\int\limits_{7}^{y_1} e^y \,\mathrm{d}y = \int\limits_{3}^{x_1} x^5 \, \mathrm{d}x\,.
+		\]
+	\item Manche Leute verzichten auf die Anfangs- und Endwerte und schreiben unbestimmte Integrale, um die allgemeine Lösung der Differentialgleichung zu erhalten. Aber dann darf man die Integrationskonstante nicht vergessen:
+			\[
+			\int e^y \,\mathrm{d}y = \int x^5 \, \mathrm{d}x \Leftrightarrow e^y  = \frac{x^6}{6} + c\,.
+		\]
+	Die allgemeine Lösung lautet mit $C = \ln(c)$ also
+		\[
+			y(x)  = C\cdot \ln\left(\frac{x^6}{6}\right)\,.
+	\]
+\end{itemize}
+
+\begin{exabox}{Nichtlinear von erster Ordnung}{ }
+Anfangswertproblems:
+	\[
+		\begin{cases}
+			y(0) = 1\,, &\quad x=0\,,\\
+			y'(x)+y^2(x)  = 0\,, &\quad x>0\,.
+		\end{cases}\]
+Trennung der Variablen:
+\begin{eqnarray*}
+y'+y^2 = 0 \Leftrightarrow \frac{\mathrm{d}y}{\mathrm{d}x}  -y^2 &=&  0  \\
+\stackrel{y\not=0}{\Leftrightarrow} \frac{1}{y^2}\cdot \frac{\mathrm{d}y}{\mathrm{d}x} &=& -1 \\
+\Leftrightarrow \frac{1}{y^2}\cdot \mathrm{d}y &=& -\mathrm{d}x
+\end{eqnarray*}
+Integration:
+\[
+\int \frac{1}{y^2}\,\mathrm{d}y = -\int\,\mathrm{d}x  \stackrel{x\not=C}{\Leftrightarrow} y = \frac{1}{x-C} \,.
+\]
+Bestimmung der Integrationskonstanten:
+\[ y(0) = -\frac{1}{C} \stackrel{!}{=} 1 \Leftrightarrow C = -1 \,.\]
+Lösung:
+\[ y(x) = \frac{1}{x+1}\,.\]
+\end{exabox}
+
+Bei den folgenden Differentialgleichungen führt eine Substitution auf eine Form, die mit dem Schema dieses Abschnitts zu lösen ist:
+
+	\begin{center}
+		\begin{tabular}{c|c|c}
+			vorher & Substitution & nachher \\ \hline
+			$y' =\tilde h(ax+by+c)$ & $ u = ax+by+c$ & $u' = a+b \tilde h(u)$ \\
+			\hline
+			$y' =\tilde h \left(\displaystyle{\frac{y}{x}}\right)$ & $ u = \displaystyle{\frac{y}{x}}$ & $u' = \displaystyle{\frac{\tilde h(u) - u}{x}}$ \\
+		\end{tabular}
+	\end{center}

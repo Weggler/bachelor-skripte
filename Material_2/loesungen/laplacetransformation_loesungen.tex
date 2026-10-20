@@ -1,0 +1,78 @@
+\section*{Laplace Transformation Aufgaben mit Lösungen}\label{MA2-laplacetransformation-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laplacetransformation}{ (Abschnitt \abschnittsverweis{MA2-laplacetransformation})}. \fi
+
+\begin{exercisebox}[Uneigentliche Integrale] %A.Z. Integralrechnung  % Papula I.V, Abschnitt 9, Aufgabe 1 und 2
+	Bestimmen Sie den Wert der folgenden uneigentlichen Integrale, falls er existiert.
+	\begin{eqnarray*}
+		(a)\;\int_0^\infty e^{-x}\,\mathrm{d}x\quad
+		(b)\;\int_0^\infty x\cdot e^{-x}\,\mathrm{d}x\quad
+		(c)\;\int_{-\infty}^2 e^{x}\,\mathrm{d}x\quad
+		(d)\;\int_{0}^\infty x^2\cdot e^{-2x}\,\mathrm{d}x
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgaben entsprechen den Aufgaben \(1\) und \(2\) zu Abschnitt V.\(9\) in Papula Band 1. Die Aufgabenstellungen finden Sie auf Seite \(564\) und detaillierte Lösungswege auf Seite \(798\).
+\begin{itemize}
+	\item[(a)] Papula 1.V.9, Aufg. 1.a) $\quad 1$
+	\item[(b)] Papula 1.V.9, Aufg. 1.b) $\quad 1$
+	\item[(c)] Papula 1.V.9, Aufg. 1.c) $\quad e^2$
+	\item[(d)] Papula 1.V.9, Aufg. 2) $\quad 1/4$
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Uneigentliche Integrale] %A.Z. Integralrechnung  % Papula I.V, Abschnitt 9, Aufgabe 4
+	Bestimmen Sie den Wert der folgenden uneigentlichen Integrale, falls er existiert.
+	\begin{eqnarray*}
+		(a)\;\int_{-1}^0 \frac{1}{\sqrt{1+x}}\,\mathrm{d}x\quad
+		(b)\;\int_{-1}^{1} \frac{1}{x^2}\,\mathrm{d}x\quad
+		(c)\;\int_{0}^{10} \frac{e^{x}}{e^x-1}\,\mathrm{d}x
+	\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufgabe \(4\) zu Abschnitt V.\(9\) in Papula Band 1. Die Aufgabenstellungen finden Sie auf Seite \(565\) und detaillierte Lösungswege auf Seite \(799\).
+\begin{itemize}
+	\item[(a)] $2$
+	\item[(b)] divergent
+	\item[(c)] divergent
+\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Laplace-Transformation] % Papula II VI, Abschnitt 1, Aufgabe 1 und 3
+	Aufgabe war es zu den gegebenen Funktionen die Laplace-Transformierte durch explizite Berechnung zu bestimmen. Die Aufgaben finden Sie im Lehrbuch von Papula Band II, Abschnitt VI.\(1\) auf Seite \(676\) und detaillierte Lösungswege auf Seite \(766\):
+	\begin{itemize}
+	\item[(a)] Papula, Aufg. 1.b)  $\quad f(t) = 2t\cdot e^{-4t}$
+	\item[(b)] Papula, Aufg. 1.c)  $\quad f(t) = e^{-\delta t} \cdot \sin(\omega t), \; \delta, \omega >0$
+	\item[(c)] Papula, Aufg. 1.d)  $\quad f(t) = \mathrm{sinh}(at),\, a>0$
+	\item[(d)] Papula, Aufg. 1.f)  $\quad f(t) = \sin^2(t)$
+\item[(e)] Papula, Aufg. 3.a) \(\quad\) (Rechteckimpuls) Für $a>0$
+			\[ f(t) = \begin{cases} A, \quad & 0<t<a\,,\\
+					-A, \quad & a< t < 2a\,,\\
+			0, \quad \mathrm{sonst}\,. \end{cases}\]
+		\item[(f)] Papula, Aufg. 3.b) \(\quad\) (Sinusimpuls) Für $a>0$
+			\[ f(t) = \begin{cases} A\cdot \sin\left( \frac{\pi\cdot t}{a}\right), \quad & 0\leq t \leq a\,,\\
+			0, \quad \mathrm{sonst}\,. \end{cases}\]
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Laplace-Transformation] % Papula II, VI, Abschnitt 2, Aufgabe 4
+	Bestimmen Sie
+	%mit Hilfe von
+	%\[ \sin(t) \laplace \frac{1}{s^2+1} \]
+	die Laplace-Transformierte von
+	\[ f(t) = \sin(\omega t + \varphi), \; \omega,\varphi >0\,. \]
+	%indem Sie zuerst eine Verschiebung und dann eine Skalierung verwenden.
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+		\begin{eqnarray*}
+	I &=& \int\limits_0^\infty \sin(\omega t +\varphi) e^{-st}\,\mathrm{d}t = \frac{1}{s}\sin(\varphi) + \frac{\omega}{s} \int\limits_{0}^\infty \cos(\omega t+\varphi) e^{-st}\,\mathrm{d}t \\ &=& \frac{1}{s}\sin(\varphi) + \frac{\omega}{s^2}\cos(\varphi) - \frac{\omega^2}{s^2} I  \\
+	&\Rightarrow &  I \left( 1+\frac{\omega^2}{s^2}\right) = \frac1s\sin(\varphi) - \frac{\omega}{s^2}\cos(\varphi)
+\end{eqnarray*}
+Also erhalten wir
+\[ \Rightarrow I = \mathcal L(f) = \frac{1}{s^2} \left( s \sin(\varphi) - \omega \cos(\varphi) \right)  \frac{s^2}{s^2 + \omega^2} = \frac{  s \sin(\varphi) - \omega \cos(\varphi)}{s^2 + \omega^2}\,.\]
+
+Einen alternativen Lösungsweg, der von den Sätzen über die Laplace-Transformierte bei " Manipulationen vom Argument " (Beschleunigung und Verschiebung des Signals) Gebrauch macht, finden Sie im Lehrbuch von Papula Band II, Abschnitt VI.\(2\) finden Sie auf Seite \(767f\). Die Aufgabe ist Aufgabe \(4\) auf Seite \(678\).
+\end{exercisebox}

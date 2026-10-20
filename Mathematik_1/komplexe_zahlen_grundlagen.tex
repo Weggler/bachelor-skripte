@@ -1,0 +1,1043 @@
+\section{Komplexe Zahlen I: Zahl, Ebene und Rechnen}\label{MA1-komplexe-zahlen-grundlagen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+    \tabitem erklären, warum zur Lösung bestimmter Gleichungen die komplexen Zahlen eingeführt werden &\\
+    \tabitem komplexe Zahlen in der Form \(z=a+i\,b\) darstellen und ihre Bestandteile bestimmen &\\
+    \tabitem Realteil, Imaginärteil, komplex Konjugiertes und Betrag einer komplexen Zahl bestimmen und geometrisch interpretieren &\\
+    \tabitem komplexe Zahlen als Punkte oder Pfeile in der Gaußschen Zahlenebene interpretieren &\\
+    \tabitem zwischen kartesischer Darstellung und Polarkoordinaten einer komplexen Zahl wechseln &\\
+    \tabitem komplexe Zahlen addieren, subtrahieren, multiplizieren und dividieren &\\
+    \tabitem die geometrische Bedeutung der Grundrechenarten als Pfeiladdition, Skalierung und Drehung erklären &\\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem algebraische Gleichungen und Äquivalenzumformungen & \abschnittsverweis{MA1-algebraische-gleichungen}\\
+    \tabitem Satz des Pythagoras und trigonometrische Funktionen & \abschnittsverweis{MA1-trigonometrische-funktionen}\\
+    \tabitem kartesische Koordinaten und Polarkoordinaten & \abschnittsverweis{MA1-trigonometrische-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zu diesem Abschnitt:
+\hyperref[MA1-komplexe-zahlen-grundlagen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Warum komplexe Zahlen?}
+
+Die bisher betrachteten Zahlenmengen sind im Verlauf der Mathematik immer
+wieder erweitert worden. In den natürlichen Zahlen ist beispielsweise die
+Subtraktion nicht uneingeschränkt möglich; die ganzen Zahlen schließen diese
+Lücke. In den ganzen Zahlen ist die Division nicht uneingeschränkt möglich;
+die rationalen Zahlen erweitern den Zahlenbereich entsprechend. Die reellen
+Zahlen ermöglichen schließlich unter anderem die Beschreibung irrationaler
+Größen wie \(\sqrt{2}\).
+
+Auch innerhalb der reellen Zahlen bleiben jedoch Gleichungen übrig, die keine
+Lösung besitzen. Das einfachste Beispiel ist
+\[
+x^2=-1.
+\]
+Für jede reelle Zahl \(x\) gilt
+\[
+x^2\geq0.
+\]
+Daher kann keine reelle Zahl die Gleichung \(x^2=-1\) erfüllen.
+
+Um auch solche Gleichungen behandeln zu können, wird der Zahlenbereich erneut
+erweitert.
+
+\begin{defbox}{Imaginäre Einheit}{ }
+
+Die \textbf{imaginäre Einheit} (\emph{imaginary unit}) \(i\) ist durch
+\[
+i^2=-1
+\]
+definiert.
+
+Damit besitzt die Gleichung
+\[
+x^2=-1
+\]
+in den komplexen Zahlen die beiden Lösungen
+\[
+x=\pm i.
+\]
+
+\end{defbox}
+
+In der Elektrotechnik wird für die imaginäre Einheit häufig \(j\) anstelle
+von \(i\) verwendet, da \(i\) dort üblicherweise die elektrische Stromstärke
+bezeichnet.
+
+Eine \textbf{komplexe Zahl} (\emph{complex number}) entsteht, indem zu einer
+reellen Zahl ein reelles Vielfaches der imaginären Einheit addiert wird:
+\[
+z=a+i\,b,
+\qquad
+a,b\in\mathbb R.
+\]
+
+Die Menge aller komplexen Zahlen wird mit
+\[
+\mathbb C
+=
+\{a+i\,b:a,b\in\mathbb R\}
+\]
+bezeichnet.
+
+Für \(b=0\) ergibt sich
+\[
+z=a+i\cdot0=a.
+\]
+Jede reelle Zahl ist damit zugleich eine komplexe Zahl. Es gilt also
+\[
+\mathbb R\subset\mathbb C.
+\]
+Die komplexen Zahlen ersetzen die reellen Zahlen somit nicht, sondern
+erweitern den bisherigen Zahlenbereich.
+
+\begin{exabox}{Beispiele komplexer Zahlen}{ }
+
+Beispielsweise gilt
+\[
+\left\{
+1+3i,\;
+\sqrt7-91i,\;
+3\pi i,\;
+0,\;
+\pi+\frac{71}{13}i
+\right\}
+\subset\mathbb C.
+\]
+
+Dabei sind auch rein reelle Zahlen wie \(0\) sowie rein imaginäre Zahlen wie
+\(3\pi i\) komplexe Zahlen.
+
+\end{exabox}
+
+Die Einführung der komplexen Zahlen ermöglicht insbesondere die Lösung
+quadratischer Gleichungen, deren Diskriminante negativ ist. Ein einfaches
+Beispiel zeigt, wie komplexe Lösungen dabei entstehen.
+
+\begin{exabox}{Eine quadratische Gleichung mit komplexen Lösungen}{ }
+
+Betrachtet wird die Gleichung
+\[
+x^2-4x+5=0.
+\]
+
+Durch quadratische Ergänzung ergibt sich
+\[
+\begin{array}{crcl}
+                  & x^2-4x+5       &=& 0\\
+\Leftrightarrow   & x^2-4x+4-4+5   &=& 0\\
+\Leftrightarrow   & (x-2)^2+1      &=& 0\\
+\Leftrightarrow   & (x-2)^2        &=& -1.
+\end{array}
+\]
+
+Mit
+\[
+i^2=-1
+\]
+folgt
+\[
+x-2=\pm i
+\]
+und damit
+\[
+x_{1,2}=2\pm i.
+\]
+
+Die Gleichung besitzt keine reellen Lösungen, wohl aber die beiden komplexen
+Lösungen
+\[
+2+i
+\qquad\text{und}\qquad
+2-i.
+\]
+
+\end{exabox}
+
+\noindent\textbf{Bemerkung:}
+In der Praxis kann eine quadratische Gleichung natürlich weiterhin mit der
+allgemeinen Lösungsformel gelöst werden. Ist die \underline{Diskriminante}\randverweis{MA1-algebraische-gleichungen} negativ, führt die auftretende Wurzel einer negativen Zahl auf komplexe Lösungen. Die
+quadratische Ergänzung im vorangegangenen Beispiel macht dagegen besonders
+deutlich, an welcher Stelle die imaginäre Einheit \(i\) benötigt wird.
+
+
+\subsection{Bausteine einer komplexen Zahl}
+
+Eine komplexe Zahl
+\[
+z=a+i\,b
+\]
+besteht aus zwei reellen Komponenten. Die Zahl \(a\) beschreibt den reellen
+Anteil, die Zahl \(b\) den Koeffizienten der imaginären Einheit.
+
+\begin{defbox}{Grundbegriffe und Notationen}{ }
+
+Für
+\[
+z=a+i\,b,
+\qquad a,b\in\mathbb R,
+\]
+gelten folgende Bezeichnungen:
+
+\begin{itemize}
+    \item Der \textbf{Realteil} (\emph{real part}) von \(z\) ist
+    \[
+    \mathrm{Re}(z)=a.
+    \]
+
+    \item Der \textbf{Imaginärteil} (\emph{imaginary part}) von \(z\) ist
+    \[
+    \mathrm{Im}(z)=b.
+    \]
+
+    \item Die \textbf{komplex konjugierte Zahl}
+    (\emph{complex conjugate}) zu \(z\) ist
+    \[
+    \overline z=a-i\,b.
+    \]
+
+    \item Der \textbf{Betrag} (\emph{magnitude}) von \(z\) ist
+    \[
+    |z|
+    =
+    \sqrt{a^2+b^2}.
+    \]
+\end{itemize}
+
+\end{defbox}
+
+Die Begriffe lassen sich unmittelbar an einer konkreten komplexen Zahl ablesen.
+
+\begin{exabox}{Realteil, Imaginärteil, Konjugation und Betrag}{ }
+
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_konjugation_spiegelung.png}
+\end{minipage}
+\begin{minipage}{0.68\textwidth}
+
+
+Für
+\[
+z=3+4i
+\]
+gilt
+\[
+\mathrm{Re}(z)=3
+\qquad\text{und}\qquad
+\mathrm{Im}(z)=4.
+\]
+
+Die komplex konjugierte Zahl lautet
+\[
+\overline z=3-4i.
+\]
+
+Für den Betrag ergibt sich
+\[
+|z|
+=
+\sqrt{(\mathrm{Re}(z))^2+(\mathrm{Im}(z))^2}
+=
+\sqrt{3^2+4^2}
+=
+\sqrt{25}
+=
+5.
+\]
+\end{minipage}
+
+\end{exabox}
+
+Zwischen diesen Begriffen bestehen einige wichtige Zusammenhänge. Für
+\[
+z=a+i\,b
+\]
+gilt zunächst
+\[
+|z|\geq0
+\]
+und
+\[
+|z|=0
+\quad\Longleftrightarrow\quad
+z=0.
+\]
+
+Ist \(z\) reell, also \(b=0\), so ergibt sich
+\[
+|z|
+=
+\sqrt{a^2}
+=
+|a|.
+\]
+Der Betrag einer komplexen Zahl erweitert damit den bereits bekannten
+Absolutbetrag reeller Zahlen.
+
+Besonders wichtig ist das Produkt einer komplexen Zahl mit ihrer konjugierten
+Zahl:
+\[
+z\overline z
+=
+(a+i\,b)\cdot (a-i\,b)
+=
+a^2-i\, a\cdot b+i\, a\cdot b-i^2\cdot b^2
+=
+a^2+b^2
+=
+|z|^2.
+\]
+Damit gilt
+\[
+z\overline z=|z|^2
+\]
+und entsprechend
+\[
+|z|=\sqrt{z\overline z}.
+\]
+
+Außerdem gilt
+\[
+z+\overline z=2\,\mathrm{Re}(z)
+\]
+sowie
+\[
+z-\overline z=2i\,\mathrm{Im}(z).
+\]
+
+Die algebraischen Begriffe erhalten eine besonders anschauliche Bedeutung,
+sobald komplexe Zahlen geometrisch dargestellt werden.
+
+
+\subsection{Die Gaußsche Zahlenebene}
+
+Eine komplexe Zahl
+\[
+z=a+i\,b
+\]
+wird durch zwei reelle Zahlen \(a\) und \(b\) bestimmt. Daher liegt es nahe,
+sie mit einem Punkt
+\[
+(a,b)\in\mathbb R^2
+\]
+zu identifizieren.
+
+Im Zusammenhang mit komplexen Zahlen wird dieses Koordinatensystem als
+\textbf{Gaußsche Zahlenebene} (\emph{complex plane}) bezeichnet. Die
+horizontale Achse stellt den Realteil, die vertikale Achse den Imaginärteil
+dar.
+
+Eine komplexe Zahl kann dabei entweder als Punkt oder als Pfeil vom Ursprung
+zu diesem Punkt aufgefasst werden:
+\[
+z=a+i\,b
+\quad\widehat=\quad
+(a\,|\,b).
+\]
+
+\begin{theorembox}{Kartesische Darstellung}{ }
+
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_kartesische_koordinaten.png}
+\end{minipage}
+\begin{minipage}{0.68\textwidth}
+
+Für
+\[
+z=a+i\,b
+\]
+gilt
+\[
+z\;\widehat=\;(a\,|\,b),
+\]
+wobei
+\[
+a=\mathrm{Re}(z),
+\qquad
+b=\mathrm{Im}(z).
+\]
+
+Der zugehörige Pfeil beginnt im Ursprung und endet im Punkt
+\[
+(a\,|\,b).
+\]
+
+\end{minipage}
+
+\end{theorembox}
+
+Durch diese Darstellung erhalten auch die zuvor eingeführten Begriffe eine
+geometrische Bedeutung.
+
+Der Betrag
+\[
+|z|=\sqrt{a^2+b^2}
+\]
+ist nach dem Satz des Pythagoras gerade die Länge des Pfeils vom Ursprung zum
+Punkt \((a\,|\,b)\).
+
+Die komplex konjugierte Zahl
+\[
+\overline z=a-i\,b
+\]
+entspricht dem Punkt
+\[
+(a\,|\,-b).
+\]
+Die komplexe Konjugation spiegelt den zu \(z\) gehörenden Punkt beziehungsweise
+Pfeil daher an der reellen Achse.
+
+
+\subsubsection*{Polarkoordinaten einer komplexen Zahl}
+
+Die kartesischen Koordinaten beschreiben eine komplexe Zahl durch ihre
+horizontale und vertikale Komponente. Derselbe Pfeil kann jedoch auch durch
+seine Länge und seine Richtung beschrieben werden.
+
+Dazu werden der Betrag
+\[
+r=|z|
+\]
+und ein Winkel \(\varphi\) verwendet, den der Pfeil mit der positiven reellen
+Achse einschließt. Diese Beschreibung führt auf die
+\textbf{Polarkoordinaten} einer komplexen Zahl.
+
+\begin{theorembox}{Polarkoordinaten}{ }
+
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_polarkoordinaten.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+
+Für eine komplexe Zahl \(z\neq0\) gilt
+\[
+z\;\widehat=\;(r\,|\,\varphi), \quad 
+\]
+wobei
+	\begin{itemize}
+		\item \( r=|z|>0 \) die Länge des Pfils und 
+		\item \( \varphi=\arg(z) \) der Winkel zwischen Pfeil und positiven reellen Achse ist.
+	\end{itemize}
+
+\end{minipage}
+
+\end{theorembox}
+
+Der Winkel einer komplexen Zahl ist grundsätzlich nur bis auf ganzzahlige
+Vielfache von \(2\pi\) bestimmt. Die Winkel
+\[
+\varphi_k
+=
+\varphi+2\pi k,
+\qquad k\in\mathbb Z,
+\]
+beschreiben daher dieselbe Richtung und somit dieselbe komplexe Zahl. Im Folgenden bezeichnet
+\[
+\arg(z)\in(-\pi,\pi]
+\]
+den gewählten Hauptwert des Arguments.
+
+
+Für \(z=0\) gilt zwar \(|z| = 0\), ein Winkel ist jedoch nicht eindeutig bestimmt. Das Argument von \(0\) ist daher nicht definiert.
+
+
+\subsubsection*{Von Polarkoordinaten zur kartesischen Darstellung}
+
+Sind Betrag \(r\) und Winkel \(\varphi\) gegeben, ergeben sich die
+kartesischen Koordinaten unmittelbar aus der Geometrie des zugehörigen
+rechtwinkligen Dreiecks:
+\[
+a=r\cos(\varphi)
+\]
+und
+\[
+b=r\sin(\varphi).
+\]
+
+Damit gilt
+\[
+z
+=
+r\cos(\varphi)
++
+i\,r\sin(\varphi).
+\]
+
+Durch Ausklammern von \(r\) erhält man die besonders wichtige Darstellung
+\[
+z
+=
+r\bigl(\cos(\varphi)+i\sin(\varphi)\bigr).
+\]
+
+Diese Form wird im folgenden Abschnitt eine zentrale Rolle spielen, wenn die
+trigonometrische Darstellung mit der komplexen Exponentialfunktion verbunden
+wird.
+
+
+\subsubsection*{Von der kartesischen Darstellung zu Polarkoordinaten}
+
+Ist dagegen \( z = a + i\, b\) gegeben, so liefert der Satz des Pythagoras zunächst den Betrag:
+\[
+r
+=
+|z|
+=
+\sqrt{a^2+b^2}.
+\]
+
+Für den Winkel müssen beide kartesischen Koordinaten berücksichtigt werden.
+Die Funktion
+\[
+\operatorname{atan2}(b,a)
+\]
+liefert den Winkel unter Berücksichtigung des Quadranten. Für \(z\neq0\) gilt
+daher
+\[
+\varphi
+=
+\operatorname{atan2}(b,a)
+\in(-\pi,\pi].
+\]
+
+Damit lautet die Umrechnung insgesamt
+\[
+a+i\,b
+\quad\longleftrightarrow\quad
+\left(
+\sqrt{a^2+b^2}
+\,\middle|\,
+\operatorname{atan2}(b,a)
+\right).
+\]
+
+\begin{theorembox}{Kartesisch \(\leftrightarrow\) Polar}{ }
+
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_kartesisch_polar_vierter_quadrant.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+	Polarkoordinaten \(\Leftrightarrow\) kartesische Koordinaten: 
+	\begin{eqnarray*}
+		\color{green}{a} &=& \color{blue}{r}\cdot \cos(\color{blue}{\varphi}) \\
+		\color{green}{b} &=& \color{blue}{r}\cdot \sin(\color{blue}{\varphi})
+	\end{eqnarray*}
+kartesische Koordinaten  \(\Leftrightarrow\) 	Polarkoordinaten:
+	\begin{eqnarray*}
+		\color{blue}{r} &=& \sqrt{ \color{green}{a}^2 + \color{green}{b}^2} \\
+		\color{blue}{\varphi} &=& \text{atan2}(\color{green}{b}, \color{green}{a}) 
+	\end{eqnarray*}
+\end{minipage}
+
+\end{theorembox}
+
+\begin{exabox}{Von kartesischen Koordinaten zu Polarkoordinaten}{ }
+
+Betrachtet wird die komplexe Zahl
+\[
+z=-1+i\sqrt3.
+\]
+
+Der Betrag ergibt sich zu
+\[
+r = |z| = \sqrt{(-1)^2+(\sqrt3)^2} = 2
+\]
+
+Der zugehörige Punkt
+\[
+(-1\,|\,\sqrt3)
+\]
+liegt im zweiten Quadranten. Für den Winkel ergibt sich
+\[
+\varphi
+=
+\operatorname{atan2}(\sqrt3,-1)
+=
+\frac{2\pi}{3}.
+\]
+
+Damit besitzt \(z\) die Polarkoordinaten
+\[
+z
+\;\widehat=\;
+\left(2\,\middle|\,\frac{2\pi}{3}\right).
+\]
+
+Zur Kontrolle kann wieder in die kartesische Darstellung zurückgerechnet
+werden:
+\[
+\begin{aligned}
+a &= 2\cos\left(\frac{2\pi}{3}\right) = 2\left(-\frac12\right) = -1,\\
+b &= 2\sin\left(\frac{2\pi}{3}\right) = 2\frac{\sqrt3}{2} = \sqrt3.
+\end{aligned}
+\]
+Damit ergibt sich tatsächlich wieder
+\[
+z=-1+i\sqrt3.
+\]
+
+\end{exabox}
+
+
+\subsection{Rechnen in \(\mathbb C\)}
+
+Die Darstellung \(z = a + i\, b\) ermöglicht es, komplexe Zahlen algebraisch ähnlich wie reelle Zahlen zu behandeln. Dabei wird \(i\) zunächst wie eine algebraische Größe behandelt; auftretende Potenzen \(i^2\) werden anschließend mithilfe von \(i^2 = -1\) vereinfacht.
+
+Bei Addition und Subtraktion werden Real- und Imaginärteile getrennt
+zusammengefasst. Bei der Multiplikation wird wie bei Klammerprodukten
+ausmultipliziert. Für die Division spielt die komplexe Konjugation eine
+besondere Rolle.
+
+\begin{exabox}{Rechnen mit komplexen Zahlen}{ }
+
+Es seien
+\[
+	z_1=2+3\, i
+\qquad\text{und}\qquad
+z_2=4+i.
+\]
+
+Bei der Addition werden Real- und Imaginärteile jeweils zusammengefasst:
+\[
+z_1+z_2
+=
+(2+3\,i)+(4+i)
+=
+(2+4)+(3+1)\,i
+=
+6+4\,i.
+\]
+
+Für die Subtraktion ergibt sich entsprechend
+\[
+z_1-z_2
+=
+(2+3\,i)-(4+i)
+=
+(2-4)+(3-1)\,i
+=
+-2+2\,i.
+\]
+
+Bei der Multiplikation wird zunächst ausmultipliziert:
+\[
+z_1\cdot z_2
+=
+(2+3\,i)\cdot (4+i)
+=
+8+2\,i+12\,i+3\,i^2
+=
+8+14\,i-3
+=
+5+14\,i.
+\]
+
+Für die Division wird der Nenner mithilfe seiner komplex konjugierten Zahl
+reell gemacht. Da
+\[
+\overline{z_2}=4-i,
+\]
+gilt
+\[
+\frac{z_1}{z_2}
+=
+\frac{2+3\,i}{4+i}
+=
+\frac{2+3\,i}{4+i}
+\cdot
+\frac{4-i}{4-i}
+=
+\frac{(2+3\,i)(4-i)}{(4+i)(4-i)}.
+\]
+
+Der Nenner wird dabei zu
+\[
+(4+i)\cdot (4-i)
+=
+4^2-i^2
+=
+16+1
+=
+17.
+\]
+
+Für den Zähler ergibt sich
+\[
+	(2+3\,i)\cdot (4-i)
+=
+8-2\,i+12\,i-3\,i^2
+=
+11+10\,i.
+\]
+
+Damit folgt
+\[
+\frac{z_1}{z_2}
+=
+\frac{11}{17}
++
+\frac{10}{17}\,i.
+\]
+
+\end{exabox}
+
+Das Vorgehen bei der Division beruht auf der bereits bekannten Beziehung
+\[
+z\overline z=|z|^2.
+\]
+Für
+\[
+z_2\neq0
+\]
+ist daher
+\[
+\frac{z_1}{z_2}
+=
+\frac{z_1\overline{z_2}}{z_2\overline{z_2}}
+=
+\frac{z_1\overline{z_2}}{|z_2|^2}.
+\]
+Der Nenner ist damit eine positive reelle Zahl.
+
+Die algebraischen Rechenregeln erklären, wie komplexe Zahlen berechnet
+werden. Die Darstellung in der Gaußschen Zahlenebene zeigt darüber hinaus,
+welche geometrischen Operationen hinter diesen Rechnungen stehen.
+
+
+\subsection{Geometrische Bedeutung der Grundrechenarten}
+
+\subsubsection*{Addition und Subtraktion: Pfeiladdition}
+
+Die kartesische Darstellung macht die Addition besonders anschaulich. Für
+\[
+z_1=a_1+i\,b_1
+\qquad\text{und}\qquad
+z_2=a_2+i\,b_2
+\]
+gilt
+\[
+z_1+z_2
+=
+(a_1+a_2)+i\,(b_1+b_2).
+\]
+
+Damit werden genau die beiden Koordinaten der zugehörigen Pfeile addiert. Die
+\underline{Addition komplexer Zahlen}\marginpar{\small{\href{https://www.geogebra.org/m/quynhvdx}{GeoGebra}}} entspricht daher der bekannten Addition von
+Pfeilen beziehungsweise Vektoren in der Ebene.
+
+\begin{exabox}{Addition und Subtraktion in der Zahlenebene}{ }
+
+\begin{minipage}{0.45\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_addition_subtraktion_pfeile.png}
+\end{minipage}
+\begin{minipage}{0.53\textwidth}
+
+Für
+\[
+	z_1=1-2\,i
+\qquad\text{und}\qquad
+z_2=3+4\,i
+\]
+gilt
+\[
+z_1+z_2
+=
+(1-2\,i)+(3+4\,i)
+=
+4+2\,i.
+\]
+Geometrisch werden die beiden zugehörigen Pfeile addiert.
+
+Für die Differenz ergibt sich
+\[
+z_1-z_2
+=
+(1-2\,i)-(3+4\,i)
+=
+-2-6\,i.
+\]
+Die Subtraktion von \(z_2\) entspricht dabei der Addition des Gegenpfeils
+\(-z_2\).
+
+\end{minipage}
+
+\end{exabox}
+
+\subsubsection*{Multiplikation mit \(i\): eine Drehung}
+
+Bei der Addition ist die geometrische Interpretation unmittelbar aus den
+kartesischen Koordinaten ablesbar. Bei der Multiplikation ist die Situation
+weniger offensichtlich. Einen ersten Zugang liefert die Multiplikation mit
+der imaginären Einheit \(i\).
+
+Für
+\[
+z=a+i\,b
+\]
+gilt
+\[
+i\,z
+=
+i(a+i\,b)
+=
+i\,a+i^2b
+=
+-b+i\,a.
+\]
+
+Der Punkt
+\[
+(a\,|\,b)
+\]
+wird durch die Multiplikation mit \(i\) also auf den Punkt
+\[
+(-b\,|\,a)
+\]
+abgebildet. Diese Abbildung entspricht geometrisch einer Drehung um
+\[
+\frac{\pi}{2}=90^\circ
+\]
+gegen den Uhrzeigersinn.
+
+\begin{exabox}{Multiplikation mit \(i\): reine Drehung}{ }
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_multiplikation_i_drehung.png}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+
+Für
+\[
+z\;\widehat=\;(r\,|\,\varphi)
+\]
+bleibt bei der Multiplikation mit \(i\) die Länge des zugehörigen Pfeils
+unverändert:
+\[
+|i\,z|
+=
+\sqrt{(-b)^2+a^2}
+=
+\sqrt{a^2+b^2}
+=
+|z|
+=
+r.
+\]
+
+Gleichzeitig wird der Pfeil um \(90^\circ\) gegen den Uhrzeigersinn gedreht.
+Sein Winkel verändert sich daher von
+\[
+\varphi
+\]
+zu
+\[
+\varphi+\frac{\pi}{2}.
+\]
+
+Damit gilt
+\[
+i\,z
+\;\widehat=\;
+\left(
+r\,\middle|\,\varphi+\frac{\pi}{2}
+\right).
+\]
+
+\end{minipage}
+
+\end{exabox}
+
+Die Multiplikation mit \(i\) verändert also nicht die Länge einer komplexen
+Zahl, sondern ausschließlich ihre Richtung. Sie liefert damit ein erstes
+Beispiel dafür, dass eine Multiplikation in \(\mathbb C\) geometrisch als
+Drehung interpretiert werden kann.
+
+\subsubsection*{Multiplikation: Skalierung und Drehung}
+
+Die Multiplikation mit \(i\) zeigt bereits, dass eine Multiplikation in \(\mathbb C\) geometrisch eine Drehung bewirken kann. Bei der Multiplikation mit einer beliebigen komplexen Zahl kommt im Allgemeinen zusätzlich eine Skalierung hinzu.
+
+Besonders transparent wird dies in Polarkoordinaten. Es seien
+\[
+z_1\;\widehat=\;(r_1\,|\,\varphi_1)
+\qquad\text{und}\qquad
+z_2\;\widehat=\;(r_2\,|\,\varphi_2).
+\]
+
+Bei der Multiplikation werden die Beträge multipliziert und die Winkel
+addiert.
+
+\begin{theorembox}{Geometrische Interpretation der Multiplikation}{ }
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_multiplikation_winkelsumme.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+
+Für
+\[
+z_1\;\widehat=\;(r_1\,|\,\varphi_1)
+\qquad\text{und}\qquad
+z_2\;\widehat=\;(r_2\,|\,\varphi_2)
+\]
+gilt
+\[
+z_1\cdot z_2
+\;\widehat=\;
+(r_1\cdot r_2\,|\,\varphi_1+\varphi_2).
+\]
+
+Die Multiplikation komplexer Zahlen besitzt damit zwei geometrische
+Wirkungen:
+\begin{itemize}
+    \item Die Längen werden multipliziert:
+    \[
+    |z_1\cdot z_2|=|z_1|\,|z_2|=r_1\cdot r_2.
+    \]
+
+    \item Die Winkel werden addiert:
+    \[
+    \arg(z_1\cdot z_2)
+    =
+    \varphi_1+\varphi_2
+    \qquad \text{bis auf Vielfache von }2\pi.
+    \]
+\end{itemize}
+\end{minipage}
+
+\end{theorembox}
+
+Eine Multiplikation mit einer komplexen Zahl kann somit als Kombination aus
+\textbf{Skalierung} und \textbf{Drehung} interpretiert werden. Der Betrag des
+Multiplikators bestimmt den Skalierungsfaktor, sein Argument den Drehwinkel.
+
+
+\subsubsection*{Division: umgekehrte Skalierung und Drehung}
+
+Auch die geometrische Bedeutung der Division lässt sich aus der
+Multiplikation herleiten.
+
+Gesucht sei
+\[
+z_3=\frac{z_1}{z_2},
+\qquad z_2\neq0.
+\]
+Diese Gleichung ist äquivalent zu
+\[
+z_2\cdot z_3=z_1.
+\]
+
+Für die Beträge gilt daher
+\[
+r_2\cdot r_3=r_1.
+\]
+Da \(z_2\neq0\) und damit \(r_2>0\) ist, folgt
+\[
+r_3=\frac{r_1}{r_2}.
+\]
+
+Für die Winkel gilt entsprechend
+\[
+\varphi_2+\varphi_3
+=
+\varphi_1
+\qquad
+\text{bis auf Vielfache von }2\pi.
+\]
+Damit ergibt sich
+\[
+\varphi_3
+=
+\varphi_1-\varphi_2
+\qquad
+\text{bis auf Vielfache von }2\pi.
+\]
+
+\begin{theorembox}{Geometrische Interpretation der Division}{ }
+
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/komplexe_zahlen_division_winkeldifferenz.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+
+Für
+\[
+z_1\;\widehat=\;(r_1\,|\,\varphi_1),
+\qquad
+z_2\;\widehat=\;(r_2\,|\,\varphi_2),
+\qquad
+z_2\neq0,
+\]
+gilt
+\[
+\frac{z_1}{z_2}
+\;\widehat=\;
+\left(
+\frac{r_1}{r_2}
+\,\middle|\,
+\varphi_1-\varphi_2
+\right).
+\]
+
+Bei der Division werden somit die Längen dividiert und die Winkel
+subtrahiert.
+\end{minipage}
+
+\end{theorembox}
+
+\noindent\textbf{Bemerkung:}
+Winkel sind nur bis auf ganzzahlige Vielfache von \(2\pi\) eindeutig
+bestimmt. Bei der Addition oder Subtraktion von Argumenten kann daher ein
+Winkel entstehen, der außerhalb des gewählten Hauptintervalls
+\[
+(-\pi,\pi]
+\]
+liegt. Durch Addition oder Subtraktion eines geeigneten ganzzahligen
+Vielfachen von \(2\pi\) kann wieder der entsprechende Hauptwert bestimmt
+werden.
+
+\medskip
+
+Die geometrische Interpretation der Grundrechenarten lässt sich damit
+besonders kompakt zusammenfassen:
+\[
+\begin{array}{ccl}
+\text{Addition}
+&\longleftrightarrow&
+\text{Pfeiladdition},\\[1mm]
+\text{Multiplikation}
+&\longleftrightarrow&
+\text{Längen multiplizieren und Winkel addieren},\\[1mm]
+\text{Division}
+&\longleftrightarrow&
+\text{Längen dividieren und Winkel subtrahieren}.
+\end{array}
+\]
+
+Insbesondere die Multiplikation zeigt, warum die Polardarstellung für
+komplexe Zahlen so nützlich ist. In kartesischer Darstellung ist eine
+Multiplikation vergleichsweise aufwendig; in Polarkoordinaten werden
+lediglich Beträge multipliziert und Winkel addiert.
+
+Diese Beobachtung bildet den Ausgangspunkt für die nächste Darstellung
+komplexer Zahlen. Die Beziehung
+\[
+z
+=
+r\bigl(\cos(\varphi)+i\sin(\varphi)\bigr)
+\]
+wird dort mithilfe der komplexen Exponentialfunktion in eine noch kompaktere
+Form überführt.
+

@@ -1,0 +1,546 @@
+\section{Lineare Differentialgleichungen}\label{MA2-lineare-differentialgleichungen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem homogene lineare Differentialgleichungen erster Ordnung mittels Exponentialansatz lösen & \\
+    \tabitem homogene lineare Differentialgleichungen mit konstanten Koeffizienten durch Analyse des charakteristischen Polynoms lösen & \\
+    \tabitem zugehörige inhomogene Differentialgleichungen lösen & \\
+    \hspace{0.7cm}\tabitem durch Variation der Konstanten (1. Ordnung) & \\
+	  \hspace{0.7cm}\tabitem durch Ansatz vom Typ der rechten Seite bei konstanten Koeffizienten & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Ableitungen höherer Ordnung berechnen können &\abschnittsverweis{MA1-ableitungsregeln}  \\
+    \tabitem Exponentialfunktionen sicher handhaben können &\abschnittsverweis{MA1-exponential-und-logarithmusfunktionen} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-lineare-differentialgleichungen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+\subsection{Lösungsstrategie}
+
+Eine Differentialgleichung allein liefert noch kein wohldefiniertes mathematisches Problem. Neben der Gleichung, in der eine Ableitung einer gesuchten Funktion vorkommt, braucht man unbedingt noch einen Startpunkt (Anfangswert) im Phasenraum. Eine Differentialgleichung zusammen mit einer Anfangsbedingung nennt man Anfangswertproblem.
+\begin{exabox}{Anfangswertproblem}{ }
+Anfangswertproblem
+\begin{eqnarray*}
+	\begin{cases}
+	y(3) = 7\,, \quad &y=3\,,  \\
+	y'(x) = \sin(x)\,, \quad &y>3\,.
+\end{cases}
+\end{eqnarray*}
+Ansatz für $y$:
+\begin{eqnarray*}
+	y(x) &=& - \cos(x) + c \,,\\
+	y'(x) &=& \sin(x) \,.
+\end{eqnarray*}
+Bestimmung der Konstante $c$:
+\[
+	y(3) \stackrel{!}{=} 7 \Rightarrow c  = (7+\cos(3))\,.
+\]
+Lösung:
+\[
+	y(x) = - \cos(x) + (7+\cos(3))\,.
+\]
+\end{exabox}
+
+Die Lösung eines Anfangswertproblems kann man also finden, indem man die Form der Lösung rät (Ansatz).  Aus dem vorigen Beispiel wird deutlich, warum das Lösen von Differentialgleichungen auch Integrieren von Differentialgleichungen heißt. Der Ansatz  - die kultivierte Art des Ratens - ist beim Lösen von Differentialgleichungen gang und gäbe.
+
+Wenn man eine Lösungsfunktion zum vorgegebenen Anfangswert angeben kann, hat man gewonnen, egal, wie man auf die Lösung gekommen ist. Denn (bis auf pathologische Fälle in der Mathematik) ist die Lösung eindeutig.
+
+Lineare Differentialgleichungen haben, ähnlich der Lösungen inhomogener \underline{linearer Gleichungssysteme}\randverweis{MA1-lineare-gleichungssysteme}, eine wichtige Gemeinsamkeit. Ist eine Differentialgleichung linear, dann besitzt die allgemeine Lösung im Allgemeinen zwei Lösungsanteile:
+\[ y(x) = y_h(x)  + y_p(x)\,, \]
+wobei $y_h$ die allgemeine Lösung der homogenen Differentialgleichung und $y_p$ eine Lösung der inhomogenen Differentialgleichung ist. $y_h$ nennt man die homogene Lösung und $y_p$ nennt man eine partikuläre Lösung [particular solution] der Differentialgleichung.
+
+Diese Superpositionseigenschaft führt dazu, dass immer die folgenden Lösungsschritte anfallen:
+\begin{theorembox}{Lösungsschema - Superpositionsprinzip}{ }
+	\begin{enumerate}
+		\item Bestimmung der allgemeinen Lösung der homogenen Differentialgleichung $y_h$.
+		\item Bestimmung einer partikulären Lösung $y_p$ der inhomogenen Differentialgleichung.
+		\item Superposition beider Lösungskomponenten $y(x) = y_p(x) + y_h(x)$.
+		\item Bestimmung der Konstanten der homogenen Lösung, falls ein Anfangswert gegeben ist.
+	\end{enumerate}
+\end{theorembox}
+
+Lineare Differentialgleichungen erlauben es, komplexe Dynamiken in überlagerbare Teilprozesse zu zerlegen.
+Dieser Gedanke der Überlagerung knüpft unmittelbar an die Struktur der Funktionenräume an.
+
+
+\subsection{Ordnung 1}
+
+Betrachten wir lineare Differentialgleichung erster Ordnung, die so aussehen:
+\[ y'(x)+f(x)\cdot y(x) = 0\,.\]
+
+Anhand des folgenden Beispiels wird demonstriert, wie ein allgemeiner Exponentialansatz zu einer Lösung führt - im Falle eines Anfangswertproblems zu einer eindeutigen Lösung:
+\begin{exabox}{\(y_h(x)\) allgemeiner Exponentialansatz}{ }
+	Anfangswertproblem
+	\begin{eqnarray*}
+		\begin{cases}
+			y(1) = 7\,, &\quad x=1\,,\\
+			y'(x)+\displaystyle{\frac{1}{x}}y(x) = 0\,,  &\quad x > 1\,.
+		\end{cases}
+	\end{eqnarray*}
+	Ansatz für $y$:
+	\begin{eqnarray*}
+		y(x) &=& e^{\lambda(x)}\,,\\
+		y'(x) &=& e^{\lambda(x)} \cdot \lambda'(x)\,.
+	\end{eqnarray*}
+Bestimmung der Funktion $\lambda:x\mapsto \lambda(x)$:
+	\begin{eqnarray*}
+		e^{\lambda(x)} \cdot \lambda '(x) + \frac1x e^{\lambda(x)}  \stackrel{!}{=} 0  \Leftrightarrow \lambda(x) = -\int\frac{1}{x}\,\mathrm{d}x = -\ln(|x|) + C
+		\end{eqnarray*}
+Bestimmung der Konstante:
+\[ y(x) = c \cdot e^{-\ln(x)} = \dfrac{c}{x}, \quad c=e^{C}>0  \quad \textnormal{mit} \quad y(1) = c\cdot 1 \stackrel{!}{=} 7 \,  \Leftrightarrow  c = 7\,.
+	\]
+	Lösung:
+			\[
+				y(x) = \frac{7}{x}\,.
+		\]
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Ist kein Anfangswertproblem zu lösen, so behält man die Integrationskonstante \(c\) in der Lösung bei.
+\end{itemize}
+
+Was ist zu tun, wenn die Differentialgleichung inhomogen ist? Wenn die Differentialgleichung also die folgende Struktur hat:
+\[ y'(x)+f(x)\cdot y(x) = g(x)\,.\]
+
+Entsprechend unserem Lösungsschema, bleibt nur noch die Frage zu klären, wie $y_p$ zu bestimmen ist. Die Lösungsstrategie nennt sich "\, Variation der Konstante"\, und der Name ist Programm: eine partikuläre Lösung \(y_p\) besitzt dieselbe Gestalt wie die homogene Lösung, wobei für die Integrationskonstante eine unbekannte, von \(x\) abhängige Funktion anzusetzen ist. Betrachten wir ein Beispiel:
+
+\begin{exabox}{\(y_p(x)\) Variation der Konstante}{ }
+Anfangswertproblem:
+	\[
+		\begin{cases}
+			y(\pi) = \displaystyle{\frac{1}{\pi}}\,, &\quad x=\pi\,,\\[1ex]
+			y'(x) + \displaystyle{\frac{1}{x}} y(x) = \cos(x)\,,  &\quad x> \pi\,.
+		\end{cases}
+	\]
+Homogene Lösung $y_h$:
+\[ y_h(x) = c \displaystyle{\frac{1}{x}}, \quad c\in \mathbb R \,.
+\]
+Ansatz für $y_p$:
+\begin{eqnarray*}
+	y_p(x) &=& c(x)\displaystyle{\frac{1}{x}}\,,\\
+	y'_p(x) &=& c'(x)\displaystyle{\frac{1}{x}} - c(x)\displaystyle{ \frac{1}{x^2}}\,.
+\end{eqnarray*}
+Bestimmung der Funktion $c:x\mapsto c(x)$:
+		\begin{eqnarray*}
+			\begin{array}{l rcl}
+				&\quad c'(x)\displaystyle{\frac{1}{x}} - c(x) \displaystyle{ \frac{1}{x^2}} + c(x) \displaystyle{\frac{1}{x^2}} &\stackrel{!}{=}& \cos(x) \\[2ex]
+				\Leftrightarrow & \quad c'(x) &=& x\cdot \cos(x) \\
+				\Leftrightarrow &\quad c(x) & = & \displaystyle{\int} x\cdot \cos(x) \,\mathrm{d}x = \cos(x) + x\sin(x)\,.
+		\end{array}
+	\end{eqnarray*}
+	Partikuläre Lösung:
+	\[
+y_p(x) = \frac{\cos(x) + x\sin(x) }{x}
+\]
+Superposition der Lösungskomponenten:
+		\[ y(x) = y_p(x) + y_h(x) = c\frac{1}{x} + \frac{\cos(x) + x\sin(x) }{x}\,.\]
+Bestimmung der Konstante:
+	\[ y(\pi) = \frac{c-1}{\pi} \stackrel{!}{=} \frac{1}{\pi} \Rightarrow c=2\,.\]
+Lösung:
+	\[ y(x) =  \frac{2}{x} + \frac{\cos(x) + x\sin(x) }{x}\,.\]
+\end{exabox}
+
+\subsection{Ordnung 1 mit konstanten Koeffizienten}
+
+Betrachten wir nun eine Differentialgleichungen erster Ordnung, die so aussieht:
+\[ y'(x) + a y(x) = 0,\quad a \in \mathbb R\,.\]
+
+\begin{exabox}{\(y_h(x)\) Exponentialansatz}{ }
+Anfangswertproblem
+	\begin{eqnarray*}
+		\begin{cases}
+			y(1)  = 7\,,\quad  &x=1\,, \\
+			y'(x)+5y(x) = 0\,,\quad &x>1\,.
+		\end{cases}
+	\end{eqnarray*}
+	Ansatz für $y$:
+	\begin{eqnarray*}
+		y(x) &=&  c\cdot e^{\lambda x}, \quad c\not 0 \,,\\
+		y'(x) &=&  \lambda\cdot c\cdot e^{\lambda x}\,.
+	\end{eqnarray*}
+Bestimmung der Lösung $y:x\mapsto y(x)$:
+	\begin{eqnarray*}
+		y'(x) + 5 y(x) = \lambda\cdot c\cdot e^{\lambda x} + 5 \cdot c\cdot e^{\lambda x}  \stackrel{!}{=} 0 \stackrel{(*)}{\Leftrightarrow}  \lambda + 5\stackrel{!}{=} 0  \Rightarrow \lambda = -5\,,
+		\end{eqnarray*}
+		wobei \( (*)\), da  \(\quad  c\not=0 \land \forall x\in \mathbb R e^{\lambda x}\not=0\,.\)
+
+		\vspace{0.2pt}
+Bestimmung der Konstante $c$:
+		\[
+			y(x)= c \cdot e^{-5 x }\quad\textnormal{mit} \; y(1)  \stackrel{!}{=} 7 \Rightarrow  c \cdot e^{-5} \stackrel{!}{=} 7 \Rightarrow c = 7 e^{5} \,.
+\]
+Lösung:
+			\[ y(x) = 7 \cdot e^{5} e^{-5 x} \,.\]
+\end{exabox}
+
+Offensichtlich liefert der Ansatz \(y(x) = c e^{\lambda x}\) eine Lösungsstrategie für eine homogene Differentialgleichung mit konstantem Koeffizient.
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Die Lösungsstrategie verschleiert, dass die Konstante \(c\) eine Integrationskonstante ist. Um das zu verstehen, lösen Sie die Differentialgleichung nach dem Schema "\, \underline{Trennbare Variablen}"\randverweis{MA1-polynome}.
+	\item Ist man an einer allgemeinen Lösung der homogenen Differentialgleichung interessiert, dann behält man die Integrationskonstante \(c\) in der Lösung bei.
+\end{itemize}
+
+Was, wenn die Differentialgleichung inhomogen ist? Wenn die Differentialgleichung also die folgende Struktur hat:
+\[ y'(x)+ a\cdot y(x) = g(x)\,.\]
+Die allgemeine Lösung der inhomogenen Differentialgleichung setzt sich wieder aus homogener und partikulärer Lösung zusammen und die Frage ist, wie \(y_p\) zu bestimmen ist. Die Strategie nennt sich "\,Ansatz vom Typ der rechten Seite". Betrachten wir ein Beispiel.
+
+\begin{exabox}{\(y_p(x)\) Ansatz vom Typ der rechten Seite}{ }
+Differentialgleichung:
+\[
+y'(x) + 5y(x) = x^2\,.
+\]
+Homogene Lösung:
+\[
+	y_h(x) = ce^{-5x} \,.
+\]
+Ansatz für $y_p$:
+\begin{eqnarray*}
+	y_p(x) &=& A_1x^2 + A_2x + A_3\,,\\
+	y_p'(x) &=& 2A_1x + A_2\,.
+\end{eqnarray*}
+Bestimmung der Koeffizienten für $y_p$
+		\begin{eqnarray*}
+			&&2A_1x + A_2 + 5 A_1 x^2 + 5A_2x + 5A_3 \stackrel{!}{=} x^2 \; \Leftrightarrow \; \begin{cases}  5A_1 &= 1 \\
+				2A_1 + 5 A_2 &= 0 \\
+			A_2 + 5A_3 &= 0 \end{cases} \; \Leftrightarrow \;
+			\begin{cases} A_1 &= 1/5 \\ A_2 &= - 2/25 \\
+			A_3 &= 2/125 \end{cases}
+		\end{eqnarray*}
+Partikuläre Lösung:
+\[
+			y_p(x) = \frac15 x^2 - \frac{2}{25} x + \frac{2}{125}\,.
+\]
+Superposition beider Lösungsanteile:
+		\[ y(x) = y_p(x) + y_h(x) = \frac15 x^2 - \frac{2}{25} x + \frac{2}{125} + ce^{-5x}\,.\]
+\end{exabox}
+
+\begin{theorembox}{Ansätze vom Typ der rechten Seite}{}
+	Betrachten wir eine Differentialgleichung erster Ordnung
+\[ y'+ay=f(x), \quad a\in \mathbb R \]
+mit Inhomogenität \[f:I\to \mathbb R, x\mapsto p(x) \cdot e^{\mu x}\cdot  \cos(\beta x) + q(x)\cdot e^{\mu x}\cdot  \sin(\beta x)\,,\]
+wbei $\mu,\beta \in \mathbb R$ und $p$ ein Polynom vom Grad \(m\) und $q$ ein Polynom vom Grad $n$.
+
+
+Dann lautet der Ansatz für \(y_p\)
+\[ y_p(x) = P(x)\cdot e^{\mu x}\cdot \cos(\beta x) + Q(x)\cdot e^{\mu x}\cdot \sin(\beta x)\,,
+\]
+wobei \(P\) ein Polynom vom Grad \(m\) und \(Q\) ein Polynom vom Grad \(n\) ist:
+\begin{eqnarray*}
+	P(x) &=& A_m x^m + A_{m-1} A^{m-1} + \cdots + A_0\,, \\
+	Q(x) &=& B_n x^n + B_{n-1} x^{n-1} + \cdots + B_0\,.
+\end{eqnarray*}
+\end{theorembox}
+
+\begin{exabox}{Ansätze vom Typ der rechten Seite}{ }
+	\[
+		\begin{array}{rcl c rcl }
+			f(x) &=& \cos(3x)  &\Rightarrow&  y_p &=& A \cos(3x) + B \sin(3x)\,,\\
+			f(x) &=& e^{4x}  &\Rightarrow&  y_p &=& A e^{4x}\,,\\
+			f(x) &=& \cos(3x) \cdot e^{4x}  &\Rightarrow&  y_p &=& \left(A\cos(3x) + B\sin(3x)\right) e^{4x}\,,\\
+			f(x) &=& \cos(3x) + e^{4x}  &\Rightarrow&  y_p &=& A\cos(3x) + B\sin(3x) + C e^{4x}\,,\\
+			f(x) &=& x^2  &\Rightarrow&  y_p &=& A_2x^2 + A_1 x + A_0\,.
+		\end{array}
+	\]
+\end{exabox}
+
+
+\subsection{Ordnung \(n\) mit konstanten Koeffizienten}
+
+Homogene, lineare Differentialgleichungen zweiter Ordnung mit konstanten Koeffizienten sind Ihnen wahrscheinlich schon begegnet:
+\begin{itemize}
+	\item In der Mechanik lautet die Bewegungsgleichung für einen gedämpften harmonischen Oszillator
+\[
+	m\ddot x = - Dx - \rho \dot x \,,
+\]
+wobei $\boldsymbol x$ die Auslenkung beispielsweise eines Pendels, $m$ seine Masse, $D$ die Federkonstante und $\rho$ die Reibungskonstante ist.
+\item In der Elektrodynamik wird der elektrische Schwingkreis durch die folgende Differentialgleichung beschrieben
+\[
+	\ddot i = - \frac{1}{LC} i \,,
+\]
+wobei \(i\) die Stromstärke, $C$ die Kapaziät des Kondensators und $L$ die Induktivität der Spule ist.
+\end{itemize}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Es lohnt sich jetzt kurz zu überlegen, was für eine Lösungskurve wir beim gedämpften harmonischen Oszillator erwarten! Haben Sie eine Idee? \randverweis{MA1-komplexe-zahlen-polarform-und-euler}
+	\item Die unahbhängige Variable, in den zuletzt genannten Differentialgleichungen, ist die Zeit $t$.
+	\item Die Differentialgleichungen sind so keinesfalls eindeutig lösbar - es müssen noch zwei Anfangsbedingungen gegeben sein.
+\end{itemize}
+
+Die Lösungstrategie entspricht dem Vorgehen aus dem vorangegangenen Abschnitt. Schauen wir uns ein konkretes Beispiel an.
+
+\begin{exabox}{\(y_h(x)\) Exponentialansatz}{ }
+	Anfangswertproblem:
+\[
+	\begin{cases}
+		x(0)  = 1, \quad &t=0\,,\\[1ex]
+		\dot x(0)  = -1, \quad &t=0\,,\\[1ex]
+		\ddot x(t) = - 2\dot x(t) - 5\cdot  x(t)\,, \quad &t >0  \,.
+	\end{cases}
+\]
+Ansatz für $x$:
+\begin{eqnarray*}
+	x(t) &=& c\cdot e^{\lambda t}, \; c>0, \quad \lambda \in \mathbb C\,. \\
+				\dot x(t) &=& c \cdot \lambda  \cdot e^{\lambda t}\,,\\
+				\ddot x(t) &=& c \cdot \lambda^2 \cdot e^{\lambda t}\,
+			\end{eqnarray*}
+Bestimmung von $\lambda$:
+			\begin{eqnarray*}
+				\begin{array}{r rcl}
+					& \lambda^2\cdot c\cdot e^{\lambda t} + 2\cdot c\cdot \lambda e^{\lambda t} + 5\cdot c\cdot e^{\lambda t} &=& 0\, \\[1ex]
+					\Leftrightarrow & \left( \lambda^2   + 2 \lambda + 5 \right)\cdot  c \cdot e^{\lambda t} &=& 0, \; c\cdot e^{\lambda t} \not=0\,,\\[1ex]
+				{\Leftrightarrow}& \, \lambda^2 + 2\cdot \lambda + 5 &=& 0 \quad \Rightarrow \lambda _{1,2}= - 1 \pm 2i
+		\end{array}
+		\end{eqnarray*}
+Allgemeine Lösung:
+		\[
+			\forall \; c_1, c_2 \in \mathbb C: \quad  x(t) = c_1\cdot  e^{\lambda_1\, t} + c_2 \cdot e^{\lambda_2\, t} =  e^{-t}\cdot \left( c_1\cdot   e^{2i\,t} + c_2\cdot e^{-2i\, t}\right) \,.
+	\]
+Bestimmung der Konstanten $c_1$ und $c_2$:
+\begin{eqnarray*}
+			&&\begin{cases} c_1  + c_2  &= 1\,,\\
+				c_1 \cdot (-1+2i)  + c_2\cdot (-1-2i)   &= -1
+			\end{cases} \\[1ex]
+			\Leftrightarrow  && \left( \begin{array}{cc} 1 &  1  \\ -1+2\,i &  -1-2\,i\end{array}\right) \left( \begin{array}{c} c_1  \\ c_2\end{array}\right) = \left( \begin{array}{c} 1  \\ -1\end{array}\right) \; \Rightarrow c_1 = c_2 = \frac12\,.
+		\end{eqnarray*}
+		Lösung:
+		\[
+			x(t) = \frac12 e^{-t} \cdot \left( e^{2i\,t} + e^{-2i\, t}\right) = e^{-t}\cdot \cos(2\,t) \,.
+	\]
+\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/federpendel_gedaempfte_schwingung_zeitverlauf.png}
+\end{center}
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Das Polynom, dessen Nullstellen die Werte für $\lambda$ liefert nennt man das charakteristische Polynom $p$.  Im Beispiel ist $p:\lambda \mapsto  \lambda^2   + 2\cdot \lambda + 5$.
+	\item Man erhält typischerweise zwei verschiedene Lösungen $\lambda_{1,2}$ und über die Lösungsanteile läßt sich folgendes sagen:
+		\begin{itemize}
+			\item $\mathrm{Im}(\lambda_{1,2})\not= 0 \Rightarrow$ Sinusförmige Schwingung enthalten.
+			\item $\mathrm{Re}(\lambda_{1,2}) < 0 \Rightarrow $ Die Lösung klingt exponentiell ab.
+			\item $\mathrm{Re}(\lambda_{1,2}) > 0 \Rightarrow $ Die Löusng wächst exponentiell.
+		\end{itemize}
+	\item Die Lösungsfunktion zu $\lambda_1$ und diejenige zu $\lambda_2$ können beliebig superponiert werden, weil die Differentialgleichung linear und homogen ist. Dies liefert zwei Integrationskonstanten und so die Möglichkeit, alle erdenklichen Anfangswerte einzustellen, falls die beiden $\lambda_1\not=\lambda_2$ verschieden voneinander sind.
+	\item Wenn $\lambda_1 = \lambda_2 = \lambda$ eine doppelte Nullstelle des charakteristischen Polynoms ist, dann muss man eine weitere linear unabhängige Lösung der homogenen Gleichung hinzufügen. Eine zweite linear unabhängige Lösung der Differentialgleichung lautet $t \cdot e^{\lambda t}$. Die die allgemeine Lösung ist dann:
+		\[
+			x(t) = c_1\cdot e^{\lambda \,t} + c_2\cdot t\cdot e^{\lambda \,t}\,.
+		\]
+	\item Eine Basis des Lösungsraums der homogenen Gleichung nennt man auch Fundamentalsystem (siehe Beispiel \ref{bsp_fs}).
+	\item Falls man zwei unterschiedliche homogene Lösungen $\phi_1, \phi_2$ gegeben hat und man möchte überprüfen, ob sie den Lösungsraum aufspannen, also linear unahbhängig sind, dann gibt es ein notwendig und hinreichendes Kriterium: man berechnet die sogenannte Wronski-\underline{Determinante}\randverweis{MA1-determinante-und-inverse}.
+		\[ W(x) = \mathrm{det} \left( \begin{array}{cc} \phi_1(x) & \phi_2(x) \\ \phi'_1(x) & \phi'_2(x) \end{array}\right) \]
+		Gilt $W(x) \not = 0$, so ist \( (\phi_1, \phi_2)\) ein Fundamentalsystem.
+	\item Zur Bestimmung der Integrationskonstanten ist ein \underline{lineares Gleichungssystem}\randverweis{MA1-lineare-gleichungssysteme} zu lösen.
+\end{itemize}
+
+\begin{exabox}{Fundamentalsystem}{ }\label{bsp_fs}
+	Differentialgleichung:
+	\[ y''+4y' + 4y = 0\,.\]
+	Ansatz für $y$:
+	\begin{eqnarray*}
+		y(x) &=& e^{\lambda x}\,,\\
+		y'(x) &=& \lambda e^{\lambda x}\,,\\
+		y''(x) &=& \lambda^2 e^{\lambda x}\,.
+	\end{eqnarray*}
+	Bestimmung von $\lambda$:
+	\begin{eqnarray*}
+		\begin{array}{l rcl}
+			&\lambda^2 e^{\lambda x} +4\lambda e^{\lambda x} +4 e^{\lambda x} &\stackrel{!}{=}& 0 \\[1ex]
+			\Leftrightarrow &(\lambda^2 +4\lambda  +4)\cdot e^{\lambda x} &=& 0 \\
+			\Leftrightarrow  &\lambda^2 +4\lambda+4 &=& 0  \quad \Rightarrow \lambda_{1,2} = -2 \,.
+	\end{array}
+	\end{eqnarray*}
+	Fundamentalsystem:
+	\[
+	(e^{-2x}, xe^{-2x})\,, \quad \textnormal{ da } W(x) = \mathrm{det}\left( \begin{array}{cc} e^{-2x} &  x e^{-2x} \\-2 e^{-2x} & (1-2x)e^{-2x} \end{array}\right) = e^{-4x} \not=0\,.
+\]
+\end{exabox}
+
+Ist die Lösung komplex, das heißt es gibt auch echt imaginäre Anteile, dann gibt man im Allgemeinen die physikalisch sinnvolle Lösung an und das ist der Realteil der komplexen Lösung. Es liegt aus diesem Grund nahe den Ansatz für \(y_h\) schon auf den reellen Anteil zu reduzieren und das gelingt wie folgt: wenn \(\lambda = a+ib\) mit \(b\not= 0\) eine Nullstelle des charateristischen Polynoms ist, dann ist auch \(\overline \lambda = a-ib\) Nullstelle des charakteristischen Polynoms. Der herkömmliche Ansatz für dieses Pärchen von Nullstellen lautet
+\begin{eqnarray*} y_h(x) = c_1 e^{(a+ib)x} + c_2 e^{(a-ib)x} = e^{ax}\left( c_1 e^{ibx} + c_2 e^{-ibx}\right)\quad \textnormal{mit}\quad c_1 = x_1 + i y_1, c_2 = x_2 + i y_2 \in \mathbb C\,.\end{eqnarray*}
+Formen wir den Ansatz mit Hilfe der \underline{Eulerschen Identität}\randverweis{MA1-komplexe-zahlen-polarform-und-euler} um!
+\begin{eqnarray*} y_h(x) &=& e^{ax}\left( c_1 e^{ibx} + c_2 e^{-ibx}\right) = e^{ax}\left(  c_1 \left( \cos(bx) + i \sin(bx)\right) + c_2 \left( \cos(bx) - i \sin(bx) \right) \right)\,. \end{eqnarray*}
+Um nun einen vernünftigen Ansatz allein für eine relle Lösung abzuleiten, muss man offensichtlich die Multiplikation mit den komplex-wertigen Konstanten durchführen:
+\begin{eqnarray*} y_h(x)
+	&=&  e^{ax}\left(  (x_1 + i y_1) \left( \cos(bx) + i \sin(bx)\right) + (x_2 + i y_2) \left( \cos(bx) - i \sin(bx) \right) \right)  \\
+	&=&  e^{ax} \left( (x_1 + x_2) \cos(bx) + ( y_2 - y_1) \sin(bx) \right) + i e^{ax} \left( (y_1 + y_2) \cos(bx) + ( x_1 - x_2) \sin(bx) \right) \\[1ex]
+	\Rightarrow&& \mathrm{Re}\left(y_h\right)(x) = e^{ax} \left( (x_1 + x_2) \cos(bx) + ( y_2 - y_1) \sin(bx) \right) \,.
+\end{eqnarray*}
+
+Es lohnt sich dieses Ergebnis zusammen zu fassen:
+\begin{theorembox}{Ansatz für Realteil der Lösung für ein komplexes Nullstellen-Pärchen}{ }
+	Gilt \(p(\lambda) = p(\overline \lambda) = 0\) für eine komplexe Zahl \(\lambda = a+ib\) mit \(b\not=0\), so gilt:
+	\[ \mathrm{Re}\left(y_h\right)(x) = e^{ax} \left( c_1 \cos(bx) + c_2 \sin(bx) \right) \quad \textnormal{mit}\quad c_1, c_2 \in \mathbb R\,. \]
+\end{theorembox}
+
+
+Die Differentialgleichung des Federpendels gibt es auch in einer inhomogenen Variante: Man regt das Pendel mit einer oszillierenden Kraft mit Kreisfrequenz $\omega$ und der Amplitude $\hat F$ an:
+\[
+	m\ddot x +\rho \dot x + D x =\hat F \cos(\omega t)\,.
+\]
+
+Hier geht man so vor, wie wir es schon bei der Differentialgleichung erster Ordnung gesehen haben: zu der allgemeinen Lösung der homogenen Differentialgleichung $x_h$ wird eine partikuläre Lösung $x_p$ der inhomogenen Differentialgleichung hinzuaddiert und erhält die allgemeine Lösung der inhomogenen Differentialgleichung:
+\[
+	x(t) = x_h(t) + x_p(t) \,.
+\]
+Eine Strategie zur Bestimmung einer partikulären Lösung ist ein Ansatz vom Typ der rechten Seite.\footnote{Bei Polynomen muss der Polynomgrad entsprechend der Ordnung der Differentialgleichung erhöht werden!}
+
+\begin{exabox}{\(y_p(x)\) Ansatz vom Typ der rechten Seite}{ }
+	Anfangswertproblem:
+\[
+	\begin{cases}
+		x(t_0)  = y_0, \quad &t=t_0\,,\\[1ex]
+		\dot x(t_0)  = y_1, \quad &t=t_0\,,\\[1ex]
+		m\ddot x(t) +\rho \dot x(t) + D x(t) =\hat F \cos(\omega \cdot t)\,, \quad &t>t_0  \,.
+	\end{cases}
+\]
+Homogene Lösung \(x_h\):
+\[ x_h(t) = c_1 e^{\lambda_1 t} + c_2e^{\lambda_2 t}  \textnormal{ mit } \lambda_{1,2}= \frac{-\rho + \sqrt{\rho^2 \pm 4m D}}{2m}, \; \lambda_1 \not= \lambda_2\,.
+	\]
+Ansatz für $x_p$:
+\begin{eqnarray*}
+	x_p(t) &=&  a\cos(\omega \cdot t) + b \sin(\omega \cdot t)\,,\\[1ex]
+	\dot x_p(t) &=&  -\omega a\sin(\omega \cdot t) + \omega b \cos(\omega \cdot t)\,,\\[1ex]
+	\ddot x_p(t) &=&  -\omega^2 a\cos(\omega \cdot t) - \omega^2 b \sin(\omega \cdot t)\,.
+	\end{eqnarray*}
+Bestimmung der Koeffizienten $a$ und $b$:
+\begin{eqnarray*}
+	\forall \, t> t_0:\quad m\ddot x_p +\rho \dot x_p + D x_p =\hat F \cos(\omega \cdot t) & \Leftrightarrow & \begin{cases} \left( - m\omega^2 + D\right)\cdot  a + \rho \omega b &\stackrel{!}{=} \hat F\,,\\[1ex]
+		\left( - m\omega^2 + D\right)\cdot  b - \rho \omega a &\stackrel{!}{=} 0\,.
+	\end{cases} \\
+	&\Leftrightarrow & \begin{cases}
+		a &= \displaystyle{ \frac{ D-m\omega^2}{(D-m \omega^2)^2 + (\omega \rho)^2}}\hat F\,,\\
+		b &= \displaystyle{ \frac{\omega \rho}{(D-m\omega^2)^2 + (\omega \rho)^2}}\hat F\,.
+	\end{cases}
+\end{eqnarray*}
+	Superposition der Lösungskomponenten:\footnote{
+		Ist ein Anfangswertproblem zu lösen, müssen noch die Integrationskonstanten $c_1$ und $c_2$ bestimmt werden.}
+		\begin{eqnarray*}
+		x(t) &=& x_p(t) + x_h(t) \\
+		&=&  \displaystyle{ \frac{ D-m\omega^2}{(D-m \omega^2)^2 + (\omega \rho)^2}}\hat F \cos(\omega \cdot t) + \displaystyle{ \frac{\omega \rho}{(D-m\omega^2)^2 + (\omega \rho)^2}}\hat F \sin(\omega \cdot t) + c_1 e^{\lambda_1 t} + c_2 e^{\lambda_2 t} \,,\\[1ex]
+	\end{eqnarray*}
+\end{exabox}
+
+\subsection*{Sonderfall: mathematische Resonanz}
+
+Beim Ansatz für eine partikuläre Lösung kann es vorkommen,
+dass der gewählte Ansatz bereits eine Lösung der homogenen Gleichung ist.
+
+Beispiel:
+\[
+y''+y=\sin(x)
+\]
+
+Die homogene Gleichung besitzt die Lösung
+\[
+y_h(x)=c_1\cos(x)+c_2\sin(x).
+\]
+
+Der übliche Ansatz
+\[
+y_p(x)=a\sin(x)+b\cos(x)
+\]
+liegt also bereits im Lösungsraum der homogenen Gleichung und liefert daher keine neue Lösung.
+
+Man spricht in diesem Fall vom \textbf{mathematischen Resonanzfall}.
+
+\medskip
+
+\textbf{Regel:}
+
+Liegt mathematische Resonanz vor, wird der Ansatz mit \(x\) multipliziert.
+
+\[
+y_p(x)=x\left(a\sin(x)+b\cos(x)\right)
+\]
+
+Allgemein gilt:
+
+Ist der Ansatz bereits Lösung der homogenen Gleichung,
+so wird er mit einer hinreichenden Potenz von \(x\) multipliziert,
+bis eine linear unabhängige Funktion entsteht.
+
+\medskip
+Der Begriff Resonanz ist nicht zufällig gewählt:
+Auch in physikalischen Systemen tritt Resonanz auf,
+wenn eine äußere Anregung dieselbe Frequenz besitzt
+wie eine Eigenfrequenz des Systems.
+%
+%\subsection{Mathematische Resonanz (+)}
+%
+%Eine Situation ist bis jetzt noch nicht aufgetregen. Betrachten wir beispielsweise die Differentialgleichung \[ y'' + y = \sin(x)\,.\] Unser herkömmlicher Ansatz für die partikuläre Lösung ist
+%\begin{eqnarray*}
+%	y_p(x) &=& a \sin(x) + b\cos(x)\,,\\
+%	%y_p'(x) &=& a\cos(x) - b\sin(x)\,,\\
+%y_p''(x) &=& -a\sin(x) - b\sin(x)\,.
+%\end{eqnarray*}
+%Um die Konstanten \(a\) und \(b\) zu bestimmen, setzen wir den Ansatz in die Differentialgleichung ein und erhalten \ldots nichts\marginpar{!!!} - sehen Sie selbst: \[ -a\sin(x) - b\sin(x) + a\sin(x) + b\cos(x) = 0 \textnormal{ !} \] Offensichtlich löst \(y_p\) die homogenen Gleichung! In der Tat, denn die Nullstellen des charakteristischen Polynoms sind \(\lambda_{1,2} = \pm i\) und damit lautet die allgemeine, reelle Lösung der homogenen Gleichung
+%\[ \mathrm{Re}\left(y_h\right)(x) = c_1 \cos(x) + c_2\sin(x) = y_p(x)\,.\]
+%Hätten wir uns zuerst Gedanken über \(y_h\) gemacht, hätten wir wahrscheinlich schon längst festgestellt, dass die Inhomogenität auf der rechten Seite selbst Lösung der homogenen Gleichung ist! Diesen Fall bezeichnet man als den mathematischen Resonanzfall.
+%
+%Liegt der Resonanzfall vor, muss der Ansatz für die partikuläre Lösung modifiziert werden: \[ y_p(x) = x\left( a \sin(x) + b\cos(x) \right)\,.\]
+%
+%\begin{exabox}{Mathematischer Resonanzfall}{ }
+%	Differentialgleichung: \[ y'' + y = \sin(x)\]
+%	Allgemeine, reelle Lösung der homogenen Gleichung:
+%	\[  \mathrm{Re}\left(y_h\right) = c_1 \cos(x) + c_2 \sin(x)\quad \Rightarrow \textnormal{ mathematischer Resonanzfall} \]
+%	Ansatz für partikuläre Lösung:
+%	\begin{eqnarray*} y_p(x) &=& x\left( a \sin(x) + b\cos(x) \right)\\
+%	%y_p'(x) &=& a\sin(x) +b\cos(x) + x\left(a\cos(x) - b\sin(x)\right)\\
+%y_p''(x) &=& 2a\cos(x) - 2b\sin(x)  + x\left( -a\sin(x) -b\cos(x) \right) \,. \end{eqnarray*}
+%	Bestimmung der Konstanten \(a, b\):
+%	\begin{eqnarray*}
+%		&& 2 a\cos(x) - 2b\sin(x) + x\left( -a\sin(x) -b\cos(x) \right) + x\left( a \sin(x) + b\cos(x) \right) = 2a \cos(x) - 2 b \sin(x) \\
+%		\Rightarrow && 2a \cos(x) - 2 b \sin(x) \stackrel{!}{=} \sin(x)  \Rightarrow a=0\land b=-\frac12\,.
+%	\end{eqnarray*}
+%	Allgemeine Lösung der Differentialgleichung: \[ y(x) = y_h(x) + y_p(x) = c_1 \cos(x) + c_2 \sin(x) -\frac12 x\cos(x)\,. \]
+%\end{exabox}
+%
+%\begin{exabox}{Ansatz für \(y_p\) im Fall mathematischer Resonanz}{ }
+%	Differentialgleichung:
+%	\[ y^{(4)} + 3 y''' + 6 y'' + 4 y' + 5y = -8 \cos(x) - 8 \sin(x)\,. \]
+%	Charakteristisches Polynom: \[ p(\lambda) = (\lambda^2+1)\cdot (\lambda^2+ 4 \lambda^2 + 5) \quad  \Rightarrow p(\lambda) = 0 \Leftrightarrow \lambda \in \{ \pm i, -2 \pm i\} \]
+%	Allgemeine, reelle Lösung der homogenen Gleichung: \[ \mathrm{Re}\left(y_h\right)(x) = c_1 \cos(x) + c_2 \sin(x) + e^{-2x} \left( c_3 \cos(x) + c_4 \sin(x)\right)  \quad \Rightarrow \textnormal{ mathematischer Resonanzfall} \]
+%	Ansatz für partikuläre Lösung: \[ y_p(x) = x (a \sin(x) + b\cos(x) ) \,.\]
+%\end{exabox}
+%
+%
+%\begin{exabox}{Ansatz für \(y_p\) im Fall mathematischer Resonanz}{ }
+%	Differentialgleichung:
+%\[ y'' + y = x\sin(x) \]
+%Charakteristische Polynom: \[p(\lambda) = \lambda^2 + 1 \quad \Rightarrow  p(\lambda) = 0 \Leftrightarrow  \lambda \in \{  \pm i \}\]
+%Allgemeine, reelle Lösung der homogenen Gleichung: \[ \mathrm{Re}\left(y_h\right)(x) = c_1 \cos(x) + c_2 \sin(x) \quad \Rightarrow \textnormal{ mathematischer Resonanzfall}\]
+%Ansatz für partikuläre Lösung: \[ y_p(x) = x(a_1x + a_0) \sin(x) + x(b_1x +b_0) \cos(x) \,.\]
+%\end{exabox}
+%
+%
+%Eine lineare Differentialgleichung der Ordnung \(n\geq 1\) mit konstanten Koeffizienten
+%\[ y^{(n)}(x) + a_{n-1} y^{(n-1)}(x) + \cdots + a_1y^{(1)}(x) + a_0 y(x) = g(x)\,.\]
+%
+%Die Lösungsstrategie ist wie folgt:
+%\begin{itemize}
+%	\item Die Lösungsstrategie zur Lösung einer inhomogenen, linearen Differentialgleichung mit konstanten Koeffizienten der Ordnung $n$-ter Ordnung ist entsprechend:
+%		\begin{enumerate}
+%			\item Bestimmung der allgemeinen Lösung der homogenen Gleichung mit Hilfe des Ansatzes \(y_h(x) = e^{\lambda \cdot x}\).
+%			\item Vervollständigung des Lösungsraums zu \(n\) linear unabhängigen Lösungsfunktionen, falls das charakteristische Polynom mehrfache Nullstellen besitzt.
+%			\item Falls \(g\not = 0\), erfolgt die Bestimmung einer partikulären Lösung \(y_p\) mit einem Ansatz vom Typ der rechten Seite, hierbei auf mathematische Resonanz achten.
+%			\item Superposition beider Lösungskomponenten.
+%			\item Falls ein Anfangswertproblem zu lösen ist, erfolgt die Bestimmung der \(n\) Konstanten durch die \(n\) Anfangsbedingungen.
+%		\end{enumerate}
+%	\item Eine eindeutige Lösung ist nur möglich wenn $n$ Anfangsbedingungen vorgegeben sein, beispielsweise:
+%\[ y(x_0), \, y'(x_0), \cdots  y^{(n-1)}(x_0) \] Pro Integrationsschritt kommt ja eine Konstante hinzu! Die Lösung einer Differentialgleichung $n$-ter Ordung ohne fixierten Anfangsbedingungen nennt man die allgemeine Lösung [general solution].
+%\end{itemize}
+%
+%

@@ -1,0 +1,826 @@
+\section{Vektoren}\label{MA1-vektoren}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+\textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem Vektoren in \(\mathbb R^n\) und \(\mathbb C^n\) darstellen, addieren und skalieren &\\
+\tabitem die Norm eines Vektors berechnen und Einheitsvektoren bestimmen &\\
+\tabitem das Skalarprodukt berechnen und geometrisch interpretieren &\\
+\tabitem Orthogonalität mithilfe des Skalarprodukts prüfen &\\
+\tabitem Vektoren orthogonal zerlegen und auf eine vorgegebene Richtung projizieren &\\
+\tabitem den Winkel zwischen zwei reellen Vektoren mithilfe des Skalarprodukts bestimmen &\\
+\tabitem Norm und Skalarprodukt auf Vektoren in \(\mathbb C^n\) übertragen (+) &\\
+\tabitem das Kreuzprodukt in \(\mathbb R^3\) berechnen und geometrisch interpretieren (+) &\\
+    \midrule
+	  \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+	  \tabitem Grundlagen & \abschnittsverweis{MA1-mengen-und-logik}-\abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Geometrie rechtwinkliges Dreieck & \abschnittsverweis{MA1-trigonometrische-funktionen}\\
+	  \tabitem Komplexe Zahlen & \abschnittsverweis{MA1-komplexe-zahlen-grundlagen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-vektoren-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist ein Vektor?} % Kapitel früher 
+
+Pfeile kann man addieren und subtrahieren und man kann die Länge von Pfeilen durch Multiplikation mit Zahlen verändern:
+\begin{exabox}{Pfeile}{ }
+\begin{minipage}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_pfeiladdition_gegenvektor.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+		Pfeilarithmetik kann man in \(\mathbb R^2\) gut skizzieren:
+	\[ - (\vec v+\vec u) = -\vec v - \vec u  \]
+\end{minipage}
+\end{exabox}
+
+Das klappt in zwei Dimensionen (Ebene) ebenso wie in drei Dimensionen (Raum). Ein Pfeil wird vollständig durch seine Länge und seine Richtung beschrieben. Um die Operation "\,Addition"\, komplett zu haben, benötigt man ein \underline{neutrales Element}\randverweis{MA1-zahlenmengen} der Addition. Das neutrale Element der Addition ist ein Pfeil mit Länge Null und unbestimmter Richtung, der sogenannte Nullpfeil $\vec 0$. Es gilt: \[ \forall\, \vec a: \quad \vec a+ \vec 0= \vec a\,.\]
+
+Zwei Pfeile werden mathematisch als gleich betrachtet, wenn sie in Länge und Richtung übereinstimmen: mathematisch unterscheiden sich also zwei parallel gegeneinander verschobene Pfeile nicht. Es handelt sich in der Mathematik um einen \textbf{Vektor} (\emph{vector}):
+\begin{exabox}{Vektoren}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_gleiche_pfeile_verschoben.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+	Ein Vektor in der Mathematik ist durch die Angabe
+	\begin{itemize}
+		\item seiner Länge und 
+		\item seiner Richtung 
+	\end{itemize}
+	eindeutig bestimmt. Man darf den Vektor in der Ebene beliebig verschieben, es sind unbebundene Vektoren. 
+\end{minipage}
+\end{exabox}
+
+
+Zwei- und dreidimensionale Vektoren werden orthographisch meist mit einem Pfeil oder unterstrichen dargestellt, also $\vec a$ oder $\underline a$, oder mit Fettbuchstab $\boldsymbol a$. Je abstrakter die Vektoren werden, um so eher benutzt man normale Buchstaben wie $a$. 
+
+Die Vokabeln \"\,Vektor\"\, und \"\,Skalar\"\, werden nicht nur in mathematischen Zusammenhängen, sondern auch in der Physik ständig auftauchen. Es ist sinnvoll die Unterschiede zu erklären:  
+
+
+\vspace{0.3cm}
+\noindent\textbf{Vektoren und Skalare in der Mathematik}
+\begin{itemize}
+	\item Vektoren in der Mathematik sind ungebundene bzw. freie Vektoren. Das Adjektiv "\,frei"\, betont, dass zwei parallele gleichlange Vektoren dieselben mathematischen Objekte sind.  
+	\item Vektoren mit fixiertem Start- oder Aufhängepunkt \(P\) nennt man in der Mathemamtik gebundene Vektoren: 
+	\item Skalare in der Mathematik sind die Zahlen, mit denen man Vektoren multiplizieren kann: also reelle oder komplexe Zahlen. Multipliziert man einen Vektor mit einer Zahl, so verändert man seine Länge, aber nicht seine Richtung - man spricht auch von Skalierung.  
+\end{itemize}
+
+\noindent\textbf{Vektoren und Skalare in der Physik}
+\begin{itemize}
+	\item Vektoren in der Physik sind vektorielle Größen wie beispielsweise der Geschwindigkeitsvektor \(\vec v\), der Impulsvektor \(\vec p\), das elektrostatische Feld \(\vec E\) oder die Newtonsche Kraft \(\vec F\)\ldots 
+	\item Vektoren in der Physik, die an einem fixierten Punkt \(P\) starten, nennt man Ortsvektoren $ P + \vec v\,.$
+	\item Skalare in der Physik sind ungerichtete Größen, beispielsweise die Masse \(m\) eines Körpers, die Anzahl \(N\) von Teilchen, die Ladung \(q\) eines Atoms, die Energie \(E\) eines Systems oder die Raumtemperatur \(T\)\ldots 
+	\item Physikalische Größen können nicht nur gerichtet (vektoriell) oder ungerichtet (skalar), sondern auch komplizierter sein. Zur Beschreibung der Drehung eines massebehafteten Objektes um eine bestimmte Achse braucht man den sogennanten Trägheitstensor \(I\). Ein Trägheitstensor ist kein Vektor und es ist kein Skalar, sondern eine \underline{Matrix}\randverweis{MA1-matrizen}.
+	\item Jede physikalische Größe, ob skalar, vektoriell oder tensorwertig, besteht aus einem Zahlenwert und einer Maßeinheit. Wenn man physikalische Gesetze aufschreibt und mit physikalischen Größen rechnet, dann kann man immer nur Größen gleicher Einheit miteinander verrechnen. Deshalb ist es immer hilfreich einen Vergleich der Einheiten zu machen -  so findet man schnell heraus, ob eine Formulierung sinnvoll oder unmöglich ist:
+\begin{itemize}
+	\item eine Masse von $m=2.3 \, [\mathrm{ kg}]$ kann nicht mit einem Zeitintervall der Länge $\delta t=2.3\, [\mathrm{s}]$ gleichgesetzt werden,
+	\item ein Beschleunigungsvektor $\vec a = (4.2,0,0)^\intercal \, [\frac{m}{s^2}]$ kann nicht dem sklaren Druck $p=4.2\, [\mathrm{Pa}]$ entsprechen,
+	\item ein Kraftvektor $\vec F \; [\mathrm{N}] = [\frac{\mathrm{kg}\cdot \mathrm{m}}{\mathrm{s}^2}]$, kann nicht gleich einem Geschwindigkeitsvektor $\vec v \; [\frac{\mathrm{m}}{\mathrm{s}}]$ sein.
+\end{itemize} 
+\end{itemize}
+
+Um mit Vektoren sinnvoll rechnen zu können, drückt man sie in Zahlen aus. Der Vektor, der eine Einheit nach links und drei nach oben zeigt lautet beispielsweise 
+\begin{defbox}{Komponenten eines Vektors}{ }
+	Ein Vektor, der eine Einheit nach links und drei nach oben zeigt lautet 
+	\[ \vec a=\left( \begin{array}{c} -1 \\ 3\end{array} \right)\,. \]  
+		Die Zahlen \(-1\) und \(3\) nennt man Komponenten oder Koeffizienten oder auch Einträge des Vektors. 
+	Entsprechend haben Vektoren im Raum drei Komponenten, beispielsweise
+\[  \vec a = \left( \begin{array}{c} 2 \\ 3 \\ -4\end{array} \right)\,. \]
+\end{defbox} 
+
+Die Komponenten eines Vektors schreibt man meistens senkrecht untereinander, also als Spalte. So entsteht ein \textbf{Spaltenvektor}. Werden die Komponenten in eine Zeile geschreiben, dann spricht man von einem \textbf{Zeilenvektor}. Ein Spaltenvektore wird durch \textbf{Transposition} in einen Zeilenvektor umgewandelt. Das kleine Symbol \(^\intercal\) zeigt die Drehung an: 
+
+\[ \left(  -1, 3\right)^\intercal = \left( \begin{array}{c} -1 \\3\end{array}\right) \quad \textnormal{bzw.} \quad \left(  2, 3, -4\right)^\intercal = \left( \begin{array}{c} 2 \\ 3 \\ -4\end{array}\right)\,. \]  
+
+\begin{exabox}{Rechnen mit Vektoren in der Ebene}{ }
+	\begin{itemize}
+		\item Man skaliert einen Vektor, indem man jede Komponente des Vektors mit dem Skalar multipliziert:  
+\[ 
+	2 \cdot \vec a= 2\cdot \left( \begin{array}{c} -1 \\ 3\end{array} \right) = \left( \begin{array}{c} 2\cdot (-1) \\ 2\cdot 3\end{array} \right) = \left( \begin{array}{c} -2 \\ 6\end{array} \right)\,.
+\]
+\item Man addiert zwei Vektoren, indem man die Komponenten der Vektoren zeilenweise addiert: 
+  \[  
+  \vec a + \vec b = \left( \begin{array}{c} -1 \\ 3\end{array} \right)  + \left( \begin{array}{c} 4 \\ 2\end{array} \right) =  \left( \begin{array}{c} 3 \\ 5\end{array} \right) \,.
+  \]
+	\end{itemize}
+\end{exabox} 
+
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+	\item Die Bedeutung der Komponenten hängt von der Wahl des Ursprungs und der Achsen ab! 
+	\item Der Nullvektor $\vec 0$ ist der Vektor, bei dem alle Komponenten gleich null sind.
+\end{itemize}
+
+Die Menge aller Vektoren mit zwei reellen Komponenten wird mit $\mathbb R^2$ bezeichnet und die Menge aller Vektoren mit drei reellen Komponenten ist entsprechend $\mathbb R^3$.
+Allgemein schreibt man
+\[
+\mathbb R^n = \mathbb R \times \mathbb R \times \dots \times \mathbb R ,
+\]
+das sogenannte $n$-fache kartesische Produkt der reellen Zahlen.
+
+Das Wort "\,identifizieren"\, resultiert aus der Tatsache, dass die Mengen $\mathbb R^n, \; n \in \mathbb N^+$, ein Doppelleben führen: man kann jedes Element des $\mathbb R^2$ entweder als Punkt $(x\,|\,y)$ in der Ebene oder als Vektor $(x,y)^\intercal$ auffassen. 
+\begin{defbox}{$\mathbb R^2$ als Menge von Vektoren}{ }
+	\[ \mathbb R^2 = \left\{ \left( \begin{array}{c}  x \\ y \end{array}\right)\, \textnormal{mit}\; x,y\in \mathbb R\right\} \]
+\end{defbox}
+Aus dem Zusammenhang wird klar, welchen Standpunkt man einnimmt. %Im Englisch sprachigen Raum schreibt man Punkte in der Form $(2,3)$, was im Deutschen zu Verwechselungen mit dem Dezimalkomma führen kann.
+Die einfachste Übersetzung zwischen Punkten und Vektoren ergibt sich wie folgt
+\begin{exabox}{Vektor vs. Punkt}{ }
+	$ \left( \begin{array}{c}  2 \\ 3 \end{array}\right) = (2\, | \,3) - (0\,|\,0)\,, $
+\end{exabox}
+wobei nun links explizit ein gebundener Vektor mit Aufhängepunkt im Ursprung steht.
+
+Kommen wir nochmal zurück auf die Definition eines Vektors: ein freier Vektor ist durch seine Länge und seine Richtung eindeutig bestimmt. Das bedeutet, dass die Angabe dieser Informationen genügt, um den Vektor zu kennen! 
+\[ \textnormal{Vektor}\quad   \Leftrightarrow \quad  \left( \,\textnormal{L"ange, Richtung} \,\right) \]
+Für die Länge $\| \vec a\| $ oder $|\vec a|$ eines  Vektors $\vec a\in\mathbb R^2$ gilt\marginpar{\small Warum?}:
+  \[
+  \begin{array}{rcl}
+	  \vec a = \left( \begin{array}{c} 2 \\ -4\end{array} \right) \quad \Rightarrow \|\vec a\| := \sqrt{ 2^2+(-4)^2} = \sqrt{20} \,.
+\end{array}
+\]
+Zur Angabe der Richtungsinformation von \(\vec a\) bietet sich ein Vektor an, der in Richtung von \(\vec a\) zeigt und dessen Länge zu eins normiert ist, der also keine spezifische Längeninformation über \(\vec a\) besitzt! 
+
+\begin{defbox}{Einheitsvektor}{ }
+	Zu einem gegebenen Vektor \(\vec a \not = \vec 0\) ist \(\hat a\) der zugehörigen \textbf{Einheitsvektor}, wobei
+$$
+\hat a:= \dfrac{\vec a}{\|\vec a\|}\,.
+$$
+\end{defbox}
+
+Das Konzept der Vektoren in der Ebene ist sehr zugänglich, weil wir uns die Vektoren vorstellen können. Allerdings hindert uns nichts daran das Konzept zu erweitern, beispielsweise auf \(\mathbb R^n\).  
+
+\begin{defbox}{Vektoren in \(\mathbb R^n\) }{ }
+	Ein \(n\)-Tupel reeller Zahlen \(a_k, \, k=1,\dots,n\) definiert einen Vektor in \(\mathbb R^n\) mit \(n\) Komponenten: 
+\[  \vec a = \left( a_1, a_2, \cdots, a_n\right)^\intercal\,. \]
+Ein nicht-trivialer Vektor, \(\vec a \not = \vec 0\), ist durch seine Länge und seine Richtung eindeutig festgelegt:
+\[ \vec a\quad   \Leftrightarrow \quad  \left( \|\vec a\| ,  \hat a\right)\,, \quad \textnormal{mit}\quad \begin{cases}\left\| \vec a \right\| &= \displaystyle{\sqrt{ \sum\limits_{k=1}^n a_k^2}} \geq 0\in \mathbb R\,, \\ \hat a &= \dfrac{\vec a}{\|\vec a\|}\,,\end{cases}\]
+und es gilt 
+\[ \vec a = \|\vec a\| \cdot\hat a\,.\]
+\end{defbox}
+
+\subsection{Skalarprodukt}
+
+Vektoren können addiert und mit Skalaren multipliziert werden. Damit lassen
+sich bereits viele geometrische Operationen algebraisch beschreiben. Eine
+wesentliche geometrische Information ist damit jedoch noch nicht unmittelbar
+zugänglich: die Lage zweier Vektoren relativ zueinander.
+
+Insbesondere stellt sich die Frage, wie algebraisch erkannt werden kann, ob
+zwei Vektoren in dieselbe Richtung zeigen, senkrecht aufeinander stehen oder
+einen bestimmten Winkel miteinander einschließen.
+
+Eine solche Information kann nicht durch Addition oder skalare
+Multiplikation allein gewonnen werden. Dafür wird eine weitere Verknüpfung
+benötigt, die zwei Vektoren eine Zahl zuordnet. Diese Verknüpfung ist das
+\textbf{Skalarprodukt} (\emph{inner product}).
+
+Auch in der Physik tritt genau eine solche Verknüpfung auf. Bei der
+mechanischen Arbeit ist nicht nur die Größe einer Kraft und eines Weges
+entscheidend, sondern auch deren relative Richtung. Eine Kraft, die senkrecht
+zur Bewegungsrichtung wirkt, verrichtet entlang dieses Weges keine Arbeit.
+Das Skalarprodukt erfasst genau diese Richtungsinformation.
+
+\begin{defbox}{Skalarprodukt in \(\mathbb R^n\)}{ }
+
+Für zwei Vektoren
+\[
+\vec a
+=
+(a_1,\ldots,a_n)^\intercal,
+\qquad
+\vec b
+=
+(b_1,\ldots,b_n)^\intercal
+\]
+in \(\mathbb R^n\) ist das Skalarprodukt definiert durch
+\[
+\langle\vec a,\vec b\rangle
+=
+\sum_{k=1}^{n}a_kb_k.
+\]
+
+Das Ergebnis des Skalarprodukts ist \emph{kein} Vektor, sondern eine reelle
+Zahl:
+\[
+\langle\vec a,\vec b\rangle\in\mathbb R.
+\]
+
+\noindent\textbf{Bemerkung zur Schreibweise:}
+Für das Skalarprodukt sind verschiedene Schreibweisen gebräuchlich. Neben
+\(\langle\vec a,\vec b\rangle\) wird insbesondere auch ein ausgefüllter
+Punkt verwendet oder ein kleines Malzeichen,
+\[
+	\vec a\bullet\vec b, \quad  \vec a \cdot \vec b\,.
+\]
+\end{defbox}
+
+Die Berechnung erfolgt komponentenweise. Entsprechende Komponenten werden
+multipliziert und die entstehenden Produkte anschließend addiert. Für
+\[
+\vec a
+=
+\begin{pmatrix}
+3\\4\\5
+\end{pmatrix},
+\qquad
+\vec b
+=
+\begin{pmatrix}
+2\\-3\\1
+\end{pmatrix}
+\]
+ergibt sich beispielsweise
+\[
+\langle\vec a,\vec b\rangle
+=
+3\cdot2+4\cdot(-3)+5\cdot1
+=
+-1.
+\]
+
+Neben der Schreibweise
+\(\langle\vec a,\vec b\rangle\) ist insbesondere in
+\(\mathbb R^n\) auch die Schreibweise
+\(\vec a\cdot\vec b\) gebräuchlich.
+
+
+\begin{theorembox}{Eigenschaften des Skalarprodukts}{ }
+
+Für \(\vec a,\vec b,\vec c\in\mathbb R^n\) und
+\(\lambda\in\mathbb R\) gilt
+\[
+\langle\vec a,\vec b\rangle
+=
+\langle\vec b,\vec a\rangle,
+\]
+\[
+\langle\vec a,\vec b+\vec c\rangle
+=
+\langle\vec a,\vec b\rangle
++
+\langle\vec a,\vec c\rangle
+\]
+sowie
+\[
+\langle\lambda\cdot \vec a,\vec b\rangle
+=
+\langle\vec a,\lambda\cdot \vec b\rangle
+=
+\lambda\cdot \langle\vec a,\vec b\rangle.
+\]
+
+Das reelle Skalarprodukt ist damit symmetrisch und linear in beiden
+Argumenten.
+
+\end{theorembox}
+
+
+\subsubsection*{Skalarprodukt und Länge}
+
+Eine erste Verbindung zwischen dem Skalarprodukt und der Geometrie entsteht,
+wenn ein Vektor mit sich selbst multipliziert wird. Für
+\(\vec a\in\mathbb R^n\) gilt
+\[
+\langle\vec a,\vec a\rangle
+=
+a_1^2+\cdots+a_n^2.
+\]
+Der Ausdruck auf der rechten Seite ist gerade das Quadrat der euklidischen
+Länge von \(\vec a\).
+
+\begin{theorembox}{Relation zwischen Norm und Skalarprodukt}{ }
+
+Für jeden Vektor \(\vec a\in\mathbb R^n\) gilt
+\[
+\|\vec a\|^2
+=
+\langle\vec a,\vec a\rangle
+\]
+und damit
+\[
+\|\vec a\|
+=
+\sqrt{\langle\vec a,\vec a\rangle}.
+\]
+
+\end{theorembox}
+
+Das Skalarprodukt enthält damit bereits die Information über die Länge eines
+Vektors. Entscheidend ist jedoch, dass es darüber hinaus auch die relative
+Richtung zweier verschiedener Vektoren erfasst.
+
+\subsubsection*{Projektion und Winkel zwischen Vektoren}
+
+Orthogonalität beschreibt zunächst nur den besonderen Fall eines Winkels von
+\(90^\circ\). In der Ebene und im dreidimensionalen Raum lässt sich jedoch
+auch der Winkel zwischen zwei beliebigen Vektoren geometrisch betrachten.
+
+Ausgangspunkt ist zunächst die anschauliche Situation in der Ebene. Gesucht
+ist der Anteil eines Vektors \(\vec b\), der in Richtung eines zweiten
+Vektors \(\vec a\) zeigt. Dazu wird \(\vec b\) in zwei zueinander
+orthogonale Anteile zerlegt: einen Anteil \(\vec b_{\parallel}\), der
+parallel zu \(\vec a\) verläuft, und einen Anteil \(\vec b_{\perp}\), der
+senkrecht auf \(\vec a\) steht.
+
+\vspace{0.5cm}
+\begin{center}
+\begin{minipage}{0.3\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_orthogonale_zerlegung.png}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+\[
+\textcolor{blue}{\vec b}
+=
+\textcolor{red}{\vec b_{\parallel}}
++
+\textcolor{red}{\vec b_{\perp}},
+\qquad
+\left\langle
+\textcolor{red}{\vec b_{\perp}},
+\textcolor{darkgreen}{\vec a}
+\right\rangle
+=
+0.
+\]
+\end{minipage}
+\end{center}
+\vspace{0.5cm}
+
+Der parallele Anteil enthält genau die Information darüber, wie stark
+\(\vec b\) in Richtung von \(\vec a\) zeigt.
+
+Zunächst seien \(\vec a,\vec b\in\mathbb R^2\) zwei von Null verschiedene
+Vektoren und \(\alpha\in[0,\pi]\) ihr geometrisch eingeschlossener Winkel.
+Ist \(\alpha\) spitz, so zeigt der parallele Anteil in Richtung von
+\(\vec a\). Seine Länge beträgt nach der bekannten Geometrie des
+rechtwinkligen Dreiecks \(\|\vec b\|\cos(\alpha)\). Mit dem Einheitsvektor
+\(\hat a=\vec a/\|\vec a\|\) folgt daher
+\[
+\vec b_{\parallel}
+=
+\|\vec b\|\cos(\alpha)\,\hat a
+=
+\frac{\|\vec b\|}{\|\vec a\|}
+\cos(\alpha)\,\vec a.
+\]
+
+Bei einem stumpfen Winkel ist \(\cos(\alpha)<0\). Der parallele Anteil zeigt
+dann entgegen der Richtung von \(\vec a\). Dieselbe Formel beschreibt somit
+beide Fälle.
+
+Diese geometrische Zerlegung ermöglicht nun, das Skalarprodukt zu
+interpretieren. Da
+\(\vec b=\vec b_{\parallel}+\vec b_{\perp}\) und
+\(\vec b_{\perp}\perp\vec a\), gilt
+\[
+\begin{array}{rcl l}
+\big\langle\vec a,\vec b\big\rangle
+&=&
+\big\langle\vec a,\vec b_{\parallel}+\vec b_{\perp}\big\rangle & \quad \text{Orthogonale Zerlegung für } \vec b \text{ einsetzen} \\[0.5ex]
+&=& \big\langle\vec a,\vec b_{\parallel}\big\rangle + \underbrace{\big\langle\vec a,\vec b_{\perp}\big\rangle}_{\displaystyle{=0} } & \quad \text{Eigenschaften des Skalarprodukts ausnutzen}\\[0.5ex]
+&=& \big\langle \vec a, \frac{\|\vec b\|}{\|\vec a\|} \cdot \cos(\alpha)\cdot \vec a \big\rangle &\quad \text{Darstellung für } \vec b_\parallel \text{ einsetzen}\\[0.5ex] 
+&=& \frac{\|\vec b\|}{\|\vec a\|}\cdot \cos(\alpha)\cdot \underbrace{\langle\vec a,\vec a\rangle}_{=\|\vec a\|^2} &\quad \text{Eigenschaften des Skalarprodukts ausnutzen} \\[0.5ex]
+&=& \|\vec a\|\cdot\|\vec b\|\cdot \cos(\alpha). & \end{array}
+\]
+
+Damit ist für Vektoren in der Ebene eine Verbindung zwischen dem geometrisch bekannten Winkel und dem algebraisch berechenbaren Skalarprodukt gefunden:
+\[
+\cos(\alpha) = \frac{\langle\vec a,\vec b\rangle}{\|\vec a\|\cdot \|\vec b\|}.
+\]
+
+Diese Formel besitzt eine weitergehende Bedeutung. Ihre rechte Seite enthält nur das Skalarprodukt und die Norm der beiden Vektoren. Beide Begriffe sind bereits für Vektoren in \(\mathbb R^n\) definiert und benötigen keine zweidimensionale geometrische Darstellung.
+
+Damit kann der aus der Ebene bekannte Winkelbegriff auf beliebige reelle Vektorräume \(\mathbb R^n\) übertragen werden.
+
+\begin{defbox}{Winkel zwischen Vektoren in \(\mathbb R^n\)}{ }
+
+Für zwei von Null verschiedene Vektoren
+\(\vec a,\vec b\in\mathbb R^n\) wird der \textbf{Winkel}
+\(\alpha\in[0,\pi]\) zwischen den beiden Vektoren durch
+\[
+\cos(\alpha)
+:=
+\frac{\langle\vec a,\vec b\rangle}
+{\|\vec a\|\,\|\vec b\|}
+\]
+definiert.
+
+Äquivalent dazu gilt
+\[
+\alpha
+=
+\arccos\left(
+\frac{\langle\vec a,\vec b\rangle}
+{\|\vec a\|\,\|\vec b\|}
+\right).
+\]
+
+Für \(n=2\) und \(n=3\) stimmt diese Definition mit dem geometrisch
+anschaulichen Winkel zwischen zwei Vektoren überein.
+
+\end{defbox}
+
+Die Definition erweitert damit einen aus der ebenen und räumlichen Geometrie
+bekannten Begriff auf Dimensionen, in denen eine unmittelbare geometrische
+Vorstellung nicht mehr zur Verfügung steht. Ein Winkel zwischen zwei
+Vektoren in \(\mathbb R^{10}\) oder \(\mathbb R^{100}\) lässt sich nicht mehr
+als Winkel zweier gezeichneter Pfeile veranschaulichen; über das
+Skalarprodukt ist er dennoch eindeutig definiert.
+
+%Die Winkelformel ist damit in der Ebene eine Konsequenz der geometrischen Interpretation des Skalarprodukts und wird anschließend zur Definition des Winkelbegriffs in \(\mathbb R^n\).
+
+Gleichzeitig liefert dieselbe Beziehung die \textbf{vorzeichenbehaftete
+Projektionslänge} von \(\vec b\) in Richtung von \(\vec a\). Für den
+Einheitsvektor \(\hat a\) gilt
+\[
+\langle\vec b,\hat a\rangle
+=
+\|\vec b\|\cos(\alpha).
+\]
+Dieser Wert beschreibt, wie stark \(\vec b\) in Richtung von
+\(\vec a\) beziehungsweise bei negativem Vorzeichen in die
+entgegengesetzte Richtung zeigt.
+
+\begin{theorembox}{Orthogonale Projektion auf eine Richtung}{ }
+
+Für \(\vec a\neq\vec 0\) lässt sich \(\vec b\) orthogonal zerlegen als
+\[
+\vec b
+=
+\vec b_{\parallel}
++
+\vec b_{\perp} \quad \text{ mit } \vec b_{\perp}\perp\vec a.
+\]
+Der zu \(\vec a\) parallele Vektor ist
+\[
+\vec b_{\parallel}
+=
+\langle\vec b,\hat a\rangle\cdot \hat a
+=
+\frac{\langle\vec b,\vec a\rangle}
+{\|\vec a\|^2} \cdot \vec a
+\]
+und der zu \(\vec a\) orthogonale Vektor ist
+\[
+\vec b_{\perp}
+=
+\vec b-\vec b_{\parallel}.
+\]
+
+\end{theorembox}
+
+Das Skalarprodukt beantwortet damit mehrere zunächst unterschiedliche
+geometrische Fragen mit derselben algebraischen Operation: Es beschreibt
+Orthogonalität, ermöglicht die orthogonale Projektion und erweitert den
+geometrischen Winkelbegriff auf Vektoren in beliebigen Dimensionen.
+
+Die Projektion wird später noch eine weitergehende Bedeutung erhalten. Wird
+nicht nur auf eine einzelne Richtung, sondern auf einen ganzen Unterraum
+projiziert, entsteht dort die bestmögliche orthogonale Approximation eines
+Vektors.
+
+\subsubsection*{Vektoren in \(\mathbb C^n\)}
+
+Die bisherigen Überlegungen bezogen sich auf Vektoren mit reellen
+Komponenten. Nach der Einführung der komplexen Zahlen liegt es nahe, auch
+Vektoren
+\[
+\vec u
+=
+(u_1,\ldots,u_n)^\intercal
+\in\mathbb C^n
+\]
+zu betrachten.
+
+Addition und skalare Multiplikation werden wie in \(\mathbb R^n\)
+komponentenweise durchgeführt. Bei der Übertragung des Skalarprodukts ist
+jedoch eine Anpassung notwendig. Würden komplexe Komponenten einfach
+miteinander multipliziert, wäre insbesondere
+\(\langle\vec u,\vec u\rangle\) im Allgemeinen keine
+nichtnegative reelle Zahl und könnte daher nicht als Quadrat einer Länge
+interpretiert werden.
+
+Deshalb wird eine der beiden Komponenten im Skalarprodukt komplex konjugiert.
+
+\begin{defbox}{Skalarprodukt und Norm in \(\mathbb C^n\)}{ }
+
+Für
+\[
+\vec u
+=
+(u_1,\ldots,u_n)^\intercal,
+\qquad
+\vec v
+=
+(v_1,\ldots,v_n)^\intercal
+\]
+in \(\mathbb C^n\) wird das Skalarprodukt hier durch
+\[
+\langle\vec u,\vec v\rangle
+=
+\sum_{k=1}^{n}\overline{u_k}\,v_k
+\]
+definiert.
+
+Für die Norm folgt
+\[
+\|\vec u\|
+=
+\sqrt{\langle\vec u,\vec u\rangle}
+=
+\sqrt{
+\sum_{k=1}^{n}|u_k|^2
+}.
+\]
+
+\end{defbox}
+
+Im Unterschied zum reellen Skalarprodukt ist das komplexe Skalarprodukt im
+Allgemeinen nicht symmetrisch, sondern \textbf{konjugiert symmetrisch}:
+\[
+\langle\vec u,\vec v\rangle
+=
+\overline{
+\langle\vec v,\vec u\rangle
+}.
+\]
+
+Mit der hier verwendeten Konvention ist es im ersten Argument
+konjugiert-linear und im zweiten Argument linear.
+
+Orthogonalität lässt sich dagegen unmittelbar übertragen:
+\[
+\vec u\perp\vec v
+\quad\Longleftrightarrow\quad
+\langle\vec u,\vec v\rangle=0.
+\]
+
+Eine Übertragung der reellen Winkelformel
+% \[
+% \cos(\alpha)
+% =
+% \frac{\langle\vec u,\vec v\rangle}
+% {\|\vec u\|\,\|\vec v\|}
+% \]
+ist dagegen nicht möglich, da das komplexe Skalarprodukt im Allgemeinen
+selbst komplexwertig ist.
+
+\noindent\textbf{Bemerkung:}
+In der Literatur werden zwei Konventionen für komplexe Skalarprodukte
+verwendet. Bei der hier verwendeten Konvention wird das erste Argument
+konjugiert; andere Darstellungen konjugieren das zweite Argument. Beide
+Konventionen führen zur gleichen Norm und beschreiben dieselbe
+Orthogonalitätsstruktur, müssen innerhalb einer Rechnung jedoch konsequent
+verwendet werden.
+
+\subsection{Kreuzprodukt (+)}
+
+Das Skalarprodukt ordnet zwei Vektoren eine Zahl zu und ermöglicht dadurch Aussagen über Länge, Orthogonalität, Projektion und Winkel. Im dreidimensionalen Raum (und nur da!) tritt daneben eine zweite wichtige Verknüpfung von Vektoren auf, deren Ergebnis wiederum ein Vektor ist.
+
+Ausgangspunkt ist die folgende geometrische Frage: Zu zwei Vektoren
+\(\vec a,\vec b\in\mathbb R^3\) wird ein Vektor gesucht, der
+senkrecht auf beiden Vektoren steht. Eine solche Richtung ist beispielsweise
+für die Beschreibung einer Ebene im Raum oder einer Drehachse von Bedeutung.
+
+Das \textbf{Kreuzprodukt} (\emph{cross product}) liefert genau einen solchen
+Vektor und enthält darüber hinaus Information über die von
+\(\vec a\) und \(\vec b\) aufgespannte Fläche.
+
+\begin{theorembox}{Geometrische Eigenschaften des Kreuzprodukts}{ }
+
+Für zwei Vektoren
+\(\vec a,\vec b\in\mathbb R^3\) besitzt das Kreuzprodukt
+\[
+\vec a\times\vec b
+\]
+die folgenden geometrischen Eigenschaften.
+
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/vektoren_kreuzprodukt_parallelogrammflaeche.png}
+\end{minipage}
+\begin{minipage}{0.56\textwidth}
+
+Der Vektor \(\vec a\times\vec b\) steht senkrecht auf beiden
+Ausgangsvektoren:
+\[
+\langle
+\vec a\times\vec b,
+\vec a
+\rangle
+=
+0
+\]
+und
+\[
+\langle
+\vec a\times\vec b,
+\vec b
+\rangle
+=
+0.
+\]
+
+Seine Richtung wird durch die Orientierung von
+\(\vec a\) und \(\vec b\) festgelegt. Die Vektoren
+\[
+\vec a,\quad
+\vec b,\quad
+\vec a\times\vec b
+\]
+bilden in dieser Reihenfolge ein Rechtssystem. Die Richtung kann mit der
+Rechte-Hand-Regel bestimmt werden.
+
+\end{minipage}
+
+Seine Länge beträgt
+\[
+\|\vec a\times\vec b\|
+=
+\|\vec a\|\,\|\vec b\|\sin(\varphi),
+\]
+wobei \(\varphi\in[0,\pi]\) der Winkel zwischen
+\(\vec a\) und \(\vec b\) ist.
+
+\end{theorembox}
+
+Die Formel für die Länge besitzt eine unmittelbare geometrische Bedeutung.
+Die Vektoren \(\vec a\) und \(\vec b\) spannen ein
+Parallelogramm auf. Wird \(\vec a\) als Grundseite gewählt, so besitzt
+dieses Parallelogramm die Höhe
+\(\|\vec b\|\sin(\varphi)\). Sein Flächeninhalt ist daher
+\[
+A
+=
+\|\vec a\|\,
+\|\vec b\|\sin(\varphi)
+=
+\|\vec a\times\vec b\|.
+\]
+
+Der Betrag des Kreuzprodukts entspricht somit dem Flächeninhalt des von den
+beiden Vektoren aufgespannten Parallelogramms. Für den Flächeninhalt des
+zugehörigen Dreiecks gilt entsprechend
+\[
+A_\triangle
+=
+\frac12\|\vec a\times\vec b\|.
+\]
+
+\begin{defbox}{Berechnung des Kreuzprodukts}{ }
+
+Für
+\[
+\vec a
+=
+\begin{pmatrix}
+a_1\\a_2\\a_3
+\end{pmatrix},
+\qquad
+\vec b
+=
+\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}
+\]
+ist das Kreuzprodukt definiert durch
+\[
+\vec a\times\vec b
+=
+\begin{pmatrix}
+a_2\cdot b_3-a_3\cdot b_2\\
+a_3\cdot b_1-a_1\cdot b_3\\
+a_1\cdot b_2-a_2\cdot b_1
+\end{pmatrix}.
+\]
+
+\end{defbox}
+
+Die Reihenfolge der beiden Vektoren ist wesentlich. Beim Vertauschen der
+Faktoren ändert sich die Orientierung und damit das Vorzeichen:
+\[
+\vec b\times\vec a
+=
+-\vec a\times\vec b.
+\]
+Das Kreuzprodukt ist also nicht kommutativ.
+
+\begin{exabox}{Kreuzprodukt zweier Vektoren}{ }
+
+Gegeben seien
+\[
+\vec a
+=
+\begin{pmatrix}
+3\\4\\5
+\end{pmatrix},
+\qquad
+\vec b
+=
+\begin{pmatrix}
+2\\-3\\1
+\end{pmatrix}.
+\]
+
+Das Kreuzprodukt ergibt sich zu
+\[
+\begin{aligned}
+\vec a\times\vec b
+&=
+\begin{pmatrix}
+4\cdot1-5\cdot(-3)\\
+5\cdot2-3\cdot1\\
+3\cdot(-3)-4\cdot2
+\end{pmatrix}\\[1ex]
+&=
+\begin{pmatrix}
+19\\7\\-17
+\end{pmatrix}.
+\end{aligned}
+\]
+
+Die geometrische Bedeutung kann unmittelbar mithilfe des Skalarprodukts
+überprüft werden. Für den ersten Ausgangsvektor gilt
+\[
+\begin{aligned}
+\left\langle
+\begin{pmatrix}3\\4\\5\end{pmatrix},
+\begin{pmatrix}19\\7\\-17\end{pmatrix}
+\right\rangle
+&=
+3\cdot19+4\cdot7+5\cdot(-17)\\
+&=
+57+28-85\\
+&=
+0.
+\end{aligned}
+\]
+
+Für den zweiten Ausgangsvektor ergibt sich entsprechend
+\[
+\begin{aligned}
+\left\langle
+\begin{pmatrix}2\\-3\\1\end{pmatrix},
+\begin{pmatrix}19\\7\\-17\end{pmatrix}
+\right\rangle
+&=
+2\cdot19-3\cdot7-17\\
+&=
+38-21-17\\
+&=
+0.
+\end{aligned}
+\]
+
+Der berechnete Vektor steht somit tatsächlich senkrecht auf
+\(\vec a\) und auf \(\vec b\).
+
+Seine Länge ist
+\[
+\|\vec a\times\vec b\|
+=
+\sqrt{19^2+7^2+(-17)^2}
+=
+\sqrt{699}.
+\]
+Damit beträgt auch der Flächeninhalt des von
+\(\vec a\) und \(\vec b\) aufgespannten Parallelogramms
+\(\sqrt{699}\).
+
+\end{exabox}
+
+
+\subsubsection*{Typische Anwendungen des Kreuzprodukts}
+
+Die geometrischen Eigenschaften des Kreuzprodukts führen unmittelbar zu
+mehreren wichtigen Anwendungen.
+
+Soll zu zwei nicht parallelen Vektoren
+\(\vec a,\vec b\in\mathbb R^3\) eine Richtung bestimmt werden,
+die auf beiden senkrecht steht, liefert
+\[
+\vec c
+=
+\vec a\times\vec b
+\]
+eine solche Richtung.
+
+Auch Parallelität kann mithilfe des Kreuzprodukts geprüft werden. Für zwei
+Vektoren gilt
+\[
+\vec a\parallel\vec b
+\quad\Longleftrightarrow\quad
+\vec a\times\vec b=\vec 0.
+\]
+Denn bei parallelen oder antiparallelen Vektoren ist der eingeschlossene
+Winkel \(0\) beziehungsweise \(\pi\), sodass
+\(\sin(\varphi)=0\) und damit
+\(\|\vec a\times\vec b\|=0\).
+
+Schließlich liefert die Länge des Kreuzprodukts den Flächeninhalt des aufgespannten Parallelogramms. 

@@ -1,0 +1,436 @@
+\section{Ableitungen und Funktionsverlauf}\label{MA1-ableitungen-und-funktionsverlauf}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem das Vorzeichen von \(f^\prime\) als Aussage über lokales Steigungsverhalten interpretieren &\\
+\tabitem Vorzeichenwechsel von \(f'\) mit lokalen Extrema von \(f\) in Verbindung bringen &\\
+\tabitem das Vorzeichen von \(f^{''}\) als Aussage über lokales Krümmungsverhalten interpretieren &\\
+    \tabitem Vorzeichenwechsel von \(f''\) mit Wendestellen in Verbindung bringen &\\
+    \midrule
+    \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+    \tabitem Definition der Ableitung & \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit}\\
+    \tabitem Berechnung von Ableitungen & \abschnittsverweis{MA1-ableitungsregeln}\\
+    \tabitem Lokale Linearität & \abschnittsverweis{MA1-lokale-linearitaet}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben
+\noindent Übungsaufgaben zum Thema:
+\hyperref[MA1-ableitungen-und-funktionsverlauf-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+
+% =========================================================
+\subsection{Ableitungen beschreiben lokalen Funktionsverlauf}
+
+Die Ableitung einer Funktion ist selbst wieder eine Funktion. Während
+\(f\) die betrachtete Größe beschreibt, enthält \(f'\) Informationen
+darüber, wie sich diese Größe lokal verändert.
+
+Damit eröffnet die Differentialrechnung zwei unterschiedliche, aber eng
+miteinander verbundene Sichtweisen auf eine Funktion.
+
+Die \textbf{Linearisierung} beantwortet die Frage, durch welche einfache
+Funktion \(f\) in unmittelbarer Umgebung eines Punktes approximiert
+werden kann. Die Ableitungsfunktionen \(f'\), \(f''\), \ldots{} erlauben
+dagegen qualitative Aussagen darüber, wie sich der Funktionsverlauf lokal
+verhält.
+
+Die erste Ableitung beschreibt die lokale Änderung von \(f\):
+\[
+f'(x)>0
+\quad\Longrightarrow\quad
+f\text{ wächst lokal},
+\]
+während
+\[
+f'(x)<0
+\quad\Longrightarrow\quad
+f\text{ fällt lokal}.
+\]
+
+Die zweite Ableitung beschreibt, wie sich diese lokale Änderungsrate
+selbst verändert. Sie gibt damit Auskunft darüber, ob die Steigung
+zunimmt oder abnimmt und wie sich der Graph krümmt.
+
+Ableitungen liefern somit nicht nur Zahlen. Ihre Vorzeichen und
+Vorzeichenwechsel enthalten qualitative Informationen über den Verlauf
+der ursprünglichen Funktion.
+
+
+% =========================================================
+\subsection{Die erste Ableitung: Wachstum und Abnahme}
+
+Ist \(f'(x_0)>0\), so besitzt die Tangente an \(f\) in \(x_0\) eine
+positive Steigung. In hinreichend kleiner Umgebung von \(x_0\) nimmt
+die Funktion daher zu.
+
+Entsprechend bedeutet \(f'(x_0)<0\), dass die Tangente eine negative
+Steigung besitzt und die Funktion lokal abnimmt.
+
+Aus einer punktweisen Aussage wird eine Aussage über einen ganzen
+Funktionsabschnitt, wenn das Vorzeichen der Ableitung auf einem Intervall
+bekannt ist.
+
+\begin{theorembox}{Vorzeichen von \(f'\) und Monotonie}{}
+Es sei \(f\) auf einem Intervall \(I\) differenzierbar.
+
+Gilt
+\[
+f'(x)>0
+\qquad\text{für alle }x\in I,
+\]
+so ist \(f\) auf \(I\) streng monoton wachsend.
+
+Gilt
+\[
+f'(x)<0
+\qquad\text{für alle }x\in I,
+\]
+so ist \(f\) auf \(I\) streng monoton fallend.
+\end{theorembox}
+
+Die Ableitungsfunktion liefert damit eine qualitative Beschreibung des
+Funktionsverlaufs, ohne dass alle Funktionswerte von \(f\) einzeln
+betrachtet werden müssen.
+
+Besonders interessant sind Stellen, an denen sich das Vorzeichen von
+\(f'\) ändert.
+
+Wechselt \(f'\) von positiv nach negativ, so geht die Funktion lokal von
+Wachstum zu Abnahme über:
+\[
+f':\quad +\longrightarrow-
+\qquad\Longrightarrow\qquad
+\text{lokales Maximum}.
+\]
+
+Wechselt \(f'\) von negativ nach positiv, so geht die Funktion lokal von
+Abnahme zu Wachstum über:
+\[
+f':\quad -\longrightarrow+
+\qquad\Longrightarrow\qquad
+\text{lokales Minimum}.
+\]
+
+An einer solchen Extremstelle besitzt eine differenzierbare Funktion eine
+horizontale Tangente. Für einen inneren Punkt \(x_0\) gilt daher
+notwendigerweise
+\[
+f'(x_0)=0.
+\]
+
+Die Umkehrung gilt jedoch nicht: Eine horizontale Tangente allein bedeutet
+noch nicht, dass dort ein Extremum vorliegt.
+
+
+\begin{exabox}{Der Vorzeichenwechsel entscheidet}{}
+
+\begin{minipage}{0.58\textwidth}
+\includegraphics[width=\textwidth]
+{../Mathematik_1/Bilder/ableitung_sinus_kosinus.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.40\textwidth}
+
+Für
+\[
+f(x)=\sin(x)
+\]
+gilt
+\[
+f'(x)=\cos(x).
+\]
+
+Bei \(x_0=\pi/2\) verschwindet die Ableitung und wechselt ihr Vorzeichen:
+\[
++\longrightarrow-.
+\]
+
+Die Sinusfunktion geht dort von Wachstum zu Abnahme über. Sie besitzt
+folglich ein lokales Maximum.
+\end{minipage}
+
+\vspace{2ex}
+
+\begin{minipage}{0.58\textwidth}
+\includegraphics[width=\textwidth]
+{../Mathematik_1/Bilder/extremstellen_potenz_drei_gegenbeispiel.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.40\textwidth}
+
+Für
+\[
+f(x)=x^3
+\]
+gilt
+\[
+f'(x)=3x^2.
+\]
+
+Auch hier ist
+\[
+f'(0)=0.
+\]
+Die Ableitung bleibt jedoch auf beiden Seiten von \(0\) positiv. Die
+Funktion wächst also vor und nach \(x_0=0\).
+
+Es liegt kein lokales Extremum vor.
+\end{minipage}
+
+\end{exabox}
+
+Das Beispiel zeigt einen wichtigen Unterschied: Die Gleichung
+\[
+f'(x_0)=0
+\]
+liefert zunächst nur eine Stelle mit horizontaler Tangente. Erst das
+lokale Verhalten von \(f'\) um \(x_0\) zeigt, was dort mit der Funktion
+geschieht.
+
+
+% =========================================================
+\subsection{Die zweite Ableitung: Wie verändert sich die Steigung?}
+
+Die erste Ableitung \(f'\) beschreibt die Steigung von \(f\). Die zweite
+Ableitung
+\[
+f''=(f')'
+\]
+beschreibt daher, wie sich diese Steigung verändert.
+
+Ist
+\[
+f''(x)>0,
+\]
+so nimmt \(f'(x)\) lokal zu. Die Steigungen von \(f\) werden also größer.
+
+Ist dagegen
+\[
+f''(x)<0,
+\]
+so nimmt \(f'(x)\) lokal ab. Die Steigungen von \(f\) werden kleiner.
+
+Diese Aussage ist zunächst unabhängig davon, ob \(f\) selbst gerade
+steigt oder fällt. Beispielsweise kann eine Funktion fallen und dabei
+immer flacher werden. In diesem Fall ist
+\[
+f'(x)<0,
+\qquad
+f''(x)>0.
+\]
+
+Die Vorzeichen von \(f'\) und \(f''\) beschreiben also unterschiedliche
+Eigenschaften:
+
+\[
+\begin{array}{ccl}
+f'(x) &:& \text{Richtung der lokalen Änderung von }f,\\[0.5ex]
+f''(x)&:& \text{Änderung dieser lokalen Steigung}.
+\end{array}
+\]
+
+Geometrisch führt die zweite Ableitung zur
+\textbf{Krümmung} (\emph{curvature behaviour}) des Graphen.
+
+\begin{theorembox}{Vorzeichen von \(f''\) und Krümmung}{}
+Es sei \(f\) auf einem Intervall \(I\) zweimal differenzierbar.
+
+Gilt
+\[
+f''(x)>0
+\qquad\text{für alle }x\in I,
+\]
+so ist \(f\) auf \(I\) konvex.
+
+Gilt
+\[
+f''(x)<0
+\qquad\text{für alle }x\in I,
+\]
+so ist \(f\) auf \(I\) konkav.
+\end{theorembox}
+
+Eine Änderung des Vorzeichens von \(f''\) zeigt einen Wechsel des
+Krümmungsverhaltens an. Eine solche Stelle heißt
+\textbf{Wendestelle} (\emph{inflection point} für den zugehörigen Punkt
+des Graphen).
+
+Für eine hinreichend glatte Funktion gilt an einer inneren Wendestelle
+notwendigerweise
+\[
+f''(x_0)=0.
+\]
+
+Wie schon bei der ersten Ableitung reicht das Verschwinden der Ableitung
+allein jedoch nicht aus. Entscheidend ist wiederum das lokale Verhalten:
+Das Vorzeichen von \(f''\) muss sich ändern.
+
+
+\begin{exabox}{Wendestelle als Änderung des lokalen Verhaltens}{}
+
+\begin{minipage}{0.58\textwidth}
+\includegraphics[width=\textwidth]
+{../Mathematik_1/Bilder/wendestellen_potenz_drei_ableitungen.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.40\textwidth}
+
+Für
+\[
+f(x)=x^3
+\]
+gilt
+\[
+f''(x)=6x.
+\]
+
+Damit ist
+\[
+f''(x)<0
+\quad\text{für }x<0,
+\]
+und
+\[
+f''(x)>0
+\quad\text{für }x>0.
+\]
+
+Die zweite Ableitung wechselt bei \(x_0=0\) ihr Vorzeichen. Dort ändert
+sich das Krümmungsverhalten der Funktion: \(x_0=0\) ist eine Wendestelle.
+\end{minipage}
+
+\end{exabox}
+
+
+% =========================================================
+\subsection{Ableitungen als qualitative Information}
+
+Die ersten beiden Ableitungen lassen sich gemeinsam lesen. Dabei geht es
+nicht in erster Linie darum, einzelne ausgezeichnete Punkte zu berechnen.
+Vielmehr beschreiben \(f'\) und \(f''\), wie sich eine Funktion lokal
+verhält.
+
+Für einen Punkt \(x\) liefern bereits die Vorzeichen
+\[
+f'(x)
+\qquad\text{und}\qquad
+f''(x)
+\]
+eine qualitative Charakterisierung.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+ & \(f''(x)>0\) & \(f''(x)<0\)\\
+\hline
+\(f'(x)>0\)
+&
+wachsend, Steigung nimmt zu
+&
+wachsend, Steigung nimmt ab
+\\[0.5ex]
+\(f'(x)<0\)
+&
+fallend, Steigung nimmt zu
+&
+fallend, Steigung nimmt ab
+\end{tabular}
+\end{center}
+
+So bedeutet beispielsweise
+\[
+f'(x)>0,
+\qquad
+f''(x)<0,
+\]
+dass die Funktion zwar wächst, ihre Steigung aber abnimmt: Der Graph
+steigt weiter, wird dabei jedoch zunehmend flacher.
+
+Dagegen bedeutet
+\[
+f'(x)<0,
+\qquad
+f''(x)>0,
+\]
+dass die Funktion fällt, ihre Steigung aber zunimmt. Die Steigung ist
+noch negativ, nähert sich jedoch möglicherweise der horizontalen
+Richtung an.
+
+Diese Aussagen sind lokal. Sie beschreiben das Verhalten einer Funktion
+in der Umgebung eines Punktes oder auf einem Intervall, auf dem die
+entsprechenden Vorzeichen erhalten bleiben.
+
+
+% =========================================================
+\subsection{Vom lokalen Verhalten zum Gesamtbild}
+
+Werden die lokalen Informationen für verschiedene Bereiche des
+Definitionsgebiets zusammengesetzt, entsteht schrittweise ein
+qualitatives Bild des gesamten Funktionsverlaufs.
+
+Nullstellen von \(f'\) markieren dabei Stellen, an denen sich das
+Monotonieverhalten ändern kann. Nullstellen von \(f''\) markieren Stellen,
+an denen sich das Krümmungsverhalten ändern kann. Entscheidend ist jeweils
+nicht allein die Nullstelle der Ableitung, sondern das Verhalten der
+Ableitungsfunktion auf beiden Seiten.
+
+Die klassische \textbf{Kurvendiskussion} fasst solche Informationen
+systematisch zusammen. Für die hier betrachtete lokale Sichtweise steht
+jedoch nicht das vollständige Berechnungsschema im Vordergrund, sondern
+die Übersetzung
+\[
+\text{Eigenschaften von }f',f''
+\quad\longrightarrow\quad
+\text{qualitative Eigenschaften von }f.
+\]
+
+
+%\begin{exabox}{Aus lokalen Informationen entsteht ein Funktionsverlauf}{}
+%\begin{center}
+%\includegraphics[width=0.45\textwidth]
+%{../Mathematik_1/Bilder/28_Kurvendiskussion.png}
+%\end{center}
+%\end{exabox}
+
+
+% =========================================================
+\subsection*{Zwei lokale Sichtweisen auf eine Funktion}
+
+Die Differentialrechnung dieses Kapitels hat damit zwei eng verbundene
+Möglichkeiten hervorgebracht, das lokale Verhalten einer Funktion zu
+untersuchen.
+
+Bei der \textbf{Linearisierung} wird die Funktion selbst in der Umgebung
+eines Punktes durch ihre Tangente approximiert:
+\[
+f(x_0+h)
+=
+f(x_0)+f'(x_0)h+o(h).
+\]
+Die Ableitung liefert dabei das lokale lineare Modell.
+
+Die \textbf{Interpretation der Ableitungsfunktionen} verfolgt eine andere
+Frage. Aus dem Vorzeichen und dem Verlauf von \(f'\) und \(f''\) werden
+qualitative Aussagen über die ursprüngliche Funktion gewonnen:
+\[
+\begin{array}{rcl}
+f' &\longrightarrow& \text{Wachstum und Abnahme},\\[0.5ex]
+f''&\longrightarrow& \text{Veränderung der Steigung und Krümmung}.
+\end{array}
+\]
+
+Beide Sichtweisen sind lokal. Die eine approximiert die Funktion in der
+Nähe eines Punktes, die andere charakterisiert dort ihren Verlauf.
+
+Damit liefert die Ableitung sowohl ein lokales Ersatzmodell als auch
+Informationen darüber, wie sich eine Funktion verändert.
+

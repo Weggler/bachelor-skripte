@@ -1,0 +1,273 @@
+\section{Funktionenräume und Bestapproximation}\label{MA2-funktionenraeume-und-bestapproximation}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Funktionen mit Hilfe des Gram-Schmidt-Verfahrens orthonormalisieren & \\
+    \tabitem orthogonale Projektionen in Funktionenräumen berechnen & \\
+    \tabitem die Bestapproximation einer Funktion bezüglich eines gegebenen Skalarprodukts bestimmen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem mit den Vektorräumen $\mathbb K^n$ sicher umgehen können &\abschnittsverweis{MA1-vektorraum} \\
+    \tabitem Vektoren in $\mathbb K^n$ mit Hilfe des Skalarprodukts orthonormalisieren können & \abschnittsverweis{MA1-vektoren}  \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-funktionenraeume-und-bestapproximation-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Funktionenräume mit Skalarprodukt}
+
+In diesem kurzen Kapitel greifen wir nochmal auf, was wir in der linearen Algebra über Vektorräume gelernt haben. Auch Mengen von Funktionen können Vektorraumeigenschaften erfüllen, das haben wir schon bemerkt. Allerdings haben wir uns mit der Bemerkung zufrieden gegeben und das lag vor allem daran, dass uns ein Werkzeug zur weiteren Analyse bislang gefehlt hat, nämlich die Integration. Mit Hilfe der Integration läßt sich allerdings oft ein \underline{Skalarprodukt}\randverweis{MA1-vektoren}
+\[ \langle \cdot, \cdot \rangle: \mathbb V\times \mathbb V \to \mathbb K\]
+definieren und damit
+\begin{itemize}
+	\item Orthogonalität zwischen Funktionen:
+		\[ f,g\in\mathbb V\,,\quad   f\perp g\,:\; \Leftrightarrow \langle f, g\rangle = 0\,.\]
+	\item eine Norm (Länge) einer Funktion bzw. ein Abstand zwischen zwei Funktionen:
+		\[
+			\begin{array}{lr rcl}
+					\textnormal{Norm}: & f\in\mathbb V\,,&   \|f\| & =&  \sqrt{\langle f, f\rangle}\,,\\
+					\textnormal{Abstand}: & f,g\in\mathbb V\,,&   \|f-g\| & =&  \sqrt{\langle f-g, f-g\rangle}\,.
+				\end{array}
+			\]
+	\item ein Winkel\footnote{Achtung: der Winkel ist nicht mehr geometrisch zu verstehen.} zwischen zwei Funktionen definiert,
+		\[ f,g\in\mathbb V\setminus\{0\}\,,\quad   \cos(\alpha) : = \dfrac{ \langle f, g\rangle }{\|f\| \|g\|} \,.\]
+\end{itemize}
+
+Das klingt ohne konkrete Anwendung natürlich ziemlich abstrakt, aber wird so nicht bleiben. Anhand eines konkreten Beispiels wird im nächsten Abschnitt gezeigt, dass man mit der Vektorraumstruktur und einem Skalarprodukt eine Aufgabenstellung lösen kann, die in der Praxis von größter Relevanz ist, nämlich die Bestimmung einer Bestapproximation eines Vektors in einem Untervektorraum. Bevor wir uns dieser Aufgabe widmen, nennen wir die Vektor- und Untervektorräume, die wir schon kennen, beim Namen.
+
+\underline{Integrierbare Funktionen}\randverweis{MA2-integration} kann man addieren und mit Skalaren multiplizieren und erhält wieder eine integrierbare Funktion. Die integrierbaren Funktionen bilden also einen \underline{Vektorraum}\randverweis{MA1-vektorraum}.
+
+\begin{theorembox}{Vektorraum integrierbarer Funktionen $\mathcal R([a,b],\mathbb R)$ }{ }
+Die Menge aller über $[a,b]$ integrierbaren Funktionen $f:[a,b]\to\mathbb R$,
+			\[
+				\mathcal R([a,b],\mathbb R):=\{ f:[a,b]\to \mathbb R\;: \; f  \;\textnormal{integrierbar} \}\,,
+		\]
+		ist ein Vektorraum über dem Körper der reellen Zahlen \(\mathbb R\).
+	\end{theorembox}
+
+	Auch \underline{stetige Funktionen}\randverweis{MA1-stetigkeit-und-differenzierbarkeit} kann man addieren und mit Skalaren multiplizieren und erhält wieder eine stetige Funktion. Die stetigen Funktionen bilden also einen Vektorraum.
+\begin{theorembox}{Vektorraum stetiger Funktionen  $\mathcal C([a,b], \mathbb R)$}{ }
+			Die Menge aller Funktionen $f:[a,b]\to\mathbb R$, die auf $[a,b]$ stetig sind, sei
+			\[
+				\mathcal C([a,b], \mathbb R):=\{ f:[a,b]\to \mathbb R\; :\; f\; \textnormal{stetig} \}\,.
+		\]
+		$\mathcal C([a,b], \mathbb R)$ ist ein Vektorraum über dem Körper der reellen Zahlen.
+		\end{theorembox}
+%https://www.mathelounge.de/246531/basis-und-dimension-vr-der-polynome
+
+		Auch \underline{Polynome}\randverweis{MA1-lineare-funktionen} kann man addieren und mit Skalaren multiplizieren und erhält wieder ein Polynom. Die Polynome bilden also auch einen Vektorraum und zwar einen von endlicher \underline{Dimension}\randverweis{MA1-vektorraum}. Ein Polynom \(p\) vom Grad \(n\) besitzt die Koeffizientendarstellung
+		\[
+			p: x\mapsto \alpha_n x^n + \alpha_{n-1} x^{n-1} + \dots + \alpha_0, \quad \alpha_n,\cdots,\alpha_0 \in \mathbb R\,,
+		\]
+		und das heißt: man kann es eindeutig als lineare Kombination der Monome bis zum Grad \(n\) darstellen, oder anders gesagt: die Menge der \(n+1\) ersten Monome sind eine Basis von \(\mathcal P_n([a,b], \mathbb R)\): \[ \mathcal P_n([a,b], \mathbb R) = \mathrm{LH}\{1,x,x^2, x^3,\cdots,x^n \}\,.\]
+		Gleichzeitig gehören Polynome in den Vektorraum der stetigen Funktionen. Die Polynome bilden einen Untervektorraum\footnote{Eine Teilmenge $\mathbb U \subseteq \mathbb V$ nennt man Untervektorraum von $\mathbb V$, wenn $\mathbb U$ ein Vektorraum ist, der nicht leer ist.} der stetigen Funktionen
+		\[ \mathcal P_n([a,b], \mathbb R) \subset \mathcal C([a,b], \mathbb R)\,.\]
+		Und das ist offensichtlich noch nicht alles, denn Polynome kann man über jedes Intervall \( [a,b]\) integrieren. Also sind die Polynome auch ein Untervektorraum der integrierbaren Funktionen
+		\[ \mathcal P_n([a,b], \mathbb R) \subset \mathcal R([a,b], \mathbb R)\,.\]
+
+%Aufgabe: Legendre-Polynome ONS in L_2([a,b], R)
+
+Auf dem Vektorraum $\mathcal C([a,b],\mathbb R)$ läßt sich ein Skalarprodukt definieren:
+	\begin{defbox}{Skalarprodukt und Norm auf $\mathcal C([a,b],\mathbb R)$}{ }
+		Das Skalarprodukt lautet
+		\[
+			 (f, g) \mapsto \langle f, g\rangle = \int\limits_a^b f(x)\cdot g(x) \,\mathrm{d}x \in \mathbb R\,,
+			\]
+und die entsprechende Norm ist:
+\[
+	f\mapsto ||f|| = \sqrt{\langle f, f\rangle} = \left( \int\limits_a^b \left(f(x)\right)^2\,\mathrm{d}x\right)^{\frac12}\,.
+		\]
+	\end{defbox}
+
+Ein Beispiel:
+		\begin{exabox}{Skalarprodukt, induzierte Normen und Winkel}{ }
+	Es sei $f:x\mapsto 1$ und $g:x\mapsto x^2$ auf dem Intervall \( [a,b] = [1,2]\) gegeben.
+			\begin{itemize}
+\item Die Norm von \(f\) bzw. die Norm von \(g\) lassen sich berechnen zu
+	\begin{eqnarray*}
+		\| f\| &=& \sqrt{ \langle f, f\rangle } = \left( \int\limits_1^2  (1)^2\mathrm{d}x \right)^{\frac12} = 1\,,\\
+	\| g\| &=& \sqrt{ \langle g, g\rangle } = \left( \int\limits_1^2 (x^2)^2 \mathrm{d}x \right)^{\frac12} = \sqrt{\dfrac{31}{5}} \,.
+	\end{eqnarray*}
+				\item Das Skalarprodukt zwischen \(f\) und \(g\) ist
+	\[ \langle f,g\rangle = \int\limits_1^2 x^2 \,\mathrm{d}x = \left[ \frac13 x^3 \right]_1^2 = \dfrac73\,. \]
+\item Die Funktionen \(f\) und \(g\) sind nicht orthogonal zueinander, weil ihr Skalarprodukt nicht verschwindent. Der Kosinus des zwischen \(f\) und \(g\) eingeschlossenen Winkels ist:
+	\[ \cos(\alpha) = \dfrac{\langle f, g\rangle}{||f|| \cdot ||g||} = \dfrac73 \sqrt{\dfrac{5}{31}}\,. \]
+\end{itemize}
+		\end{exabox}
+
+
+\subsection{Bestapproximation}
+
+%\begin{exabox}{Bestapproximation in $\mathbb R^2$}{ }
+%	Vektorraum und Untervektorraum:
+%	\[ \mathbb R^2, \quad \mathbb U:= \{ \boldsymbol u\in \mathbb R^2| \boldsymbol u = \lambda \boldsymbol a, \quad \boldsymbol v\in\mathbb R^2\} \subset \mathbb R^2 \]
+%	Dimension und Basis von $\mathbb U$
+%	\[
+%		\mathrm{dim}\,\mathbb U = 1, \quad \mathbb U = \mathrm{LH}\{ \boldsymbol a \}
+%	\]
+%	Bestapproximation ist orthogonale Projektion von $\boldsymbol v\in\mathbb R^2$ auf $\mathbb U$:
+%	\[ \boldsymbol v_0 := \boldsymbol v_\parallel = \langle \boldsymbol v, \hat{\boldsymbol a}\rangle \,\hat{\boldsymbol a}\,.
+%	\]
+	%\[ \boldsymbol v_0 = \boldsymbol v_\perp + \boldsymbol v_\parallel\,, \quad\textnormal{mit}\quad \begin{cases} \boldsymbol v_\parallel := \langle \boldsymbol v, \hat{\boldsymbol v}\rangle \,\hat{\boldsymbol a}, \quad \hat{\boldsymbol a} = \displaystyle{\frac{\boldsymbol a}{||\boldsymbol a||}}\,, \\[1ex]
+	%\boldsymbol v_\perp:=\boldsymbol v - \boldsymbol v_\parallel\,.
+	%\end{cases} \]
+	%Bestapproximation von $\boldsymbol v\in\mathbb R^2$ in $\mathbb U$:
+	%\begin{eqnarray*}
+	%	\forall \boldsymbol u \in \mathbb U: \; \| \boldsymbol v - \boldsymbol u  \|^2 &=& \| \boldsymbol v - (\boldsymbol v_\parallel + \boldsymbol v_\perp)  \|^2 =  \langle \boldsymbol v - (\boldsymbol v_\parallel  + \boldsymbol v_\perp), \boldsymbol v - (\boldsymbol v_\parallel  + \boldsymbol v_\perp)  \rangle  \\
+	%	&=& \langle \boldsymbol v - \boldsymbol v_\parallel , \boldsymbol v - \boldsymbol v_\parallel \rangle + 2 \underbrace{\langle \boldsymbol v,  \boldsymbol v_\perp  \rangle}_{\displaystyle{ = 0}} + \underbrace{\langle \boldsymbol v_\perp,  \boldsymbol v_\perp  \rangle}_{\displaystyle{ \geq 0}} \\
+	%	&\geq& \langle \boldsymbol v - \boldsymbol v_\parallel , \boldsymbol v - \boldsymbol v_\parallel \rangle  \Rightarrow \boldsymbol v_0 = \boldsymbol v_\parallel\,.
+	%\end{eqnarray*}
+%\end{exabox}
+
+Beginnen wir diesen Abschnitt mit einer Begutachtung eines Spaltenvektors \(\boldsymbol v\in\mathbb R^3\). \(\boldsymbol v\) läßt sich wie immer zerlegen, also
+\[ (*)\quad \quad \boldsymbol v = v_1 \hat{\boldsymbol e}_1 + v_2 \hat{\boldsymbol e}_2 + v_3 \hat{\boldsymbol e}_3\,,\]
+wobei die Zahlen \(v_1, v_2\) und \(v_3\) die sogenannten Koeffizienten des Vektors sind. Präziser: \(v_1, v_2\) und \(v_3\) sind die Koeffizienten des Vektors \(\boldsymbol v\) bezüglich der Standardbasis \(\{ \hat{\boldsymbol e}_1, \hat{\boldsymbol e}_2, \hat{\boldsymbol e}_3\}\) des \(\mathbb R^3\), also
+\[ \mathbb R^3 = \mathrm{LH}\{\hat{\boldsymbol e}_1, \hat{\boldsymbol e}_2, \hat{\boldsymbol e}_3\}\,.\]
+
+Die Standardbasis ist eine \underline{Orthonormalbasis}\randverweis{MA1-vektorraum} und das heißt, dass die Basisvektoren normiert sind und paarweise orthogonal aufeinanderstehen. Orthogonalität wird durch ein Skalarprodukt\footnote{In \(\mathbb R^3\) gilt \(\langle \boldsymbol v, \boldsymbol u\rangle = v_1 u_1 + v_2 u_2 + v_3 u_3\)}  \(\langle \cdot, \cdot \rangle\) definiert und für eine orthonormale Basis gilt:
+\[ \langle \hat{\boldsymbol e}_i, \hat{\boldsymbol e}_k\rangle = \begin{cases} 1, &\quad i=k\,,\\ 0, & \quad i\not=k\,.\end{cases} \]
+Die Zerlegung eines Vektors in einer Orthonormalbasis ist immer sehr einfach, weil jeder Summand in der Zerlegung für genau eine Richtung\footnote{Jeder Basisvektor \(\hat{\boldsymbol e}_i\) spannt einen eindimensionalen Untervektorraum \(\mathrm{LH}\{\hat{\boldsymbol e}_i\}\) auf.} zuständig ist.
+
+
+\vspace{0.2cm}
+\noindent\textbf{Beobachtungen:}
+
+\begin{itemize}
+	\item In der Zerlegung \( (*)\) minimiert jeder Summand den Abstand zwischen \(\boldsymbol v\) und allen zu ihm parallelen Vektoren. Dasselbe gilt für jede Teilsumme in der Zerlegung. Der Anteil \(v_1\hat{\boldsymbol e}_1 + v_2\hat{\boldsymbol e}_2\) ist derjenige in \(\mathrm{LH}\{\hat{\boldsymbol e}_1, \hat{\boldsymbol e}_2\}\), der den kürzesten Euklidischen Abstand zu \(\boldsymbol v\) besitzt.\footnote{Warum? Naja, weil der Abstandsvektor, also die Differenz \[ \left( v_1\hat{\boldsymbol e}_1 + v_2\hat{\boldsymbol e}_2\right) - \boldsymbol v = v_3\hat{\boldsymbol e}_3  \in \mathrm{LH}\{\hat{\boldsymbol e}_3\}\,, \] senkrecht auf dem Untervektorraum \(\mathrm{LH}\{\hat{\boldsymbol e}_1, \hat{\boldsymbol e}_2\}\) steht!}
+	\item Die Zerlegungskoeffizienten lassen sich mit dem Skalarprodukt eindeutig bestimmen. Es gilt
+		\[ v_i = \langle \boldsymbol v, \hat{\boldsymbol e}_i\rangle, \; i=1,2,3 \quad \Rightarrow \quad \boldsymbol v = \langle \boldsymbol v, \hat{\boldsymbol e}_1\rangle \hat{\boldsymbol e}_1 +  \langle \boldsymbol v, \hat{\boldsymbol e}_2\rangle \hat{\boldsymbol e}_2 + \langle \boldsymbol v, \hat{\boldsymbol e}_3\rangle \hat{\boldsymbol e}_3\,.\]
+\end{itemize}
+
+\begin{exabox}{Veranschaulichung Bestapproximation in \(\mathbb R^3\)}{}
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/bestapproximation_orthogonalprojektion_vektorraum.png}
+\end{minipage}
+	\begin{minipage}{0.7\textwidth}
+		\begin{itemize}
+			\item Die \(x\)-Achse symbolisiert den Untervektorraum \(\mathbb U = \mathrm{LH}\{\hat{\boldsymbol e}_1, \hat{\boldsymbol e}_2\} \subset \mathbb R^3\).
+			\item \(\boldsymbol v_0\) ist Lösung des Minimierungsproblems \[ \min\limits_{\boldsymbol u \in \mathbb U} \|\textcolor{blue}{\boldsymbol v} - \boldsymbol u\|\,.\]
+			\item \(\boldsymbol v_0\) ist die Bestapproximation von \(\textcolor{blue}{\boldsymbol v}\) in \(\mathbb U\).
+		\end{itemize}
+\end{minipage}
+\end{exabox}
+
+
+Extrahieren wir die Zutaten, die wir zur Bestimmung einer Bestapproximation brauchen: man nehme
+\begin{itemize}
+	\item einen Vektorraum \(\mathbb V\) mit Skalarprodukt \(\langle \cdot, \cdot \rangle\).
+	\item einen endlichdimensionalen Untervektorraum \(\mathbb U \subset \mathbb V\) mit Orthonormalbasis\footnote{Die Orthonormalbasis ist im Allgemeinen nicht bekannt und muss mit Hilfe des fixierten Skalarprodukts konstruiert werden!}.
+	\item einen Vektor \(\textcolor{blue}{\boldsymbol v} \in \mathbb V\).
+\end{itemize}
+
+Die Bestapproxiamtion \(\boldsymbol v_0 \in \mathbb U\) ist der Vektor in \(\mathbb U\), dessen Abstand zu \(\boldsymbol v\) im Vergleich zu allein anderen \(\boldsymbol u\in \mathbb U\) minimal ist:
+\[ \boldsymbol v_0\in \mathbb U: \quad \forall \boldsymbol u \in \mathbb U: \quad ||\boldsymbol v - \boldsymbol v_0|| \leq ||\boldsymbol v - \boldsymbol u||\,.\]
+Das Verfahren zur Bestimmung der Bestapproximaion braucht einzig und allein die Vektorraumstruktur von \(\mathbb V\) und \(\mathbb U\) und ein Skalarprodukt! Das haben wir auch in unseren oben genannten Vektorräumen stetiger Funktionen und wir können das Prinzip übertragen.
+
+		\begin{defbox}{Bestapproximation}{ }
+			Es sei $\mathbb V$ ein Vektorraum, ausgestattet mit einem Skalarprodukt und entsprechender Norm:
+			\begin{equation*}
+				\begin{array}{rcrcl rcl}
+						\langle \cdot, \cdot\rangle &:& \mathbb V\times \mathbb V &\to& \mathbb K\,, & (f,g) &\mapsto& \langle f, g\rangle \,,\\
+						|| \cdot||&:& \mathbb V &\to& [0,\infty)\,, & f &\mapsto& ||f|| = \sqrt{\langle f, f\rangle} \,.
+					\end{array}
+				\end{equation*}
+				Es sei $\mathbb U$ ein Untervektorraum von \(\mathbb V\), der die Dimension \(n\in\mathbb N\) besitzt und für den man eine Orthonormalbasis kennt:
+				\[ \mathbb U = \mathrm{LH}\{\hat p_0, \hat p_1, \hat p_2, \cdots, \hat p_n\}, \quad \langle \hat p_i, \hat p_j \rangle = \begin{cases} 1\,, & \quad i=j\,,\\ 0\,, &\quad i\not=j\,. \end{cases} \]
+				Für einen gegebenen Vektor \(v\in \mathbb V\) nennt man den Vektor \(v_0 \in \mathbb U\),
+				\[ v_0 = \sum\limits_{k=0}^n \langle v, \hat p_k\rangle \hat p_k, \]
+				die Bestapproximation von \(v\in \mathbb V\) in \(\mathbb U\).
+\end{defbox}
+
+
+
+Was wir jetzt brauchen ist ein Beispiel! Also fixieren wir die Zutaten:
+\begin{itemize}
+	\item Es sei \(\mathbb V =\mathcal C\left([-1,1], \mathbb R\right)\), der Vektorraum der stetigen Funktionen auf \([-1,1]\)
+	\item Wir betrachten \(\mathbb V\) mit dem folgenden Skalarprodukt und entsprechender Norm:
+		\begin{eqnarray*}
+		(f, g) & \mapsto& \langle f, g\rangle = \int\limits_a^b f(x)\cdot g(x) \,\mathrm{d}x \in \mathbb R\,, \\
+			f &\mapsto& ||f||= \sqrt{\langle f, f\rangle} = \int\limits_a^b f^2(x) \,\mathrm{d}x \in [0,\infty)\,.
+		\end{eqnarray*}
+	\item Es sei \(\mathbb U = \mathcal P_1\left( [-1,1], \mathbb R\right)\) der Vektorraum aller linearen Funktionen auf \([-1,1]\).
+	\item Es sei \(\textcolor{blue}{v} \in \mathbb V\) die Exponentialfuntion, also \( v: [-1,1] \to \mathbb R, x\mapsto e^x\).
+\end{itemize}
+
+Die Bestapproximation entwickeln wir nun straight-forward gemäß der vorigen Definition. Als gedankliche Stütze und Illustration des Ergebnisses kann man die Skizze folgende Skizze im Kopf behalten:
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/bestapproximation_orthogonalprojektion_funktionenraum.png}
+\end{center}
+
+\begin{exabox}{Bestapproximation}{ }
+\begin{enumerate}
+	\item Bestimmung von Dimension und Basis des Untervektorraums $\mathbb U$
+	\[ \mathrm{dim}\, \mathbb U = 2, \quad \mathbb U  = \mathrm{LH}\{p_0, p_1\} \subset \mathbb V \quad \mathrm{mit}\quad \begin{cases} p_0: x\mapsto 1\,, \\ p_1: x\mapsto x\,.\end{cases}\]
+	\item Konstruktion einer Orthonormalbasis für \(\mathbb U\)
+\begin{eqnarray*}
+	\langle p_0, p_0 \rangle &=& \displaystyle{\int\limits_{-1}^{1}} p_0(x) \cdot p_0(x)\,\mathrm{d}x = 2 \quad \Rightarrow \quad  \hat p_0: x \mapsto \frac{1}{\sqrt 2}\,,\\
+	\langle p_1, p_1 \rangle &=& \displaystyle{\int\limits_{-1}^{1}} p_1(x) \cdot p_1(x)\,\mathrm{d}x = \Big[ \frac13 x^3\Big]_{-1}^1= \frac23 \quad  \Rightarrow\quad  \hat p_1: x \mapsto \sqrt{\frac32} x\,,\\
+		\langle \hat p_0, \hat p_1 \rangle &=& \displaystyle{\int\limits_{-1}^{1}} \hat p_0(x) \cdot \hat p_1(x)\,\mathrm{d}x = 0 \Rightarrow \hat p_0 \perp \hat p_1 \,.
+\end{eqnarray*}
+	\item Bestimmung der Bestapproximation von $v$ auf den Untervektorraum $\mathbb U$:
+	\begin{eqnarray*}
+		v_0(x) &=& \langle v, \hat p_0 \rangle\, \hat p_0(x) + \langle v, \hat p_1\rangle \, \hat p_1(x)  = \frac{1}{2} \int\limits_{-1}^1 e^x\,\mathrm{d}x +  \frac{3}{2} x \int\limits_{-1}^1 e^x \cdot x \,\mathrm{d}x  = \frac{3}{e} \cdot x + \frac{e}{2} - \frac{1}{2e}\\
+		\Rightarrow && v_0: x\mapsto \frac{3}{e} \cdot x + \frac{e}{2} - \frac{1}{2e}
+	\end{eqnarray*}
+	Die Skizze zeigt die Exponentialfunktion auf dem Intervall \([-1,1]\) in blau und die berechnete Bestapproximation \(v_0\in \mathbb U\) in schwarz.
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/bestapproximation_lineare_funktion.png}
+	\end{center}
+\end{enumerate}
+\end{exabox}
+
+\noindent \textbf{Bemerkungen: }
+\begin{itemize}
+	\item Der Funktionsgraph von \(v\) wird vom Graphen von \(v_0\) in keinem einzigen Punkt tangiert. Die Steigung stimmt in keinem einzigen Punkt überein.
+	\item Die Bestapproximation besitzt minimialen Abstand zwischen \(v\) und \(\mathbb U\), wobei das Abstandsmaß eine Fläche ist. Es gilt
+		\begin{eqnarray*}
+			|| v - v_0|| = \min\limits_{u\in \mathbb U} || v - u|| = \min\limits_{u\in \mathbb U}\left( \int\limits_{-1}^{1} |v(x) - u(x)|^2 \,\mathrm{d}x\right)^{1/2} \,.
+	\end{eqnarray*}
+	Das Abstandsmaß bezieht jeden Punkt in dem Intervall \([-1,1]\) ein und führt zu einer Bestapproximation, die \(v\) nicht lokal, also an einem Punkt, sondern für alle \(x\in [-1,1]\) gleichermaßen gut approximiert.
+\item Die Bestimmung einer Bestapproximation wurde in diesem Abschnitt beispielhaft demonstriert und kann entsprechend auf andere Vektorräume, andere Skalarprodukte und andere Unterräume übertragen werden.\marginpar{\small Aufgabe}
+\item Die Orthogonalprojektion, die wir zur Bestimmung der Bestapproximation kennengelernt haben, wird uns bei der Entwicklung der \underline{Fourierreihe}\randverweis{MA2-fourierreihen} wiederbegegnen.
+\end{itemize}
+
+
+\subsection{Gedankenexperimente}
+
+Was bedeutet das Wort Bestapproximation? Schaut man in der Literatur, was unter Bestapproximation zu verstehen ist, dann könnte es sein, dass man folgendes findet:
+\begin{defbox}{Bestapproximation}{ }
+	Es sei \( \mathbb V \) ein Vektorraum und $\mathbb U\subset \mathbb V$ ein Untervektorraum. Finden wir zu einem gegebenem $v\in \mathbb V$ ein $v_0\in\mathbb U$, dessen Abstand zu \(v\) kleiner ist als der Abstand, den man für alle anderen, beliebigen Elemente des Unterraums \(\mathbb U\) zu \(v\) messen kann, dann nennt man $v_0$ die Bestapproximation von $v$ in $\mathbb U$.
+
+	Auf mathematisch klingt das wie folgt:
+	\[
+	\| v-v_0\| = \mathrm{inf}\{ \| v-u\|: u\in\mathbb U \}\,,
+	\]
+\end{defbox}
+
+Die Bestapproximation hängt davon ab, wie diese zwei Striche definiert sind und die zwei Striche bezeichnen eine Norm, mit anderen Worten das Maß(band), das wir anlegen, um den Abstand zwischen \(v \in \mathbb V\) und \(u\in \mathbb U\) zu messen. Solange wir nicht wissen welche Norm (welches Maß) wir nutzen sollen, um Abstände in \(\mathbb V\) zu messen, können wir die Aufgabe gar nicht anpacken. Und an der Stelle hat man wirklich Freiheiten! Es hängt von der Aufgabenstellung und den jeweilgen Bedürfnissen ab, wie man misst. Denken wir wieder an \(v: [-1,1]\to \mathbb R, x\mapsto e^x\).
+\begin{itemize}
+	\item[(a)] Soll das Abstandsmaß vielleicht die Differenz an einer fixierten Stelle im Intervall \( x_0\in[-1,1]\) sein? Also \[ || v - u|| = |v(x_0) - u(x_0)|\,.\]
+	\item[(b)] Oder soll das Abstandsmaß die maximale Differenz auf dem gesamten Intervall $[-1,1]$ ein? Also \[ || v - u|| = \max_{x\in[-1,1]}|v(x) - u(x)|\,.\]
+	\item[(c)] Oder soll vielleicht die Fläche der Differenz $|v-v_0|$ minimiert werden? Also \[ || v - u|| = \int\limits_{-1}^1 |v(x) - u(x)|\,\mathrm{d}x\,.\]
+	\item[(d)] Oder vielleicht die Fläche des Abstandsquadrats $|v-v_0|^2$?  Also \[ || v - u|| = \int\limits_{-1}^1 |v(x) - u(x)|^2\,\mathrm{d}x\,.\]
+	\end{itemize}
+
+	\noindent \textbf{Bemerkungen:}
+	\begin{itemize}
+		\item All die genannten Maßbegriffe sind gültig und können für einen speziellen Anwendungsfall sinnvoll sein.
+		\item Eine Lösung der Minimierungsaufgabe für (a) könnte eine lineare Näherung sein: vorausgesetzt \(v\) ist auf \( (-1,1)\) \underline{differenzierbar}\randverweis{MA1-stetigkeit-und-differenzierbarkeit}, dann läßt sich \(v\) auf dem Intervall \([-1,1]\) linearisieren, etwa so
+\[
+	x_0\in (-1,1):\quad v_0: [-1,1] \to \mathbb R, x\mapsto v(x_0) + v'(x_0)(x-x_0)\,.
+\]
+Die lineare Näherung \(v_0\) stimmt dann mit \(v\) dann an der Stelle $x_0$ exakt überein, aber für $x\not=x_0$ können die Funktionswerte zwischen $v$ und $v_0$ sehr stark abweichen. \( v_0\) ist eine lokale Näherung.
+\item Eine Lösung der Minimierungsaufgabe (d) ist das Verfahren, das im vorigen Abschnitt beschrieben worden ist. Das Maß hat eine besondere Eigenschaft: ihm liegt ein Skalarprodukt zugrunde und das heißt, dass die Bestapproximation ist die Orthogonalprojektion auf dem gegebenen Unterraum. Anders als \( (a)\) bezieht das Maß alle Funktionswerte im Intervall \( [-1,1]\) ein und damit ist die Bestapproximation eine globale Approximation.
+\end{itemize}

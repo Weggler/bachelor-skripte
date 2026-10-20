@@ -1,0 +1,109 @@
+\section*{Lineare Funktionen Lösungen}\label{MA1-lineare-funktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-lineare-funktionen}{ (Abschnitt \abschnittsverweis{MA1-lineare-funktionen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Abbildungsvorschrift] %Andreas
+	Bestimmen Sie die Funktionsgleichung in der Form \[ f(x) = m\cdot x + b\] einer linearen Funktion durch die Punkte \( (1,5| 2)\) und \( (-3|3)\).
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Es gilt \[ y(x) = \frac{3-2}{-3-1,5}(x-1,5)+2=-\frac29\left( x-\frac32\right) +2 = -\frac29 x + \frac73\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Umkehrfunktion]
+	Für welche reellen Werte von \(m\) und \(b\) ist die lineare Funktion $f: x\mapsto m\cdot x+b$ umkehrbar? 
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:} Alle linearen Funktionen mit $m\not=0$ sind umkehrbar.
+\end{exercisebox}
+
+\begin{exercisebox}[Abbildungsvorschrift] %Lovis
+	Die durch die Gleichung \( x +3y= 8\) beschriebene Gerade im \(\mathbb R^2\) wird um zwei Einheiten nach rechts und um eine Einheit nach oben geschoben. Geben Sie die Abbildungsvorschrift für die verschobene Gerade an.  
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	$y(x) = \frac13(8-x) \Rightarrow \tilde y(x) = y(x-2) +1 = \frac13(10-x) +1$  
+	\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/lineare_funktionen_geradenverschiebung_loesung.png}
+	\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}[Betragsfunktion] %Lovis
+Skizzieren Sie die Menge \( \{ (x,y) \in \mathbb R^2: y<1+|x|\}\). Kennzeichnen Sie, ob die Ränder dazu gehören oder nicht. 
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/ungleichungen_betragsfunktion_untergraph_loesung.png}
+\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}[Betragsfunktion] %LS p.21
+		Stellen Sie die gegebenen Funktionen ohne Betragszeichen dar und zeichnen Sie den Graph:
+  \begin{eqnarray*}
+	  \begin{array}{llll}
+		  (a)\; f:x \mapsto 2\cdot |x| & \quad (b)\; f:x \mapsto |2-x| & \quad (c)\; f:x \mapsto |2+x| &\quad (d)\; f:x \mapsto x-|x|
+	  \end{array}
+  \end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+  \begin{eqnarray*}
+	  \begin{array}{lll}
+		  (a)\; f:x \mapsto \begin{cases} 2x, &\; x\geq 0 \\ -2x, &\; x<0 \end{cases} & \; (b)\; f:x \mapsto \begin{cases} x-2, &x\geq 2 \\ 2-x, & x<2 \end{cases} & \; (c)\; f:x \mapsto\begin{cases} 2+x, &x\geq -2 \\ -2-x, &x<-2\end{cases} \\
+		  (d)\; f:x \mapsto \begin{cases} 0, & x\geq 0 \\ 2x, &x<0 \end{cases}
+	  \end{array}
+  \end{eqnarray*}
+  \begin{center}
+	\includegraphics[width=0.9\textwidth]{../Mathematik_1/Bilder/betragsfunktionen_graphenvergleich_loesung.png}
+\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Interpolation] %Andreas
+	Gegeben sind die Messpunkte $(x_i,y_i), \; i= 0,1,2,3,$ mit $(-1,5| 2),(-0,25| 3,5),(0,5| 3,3),(1,2| 2,8)$. Bestimmen Sie den linearen Spline und werten Sie ihn am Punkt $x= 0,2$ aus. Welchen Wert erhalten Sie?
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Wegen $0,2\in [-0,25;0.5]$ gilt  \[ s(0,2) = \frac{3,3-3,5}{0,5 - (-0,25)}(0,2-(-0,25))+3,5=3,38\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Ausgleichsgerade] %Lucy
+	Gegeben sind die Messpunkte $(x_i,y_i), \; i= 0,1,2,3,$ mit $(-1,5| 2),(-0,25| 3,5),(0,5| 3,3),(1,2| 2,8)$.	
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{eqnarray*} 
+		r(x) = \frac{2048}{6403}\,x+\frac{185943}{64030} \approx 0{,}31985\,x+2{,}90400 \quad\Rightarrow\quad r(0{,}2)\approx 2{,}96797\,.
+	\end{eqnarray*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Mathematik_1/Bilder/interpolation_linearer_spline_ausgleichsgerade_loesung.png}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Dimensionierung Solarzellen] %LS p.21
+	Sonnenkollektoren wandeln Lichtenergie in Wärme um, die an den Warmwasserspeicher abgeführt wird. Die benötigte Kollektorfläche hängt linear vom Volumen des Speichers ab. Bei einer Speichertemperatur von $45^\circ \mathrm{C}$ wird für $200$ Liter eine Kollektorfläche von $3\mathrm{m}^2$ und für $500$ Liter eine Kollektorfläche von $7\mathrm{m}^2$ empfohlen. Pro Person wird mit einem Verbrauch von $50$ Liter Warmwasser am Tag gerechnet. Das Speichervolumen sollte $50\%$ über dem Verbrauch liegen. 
+  \begin{enumerate}
+    \item Bestimmen Sie die Funktion, die der Personenanzahl die Kollektorfläche zuordnet.
+    \item Wie groß sollte die Kollektorfläche bei einem $4$-Personen Haushalt sein?
+    \item Für wie viele Personen reicht eine Kollektorfläche von $8\mathrm{m}^2$?
+  \end{enumerate}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Wir müssen die Informationen aus der Textaufgabe in mathematische Formeln gießen und das machen wir jetzt - Stück für Stück: 
+	\begin{itemize}
+		\item Das gewünschte Speichervolumen \(V\) hängt von der Personenanzahl \(x\) ab und zwar soll gelten, dass pro Person ein Speichervolumen von \(50\) Litern (effektiver Verbrauch) plus \(25\) Litern (Puffer) benötigt wird, also \[ s: x\mapsto 75\cdot x\,.\] 
+		\item Die Kollektorfläche hängt \textbf{linear} vom Speichervolumen ab. Mit den angegebenen Informationen, nämlich \(P_1\left( 200 [\mathrm l], 3 [\mathrm{m}^2]\right)\) und  \(P_2\left( 500 [\mathrm l], 7 [\mathrm{m}^2]\right)\) läßt sich die lineare Funktion berechnen (Zwei-Punkte-Formel): \[ K: V\mapsto \dfrac{3-7}{200 - 500} \left[ \dfrac{\mathrm{l}}{\mathrm{m^2}}\right]\left( V-500\right) [\mathrm m^2] + 7 [\mathrm{l}] = \frac{1}{75}V + \frac13\,.\]
+		\item Um nun die Kollektorfläche in Abhängigkeit der Personenanzahl anzugeben, müssen die ermittelten Abbildungen hintereinander ausgeführt werden und das ergibt die unter \(1.\) gesuchte Funktion.\footnote{Diese Hintereinanderausführung heißt Verkettung von Funktionen\wennreferenzvorhanden{MA1-verkettung-von-funktionen}{ (Abschnitt \abschnittsverweis{MA1-verkettung-von-funktionen})}, also \(f = K \circ s\).}: Personenanzahl \(x\) \(\mapsto\) Speichervolumen \(V\) \(\mapsto\) Kollektoroberfläche \(K\), also \[f(x) = K\left(s(x)\right) = \dfrac{1}{75}\left( 75 \cdot x\right) + \dfrac13 = x + \dfrac13\,.\]
+	\end{itemize}
+	Nun zur Lösung der einzelnen Fragen:
+	\begin{itemize}
+\item[1.] \( f: x\mapsto x + \dfrac13\). 
+	  \item[2.] $f(4)=4 + \frac13 \; \Rightarrow $ Kollektorfläche ist $4, \bar 3 [\mathrm{m}^2]$.
+	  \item[3.] $f(x) = 8 \; \Rightarrow $ $7$-Personen-Haushalt.
+  \end{itemize}
+\end{exercisebox}
+

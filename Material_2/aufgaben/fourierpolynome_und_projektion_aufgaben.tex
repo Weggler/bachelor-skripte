@@ -1,0 +1,28 @@
+
+\ifintegriereaufgaben
+\section*{Fourier-Polynome und Projektion Aufgaben}\label{MA2-fourierpolynome-und-projektion-aufgaben}
+
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-fourierpolynome-und-projektion}{ (Abschnitt \abschnittsverweis{MA2-fourierpolynome-und-projektion})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA2-fourierpolynome-und-projektion-loesungen]{hier}.
+\else
+\section{Fourier-Polynome und Projektion Aufgaben}\label{MA2-fourierpolynome-und-projektion-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-fourierpolynome-und-projektion-loesungen]{hier}.
+\fi
+
+
+\begin{exercisebox}[Bestapproximation] %A.Z. Anwendungen
+	Gegeben seien die Funktionen $f_1, f_2, f_3 \in \mathcal C([-\pi,\pi], \mathbb R)$ mit
+	\[ f_1: x\mapsto 1, \quad f_2: x\mapsto \cos(x), \quad f_3: x\mapsto \sin(x)\]
+	\begin{itemize}
+		\item[(a)] Zeigen Sie, dass die Funktionen paarweise orthogonal sind bezüglich des Skalarprodukts
+			\[ \langle f, g\rangle : = \int_{-\pi}^{\pi} f(x) \cdot g(x) \, \mathrm{d}x \]
+		\item[(b)] Berechnen Sie die Bestapproximation $\tilde f \in \mathcal C([-\pi,\pi],\mathbb R)$ von $f:x\mapsto x^2$ bezüglich $f_i$, $i=1,2,3$ und zeichnen Sie $f$ und $\tilde f$.
+		\item[(c)] Zeigen Sie, dass die folgenden Funktionen orthogonal sind\[ \cos(k\cdot x), \, k\in \mathbb N_0, \quad \sin(k\cdot x),  \, k\in \mathbb N\,.\]
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Bestapproximation]
+	Wir betrachten \(\mathcal C([-2,2],\mathbb R)$, den Vektorraum der auf \([-2,2]\) stetigen Funktionen, ausgestattet mit der Maximumsnorm.  Zeigen Sie, dass sich $p$ nicht beliebig genau durch die Funktionen
+		\[ f_1(x)=1, \quad f_2(x) = e^x,\quad f_3(x)=e^{2x} \]
+		approximieren läßt.
+\end{exercisebox}

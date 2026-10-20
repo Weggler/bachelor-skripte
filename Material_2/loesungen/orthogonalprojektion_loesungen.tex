@@ -1,0 +1,165 @@
+\section*{Orthogonalprojektion in \(\mathbb R^n\) Lösungen}\label{MA2-orthogonalprojektion-loesungen}
+
+\ifintegriereaufgaben Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-orthogonalprojektion}{ (Abschnitt \abschnittsverweis{MA2-orthogonalprojektion})}.\fi
+
+\begin{exercisebox}[Überbestimmtes Gleichungssystem]
+test
+	\begin{itemize}
+		\item[(a)]
+	\[ \begin{array}{r c rcl} \textnormal{Ausgangsgleichung} & & \left( \begin{array}{cc}
+			2 & 1   \\
+			6 & 2   \\
+			-1 & 0
+	\end{array}\right) \,\left( \begin{array}{c}x_1 \\x_2\end{array}\right) &=&  \left( \begin{array}{c} 1 \\5\\ c \end{array}\right) \\[2ex]
+	\textnormal{Trapezform} & \Leftrightarrow &
+\left( \begin{array}{cc}
+		2 & 1 \\
+		0 & -1  \\
+		0 & 0
+\end{array} \right)\,\left( \begin{array}{c}x_1 \\x_2\end{array}\right) &=&  \left( \begin{array}{c} 1 \\2\\ 2\,c+3 \end{array}\right) \\[2ex] \textnormal{Auflösen klappt nur wenn } c=-\frac32 & \Rightarrow & \left(\begin{array}{c} x_1 \\ x_2 \end{array}\right) &=& \begin{cases} \textnormal{keine Lösung}, & \quad c\not=-\frac32\,,\\ \left( \begin{array}{c} 3/2 \\ -2 \end{array}\right), & c=\frac32\,.\end{cases} \end{array}\]
+		\item[(b)]
+	\[
+		\begin{array}{r c rcl} \textnormal{Ausgangsgleichung} & & \left( \begin{array}{cc}
+			2 & 1   \\
+			6 & 2   \\
+			-1 & 0
+	\end{array}\right) \,\left( \begin{array}{c}x_1 \\x_2\end{array}\right) &=&  \left( \begin{array}{c} 1 \\5\\ c \end{array}\right) \\[2ex]
+	\textnormal{Normalengleichung} &\Rightarrow &
+		\left( \begin{array}{cc} 41 & 14 \\ 14 &5
+		\end{array}\right) \, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) &=& \left( \begin{array}{c} 32-c \\ 11\end{array}\right) \\[2ex] \textnormal{Trapezform} & \Leftrightarrow & \left( \begin{array}{cc} 41 & 14 \\ 0 & 9  \end{array}\right) \, \left( \begin{array}{c} x_1 \\x_2 \end{array}\right) &=& \left( \begin{array}{c} 32-c \\ 3+14\, c \end{array}\right) \\[2ex]
+
+\textnormal{Auflösen} & \Leftrightarrow & \boldsymbol x_* =  \left( \begin{array}{c} x_1 \\x_2 \end{array}\right) &=& \frac19\, \left( \begin{array}{c} 6-5\,c \\ 3+14\,c  \end{array}\right) \end{array}\]
+
+		\item[(c)] \[ \begin{array}{r rcl} \textnormal{Residuum} & \boldsymbol r &=& A\,\boldsymbol x_* - \boldsymbol b \\ & &=&\frac19\, \left( \begin{array}{cc}
+			2 & 1   \\
+			6 & 2   \\
+			-1 & 0
+\end{array}\right)\left( \begin{array}{c} 6-5\,c \\ 3+14\,c  \end{array}\right) - \left( \begin{array}{c} 1 \\5 \\c \end{array}\right)\\ &&=& \frac19\, \left( \begin{array}{c} 15+4\,c \\ 42-2\,c \\ 6-5\,c \end{array}\right) - \left( \begin{array}{c} 1 \\5 \\c \end{array}\right) \\ &&=& \frac19\,\left( \begin{array}{c} 6+4\,c\\-3-2\,c\\-6-4\,c\end{array}\right) \end{array}\]
+Die Länge des Vektors \(\boldsymbol r\) ist genau dann null, wenn \(\boldsymbol r\) der Nullvektor ist, wenn also jeder Eintrag in \(\boldsymbol r\) null ist: \[\begin{cases} 15+4\,c &= 0 \\ 42-2\,c &= 0 \\ 6-5\,c &= 0\end{cases} \; \Leftrightarrow \; c= -\dfrac32\,.\] Das Residuum wird nur für die rechte Seite mit \(c=-3/2\) zum Nullvektor und in diesem Fall war das Gleichungssystem eindeutig lösbar (siehe (a)) und \(\boldsymbol x_* = \boldsymbol x^*\).
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Überbestimmtes Gleichungssystem]
+test
+	\begin{itemize}
+		\item[(a)]
+	\[A = \left( \begin{array}{ccc}
+			1 & -1 & 1  \\
+			3 & 2 & 1  \\
+			1 & 2 & 4  \\
+			-1 & 7 & 1
+\end{array}\right) \]
+		\item[(b)] Das Bilds von \(A\) wird aufgespannt durch die linear unabhängigen Spaltenvektoren von \(A\). Wie aber findet man die linear unabhängigen Spaltenvektoren?
+
+			\begin{enumerate}
+				\item Man betrachtet die transponierte Matrix \(A^\intercal\) und bringt \(A^\intercal\) auf Trapezform:
+					\[\begin{array}{l c rcl} \textnormal{Ausgangsmatrix} & &A &=& \left( \begin{array}{ccc}
+			1 & -1 & 1  \\
+			3 & 2 & 1  \\
+			1 & 2 & 4  \\
+			-1 & 7 & 1
+\end{array}\right) \\ \textnormal{Transponierte} & \Rightarrow & A^\intercal &=& \left( \begin{array}{cccc} 1 & 3 & 1 & -1 \\ -1 & 2 & 2 & 7 \\ 1 & 1 & 4 & 1 \end{array}\right) \\ \textnormal{Trapezform} & \Leftrightarrow & & & \left( \begin{array}{cccc} 1 & 3 & 1 & -1 \\ 0 & 5 & 3 & 6 \\ 0 & 0 & 21 & 22 \end{array}\right)\end{array}\]
+				\item Die transponierten Zeilenvektoren die nicht, die keine Nullzeilen sind, sind linear unabhängig und sie spannen, sobald man sie transponiert, das Bild von \(A\) auf:
+					\[\mathrm{im}(A) = \mathrm{LH}\left\{ \underbrace{ \left(\begin{array}{c} 1\\3\\1\\-1\end{array}\right), \; \left( \begin{array}{c} 0\\5\\3\\6\end{array}\right), \; \left( \begin{array}{c} 0 \\ 0 \\21\\22\end{array}\right)}_{\displaystyle{\textnormal{Basisvektoren}}} \right\} \,. \]
+					Das Bild von \(\mathcal A\) wird also durch die drei, linear unabhängige Vektoren \[ \boldsymbol b_1 = \left(\begin{array}{c} 1\\3\\1\\-1\end{array}\right), \quad \boldsymbol b_2 = \left( \begin{array}{c} 0\\5\\3\\6\end{array}\right), \quad \boldsymbol b_3 = \left( \begin{array}{c} 0 \\ 0 \\21\\22\end{array}\right)\] aufgespannt und damit ist der Rang von \(A\) drei.
+			\end{enumerate}
+				\item[(c)] Das Gleichungssystem \(A\,\boldsymbol x = \boldsymbol b\) mit \(\boldsymbol b = (0, 2, 0, 2)^\intercal\) ist nicht lösbar, weil \(\boldsymbol b\) nicht im Bild von \(A\) liegt: \(\boldsymbol b \not\in \mathrm{im}(A)\). Oft überprüft das straight forward: man wendet den Gauß-Algorithmus an und beim Rückwärtsauflösen der Gleichungen kommt man zu einem unauflösbaren Widerspruch:
+	\[ \begin{array}{l c rcl} \textnormal{Ausgangsgleichung} & & \left( \begin{array}{ccc}
+			1 & -1 & 1  \\
+			3 & 2 & 1  \\
+			1 & 2 & 4  \\
+			-1 & 7 & 1
+	\end{array}\right) \,\left( \begin{array}{c}x_1 \\x_2 \\x_3\end{array}\right) &=&  \left( \begin{array}{c} 0 \\2\\0\\2 \end{array}\right) \\[2ex] \textnormal{Trapezform} & \Leftrightarrow &
+\left( \begin{array}{ccc}
+		1 & -1 & 1 \\
+		0 & 5 & -2 \\
+		0 & 0 & -7\\
+		0 & 0 & -11
+\end{array} \right)\,\left( \begin{array}{c}x_1 \\x_2 \\x_3\end{array}\right) &=&  \left( \begin{array}{c} 0 \\2\\ 2\\ 1 \end{array}\right) \\[2ex] \textnormal{Auflösen} & \Leftrightarrow & x_3 &=& -\dfrac{1}{11} \land x_3 = -\dfrac{2}{7} \Rightarrow \;\textnormal{unvereinbar} \end{array}\]
+
+\item[(d)] Die Normalengleichung zu \(A\,\boldsymbol x = \boldsymbol b\) lautet \(A^\intercal A \, \boldsymbol x = A^\intercal \,\boldsymbol b\) und die Lösung \(\boldsymbol x_*\) bestimmen wir mit Hilfe des Gauß Algorithmus:
+	\[ \begin{array}{l c r cl } \textnormal{Ausgangsgleichung} & & \left( \begin{array}{ccc}
+			1 & -1 & 1  \\
+			3 & 2 & 1  \\
+			1 & 2 & 4  \\
+			-1 & 7 & 1
+	\end{array}\right) \,\left( \begin{array}{c}x_1 \\x_2 \\x_3\end{array}\right) &=&  \left( \begin{array}{c} 0 \\2\\0\\2 \end{array}\right) \\[2ex]
+	\textnormal{Normalengleichung} &\Rightarrow &
+		\left( \begin{array}{ccc} 12 & 0 & 7 \\ 0&58&16 \\ 7 &16 & 19
+		\end{array}\right) \, \left( \begin{array}{c} x_1 \\ x_2 \\x_3 \end{array}\right) &=& \left( \begin{array}{c} 4 \\ 18 \\ 4\end{array}\right) \\[2ex] \textnormal{Trapezform} & \Leftrightarrow & \left( \begin{array}{ccc} 12 & 0 & 7 \\ 0 & 29 & 8 \\ 0 & 0 & -3655 \end{array}\right) \, \left( \begin{array}{c} x_1 \\x_2\\x_3 \end{array}\right) &=& \left( \begin{array}{c} 4 \\ 9 \\ 1148 \end{array}\right) \\[2ex]
+
+\textnormal{Auflösen} & \Leftrightarrow & \boldsymbol x_* = \left( \begin{array}{r} x_1 \\x_2 \\ x_3\end{array}\right) &=& \left( \begin{array}{c} 0.5166 \\ 0.3970 \\ -3.141 \end{array}\right) \end{array}\]
+
+Das Residuum \(\boldsymbol r\) lautet \[\boldsymbol r = A\,\boldsymbol x_* - \boldsymbol b = \left( \begin{array}{r} -0.1945 \\0.0295 \\ 0.0542 \\ -0.0517 \end{array}\right)\,.\] Zwei Vektoren sind senkrecht aufeinander, wenn das Skalarprodukt verschwindet. Da wir eine Basis von \(\mathrm{im}(A)\) bestimmt haben und sich jeder Vektor in \(\mathrm{im}(A)\) als lineare Kombination der Basisvektoren dastellen lässt, genügt es zu zeigen, dass \(\boldsymbol r\) auf jedem der drei Basisvektoren senkrecht steht. Der Matlab-Code (siehe unten) führt zu den folgenden Werten
+\[ \begin{array}{rcl}
+		\langle \boldsymbol b_1, \boldsymbol r\rangle &=& 0.0372\cdot 1.0e-13 \\
+		\langle \boldsymbol b_2, \boldsymbol r\rangle &=& -0.0372\cdot 1.0e-13 \\
+\langle \boldsymbol b_3, \boldsymbol r\rangle &=& -0.1044\cdot 1.0e-13 \end{array}\]
+
+\begin{lstlisting}
+% Ausgangsdaten
+A=[1,-1,1,3;2,1;1,2,4;-1,7,1];
+b=[0;2;0;2];
+
+% Basisvektoren für im(A) in Matrixdarstellung imA = [b1:b2:b3]
+imA = [1,3,1,-1;0,5,3,6;0,0,21,22];
+
+% Lösung der Normalengleichung
+x_=A'*A\(A'*b);
+
+% Residuum
+r = A*x_-b;
+
+% Prüfe Orthogonalität und gebe das Ergebnis aus
+skps = imA*r;
+fprintf("Die Skalarprodukte ergeben:\n");
+fprintf("<b_1, r> =%d\n", skps[1]);
+fprintf("<b_2, r> =%d\n", skps[2]);
+fprintf("<b_3, r> =%d\n", skps[3]);
+\end{lstlisting}
+		\item[(d)] Lösbarkeit eines überbestimmten Gleichungssystems hängt von der rechten Seite ab! Ist der Rang der Matrix \(A\) gleich der Anzahl der Spalten von \(A\), dann ist \(\boldsymbol b \in \mathrm{im}(A)\) notwendig und hinreichend dafür, dass die die Lösung eindeutig ist. Im vorliegenden Fall gilt \(A \in \mathbb R^{4\times 3}, \mathrm{rang}(A) = 3\) und damit ist \(A\,\boldsymbol x = \boldsymbol b_1\) beispielsweise eindeutig lösbar. Die eindeutige Lösung lautet \(\boldsymbol x = (1,0,0)^\intercal\).
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Koeffizienten Lineare Regression]
+
+	Die lineare Regression ist eine Gerade der Form \(g: x\mapsto g(x) = a_0+a_1\, x\) mit zunächst unbekannten Koeffizienten \(a_0\) und \(a_1\). Gesucht ist die Funktion, deren Abstandsquadrat in allen Messwerten minimal ist. Die Freiheitsgrade, die zur erfüllung dieser Minimaleigenschaft zur Verfügung stehen sind die Steigung \(a_0\) und Achsenabschnitt \(a_1\) von \(g\). Die Aufgabe lautet auf mathematisch also: bestimme den Vektor aus Koeffizienten \[ \boldsymbol a = \left( \begin{array}{c} a_0 \\a_1\end{array}\right)\] genau so, dass die Funktion \[ E: \boldsymbol a \mapsto  \sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right)^2 \] minimal wird. \(E\) hängt von zwei Variablen ab und damit ist die Ableitung der Gradient. Die Einträge des Gradient \(\nabla E\) sind die zwei partielle Ableitungen von \(E\) und die können wir explizit bestimmen:
+	\[\begin{array}{rcl } \dfrac{\partial E(\boldsymbol a)}{\partial a_0} &=& \dfrac{\partial }{\partial a_0} \, \left( \displaystyle\sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right)^2 \right) = \displaystyle\sum\limits_{i=1}^n \dfrac{\partial }{\partial a_0} \left( \left( a_0 + a_1\, x_i\right) - y_i \right)^2  \\  &=& \displaystyle\sum\limits_{i=1}^n 2\cdot \left( \left( a_0 + a_1\, x_i\right) - y_i \right) \cdot 1 = 2\, \displaystyle\sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right)\,, \\[2ex] \dfrac{\partial E(\boldsymbol a)}{\partial a_1} &=& \dfrac{\partial }{\partial a_1} \left( \displaystyle\sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right)^2 \right) = \displaystyle\sum\limits_{i=1}^n \dfrac{\partial }{\partial a_1}\, \left( \left( a_0 + a_1\, x_i\right) - y_i \right)^2  \\  &=& \displaystyle\sum\limits_{i=1}^n 2\cdot \left( \left( a_0 + a_1\, x_i\right) - y_i \right) \cdot x_i = 2\, \displaystyle\sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right)\cdot x_i \,. \end{array}\]
+			Genauso wie bei Funktionen, die nur von einer Variable abhängen, ist die notwendige Bedingung für ein lokales Extremum das Verschwinden der Ableitung: \[ \boldsymbol a \textnormal{ Minimium von } E \; \Rightarrow \nabla E(\boldsymbol a) = \boldsymbol 0 \; \Leftrightarrow \dfrac{\partial E}{\partial a_0} = 0\,; \land \; \dfrac{\partial E}{\partial a_1}= 0\,.\]
+			Für welchen Vektor verschwinden die partiellen Ableitung? Setzen wir sie zu null und lösen auf:
+			\[ \begin{array}{c rcl c rcl}
+					& \dfrac{\partial E(\boldsymbol a)}{\partial a_0} &=& 0  \\ \Leftrightarrow & 2\, \displaystyle\sum\limits_{i=1}^n \left( \left( a_0 + a_1\, x_i\right) - y_i \right) &=&0 \\\Leftrightarrow &  2 \,\underbrace{ \displaystyle\sum\limits_{i=1}^n a_0 }_{\displaystyle{ = n\, a_0}}  + 2\,a_1 \underbrace{ \displaystyle\sum\limits_{i=1}^n x_i}_{\displaystyle{ = n\, \overline x} }  - 2  \underbrace{ \displaystyle\sum\limits_{i=1}^n y_i}_{\displaystyle{ = n\, \overline y} } &=& 0 \\ \Leftrightarrow & 2\,n\, \left( a_0 + a_1 \, \overline x - \overline y\right) &=&0 & \Leftrightarrow & a_0 &=& \overline y - a_1 \, \overline x\,, \\ [2ex]
+					& \dfrac{\partial E(\boldsymbol a)}{\partial a_1} &=& 0 \\ \Leftrightarrow &  2\, \displaystyle\sum\limits_{i=1}^n \left( \left( \textcolor{blue}{a_0} + a_1\, x_i\right) - y_i \right)\cdot x_i &=&0 \\ \Leftrightarrow & 2\, \displaystyle\sum\limits_{i=1}^n \left( \left( \textcolor{blue}{ \overline y - a_1 \, \overline x} + a_1\, x_i\right) - y_i \right)\cdot x_i &=&0 \\ \Leftrightarrow& 2\, \displaystyle\sum\limits_{i=1}^n \left(\overline y - y_i\right) \cdot x_i + a_1\, \displaystyle \sum\limits_{i=1}^n \left( x_i - \overline x \right)\cdot x_i &=& 0\\ \Leftrightarrow & 2\,\displaystyle \sum\limits_{i=1}^n \left( \left(\overline y - y_i\right) \cdot x_i + a_1\,\left( x_i- \overline x \right)\cdot x_i \right) &=& 0 & \Leftrightarrow & a_1 &=& \dfrac{\displaystyle \sum\limits_{i=1}^n \left( y_i -\overline y \right)\cdot x_i}{\displaystyle \sum\limits_{i=1}^n \left(x_i - \overline x \right)\cdot x_i} \,.
+			\end{array}\]
+			Zu der in der Aufgabenstellung angegebenen Formel gelangt man durch einen Trick:
+			\[\begin{array}{rcl}
+					\sum\limits_{i=1}^n \left(y_i -\overline y\right) \cdot x_i &=&  \sum\limits_{i=1}^n \left(y_i - \overline y\right) \cdot \left( x_i \textcolor{blue}{- \overline x}\right) \textcolor{blue}{+} \underbrace{ \sum\limits_{i=1}^n  \left( y_i - \overline y \right) \cdot \textcolor{blue}{\overline x} }_{\displaystyle{= 0}}  =  \sum\limits_{i=1}^n \left( y_i - \overline y \right) \cdot \left( x_i - \overline x\right) \\
+		\sum\limits_{i=1}^n \left(x_i - \overline x \right) \cdot x_i &=&  \sum\limits_{i=1}^n \left(x_i - \overline x\right) \cdot \left( x_i \textcolor{blue}{- \overline x}\right) \textcolor{blue}{+} \underbrace{ \sum\limits_{i=1}^n  \left(x_i - \overline x\right) \cdot \textcolor{blue}{\overline x} }_{\displaystyle{= 0}}  =  \sum\limits_{i=1}^n \left(x_i - \overline x \right) \cdot \left( x_i - \overline x\right) \end{array}\]
+
+\end{exercisebox}
+
+\begin{exercisebox}[Lösung der Normalengleichung]
+test
+	\begin{itemize}
+	\item[(i)] Das Residuum \(\boldsymbol r = A\,\boldsymbol x - \boldsymbol b\) hängt von \(\boldsymbol x\in\mathbb R^m\) ab und entsprechend ist \( \|\boldsymbol r\|^2 \) eine Funktion, die von \(\boldsymbol x\) abhängt. Machen wir das explizit und definieren diese Funktion:
+		\[ E: \mathbb R^m \to \mathbb R, \boldsymbol x \mapsto \sum\limits_{i=1}^n r_i^2, \quad r_i = \left(A \boldsymbol x - \boldsymbol b\right)_i\,.\] Die Behauptung, die zu zeigen ist, lautet jetzt wie folgt: wenn \(\boldsymbol x_*\) eine Minimalstelle von \(E\) ist, dann löst \(\boldsymbol x_*\) die Normalengleichung. Notwendig dafür, dass \(E\) in \(\boldsymbol x_*\) ein Minimum besitzt, ist das Verschwinden des Gradienten an der Stelle \(\boldsymbol x_*\):
+		\[ \nabla E(\boldsymbol x_*) = \boldsymbol 0 \; \Leftrightarrow  \; \dfrac{\partial E(\boldsymbol x_*)}{\partial x_k} = 0 \; \textnormal{für } k=1,\cdots,m\,.\] Die Funktion \(E\) hängt von \(m\) Variablen ab und damit gibt es \(m\) partielle Ableitungen und jede der partiellen Ableitung lässt sich exakt berechnen
+\[ \begin{array}{rcl l}  k=1,\cdots,m:\quad \dfrac{\partial E(\boldsymbol x)}{\partial x_k} &=&
+	\dfrac{\partial}{\partial x_k} \, \displaystyle \sum\limits_{i=1}^n r_i^2  & \quad\textnormal{summandenweise ableiten} \\[2ex]
+		&=&\displaystyle \sum\limits_{i=1}^n \dfrac{\partial}{\partial x_k} r_i^2 & \quad \textnormal{Kettenregel anwenden}\\[2ex]
+		&=& \displaystyle \sum\limits_{i=1}^n 2\cdot r_i\cdot \dfrac{\partial }{\partial x_k} r_i & \quad\quad\bullet \textnormal{ äußere Ableitung}\\[2ex]
+		&=& 2\cdot \displaystyle \sum\limits_{i=1}^n r_i \cdot a_{ki} &  \quad\quad \bullet\textnormal{ innere Ableitung}  \\[2ex]
+&=& 2\cdot \left( A^\intercal\, \boldsymbol r\right)_k &\quad \textnormal{Matrix-Vektor-Multiplikation identifizieren} \end{array}\]
+Der Gradient von \(E\) lautet also \[ \nabla E(\boldsymbol x) = 2\cdot A^\intercal \, \boldsymbol r = 2\cdot A^\intercal \, \left( A \, \boldsymbol x - \,\boldsymbol b\right)\]
+Nehmen wir an, dass \(g\) in \(\boldsymbol x_*\) ein lokales Minimum besitzt, dann muss \(\boldsymbol x_*\) die Normalengleichung lösen:
+\[\begin{array}{l crcl l} \textnormal{Ableitung verschwindet}&  &\nabla E(\boldsymbol x_*) &=& \boldsymbol 0 &\\  & \Leftrightarrow  & 2\, A^\intercal \, \left( A \, \boldsymbol x_* - \boldsymbol b\right)  &=& 0 &\|\cdot\frac12 \\[1ex] & \Leftrightarrow &  A^\intercal \, A \, \boldsymbol x_* - A^\intercal \,\boldsymbol b&=& 0 &\| + A^\intercal \, \boldsymbol b \\[1ex] \textnormal{Normalengleichung erfüllt} &  \Leftrightarrow &  A^\intercal \, A \, \boldsymbol x_* &=& A^\intercal \,\boldsymbol b &\end{array}\]
+
+\item[(ii)] Ist \(\boldsymbol x_*\) Lösung der Normalengleichung, dann ist sein Residuum \(\boldsymbol r\) immer senkrecht auf dem Bild von \(A\):
+		\[\begin{array}{l c rcl r}\textnormal{Normalengleichung:} & & A^\intercal \, A \, \boldsymbol x_* &=& A^\intercal \, \boldsymbol b &\| -A^\intercal\,\boldsymbol b \\ &\Leftrightarrow & A^\intercal \,\left(\textcolor{blue}{ A\,\boldsymbol x_* - \boldsymbol b}\right) &=& \boldsymbol 0 & \\ &\Leftrightarrow & A^\intercal \,\textcolor{blue}{ \boldsymbol r} &=& \boldsymbol 0 & \Rightarrow\; \textcolor{blue}{\boldsymbol r} \in \mathrm{ker}\left(A^\intercal\right) \\[2ex] \textnormal{Schlussfolgerung:}\quad \forall\, \boldsymbol x\in \mathbb R^n: && \langle A^\intercal \, \boldsymbol r, \boldsymbol x \rangle &=& \langle \boldsymbol 0, \boldsymbol x\rangle & \\ &\Leftrightarrow& \langle \boldsymbol r, A\,\boldsymbol x\rangle &=& 0 &\Rightarrow\quad  \boldsymbol r \perp \mathrm{im}(A)\,.
+		\end{array}\]
+		%\[\Rightarrow \; \mathrm{im}(A) = \left( \mathrm{ker}(A^\intercal)\right)^\perp \]
+\end{itemize}
+\end{exercisebox}
+

@@ -1,0 +1,159 @@
+\section*{Trennbare Differentialgleichungen: Lösungen}\label{MA2-trennbare-differentialgleichungen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-trennbare-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-trennbare-differentialgleichungen})}.\fi
+
+\begin{exercisebox}[Trennung der Variablen] %Papula IV, Abschnitt 2, Aufgabe 4
+Lösen Sie die folgenden Differentialgleichungen durch Trennung der Variablen:
+\begin{eqnarray*}
+	\begin{array}{ll}
+		(a)\; y' = \displaystyle{\frac{y^2}{x^2}}, \; x\in (0,\infty) \quad \quad & (b)\; y'= \displaystyle{\frac{x\cdot y}{1+x^2}} \\
+			(c)\; y' = (1-y)^2 \quad \quad & (d)\; y'\cdot \sin(y)= -x,  \; y\in (0,\pi)
+		\end{array}
+\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufg. \(4\) in dem Lehrbuch Papula Band 2, Abschnitt IV.2 zu finden auf Seite \(520\) und die Lösungen zu den Teilaufgaben finden Sie auf Seite \(726\).
+\begin{itemize}
+	\item[(a)] $y(x) = \displaystyle{\frac{x}{1+cx}} $
+	\item[(b)] $y(x) = \displaystyle{c\cdot \sqrt{1+x^2}} $
+	\item[(c)] $y(x) = \displaystyle{\frac{x+c-1}{x+c}} $
+	\item[(d)] $y(x) = \mathrm{arccos}(x^2/2+c) $
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Inhomogenität] %Papula IV, Abschnitt 2, Aufgabe 16
+	Lösen Sie folgenden Anfangswertprobleme durch Variation der Konstanten:
+\begin{eqnarray*}
+	\begin{array}{l c l}
+		(a) \quad  xy'-y = x^2 \cdot \cos(x)  & \land & y(\pi) = 2\pi \\[1ex]
+		(b) \quad  xy'+y = \ln(x) & \land & y(1) = 1\\[1ex]
+		% (c) Papula \quad  y'+\tan(x)\cdot y = 5\cdot \sin(2x)  & \land & y(3\pi) = 2 \\[1ex]
+		(c) \quad  y'-\tan(x)\cdot y = 5\cdot \sin(2x)  & \land & y(3\pi) = 2 \\[1ex] % Veränderung
+	\end{array}
+\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht bis auf Aufgabenteil (c) Aufg. \(16\) in dem Lehrbuch Papula Band 2, Abschnitt IV.2 zu finden auf Seite \(523\). Detaillierte Lösungen finden Sie ab Seite \(729\).
+\begin{itemize}
+	\item[(a)] $y(x) = 2x + x \cdot \sin(x) $
+	\item[(b)] Papula $y(x) = 2/x+\ln(x) - 1$
+	%\item[(c)] Papula $y(x) = -12\cdot \cos(x) - 10\cdot (\cos(x))^2$
+		(c)
+		\noindent{
+			\hspace{-1cm}\begin{enumerate}
+			\item Bestimmung der allgemeinen Lösung der homogenen Gleichung mit Trennung der Variablen: \[ y' - \tan(x) y = 0 \; \stackrel{y>0}{\Leftrightarrow} \; \dfrac{y'}{y} = \tan(x)  \; \Rightarrow \; \ln|y| = \ln\left( \Big| \dfrac{1}{\cos(x)}\Big|\right) + c \Rightarrow y_h(x) = \dfrac{\tilde c}{\cos(x)} \,.\]
+			\item Bestimmung einer partikulären Lösung durch Variation der Konstante: \begin{eqnarray*}&& \begin{cases} y_p(x) &= c(x) \dfrac{1}{\cos(x) } \,,\\ y'_p(x) &= c'(x) \dfrac{1}{\cos(x)} + c(x) \tan(x)\dfrac{1}{\cos(x)}\,,\end{cases} \\ \stackrel{(A+E)}{\Rightarrow} && c(x) = 5\int \sin(2x) \cos(x)\,\mathrm{d} x \stackrel{ (*)}{=} -\dfrac{10}{3} \cos^3(x) \,,\end{eqnarray*}
+			wobei das Integral \( (*)\)  mit Hilfe des Additionstheorems \(\sin(2x) = 2 \sin(x) \cos(x) \) gelöst wurde - im Detail \[ \int \sin(2x) \cos(x)\,\mathrm{d}x = 2\int \sin(x) \cos^2(x) \,\mathrm{d} x = -\dfrac{2}{3} \cos^3(x) + C \,.\]
+		\item Bestimmung der allgemeinen Lösung der inhomogenen Gleichung durch Superposition: \[ y(x) = y_h(x) + y_p(x) = c\dfrac{1}{\cos(x)} - \dfrac{10}{3}\cos^3(x) \,. \]
+		\item Bestimmung der speziellen Lösung des Anfangswertproblems durch Bestimmung der Konstante \(c\): \[ \cos(3\pi) = -1 \Rightarrow y(3\pi) = c\dfrac{1}{\cos(3\pi)} - \dfrac{10}{3}\cos^2(3\pi) = -c - \dfrac{10}{3} \stackrel{!}{=} 2 \Rightarrow c = -\dfrac{16}{3}\,.\]
+	\end{enumerate}
+}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Substitution] %Papula IV, Abschnitt 2, Aufgabe 3
+	Lösen Sie das folgende Anfangswertproblem:
+	$
+	y' = \displaystyle{\frac{y}{x} } +\displaystyle{\frac{x}{y} }, \quad y(1) = \sqrt{2}\,.
+	$
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufg. \(3\) in dem Lehrbuch Papula Band 2, Abschnitt IV.2 zu finden auf Seite \(520\) und die Lösung finden Sie auf Seite \(726\).
+
+\vspace{0.3cm}
+Die Differentialgleichung hat die Form \[ y' = f\left( \frac{y}{x}\right)\,.\] Die Idee ist die Substitution $u=y/x$ durchzuführen und eine Differentialgleichung mit trennbaren Variablen bzgl. \(u\) herzuleiten:
+\begin{enumerate}
+	\item Die Substitution führt auf den folgenden Ausdruck für \(y'\)
+\begin{eqnarray*}
+	u=\frac{y}{x} \Rightarrow y = u\cdot x \Rightarrow y' = u'\cdot x + u
+\end{eqnarray*}
+\item Damit lautet die Differentialgleichung bzgl. \(u\)
+	\begin{eqnarray*}
+		u' \cdot x + u = u + \frac1u \Rightarrow u\cdot u' = \frac1x
+	\end{eqnarray*}
+\item Dies ist eine Differentialgleichung bzgl. \(u\), die sich durch Trennung der Variablen lösen läßt:
+	\[
+\begin{aligned}
+\int u\,\mathrm du &= \int\frac1x\,\mathrm dx
+&&\Rightarrow\quad \frac12u^2(x)=\ln|x|+c,\\
+u(x)&=\pm\sqrt{2\ln|x|+2c},\\
+y(x)&=x\,u(x)=\pm x\sqrt{2\ln|x|+2c}.
+\end{aligned}
+\]
+\item Die Integrationskonstante \(c\) ist durch die Bedingung $y(1) = \sqrt{2}$ bestimmbar:
+	\[y(1) = 1\cdot \sqrt{2\ln|1| + 2c} = \sqrt{2c} \stackrel{!}{=} \sqrt{2} \Rightarrow c=1\,.\,. \]
+\item Die eindeutige Lösung des Anfangswertproblem lautet:  \[ y(x) = x\sqrt{2 (\ln|x| + 1) }= x\sqrt{2 (\ln|x| + \ln(e)) }= x\sqrt{2\ln|ex|} \]
+	\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Substitution] %Papula IV, Abschnitt 2, Aufgabe 2
+	Lösen Sie die folgenden Differentialgleichungen mit Hilfe einer geeigneten Substitution. Schlagen Sie die auftretenden Integrale gegebenenfalls in einer Formelsammlung nach:
+\begin{eqnarray*}
+	\begin{array}{ll}
+		(a)\; y' = \displaystyle{\frac{y}{x} + 4}, \; x\in (0,\infty) \quad \quad & (b)\; y'= (x+y+1)^2 \\
+		(c)\; y' = \displaystyle{\frac14} + \displaystyle{\frac{y^2}{x^2}}, x\in (0,\infty) \quad \quad & (d)\; y' = \sin(\frac{y}{x}) + \frac{y}{x},  \; x\in (0,\infty)
+		\end{array}
+\end{eqnarray*}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufg. \(2\) in dem Lehrbuch Papula Band 2, Abschnitt IV.2 zu finden auf Seite \(520\) und die Lösungen finden Sie auf Seite \(726\).
+\begin{itemize}
+	\item[(a)] Substitution $ u=y/x \; \Rightarrow y(x) = cx +4x \ln(x) $
+	\item[(b)] Substitution $ u=x+y+1 \; \Rightarrow y(x) = \tan(x+c) -x - 1$
+	\item[(c)] Substitution $ u=y/x \; \Rightarrow y(x) = \displaystyle{\frac12} x - \displaystyle{\frac{x}{\ln|x|+\tilde c}} = \displaystyle{\frac12} x - \displaystyle{\frac{x}{\ln|\tilde c x|}} $ (\(ln\) bijektiv auf \(\mathbb R\) )
+	\item[(d)] Substitution $ u=y/x \; \Rightarrow y(x) = 2\,x \cdot \mathrm{arctan}(cx) $
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Logistisches Wachstum]
+	Die Anzahl der von einem Virus infizierten Personen $x(t)$ zum Zeitpunkt $t$ in einer Bevölkerung der Größe $N$ kann folgendermaßen modelliert werden: Pro Tag habe jede Person $k>0$ zufällige Kontakte, wobei der Virus bei jedem Kontakt übertragen wird. Stellen Sie eine Differentialgleichung auf und ermitteln Sie die Lösung. Wie lautet die Lösung des zugehörigen Anfangswertproblemes wenn $x(0)=1$ war?
+
+Gehen Sie Schritt für Schritt vor:
+	\begin{itemize}
+		\item[(a)] Wie viele nicht infizierte Personen gibt es in Abhängigkeit von $x(t)$ zum Zeitpunkt $t$? Wie groß ist der Anteil der nicht infizierten Personen zum Zeitpunkt $t$?
+		\item[(b)] Wie viele Personen trifft eine infizierte Person in einer kleinen Zeitpanne $[t, t+\Delta t]$? Wieviele nicht infizierte Personen trifft eine infizierte Person in $[t, t+\Delta t]$?
+		\item[(c)] Wie viele Kontakte von infizierten Personen mit nicht infizierten Personen gibt es insgesamt in $[t,t+\Delta t]$? Wie viele Personen werden daher in $[t, t+\Delta t]$ neu angesteckt?
+		\item[(d)] Drücken Sie $x(t+\Delta t)$ durch $x(t)$ und die Anzahl der neu infizierten Personen in $[t, t+\Delta t]$ aus.
+	\item[(e)] Führen Sie den Grenzwert $\Delta t\to 0$ aus, um eine Differentialgleichung zu erhalten.
+\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)] $N-x(t), \; (N-x(t))/N $
+	\item[(b)] $k\cdot \Delta t, \; k\cdot (N-x(t))/N \cdot \Delta t $
+	\item[(c)] $x(t) \cdot k \cdot (N-x(t))/N\cdot \Delta t $
+	\item[(d)] $x(t+\Delta t) = x(t) + x(t) \cdot k \cdot (N-x(t))/N\cdot \Delta t $
+	\item[(e)] \[ \frac{x(t+\Delta t) - x(t)}{\Delta t} = x(t)\cdot  k \cdot (N-x(t))/N  \stackrel{\Delta t\to 0}{\to} \dot x = k\cdot x(N-x)/N \]
+		Lösung durch Trennung der Variablen
+		\[ \int \frac{1}{x(N-x)} \, \mathrm{d}x = \int \frac{k}{N}\,\mathrm{d}t \]
+		Integration durch Partialbruchzerlegung
+		\[ \int\frac{1}{x(N-x)} \, \mathrm{d}x = \int\left( \frac{1}{N\cdot x} - \frac{1}{N\cdot (N-x)} \right) \,\mathrm{d}x = \frac1N \left( \log(x) - \log(N-x)\right) = \frac1N \log\left( \frac{x}{N-x}\right) \]
+		Also
+		\[ \log\left( \frac{x}{N-x}\right) = k\cdot t + c \Leftrightarrow \frac{x}{N-x} = c\cdot e^{kt} \Leftrightarrow x(t) = N\cdot \frac{c\cdot e^{kt}}{1+c\cdot e^{kt}} \]
+		Lösung des Anfangswertproblems $x$ mit $c= \frac{1}{n-1}$.
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Differentialgleichungen erster Ordnung] %Papula IV, Abschnitt 2, Aufgabe 20
+	Lösen Sie folgenden Differentialgleichungen mit Hilfe einer geeigneten Methode:
+\begin{eqnarray*}
+	\begin{array}{ll l }
+		(a)\; y' = x(y^2+1) \;  & (b)\; y'= y\cdot \sin(x) \; & (c)\; y' = xy \\
+		(d)\; xy' + y = 2\ln(x) \; (e)\; y' = 5x^4(y+1) \; & (f)\; y' - 5y = 2\cos(x) - \sin(3x)
+		\end{array}
+\end{eqnarray*}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Diese Aufgabe entspricht Aufg. \(20\) in dem Lehrbuch Papula Band 2, Abschnitt IV.2 zu finden auf Seite \(523\) und Lösungen finden Sie auf Seite \(730\).
+\begin{itemize}
+	\item[(a)] Trennung der Variablen: \( y= \tan\left(\displaystyle{ \frac12} x^2 + c\right) \)
+	\item[(b)] Trennung der Variablen: \( y= c\cdot e^{-\cos(x)} \)
+	\item[(c)] Trennung der Variablen: \( y= c\cdot e^{\frac12 x^2} \)
+	\item[(d)] Variation der Konstanten: \( y= 2(\ln(x) -1 ) + \frac{c}{2} \)
+	\item[(e)] Trennung der Variablen: \( y= c\cdot e^{x^5} -1 \)
+	\item[(f)] Ansatz vom Typ der rechten Seite: \( y= c\cdot e^{5x} + \frac1{13} \sin(x) - \frac{5}{13}\cos(x) + \frac{5}{34}\sin(3x) + \frac{3}{34} \cos(3x) \)
+\end{itemize}
+\end{exercisebox}
+

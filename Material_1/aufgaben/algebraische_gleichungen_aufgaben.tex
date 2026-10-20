@@ -1,0 +1,52 @@
+\ifintegriereaufgaben
+\section*{Algebraische Gleichungen Aufgaben}\label{MA1-algebraische-gleichungen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-algebraische-gleichungen}{ (Abschnitt \abschnittsverweis{MA1-algebraische-gleichungen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-algebraische-gleichungen-loesungen]{hier}.
+\else
+\section{Algebraische Gleichungen Aufgaben}\label{MA1-algebraische-gleichungen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-algebraische-gleichungen-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Gleichungen] %LS p.29, Aufgabe 7
+  \begin{itemize}
+	  \item[(a)] Zeigen Sie, dass der Graph der Funktion $f: x \mapsto x^3-2x^2-3x+10$ die $x$-Achse nur im Punkt $S(-2|0)$ schneidet.
+	  \item[(b)] Die Gerade $g$ geht durch $S$ und hat die Steigung $2$. Berechnen Sie alle Schnittpunkte von $g$ mit dem Graphen von $f$.
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen] %LS p. 29, Aufgabe 6 b) und d)
+  Bestimmen Sie durch Probieren eine Nullstelle und berechnen Sie danach die weiteren Nullstellen.
+  \begin{itemize}
+	  \item[(a)] $f(x) = x^3+x^2-4x-4$
+	  \item[(b)] $f(x) = 4x^3-20x^2-x + 110$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen]
+	Geben Sie die Lösungsmengen der folgenden Gleichungen an:
+	\begin{eqnarray*}
+		\begin{array}{ll} (a) \; x^2-2 x -7 = 0  \quad \quad \quad & (b)\; x^3-6 x^2 - x + 30 = 0 \\[1ex]
+			(c) \; 2x^3-5 x^2 -10 x = 0 \quad \quad \quad \quad & (d) \; x^4-13 x^2+36 = 0
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Newton-Verfahren]
+	\begin{itemize}
+		\item[(a)] Betrachten Sie die Funktion \[ f: x\mapsto \sin(x) - \frac12 x - \frac{1}{10}\,.\] Formulieren Sie das Newton-Verfahren zur Bestimmung einer Nullstelle von $f$ für den Startwert $x_0 = \frac{1}{10}$. Führen Sie drei Iterationen durch. Hinweis: $f': x\mapsto \cos(x) - \frac12$. 
+			%Es gilt $f'(x) = \cos(x) - \frac12$ und wir erhalten \[ x_{m+1} = x_m - \frac{f(x_m)}{f'(x_m)} = x_m - \frac{\sin(x_m) - \frac12 x_m - \frac{1}{10} }{\cos(x_m) - \frac12 }\] Die ersten drei Iterierten lauten \[ x_1 \approx 0.202, \quad x_2\approx 0.203, \quad x_3\approx 0.202\,.\]
+		\item[(b)] 
+	Bestimmen Sie eine Folge, die sich für große $n$ an $\sqrt{5}$ annähert. Hinweis: Betrachten Sie $f:x\mapsto x^2-5$ mit $f': x\mapsto 2x$.
+\item[(c)]
+	Berechnen Sie die ersten drei Iterierten des Newton-Verfahrens zur Funktion \[ f:x\mapsto x^3-2y+2\] mit Startwert $x_0=0$. Konvergiert das Newton-Verfahren? Interpretieren Sie das Ergebnis.
+	%Die Newton-Iteration lautet \[ x_{m+1} = x_m - \frac{f(x_m)}{f'(x_m)} = x_m - \frac{x_m^2 - 2x_m + 2 }{ 3 x_m^2 -2}\,.\] Es gilt also \[ x_0 = 1, \quad x_1 = 1-\frac11 = 0,\quad x_2 = 0 - \frac{2}{-2} = 1, \quad x_3 = 0\,.\]
+	%Es werden abwechselnd die Werte $0$ und $1$ angenommen, so dass eine Konvergenz der Iterierten ausgeschlossen ist. Der Startwert $x_0 =0$ war offenbar nicht nah genug an der Lösung dran. 
+		%\item[(d)] Berechne mit Hilfe des Newtonschen Näherungsverfahren die Nullstellen der folgenden Funktion auf zwei Nachkommastellen genau:  \[ f:x\mapsto x^3-5x^2-4x+2 \] Hinweis: $f':x\mapsto 3x^2-10x -4$
+	\end{itemize}
+\end{exercisebox}
+
+%
+%\begin{exercisebox}[Mathematik lesen, Fehlerabschätzung]
+%  $|\left(x-f(x)f'(x)\right) - \underline x| \leq c\,|x-\underline x|^2\,.$ 
+%  \end{exercisebox}

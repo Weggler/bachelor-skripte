@@ -1,0 +1,129 @@
+
+\ifintegriereaufgaben
+\section*{Folgen und Grenzwerte Aufgaben}\label{MA1-grenzwerte-von-folgen-und-funktionen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-grenzwerte-von-folgen-und-funktionen}{ (Abschnitt \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-grenzwerte-von-folgen-und-funktionen-loesungen]{hier}.
+\else 
+\section{Folgen und Grenzwerte Aufgaben}\label{MA1-grenzwerte-von-folgen-und-funktionen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-grenzwerte-von-folgen-und-funktionen-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Folgen]
+	Betrachten Sie einen Kreis und zeichnen Sie die Fläche $A_3$ des durch den Kreis einbeschriebenen regelmäßigen Dreiecks ein, dann die Fläche $A_6$ eines regelmäßiges Sechsecks, $A_{12}$ eines regelmäßigen Zwölfecks usw. 
+	\begin{itemize}
+		\item Konvergiert die Folge der Flächeninhalte? 
+		\item Wenn ja, wie lautet der Grenzwert? 
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte]
+	\begin{itemize}
+		\item[(a)] Übersetzen Sie die folgende Aussage: \newline Es sei $(a_n)_{n\in\mathbb N^+}$ und es gelte: \( \forall\, \varepsilon > 0 \; \exists\, n_\varepsilon \in \mathbb N \; \forall\, n\geq n_\varepsilon  \; |a_n - a| < \varepsilon \quad (*)\)
+		\item[(b)] Erfüllt die Folge $(a_n)_{n\in \mathbb N}$ mit \( a_n = \dfrac{2n}{n+4}\) die Eigenschaft $(*)$? Falls ja, wie lautet $n_\varepsilon$ bei gegebenem $\varepsilon > 0$?
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwertsätze]
+	Geben Sie für $c=0, \; c=1, \; c=\infty$ jeweils Folgen $(a_n)_{n\in \mathbb N} $ und $(b_n)_{n\in \mathbb N}$ an, so dass 
+	\begin{eqnarray*} 
+		\lim\limits_{n\to \infty} \left( a_n \cdot b_n\right) = c \quad \textnormal{mit}\; a_n \to \infty, b_n\to 0 \; \textnormal{f\"ur } n\to \infty\,, \\
+		\lim\limits_{n\to \infty} \frac{ a_n }{ b_n} =  c \quad \textnormal{mit}\; a_n \to 0, b_n\to 0 \; \textnormal{f\"ur } n\to \infty\,, 
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Folgen]
+	Bestimmen Sie ob die folgenden Grenzwerte existieren und berechnen Sie sie gegebenenfalls. 
+  \begin{eqnarray*}
+		  (a)\; \lim\limits_{n\to \infty} \displaystyle{\frac{(n+1)^2-n^2 }{n}} \quad 
+		  (b)\; \displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{9\, n^2+n+1}{3n^3 +1}} \quad
+		  (c)\; \lim\limits_{n\to \infty} \displaystyle{\frac{1 + 2 + \cdots + n }{n^2}} \quad 
+		  (d)\; \lim\limits_{n\to \infty} \left( \sqrt{n+1} - \sqrt{n}\right) 
+	  \end{eqnarray*}
+		  %(d)\; \displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{1+2^2 + \cdots + n^2}{n^3}} \\
+Hinweis zu $(c)$: Es gilt 
+	$\displaystyle{\sum\limits_{k=1}^n k} =\displaystyle{\frac12}\cdot n \cdot (n+1)$
+  \end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Folgen]
+	Überprüfen Sie, ob die Zahlenfolge $\{ f_n\}_{n\in\mathbb N^+}$ konvergiert und berechnen Sie ggf. den Grenzwert: 
+	\[ f_1=0, \; f_{n+1} = \frac13 ( f_n +1)\,.\]
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Funktionen]
+	Bestimmen Sie ob die folgenden Grenzwerte existieren und berechnen Sie sie gegebenenfalls.
+  \begin{eqnarray*}
+	  \begin{array}{llll}
+	  (a)\; \lim\limits_{x\to\infty} \dfrac{-x^2+1}{x^3+2x^2+x} &\quad 
+	  (b)\; \lim\limits_{x\to-\infty} \dfrac{-(x+1)^2}{2x^2-x+1} &\quad 
+	  (c)\; \lim\limits_{x\to-\infty} \dfrac{2x^3+x^2-x}{-x^2+4} &\quad
+	  (d)\; \lim\limits_{x\to \infty} \left( 2^{-x}\cdot x^4 \right) \\
+	(e)\; \lim\limits_{x\to \infty} \dfrac{ \left( \ln(x)\right)^3}{x^2} &\quad
+	(f)\; \lim\limits_{x\downarrow 0} \dfrac{ 2^{\frac1x}}{\ln(x)} &\quad
+	(g)\; \lim\limits_{x\to 0} \dfrac{ x}{|x|} &\quad
+	(h)\; \lim\limits_{x\to 0} \dfrac{\cos(x)}{x}
+	  %(f)\; \lim\limits_{x\to \infty} \left( 2- \frac{1}{(x+3)^2}\right) &\quad
+	  %(g)\; \lim\limits_{x\to \infty} \left( -\frac{1}{2x}+ 3\right) &\quad
+	  %(h)\; \lim\limits_{x\to \infty} \frac{1}{\sqrt{x+1}} &\quad 
+	  %(i)\; \lim\limits_{x\to \infty} \frac{1}{\sqrt{x}}+1 
+  \end{array}
+  \end{eqnarray*}
+
+\end{exercisebox}
+
+%\begin{exercisebox}[Teleskopsumme]
+%\end{exercisebox}
+
+%\begin{exercisebox}[Konvergenz Binomialreihe $e$]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Konvergenz Potenzreihe $\exp$]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Harmonische Reihe]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Riemann Integral]
+%\end{exercisebox}
+
+%\begin{theorembox}[Konvergenz Reihe]
+%  Reihe mit alternierender Nullfolge ist konvergent (nicht absolut konvergent). (Leibnitz Kriterizm)
+%\end{theorembox}
+%
+%\begin{theorembox}[Teleskop Summe]
+%  Reihe mit alternierender Nullfolge ist konvergent (nicht absolut konvergent). (Leibnitz Kriterizm)
+%\end{theorembox}
+%
+%\begin{theorembox}[absolute Konvergenz]
+%  absolut konvergene Reihen (Reihenfolge der Glieder egal): wenn die Summe über die Beträge der Koeffizienten konvergiert.  
+%\end{theorembox}
+%
+%\begin{theorembox}[Potenzreihen stellen Funktionen dar]
+%  Konvergenzradius: für welche $x$ konvergiert die Potenzreihe?
+%\end{theorembox}
+%
+%\begin{theorembox}[Funktionenräume, Betrag, Metrik]
+%	Abstandsbegriffe, Energie Physik
+%\end{theorembox}
+%
+%\begin{theorembox}[Lipschitz-Stetigkeit]
+%\end{theorembox}
+%
+%\begin{theorembox}[Mittelwertsatz]
+%\end{theorembox}
+%
+%\begin{theorembox}[Chauchy-Folge]
+%\end{theorembox}
+%\begin{theorembox}[Vollständigkeit]
+%\end{theorembox}
+%\begin{theorembox}[Banachscher Fixpunktsatz]
+%\end{theorembox}
+%
+%\begin{theorembox}[Iterationsverfahren]
+%  Was wollen wir über das Iterationsverfahren wissen?
+%  \begin{itemize}
+%	  \item Konvergiert das Verfahren überhaupt? $\Rightarrow $ Banachscher Fixpunktsatz
+%	  \item Gegen welchen Wert konvergiert es? $\Rightarrow$ Fixpunkt
+%	  \item Wie schnell konvergiert das Verfahren? $\Rightarrow$ Konvergenzordung
+%  \end{itemize}
+%\end{theorembox}

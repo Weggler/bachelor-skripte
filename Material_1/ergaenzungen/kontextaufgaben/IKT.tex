@@ -1,0 +1,892 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true,   % Colours links instead of ugly boxes
+  urlcolor     = red,    % Colour for external hyperlinks
+  linkcolor    = red,    % Colour of internal links
+  citecolor    = red     % Colour of citations
+}
+
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+
+% Notes am rechten Seitenrand -deshalb die unterschiedliche Breite.
+\usepackage{marginnote}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+\usepackage{trfsigns}
+
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\usepackage{tcolorbox}
+\usepackage{pdflscape}
+
+\tcbuselibrary{breakable,skins}
+\usepackage{ctable}
+\definecolor{darkgreen}{RGB}{0,136,0 }
+\definecolor{htwgreen}{RGB}{134,189,36 }
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2}; 
+	  %\node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} 
+	  %};
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Übung
+% #1: Title
+% #2: Bemerkung
+\newcounter{exercise}
+\newtcolorbox{exercisebox}[1][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east)  {#1}; 
+	  \node[anchor=north east, text=black, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  
+	  {\small  Aufg. \stepcounter{exercise}\theexercise };
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+
+\title{Aufgabe: Grundlagen der Informationsübertragung \\(Parität und logische Entscheidungsregeln)}
+\author{Studiengang: Information und Kommunikation}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe (Quadratische Gleichung)}
+Ein serverraumhoher Schaltschrank wird modular aus identischen Würfel aufgebaut. Der Schaltschrank besitzt eine quadratische Grundfläche und quadratische Seitenflächen. Die Anzahl der sichtbaren Würfel beträgt \(1657\).\\
+Frage: Aus wie vielen Würfel besteht der Schaltschrank?
+
+\textbf{Lösung.}\\[3pt]
+Die Anzahl der Würfel beträgt \(n^3\), wobei \(n = 19\). \(n\) ist die physikalisch sinnvolle Lösung der folgenden Gleichung:
+\[\begin{array}{c rcl} & 2\cdot n^2 + 2\cdot (n-2)\cdot n + (n-2)^2 &=& 1657 \\  \Leftrightarrow  & 5\, n^2 - 8 \, n - 1653 &=& 0 \\ \Leftrightarrow & n_{1,2} = \displaystyle \frac{ 8 \pm \sqrt{ 64 + 20\cdot 1653} }{10 } = \begin{cases} 19 \\ (- xxx) \text{ nicht physikalisch}   \end{cases} \end{array}\]
+
+	\newpage
+\section*{Augabe (Aussagenlogik)}
+
+In einem Kommunikationssystem werden digitale Daten über Funk gesendet.  
+Die Übertragung soll nur gestartet werden, wenn bestimmte Bedingungen erfüllt sind — etwa, dass das Netz verfügbar ist und keine Störung vorliegt.  
+Bei der Zustandsüberwachung gilt folgende Regel: 
+
+\begin{quote}
+\emph{Die Übertragung wird gestartet, wenn der Übertragungssensor bereit ist und entweder eine Netzverbindung besteht oder keine Funkstörung vorliegt.}
+\end{quote}
+
+
+\begin{itemize}
+	\item[(i)] Ein Sensorknoten möchte eine Messdatei mit \(8000\ \text{Bit}\) an eine Basisstation senden.  Die verfügbare Datenrate beträgt \(2000\ \text{Bit/s}\).
+		\begin{itemize}
+			\item[(a)] Berechne die benötigte Übertragungszeit in Sekunden.  
+			\item[(b)] Wie lange würde die Übertragung dauern, wenn die Datenrate auf \(4000\ \text{Bit/s}\) verdoppelt wird?
+		\end{itemize}
+	\item[(ii)]  Nehmen Sie die folgenden (boolschen) Eigangsignale an 
+\begin{itemize}
+  \item $N$: Netzverbindung vorhanden
+  \item $S$: Sensor bereit
+  \item $F$: keine Funkstörung (also „frei“)
+\end{itemize}
+\begin{itemize}
+	\item[(a)] Formuliere die Regel, die das Kommunikationssystem steuert, als logischen Ausdruck und Verwendung der logischen Operatoren \(\land\), \(\lor\) und \(\neg\).  
+	\item[(b)] Erstelle die Wahrheitstabelle, die alle Zustände der Anlage beschreibt (8 Zeilen).  
+	\item[(c)] Beschreibe mit einem Satz, wann tatsächlich gesendet wird.
+\end{itemize}
+\end{itemize}
+
+\textbf{Lösung i – Datenrate und Übertragungszeit.}\\[3pt]
+
+Übertragungszeit:
+\[
+t = \frac{\text{Datenmenge}}{\text{Datenrate}} = \frac{8000}{2000} = 4\ \text{s}.
+\]
+Bei doppelter Datenrate:
+\[
+t = \frac{8000}{4000} = 2\ \text{s}.
+\]
+Die Übertragung dauert 4 Sekunden bzw. 2 Sekunden bei verdoppelter Datenrate.
+
+\textbf{Lösung ii – Logische Steuerung der Übertragung.}\\[3pt]
+
+a) Formel:
+\[
+T(N,S,F) = S \land (N \lor F).
+\]
+
+b) Wahrheitstabelle:
+
+\medskip
+\begin{tabular}{ccc|c}
+$N$ & $S$ & $F$ & $T(N,S,F)$\\
+\midrule
+0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0\\
+1 & 0 & 1 & 0\\
+1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1\\
+\end{tabular}
+
+\medskip
+c) Beschreibung:  
+Das System sendet, wenn der Sensor aktiv ist (\(S=1\)) und  
+\emph{mindestens eine der beiden Bedingungen} erfüllt ist:
+\begin{itemize}
+  \item Netzverbindung vorhanden (\(N=1\)), oder
+  \item keine Funkstörung (\(F=1\)).
+\end{itemize}
+
+\textbf{Didaktischer Hinweis}
+Diese Aufgabe verknüpft einfache Prozent- und Zeitrechnung mit logischer Steuerung in einem typischen IKT-Kontext:  
+Digitale Kommunikation, Signalbedingungen und einfache Entscheidungslogik.  
+Sie eignet sich gut für Übungen zu:
+\begin{itemize}
+  \item Datenrate und Übertragungszeit,
+  \item Boolesche Logik in Kommunikationssystemen,
+  \item technische Entscheidungslogik mit UND/ODER-Verknüpfungen.
+\end{itemize}
+
+\newpage
+
+\section*{Aufgabe (Aussagenlogik und Parität)}
+In Kommunikationssystemen werden Daten oft mit einfachen Fehlererkennungsmechanismen (z.\,B. Paritätsbits) übertragen. Zusätzlich treffen Router/Firewalls Entscheidungen über das Weiterleiten von Paketen auf Basis von logischen Regeln. Diese Aufgabe verbindet beides: einfache Paritätsprüfung (Grundlagenarithmetik, Modulo 2) und die Formulierung sowie Vereinfachung einer logischen Entscheidungsregel (Aussagenlogik).
+
+\textbf{Teil A — Parität (Daten und Fehlererkennung).}
+
+1. Gegeben sei das 7-Bit ASCII-Codewort für das Zeichen \texttt{A}, das ist:
+\[
+\texttt{A} \;\longrightarrow\; 1000001
+\]
+Teile dieses 7-Bit-Wortes in zwei Nibbles (die ersten 4 Bit und die letzten 3 Bit plus ein Füllbit 0 am Ende), sodass du zwei 4-Bit-Worte erhältst. Für jedes 4-Bit-Wort berechne ein zusätzliches \emph{gerades Paritätsbit} (even parity), das so gesetzt wird, dass die Gesamtanzahl der Einsen in dem 5-Bit-Block gerade ist. Gib die beiden 5-Bit-Blöcke an — dies sind die tatsächlich zu übertragenden Blöcke.
+
+2. Angenommen, beim Empfang wird im zweiten Block das dritte Bit (von links) versehentlich invertiert (Einzelbitfehler). Zeige, wie der Empfänger mit Hilfe des Paritätsbits erkennt, dass ein Fehler vorliegt. Erkläre, ob der Empfänger den Fehler lokalisieren und korrigieren kann.
+
+\medskip
+
+\textbf{Teil B — Logische Entscheidungsregel (Aussagenlogik).}
+
+In einem einfachen Router/Firewall-Szenario gelten folgende boolesche Eingangsvariablen für ein eingehendes Paket:
+\begin{itemize}
+  \item $S$: Paket ist verschlüsselt (secure).
+  \item $A$: Paket ist authenti?ziert (authenticated).
+  \item $T$: Paket stammt aus einer als vertrauenswürdig eingestuften Quelle (trusted).
+  \item $B$: Paket kommt von einer blockierten (blacklisted) IP (blacklisted).
+\end{itemize}
+
+Die gewünschte Weiterleitungsregel lautet in Worten:
+\begin{quote}
+Ein Paket wird weitergeleitet, wenn es (verschlüsselt und authenti?ziert) ist, \emph{oder} wenn es aus einer vertrauenswürdigen Quelle kommt und nicht von einer blockierten IP.
+\end{quote}
+
+a) Formuliere diese Regel als boolesche Formel $F(S,A,T,B)$ in disjunkter/verknüpfter Notation (mit $\land,\lor,\lnot$).
+
+b) Erstelle die Wahrheitstabelle für $F$ (für alle 16 Kombinationen von $S,A,T,B$).
+
+c) Vereinfache $F$ mit Hilfe von logischen Gesetzen (z.\,B. De Morgan, Distributivität), so weit wie möglich, und gib die vereinfachte Formel an.
+
+
+\textbf{Lösung Teil A — Parität (Daten und Fehlererkennung).}
+
+Das 7-Bit ASCII für \texttt{A} ist:
+\[
+1000001
+\]
+
+Wir teilen es in zwei 4-Bit-Wörter. Für das zweite 4-Bit-Wort fügen wir ein Füllbit 0 an (am rechten Ende), damit beide Nibbles 4 Bit haben.
+
+\begin{align*}
+\text{Erstes 4-Bit-Wort (Bits 1–4)} &= 1000 \\
+\text{Zweites 4-Bit-Wort (Bits 5–7 + Füllbit)} &= 001\,0 = 0010
+\end{align*}
+
+Nun berechnen wir für jedes 4-Bit-Wort ein \emph{gerades Paritätsbit} $p$, also $p$ so wählen, dass die Anzahl der Einsen in den 5 Bits gerade ist. Formal: $p = (\text{Anzahl der Einsen in den 4 Bits}) \bmod 2$, und falls diese Anzahl $1$ (ungerade) ist, muss $p=1$ um die Summe gerade zu machen; ist sie $0$ (gerade), dann $p=0$.
+
+\paragraph{Erstes Wort:} $1000$ hat genau eine Eins. Die Anzahl ist ungerade $\Rightarrow$ Paritätsbit $p_1 = 1$ (damit Gesamtanzahl 2 ist, gerade). Der zu sendende 5-Bit-Block ist:
+\[
+\boxed{1000\;1}
+\]
+
+\paragraph{Zweites Wort:} $0010$ hat genau eine Eins. Also ebenfalls ungerade $\Rightarrow$ Paritätsbit $p_2 = 1$. Der zu sendende Block ist:
+\[
+\boxed{0010\;1}
+\]
+
+Die beiden zu übertragenden 5-Bit-Blöcke sind also \(\;10001\;\) und \(\;00101\;\).
+
+\medskip
+
+Angenommen, beim Empfang wird im zweiten Block das dritte Bit (von links) invertiert. Der zweite Block, wie gesendet: \(\;0\;0\;1\;0\;1\;\). Nummerieren wir die Positionen 1..5 von links. Das dritte Bit (Position 3) ist aktuell eine 1; durch Inversion wird es zu 0. Empfangener Block:
+\[
+0\;0\;\underline{0}\;0\;1 = 00001.
+\]
+
+Der Empfänger zählt die Einsen im empfangenen 5-Bit-Block: nur das Paritätsbit (letztes Bit) ist 1 $\Rightarrow$ Anzahl Einsen = 1 (ungerade). Bei gerader Parität darf die Anzahl nicht ungerade sein. Also erkennt der Empfänger: \emph{Es liegt ein Fehler vor} (Paritätsprüfung schlägt fehl).
+
+\paragraph{Kann der Empfänger den Fehler lokalisieren/korrigieren?}
+
+Mit einem einfachen Einzel-Paritätsbit pro 4-Bit-Block kann man nur feststellen, dass eine ungerade Anzahl von Bits falsch ist (d.\,h. mindestens ein Bitfehler mit ungerader Hamming-Distanz). Man kann nicht eindeutig lokalisieren, welches Bit fehlerhaft ist (es gibt 4 mögliche Datenbits + eventuell Paritätsbit selbst). Um Lokalisierung und Korrektur eines einzelnen Bitfehlers zu ermöglichen, benötigt man ein zusätzlicheres Korrekturverfahren (z.\,B. Hamming-Code), das mehrere Paritätsbits an unterschiedlichen Positionen verwendet.
+
+\textbf{Antwort:} Fehlererkennung — ja. Fehlerlokalisierung/korrektur — nein (nicht mit nur einem Paritätsbit pro Block).
+
+\textbf{Lösung Teil B — Logische Entscheidungsregel (Aussagenlogik).}
+
+\paragraph{a) Formel} In symbolischer Form (wobei $\land$ = \texttt{und}, $\lor$ = \texttt{oder}, $\lnot$ = \texttt{nicht}) lautet die Regel:
+\[
+F(S,A,T,B) \;=\; (S \land A) \;\lor\; \bigl(T \land \lnot B\bigr).
+\]
+
+\paragraph{b) Wahrheitstabelle} (wir listen die 16 Kombinationen; 1 = wahr, 0 = falsch)
+
+\medskip
+\begin{tabular}{cccc|c}
+$S$ & $A$ & $T$ & $B$ & $F(S,A,T,B)$\\
+\midrule
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 1\\
+0 & 0 & 1 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 1 & 0 & 1 & 0\\
+0 & 1 & 1 & 0 & 1\\
+0 & 1 & 1 & 1 & 0\\
+1 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+1 & 0 & 1 & 0 & 1\\
+1 & 0 & 1 & 1 & 0\\
+1 & 1 & 0 & 0 & 1\\
+1 & 1 & 0 & 1 & 1\\
+1 & 1 & 1 & 0 & 1\\
+1 & 1 & 1 & 1 & 1\\
+\end{tabular}
+
+\smallskip
+Erläuterung: $F$ ist genau dann 1, wenn entweder $S\land A=1$ (also $S=1$ und $A=1$) oder $T\land\lnot B=1$ (also $T=1$ und $B=0$).
+
+\paragraph{c) Vereinfachung} Die gegebene Formel
+\[
+F = (S\land A) \lor (T \land \lnot B)
+\]
+ist bereits relativ kompakt. Man kann versuchen, sie mittels Distributivgesetzen o.\,Ä. umzuformen, aber es gibt keine offensichtliche gemeinsame Teilmenge zwischen $(S\land A)$ und $(T\land\lnot B)$, die sich faktorisieren ließe (Variablen sind verschieden). Eine alternative Darstellung (Summe von Produkten) wäre:
+
+\[
+F = SA + T\overline{B}
+\]
+
+(wobei ich die Konvention $XY$ für $X\land Y$ und $\overline{B}$ für $\lnot B$ verwende). Diese Form ist schon minimal in der Anzahl der Literale/Operationen für die gegebenen Bedingungen. Man kann allenfalls in logische Normalformen überführen (DNF ist oben schon sichtbar). Es existiert keine nichttriviale Vereinfachung, die alle Terme reduziert, ohne Information zu verlieren.
+
+\paragraph{Kommentar:} Wenn zusätzliche Annahmen über Abhängigkeiten der Eingangsvariablen bestehen (z.\,B. $S\Rightarrow A$, d.\,h. falls verschlüsselt dann immer authenti?ziert), könnte man weiter vereinfachen. Ohne solche Annahmen ist die Formel minimal.
+
+\textbf{Hinweise für Übungs- oder Prüfungsgebrauch}
+\begin{itemize}
+  \item Als Variante kannst du statt \texttt{A} ein anderes Zeichen verwenden oder die Aufteilung in Nibbles anders wählen (z.\,B. 7-Bit direkt + ein globales Paritätsbit).
+  \item Für Fortgeschrittene: Erweiterung zu Hamming(7,4) als Übung zur Fehlerkorrektur (benötigt mehrere Paritätsbits).
+  \item Für Logik: Man kann als Übung Karnaugh-Karten (K-Map) benutzen, um die Funktion zu minimieren, falls zusätzliche Abhängigkeiten eingeführt werden.
+\end{itemize}
+
+\newpage
+
+\subsection*{Aufgabe (Betragsungleichung)}
+
+Ein Übertragungskanal führt zu einer Veränderung der Signalamplitude um  
+\[\displaystyle \Delta A(f)=\frac{f-1}{f+3}\,.\]
+Hierbei bezeichnet \(\Delta A\) die Abweichung und $f$ die Frequenz des Signals in \(\mathrm{MHz}\) bezeichnet. Die Spezifikation verlangt, dass die relative D"ampfungsabweichung nicht größer als $\pm2\%$ sein darf. Bestimmen Sie den Frequenzbereich, in dem diese Bedingung erfüllt ist.
+
+
+%\[ |A(f)|\le 0.02.\]
+%\begin{itemize}
+%	\item[(i)] 
+%	\item[(ii)] Lässt sich aus der Form von $A(f)=(f-1)/(f+3)$ ableiten, ob es einen Bereich von Frequenzen geben kann, in dem die Dämpfung nahezu konstant ist (also wenig empfindlich gegen Frequenzänderungen)? Begründe deine Antwort qualitativ.
+%\end{itemize}
+
+
+\textbf{Lösungsvorschlag}\\[3pt]
+\textbf{1. Betrag auflösen.} Die Bedingung $|A(f)|\le 0.02$ ist gleichbedeutend mit
+\[ -0.02\le\frac{f-1}{f+3}\le 0.02.\]
+Das liefert die zwei Ungleichungen, die gleichzeitig gelten m"ussen.
+
+
+\textbf{2. Erste Teilungleichung:} $\dfrac{f-1}{f+3}\le 0.02$. Umformen:
+\[\frac{f-1-0.02(f+3)}{f+3}\le0\quad\Longleftrightarrow\quad\frac{0.98f-1.06}{f+3}\le0.
+\]
+Nullstelle des Z"ahlers: $f=\dfrac{1.06}{0.98}=\dfrac{53}{49}\approx1.08163265$. Durch Vorzeichenbetrachtung ergibt sich als L"osungsbereich
+\[ f\in\left(-3,\;\frac{53}{49}\right].\]
+(Die Stelle $f=-3$ ist Definitionsl"ucke und nicht erlaubt.)
+
+
+\textbf{3. Zweite Teilungleichung:} $\dfrac{f-1}{f+3}\ge -0.02$ ergibt
+\[\frac{f-1+0.02(f+3)}{f+3}\ge0\quad\Longleftrightarrow\quad\frac{1.02f-0.94}{f+3}\ge0.
+\]
+Nullstelle des Z"ahlers: $f=\dfrac{0.94}{1.02}=\dfrac{47}{51}\approx0.92156863$. Vorzeichenanalyse liefert
+\[ f\in\left(-\infty,\,-3\right)\cup\left[\frac{47}{51},\infty\right).\]
+
+
+\textbf{4. Schnitt beider Bedingungen:}
+\[ f\in\left[\frac{47}{51},\;\frac{53}{49}\right]\approx[0.92157,\;1.08163].\]
+
+
+\textbf{Antwort:} Frequenzen $f\in\left[\dfrac{47}{51},\dfrac{53}{49}\right]$ erf"ullen die Spezifikation.
+
+\textbf{L"osungshinweis zur Knobelaufgabe:} Die Funktion $A(f)$ ist eine rationale Funktion vom Grad $1/1$, die asymptotisch gegen $1$ f"ur $f\to\infty$ und gegen $1$ f"ur $f\to-\infty$? (Hinweis: tats"achlich ist $A(f)\to1$ bei $f\to\infty$.) Daher ist in einem Bereich nahe dem Schnittpunkt mit $A(f)=0$ (bei $f=1$) die Funktion am empfindlichsten gegen "Anderungen; in Regionen, wo die Funktion flacher verläuft (ferne Frequenzen), reagiert sie weniger sensibel. Ein kurzer qualitativer Schluss: Bei rationalen 1/1-Funktionen gibt es typischerweise nur ein begrenztes Intervall mit sehr kleinen Abweichungen, wie oben berechnet.
+
+
+\newpage
+
+\section*{Knobelaufgabe: Datenpakete im Netzwerk}
+
+Ein Nachrichtentechniker untersucht ein Netzwerkprotokoll, bei dem jedes \textbf{Datenpaket} zwei Attribute besitzt:
+\begin{itemize}
+    \item einen \textbf{Kanal} (z.\,B. ein bestimmtes Frequenzband) und
+    \item ein \textbf{Protokollsymbol} (z.\,B. den Typ des Headers oder der Prioritätsklasse).
+\end{itemize}
+
+Es gibt insgesamt \( n \ge 2 \) verschiedene Kanäle und \( m \ge 2 \) verschiedene Symbole.
+Jede Kanal-Symbol-Kombination kommt genau einmal als Paket vor – das gesamte Set an möglichen Paketen.
+
+Ein Router zieht nun zufällig \( x \ge 2 \) Pakete aus dieser Menge (z.\,B. in einem Pufferüberlauf-Szenario).  
+Der Router möchte die Pakete so in einer Warteschlange anordnen, dass zwei aufeinanderfolgende Pakete
+\textbf{entweder über denselben Kanal oder dasselbe Protokollsymbol} verfügen.
+Dadurch kann die Umschaltzeit zwischen zwei Paketen minimiert werden.
+
+Es sei \( x_{n,m} \) die kleinste Anzahl gezogener Pakete, für die es \textbf{immer möglich} ist,
+eine zulässige Reihenfolge zu finden – unabhängig davon, welche Pakete gezogen wurden. Welche der folgenden Aussagen über \( x_{n,m} \) ist richtig?
+
+\vspace{1em}
+\begin{itemize}
+    \item[(a)] \( x_{n,m} = (n - 1)(m - 1) \)
+    \item[(b)] \( x_{n,m} = (n - 2)(m - 2) \)
+    \item[(c)] \( x_{n,m} = (n - 1)m - 3 \)
+    \item[(d)] \( x_{n+1,m} = x_{n,m} + m + 1 \)
+    \item[(e)] \( x_{n+1,m+1} = x_{n,m} + m + n - 4 \)
+    \item[(f)] \( x_{n,m+1} = x_{n,m} + n - 1 \)
+\end{itemize}
+
+\newpage
+\section*{Knobelaufgabe: Gleichungssystem}
+
+Ein Rechenzentrum betreibt mehrere \textbf{gleich leistungsfähige Server}, die jeweils eine gleiche Anzahl von \textbf{Datenströmen} verarbeiten. Zu Beginn laufen \( w \) Server, jeder übernimmt \( p \) Datenströme (Sessions). \\
+
+
+Auf halbem Weg der Testreihe fällt ein Clustersegment mit \(10\) Servern aus. Die verbliebenen Server müssen die gesamte Datenlast übernehmen, sodass nun jeder Server \( p + 1 \) Datenströme bearbeitet. Kurz vor Ende des Tests kommt es zu einem weiteren Ausfall von \(15\) Servern. Jetzt trägt jeder der verbliebenen Server \( p + 3 \) Datenströme. \\
+
+Frage: Wie viele Datenströme \( N \) wurden insgesamt übertragen?
+
+\newpage
+\section*{Hochpass / Koppelkondensator}
+
+In der Nachrichtentechnik werden Hochpassfilter häufig benötigt, um tieffrequente Störungen oder Rauschen zu eliminieren und nur die gewünschten hochfrequenten Signale zu übertragen. Ein Beispiel hierfür ist die Trennung von Sprachsignalen von niederfrequentem Hintergrundrauschen in Kommunikationssystemen. Für ein idealisiertes Hochpass-Element, das für solche Anwendungen entworfen wurde, wird die folgende normierte Kennfunktion verwendet:
+\[
+p_3(x) = x^3 - 12\cdot x^2 + 48\cdot x - 62,
+\]
+wobei \(x\) eine normierte Frequenz ist. In diesem Zusammenhang ist es von Interesse, die Frequenzen \(x\) zu identifizieren, für die \(p_3\) sehr klein ist: für diese Frequenzen erfüllt der Filter seine Funktion optimal. Erfahrungswerte legen nahe, dass für das gegebene Hochpass-Element \(x=4\) optimal ist.
+Überprüfen Sie das mit Hilfe der Polynomdivision \(p_3(x):(x-4)\) und interpretiere das Ergebnis.\\
+
+\textbf{Lösung.}
+
+\begin{enumerate}
+  \item Einsetzen:
+  \[
+  p_3(4) = 64 - 192 + 192 - 62 = 2.
+  \]
+  Also \(p_3(4)=2\).
+  \medskip
+  \[
+  \begin{array}{r|rrrr}
+  4 & 1 & -12 & 48 & -62\\\hline
+    &   & 4   & -32 & 64\\
+    & 1 & -8  & 16  & 2
+  \end{array}
+  \]
+
+  Quotient \(q_3(x)=x^2 - 8x + 16\), Rest \(r_3=2\).
+  \item Zerlegung:
+  \[
+  p_3(x) = (x-4)(x^2 - 8x + 16) + 2 = (x-4)^3 + 2.
+  \]
+  \emph{Technische Interpretation von \(r_3=2\):}
+  \begin{itemize}
+    \item Der Rest kann ein Hinweis auf eine \emph{Restdämpfung} oder auf systematische Abweichungen sein (z.\,B. Verlustwinkel, parasitäre Elemente), die das ideale Modell nicht berücksichtigt.
+    \item Bei Messdaten würde ein solcher Rest bedeuten: die charakteristische Frequenz ist nahe \(x=4\), aber nicht exakt eine Nulldurchgangsfrequenz — es bleibt eine geringe Restdämpfung von „2 Einheiten“ bestehen.
+    \item Für die Filterauslegung ist das wichtig: ein kleiner Rest kann die gewünschte Nullstelle verschieben oder die Tiefe einer Kerbe vermindern; das kann durch Nachkalibrierung, Toleranzanalyse oder Änderung der Bauteilwerte angegangen werden.
+  \end{itemize}
+\end{enumerate}
+\newpage
+
+\section*{Exponentialfunktion: Signaldämpfung und Pegel in dB}
+
+In einem Kabelnetz nimmt die übertragene Leistungsverstärkung (linear) mit der Entfernung $d$ (in Metern) exponentiell ab:
+\[
+P(d) = P_0 \, e^{-\alpha \, d},
+\]
+wobei $\alpha$ die Dämpfungskonstante (in $\mathrm{m}^{-1}$) ist. In der Messtechnik wird Leistung häufig in Dezibel (dB) angegeben:
+\[
+L_{\text{dB}}(d) = 10\log_{10}\!\bigl(\tfrac{P(d)}{P_0}\bigr).
+\]
+
+Messung: Bei $d=100 \mathrm m$ beträgt der Leistungsverlust $L_{\text{dB}}=-3\ \mathrm{dB}$ (d.\,h. die Leistung hat auf die Hälfte abgenommen).
+
+\begin{itemize}
+	\item[(i)] Bestimmen Sie $\alpha$ (in $\mathrm{m}^{-1}$).
+  	\item[(ii)] Welche Strecke $d$ führt zu einem Leistungsverlust von $-20\ \mathrm{dB}$?
+  	\item[(iii)] Erklären Sie kurz den Unterschied zwischen dem linearen Faktor $e^{-\alpha d}$ und dem dB-Wert.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Lösung.}
+
+(1) Aus $P(100)=P_0 e^{-\alpha\cdot 100} = 0{,}5 P_0$ (weil $-3\ \text{dB}\approx$ halbe Leistung) folgt:
+\[
+e^{-100\alpha} = 0{,}5 \quad\Longrightarrow\quad -100\alpha = \ln(0{,}5) = -\ln 2.
+\]
+\[
+\Rightarrow\quad \alpha = \frac{\ln 2}{100} \approx \frac{0{,}693147}{100} \approx 6{,}9315\times 10^{-3}\ \mathrm{m}^{-1}.
+\]
+
+\emph{Antwort (1):} $\alpha\approx 6{,}93\times 10^{-3}\ \mathrm{m}^{-1}$.
+
+(2) Für $-20\ \mathrm{dB}$ gilt: Leistungsverhältnis $P(d)/P_0 = 10^{-20/10} = 10^{-2} = 0{,}01$. Daher
+\[
+e^{-\alpha d} = 0{,}01 \quad\Longrightarrow\quad -\alpha d = \ln(0{,}01) = -\ln 100.
+\]
+\[
+\Rightarrow\quad d = \frac{\ln 100}{\alpha} = \frac{4{,}605170}{6{,}9315\times 10^{-3}} \approx 664{,}4\ \mathrm{m}.
+\]
+
+\emph{Antwort (2):} Etwa $664 \mathrm m$ führen zu $-20\ \mathrm{dB}$ Leistungsverlust.
+
+(3) \emph{Erklärung:} Die lineare Darstellung $P(d)=P_0 e^{-\alpha d}$ gibt das tatsächliche Leistungsverhältnis numerisch an (z.\,B. $0{,}5$ bei $-3\ \text{dB}$). Die dB-Skala ist eine logarithmische Darstellung:
+\[
+L_{\text{dB}}(d) = 10\log_{10}\!\bigl(e^{-\alpha d}\bigr) = -10\frac{\alpha d}{\ln 10}.
+\]
+Sie hat Vorteile: Multiplikative Effekte (z.\,B. Serienschaltungen, Dämpfungen) werden additiv; große Dynamikbereiche lassen sich übersichtlich darstellen; und in der Praxis sind dB-Angaben Standard (z.\,B. Angabe von Kabeldämpfungen in dB/100m). Die Umrechnung zwischen linear und dB erfolgt mit $P/P_0 = 10^{L_{\text{dB}}/10}$.
+
+
+\newpage
+\section*{Geometrie}
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{../../../Mathematik_1/Bilder/geometrie_kreise_gemeinsame_tangenten_aufgabe.png}
+\end{center}
+
+\noindent Auf einem Gelände stehen zwei Funkstationen im Abstand von \(200\) Metern auseinadner. Um die Funkstationen selbst ist jeweile eine kreisförmige Sicherheitszone eingerichtet.
+
+Damit sich die Wartungsroboter bei Sturm sicher zwischen den Stationen bewegen können, sollen zwei Laser- oder Förderpfade tangential an den Sicherheitszonen verlaufen und genau von der einen zur anderen Station führen.
+
+\medskip
+Welche Länge haben die beiden möglichen Pfade? \\
+
+\textbf{Lösung}
+\begin{itemize}
+    \item \textbf{Innere (transversale) Tangente:}
+    \[
+        L_{\mathrm{innen}} = \sqrt{d^2 - (r_1 + r_2)^2}
+    \]
+    \item \textbf{Äußere (direkte) Tangente:}
+    \[
+        L_{\mathrm{außen}} = \sqrt{d^2 - (r_2 - r_1)^2}
+    \]
+\end{itemize}
+
+\[
+\begin{aligned}
+L_{\mathrm{innen}} &= \sqrt{200^2 - (50 + 70)^2} = \sqrt{40000 - 14400} = \sqrt{25600} = 160\, \mathrm m\\
+L_{\mathrm{außen}} &= \sqrt{200^2 - (70 - 50)^2} = \sqrt{40000 - 400} = \sqrt{39600} \approx 199 \, \mathrm m
+\end{aligned}
+\]
+
+
+
+\newpage
+
+
+\section*{Harmonische Schwingung}
+Eine Antenne empfängt eine Signal der Form
+\[
+s(t)=3\sin\!\big(2\pi\cdot 500\,t + \tfrac{\pi}{6}\big).
+\]
+\begin{enumerate}
+  \item Bestimmen Sie Amplitude, Kreisfrequenz, Frequenz, Periodendauer und Phasenverschiebung.
+  \item Bestimmen Sie die ersten zwei Maxima im Intervall \(t\in[0,\;4\ \text{ms}]\) (ohne Differentialrechnung).
+  \item Berechnen Sie den Wert \(s(1\ \text{ms})\).
+\end{enumerate}
+
+\textbf{Lösung}
+\begin{enumerate}
+  \item \textbf{Amplitude:} \(A=3.\)\\
+        \textbf{Kreisfrequenz:} \(\omega = 2\pi\cdot 500 = 1000\pi\ \mathrm{rad/s}.\)\\
+        \textbf{Frequenz:} \(f=500\ \mathrm{Hz}.\)\\
+        \textbf{Periodendauer:} \(T=\dfrac{1}{f}=\dfrac{1}{500}=\) \(\,0{,}002\ \text{s} = 2\ \text{ms}.\)\\
+        \textbf{Phasenverschiebung:} \(\varphi=\dfrac{\pi}{6}\) (radians) \(=30^\circ.\)
+  \item Maxima treten auf, wenn das Argument der Sinusfunktion gleich \(\dfrac{\pi}{2}+2\pi k\) ist:
+  \[
+    2\pi\cdot 500\,t + \frac{\pi}{6} = \frac{\pi}{2} + 2\pi k.
+  \]
+  Lösen nach \(t\):
+  \[
+    1000\pi\,t = \pi\!\Big(\tfrac{1}{2}-\tfrac{1}{6} + 2k\Big) = \pi\!\Big(\tfrac{1}{3}+2k\Big)
+  \]
+  \[
+    \Rightarrow t = \frac{\tfrac{1}{3}+2k}{1000} \ \text{s}.
+  \]
+  Für \(k=0\): \(t_0=\dfrac{1/3}{1000}=\dfrac{1}{3000}\ \text{s}=0{,}000333\ldots\ \text{s}=0{,}333\ldots\ \text{ms}.\)\\
+  Für \(k=1\): \(t_1=\dfrac{1/3+2}{1000}=\dfrac{7/3}{1000}=\dfrac{7}{3000}\ \text{s}\approx 0{,}002333\ \text{s}=2{,}333\ \text{ms}.\)\\
+  Beide liegen im Intervall \([0,\;4\ \text{ms}]\). (Weitere Maxima bei \(k=2\) wären bei \(t\approx4{,}333\ \text{ms}\) außerhalb des Intervalls.)
+  \item \(t=1\ \text{ms}=0{,}001\ \text{s}.\) Der Argumentwert ist
+  \[
+    \theta = 2\pi\cdot 500\cdot 0{,}001 + \frac{\pi}{6} = \pi + \frac{\pi}{6} = \frac{7\pi}{6}.
+  \]
+  \(\sin\!\big(\tfrac{7\pi}{6}\big) = -\tfrac{1}{2}.\) Somit
+  \[
+    s(1\ \text{ms}) = 3\cdot\left(-\tfrac{1}{2}\right) = -\tfrac{3}{2} = -1{,}5.
+  \]
+\end{enumerate}
+\newpage
+
+\subsection*{Überlagerung harmonischer Schwingungen}
+
+Zwei harmonische Signale gleicher Frequenz \(f=500\ \mathrm{Hz}\) sind gegeben durch
+\[
+s_1(t)=2\sin(2\pi\cdot 500\,t),\qquad s_2(t)=1{,}5\sin\!\big(2\pi\cdot 500\,t + \tfrac{\pi}{3}\big).
+\]
+Bestimmen Sie die Amplitude \(A_{\mathrm{res}}\) und die Phasenverschiebung \(\varphi_{\mathrm{res}}\) des resultierenden Signals
+\[
+s_{\mathrm{res}}(t)=s_1(t)+s_2(t),
+\]
+d.h. finden Sie \(A_{\mathrm{res}}\) und \(\varphi_{\mathrm{res}}\) so dass
+\[
+s_{\mathrm{res}}(t)=A_{\mathrm{res}}\sin\!\big(2\pi\cdot 500\,t + \varphi_{\mathrm{res}}\big).
+\]
+
+\textbf{Lösungsskizze}
+
+Man verwendet die Addition über komplexe Zeiger (Phasoren) oder trigonometrische Summenformeln.
+\[
+s_1(t)=2\sin(\omega t),\qquad s_2(t)=1{,}5\sin(\omega t+\tfrac{\pi}{3}).
+\]
+Schreibe jede Sinusfunktion als Imaginärteil eines Phasors bzw. benutze die Identität
+\[
+a\sin(\theta)+b\sin(\theta+\alpha)=R\sin(\theta+\beta),
+\]
+wobei
+\[
+R=\sqrt{a^2+b^2+2ab\cos\alpha},\qquad \beta=\arctan\!\frac{b\sin\alpha}{a+b\cos\alpha}.
+\]
+Setze \(a=2,\ b=1{,}5,\ \alpha=\tfrac{\pi}{3}\) ein:
+\[
+R=\sqrt{2^2 + 1{,}5^2 + 2\cdot 2\cdot1{,}5\cos(\tfrac{\pi}{3})}
+= \sqrt{4 + 2{,}25 + 6\cdot\tfrac{1}{2}}
+= \sqrt{4 + 2{,}25 + 3}
+= \sqrt{9{,}25} \approx 3{,}041.
+\]
+Für die Phase:
+\[
+\beta=\arctan\!\frac{1{,}5\sin(\tfrac{\pi}{3})}{2 + 1{,}5\cos(\tfrac{\pi}{3})}
+= \arctan\!\frac{1{,}5\cdot \tfrac{\sqrt{3}}{2}}{2 + 1{,}5\cdot\tfrac{1}{2}}
+= \arctan\!\frac{0{,}75\sqrt{3}}{2 + 0{,}75}
+= \arctan\!\frac{0{,}75\sqrt{3}}{2{,}75}.
+\]
+Numerisch: \(0{,}75\sqrt{3}\approx 1{,}299\), also \(\beta\approx \arctan(1{,}299/2{,}75)\approx \arctan(0{,}4725)\approx 25{,}3^\circ\) \( \approx 0{,}441\ \text{rad}.\)
+
+Damit:
+\[
+A_{\mathrm{res}}\approx 3{,}041,\qquad \varphi_{\mathrm{res}}\approx 0{,}441\ \text{rad}.
+\]
+
+
+
+\newpage
+\section*{Rechnen mit komplexen Zahlen}
+Zwei Phasoren einer Antennenübertragung seien gegeben durch
+\[
+	S_1 \,\widehat =\, \left( 5 | 30^\circ\right) ,\qquad S_2 \, \widehat = \, \left( 2 | -45^\circ\right)\,.
+\]
+\begin{enumerate}
+\item Bestimmen Sie die Polarkoordinaten von \(S_1\cdot S_2\) und bestimmen Sie die resultierende komplexe Zahl in kartesischer Form.
+\item Berechnen Sie das Verhältnis \(S_1 / S_2\) in Polarform.
+\end{enumerate}
+\textbf{Lösungsskizze}
+ \textbf{Produkt: Beträge multiplizieren, Winkel addieren}
+    \[
+	    S_1 \cdot S_2 \, \widehat = \, \left(  5 \cdot 2 \, |\, (30^\circ + (-45^\circ) \right) = \left( 10 \, |\, -15^\circ \right)
+    \]
+    \[
+    -15^\circ = -\frac{15}{180}\pi = -\frac{\pi}{12}\ \mathrm{rad} \Rightarrow 
+    S_1\cdot S_2 = 10 \left(\cos\Big(\frac{\pi}{12}\Big) - i\, \sin\Big(\frac{\pi}{12}\Big)\right) = 10 \, e^{- i\, \pi/12}\,.
+    \]
+
+\textbf{Division: Beträge dividieren, Winkel subtrahieren}
+    \[
+	    \frac{S_1}{S_2} \, \widehat = \, \left( \frac{5}{2} \, |\, 30^\circ - (-45^\circ)\right) = \left( 2.5 \, | \, 75^\circ \right)
+    \]
+    
+    \[
+    75^\circ = \frac{75}{180}\pi = \frac{5\pi}{12}\ \mathrm{rad} \Rightarrow 
+    \frac{S_1}{ S_2} = \frac52\, \left(\cos\Big(\frac{5\pi}{12}\Big) + i\, \sin\Big(\frac{5\pi}{12}\Big)\right) = \frac52\, e^{i\,5\pi/12}.
+    \]
+
+\newpage
+\section*{Signalübertragung}
+Ein Gebäude kann als einfacher Filter betrachtet werden, der auf zeitlich schwankende Signale reagiert. Die Außentemperatur schwankt sinusförmig über den Tag:
+
+\[
+T_{\mathrm{out}}(t)=T_0 \cos(\omega t),
+\]
+
+und das Signal wird vom Raum durch die komplexe Transferfunktion
+
+\[
+H = \frac{1}{1+i \omega \tau}
+\]
+
+gefiltert, wobei $\tau>0$ die Zeitkonstante des Raums beschreibt. Die komplexe Amplitude der Innenraumtemperatur ist daher
+
+\[
+\tilde T_{\mathrm{in}} = H \cdot T_0.
+\]
+
+\begin{enumerate}
+    \item Berechnen Sie $\tilde T_{\mathrm{in}}$ in \textbf{kartesischer Form} $(A_{\mathrm{Re}} + i A_{\mathrm{Im}})$.
+    \item Bestimmen Sie die \textbf{Polarkoordinaten} von $\tilde T_{\mathrm{in}}$.
+    \item Bestimmen Sie den Realteil der zeitabhängigen Funktion $\tilde T_{\mathrm{in}}$ als harmonische Schwingung und und erklären Sie, warum der die Amplitude reduziertund eine Phasenverschiebung erzeugt wird. \textbf{Hinweis:} eine harmonische Schwingung besitzt die Form
+    \[
+    T_{\mathrm{in}}(t) = R \cdot \cos(\omega t + \varphi_0)
+    \]
+\end{enumerate}
+
+\textbf{Lösungsskizze}
+Betrachten wir die Aufgabe mit den gegebenen Annahmen:
+\[
+T_{\mathrm{out}}(t)=T_0\cos(\omega t),\qquad
+H=\frac{1}{1+i\omega\tau},\qquad
+\tilde T_{\mathrm{out}}=T_0 .
+\]
+Die komplexe Innenraum-Amplitude ist
+\[
+\tilde T_{\mathrm{in}} = H\,\tilde T_{\mathrm{out}} = \frac{T_0}{1+i\omega\tau}.
+\]
+
+\begin{itemize} 
+	\item Um die kartesische Form zu erhalten, multiplizieren wir Zähler und Nenner mit dem konjugierten Nenner:
+\[
+\tilde T_{\mathrm{in}}
+= T_0\cdot\frac{1 - i\omega\tau}{(1 + i\omega\tau)(1 - i\omega\tau)}
+= T_0\cdot\frac{1 - i\omega\tau}{1 + (\omega\tau)^2}.
+\]
+Daraus liest man direkt die Real- und Imaginärteile ab:
+\[
+\boxed{\;\tilde T_{\mathrm{in}} = A_{\mathrm{Re}} + i\,A_{\mathrm{Im}}
+\quad\text{mit}\quad
+A_{\mathrm{Re}}=\frac{T_0}{1+(\omega\tau)^2},\quad
+A_{\mathrm{Im}}=-\frac{T_0\,\omega\tau}{1+(\omega\tau)^2}\;. \;}
+\]
+
+Hinweis: \(A_{\mathrm{Im}}\) ist hier negativ (die Formel zeigt das Vorzeichen).
+
+\item 
+Eine Anregung  Cosinus-Funktion lässt sich als Realteil eines komplexen Exponentials schreiben (Euler-Formel):
+\[
+\cos(\omega t)=\Re\{e^{i\omega t}\}.
+\]
+Daher schreiben wir die (komplexe) Eingangsschwingung als
+\[
+\tilde T_{\mathrm{in}}(t)=T_0\, e^{i\omega t},
+\]
+und erhalten die reale physikalische Anregung später als Realteil:
+\[
+	T_{\mathrm{out}}(t)=\mathrm{Re}\left( \tilde s_{\mathrm{in}}(t)\right) =\mathrm{Re}\left( T_0 e^{i\omega t}\right) \,.
+\]
+
+Schreiben wir \(\tilde T_{\mathrm{in}}=A_{\mathrm{Re}}+iA_{\mathrm{Im}}\) und \(e^{i\omega t}=\cos(\omega t)+i\sin(\omega t)\), so ergibt sich
+\[
+\begin{aligned}
+T_{\mathrm{in}}(t)
+	&= \mathrm{Re}\left( (A_{\mathrm{Re}} +iA_{\mathrm{Im}})\,(\cos\omega t + i\sin\omega t)\right) \\
+	&= \mathrm{Re}\left( A_{\mathrm{Re}} \,\cos\omega t - A_{\mathrm{Im}} \right)\sin\omega t
+     + i\big(A_{\mathrm{Re}}\sin\omega t + A_{\mathrm{Im}}\cos\omega t\big)\} \\
+	&= A_{\mathrm{Re}}\cos\omega t - A_{\mathrm{Im}}\sin\omega t.
+\end{aligned}
+\]
+Damit sind die beiden Anteile klar:
+\begin{itemize}
+  \item \emph{In-Phase-Anteil:} \(\;A_{\mathrm{Re}}\cos(\omega t)\) — dieser Teil schwingt mit derselben Phase wie die Außentemperatur.
+  \item \emph{Quadratur-Anteil:} \(\;-A_{\mathrm{Im}}\sin(\omega t)\) — dieser Teil ist um \(90^\circ\) phasenverschoben (sinusförmig).
+\end{itemize}
+
+\item Man kann die Summe auch als einen einzigen Kosinus mit Amplitude und Phasenwinkel schreiben:
+\[
+T_{\mathrm{in}}(t)=|\tilde T_{\mathrm{in}}| \cos\!\big(\omega t + \varphi\big),
+\]
+wobei Betrag und Phase von \(\tilde T_{\mathrm{in}}\) sind:
+\[
+|\tilde T_{\mathrm{in}}| = \frac{T_0}{\sqrt{1+(\omega\tau)^2}},\qquad
+\varphi = \arg(\tilde T_{\mathrm{in}}) = -\arctan(\omega\tau).
+\]
+Also
+\[
+\boxed{\,T_{\mathrm{in}}(t) = \frac{T_0}{\sqrt{1+(\omega\tau)^2}}
+\;\cos\!\Big(\omega t - \arctan(\omega\tau)\Big)\,}.
+\]
+
+\bigskip
+\textbf{Zusatz: Physikalische Interpretation (einfach)}
+\begin{itemize}
+  \item \textbf{Abschwächung (Dämpfung):} Der Faktor \(\dfrac{1}{\sqrt{1+(\omega\tau)^2}}\) verringert die Amplitude der Innenraumtemperatur gegenüber der Außentemperatur. Je größer \(\omega\tau\) (häufigere Schwankungen oder träger Raum), desto stärker die Dämpfung. Für sehr langsame Schwankungen (\(\omega\tau\ll 1\)) ist die Dämpfung klein (Faktor \(\approx 1\)). Für sehr schnelle Schwankungen (\(\omega\tau\gg1\)) wird die Innenantwort stark gedämpft (\(\sim 1/(\omega\tau)\)).
+  \item \textbf{Phasenverzögerung (Nachhinken):} Der Winkel \(\varphi = -\arctan(\omega\tau)\) ist negativ, d.\,h. die Innenraumtemperatur \emph{hinkt der Außentemperatur nach}. Für kleine Frequenzen ist die Verzögerung klein (\(\varphi\approx -\omega\tau\)), für große Frequenzen nähert sich die Verzögerung \(-90^\circ\) an.
+  \item \textbf{Anschaulich:} Der Raum wirkt wie ein thermisches ``Speicher–Filter'': er kann langsame Änderungen gut folgen, schnelle Änderungen aber nicht — sie werden gepuffert und verzögert.
+\end{itemize}
+\end{itemize}
+
+\newpage
+\section*{Aufgabe: Profilähnlichkeit}
+Ein Energiemanagementsystem erfasst über vier Zeitintervalle (oder vier Frequenzbänder) die Leistungsanteile eines Systems. Zwei unterschiedliche Betriebszustände liegen uns vor, dargestellt als Vektoren im $\mathbb R^4$:
+
+Die Vektoren
+\[
+\vec a=
+\begin{pmatrix}
+3\\2\\1\\0
+\end{pmatrix},
+\qquad
+\vec b=
+\begin{pmatrix}
+1\\2\\3\\2
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Berechnen Sie das Skalarprodukt $\langle \vec a, \vec b\rangle$.
+\item Bestimmen Sie die Normen $\|\vec a\|$ und $\|\vec b\|$.
+\item Bestimmen Sie den Winkel zwischen den beiden Vektoren.
+\item Interpretieren Sie das Ergebnis qualitativ.
+\end{enumerate}
+\textbf{Lösungsskizze}
+\begin{enumerate}
+\item
+\[
+\vec a\cdot\vec b
+=3\cdot1+2\cdot2+1\cdot3+0\cdot2
+=10
+\]
+
+\item
+\[
+\|\vec a\|=\sqrt{3^2+2^2+1^2+0^2}=\sqrt{14},
+\quad
+\|\vec b\|=\sqrt{1^2+2^2+3^2+2^2}=\sqrt{18}
+\]
+
+\item
+\[
+\cos\varphi=\frac{10}{\sqrt{14}\sqrt{18}}
+=\frac{10}{\sqrt{252}}
+\]
+
+\item
+	Der Winkel ist kleiner als $\pi/2$: Die Profile sind ähnlich, aber nicht proportional. ( In der Nachrichtentechnik bedeutet dies eine gewisse Korrelation, in der Energietechnik eine teilweise Übereinstimmung der Lastverläufe.)
+\end{enumerate}
+
+\newpage
+\section*{Aufgabe: Signalrekonstruktion}
+
+Ein Signal $s(t)$ wird durch zwei Basisfunktionen $f_1(t)$ und $f_2(t)$ beschrieben:
+\[
+s(t) = a\cdot f_1(t) + b\cdot f_2(t)
+\]
+
+Es liegen uns Messungen zu drei Zeitpunkten vor:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+$t$ & $f_1(t)$ & $f_2(t)$ & $s(t)$ \\
+\hline
+1 & 1 & 0 & 3 \\
+2 & 0 & 1 & 4 \\
+3 & 1 & 1 & 7
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item Stellen Sie das System $A\,\vec x=\vec b$ für $\vec x=(a,b)^T$ auf.
+\item Prüfen Sie, ob das System lösbar ist und falls ja, bestimmen Sie eine Lösung.
+\end{enumerate}
+\textbf{Lösungsskizze}
+
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Antenne I (Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase einer kreisförmigen Antennenfläche wird die effektive Strahlungsfläche untersucht. Die Fläche wird idealisiert als vollständig ebene Scheibe modelliert, aus der später Aussparungen für technische Komponenten angebracht werden. 
+
+Der Entwurf sieht eine kreisförmige Fläche mit einer konzentrischen, kreisförmigen Aussparung vor. Die Aussparung ist beispielsweise ein Lüftungsschacht oder ein Fenster. 
+
+Auf den Konstruktionsplänen ist die Länge der Sehne des äußeren Kreises, die tangential am Rand der Aussparung liegt, als Strecke $AB$ mit Länge \(|AB| = 36\) angegeben.  Wie groß ist die Strahlungsfläche?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_1.png}
+\end{center}
+
+\textbf{Lösung: \(A = 18^2\cdot \pi\)}
+
+\newpage
+\section*{Aufgabe: Geometrische Entwurfsaufgabe Antenne II (Gleichungssystem / Kreisgleichung)}
+
+Im Rahmen der Entwurfsphase einer kreisförmigen Antennenfläche wird die effektive Strahlungsfläche untersucht. Die Fläche wird idealisiert als vollständig ebene Scheibe modelliert, aus der später Aussparungen für technische Komponenten angebracht werden. 
+
+Der Entwurf sieht eine kreisförmige Grundfläche mit drei kreisförmigen Aussparungen vor. In den Konstruktionspänen ist der Durchmesser \(D\) der Grundfläche angegeben mit \(D=36\). Die Radien der Aussparungen sind nicht angegeben. Können wir allein durch die geometrische Anordnung der Aussparungen berechnen wie groß die die Strahlungsfläche ist? Wenn ja, wie groß ist sie?
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Flaeche_2.png}
+\end{center}
+
+\textbf{Lösung: \(A = 115\cdot \pi\) (\(R=9, r=8\))}
+
+\newpage
+\section*{Aufgabe}
+\textbf{Lösungsskizze}
+
+
+\end{document}
+
+

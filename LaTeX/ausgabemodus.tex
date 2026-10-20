@@ -1,0 +1,25 @@
+% Einmal in der Praeambel des Hauptdokuments nach hyperref laden.
+% true: Theorie, Aufgaben und Loesungen gemeinsam; false: getrennte Ausgaben.
+\newif\ifintegriereaufgaben
+\integriereaufgabenfalse
+
+% Fuehrt den gesamten Inhalt nur bei vorhandenem Label aus.
+% Wie normale Querverweise benoetigt die Erkennung mehrere LaTeX-Laeufe.
+\newcommand{\wennreferenzvorhanden}[2]{%
+  \ifcsname r@#1\endcsname
+    #2%
+  \fi
+}
+
+% Verlinkte Nummer bei vorhandenem Ziel, andernfalls keinerlei Ausgabe.
+\newcommand{\abschnittsverweis}[1]{%
+  \wennreferenzvorhanden{#1}{\ref{#1}}%
+}
+
+% Gleichbedeutender Name fuer bestehende Theoriehinweise.
+\newcommand{\skriptverweis}[1]{\abschnittsverweis{#1}}
+
+% Ohne Ziel wird auch kein leerer Randnotiz-Kasten angelegt.
+\newcommand{\randverweis}[1]{%
+  \wennreferenzvorhanden{#1}{\marginpar{\small\abschnittsverweis{#1}}}%
+}

@@ -1,0 +1,278 @@
+\section{Rationale Funktionen}\label{MA1-rationale-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth} }
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem rationale und gebrochenrationale Funktionen erkennen &\\
+\tabitem Definitionslücken, Nullstellen und Polstellen systematisch bestimmen &\\
+\tabitem hebbare Definitionslücken von Polstellen unterscheiden &\\
+\tabitem das Verhalten für \(x\to\pm\infty\) und in der Nähe von Polstellen untersuchen &\\
+\tabitem Asymptoten gebrochenrationaler Funktionen bestimmen &\\
+\tabitem gebrochenrationale Funktionen anhand ihrer charakteristischen Eigenschaften qualitativ skizzieren &\\
+\tabitem eine gebrochenrationale Funktion aus gegebenen Eigenschaften konstruieren &\\[.5\normalbaselineskip]
+    \midrule
+	  \textbf{Voraussetzungen}& \\[.5\normalbaselineskip]
+\tabitem Polynome, Nullstellen und Linearfaktorzerlegung & \abschnittsverweis{MA1-polynome}\\
+\tabitem algebraische Gleichungen & \abschnittsverweis{MA1-algebraische-gleichungen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-rationale-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+ \fi
+
+\subsection{Was ist eine rationale Funktion?}
+
+Eine Funktion \(f\) heißt \textbf{rationale Funktion}
+(\emph{rational function}), wenn ihre Abbildungsvorschrift in der Form
+\[
+f(x)=\frac{p(x)}{q(x)}
+\]
+mit \underline{Polynome}\randverweis{MA1-polynome} \(p\) und \(q\) und \(q\not\equiv0\) dargestellt werden kann.
+
+Der maximale \underline{Definitionsbereich}\randverweis{MA1-funktionen} besteht aus allen reellen Zahlen, für die
+das Nennerpolynom nicht null ist:
+\[
+D_f
+=
+\{x\in\mathbb R:q(x)\neq0\}
+=
+\mathbb R\setminus\{x\in\mathbb R:q(x)=0\}.
+\]
+Die Nullstellen des Nennerpolynoms sind die \textbf{Definitionslücken} der rationalen Funktion. Um Definitionslücken zu finden ist also eine \underline{algebraische} \underline{Gleichung}\randverweis{MA1-algebraische-gleichungen} zu lösen.
+
+\noindent \textbf{Bemerkungen:}
+	\begin{itemize}
+\item Polynome sind besonders einfache rationale Funktionen. Bei ihnen ist das Nennerpolynom eine Konstante $(\not=0)$,
+\item Ist nach vollständigem Kürzen der Funktion das Nennerpolynom nicht konstant, so heißt die Funktion \textbf{gebrochenrational}.\marginpar{Aufgabe}
+	\end{itemize}
+
+Die Definitionslücken einer gebrochenrationalen Funktion können zu \textbf{Polstellen} führen.  
+
+Eine Definitionslücke muss nicht notwendigerweise eine Polstelle sein.  Entscheidend ist, ob sie beim Kürzen gemeinsamer Faktoren von Zähler und Nenner verschwindet.
+
+\noindent{\textbf{Merke:}} Bleibt der entsprechende Linearfaktor nach vollständigem Kürzen im Nenner erhalten, liegt eine \textbf{Polstelle} (\emph{pole}) vor. Verschwindet der Faktor vollständig aus dem Nenner, liegt eine \textbf{hebbare Definitionslücke} (\emph{removable singularity}) vor.	
+
+In der Nähe einer Polstelle wachsen die Funktionswerte betragsmäßig unbeschränkt. Je nach \textbf{Vielfachheit} und Vorzeichen können dabei unterschiedliche Verläufe auftreten.  Ist nach vollständigem Kürzen der Faktor
+\[
+(x-x_0)^k
+\]
+im Nenner enthalten, während der Zähler bei \(x_0\) von null verschieden ist,
+so besitzt \(f\) bei \(x_0\) eine Polstelle der Vielfachheit \(k\). Für das Verhalten beim Überschreiten der Polstelle gilt:\marginpar{Aufgaben}
+\begin{itemize}
+    \item Ist \(k\) ungerade, wechselt die Funktion an der Polstelle ihr Vorzeichen.
+    \item Ist \(k\) gerade, findet kein Vorzeichenwechsel statt.
+\end{itemize}
+
+%\subsection{Anwendung: $z$-Transformation}
+%
+%Rationale Funktionen treten vor allem auf, wenn man Filter oder Regelungsanlagen beschreibt, die Rückkopplungen enthalten. Eines der einfachsten Beispiele dafür sind digitale Filter (genauer gesagt, kausale lineare Filter). Hier arbeitet man mit Signalen, die mit einer festen Frequenz abgetastet werden. Sie können zueinander addiert, mit Konstanten multipliziert und um eine feste Anzahl von Abtastzyklen verzögert werden - zum Beispiel so:
+%\begin{tcolorbox}
+%  Bild
+%\end{tcolorbox}
+%
+%Jedes  Signal,  das  hier  vorkommt,  lässt  sich  in  eine  rationale  Funktion  einer künstlichen Variablen $z$ übersetzen: 
+%\begin{tcolorbox}
+%  Bild
+%  $ x\mathrm{-Achsenabschnitt} \, z ^{-\mathrm{Nummer des Samples}} $
+%  $ \mathrm{diskretes Signal} \to 1 - 1x^{-1} z^{-1} + 2 z^{-2} - 2 z^{-3} + z^{-4} $
+%\end{tcolorbox}
+%
+%Die Funktion auf der rechten Seite nennt sich die $z$-Transformierte des Signals. Die Summe zweier Signale hat die Summe der beiden $z$-Transformierten; ein festes Vielfaches eines Signals hat das Vielfache seiner $z$-Transformierten. Verzögert man ein Signal um $n$ Abtastzyklen, wird seine $z$-Transformierte mit $z^{-n}$ multipliziert. Ist $x(z)$ die $z$-Transformierte des Eingangssignals des Filters aus dem Beispiel und $y(z)$ die $z$-Transformierte des Ausgangssignals, findet man:
+%\begin{tcolorbox}
+%  $ x(z) \to  x(z) z^{-n}\,. $
+%\end{tcolorbox}
+%
+%Die Wirkung des Filters wird also durch eine rationale Funktion beschrieben. Digitale Filter zu entwerfen, heißt vor allem, sich solche rationalen Funktionen passend aus zu denken. Man kann nun sagen, wie das Filter auf einen Impuls Nummer des Samples 
+%\begin{tcolorbox}
+%\end{tcolorbox}
+%
+%reagiert (die sogenannte Impulsantwort):
+%\begin{tcolorbox}
+%\end{tcolorbox}
+
+Es kann vorkommen, dass Nullstellen der Zählerfunktion auch gleichzeitig Nullstellen der Nennerfunktion sind, zum Beispiel hier:
+\[f:x\mapsto \dfrac{ (x - 2)\cdot (x + 1) }{ ( x - 2) \cdot (x - 3)\cdot (x + 1)}\,.\]
+Können wir so eine Funktion kürzen? Ja, aber nur unter Beibehaltung des Definitionsbereichs:
+\begin{exabox}{Hebbare Definitionslücke und Polstelle}{ }
+	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/rationale_funktionen_hebbare_luecken_polstelle.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		Das Bild zeigt den Graph der Funktion \[  f: x \mapsto \dfrac{p(x)}{q(x)} = \dfrac{ (x - 2)\cdot (x+1)}{ (x - 2) \cdot (x - 3)\cdot (x + 1)}\,.\] 
+
+		Den Funktionsverlauf von \(f\) analysieren wir wie folgt:
+		\begin{itemize}
+			\item Nullstellen des Zählers: \(N_p = \{-1, 2\}\).
+			\item Nullstellen des Nenners: \(N_q = \{-1,2,3\}\).
+			\item Definitionsbereich: \(D_f = \mathbb R\setminus \{ -1,2,3\} \)
+			\item Nullstellen von $f$: \( N_f = \{ \} \not= N_p\)!
+			\item Polstellen von \(f\): \(P_f = \{3\} \not= N_q\)!
+			\item Asymptote von \(f\) für \(|x|\to\infty\): die \(x\)-Achse
+		\end{itemize}
+\end{minipage}
+\end{exabox}
+Die gebrochenrationale Funktion \(f\) besitzt drei Definitionslücken, von denen eine eine Polstelle mit Vorzeichenwechsel ist. Der Bruch ist nicht vollständig gekürzt -- die Funktionsabbildung kann noch vereinfacht werden:
+		\[
+			f: \mathbb R\setminus \{ -1, 2, 3\} \to \mathbb R\,, \dfrac{ (x-2)\cdot (x+1) }{(x-2)\cdot (x-3)\cdot (x+1)} = \dfrac{1}{x-3}\,. 
+\]
+
+Das Beispiel zeigt: eine Nullstelle des Zählerpolynoms ist nur dann eine Nullstelle der rationalen Funktion, wenn sie zum Definitionsbereich der Funktion gehört. Ist sie gleichzeitig eine Nullstelle des Nennerpolynoms, liegt dort zunächst eine Definitionslücke vor.
+
+Die Definitionslücken, die man in der gekürzten Variante nicht mehr erkennen kann, erzeugen keine Polstellen, sondern "\,Löcher"\, im Graphen. In einer Zeichnung markiert man diese Löcher normalerweise mit einem kleinen, unausgefüllten Kringel auf dem Funktionsgraphen. 
+
+Ist die Definitionslücke bei $x_0$ mehrmals vorhanden, d.h. auch nach vollständigem Kürzen der Funktion ist ein \underline{Linearfaktor}\randverweis{MA1-polynome} $(x-x_0)$ im Nenner enthalten, so findet man bei $x_0$ nach wie vor eine Polstelle und kein "\,Loch"\, im Graphen. Ein Beispiel:\marginpar{Aufgaben}
+\begin{exabox}{Kürzen bei einer Polstelle}{ }
+	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/rationale_funktionen_polstelle_nach_kuerzen.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		Das Bild zeigt den Graph der Funktion \[  f: x \mapsto \dfrac{p(x)}{q(x)} = \dfrac{(x+1)\cdot (x+2)}{(x+2)^2}\,.\] 
+
+		Den Funktionsverlauf von \(f\) analysieren wir wie folgt:
+		\begin{itemize}
+			\item Nullstellen des Zählers: \(N_p = \{-1,-2\}\).
+			\item Nullstellen des Nenners: \(N_q = \{-2\}\).
+			\item Definitionsbereich von \(f\): \(D =\mathbb R\setminus \{ -2\} \)
+			\item Nullstellen von $f$: \( N_f = \{-1\} \not= N_p\)!
+			\item Polstellen von \(f\): \(P_f = \{-2\} \not= N_q \)!
+			\item Asymptote von \(f\) für \(|x|\to\infty\): \(x\mapsto 1\)
+		\end{itemize}
+	\end{minipage}	
+\end{exabox}
+
+Die gebrochenrationale Funktion \(f\) besitzt bei \(x=-2\) eine Definitionslücke. Obwohl ein gemeinsamer Linearfaktor gekürzt werden kann, bleibt der Faktor \((x+2)\) einmal im Nenner erhalten. Die Definitionslücke ist daher eine Polstelle mit Vorzeichenwechsel.  Der Bruch ist nicht vollständig gekürzt -- die Funktionsabbildung kann noch vereinfacht werden:
+		\[
+			f: \mathbb R\setminus \{ -2\} \to \mathbb R\,, x\to \dfrac{ (x+1)\cdot (x+2) }{(x+2)^2} = \dfrac{x+1}{x+2}\,. 
+\]
+
+Und noch ein Beispiel
+\begin{exabox}{Hebbare Definitionslücke ohne Polstelle}{ }
+	\hspace{-0.3cm}\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/rationale_funktionen_gerade_hebbare_luecke.png}
+\end{minipage}
+	\begin{minipage}{0.6\textwidth}
+		Das Bild zeigt den Graph der Funktion \[ f: x \mapsto \dfrac{p(x)}{q(x)}= \dfrac{ (x-1)^2}{(x-1)}\,.\]
+
+		Den Funktionsverlauf von \(f\) analysieren wir wie folgt:
+		\begin{itemize}
+			\item Nullstellen des Zählers: \(N_p = \{1\}\).
+			\item Nullstellen des Nenners: \(N_q = \{1\}\).
+			\item Definitionsbereich von \(f\): \(D= \mathbb R\setminus \{ 1\} \)
+			\item Nullstellen von $f$: \( N_f = \{\}\)!
+			\item Polstellen von \(f\): \(P_f = \{\} \)
+		\end{itemize}
+		
+\end{minipage}
+\end{exabox}
+		Die gebrochenrationale Funktion \(f\) besitzt eine Definitionslücke, keinen Pol und keine Nullstelle. Der Bruch ist nicht vollständig gekürzt -- die Funktionsabbildung kann noch vereinfacht werden:
+		\[
+			f: \mathbb R\setminus \{ 1\} \to \mathbb R\,, \dfrac{ (x-1)^2}{(x-1)} = x-1\,. 
+\]
+
+\noindent\textbf{Bemerkung:}
+Beim Kürzen einer rationalen Funktion bleibt der ursprüngliche Definitionsbereich erhalten. Eine durch Kürzen verschwundene Definitionslücke wird dadurch nicht zu einem Element des Definitionsbereichs.  
+
+\subsection{Asymptoten für \(|x|\to\infty\)}
+
+Das Verhalten einer rationalen Funktion für $x\to \pm\infty$ folgt grob aus dem Grad des Zählerpolynoms und dem Grad des Nennerpolynoms:
+
+\begin{theorembox}{Asymptotisches Verhalten rationaler Funktionen}{ }
+
+Es sei
+\[
+f(x)=\frac{p(x)}{q(x)}
+\]
+mit
+\[
+\deg(p)=n,
+\qquad
+\deg(q)=m.
+\]
+
+Dann gilt für \(|x|\to\infty\):
+
+\begin{itemize}
+	\item Für \(n<m\) nähert sich \(f(x)\) der horizontalen Asymptote \( y=0 \). 
+	\item Für \(n=m\) nähert sich \(f(x)\) der horizontalen Asymptote \( y=\frac{a_n}{b_m}\), wobei \(a_n\) und \(b_m\) die führenden Koeffizienten von Zähler und Nenner sind.
+    \item Für \(n>m\) liefert die Polynomdivision
+    \[
+    f(x)=s(x)+\frac{r(x)}{q(x)},
+    \qquad
+    \deg(r)<\deg(q).
+    \]
+    Da
+    \[
+    \frac{r(x)}{q(x)}\to0
+    \qquad\text{für}\qquad |x|\to\infty,
+    \]
+    beschreibt das Polynom \(s(x)\) das asymptotische Verhalten von \(f\).
+\end{itemize}
+
+\end{theorembox}
+
+Im letzteren Fall kann man sogar noch genauer feststellen, wie die rationale Funktion gegen Unendlich geht: Sie schmiegt sich an die sogenannte Asymptote an, das ist der ganzrationale Anteil der \underline{Polynomdivision}\randverweis{MA1-polynome}.
+\begin{exabox}{Asymptote für $x\to \pm\infty$}{ }\label{exa:asymptote}
+	$\dfrac{x^3+4\cdot x^2 - 3\cdot x + 2}{ 2\cdot x-1} = \underbrace{ \frac12 \cdot x^2 + \frac94 \cdot x - \frac38}_{\displaystyle{\textnormal{Asymptote}}} + \underbrace{\displaystyle{\frac{\frac{13}{8}}{2\cdot x-1}}}_{ \displaystyle{\to 0}}\,. $
+\end{exabox}
+
+\noindent  \textbf{Bemerkungen:}\marginpar{Aufgaben}
+\begin{itemize}
+	\item Wenn das Zählerpolynom und das Nennerpolynom denselben Grad haben, dann schmiegt sich die Funktion an eine horizontale Gerade an. Man spricht auch von \textbf{horizontaler Asymptote}. 
+	\item Wenn der Grad des Zählerpolynoms um eins größer ist als der des Nennerpolynoms, ergibt sich also eine \textbf{schräge Asymptotengerade}. Ist der Grad des Zählerpolynoms um zwei größer als der des Nennerpolynoms, ergibt sich eine quadratische Funktion wie in Beispiel \ref{exa:asymptote}.
+	\item Hat eine gebrochenrationale Funktion eine Polstelle, so spricht man von einer \textbf{vertikalen Asymptote}. 
+\end{itemize}
+
+\begin{exabox}{Konstruktion einer gebrochenrationalen Funktion}{ }
+
+Gesucht ist eine gebrochenrationale Funktion \(f\) mit folgenden Eigenschaften:
+\begin{itemize}
+    \item \(f\) besitzt bei \(x=-1\) eine doppelte Nullstelle,
+    \item \(f\) besitzt bei \(x=2\) eine doppelte Polstelle,
+    \item für \(|x|\to\infty\) nähert sich \(f\) der horizontalen
+          Asymptote \(y=3\).
+\end{itemize}
+
+Die doppelte Nullstelle bei \(x=-1\) führt auf den Linearfaktor
+\[
+(x+1)^2
+\]
+im Zähler. Damit ergibt sich zunächst der Ansatz
+\[
+f(x)
+=
+a\cdot\frac{(x+1)^2}{(x-2)^2}.
+\]
+
+Der Faktor
+\[
+(x-2)^2
+\]
+im Nenner erzeugt bei \(x=2\) eine doppelte Polstelle. Da Zähler und Nenner
+denselben Grad besitzen, wird die horizontale Asymptote durch das Verhältnis
+der führenden Koeffizienten bestimmt. Es gilt
+\[
+\lim_{|x|\to\infty}
+a\cdot\frac{(x+1)^2}{(x-2)^2}
+=
+a.
+\]
+Aus der geforderten horizontalen Asymptote \(y=3\) folgt daher
+\[
+a=3.
+\]
+
+Damit ergibt sich die gebrochenrationale Funktion
+\[
+	f:\mathbb R\setminus\{2\} \to \mathbb R, x \mapsto  
+=
+3\cdot\frac{(x+1)^2}{(x-2)^2}
+\]
+
+\end{exabox}

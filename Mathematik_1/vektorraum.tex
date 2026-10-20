@@ -1,0 +1,437 @@
+\section{Vektorraum}\label{MA1-vektorraum}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+\textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem den Begriff des Vektorraums erklären und Beispiele für Vektorräume
+über \(\mathbb R\) und \(\mathbb C\) einordnen &\\
+\tabitem Linearkombinationen von Vektoren bilden und Erzeugendensysteme
+interpretieren &\\
+\tabitem lineare Unabhängigkeit und lineare Abhängigkeit erklären und
+anhand einfacher Beispiele interpretieren &\\
+\tabitem die Begriffe Basis und Dimension eines Vektorraums erklären und
+ihren Zusammenhang beschreiben &\\
+\tabitem Geraden durch den Ursprung als eindimensionale Untervektorräume
+interpretieren (+) &\\[.5\normalbaselineskip]
+    \midrule
+      \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+      \tabitem Vektoren in $\mathbb R^n$ (Addition und Skalierung, Skalarprodukt) & \abschnittsverweis{MA1-vektoren}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-vektorraum-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist ein Vektorraum?}
+
+Im vorangegangenen Abschnitt wurden zunächst Vektoren in \(\mathbb R^n\) und \(\mathbb C^n\) betrachtet. Zwei Vektoren desselben Raumes können addiert werden, und ein Vektor kann mit einem Skalar multipliziert werden. Dabei entsteht jeweils wieder ein Vektor desselben Raumes.
+
+Diese beiden Operationen besitzen außerdem eine Reihe vertrauter Recheneigenschaften. Die Vektoraddition ist beispielsweise assoziativ und kommutativ. Es gibt einen Nullvektor, und zu jedem Vektor existiert ein Gegenvektor. Auch die Skalarmultiplikation verträgt sich in bestimmter Weise mit der Addition.
+
+Entscheidend ist nun, dass diese Eigenschaften nicht an Spalten aus reellen oder komplexen Zahlen gebunden sind. Immer wenn eine Menge von Objekten mit einer Addition und einer Skalarmultiplikation ausgestattet ist und dieselben grundlegenden Rechengesetze erfüllt, entsteht dieselbe algebraische Struktur.
+
+Diese Struktur heißt \textbf{Vektorraum} (\emph{vector space}). Die Elemente eines Vektorraums heißen \textbf{Vektoren} (\emph{vectors}), unabhängig davon, ob sie geometrisch als Pfeile dargestellt werden können.
+
+\begin{defbox}{Vektorraum}{ }
+
+Es sei \(\mathbb K\) ein Körper, hier insbesondere
+\(\mathbb K=\mathbb R\) oder \(\mathbb K=\mathbb C\).
+Eine nichtleere Menge \(\mathbb V\) heißt
+\textbf{Vektorraum} (\emph{vector space}) über \(\mathbb K\), wenn auf
+\(\mathbb V\)
+
+eine Vektoraddition
+\[
++:\mathbb V\times\mathbb V\to\mathbb V,
+\qquad
+(\vec u,\vec v)\mapsto
+\vec u+\vec v,
+\]
+und eine Skalarmultiplikation
+\[
+\cdot:\mathbb K\times\mathbb V\to\mathbb V,
+\qquad
+(\lambda,\vec v)\mapsto\lambda\cdot \vec v
+\]
+definiert sind und für alle
+\(\vec u,\vec v,\vec w\in\mathbb V\) sowie
+\(\lambda,\mu\in\mathbb K\) die folgenden Rechengesetze gelten:
+
+\begin{enumerate}
+    \item
+    \(\vec u+\vec v
+    =\vec v+\vec u\),
+
+    \item
+    \((\vec u+\vec v)+\vec w
+    =\vec u+(\vec v+\vec w)\),
+
+    \item es existiert ein Nullvektor
+    \(\vec 0\in\mathbb V\) mit
+    \(\vec v+\vec 0=\vec v\),
+
+    \item zu jedem \(\vec v\in\mathbb V\) existiert ein
+    Gegenvektor \(-\vec v\) mit
+    \(\vec v+(-\vec v)=\vec 0\),
+
+    \item
+    \(\lambda\cdot (\vec u+\vec v)
+    =\lambda\cdot \vec u+\lambda\cdot \vec v\),
+
+    \item
+    \((\lambda+\mu)\cdot \vec v
+    =\lambda\cdot \vec v+\mu\cdot \vec v\),
+
+    \item
+    \((\lambda\cdot \mu)\cdot \vec v
+    =\lambda\cdot (\mu\cdot \vec v)\),
+
+    \item
+    \(1\cdot \vec v=\vec v\).
+\end{enumerate}
+
+\end{defbox}
+
+Die Bezeichnung „Vektor“ beschreibt damit nicht die äußere Form eines mathematischen Objekts, sondern seine Rolle innerhalb einer linearen Struktur. Spaltenvektoren sind wichtige Beispiele für Vektoren, aber nicht die einzigen.
+
+Ein besonders wichtiges Beispiel zeigt, wie weit der Begriff des Vektors über geometrische Pfeile und Zahlenspalten hinausreicht.
+
+Auch Funktionen können addiert und mit Skalaren multipliziert werden. Für zwei Funktionen \(f,g:\mathbb R\to\mathbb R\) und \(\lambda\in\mathbb R\) werden die Operationen punktweise definiert:
+\[
+(f+g)(x)=f(x)+g(x)
+\]
+und
+\[
+(\lambda f)(x)=\lambda \cdot  f(x).
+\]
+
+Das Ergebnis ist jeweils wieder eine Funktion von \(\mathbb R\) nach \(\mathbb R\). Auch die übrigen Vektorraumaxiome werden von diesen Operationen erfüllt. Damit bilden beispielsweise die reellwertigen Funktionen auf \(\mathbb R\) einen Vektorraum.
+
+\begin{exabox}{Funktionen als Vektoren}{ }
+
+Die Funktionen
+\[
+f(x)=e^x
+\qquad\text{und}\qquad
+g(x)=\sin(x)
+\]
+können als Vektoren eines Funktionenraumes aufgefasst werden.
+
+Die Skalarmultiplikation mit \(3\) liefert
+\[
+(3f)(x)=3e^x.
+\]
+
+Die Addition zweier Funktionen liefert beispielsweise
+\[
+(\sin+\cos)(x)=\sin(x)+\cos(x).
+\]
+
+Der Nullvektor dieses Vektorraums ist die \textbf{Nullfunktion}
+\[
+0:\mathbb R\to\mathbb R,
+\qquad
+x\mapsto0.
+\]
+
+Auch der Gegenvektor einer Funktion ist wieder eine Funktion:
+\[
+(-f)(x)=-f(x).
+\]
+
+\end{exabox}
+
+Die Bezeichnung „Vektor“ impliziert die Gültigkeit von Operationen und die dafür geltenden Rechengesetze. Diese Sichtweise wird später besonders wichtig: Funktionenräume ermöglichen, Methoden der linearen Algebra auf Funktionen zu übertragen.
+
+\subsection{Basis und Dimension}
+
+Die Vektoren der Vektorräume $\mathbb R^3$ lassen sich entsprechend ihrer \(x,\,y\) und \(z\)-Komponenten zerlegen:
+$$\left(\begin{array}{c} 5 \\ 6 \\ 3\end{array}\right) = 5\left(\begin{array}{c} 1 \\ 0 \\ 0\end{array}\right) +  6\left(\begin{array}{c} 0 \\ 1 \\ 0\end{array}\right) + 3\left(\begin{array}{c} 0 \\ 0 \\ 1\end{array}\right)\,, \quad \quad (*)$$
+wobei die Vektoren auf der rechten Seite zwei besondere Eigenschaften besitzen: sie sind \textbf{orthonormal} (\emph{orthonormal}) und das heißt
+\begin{itemize}
+  \item sie stehen gegenseitig senkrecht aufeinander und 
+  \item sie sind alle von der Länge eins.
+\end{itemize}
+Jeder Vektor des $\mathbb R^3$ lässt sich aus diesen Einheitsvektoren zusammensetzen und die Zerlegung ist eindeutig. Man nennt die drei Einheitsvektoren die Standardbasis des $\mathbb R^3$ und weil die Standardbasis so oft vorkommt, benutzt man abkürzende Schreibweisen. Die folgenden sind die gängigsten:
+\begin{defbox}{Standardbasis des \(\mathbb R^3\)}{ }
+	$ \left\{ \left( \begin{array}{c} 1 \\0 \\0\end{array}\right), \left( \begin{array}{c} 0 \\1 \\0\end{array}\right), \left( \begin{array}{c} 0 \\0 \\1\end{array}\right)\right\} \; \widehat = \; \left\{ \vec e_x, \, \vec e_ y, \vec e_z\right\} \; \widehat = \; \left\{ \vec e_1, \, \vec e_2, \,\vec e_3\right\}$.
+%In älteren Texten steht statt dessen $\vec i, \, \vec j, \, \vec k$. 
+\end{defbox}
+Entsprechende \textbf{Standardbasen} (\emph{canonical basis}) mit orthonormalen Vektoren gibt es in allen Räumen $\mathbb R^n$ und $\mathbb C^n$. 
+
+Das Beispiel der Standardbasis zeigt ein grundlegendes Prinzip: Ein Vektor wird aus anderen Vektoren aufgebaut, indem diese mit Skalaren multipliziert und anschließend addiert werden. Eine solche Darstellung heißt \textbf{Linearkombination} (\emph{linear combination}).
+
+\begin{defbox}{Linearkombination}{ }
+
+Es seien
+\(\vec v_1,\ldots,\vec v_m\in\mathbb V\).
+Jeder Vektor der Form
+\[
+\lambda_1\cdot \vec v_1
++\lambda_2\cdot \vec v_2
++\cdots+
+\lambda_m\cdot \vec v_m,
+\qquad
+\lambda_1,\ldots,\lambda_m\in\mathbb K,
+\]
+heißt \textbf{Linearkombination} der Vektoren
+\(\vec v_1,\ldots,\vec v_m\).
+
+\end{defbox}
+
+Im Beispiel der Standardbasis des \(\mathbb R^3\) lässt sich jeder Vektor als Linearkombination von \(\vec e_1,\vec e_2,\vec e_3\) darstellen. Die drei Vektoren reichen also aus, um den gesamten Raum zu erzeugen.
+
+\begin{defbox}{Erzeugendensystem}{ }
+
+Eine Menge von Vektoren
+\(\{\vec v_1,\ldots,\vec v_m\}\subseteq\mathbb V\)
+heißt \textbf{Erzeugendensystem} (\emph{spanning set}) von
+\(\mathbb V\), wenn sich jeder Vektor
+\(\vec v\in\mathbb V\) als Linearkombination dieser Vektoren
+darstellen lässt.
+
+\end{defbox}
+
+Ein Erzeugendensystem kann allerdings mehr Vektoren enthalten als notwendig.  Damit stellt sich eine zweite Frage: Welche der erzeugenden Vektoren tragen tatsächlich neue Information bei und welche lassen sich bereits aus den anderen zusammensetzen?
+
+Diese Frage führt zur linearen Unabhängigkeit.
+
+\begin{defbox}{Lineare Abhängigkeit und lineare Unabhängigkeit}{ }
+
+Es seien
+\(\vec v_1,\ldots,\vec v_m\in\mathbb V\).
+
+Die Vektoren heißen \textbf{linear unabhängig}
+(\emph{linearly independent}), wenn aus
+\[
+\lambda_1\cdot \vec v_1+\cdots+\lambda_m\cdot \vec v_m
+=
+\vec 0
+\]
+notwendig
+\[
+\lambda_1=\cdots=\lambda_m=0
+\]
+folgt.
+
+Existieren dagegen Skalare
+\(\lambda_1,\ldots,\lambda_m\), die nicht alle null sind und trotzdem
+\[
+\lambda_1\cdot \vec v_1+\cdots+\lambda_m\cdot \vec v_m
+=
+\vec 0
+\]
+erfüllen, so heißen die Vektoren \textbf{linear abhängig}
+(\emph{linearly dependent}).
+
+\end{defbox}
+
+Lineare Abhängigkeit bedeutet anschaulich, dass mindestens einer der beteiligten Vektoren durch die anderen erzeugt werden kann. Dieser Vektor liefert dann keine zusätzliche unabhängige Richtung.
+
+Beispielsweise sind
+\[
+\begin{pmatrix}1\\2\end{pmatrix}
+\qquad\text{und}\qquad
+\begin{pmatrix}2\\4\end{pmatrix}
+\]
+linear abhängig, denn der zweite Vektor ist das Doppelte des ersten. Dagegen
+sind
+\[
+\begin{pmatrix}1\\0\end{pmatrix}
+\qquad\text{und}\qquad
+\begin{pmatrix}0\\1\end{pmatrix}
+\]
+linear unabhängig.
+
+Eine \textbf{Basis} verbindet nun die beiden zuvor eingeführten Eigenschaften: eine Basis ist eine Menge von Vektoren, die den gesamten Vektorraum erzeugt und gleichzeitig keine überflüssigen Vektoren enthält.
+
+\begin{defbox}{Basis eines Vektorraums}{ }
+
+Eine Menge
+\[
+B=\{\vec v_1,\ldots,\vec v_m\}
+\]
+von Vektoren eines Vektorraums \(\mathbb V\) heißt
+\textbf{Basis} (\emph{basis}) von \(\mathbb V\), wenn
+
+\begin{itemize}
+    \item die Vektoren
+    \(\vec v_1,\ldots,\vec v_m\)
+    linear unabhängig sind und
+
+    \item
+    \(\vec v_1,\ldots,\vec v_m\)
+    ein Erzeugendensystem von \(\mathbb V\) bilden.
+\end{itemize}
+
+Damit lässt sich jeder Vektor \(\vec v\in\mathbb V\) eindeutig in der
+Form
+\[
+\vec v
+=
+\lambda_1\cdot \vec v_1+\cdots+\lambda_m\cdot \vec v_m,
+\qquad
+\lambda_1,\ldots,\lambda_m\in\mathbb K,
+\]
+darstellen.
+
+\end{defbox}
+
+Die beiden Bedingungen einer Basis erfüllen unterschiedliche Aufgaben. Das Erzeugendensystem stellt sicher, dass jeder Vektor des Raumes dargestellt werden kann. Die lineare Unabhängigkeit stellt sicher, dass diese Darstellung eindeutig ist.
+
+Die Skalare \(\lambda_1,\ldots,\lambda_m\) heißen die \textbf{Koordinaten} von \(\vec v\) bezüglich der gewählten Basis.
+
+
+\noindent\textbf{Bemerkungen:}\marginpar{\small Aufgaben}
+\begin{itemize}
+	\item Eine Basis eines Vektorraums ist nicht eindeutig und manchmal ist es sogar sinnvoll, mit einer nicht orthogonalen Basis zu rechnen anstatt mit einer Orthonormalbasis. 
+	\item Eine Basis ist ein bezüglich der Aufnahme weiterer Vektoren maximales linear unabhängiges System. Gleichwertig kann eine Basis als ein Erzeugendensystem aufgefasst werden, aus dem kein Vektor entfernt werden kann, ohne die Erzeugendeneigenschaft zu verlieren.
+	\item Die Anzahl der Basisvektoren eines Vektorraums nennt man \textbf{Dimension} (\emph{dimension}) des Vektorraums.
+\end{itemize}
+
+\begin{exabox}{Dimension von Vektorräumen}{ }
+  \begin{itemize}
+    \item Der Raum $\mathbb R^{17}$ hat die  Dimension $17$: $\mathrm{dim}\left( \mathbb R^{17}\right) = 17$,
+    \item Der Raum der stetigen Funktionen von $\mathbb R$ nach $\mathbb R$ ist unendlichdimensional.
+  \end{itemize}
+\end{exabox}
+
+\subsubsection*{Geraden durch den Ursprung als eindimensionale Untervektorräume}
+
+Der Begriff der Dimension erhält bereits bei Geraden eine anschauliche Bedeutung. Dazu sei ein von Null verschiedener Vektor
+\(\vec v\in\mathbb R^3\) gegeben. Alle skalaren Vielfachen dieses Vektors bilden die Menge
+\[
+U
+=
+\left\{
+\lambda\cdot \vec v:
+\lambda\in\mathbb R
+\right\}.
+\]
+
+Geometrisch beschreibt diese Menge eine Gerade durch den Ursprung mit Richtung \(\vec v\).
+
+Für
+\[
+\vec v
+=
+\begin{pmatrix}
+2\\
+2\\
+-1
+\end{pmatrix}
+\]
+ergibt sich beispielsweise
+\[
+U
+=
+\left\{
+\lambda\cdot 
+\begin{pmatrix}
+2\\
+2\\
+-1
+\end{pmatrix}
+:
+\lambda\in\mathbb R
+\right\}.
+\]
+
+Die Menge \(U\) ist nicht nur eine Gerade, sondern zugleich selbst ein Vektorraum. Dies lässt sich unmittelbar anhand der Vektorraumoperationen erkennen.
+
+Zunächst gehört der Nullvektor zu \(U\), denn für \(\lambda=0\) gilt
+\[
+0\cdot \vec v=\vec 0.
+\]
+
+Werden zwei beliebige Vektoren aus \(U\) addiert, so entsteht wieder ein Vektor aus \(U\). Für
+\(\lambda\cdot \vec v,\mu\cdot\vec v\in U\) gilt
+\[
+\lambda\cdot \vec v+\mu\cdot \vec v
+=
+(\lambda+\mu)\cdot \vec v
+\in U.
+\]
+
+Auch die Multiplikation eines Vektors aus \(U\) mit einem beliebigen Skalar
+führt nicht aus \(U\) heraus. Für \(c\in\mathbb R\) gilt
+\[
+c\cdot (\lambda\cdot \vec v)
+=
+(c\cdot \lambda)\cdot \vec v
+\in U.
+\]
+
+Die Menge ist damit bezüglich Vektoraddition und Skalarmultiplikation abgeschlossen. Da die übrigen Vektorraumaxiome von \(\mathbb R^3\) übernommen werden, bildet \(U\) selbst einen Vektorraum.
+
+Ein Vektorraum, der als Teilmenge eines größeren Vektorraums auftritt und dessen Vektorraumoperationen übernimmt, heißt \textbf{Untervektorraum} (\emph{vector subspace}).
+
+\begin{defbox}{Untervektorraum}{ }
+
+Eine nichtleere Teilmenge \(U\subseteq\mathbb V\) eines Vektorraums
+\(\mathbb V\) heißt Untervektorraum, wenn für alle
+\(\vec u,\vec v\in U\) und alle
+\(\lambda\in\mathbb K\) gilt:
+\[
+\vec u+\vec v\in U
+\qquad\text{und}\qquad
+\lambda\cdot \vec u\in U.
+\]
+
+\end{defbox}
+
+\noindent\textbf{Bemerkung:}
+Jeder Untervektorraum enthält notwendigerweise den Nullvektor. Ist
+\(\vec u\in U\), so folgt aus der Abgeschlossenheit bezüglich der
+Skalarmultiplikation
+\[
+0\cdot\vec u=\vec 0\in U.
+\]
+Fehlt der Nullvektor in einer gegebenen Teilmenge, kann diese daher kein
+Untervektorraum sein.
+
+Für die Gerade
+\[
+U
+=
+\{\lambda\cdot \vec v:\lambda\in\mathbb R\}
+\]
+reicht ein einziger von Null verschiedener Vektor aus, um jeden Vektor des
+Raumes \(U\) darzustellen. Die Menge
+\[
+\{\vec v\}
+\]
+ist daher eine Basis von \(U\), und es gilt
+\[
+\dim(U)=1.
+\]
+
+Damit erhält die Bezeichnung „eindimensional“ eine geometrische Interpretation: Die Geraden durch den Ursprung sind genau die eindimensionalen Untervektorräume von \(\mathbb R^3\).
+
+\subsubsection*{Denkaufgabe: Muss jede Gerade ein Untervektorraum sein?}
+
+Die Gerade \[ g = \left\{ \begin{pmatrix} 2\\1\\2 \end{pmatrix} + \lambda\cdot \begin{pmatrix} 2\\2\\-1 \end{pmatrix} : \lambda\in\mathbb R \right\} \] besitzt dieselbe Richtung wie ein eindimensionaler Untervektorraum, ist jedoch gegenüber dem Ursprung verschoben. \begin{exabox}{Denkaufgabe}{ } Ist die Gerade \(g\) ein Untervektorraum von \(\mathbb R^3\)? Welche Eigenschaft eines Untervektorraums kann besonders einfach überprüft werden, um diese Frage zu entscheiden? \end{exabox}
+
+\subsubsection*{Zusammenfassung}
+
+Kennt man eine Basis des Vektorraums, dann kennt man quasi alles andere - die Basisvektoren stehen stellvertretend für alle Vektoren des Vektorraums. Damit wird klar: die Analyse eines Vektorraums ist eng verknüpft mit der Analyse linearer Unabhängigkeit von Vektoren. Und das wirft Fragen auf, beispielsweise die folgenden
+\begin{itemize}
+	\item Wie wird überprüft, ob eine gegebene Menge von Vektoren linear unabhängig ist?
+	\item Wie wird überprüft, welche Dimension ein gegebener Vektorraum hat?
+	\item Wie wird eine Basis konstruiert bzw. vervollständigt? 
+	\item Gibt es eine systematische Art eine Orthonormalbasis aus linear unabhängigen Vektoren zu konstruieren?
+\end{itemize}
+Diese Fragen lassen sich am einfachsten beantworten, wenn wir Werkzeuge aus der linearen Algebra nutzen, nämlich
+\begin{itemize}
+	\item Bestimmung des Rangs und des Defekts einer Matrix
+	\item Bestimmung des Bilds einer Matrix
+	\item Bestimmung der Determinante einer Matrix
+\end{itemize}
+\wennreferenzvorhanden{MA1-matrizen}{\wennreferenzvorhanden{MA1-determinante-und-inverse}{Die Abschnitte \abschnittsverweis{MA1-matrizen}--\abschnittsverweis{MA1-determinante-und-inverse} führen diese Werkzeuge ein.}}

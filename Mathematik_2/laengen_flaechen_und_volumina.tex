@@ -1,0 +1,172 @@
+\section{Längen, Flächen und Volumina}\label{MA2-laengen-flaechen-und-volumina}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Volumina und Mantelflächen elementarer geometrischer Körper mit Hilfe von Integralen berechnen & \\
+    \tabitem Bogenlängen von Kurven bestimmen & \\
+    \tabitem Rotationsvolumina und Rotationsflächen systematisch herleiten und berechnen & \\
+    \tabitem Flächeninhalte zwischen Graphen bestimmen & \\
+    \tabitem Flächenschwerpunkte mit Hilfe von Integralen berechnen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem Integrale geometrisch interpretieren können & \abschnittsverweis{MA2-integration}  \\
+    \tabitem Integrale berechnen können & \abschnittsverweis{MA2-integrationsregeln} \\
+    \tabitem Ableitungen berechnen können & \abschnittsverweis{MA1-ableitungsregeln}  \\
+    \tabitem Determinanten geometrisch interpretieren und berechnen können & \abschnittsverweis{MA1-determinante-und-inverse} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-laengen-flaechen-und-volumina-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Elementare geometrische Körper}
+
+In den vorigen Kapiteln haben wir uns mit dem Integralbegriff auseinandergesetzt. Zunächst nur für reellwertige Funktionen. Offensichtlich können wir damit noch keine Volumen berechnen oder Oberflächen von ausgedehnten Körpern. Was wir allerdings können sind eindimensionale Objekte betrachten und über die integrieren. Zwei Spezialfälle, in denen uns diese Fertigkeit genügt, um was \" Neues\" damit zu tun, sind:
+\begin{enumerate}
+	\item Die Berechnung der Länge einer Raumkurve (Kurvenintegral),
+	\item Die Berechnung des Volumens eines rotationssymmetrischen Körpers (Rotationsvolumen).
+		 \end{enumerate}
+		 Bevor wir uns diesen beiden Themen zuwenden noch eine Zusammenfassung elementarer geometrischer Körper. Letztere kennen wir aus der Schule und wissen, wie Flächeninhalt und Volumen lauten - und das ganz ohne jemals ein Integral aufgeschrieben zu haben.
+
+\begin{itemize}
+	\item \textbf{Kreis:} Der Umfang des Einheitskreises ist vom \underline{Bogenmaß}\randverweis{MA1-trigonometrische-funktionen} her bekannt. Wenn man den Einheitskreis um den Faktor $r$ skaliert, hat man einen Kreis mit Radius $r$. Beim Skalieren um den Faktor $r$ ändern sich alle Längen um den Faktor $r$, also:
+\[
+	U = 2\pi\cdot r\,.
+\]
+Die Fläche eines Kreises mit Radius $r$ muss nach $r$ abgeleitet den Umfang ergeben.
+\[
+	\Delta A = \Delta r \cdot U \Rightarrow  \frac{\Delta A}{\Delta r}= 2\pi\cdot r \quad \Rightarrow A' = 2\pi\cdot r \Rightarrow A = \pi\cdot r^2 + C\,.
+\]
+Außerdem ist sie null für $r=0$ und damit $C=0$, also:
+\[
+	A = \pi\cdot r^2\,.
+\]
+\item \textbf{Quader:} Ein Quader mit Breite $b$, Höhe $h$ und Tiefe $t$ hat das Volumen:
+\[
+	V = b\cdot t \cdot h = A\cdot h\,,.
+\]
+\item \textbf{Gerader Zylinder:} Wenn man die Querschnittsfläche  eines Quaders auf der gesamten Höhe gleichartig umformt, dann erählt man einen geraden Zylinder, dessen Volumen genau dem des Quaders entspricht. Denken Sie an Knete!
+\item \textbf{Prisma:} Wenn man die Querschnittsfläche \(A\) eines Quaders in ein  Vieleck [polygon] gleichen Flächeninhalts umformt, dann spricht man von einem Prisma. Das Prisma hat dasselbe Volumen wie der Quader, wenn die Querschnittsflächen denselben Flächeninhalt haben. (Spezialfall des geraden Zylinders)
+\item \textbf{Schiefer Zylinder:} Stellt man sich einen geraden Zylinder als einen Stapel von Bierdeckeln vor, dann kann man ihn neigen ohne sein Volumen oder seine Höhe zu ändern. Es ergibt sich ein schiefer Zylinder.
+\item \textbf{Pyramide:} Ein Würfel mit Kantenlänge $a$ zerfällt in sechs regelmäßiger Pyramiden der quadratischer Grundfläche $a^2$ und Höhe $a/2$. Also ist das Volumen einer Pyramide:
+	\[
+		V = \frac16 \cdot a^3 \,.
+	\]
+\item \textbf{Kegel:} Lässt man einen Körper von einer ebenen Grundfläche ausgehend geradlinig auf einen Punkt zulaufen, hat man einen Kegel:
+		\[
+			V = \frac{\sqrt{A}^3}{6} \cdot\frac{h}{\sqrt{A}/2} = \frac13 A\cdot h\,.
+		\]
+\item \textbf{Kugel:} Das Volumen $V$ und die Oberfläche $S$ einer Kugel mit Radius $r$ ist:
+		\begin{eqnarray*}
+			V &=& \frac{4}{3} \pi r^3 \,,\\
+			S &=& 4\pi r^2\,.
+		\end{eqnarray*}
+\end{itemize}
+
+\subsection{Bogenlänge}
+
+Stellen wir uns einen Laster vor, der eine Strecke von $a$ nach $b$ zurücklegt. Die Strecke $L$, die der Laster zurücklegt stellen wir uns als Funktionsgraphen vor, das heißt die Koordinate $(x,y)$ des Lasters läßt sich angeben als
+\[
+	\forall\, x\in [a,b]:\quad (x,y) = (x, f(x))\,,
+\]
+mit einer \underline{differenzierbaren Funktion}\randverweis{MA1-ableitungsregeln} $f: x \mapsto f(x)$. Dann lässt sich die Länge $\Delta s$ des Bogens mit \underline{Phytagoras}\randverweis{MA1-trigonometrische-funktionen} wie folgt approximieren
+\[
+	(\Delta s)^2 = (\Delta x)^2 + (\Delta y)^2 = (\Delta x)^2 + \left( f' (x) \cdot \Delta x\right)^2  \Rightarrow \Delta s=  \Delta x \sqrt{1 + f'(x)}\,.
+\]
+Summieren wir nun über all die Inkremente $\Delta s$, dann erhalten wir eine Approximation der Länge des Graphen. Das Maßband, das wir anlegen ist ein stückweiser Polygonzug. Gehen wir zum Grenzwert über, dann erhalten wir die sogenannte Bogenlänge [arc length]:\marginpar{\small Aufgabe}
+
+\begin{defbox}{Bogenlänge}{ }
+	\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/integration_bogenlaenge_bogenelement.png}
+\end{minipage}
+	\begin{minipage}{0.7\textwidth}
+	Es sei $f: [a,b]\to \mathbb R$ die differenzierbare Funktion. Die Bogenlänge ist
+\[
+	L = \int\limits_{a}^{b} \sqrt{1+\left( f'(x)\right)^2 }\, \mathrm{d}x \,.
+\]
+\end{minipage}
+\end{defbox}
+
+Entsprechend kann man sich die Länge einer Raumkurve herleiten. Es gilt:
+\begin{theorembox}{Bogenlänge einer Raumkurve}{ }
+	Es sei die Parametrisierung einer Raumkurve $\gamma: [a,b] \to \mathbb R^3$  gegeben:
+	\[ \gamma: [a,b]\to \mathbb R^3, t\mapsto (x(t), y(t), z(t))^\intercal\,,\]
+	wobei $x, y, z$ differenzierbar sind. Die Länge der Kurve ist
+\[
+	|\gamma| = \int\limits_{a}^{b} \|\gamma'(t)\| \mathrm{d} t = \int\limits_{a}^b \sqrt{ (x'(t))^2 + (y'(t))^2 + (z'(t))^2}\,\mathrm{d}t \,,
+\]
+wobei $\gamma'(t) = \left( x'(t), y'(t), z'(t)\right)^\intercal$.
+\end{theorembox}
+
+\begin{exabox}{Bogenlänge}{ }
+	Parametrisierung:
+	\[
+		\gamma: [0,1] \to \mathbb R, t\mapsto \left(\sqrt{2} t, e^t, 1-e^{-t}\right)^\intercal
+	\]
+	Ableitung (Geschwindigkeitsfeld):
+	\[
+		\gamma'(t) = (\sqrt{2}, e^t, e^{-t})^\intercal
+	\]
+	Länge der Raumkurve:
+	\begin{eqnarray*}
+		|\gamma| &=& \int_{0}^1 \sqrt{2 + e^{2t} + e^{-2t}} \, \mathrm{d}t = \int\limits_0^1 \sqrt{ 2 + \left( e^{t} + e^{-t}\right)^2 - 2 e^{t}e^{-t} }\,\mathrm{d}t = \int\limits_0^1   \left( e^{t} + e^{-t}\right) \,\mathrm{d}t \\
+		& =&  \Big[ e^t - e^{-t}\Big]_0^1 = e-1 - \frac1e +1 = e - \frac1e\,.
+	\end{eqnarray*}
+\end{exabox}
+
+\subsection{Rotationssymmetrische Körper}
+
+Ein Rotationskörper [solid of revolution] entstehe durch Rotation des Funktionsgraphen $f: x \mapsto f(x) \geq 0$ um die $x$-Achse. An der Stelle $x$ ist seine Querschnittfläche also eine Kreisscheibe mit dem Radius $f(x)$. %(Hier wird nicht der Fall betrachtet, dass der Graph z. B. um die $z$-Achse gedreht wird!)
+Wieder im Sinne eines Stapels von Bierdeckeln ist das Volumen $V$ des Körpers zwischen $x=a$ und $x=b$:
+\begin{center}
+		\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/integration_rotationskoerper_scheibenmethode.png}
+\end{center}
+
+\begin{theorembox}{Rotationsvolumen}{ }
+\[
+V = \int\limits_a^b \pi \left( f(x) \right)^2 \, \mathrm{d}x  = \pi \int\limits_a^b \left( f(x)\right)^2\, \mathrm{d} x\,.
+\]
+\end{theorembox}
+
+Bezeichnen wir mit $\overline R$ den Schwerpunkt der Querschnittsfläche zwischen der Kurve und der $x$-Achse:
+\[
+	\overline R = \int\limits_{a}^b \frac{r(x)}{2} \underbrace{\frac{r(x)}{A} \mathrm{d}x}_{\textnormal{Gewichtung}} = \frac12 \frac{\int\limits_a^b \left(r(x)\right)^2 \,\mathrm{d}x }{A}\,,
+\]
+wobei $A$ die Fläche unter der Kurve bezeichnet. Dann gilt:
+\[
+	V = \pi \int\limits_a^b \left( f(x)\right)^2 \,\mathrm{d}x = \pi \cdot 2 \cdot A \cdot \overline R = \underbrace{2 \pi \cdot \overline R}_{\textnormal{Bogenl\"ange}} \cdot A \,.
+\]
+Das Rotationsvolumen $V$ ist also die Fläche unter der Kurve mal der Bogenlänge des Flächenschwerpunkts bei der Rotation (zweite Pappus-Guldinsche Regel).\marginpar{\small Aufgabe}
+
+Die Mantelfläche $M$ ergibt sich durch ein Aufsummieren der Mantelinkremente
+\[
+	\Delta M = 2 \pi f(x) \cdot \Delta s(x) = 2 \pi f(x) \cdot \sqrt{1 + f'(x)} \cdot  \Delta x\,,
+\]
+wobei $\Delta s$ ein Inkrement der Länge der Kurve bezeichnet. Dann erhalten wir im Limit das folgende Integral:
+\begin{theorembox}{Mantelfläche}{ }
+\[
+M = \int\limits_a^b 2\pi  f(x) \sqrt{1+\left( f'(x)\right)^2} \, \mathrm{d}x  = 2\pi \int\limits_a^b f(x) \sqrt{1+\left( f'(x)\right)^2} \, \mathrm{d}x
+\,.\]
+\end{theorembox}
+
+\noindent Bemerkung:
+\begin{itemize}
+	\item $M$ ist nur die Mantelfläche. Gegebenfalls muss man noch die Flächen des Deckels unten und oben berücksichtigen!
+\end{itemize}
+
+Diese Formel für die Mantelfläche lässt sich auch anders verstehen: Bezeichnen wir mit $\overline r$ die Höhe des Schwerpunkts der Kurve:
+\[ \overline r = \int\limits_a^b f(x) \sqrt{ 1 + \left(f'(x)\right)} \, \mathrm{d}x = \int\limits_a^b f(x) \sqrt{ 1 + \left(f'(x)\right)} \, \mathrm{d}x\,. \]
+Dann gilt
+\[
+	M = 2\pi \overline r \cdot L\,,
+\]
+woei $L$ die Bogenlänge ist. Anschaulich heißt das: Die Mantelfläche $M$ ist die Länge der Kurve mal der Bogenlänge ihres Schwerpunkts (Schwerpunkt der Kurve, nicht der Fläche!) bei der Rotation (erste Pappus-Guldinsche Regel).
+

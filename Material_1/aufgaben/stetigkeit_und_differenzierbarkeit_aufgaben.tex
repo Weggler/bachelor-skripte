@@ -1,0 +1,81 @@
+
+\ifintegriereaufgaben
+\section*{Stetigkeit Aufgaben}\label{MA1-stetigkeit-und-differenzierbarkeit-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-stetigkeit-und-differenzierbarkeit}{ (Abschnitt \abschnittsverweis{MA1-stetigkeit-und-differenzierbarkeit})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-stetigkeit-und-differenzierbarkeit-loesungen]{hier}.
+\else
+\section{Stetigkeit Aufgaben}\label{MA1-stetigkeit-und-differenzierbarkeit-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-stetigkeit-und-differenzierbarkeit-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Stetigkeit]
+	\begin{itemize}
+		\item[(a)] Es sei $f:D \subseteq \mathbb R\to \mathbb R$ und $x_0 \in D$. Was bedeutet die folgende Aussage:
+		\[ \exists \varepsilon > 0 \forall \delta > 0 \exists x\in D : |x-x_0| < \delta \land |f(x) - f(x_0)|\geq \varepsilon\,. \]
+	\item[(b)] Betrachten Sie die Funktion $f:\mathbb R\to \mathbb R$ mit $f: x \mapsto \frac13 x$. Gibt es eine Stelle $x_0 \in \mathbb R$, an der die Bedingung unter $(a)$ erfüllt ist?
+\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Stetigkeit]
+	Untersuchen Sie die Funktion $f$ mit \[f: x \mapsto \begin{cases} 1,  &\quad x \in \mathbb Q\,, \\ 0, &\quad x \in \mathbb R\setminus \mathbb Q \,,\end{cases}\] auf Stetigkeit an einer beliebigen Stelle $x_0$.
+\end{exercisebox} 
+
+
+\begin{exercisebox}[Stetigkeit]
+	Für welche $x\in [0,\infty)$ ist $f$ stetig?
+  \begin{eqnarray*}
+	  f: x\mapsto \begin{cases}
+      1 \quad &x>1\\
+      \frac{1}{|x|} \quad & 0 <x\leq 1\\
+      0 \quad & x\leq 0\\
+    \end{cases}
+  \end{eqnarray*}
+\end{exercisebox} 
+
+\begin{exercisebox}[Stetigkeit]
+  Bestimmen Sie $t\in \mathbb R$ so, dass die Funktion $f$ an der Stelle $x_0$ stetig ist.
+  \begin{enumerate}
+	  \item[(a)] Es sei $x_0=1$ und 
+      $
+  	  f: x\mapsto \begin{cases}
+  	    x+1 \quad &x\leq 1\\
+  	    x^2+t \quad & x > 1
+	  \end{cases}
+	    $
+    \item[(b)]  Es sei $x_0 = t$ und 
+      $
+  	  f: x \mapsto \begin{cases}
+  	    x^2-2tx \quad &x\geq t\\
+  	    2x-t \quad & x < t
+	  \end{cases}
+	    $
+  \end{enumerate}
+\end{exercisebox} 
+
+\begin{exercisebox}[Stetigkeit]
+	Bestimmen Sie für $f$ den Parameter $a$ so, dass $f$ auf ganz $\mathbb R$ stetig ist:
+	\[ f: x\mapsto = \begin{cases} \frac12 x, &\quad x\geq 1 \\2\cdot \exp(a\cdot x), &\quad x< 1 \,. \end{cases} \]
+\end{exercisebox}
+
+\begin{exercisebox}[Stetige Fortsetzung]
+	Vervollständigen Sie $f$ so, dass $f$ auf ganz $\mathbb R$ stetig ist:
+	\[ f: x\mapsto \begin{cases} x+1, &\quad x\leq 1 \\x^2, &\quad x> 2 \,.\end{cases} \]
+\end{exercisebox}
+
+%\begin{theorembox}[absolute Konvergenz]
+%  absolut konvergene Reihen (Reihenfolge der Glieder egal): wenn die Summe über die Beträge der Koeffizienten konvergiert.  
+%\end{theorembox}
+%
+%\begin{theorembox}[Potenzreihen stellen Funktionen dar]
+%  Konvergenzradius: für welche $x$ konvergiert die Potenzreihe?
+%\end{theorembox}
+%
+%\begin{theorembox}[Funktionenräume, Betrag, Metrik]
+%	Abstandsbegriffe, Energie Physik
+%\end{theorembox}
+%
+%\begin{theorembox}[Lipschitz-Stetigkeit]
+%\end{theorembox}
+

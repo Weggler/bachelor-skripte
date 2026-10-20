@@ -1,0 +1,229 @@
+\section{Anwendungen der Integration (+)}\label{MA2-anwendungen-der-integration}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem das bestimmte Integral als Akkumulation einer lokalen Rate- oder Dichtegröße interpretieren & \\
+    \tabitem aus einer zeitabhängigen Leistung die umgesetzte Energie berechnen & \\
+    \tabitem den Mittelwert einer Funktion über einem Intervall bestimmen & \\
+    \tabitem die Bogenlänge des Graphen einer differenzierbaren Funktion berechnen  & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem bestimmte Integrale berechnen können & \abschnittsverweis{MA2-integrationsregeln} \\
+    \tabitem Ableitungen bilden können (für die Bogenlänge) & \abschnittsverweis{MA1-ableitungsregeln} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Wir haben den Begriff des bestimmten Integrals geometrisch eingeführt:
+\[
+\int\limits_a^b f(x)\,\mathrm dx
+\]
+ist der \emph{vorzeichenbehaftete Flächeninhalt} zwischen dem Graphen von $f$
+und der $x$-Achse im Intervall $[a,b]$. Diese geometrische Interpretation liefert eine anschauliche Bedeutung des Integrals.
+
+Für die Ingenieurwissenschaften ist jedoch eine weitergehende Sichtweise entscheidend: Das Integral beschreibt nicht nur eine Fläche, sondern allgemein die \emph{Akkumulation einer Größe} über ein Intervall.
+
+Beschreibt $f$ eine zeit- oder ortsabhängige Größe, so ist $f$ typischerweise keine
+\emph{Gesamtgröße}, sondern eine \emph{Dichte} oder \emph{Rate}:
+
+\begin{itemize}
+  \item eine Änderungsrate pro Zeit (z.\,B. Leistung in $\mathrm W = \mathrm{J/s}$),
+  \item eine Stromstärke als Ladung pro Zeit ($\mathrm A = \mathrm{C/s}$),
+  \item ein Massenstrom als Masse pro Zeit ($\mathrm{kg/s}$),
+  \item eine lineare Massendichte als Masse pro Länge ($\mathrm{kg/m}$).
+\end{itemize}
+
+%\begin{itemize}
+%  \item Aus einer Leistung $P(t)$ (Energie pro Zeit) wird durch Integration
+%        die gesamte Energie:
+%        \[
+%        E = \int\limits_a^b P(t)\,\mathrm dt.
+%        \]
+%  \item Aus einem Strom $I(t)$ (Ladung pro Zeit) wird die transportierte Ladung:
+%        \[
+%        Q = \int\limits_a^b I(t)\,\mathrm dt.
+%        \]
+%  \item Aus einer Massendichte $\rho(x)$ (Masse pro Länge) wird die Gesamtmasse:
+%        \[
+%        M = \int\limits_a^b \rho(x)\,\mathrm dx.
+%        \]
+%\end{itemize}
+
+Solche Größen beschreiben also, \emph{wie viel pro Einheit} (Zeit, Länge, Fläche \dots)
+vorliegt — nicht jedoch die gesamte Menge.
+
+Schauen wir mit diesem physikalischen Blick auf das Integral
+\[
+\int\limits_a^b f(t)\,\mathrm dt\,,
+\]
+dann steht hier wie man aus einer lokalen Dichte- oder Änderungsgröße eine \emph{globale Gesamtgröße} berechnet!\footnote{Die „pro-Einheit-Größe“ wird mit einem infinitesimal kleinen Intervall $\mathrm dt$ multipliziert und alle Beiträge werden über das gesamte Intervall aufsummiert!}
+
+Betrachten wir beispielsweise die pyhsikalische Größe \emph{Leistung} \(P\) gemessen in Watt, also Energie pro Zeit, \[ [ \mathrm W] = [\mathrm{J/s}]\,. \] Die Leistung \(P\) könnte die elektrische Leistung eines Verstärkers, einer PV-Anlage oder eines Heizsystems. Die im Zeitraum \([a,b]\) umgesetzte Energie ist dann das Integral
+
+\[
+E
+=
+\int\limits_a^b P(t)\,\mathrm dt.
+\]
+
+%\emph{Ingenieurkontext:}
+%\begin{itemize}
+%  \item Nachrichtentechnik: thermische Belastung eines Verstärkers,
+%  \item Regenerative Energien: Tagesertrag einer PV-Anlage,
+%  \item Gebäudeenergietechnik: übertragene Heizenergie.
+%\end{itemize}
+
+\subsection{Mittelwert einer Funktion}
+
+Die momentane Leistung $P(t)$ einer Photovoltaikanlage schwankt im Tagesverlauf aufgrund von Einstrahlung und Bewölkung. Für die Auslegung eines Batteriespeichers ist jedoch die \emph{mittlere Tagesleistung} relevant. Ein Berstärker darf eine maximale mittlere Verlustleistung nicht überschreiten ... Technische Systeme werden meist nicht durch die momentane, sondern durch die \emph{mittlere} Leistung charakterisiert.
+
+Eine naive Mittelwertbildung durch Stichproben kann stark vom Messraster abhängen. Gesucht ist daher eine kontinuierliche Definition, die die gesamte Leistungskurve berücksichtigt.
+Wie also berechnet man die mittlere Leistung - oder, allgemeiner, wie genau berechnet man den Mittelwert eine Funktion?
+
+\begin{defbox}{Mittelwert}{ }
+	Der \textbf{Mittelwert} einer Funktion $f: \mathbb R \to \mathbb R, t\mapsto f(t)$ über dem Intervall $[a,b]$ ist definiert als
+
+\[
+\overline{f}
+=
+\frac{1}{b-a} \cdot \int\limits_a^b f(t)\,\mathrm dt.
+\]
+\end{defbox}
+
+\begin{exabox}{Mittelwert}{ }
+	Funktion:
+	\[
+		f: \mathbb R \to \mathbb R, t \mapsto 3 + 2\sin t
+	\]
+	Mittelwert von \(f\) über dem Intervall \([0,2\pi]\):
+	\[ \overline{f} = \frac{1}{2\pi}\int\limits_0^{2\pi} (3+2\sin t)\,\mathrm dt = 3\,.  \]
+	\(\Rightarrow\) \(f\) schwingt symmetrisch um die horizontale Konstante \(3\) und diese Schwingung beeinflusst den Mittelwert nicht.
+\end{exabox}
+
+
+\subsection{Energie}
+
+Ein Verstärker verarbeitet ein zeitabhängiges Signal mit momentaner Leistung $P(t)$. Für die thermische Dimensionierung der Bauteile ist die insgesamt umgesetzte Energie während eines Übertragungsintervalls entscheidend. Wie viel Energie wird umgesetzt?
+
+In vielen technischen Anwendungen wie beispielsweise bei dem Verstärker ist die Leistung nicht zeitlich konstant und aus diesem Grund muss zur Berechnung der Energie integriert werden:
+
+\begin{defbox}{Energie}{ }
+	Bezeichnet $P$ die zeitabhängige Leistung (z.B. die elektrische Leitung gemessen in Watt), so ist die im Zeitraum $[a,b]$ zugeführte Energie
+\[
+E = \int\limits_a^b P(t)\,\mathrm d t.
+\]
+\end{defbox}
+
+\begin{exabox}{Energie}{ }
+	Funktion:
+	\[
+		P: [0,2 \pi] \to \mathbb R, t\mapsto 2 + \sin(t)
+	\]
+	Energie von \(P\) über dem Intervall \([0,2\pi]\):
+	\[ E = \int\limits_0^{2\pi} (2+\sin( t) \,\mathrm dt = 4\pi\,.  \]
+	\(\Rightarrow\) Die periodische Schwankung trägt im Mittel nichts bei zur Gesamtenergie.
+\end{exabox}
+
+
+\subsection{Bogenlänge}
+
+
+In vielen technischen Anwendungen genügt nicht die horizontale Ausdehnung einer Funktion, sondern es wird die tatsächliche Länge einer gekrümmten Kurve benötigt.
+
+Betrachten wir beispielsweise eine Leitung, die entlang einer gekrümmten Trasse $y=f(x)$ verlegt wird.  Für Materialbedarf, Kosten und Signalverluste ist die \emph{reale Leitungslänge} entscheidend - nicht die Projektion auf die $x$-Achse.
+
+Die Frage lautet daher:
+
+\begin{center}
+Wie lang ist der Weg entlang der Kurve selbst?
+\end{center}
+
+%\medskip
+%\emph{Ingenieurkontext:}
+%\begin{itemize}
+%  \item Kabelführung entlang einer gekrümmten Trasse,
+%  \item Rohrleitung in einer Gebäudekonstruktion,
+%  \item Leiterbahn auf einer Platine.
+%\end{itemize}
+
+Angenommen wir kennen eine Parametrizierung des Leitungsverlaufs, also eine Funktion \(f: x \mapsto f(x)\), deren Graph jeden Punkt $(x,y)$ im Leiter beschreibt
+\[
+	(x,y) \textnormal{ im Leiter } \; \Leftrightarrow \quad (x,y) = (x, f(x)), \;  x\in [a,b] \,.
+\]
+Wenn \(f\) \underline{differenzierbar}\randverweis{MA1-ableitungsregeln} ist, dann besitzt ein kleines Stück des Leiters die Länge\footnote{ Mit Hilfe des Satzes des Phytagoras erhält man  \( (\Delta s)^2 = (\Delta x)^2 + (\Delta y)^2 = (\Delta x)^2 + \left( f' (x) \cdot \Delta x\right)^2\), woraus durch Grenzübergang folgt \(\mathrm d s=  \sqrt{1 + f'(x)^2} \, \mathrm dx\,. \) }
+\[
+\mathrm d s = \sqrt{1 + \bigl(f'(x)\bigr)^2}\,\mathrm d x.
+\]
+
+Eine globale Größe entsteht durch Aufsummieren infinitesimaler lokaler Beiträge und so verwundert es nicht, dass wir zur sogenannten Bogenlänge [arc length], im konkreten Fall die Länge des Leiters, gelangen, wenn wir über die infinitessimalen Bogenstückchen integrieren! Wir gelangen zum Bogenintegral:
+
+\begin{defbox}{Bogenlänge}{ }
+	\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/integration_bogenlaenge_bogenelement.png}
+\end{minipage}
+	\begin{minipage}{0.7\textwidth}
+	Es sei $f: [a,b]\to \mathbb R$ eine differenzierbare Funktion.
+			Das Integral
+\[
+	L = \int\limits_{a}^{b} \sqrt{1+\left( f'(x)\right)^2 }\, \mathrm{d}x
+\]
+		ist die Länge des Graphen von \(f\) für \(x\in [a,b]\)
+		\vspace{0.2cm}
+
+		\noindent Bemerkungen:
+		\begin{itemize}
+	\item Das Integral nennt man ein Bogenintegral.
+	\item Anstatt Länge des Graphens sagt man Bogenlänge.
+	\item \(f\) nennt man eine Parametrisierung des Bogens.
+		\end{itemize}
+\end{minipage}
+\end{defbox}
+
+\begin{exabox}{Bogenlänge}{ }
+	Parametrisierung:
+	\[
+		f: [0,1] \to \mathbb R, x\mapsto x^2
+	\]
+	Ableitung:
+	\[
+	f'(x) = 2\cdot x
+	\]
+	Bogenlänge:
+	\begin{eqnarray*}
+		L = \int_{0}^1 \sqrt{1 + 2\cdot x} \, \mathrm{d}x = \frac12\cdot \int\limits_1^3 \sqrt{\tilde x }\,\mathrm{d}\tilde x =   \frac12\cdot \frac 23 \cdot \Big[ \tilde x^{\frac32} \Big]_1^3 = \sqrt{3} - \frac13\,.
+	\end{eqnarray*}
+\end{exabox}
+
+% Entsprechend kann man sich die Länge einer Raumkurve herleiten. Es gilt:
+% \begin{theorembox}{Bogenlänge 3D}{ }
+% 	Es sei die Parametrisierung einer Raumkurve $\gamma: [a,b] \to \mathbb R^3$  gegeben:
+% 	\[ \gamma: [a,b]\to \mathbb R^3, t\mapsto (x(t), y(t), z(t))^\intercal\,,\]
+% 	wobei $x, y, z$ differenzierbar sind. Die Länge der Kurve ist
+% \[
+% 	|\gamma| = \int\limits_{a}^{b} \|\gamma'(t)\| \mathrm{d} t = \int\limits_{a}^b \sqrt{ (x'(t))^2 + (y'(t))^2 + (z'(t))^2}\,\mathrm{d}t \,,
+% \]
+% wobei $\gamma'(t) = \left( x'(t), y'(t), z'(t)\right)^\intercal$.
+% \end{theorembox}
+%
+% \begin{exabox}{Bogenlänge 3D}{ }
+% 	Parametrisierung:
+% 	\[
+% 		\gamma: [0,1] \to \mathbb R^3, t\mapsto \left(\sqrt{2} t, e^t, 1-e^{-t}\right)^\intercal
+% 	\]
+% 	Ableitung (Geschwindigkeitsfeld):
+% 	\[
+% 		\gamma'(t) = (\sqrt{2}, e^t, e^{-t})^\intercal
+% 	\]
+% 	Länge der Raumkurve:
+% 	\begin{eqnarray*}
+% 		|\gamma| &=& \int_{0}^1 \sqrt{2 + e^{2t} + e^{-2t}} \, \mathrm{d}t = \int\limits_0^1 \sqrt{ 2 + \left( e^{t} + e^{-t}\right)^2 - 2 e^{t}e^{-t} }\,\mathrm{d}t = \int\limits_0^1   \left( e^{t} + e^{-t}\right) \,\mathrm{d}t \\
+% 		& =&  \Big[ e^t - e^{-t}\Big]_0^1 = e-1 - \frac1e +1 = e - \frac1e\,.
+% 	\end{eqnarray*}
+% \end{exabox}
+
+

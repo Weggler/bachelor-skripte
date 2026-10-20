@@ -1,0 +1,68 @@
+\ifintegriereaufgaben
+
+\section*{Laplace Transformation Anwendungen Aufgaben}\label{MA2-laplacetransformation-und-differentialgleichungen-aufgaben}
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laplacetransformation-und-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-laplacetransformation-und-differentialgleichungen})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-laplacetransformation-und-differentialgleichungen-loesungen]{hier}.
+\else
+\section{Laplace Transformation Anwendungen Aufgaben}\label{MA2-laplacetransformation-und-differentialgleichungen-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-laplacetransformation-und-differentialgleichungen-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Laplace-Transformation Rechenregeln] % Papula 2, VI, Abschnitt 2, Aufgabe 1, 2, 3, 5, 6, 7, 9, 10
+	Bestimmen Sie durch Anwendung der Regeln die Laplace-Transformierte der angegebenen Funktionen:
+	\begin{itemize}
+		\item[(a)] $f(t) = 4t^3-t^2+2t $
+		\item[(b)] $f(t) = C(1-e^{-\lambda t}) $
+		\item[(c)] $f(t) = \left( 3t\right)^5 $ Hinweis: $t^5 \,\laplace\, \displaystyle{\frac{120}{s^6}} $
+		\item[(d)] $f(t) = \cos( 4t) $ Hinweis: $\cos(t) \,\laplace\, \displaystyle{\frac{s}{s^2 +1}} $
+		\item[(e)] $f(t) = \cos^2( \omega t) $ Hinweis: $\cos^2(t) \,\laplace\, \displaystyle{\frac{s^2+2}{s\cdot (s^2 +4)}} $
+			\item[(f)] $f(t) = (t-4)^2 $ Hinweis: $t^2 \,\laplace\, \displaystyle{\frac{2}{s^3}} $
+			\item[(g)] $f(t) = e^{t-b}, \; b>0 $ Hinweis: $e^t \,\laplace\, \displaystyle{\frac{1}{s-1}} $
+			\item[(h)] $f(t) = \sin(t+\pi/2) $ Hinweis: $\sin(t) \,\laplace\, \displaystyle{\frac{1}{s^2+1}} $
+			\item[(i)] $f(t) = e^{3t}\cdot \cos(2t) $ Hinweis: $\cos(t) \,\laplace\, \displaystyle{\frac{s}{s^2+1}} $
+			\item[(j)] $f(t) = A\cdot e^{-\delta t}\cdot \sin(\omega t), \; \delta, \omega >0 $ Hinweis: $\sin(t) \,\laplace\, \displaystyle{\frac{1}{s^2+1}} $
+			\item[(k)] $f(t) = 2^{3t}$ Hinweis: $e^{\lambda t} \,\laplace\, \displaystyle{\frac{1}{s-\lambda}} $
+		\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Laplace-Transformation und Differentialgleichungen]
+	Betrachten Sie die Differentialgleichung $ y'' + \omega^2 y = 0,\; \omega>0$ mit den beiden Anfangswerten
+	\begin{enumerate}
+		\item $y(0) = 1 \land y'(0) = 0$
+		\item $y(0) = 0 \land y'(0) = 1$
+	\end{enumerate}
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die Lösung der beiden Anfangswertprobleme.
+		\item[(b)] Berechnen Sie die Laplace-Transformierte $Y(s)$ der Differentialgleichung \( y'' + \omega^2\, y = 0\). Nutzen Sie dabei die Ableitungsregeln.
+		\item[(c)] Bestimmen Sie, ausgehend von den speziellen Lösungen der Anfangswertprobleme im Bildbereich, die Lösungen im Zeitbereich. Verwenden Sie für die Rücktransformationen eine Tabelle.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Laplace-Transformation und Differentialgleichungen]
+	Lösen Sie die folgenden Systeme mit Hilfe der Laplace-Transformation
+	\begin{eqnarray*}
+		(a)\; \begin{cases}
+			x(0) = y(0) =  0, \quad & t= 0\,,\\
+			\dot x + 2 y = e^t, \quad & t> 0\,,\\
+			\dot y + 2 x = e^{-t}, \quad & t> 0\,.
+		\end{cases} \quad\quad
+		(b)\; \begin{cases}
+			x(0) = y(0) =  0, \quad & t= 0\,,\\
+			\dot x(0) = \dot y(0) =  0, \quad & t= 0\,,\\
+			\ddot x + \dot y + 3 y = 1, \quad & t> 0\,,\\
+			\ddot y -4 \dot x + 3y = 0, \quad & t> 0\,.
+		\end{cases} \quad\quad
+	\end{eqnarray*}
+\end{exercisebox}
+
+
+%\begin{exercisebox}[Laplace-Transformation und Differentialgleichungen]  %HMI III; Klausur, Aufgabe 2
+%	Die Analyse eines elektromagnetischen Reihenschwingkreises habe Sie zu folgender Integro-Differentialgleichung für die Stromstärke $I(t)$ geführt:
+%	\[
+%	\dot I(t) + 2\delta I(t) + \omega_0^2 \int\limits_0^t I(\tau)\,\mathrm{d}\tau = \frac{U_0}{L} \land I(0)=0\,.\]
+%	Hierbei sind $\delta, \omega_0, L$ und $U_0$ positive Konstanten und es gelte $\omega^2_0 - \delta^2 >0$. Lösen Sie dieses Anfangswertproblem mit Hilfe der Laplace-Transformation. Hinweis: Für die Rücktransformation können Sie die folgende Formel ohne Beweis verwenden:
+%	\[ \mathcal L^{-1} \left( \frac{1}{(s+b)^2 + a^2}\right) = \frac{d^{-bt}\sin(at)}{a}, \; a>0\,.\]
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\end{exercisebox}

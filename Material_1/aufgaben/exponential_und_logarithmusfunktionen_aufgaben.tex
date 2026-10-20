@@ -1,0 +1,74 @@
+
+\ifintegriereaufgaben
+\section*{Exponential- und Logarithmusfunktionen Aufgaben}\label{MA1-exponential-und-logarithmusfunktionen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-exponential-und-logarithmusfunktionen}{ (Abschnitt \abschnittsverweis{MA1-exponential-und-logarithmusfunktionen})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-exponential-und-logarithmusfunktionen-loesungen]{hier}.
+\else 
+\section{Exponential- und Logarithmusfunktionen Aufgaben}\label{MA1-exponential-und-logarithmusfunktionen-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-exponential-und-logarithmusfunktionen-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Interpolation]
+	Bestimmen Sie die Parameter $a$ und $b$ der Funktion \[ f:x\mapsto a\cdot e^{-bx}\] so, dass die Punkt $(0|8)$ und $(5|3)$ auf der Kurve liegen. Runden Sie die Parameter auf drei Nachkommastellen.
+\end{exercisebox}
+
+\begin{exercisebox}[$f: x\mapsto 2^x$]
+  Gegeben ist die Funktion $f$ mit $f: x \mapsto 2^x$
+  \begin{itemize}
+	  \item[(a)] Ermitteln Sie den maximalen Definitionsbereich $D$ und die Bildmenge $f(D)$
+	  \item[(b)] Berechnen Sie $f(-\frac14)$ auf $2$ Dezimalen genau.
+    \item[(c)] Für welches $x\in D$ ist $f(x) = 8$?
+    \item[(d)] Für welche $x\in D$ ist $f(x) \leq 16$?
+    \item[(e)] Zeigen Sie $f(x) \cdot f(-x) = 1$ für alle $x\in D$
+    \item[(f)] Zeigen Sie $f(x+1) = 2\cdot f(x)$ für alle $x\in D$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Rechenregeln]
+	\begin{itemize}
+		\item[(a)] Vereinfachen Sie die folgenden Ausdrücke ohne Taschenrechner:
+			\[ \mathrm{lg}(4)+2\mathrm{lg}(5), \; e^{5\ln(2)}, \; \mathrm{lg}(3000)- \mathrm{lg}(3)\,.\]
+		\item[(b)] In folgender Umformung ist ein Fehler - finden Sie ihn?
+			\[ e^{0.5(\ln x )^2} = \left( e^{(\ln x)^2}\right)^{0.5} = e^{(\ln x)^{2\cdot 0.5}} = e^{(\ln x)} =  x\,.\]
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungen]
+	Lösen Sie die folgenden Gleichungen:
+	\begin{eqnarray*}
+		\begin{array}{ll} 
+			(a)\; \displaystyle{e^{x^2 - 2x}}=1 \quad & (b)\; e^x+2\cdot e^{-x} = 3 \\ (c)\; \ln\left( \sqrt{x}\right) + 1,5\cdot \ln(x) = \ln(2x) \quad &(d)\; \left( \mathrm{lg}(x)\right)^2 - \mathrm{lg}(x) = 2 
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendung: Radioaktiver Zerfall]
+	Eine radioaktive Substanz zerfällt nach dem Gesetz \[ n(t) = n_0 \cdot e^{-\lambda t} \,.\]
+	mit $n_0, \lambda \in \mathbb R^+$. Die halbwertszeit $\tau$ ist definiert durch $n(\tau) = n(0)/2$. 
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die Umkehrfunktion mit Definitionsbereich, Wertebereich und Abbildungsvorschrift. 
+		\item[(b)] Geben Sie eine allgemeine Formel für $\tau$ an. 
+		\item[(c)] Berechnen Sie die Halbwertszeitfür Radon mit $\lambda = 2,0974\cdot 10^{-6}s^{-1}\,.$
+	\end{itemize}
+\end{exercisebox}
+
+%\begin{exercisebox}[Logarithmische Skalen]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Approximation von $e$ Taylorentwicklung, Matlab]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Approximation von $\pi$, Monte-Carlo Verfahren, Matlab]
+%\end{exercisebox}
+
+%
+%\begin{exercisebox}[Numerische Verfahren analysieren]
+%optimale Konvergenz, Logarithmische Konvergenz $n\log(n)$, Quasi-Linear
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Gleichverteilte Zufallszahlen]
+%\end{exercisebox}
+%
+%\begin{exercisebox}[Exponentialverteilung, Zufallszahlen Modellierung]
+%\end{exercisebox}

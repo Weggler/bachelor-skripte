@@ -1,0 +1,298 @@
+\section{Algebraische Gleichungen (+)}\label{MA1-algebraische-gleichungen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem algebraische Gleichungen erkennen und ihren Grad bestimmen &\\
+\tabitem quadratische Gleichungen mit der allgemeinen Lösungsformel lösen &\\
+\tabitem algebraische Gleichungen geeigneter Struktur auf Gleichungen niedrigeren Grades zurückführen &\\
+\tabitem für eine algebraische Gleichung eine geeignete Lösungsstrategie auswählen &\\
+    \midrule
+	  \textbf{Voraussetzungen} &\\[.5\normalbaselineskip]
+	  \tabitem Grundlagen & \abschnittsverweis{MA1-mengen-und-logik}-\abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Polynome, Nullstellen und Polynomdivision & \abschnittsverweis{MA1-polynome}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-algebraische-gleichungen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist eine algebraische Gleichung?}
+
+Eine Gleichung heißt \textbf{algebraische Gleichung} (\emph{algebraic equation}),
+wenn sie sich durch algebraische Umformungen auf eine Gleichung der Form
+\[
+p(x)=0
+\]
+mit einem Polynom \(p\) zurückführen lässt.
+
+Im Folgenden stehen insbesondere solche Gleichungen im Mittelpunkt, die nach Berücksichtigung ihres Definitionsbereichs durch Äquivalenzumformungen auf eine Polynomgleichung zurückgeführt werden können.
+
+
+Eine algebraische Gleichung in Polynomform wird üblicherweise so dargestellt, dass alle Terme auf einer Seite stehen und nach fallenden Potenzen von \(x\) geordnet sind: 
+\[
+a_n\cdot x^n+a_{n-1}\cdot x^{n-1}+\dots+a_1\cdot x+a_0=0,
+\qquad a_n\neq0.
+\]
+Der höchste auftretende Exponent \(n\) heißt der \textbf{Grad} der Gleichung.  Durch Division durch den führenden \underline{Koeffizienten} \randverweis{MA1-polynome} \(a_n\) erhält man die
+\textbf{normierte Form}
+\[
+x^n+\frac{a_{n-1}}{a_n}\cdot x^{n-1} +\dots+\frac{a_0}{a_n}=0.
+\]
+
+Das folgende Beispiel zeigt den Übergang von einer Bruchgleichung zu einer algebraischen Gleichung in normierter Form.
+
+\begin{exabox}{Algebraische Gleichung}{ }
+
+Gegeben sei die Gleichung
+\[
+\frac{x^2+7}{x-\pi}
+=
+\frac{\sqrt{5}}{x^2-9}+3.
+\]
+Aufgrund der Nenner gilt für den Definitionsbereich
+\[
+D=\mathbb R\setminus\{-3,\pi,3\}.
+\]
+
+Für \(x\in D\) können die Nenner durch Äquivalenzumformungen beseitigt werden:
+\[
+\begin{array}{c rcl}
+& \dfrac{x^2+7}{x-\pi} &=& \dfrac{\sqrt5}{x^2-9}+3 \\[2ex]
+\Leftrightarrow& (x^2+7)(x^2-9) &=& \bigl(\sqrt5+3(x^2-9)\bigr)(x-\pi) \\[1ex]
+\Leftrightarrow& x^4-2x^2-63 &=& 3x^3-3\pi x^2+(\sqrt5-27)x-\pi\sqrt5+27\pi \\[1ex]
+\Leftrightarrow& x^4-3x^3+(3\pi-2)x^2+(27-\sqrt5)x -63-27\pi+\pi\sqrt5 &=&0. 
+\end{array}
+\]
+
+Damit liegt eine algebraische Gleichung vierten Grades in normierter Form vor.
+
+\medskip
+\noindent\textbf{Bemerkungen:}
+\begin{itemize}
+    \item Die Einschränkung
+    \[
+    x\notin\{-3,\pi,3\}
+    \]
+    bleibt während der gesamten Umformung erhalten.
+    
+    \item Das Multiplizieren mit den Nennern ist nur für diejenigen \(x\)
+    eine Äquivalenzumformung, für die diese Nenner von null verschieden sind.
+    
+    \item Der führende Koeffizient der erhaltenen Polynomgleichung ist bereits
+    \(1\). Eine zusätzliche Division zur Herstellung der normierten Form ist
+    daher nicht erforderlich.
+\end{itemize}
+
+\end{exabox}
+
+Eine algebraische Gleichung \(n\)-ten Grades zu lösen bedeutet damit, die Nullstellen des zugehörigen \underline{Polynoms}\randverweis{MA1-polynome}  \(n\)-ten Grades zu bestimmen und anschließend zu prüfen, welche dieser Nullstellen im ursprünglichen Definitionsbereich der Gleichung liegen.
+Ein Polynom \(n\)-ten Grades besitzt höchstens \(n\) verschiedene reelle Nullstellen. Ist sein Grad ungerade, so besitzt es mindestens eine reelle Nullstelle.
+
+%\subsection{Der Satz von Vieta}
+%
+%Bleiben wir bei der algebraischen Gleichung des Beispiels:
+%  $$  x^4  + \displaystyle{\frac37}\cdot x^3 + \displaystyle{\frac{2+3\pi}{7}}\cdot x^2 - \sqrt{5}\cdot x + 9 = 0\,.$$
+%
+%  Angenommen (angenommen!), das Polynom \[ p: x\mapsto x^4  + \displaystyle{\frac37} \cdot x^3 + \displaystyle{\frac{2+3\pi}{7}}\cdot x^2 - \sqrt{5} \cdot x + 9 \] lässt sich komplett in Linearfaktoren zerlegen, dann gibt es vier reelle Nullstellen \(x_1, x_2, x_3\) und \(x_4\) mit 
+%  $$p(x) = (x-x_1) \cdot (x-x_2) \cdot (x-x_3) \cdot (x-x_4) \stackrel{!}{=} x^4  + \displaystyle{\frac37} \cdot x^3 + \displaystyle{\frac{2+3\pi}{7}} \cdot x^2 - \sqrt{5} \cdot x + 9 \,. \quad (*)$$
+%  Wir haben in \((*)\) o.B.d.A.\footnote{o.B.d.A. bedeutet "\,ohne Beschränkung der Allgemeinheit"} die Linearfaktorzerlegung zur Darstellung von \(p\) angesetzt.\footnote{Erinnern Sie sich: dieser Ansatz ist immer dann optimal wenn es um die Nullstellen von \(p\) geht!} 
+%
+%  Die algebraische Gleichung haben wir gelöst, wenn wir konkrete Zahlenwerte für die \(x_1,\cdots,x_4\) bestimmen können und dies gelingt durch Ausmultiplizieren und \textbf{Koeffizientenvergleich}:\marginpar{Aufgaben}
+%
+%\begin{exabox}{Bestimmung von Nullstellen: Ansatz ausmultiplizieren und Koeffizientenvergleich}{}
+%\begin{eqnarray*}  
+%\lefteqn{x^4  + \displaystyle{\frac37} x^3 + \displaystyle{\frac{2+3\pi}{7}} x^2 - \sqrt{5} x + 9 \stackrel{!}{=} (x-x_1)\cdot (x-x_2)\cdot (x-x_3)\cdot (x-x_4)}\\
+%  &=& x^4 - x^3\left(x_1 + x_2 +x_3+ x_4\right) + x^2\left( x_1x_2+x_1x_3+x_1x_4+x_2x_3+x_2x_4+x_3x_4 \right)\\&& - x\left( x_1x_3x_4+x_2x_3x_4+x_1x_2x_3+x_1x_2x_4 \right) + \left( x_1x_2x_3x_4\right)\\ 
+%  &&\\
+%  &\Rightarrow& \begin{cases}  
+%	  -x_1 - x_2 - x_3 - x_4 &= \displaystyle{\frac37} \\   
+%	  x_1x_2+x_1x_3+x_1x_4+x_2x_3+x_2x_4+x_3x_4  &= \displaystyle{\frac{2+3\pi}{7}} \\
+%	  -x_1x_3x_4-x_2x_3x_4-x_1x_2x_3-x_1x_2x_4 &= -\sqrt{5} \\
+%  x_1\cdot x_2\cdot x_3\cdot x_4 &= 9 \end{cases} 
+%\end{eqnarray*}
+%\end{exabox}
+%
+%\noindent\textbf{Bemerkungen:}
+%\begin{itemize}
+%	\item Unter den Voraussetzungen, dass nur reelle Nullstellen vorliegen, geht das natürlich auch für Polynome beliebigen Grades.
+%	\item Das geschilderte Vorgehen zur Nullstellenbestimmung durch Koeffizientenvergleich heißt  "\,Satz von Vieta".
+%	\item Der Satz von Vieta führt zu einem System nicht-linearer Gleichungen, das im Allgemeinen schwer analytisch zu lösen ist. Eine Ausnahme sind quadratische Gleichungen.\marginpar{\small Aufgabe}
+%\end{itemize}
+
+\subsection{Quadratische Gleichungen}
+
+Eine quadratische Gleichung kann durch quadratische Ergänzung auf eine bereits
+bekannte Gleichung mit einer zweiten Potenz zurückgeführt werden. Aus
+\[
+a\cdot x^2+b\cdot x+c=0,
+\qquad a\neq0,
+\]
+folgt zunächst durch Division durch \(a\)
+\[
+x^2+\dfrac ba x+\dfrac ca=0.
+\]
+Der Ausdruck aus \(x^2\) und \(x\) wird nun zu einem vollständigen Quadrat
+ergänzt:\marginpar{Aufgaben}
+  $$
+  \underbrace{ x^2 + \frac{b}{a}x + \frac{b^2}{4a^2}}_{\displaystyle{ = \left(x + \frac{b}{2a}\right)^2}} + \frac{c}{a}  - \frac{b^2}{4a^2} = 0\,.
+  $$
+Also ist die ursprüngliche Gleichung äquivalent zu:
+$$\left(x + \frac{b}{2a}\right)^2  = \frac{\textcolor{blue}{b^2- 4\,c\cdot a}}{a^2} \,. $$
+  Der Ausdruck
+\[
+	\Delta:= \textcolor{blue}{b^2-4\,a\cdot c}
+\]
+heißt \textbf{Diskriminante} (\emph{discriminant}). Das Vorzeichen der Diskrinimante Vorzeichen bestimmt, wie viele reelle Lösungen die quadratische Gleichung besitzt.
+\begin{theorembox}{Lösungsformel für quadratische Gleichungen}{ }
+  \begin{eqnarray*}
+    \begin{cases} 
+      \Delta > 0 \Rightarrow x_{1,2} = \displaystyle{\frac{-b \pm \sqrt{ b^2 - 4ac}}{2a}} \quad (*)\,,\\
+      \Delta = 0 \Rightarrow x_{1,2} = \displaystyle{\frac{-b}{2a}}\,,\\
+      \Delta < 0 \Rightarrow \textnormal{keine reellen L\"osungen}\,.
+    \end{cases}
+    \end{eqnarray*}
+ \end{theorembox}
+
+ Die drei Fälle besitzen eine geometrische Interpretation.\marginpar{ \small \href{https://www.geogebra.org/m/PHfR2APJ}{GeoGebra}}
+Die Lösungen der quadratischen Gleichung
+\[
+ax^2+bx+c=0
+\]
+sind genau die Nullstellen der zugehörigen Parabel
+\[
+p(x)=ax^2+bx+c.
+\]
+Daher schneidet die Parabel für \(\Delta>0\) die \(x\)-Achse in zwei Punkten, berührt sie für \(\Delta=0\) in ihrem Scheitelpunkt und besitzt für \(\Delta<0\) keinen Schnittpunkt mit der \(x\)-Achse.
+
+\subsection{Gleichungen höherer Ordnung}
+
+Liebt eine Gleichung höheren Grades vor, dann ist für die Wahl einer Lösungsstrategie zunächst die Struktur der Gleichung
+entscheidend:
+
+\begin{itemize}
+    \item Eine quadratische Gleichung kann durch quadratische Ergänzung oder mit der allgemeinen Lösungsformel gelöst werden.
+    
+    \item Ist bei einer Gleichung höheren Grades bereits eine Nullstelle bekannt, kann der zugehörige Linearfaktor abgespalten und der Grad durch Polynomdivision reduziert werden.
+    
+    \item Tritt die Unbekannte nur in bestimmten Potenzen auf, kann eine geeignete Substitution die Gleichung auf einen niedrigeren Grad zurückführen.
+\end{itemize}
+
+\subsubsection*{Reduktion des Grades durch Polynomdivision}
+
+\begin{exabox}{Gradreduktion durch Polynomdivision}{ }
+
+Gegeben sei die algebraische Gleichung
+\[
+x^3-2\cdot x^2-5\cdot x+6=0.
+\]
+Für das zugehörige Polynom
+\[
+p(x)=x^3-2x^2-5x+6
+\]
+sei die Nullstelle \(x_1=1\) bereits bekannt. 
+Damit ist \((x-1)\) ein Linearfaktor von \(p\), und die Polynomdivision durch
+\((x-1)\) geht ohne Rest auf:
+\[
+\begin{array}{rcrcrcl}
+(x^3&-&2x^2&-&5x&+&6):(x-1)=x^2-x-6\\[1ex]
+-(x^3&-&x^2)&&&&\\ \hline
+&&-x^2&-&5x&+&6\\[1ex]
+&&-(-x^2&+&x)&&\\ \hline
+&&&&-6x&+&6\\[1ex]
+&&&&-(-6x&+&6)\\ \hline
+&&&&&&0
+\end{array}
+\]
+Damit lässt sich das Polynom schreiben als
+\[
+p(x)=(x-1)\cdot (x^2-x-6).
+\]
+Die ursprüngliche Gleichung ist daher äquivalent zu
+\[
+(x-1)(x^2-x-6)=0.
+\]
+Der verbleibende quadratische Faktor kann weiter zerlegt werden:
+\[
+x^2-x-6=(x-3)\cdot (x+2).
+\]
+Somit gilt
+\[
+	p(x) = (x-1)(x-3)(x+2)
+\]
+Ein Produkt ist genau dann null, wenn mindestens einer seiner Faktoren null
+ist. Daher ergeben sich die drei Lösungen
+\[
+	p(x) = 0 \Leftrightarrow x\in \mathbb L=\{-2,1,3\}.
+\]
+
+Durch das Abspalten des bekannten Linearfaktors wurde die Gleichung dritten
+Grades auf eine quadratische Gleichung zurückgeführt. Allgemein kann eine
+bekannte Nullstelle einer Polynomgleichung höheren Grades auf diese Weise
+genutzt werden, um den Grad der noch zu lösenden Gleichung zu reduzieren.
+
+\end{exabox}
+
+\subsubsection*{Reduktion des Grades durch Substitution}
+
+\begin{exabox}{Gradreduktion durch Substitution}{ }
+
+Gegeben sei die algebraische Gleichung
+\[
+x^4-5\cdot x^2+4=0.
+\]
+Obwohl es sich um eine Gleichung vierten Grades handelt, besitzt sie eine
+besondere Struktur: Die Unbekannte \(x\) tritt nur in den Potenzen
+\(x^4\) und \(x^2\) auf. Da
+\[
+x^4=(x^2)^2
+\]
+gilt, kann die Substitution \( z = x^2\) verwendet werden. Damit wird aus der Gleichung vierten Grades in \(x\) die
+quadratische Gleichung in \(z\)
+\[
+z^2-5\cdot z+4=0.
+\]
+Der quadratische Term lässt sich faktorisieren:
+\[
+(z-1)(z-4)=0 \Leftrightarrow 
+z_1=1
+\qquad\text{und}\qquad
+z_2=4.
+\]
+
+Damit ist zunächst die Gleichung in der neuen Variablen \(z\) gelöst. Für
+die Lösungen der ursprünglichen Gleichung muss nun die Substitution \(z=x^2\)
+rückgängig gemacht werden.
+
+\[
+	\left\{\begin{array}{rcl l} z_1&=&1 \Rightarrow x^2=1 \Longleftrightarrow & x=\pm1 \\
+	z_2&=&4 \Rightarrow x^2=4 \Longleftrightarrow & x=\pm2\end{array}\right. 
+\]
+Damit besitzt die ursprüngliche Gleichung die vier Lösungen \(\mathbb L=\{-2,-1,1,2\}.\)
+
+Bei einer Substitution muss nach dem Lösen der vereinfachten Gleichung stets
+zur ursprünglichen Variablen zurückgekehrt werden. 
+\end{exabox}
+
+Nicht jede algebraische Gleichung lässt sich mit den hier genannten Ideen
+Verfahren analytisch lösen. Für allgemeine Gleichungen dritten und vierten
+Grades existieren zwar ebenfalls geschlossene Lösungsformeln, diese sind
+jedoch wesentlich aufwendiger und werden hier nicht behandelt.
+
+Für allgemeine algebraische Gleichungen fünften oder höheren Grades existiert
+keine Lösungsformel, die mit der allgemeinen Lösungsformel für
+quadratische Gleichungen vergleichbar wäre. Einzelne Gleichungen höheren
+Grades können aufgrund ihrer besonderen Struktur dennoch exakt lösbar sein.
+
+Ist eine exakte Lösung nicht zugänglich oder nicht zweckmäßig, können
+Nullstellen numerisch angenähert werden. Beispiele dafür sind das
+Bisektionsverfahren und das Newton-Verfahren. Solche Verfahren werden später
+im Abschnitt \underline{Numerische Näherung}\randverweis{MA1-lokale-linearitaet}
+behandelt.

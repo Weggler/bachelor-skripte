@@ -1,0 +1,225 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true,   % Colours links instead of ugly boxes
+  urlcolor     = red,    % Colour for external hyperlinks
+  linkcolor    = red,    % Colour of internal links
+  citecolor    = red     % Colour of citations
+}
+
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+
+% Notes am rechten Seitenrand -deshalb die unterschiedliche Breite.
+\usepackage{marginnote}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+\usepackage{eurosym}
+\usepackage{trfsigns}
+
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\usepackage{tcolorbox}
+\usepackage{pdflscape}
+
+\tcbuselibrary{breakable,skins}
+\usepackage{ctable}
+\definecolor{violett}{RGB}{154,50,205 }
+\definecolor{darkgreen}{RGB}{0,136,0 }
+\definecolor{htwgreen}{RGB}{134,189,36 }
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable
+\let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{white}{lightgray}\oldlongtable} {
+\endoldlongtable}
+
+% Definition
+% #1: Title
+% #2: Bemerkung
+\newcounter{def}
+\newtcolorbox{defbox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=left, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Def. \stepcounter{def}\thedef \newline \textcolor{black}{#3} };
+}, 
+  colframe=gray, 
+  %colback=mytestcolor, 
+  colback=white, 
+  coltitle=red!70!gray, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt}
+
+% Satz
+% #1: Title
+% #2: Bemerkung
+\newcounter{satz}
+   \newtcolorbox{theorembox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Regel \stepcounter{satz}\thesatz \newline \textcolor{black}{#3} };
+}, 
+  colframe=gray, 
+  %colback=mytestcolor, 
+  colback=white, 
+  coltitle=red!70!gray, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=blue, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2}; 
+	  \node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} };
+}, 
+  colframe=blue, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Übung
+% #1: Title
+% #2: Bemerkung
+\newcounter{exercise}
+\newtcolorbox{exercisebox}[1][]{
+  enhanced,
+  overlay unbroken and first={ 
+	  \node[fill=white, rounded corners, draw=white, text=black, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east)  {#1}; 
+	  \node[anchor=north east, text=black, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  
+	  {\small  Aufg. \stepcounter{exercise}\theexercise };
+}, 
+  colframe=black, 
+  colback=white, 
+  coltitle=red!70!blue, 
+  boxrule=1pt, 
+  arc=1mm, 
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Aufgaben gemeinsam mit der Theorie verlinken; siehe LaTeX/README.md.
+\input{../LaTeX/ausgabemodus}
+\integriereaufgabenfalse
+
+\begin{document}
+\pagenumbering{roman}
+
+\noindent
+{
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{section}{0}
+% Definition
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/funktionen_loesungen} 
+\newpage
+
+% Eigenschaften
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/eigenschaften_von_funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/eigenschaften_von_funktionen_loesungen} 
+\newpage
+
+% Linear 
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/lineare_funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/lineare_funktionen_loesungen} 
+\newpage
+
+% Potenzfunktionen und Wurzelfunktionen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/potenz_und_wurzelfunktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/potenz_und_wurzelfunktionen_loesungen} 
+\newpage
+
+% Polynome
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/polynome_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/polynome_loesungen} 
+\newpage
+
+% Gleichungen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/algebraische_gleichungen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/algebraische_gleichungen_loesungen} 
+\newpage
+
+% Rationale Funktionen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/rationale_funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/rationale_funktionen_loesungen} 
+\newpage
+
+% Exponentialfunktionen und Logarithmusfunktionen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/exponential_und_logarithmusfunktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/exponential_und_logarithmusfunktionen_loesungen} 
+\newpage
+
+% Trigonometrische Funktionen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/trigonometrische_funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/trigonometrische_funktionen_loesungen} 
+\newpage
+
+% Kompositionen
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/aufgaben/verkettung_von_funktionen_aufgaben} 
+\newpage
+\setcounter{satz}{0} \setcounter{def}{0} \setcounter{exercise}{0}  
+\input{../Material_1/loesungen/verkettung_von_funktionen_loesungen} 
+}
+
+\end{document}

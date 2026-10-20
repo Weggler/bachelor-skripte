@@ -1,0 +1,69 @@
+\ifintegriereaufgaben
+\section*{Potenzreihen Aufgaben}\label{MA2-potenzreihen-aufgaben}
+
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-potenzreihen}{ (Abschnitt \abschnittsverweis{MA2-potenzreihen})} und, falls Sie nicht weiterkommen, dann schauen Sie \hyperref[MA2-potenzreihen-loesungen]{hier}.
+\else
+\section{Potenzreihen Aufgaben}\label{MA2-potenzreihen-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-potenzreihen-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Konvergenz] %Papula VI, Abschnitt 2, Aufgabe 1
+	Bestimmen Sie den Konvergenzradius und geben Sie den Konvergenzbereich der folgenden Reihen an. Untersuchen Sie dabei auch die Ränder des Konvergenzbereichs.
+	\begin{eqnarray*}
+		\begin{array}{l l l}
+			(a)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} k\cdot x^k \quad & (b)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} (-1)^k \cdot \displaystyle{\frac{x^k}{k}} \quad & (c)\; P(x) = \displaystyle{\sum\limits_{k=1}^\infty} \displaystyle{\frac{x^k}{k^2}} \\
+			(d)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty} \displaystyle{\frac{x^k}{2^k}} \quad & (e)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty } \displaystyle{\frac{k}{k+1} x^{k+1}} \quad & (f)\; P(x) = \displaystyle{\sum\limits_{k=0}^\infty} \displaystyle{\frac{k+1}{k!}} x^k
+		\end{array}
+	\end{eqnarray*}
+\end{exercisebox}
+
+%Moodle %HMI I, Blatt 11, Aufgabe 1 Moodle
+\begin{exercisebox}[Konvergenz] %HMI I, Blatt 10, Aufgabe 4 Moodle
+	Bestimmen Sie den Konvergenzradius der folgenden Reihen.
+	\begin{eqnarray*}
+		(a)\; \displaystyle{\sum\limits_{k=1}^\infty} \left(  \displaystyle{\frac{k!}{3 \cdot 5\cdot \dots \cdot (2k+1)}}\right)^{2} x^k \quad  (b)\; \displaystyle{\sum\limits_{k=1}^\infty} \left( \begin{array}{c} 2k\\ k\end{array}\right) x^k \quad  (c)\; \displaystyle{\sum\limits_{k=1}^\infty } \left( k^4 - 4k^3\right) x^k
+	\end{eqnarray*}
+\end{exercisebox}
+
+\begin{exercisebox}[ Analytische Funktionen]
+Begründen Sie, warum die folgende Funktion nicht analytisch ist
+\[ f: x\mapsto  \begin{cases} e^{-1/x^2}, \quad x\not=0\,,\\
+0, \quad x=0\,.\end{cases}
+\]
+\end{exercisebox}
+
+\begin{exercisebox}[Leibnitz-Kriterium] %HMI I, Blatt 10, Aufgabe 2
+	Der Weg eines Teilchens in Abhängigkeit der Beschleunigung $x<0$ sei durch die unendliche Reihe
+	\[
+		S(x) = \sum\limits_{k=1}^\infty \frac{x^{k-1}}{k^2\cdot 3^k}
+	\] gegeben.  Untersuchen Sie mit Hilfe des Leibnizkriteriums für welche $x\in\mathbb R$ die Reihe $S(x)$ sinnvoll gegeben ist.
+\end{exercisebox}
+
+\begin{exercisebox}[Potenzreihen und Differentialgleichungen] %Alternativ: Blatt 11, Aufgabe 3
+  Ein Körper mit der Masse $m$ bewege sich auf einer geradlinigen Bahn. Die Anfangsgeschwindigkeit sei $v_0 = 1$. Durch eine Kraft $F$, die der Geschwindigkeit proportional ist, wird der Körper abgebremst.
+
+  \begin{itemize}
+	  \item[(a)] Stellen Sie  Bewegungsgleichung für den Körper auf.
+	  \item[(b)] Lösen Sie die Differentialgleichung mit Hilfe eines Potenzreihenansatzes.
+  \end{itemize}
+\end{exercisebox}
+
+%
+%\begin{exercisebox}[Ausgleichsgerade]
+%  Eine Person ist $1,80 \mathrm{m}$ groß. Sie entfernt sich auf einer waagerecht verlaufenden Straße mit der Geschwindigkeit $6\frac{\mathrm{km}}{\mathrm{h}}$ von einer Lichtquelle. Die Lichtquelle befindet sich in einer Höhe von $3,50\mathrm{m}$. Mit welcher Geschwindigkeit wandert der Schatten des Kopfes auf der Straße entlang?
+%\end{exercisebox}
+
+%\begin{mybox}(Ideen zur Approximation von Integralen)
+%	Polynome zu gewissem Grad exakt integrieren.
+%\end{mybox}
+%
+%\begin{mybox}(Lineare Differentialgleichungen: Approximationen von höherer Ordnung)
+%\end{mybox}
+%
+% Minimierungsproblem in $\mathbb R^n$
+%		\[
+%		x\in \mathbb R\setminus\{ 0\}:\quad \frac{\mathrm{d}}{\mathrm{d} x }  |x|= \frac{\mathrm{d} }{\mathrm{d} x } \sqrt{x^2} = \frac12\cdot (x^2)^{-\frac12} \cdot 2x = \frac{x}{\sqrt{x^2}} = \frac{x}{|x|} = \begin{cases} 1, \quad x > 0\,,  1, \quad x<0 \end{cases} \,.
+%	\]
+
+

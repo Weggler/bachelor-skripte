@@ -1,0 +1,235 @@
+\section{Diskrete Fouriertransformation}\label{MA2-diskrete-fouriertransformation}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem aus gleichmäßig abgetasteten Signalwerten diskrete Fourierkoeffizienten berechnen & \\
+    \tabitem die Rolle der $N$-ten Einheitswurzeln $W_N$ in der DFT erklären & \\
+    \tabitem aus gegebenen Fourierkoeffizienten die Samples mittels iDFT rekonstruieren & \\
+    \tabitem die DFT als lineare Abbildung $\mathbb C^N\to\mathbb C^N$ in Matrixform darstellen & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem mit komplexen Zahlen in Polarform rechnen können (Einheitswurzeln, $e^{i\varphi}$) &  \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
+    \tabitem Fourier-Reihen bzw.\ Fourierpolynome als Überlagerung harmonischer Schwingungen verstehen &  \abschnittsverweis{MA2-fourierreihen} \\
+    \tabitem mit Matrizen und Matrix-Vektor-Produkten umgehen können &  \abschnittsverweis{MA1-matrizen} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-diskrete-fouriertransformation-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+Aus dem vorigen Abschnitt wissen wir, dass man für eine periodische, stückweise stetig differenzierbare Funktion \(u\) ein Spektrum [Fourier analysis] bestimmen kann: anhand des Spektrums lässt sich ablesen, welche harmonischen Schwingungen zum Signal \(f\) beitragen. In der Praxis liegen Signale aber oft nur diskret abgetastet, schlussendlich also als Menge von Messpunkten \(\left\{ \left( t_n, u_n\right), \; n=0,\cdots,N-1\right\} \), vor.
+
+\begin{exabox}{Ausganglage}{ }
+\begin{minipage}{0.3\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_fragestellung_samples_zu_koeffizienten.png}
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+	Wie läßt sich für ein gesampeltes Signal ein Spektrum bestimmen?
+\end{minipage}
+\end{exabox}
+
+Um diese Frage zu beantworten gehen wir zurück zu dem, was wir wissen:
+	\begin{itemize}
+		\item Wäre \(u\) ein stetiges \(T\)-periodisches Signal, so ist das Spektrum diskret und im Allgemeinen unendlich.
+		\item Die komplexen Fourierkoeffizienten sind
+			\begin{equation}\label{ck_1} c_k = \dfrac{1}{T} \int\limits_{0}^T u(t) \cdot e^{- i\,\omega_k\, t}\,\mathrm d t\,, \quad k\in \mathbb Z\,.\end{equation}
+	\end{itemize}
+
+\subsection{Diskrete Fourierkoeffizienten}
+
+Nehmen wir an, dass wir eine \(T\)-periodische Funktion \(u\) im Intervall \([ 0,T) \) in gleichmäßigem zeitlichen Abstand abtasten. Die Menge an resultierenden Messpunkte nennt man Samples. Ein Sample besteht aus dem Aufnahmezeitpunkt und dem Messwert. Liegen \(N\) Messpunkte vor, dann kann man sie nummerieren und wie folgt beschreiben:
+\[ \begin{array}{rcl}  n& =&0,\cdots,N-1: \\ \textnormal{Sample Nummer } n &:&  \left( t_n, u_n\right) \quad \textnormal{mit} \quad \begin{cases} t_n &= n\cdot h\,, \quad h =\dfrac{T}{N}\,, \\ u_n &= u(t_n)\,. \end{cases} \end{array} \]
+Mit den \(N\) Samples kann man die Integrale \eqref{ck_1} zwar nicht exakt, aber näherungsweise berechnen [approximieren], beispielsweise durch die einfachste numerische Integrationsformel: die Rechteckformel.
+
+\vspace{0.2cm}
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/dft_herleitung_rechtecknaeherung_des_integrals.png}
+\end{center}
+\vspace{0.2cm}
+
+Durch die Stützstellen \(\{ t_n, \; n=0,\cdots,N\}\) wird das Integrationsintervall in \(N\) Teilintervalle der Länge \(h\) zerlegt und das Integral über jedem Teilintervall \( t \in (t_n, t_{n+1}), \; n=0,\cdots, N-1,\) kann durch ein Rechteck approximiert:
+also
+		\begin{equation*}
+			\begin{array}{l rcl }
+				\textnormal{Fourierkoeffizient für } k \in \mathbb Z:  & c_k &=& \dfrac{1}{T} \,  \displaystyle{ \int\limits_{0}^T} u(t) \cdot e^{-i\,k\, \omega_0\, t} \,\mathrm d t  \\ \textnormal{Integral zerlegen:} & &=& \dfrac{1}{T} \, \displaystyle{ \sum\limits_{n=0}^{N-1} \int\limits_{t_n}^{t_{n+1}} }  u(t) \cdot e^{-i\,k\, \omega_0\, t} \,\mathrm d t \\[4ex] \textnormal{Näherung durch Rechteck:}  & &\textcolor{blue}{ \approx }& \dfrac{1}{T} \,  \displaystyle{\sum\limits_{n=0}^{N-1}} \textcolor{blue}{u_n \cdot e^{-i \, k \,\omega_0\, t_n} \cdot h} \\ h \textnormal{ ausklammern:} & &&= \dfrac{h}{T} \,  \displaystyle{\sum\limits_{n=0}^{N-1}} u_n \cdot e^{-i \, k \,\omega_0\, t_n} \\[4ex] \omega_0 = \dfrac{2\pi}{T} \mbox{ ersetzen:} & &&= \dfrac{h}{T} \,  \displaystyle{\sum\limits_{n=0}^{N-1}}  u_n \cdot e^{-i \, k \,2\pi/T \, t_n} \\[4ex] T= N\cdot h \mbox{ ersetzen:} & &&= \dfrac{1}{N} \,  \displaystyle{\sum\limits_{n=0}^{N-1}}  u_n \cdot e^{-i \, k \,2\pi/(N\, h) \, t_n}\\[4ex] t_n= n\cdot h\; \mbox{ ersetzen:} & &&=  \dfrac{1}{N} \,  \displaystyle{\sum\limits_{n=0}^{N-1}}  u_n \cdot e^{-i \, k \,2\pi/N \, n} \\[4ex] \textnormal{Potenzregel anwenden:} & &&= \dfrac{1}{N} \, \displaystyle{\sum\limits_{n=0}^{N-1}}  u_n \cdot \left( e^{-i \, 2\pi/N} \right)^{k\cdot n} \,.
+		\end{array}
+		\end{equation*}
+
+		Für \(N\) gegebene Samples \( \{ (t_n, u_n)\}_{n=0}^{N-1} \) definieren wir die  \textbf{diskreten Fourierkoeffizienten} wie folgt:\footnote{entsprechend der Definition von Matlab!}
+		\[\tilde c_{\textcolor{darkgreen}{k}} : = \sum\limits_{n=0}^{N-1} u_n \cdot \left( \left( \textcolor{blue}{ e^{-i\, \frac{2\pi}{N}} } \right)^{\textcolor{darkgreen}{k}} \right)^{n} = \sum\limits_{n=0}^{N-1} u_n \cdot \left( \left(\textcolor{blue}{ W_N }\right)^{\textcolor{darkgreen}{k}} \right)^{n}\,.\]
+		Man könnte meinen, dass das Spektrum wie im kontinuierlichen Fall \textcolor{darkgreen}{unendlich} ist, aber das ist nicht so. Bei Vorgabe von \(N\) Samples werden nur maximal \(N\) signifikant verschiedene diskrete Fourierkoeffizienten aus dem Signal detektiert: \[ \tilde c_{\textcolor{darkgreen}{k}} \quad \textnormal{mit} \quad \textcolor{darkgreen}{k=0,\cdots,N-1} \,.\]
+
+		Und warum? Um das zu verstehen, machen wir einen Ausflug in die komplexen Zahlen. Sucht man alle komplexe Lösungen der Gleichung \(z^N=1\), dann findet man, dass es genau \(N\) signifikant verschiedene gibt. Man nennt die Lösungen die \(N\).ten Einheitswurzeln und es sind Potenzen der Zahl \(\textcolor{blue}{ W_N}\):
+		\[ \begin{array}{l c rcl} \mbox{Gleichung:} && z^N &=& 1\\[2ex] \mbox{Polardarstellung:} & \Leftrightarrow &  |z|^N \cdot e^{-i\, N\cdot\mathrm{arg}(z)} &=& 1 \cdot e^{-i\, 2\pi \cdot k } \quad \Leftrightarrow  \left\{ \begin{array}{rcl} |z| &=& 1 \,,\\[2ex] \mathrm{arg}(z) &=& -k\,2\pi/N\,. \end{array}\right. \\[3ex] \mbox{Lösungen:} & \Rightarrow & z &=&  \textcolor{blue}{e^{-i\, 2\pi/N \, k}} = \left( \textcolor{blue}{W_N}  \right)^{\textcolor{darkgreen}{k}}, \; \textcolor{darkgreen}{ k=1,\cdots,N-1}\,.  \end{array}\]
+
+	Ist \(N\) beispielsweise \(3\), dann gibt es drei Einheitswurzeln:
+\begin{exabox}{Die dritten Einheitswurzeln}{ }
+\begin{minipage}{0.35\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_dritte_einheitswurzeln.png}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+	\begin{itemize}
+		\item Definiere \(W_3 = e^{-i\, \frac{2\pi}{3}} \)
+		\item Jede ganzzahlige \textcolor{darkgreen}{Potenz} von \(W_3\) löst die Gleichung \( z^3 = 1\).
+		\item Die Zahlen \(\left( W_3\right)^{\textcolor{darkgreen}{k}}\) liegen auf dem Einheitskreis im Abstand von \(\dfrac{2\pi}{3}\) gleichmäßig verteilt.
+		\item Für \(\textcolor{darkgreen}{k=0,1,2}:\) erhalten wir
+			\[ \left\{ \begin{array}{rcl} \left( W_3\right)^0 &=& 1\,, \\ \left( W_3\right)^1 &=& e^{-i\, \frac{2\pi}{3} \cdot 1} \\ \left( W_3\right)^2 &=& e^{-i\, \frac{2\pi}{3} \cdot 2} \, \widehat{=} \, e^{i\, \frac{2\pi}{3}}\,. \end{array} \right. \]
+			\item Für \(k\geq 3\) bzw. \(k<0\) setzt eine Periodiziät ein: die Werte wiederholen sich zyklisch.
+		\end{itemize}
+\end{minipage}
+\end{exabox}
+\bigskip
+
+
+Es gibt also nur \(N\) unterschiedliche Zahlen der Bauart \( W_N^k\) und genau die lassen sich in der Berechnungsformel für die diskreten Fourierkoeffizienten identifizieren:
+\[\tilde c_{\textcolor{darkgreen}{k}} : = \sum\limits_{n=0}^{N-1} u_n \cdot \left( \left( \textcolor{blue}{ e^{-i\, \frac{2\pi}{N}} } \right)^{\textcolor{darkgreen}{k}} \right)^{n} = \sum\limits_{n=0}^{N-1} u_n \cdot \left( \textcolor{blue}{W_N}^{\textcolor{darkgreen}{k}} \right)^{n}\,, \quad \textcolor{darkgreen}{ k=0,\cdots,N-1 }\,.\]
+
+\begin{theorembox}{Diskrete Fouriertransformation}{ }
+\begin{minipage}{0.4\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_samples_zu_diskreten_koeffizienten.png}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{itemize}
+		\item Es liegen \(N\) Samples vor.
+		\item Das Spektrum umfasst \(N\) Fourierkoeffizienten:  \[ \tilde c_k =  \sum\limits_{n=0}^{N-1} u_n \cdot W_N^{k\,n}\,,\; k=0,\cdots,N-1\,.\]
+	\end{itemize}
+\end{minipage}
+\end{theorembox}
+
+\subsection{Diskrete Fouriertransformationen}
+
+\vspace{0.4cm}
+Die diskrete Fouriertransformation [DFT] lautet:
+
+\begin{equation}\label{MA2-dft}
+\mbox{DFT}: \left\{ u_n,\, n=0,\cdots,N-1\right\} \mapsto  \left\{ \tilde c_k, k=0,\cdots,N-1\right\}, \; \tilde c_k = \sum\limits_{n=0}^{N-1} u_n \cdot W_N^{k\,n} \,. \end{equation}
+
+Bei gegebener DFT (gegebenem Spektrum) lässt sich ein Fourierpolynom definieren. Das Fourierpolynom ist ein periodisches Signal im Zeitbereich mit Periode \(T = N\cdot h\):
+\begin{equation}\label{diskretes_fourier_polynom}
+	\mbox{Fourier-Synthese}: \; \left\{ \tilde c_k,\, k=0,\cdots,N-1\right\} \mapsto  g(t) = \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k\cdot  e^{i \,\omega_k \, t }\,, \quad \omega_k = k\cdot \dfrac{2\pi}{T}\,.
+\end{equation}
+Das Fourierpolynom \(g\) \textbf{interpoliert} die gegebenen \(N\) Samples und das bedeutet\marginpar{{\small Aufgabe}} \[\mbox{Interpolationseigenschaft:} \quad g(t_n) = u_n \; \textnormal{für alle } n=0,\cdots,N-1\,. \] Die Interpolationseigenschaft lässt sich auch wie folgt lesen: eine DFT definiert ein Fourierpolynom \(g\), aus dem man die Messwerte im Zeitbereich generieren oder zurückgewinnen kann. Es ergibt sich die Umkehrabbildung zur DFT \eqref{MA2-dft}, man nennt sie die inverse Diskrete Fouriertransformation [iDFT]: \[\begin{array}{l rcl} \mbox{Interpolationseigenschaft:} & u_n &=& g(t_n) \\[2ex] t_n \mbox{ in } g \mbox{ einsetzen:} & &=& \dfrac{1}{N} \cdot \sum\limits_{k=0}^{N-1}\tilde c_k\cdot  e^{i\, k \,\frac{2\pi}{T} \,  t_n} \\[2ex] t_n=n\cdot \frac{T}{N} \mbox{ ersetzen:} & &=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot  e^{i \,\frac{2\pi}{T} \, k \, n \cdot \frac{T}{N} } \\ \mbox{vereinfachen:} & &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \left( \textcolor{blue}{ e^{-i \, \frac{2\pi}{N} }} \right)^{-k \, n } \\ W_N \mbox{ identifizieren:} &  &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \textcolor{blue}{ W_N}^{-k\, n }\,. \end{array} \]
+
+\begin{theorembox}{Inverse Diskrete Fouriertransformation}{ }
+\begin{minipage}{0.4\textwidth}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/idft_koeffizienten_zu_samples.png}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	\begin{itemize}
+		\item Es liegt eine DFT mit \(N\) Fourierkoeffizienten vor.
+		\item Es gibt hierzu \(N\) eindeutige Samples:
+		\[ u_n = \dfrac{1}{N}\cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot W_N^{-k\,n}\,,\; n=0,\cdots,N-1\,.\]
+	\end{itemize}
+\end{minipage}
+
+\vspace{0.4cm}
+
+Die inverse diskrete Fouriertransformation [iDFT] lautet:
+
+\begin{equation}\label{MA2-idft}
+\mbox{iDFT}: \left\{ \tilde c_k, k=0,\cdots,N-1\right\} \mapsto \left\{ u_n,\, n=0,\cdots,N-1\right\}, \; u_n = \dfrac{1}{N}\cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot W_N^{-k\,n} \,. \end{equation}
+\end{theorembox}
+
+Die iDFT ist die inverse der DFT, ensprechend bildet sie vom Frequenzbereich in den Zeitbereich ab. Die Verbindung zwischen den beiden Welten ist das interpolierende Fourierpolynom:
+
+\begin{exabox}{DFT-Fourierpolynom-iDFT}{ }
+	\begin{center}
+		\includegraphics[width=\textwidth]{../Mathematik_2/Bilder/dft_idft_und_interpolierendes_fourierpolynom.png}
+	\end{center}
+	\begin{itemize}
+		\item[(a)] Das Bild zeigt die Samples im Zeitbereich.
+		\item[(b)] Das Bild zeigt die DFT mit reellen Koeffizienten: \(a_k, 1\leq k \leq 4\) und \(b_k, \; 1\leq k \leq 4\).
+		\item[(c)] Das Bild zeigt das resultierende Fourierpolynom, das Ausgangssignal und die Samples.
+	\end{itemize}
+	\begin{itemize}
+		\item[(a)] \(\Rightarrow\) (b) Berechnung des Frequenzspektrums durch DFT.
+		\item[(b)] \(\Rightarrow\) (a) Berechnung der Messwerte durch iDFT.
+		\item[(c)] \(\Rightarrow\) In dem Beispiel detektiert die DFT alle im Signal vorhandenen Frequenzen exakt: \(f \equiv g\).
+	\end{itemize}
+\end{exabox}
+\bigskip
+
+{\noindent \textbf{Bemerkungen:}}
+	\begin{itemize}
+		\item Welche diskreten Kreisfrequenzen für gegebene Samples detektiert werden können, ist a-priori bekannt.
+\item Es gibt keine einheitliche Definition für DFT und iDFT bezüglich der Skalierung. Genauso wie bei der Fouriertransformation kann man die Formel auch symmetrisieren.
+		\item Man kann anstatt der komplexen Fourierkoeffizienten die reellen Fourierkoeffizienten \(a_k\) und \(b_k\) und entsprechend das reelle Fourierpolynom betrachten.
+\end{itemize}
+
+\subsection{DFT als lineare Abbildung}
+
+Die Diskrete Fouriertransformation ist die Abbildung, die dem Vektor \(\vec u\) der diskreten Signaldaten \(\vec u\in \mathbb C^N\) im Zeitbereich den Vektor der Fourierkoeffizienten \(\vec c\in\mathbb C^n\) im Frequenzbereich zuordnet. \[ \mathrm{DFT}: \mathbb C^N\to \mathbb C^N, \vec u \mapsto \vec c\,. \] Schauen wir uns die Berechnung eines einzelnen Koeffizienten \(\tilde c_k\) an, so wird klar, dass die Fourierkoeffizienten das Ergebnis einer Matrix-Vektor Multiplikation sind:\marginpar{{\small Aufgabe}}
+\begin{eqnarray*}
+	\tilde c_k &=& \sum\limits_{n=0}^{N-1} W_N^{k\, n} \cdot u_n = \left( W_N^{k\cdot 0}, W_N^{k\cdot 1}, \cdots, W_N^{k\cdot (N-1)} \right) \left( \begin{array}{c} u_0\\u_1 \\\vdots \\ u_{N-1} \end{array}\right)\\[2ex]
+	&\Rightarrow& \left( \begin{array}{c} \tilde c_0 \\ \tilde c_1 \\ \vdots \\ \tilde c_{N-1} \end{array}\right) = \left( \begin{array}{llll} W_N^{0} & W_N^{0} & \cdots & W_N^{0} \\ W_N^{0} & W_N^{1} & \cdots & W_N^{(n-1)} \\ \vdots & \vdots & \ddots & \vdots \\ W_N^{0} & W_N^{(N-1)} & \cdots & W_N^{(N-1)^2} \end{array}\right) \left(\begin{array}{c} u_0 \\u_1 \\ \vdots \\u_{N-1}\end{array}\right)\,.
+\end{eqnarray*}
+Die DFT ist also die folgende, \textbf{lineare Abbildung}
+\[
+\textnormal{DFT:}\quad \mathbb C^N \to \mathbb C^N, \; \vec u \mapsto \vec c = T_N \vec u\,, \quad (T_N)_{kl} = \left( W_N\right)^{kl}, \; k,l=0,\cdots,N-1\,.
+\]
+
+\noindent \textbf{Bemerkungen:}
+\begin{itemize}
+	\item \(T_N\) nennt man Matrix der Diskreten Fouriertransformation der Ordnung \(N\).
+	\item \(T_N\) ist regulär und das heißt, dass durch die Multiplikation \(T_N \, \vec u\) ein Basiswechsel passiert.
+	\item Die inverse Matrix \(T_N^{-1}\) ist die Matrix der inversen Diskreten Fouriertransformation der Ordnung \(N\).
+\end{itemize}
+
+
+Die DFT Matrix \(T_2\) lautet \[ T_2 = \left( \begin{array}{cc} W_2^0  & W_2^0 \\  W_2^0 & W^1_2 \end{array}\right) = \left( \begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right)\,.\] Für \(2\) Samples, also ein Messsignal \(\vec u\in \mathbb C^2\), ist die DFT: \[ \left(\begin{array}{c} \tilde c_0 \\ \tilde c_1\end{array}\right) = \left( \begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right)\, \left( \begin{array}{c} u_0 \\ u_1 \end{array}\right) \,. \]
+
+Die DFT Matrix \(T_4\) lautet \[ T_4 = \left( \begin{array}{cccc} W_4^0 &  W_4^0 & W_4^0  & W_4^0 \\ W_4^0 & W^1_4 & W_4^2 & W_4^3  \\ W_4^0 & W_4^2 & W_4^4 & W_4^6  \\   W_4^0  & W_4^3 & W_4^6 & W_4^9\end{array}\right) = \left( \begin{array}{cccc} 1 & 1 & 1 & 1 \\ 1&-i&-1&i \\ 1 & -1 & 1 & -1  \\ 1 & i & -1 & -i\end{array}\right) \]
+
+Für \(4\) Samples, also ein Messsignal \(\vec u\in \mathbb C^2\), ist die DFT:
+\[
+		\vec c  = \left( \begin{array}{rrrr} 1 & 1 & 1 & 1 \\ 1& -i& -1 & i \\ 1 & -1 & 1 & -1  \\ 1 & i & -1 & -i \end{array}\right) \, \left( \begin{array}{c} {u_{0}} \\ u_{1}\\ {u_{2}} \\u_{3} \end{array}\right)\]
+
+
+%\subsection{Vokabular}
+%Im Kontext von Signalverarbeitung gibt es eine Fachsprache und es ist wichtig, dass man sie kennt. Beispielsweise spricht man eigentlich nicht mehr von der Schrittweite \(h\) [\(\Delta t\)], sondern bezieht alle Größen auf die Abtastrate und die Zeitspanne der Aufzeichnung.
+%
+%\vspace{0.5cm}
+%\begin{table}[H]
+%\centering
+%\begin{tabularx}{\textwidth}{l | c| X |c}
+%	Symbol & Name &  Beschreibung & Regel\\\midrule
+%\(u_s\) & Abtastrate & \vspace{-0.5cm} \begin{itemize} \item Die Abtastrate  [sampling frequency] ist die Anzahl der pro Sekunde aufgezeichneten Signalwerte. \item \(u_s\) ist gerade das Reziproke der Schrittweite \(h\) [sampling interval]: \( h = \dfrac{1}{u_s} \; \mathrm{s}\,.\) \end{itemize} & \( u_s: \# \textnormal{ Samples pro Seckunde } [\mathrm{Hz}]\) \\\midrule
+%\(N\) & Anzahl Samples  &\vspace{-0.5cm} \begin{itemize} \item  \(N\) ist die Gesamtanzahl der Messwerte, die man für die DFT zur Verfügung hat. \end{itemize} & \( N: \#  \textnormal{ Samples } \) \\\midrule
+%\(t_N\) & Zeitspanne & \vspace{-0.5cm} \begin{itemize} \item \(t_N\) ist  die Länge des Zeitintervalls [sample length], in dem Messwerte aufgezeichnet werden. \item \(t_N\) ist die Periode des aus der DFT resultierenden Fourierpolynoms \(g\) \end{itemize} & \( t_N = \dfrac{N}{u_s}\; [\mathrm{s}]\)
+%\end{tabularx}
+%\end{table}
+%
+%
+%Die Frequenzen, die eine DFT detektieren wird, sind bekannt, sobald man die Abtastrate \(u_s\) und die Zeitspanne \(t_N\) kennt. Man gibt oft die größte und die kleinste dieser Frequenzen an.\marginpar{{\small Aufgabe}}
+%
+%\vspace{0.5cm}
+%\begin{table}[H]
+%\centering
+%\begin{tabularx}{\textwidth}{l | c| X |c}
+%	Symbol & Name &  Beschreibung & Regel\\\midrule
+%	\(u_{\max}\) & Nyquist Frequenz & \vspace{-0.5cm} \begin{itemize} \item \(u_{\max}\) ist die größte Freqzenz, die aus einem gesampleten Signal rekonstruiert werden kann. \item Die Nyquist Frequenz ist die Hälfte der Abtastrate.\end{itemize} & \( u_{\max} = \dfrac{u_s}{2} \; \mathrm{Hz}\) \\\midrule
+%	\(u_{\min}\) & Minimale Frequenz &\vspace{-0.5cm}  \begin{itemize} \item \(u_{\min}\) ist die kleinste Frequenz, die rekonstruiert werden kann. \item Periodizitäten des Signals, die sich unterhalb der Schrittweite \(h\) abspielen, können von einer DFT nicht erfasst werden.\end{itemize} & \( u_{\min} = \dfrac{1}{t_N} \)
+%\end{tabularx}
+%\end{table}
+%
+%\begin{defbox}{ Vokabular }{ }
+%Nehmen wir beispielsweise an, dass wir von einem Signal \(n=100\) Samples mit einer Abtastrate von \(u_s = 1000\,\mathrm{Hz}\) aufzeichnen. Dann gilt
+%\[
+%	\begin{array}{l rcl}
+%		\textnormal{Schrittweite:} & h &=& \dfrac{1}{u_s} = 0.001 \, \mathrm{s/Samples} \,,\\[2ex]
+%		\textnormal{Zeitspanne:} & t_N &=& \dfrac{n}{u_s} = 0.1 \, \mathrm{s} \,,\\[2ex]
+%		\textnormal{Frequenzinkrement:} & \Delta f &=& \dfrac{u_s}{N} =  10 \, \mathrm{Hz} \,,\\[2ex]
+%		\textnormal{Nyquist Frequenz: } & u_{\max} &=& \dfrac{u_s}{2} = 500 \, \mathrm{Hz} \,,\\[2ex]
+%	\textnormal{Minimale Frequenz: }  & u_{\min} &=& \dfrac{1}{t_N} = 10 \, \mathrm{Hz} \,.
+%\end{array}
+%\]
+%\end{defbox}
+%

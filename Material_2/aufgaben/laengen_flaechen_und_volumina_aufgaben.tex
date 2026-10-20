@@ -1,0 +1,98 @@
+
+\ifintegriereaufgaben
+\section*{Anwendungen Aufgaben}\label{MA2-laengen-flaechen-und-volumina-aufgaben}
+
+Erklärungen und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-laengen-flaechen-und-volumina}{ (Abschnitt \abschnittsverweis{MA2-laengen-flaechen-und-volumina})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA2-laengen-flaechen-und-volumina-loesungen]{hier}.
+
+\else
+\section{Anwendungen Aufgaben}\label{MA2-laengen-flaechen-und-volumina-aufgaben}
+
+Regeln und Beispiele zu diesen Aufgaben finden Sie im Skript. Die Lösungen finden Sie \hyperref[MA2-laengen-flaechen-und-volumina-loesungen]{hier}.
+\fi
+
+\begin{exercisebox}[Kegelvolumen]
+	Wie läßt sich ohne Integration beweisen, dass das Volumen eines Kegels mit Grundfläche \(A\) und Höhe \(h\) gerade \(V= \displaystyle{\frac13} A \cdot h\) beträgt? Hinweis: Benutzen Sie, was Sie über das Volumen einer Pyramide mit quadratischer Grundfläche wissen!
+\end{exercisebox}
+
+\begin{exercisebox}[Bogenlänge] %Papula I, V.10, Aufgabe 15 und 16
+	\begin{itemize}
+		\item[(a)] Geben Sie das Integral an, das die Bogenlänge der Kurve \( y = \ln(x^3)\) für \( 1 \leq x \leq e\) beschreibt.
+		\item[(b)] Geben Sie das Integral an, das die Bogenlänge der Kurve  \( y = \sqrt{ x^3 } \) für \( 1 \leq x \leq 3\) beschreibt.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Flächeninhalt zwischen Graphen] %Papula V, Abschnitt 10 Aufgabe 5 und 7
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie für die Funktionen
+			\[ f:x\mapsto x^2-2x-1,\quad g:x\mapsto -x+5\]
+			den Flächeninhalt zwischen den Graphen und ihren Schnittpunkten.
+		\item[(b)] Bestimmen Sie die Fläche \(A\) (!) zwischen der Funktion
+			\[ f:x\mapsto \frac15 x ( x^2-4) \]
+			und der $x$-Achse im Intervall $x\in [-3,3]$.
+
+	\end{itemize}
+\end{exercisebox}
+
+
+\begin{exercisebox}[Rotationsvolumen] % Papula I, V.10, Aufgabe 13
+	Bestimmen Sie das Rotationsvolumen eines Körpers, der durch Drehung des Kurvenstücks \(y= \sqrt{ x^2 - 9 }\) für \(3\leq x \leq 5\)
+	\begin{itemize}
+		\item[(a)] um die \(x\)-Achse entsteht.
+		\item[(b)] um die \(y\)-Achse entsteht.
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Lineare Abbildungen]
+Auf einem Schrottplatz werden Autofracks mit einer Presse zusammengestampft. Jede Karosserie wird dabei in jede Richtung gleichmäßig umgeformt und das Volumen, das es ursprünglich einnahm, wird durch die Presse um $80\%$ verringert.
+
+Geben Sie eine lineare Abbildung an, die den Effekt der Presse simulieren kann (keine eindeutige Lösung).
+\end{exercisebox}
+
+%\begin{exercisebox}[Klaus und die Arbeitsplatte]
+%	Idee: Arbeitsplatte als 1D Objekt annehmen, ein Ausschnitt für das Spülbecken. Klaus kann max 30kg tragen, sein Vater 50kg.
+%	Wie schwer ist die Arbeitsplatte?
+%	Klaus würde gerne vorne tragen, kann das klappen?
+%\ende{exercisebox}
+
+%\begin{exercisebox}[Kugelvolumen]
+%	Zeigen Sie ohne Integration, dass das Volumen einer Kugel mit Radius \(r\)
+%		\[
+%			V = \frac43\pi r^3
+%		\]
+%		beträgt.
+%
+%%\vspace{0.3cm}
+%%{\bf Lösung:} \newline
+%	%Eine Kugel mit Radius $r$ hat Schicht für Schicht die gleiche Querschnittsfläche wie ein gerader Kreiszylinder mit Radius $r$ und Höhe $2r$, aus dem man oben und unten einen Kegel herausschneidet.
+%
+%		%Wenn man zeigen kann, dass zwei Körper dieselbe Höhe und in jeder Höhe dieselbe Querschnittfläche hat, dann haben die zwei Körper auch dasselbe Volumen.
+%
+%	\end{exercisebox}
+
+%\subsection{Praxis}
+
+%\begin{exercisebox}[Kurvenintegral]
+%	Berechnen Sie die Kurvenintegrale der gegebenen Sklarfelder $\rho:\Gamma \to \mathbb R$ längs der Kurve $\Gamma$:
+%	\begin{itemize}
+%		\item[(a)] $\rho(x,y) = x+y, \quad \Gamma: t\mapsto (\cos(t), \sin(t))^\intercal, \; t\in [0,\pi]\,.$
+%		\item[(b)] $\rho(x,y) = \displaystyle{\frac{x}{x^2+y^2}}, \quad \Gamma: t\mapsto (\cos(t), \sin(t))^\intercal, \; t\in [-\displaystyle{\frac{\pi}{2}},\displaystyle{\frac{\pi}{2}}]\,.$
+%		\end{itemize}
+%\vspace{0.3cm}
+%{\bf Lösung:} \newline
+%\begin{itemize}
+%	\item[(a)]
+%		\[ \int\limits_\Gamma \rho(x,y)\,\mathrm{d}\boldsymbol s = \int\limits_\Gamma \rho(\Gamma(t)) \, \mathrm{d}\boldsymbol s(t) = \int\limits_0^\pi \rho(\Gamma(t))\cdot |\dot \Gamma(t)| \, \mathrm{d}t\]
+%		Die Parametrisierung des Bogens durch $\Gamma$ ist stetig differenzierbar, also
+%		\[ \mathrm{d}\boldsymbol s(t) = |\dot \Gamma(t)| \mathrm{d}t = \sqrt{\sin^2(t) + \cos^2(t)}\,\mathrm{d}t = \mathrm{d}t\,. \]
+%		Und damit lautet das Kurvenintegral:
+%		\[ \int\limits_\Gamm \rho(x,y)\,\mathrm{d}\bolsymbol s = \int\limits_0^\pi (\cos(t)+ \sin(t)) \, \mathrm{d}t = \Big[ \sin(t) - \cos(t)\Big]_0^\pi = 1+1 = 2\,.
+%		\]
+%	\item[(b)]
+%		\[ \int\limits_\Gamma \rho(x,y)\,\mathrm{d}\boldsymbol s = \int\limits_\Gamma \frac{x}{x^2+y^2} \, \mathrm{d}\boldsymbol s\]
+%		Die Parametrisierung des Bogens durch $\Gamma$ ist stetig differenzierbar, also  $x=\cos(t)$, $y=\sin(t)$ und $\mathrm{d}\boldsymbol s(t)  \mathrm{d}t$. Und damit lautet das Kurvenintegral:
+%		\[ \int\limits_\Gamm \rho(x,y)\,\mathrm{d}\bolsymbol s = \int\limits_{-\pi/2}^{\pi/2}  \frac{\cos(t)}{ \cos^2(t) + \sin^2(t)} \, \mathrm{d}t = \\int\limits_{-\pi/2}^{\pi/2}  \cos(t) \, \mathrm{d}t = \Big[ \sin(t) \Big]_{-\pi/2}^{\pi/2} = 2\,.
+%		\]
+	%\end{exercisebox}
+
+%Moodle %HMI I, Blatt 11, Aufgabe 1 Moodle Polygonzug
+

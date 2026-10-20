@@ -1,0 +1,242 @@
+
+\ifintegriereaufgaben
+\section*{Kurvendiskussion Aufgaben}\label{MA1-ableitungen-und-funktionsverlauf-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-ableitungen-und-funktionsverlauf}{ (Abschnitt \abschnittsverweis{MA1-ableitungen-und-funktionsverlauf})} und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-ableitungen-und-funktionsverlauf-loesungen]{hier}.
+\else
+\section{Kurvendiskussion Aufgaben}\label{MA1-ableitungen-und-funktionsverlauf-aufgaben}
+
+	Regeln und Beispiele, die zur Bearbeitung der Aufgaben hilfreich sind, finden Sie im Skript und, falls Sie nicht weiterkommen, schauen Sie \hyperref[MA1-ableitungen-und-funktionsverlauf-loesungen]{hier}.
+\fi 
+
+\begin{exercisebox}[Grenzwerte mit L'Hospital] %Andreas
+	Berechnen Sie die folgenden Grenzwerte mit der Regel von L'Hospital. 
+	\begin{eqnarray*}
+		(a)\; \displaystyle{\lim\limits_{x\to 0}}\; \displaystyle{\frac{\sin(\sin(x))}{x}}  \quad\quad  (b)\; \displaystyle{\lim\limits_{x\to \infty}}\;\displaystyle{x^2 \cdot 2^{-x}}  \quad\quad\quad\quad (c)\; \displaystyle{\lim\limits_{x\downarrow 0}}\; x \cdot \ln(x) 
+	\end{eqnarray*}
+	%(d)\; \displaystyle{\lim\limits_{x\downarrow 0}} \left( \tan(2x)\right)^{\sin(3x)}
+%Hinweis zu $(d)$: Untersuchen Sie $\log$\dots
+\end{exercisebox}
+
+\begin{exercisebox}[Extremwerte] %LS p. 103 LS
+    Zerlegen Sie die Zahl $12$ so in zwei Summanden, dass ihr Produkt möglichst groß wird. 
+  %\begin{enumerate}
+  %  \item Zerlegen Sie die Zahl $12$ so in zwei Summanden, dass die Summe ihrer Quadrate möglichst klein wird. 
+  %  \item Welche beiden reelen Zahlen mit der Differenz $1$ ($2$, $d$) haben das kleinste Produkt?
+  %  \item Wie klein kann die Summe aus einer positiven Zahl und ihrem Kehrwert werden?
+  %\end{enumerate}
+\end{exercisebox} 
+
+\begin{exercisebox}[Abbildungsvorschrift] %p. 111 LS
+	Begründen Sie, warum es keine ganzrationale Funktion $f$ gibt mit folgenden Eigenschaften: $f$ hat Grad $2$, $f$ hat Nullstellen für $x=2$ und $x=4$ und ein Maximum für $x=0$.
+  %\begin{enumerate}
+  %  \item Grad von $f$ ist $2$, Nullstellen für $x=2$ und $x=4$, Maximum für $x=0$
+  %  \item Grad von $f$ ist $3$, Extremwerte für $x=0$ und $x=3$, Wendestelle für $x=1$
+  %  \item Grad von $f$ ist $4$, f gerade, Wendestelle für $x=1$, Maximum für $x=2$
+  %\end{enumerate}
+\end{exercisebox} 
+
+\begin{exercisebox}[Extrema] %p131 LS
+  Es sei $f=u\circ v$ und die Funktionen $u,v$ und $f$ seien auf $\mathbb R$ differenzierbar. Beweisen oder widerlegen Sie die Aussage:
+  \begin{itemize}
+	  \item[(a)] Ist $x_0$ eine Extremstelle von $f$, dann ist $x_0$ auch eine Extremstelle von $v$
+    \item[(b)] Ist $x_0$ eine Extremstelle von $v$, dann ist $x_0$ auch eine Extremstelle von $f$
+  \end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Wendepunkte] %p133 LS
+  Bei einer Funktion $f$ gelte für alle $x\in \mathbb R: f(x)\not = 0$. $f$ ist differenzierbar und $f'(x) = x\cdot f(x)$.
+  \begin{itemize}
+	  \item[(a)] Stellen Sie $f''(x)$ und $f'''(x)$ durch $f(x)$ dar.
+    \item[(b)] Zeigen Sie, dass $f$ an der Stelle $0$ ein lokales Extremum hat. Welche Bedingung muss $f$ erfüllen, dass es sich um ein Maximum handelt?
+    \item[(c)] Begründen Sie, dass $f$ keine Wendestelle besitzt.
+  \end{itemize}
+\end{exercisebox} 
+
+\begin{exercisebox}[Kurvendiskussion]
+	Führen Sie für die Funktion $f$ eine Kurvendiskussion durch: \[ f: x\mapsto \frac{x^3}{x^2-1}\] %Bestimmen Sie den Definitionsbereich das Symmetrieverhalten, die Nullstellen, das Verhalten an etwaigen Polstellen, das asymptotische Verhalten für $|x| \to \infty$, Extremwerte, Wendepunkte und den Bildbereich. Skizzieren Sie die dann die Funktion. 
+\end{exercisebox}
+
+\begin{exercisebox}[Anwendungen: Newton-Verfahren]
+	Gegeben ist die Funktion 
+	\[ f:\mathbb R \to \mathbb R, \; x\mapsto f(x) = e^{-x} - \sin(x)\]
+	und $x_0 = 0$. Gesucht ist eine Nullstelle $\tilde x $ der Funktion f. 
+	\begin{itemize}
+		\item[(a)] Bestimmen Sie die lineare Approximation $t(x) = m\cdot x+b$ an der Stelle $x_0$.
+		\item[(b)] Stellen Sie die Iterationsvorschrift für das Newtonverfahren auf.
+		\item[(c)] Berechnen Sie die ersten Iterierten des Newton-Verfahrens und geben Sie eine Schätzung für die Lösung an.
+	\end{itemize}
+\end{exercisebox}
+%\begin{theorembox}[Lösung einer elliptischen Differentialgleichung]
+%	Minimiert das Energiefunktional über einem Funktionenraum.
+%\end{theorembox}
+%
+%\begin{theorembox}[Methode der kleinsten Fehlerquadrate]
+%	Minimiert das Fehlerfunktional über einer Menge von Punkten.
+%\end{theorembox}
+%
+%\begin{theorembox}[lokal Krümmung einer Diskretisierung approximieren]
+%\end{theorembox}
+
+%\begin{exercisebox}[Sattelpunkt]
+%  \begin{enumerate}
+%    \item Welche Beziehung muss zwischen den Koeffizienten $a$ und $c$ bestehen, damit der Graph von $f:x\mapsto x^3+bx^2+cx+d$ einen Wendepunkt mit waagerechter Tangente hat?
+%    \item Beweisen Sie: Der Graph der Funktion $f$ mit $f(x) = ax^5 - bx^3 + cx, \; a,b,c\in\mathbb R^+$, hat drei Wendepunkte, die auf einer Geraden liegen.
+%  \end{enumerate}
+%\end{exercisebox} 
+
+
+%\begin{exercisebox}[Newton-Verfahren]
+%  Der Graph der Funktion $g$ schneidet den Graphen der Funktion $h$ an genau einer Stelle $x*$. Ermitteln Sie zunächst aus der Bedingung $g(x) = h(x)$ die Funktion $f$ für die Iterationsvorschrift beim Newton-Verfahren. Berechnen Sie dann $x*$ auf 3 Dezimalen gerundet.
+%  \begin{enumerate}
+%    \item $g(x) = x^2\,,\; h(x) = x^3-1$
+%    \item $g(x) = \frac{1}{x}\,,\; h(x) = x^4-2x^3$
+%    \item $g(x) = \sqrt{x}\,,\; h(x) = \frac{1}{x}-3$
+%  \end{enumerate}
+%\end{exercisebox} 
+
+%\begin{exercisebox}[Kurvendiskussion]
+%  Bestimmen Sie alle lokalen Extrema und Wendestellen der folgenden Funktionen
+%  \begin{eqnarray*}
+%	  \begin{array}{ccc}  
+%		  (a)\; f(x) = \frac34 x^4 - \frac54 x^2 + 2x  & \quad 
+%		  (b)\; f(x) = (2sx^2-3tx)^2 & \quad 
+%	 	  (c)\; f(x) = \frac{a^2x^2+2ax-a}{4ax} \\
+%		  (d)\; f(s) = \frac{4rs^4+8r^4s^2}{2r^2s^3} & \quad 
+%		  (e)\; f(x) = -2a\sin(\frac34 ax) & \quad 
+%		  (f)\; f(x) = \frac{2}{t}\cos(-2tx) 
+%	%\item $ f(x) = 0,5x^3+3x^2-4  $
+%	%\item $ f(x) = 2\left( \frac15 x^7 + \frac35 x^6\right)$
+%	%\item $ f(x) = ax^3 + bx^2 +cx + d$
+%	%\item $ f(x) = 2r^2x^4-4rx^3+r$
+%	%\item $ f(s) = \frac{a^2x^2+2ax-a}{4ax} + s$
+%	  \end{array}
+%  \end{eqnarray*}
+%\end{exercisebox} 
+%\begin{exercisebox}[Kurvendiskussion]
+%  Führen Sie eine Funktionsuntersuchung entsprechend der Punkte im Skript durch.
+%  \begin{enumerate}
+%    \item $f(x)= \frac16 ( x+1)^2 (x-2) $
+%    \item $f(x)= \frac14 ( 1+x^2) (5-x^2) $
+%    \item $f(x)= 0,5 ( x^2-1)^2 $
+%    \item $f(x)= (x-1)( x+2)^2 $
+%    \item $f(x)= 0,1( x^3+1)^2 $
+%    \item $f(x)= \frac16( 1+x)^3(3-x) $
+%  \end{enumerate}
+%\end{exercisebox} 
+
+%\begin{exercisebox}[Extremstellen, notwendige Bedingnung]
+%  Berechnen Sie die Stellen mit $f'(x) = 0$. Skizzieren Sie den zugehörigen Graphen.
+%  \begin{enumerate}
+%    \item $f(x) = \frac12 x^2 - 2x + 2$
+%    \item $f(x) = x^3 - 3x^2$
+%    \item $f(x) = \frac14 x^4 - 2x^2$
+%    \item $f(x) = -2(x-1)^2+4$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Extremstellen, notwendige Bedingung]
+%Skizzieren Sie den Graphen von $f$. Lesen Sie dort näherungsweise die inneren Extremstellen ab. Bestimmen Sie die genaue Lage der Extrempunkte durch Rechnung.  \begin{enumerate}
+%    \item $f(x) = x^4 - 4x^2$
+%    \item $f(x) = \sqrt{x} - \frac14 x^2$
+%    \item $f(x) = \frac{x}{2} + \frac{3}{x}$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Extremstellen, hinreichende Bedingung]
+%  Ermitteln Sie die Extremwerte der Funktion $f$. Verwenden Sie für die hinreichende Bedingung den Vorzeichenwechsel der ersten Ableitung
+%  \begin{enumerate}
+%    \item $f(x) = x^4 - 6 x^2 +1$
+%    \item $f(x) = 2 x^3 - 9 x^2 +12 x -4$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Extremstellen, hinreichende Bedingung]
+%  ERmitteln Sie die Extremwerte der Funktion $f$. Verwenden Sie für die hinreichende Bedingung die zweite Ableitung
+%  \begin{enumerate}
+%    \item $f(x) = x^3 - 6x$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Extremstellen, hinreichende Bedingung]
+%  ERmitteln Sie die Extremwerte der Funktion $f$. Verwenden Sie für die hinreichende Bedingung welches Kriterium Sie wollen (welches Kriterium ist universeller?)
+%  \begin{enumerate}
+%    \item $f(x) = x^5 - x^4$
+%    \item $f(x) = -x^6 + x^4$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[alle Extremstellen 1]
+%  Weisen Sie nach, dass sich die Graphen von $f$ und $g$ nicht schneiden
+%  \begin{enumerate}
+%    \item $f(x) = x^4 + 2, \quad g(x)=x^3+x$
+%    \item $f(x) = x^4 - x^2, \quad g(x)=x^2 - \frac54$
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[alle Extremstellen 2]
+%  Untersuchen Sie die Funktion $f$ auf Extremwerte. Zeichnen Sie den Graphen der Funktion $f$
+%  \begin{enumerate}
+%    \item $f(x) = \begin{cases} 2-x^2, \; |x|\leq 1 \\  x^2, \; |x| > 1\end{cases} $
+%    \item $f(x) = \begin{cases} x^2+x, \;  -1 \leq x\leq 0 \\  x^3-x, \; \textnormal{sonst}\end{cases} $
+%    \item $f(x) = \begin{cases} x^2, \;  0 \leq x\leq 1 \\  \frac{1}{x}, \; \textnormal{sonst}\end{cases} $
+%  \end{enumerate}
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[alle Extremstellen 3]
+%  Zur Verschalung eines $6\mathrm{m}$ langen Betonfertigteiles ist die obere und untere Berandung des Querschnitts durch die Funktionen $f$ und $g$ mit 
+%  \begin{eqnarray*}
+%    f(x) &=& - \frac{1}{10} x^3+\frac{9}{10} x^2 -\frac{9}{5} x+3\,, \\
+%    g(x) &=& - \frac{1}{4} x^2+\frac{3}{2} x 
+%  \end{eqnarray*}
+%  festgelegt. Bestimmen Sie die Stellen, an denen die Höhe $h$ des Betonteiles am größten bzw. am kleinsten ist. Wie hoch ist an diesen Stellen das Betonteil jeweils?
+%\end{exercisebox} 
+%
+%\begin{exercisebox}[Wendepunkte]
+%  Bestimmen Sie alle Wendepunkte des Graphen. Weisen Sie nach, dass der Graph punktsymmetrisch zum Wendepunkt ist
+%  \begin{enumerate}
+%    \item $f(x) = 3x-\frac14 x^3$
+%    \item $f(x) = (x-2)^3-1$
+%    \item $f(x) = \frac14x^3+\frac32x^2-1$
+%    \item $f(x) = \frac16(x^3-3x^2-9x+41)$
+%  \end{enumerate}
+%\end{exercisebox} 
+
+
+%\begin{exercisebox}[Sattelpunkt]
+%  \begin{enumerate}
+%    \item Welche Beziehung muss zwischen den Koeffizienten $a$ und $c$ bestehen, damit der Graph von $f:x\mapsto x^3+bx^2+cx+d$ einen Wendepunkt mit waagerechter Tangente hat?
+%    \item Beweisen Sie: Der Graph der Funktion $f$ mit $f(x) = ax^5 - bx^3 + cx, \; a,b,c\in\mathbb R^+$, hat drei Wendepunkte, die auf einer Geraden liegen.
+%  \end{enumerate}
+%\end{exercisebox} 
+
+
+%\begin{theorembox}[Bestimmung aller Extremwerte einer Funktion]
+%  Zur Ermittlung aller Extremwerte einer Funktion $f$ in einem Intervall $I$ untersucht man:
+%  \begin{enumerate}
+%    \item die Stellen, die sich als Lösung der Gleichung $f'(x) = 0$ ergeben.
+%    \item die Stellen, an denen $f$ nicht differenzierbar ist.
+%    \item das Verhalten an den Randstellen von $I$.
+%    \item Idee: Minimierung des: Energiefunktionals Physik
+%  \end{enumerate}
+%\end{theorembox}
+%\begin{theorembox}[Extrema mit Nebenbedingungen]
+%\end{theorembox}
+%
+%\begin{theorembox}[Divers]
+%	\begin{itemize}
+%	\item Extrema: braucht man notwendigerweise stetige Differenzierbarkeit?
+%	\item Warum die Umgebung? Isolierte Punkte können so nicht behandelt werden!
+%	\item Rand eines Intervalls
+%	\item Krümmungsverhalten einer \(2\)d Fläche schätzen: Diskretisierung
+%\end{itemize}
+%\end{theorembox}
+%\begin{theorembox}[Extremwertprobleme]
+%  Strategie für das Lösen von Extremwertaufgaben:
+%  \begin{enumerate}
+%    \item Beschreiben der Größe, die extremal werden soll, durch einen Term. Dieser kann mehrere Variablen enthalten.
+%    \item Aufsuchen von Nebenbedingungen.
+%    \item Bestimmung der Zielfunktion.
+%    \item Untersuchung der Zielfunktion auf Extremwerte und Formulierung des Ergebnisses.
+%  \end{enumerate}
+%\end{theorembox}

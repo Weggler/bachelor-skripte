@@ -1,0 +1,253 @@
+\section{Laplacetransformation}\label{MA2-laplacetransformation}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem die Laplace-Transformierte geeigneter Funktionen berechnen & \\
+    \tabitem die Wirkung der Laplace-Transformation auf Ableitungen als Regel anwenden & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem uneigentliche Integrale berechnen können & \abschnittsverweis{MA2-integration}\\
+    \tabitem Ableitungen sicher berechnen können & \abschnittsverweis{MA1-ableitungsregeln} \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-laplacetransformation-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Definition}
+
+In vielen Anwendungen – insbesondere in der Regelungstechnik –
+interessiert man sich für Vorgänge, die zu einem bestimmten Zeitpunkt beginnen.
+Ein System befindet sich im Ruhezustand und wird bei $t=0$
+durch eine Störung oder ein Eingangssignal angeregt.
+
+Mathematisch führt dies auf Anfangswertprobleme der Form
+\[
+	m \ddot x + \rho \dot x + D x = u(t),
+	\qquad x(0)=x_0, \quad \dot x(0)=v_0.
+\]
+
+Die Schwierigkeit besteht darin, dass Ableitungen auftreten.
+Ableitungen machen Gleichungen kompliziert –
+Multiplikationen dagegen sind einfach.
+
+\medskip
+
+Die zentrale Idee der Laplace-Transformation lautet daher:
+
+\begin{center}
+	\emph{Man sucht eine Darstellung, in der Ableitungen zu Multiplikationen werden.}
+\end{center}
+
+Genau das leistet die Laplace-Transformation.
+Sie ordnet einem Signal $y(t)$ eine Funktion $Y(s)$ zu,
+in der Differentiation im Zeitbereich
+zu einer algebraischen Operation im Bildraum wird.
+
+\medskip
+
+Dabei betrachtet man nur Zeiten $t \ge 0$.
+Vor dem Zeitpunkt $t=0$ sei das System im Ruhezustand,
+man setzt also meist $y(t)=0$ für $t<0$.
+
+Die Laplace-Transformierte eines Signals
+$y:[0,\infty)\to\mathbb C$ wird definiert als:
+\begin{defbox}{Laplace-Transformation}{ }
+	\[
+		\mathcal L(y): D_Y \subset \mathbb C \to \mathbb C,
+		\qquad
+		s \mapsto Y(s),
+		\qquad
+		Y(s) := \int_0^\infty y(t)\, e^{-st}\,\mathrm d t.
+	\]
+\end{defbox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Das Integral muss nicht für alle $s\in\mathbb C$ existieren.
+	Der Definitionsbereich $D_Y$ ist im Allgemeinen
+	eine echte Teilmenge der komplexen Zahlen.
+
+	\item Die Exponentialfunktion $e^{-st}$ wirkt für $\mathrm{Re}(s)>0$
+	dämpfend.
+	Wächst $y(t)$ nicht schneller als eine Exponentialfunktion,
+	so existiert das entstehende uneigentliche Integral.
+\end{itemize}
+
+\medskip
+
+Man sagt: Das Signal $y(t)$ liegt im \emph{Zeitbereich}.
+Seine Laplace-Transformierte $Y(s)$ liegt im \emph{Bildraum}.
+
+Die Transformation verändert nicht das physikalische System,
+sondern nur seine Darstellung.
+Der Perspektivwechsel macht jedoch eine entscheidende Struktur sichtbar:
+Differentialgleichungen werden im Bildraum zu algebraischen Gleichungen.
+
+\subsection*{Eigenschaften}
+
+Was passiert, wenn man die Laplace-Transformation auf die Ableitung $\dot y$ eines Signals los lässt?
+\[
+	\int\limits_0^\infty \dot y(t) \, e^{-st}\, \mathrm{d}t = \Big[ y(t) e^{-st} \Big]_0^\infty + s \int\limits_0^\infty y(t) \, e^{-st}\, \mathrm{d}t = -y(0) +s Y(s) \,.
+\]
+Die Ableitung wird also quasi ein Produkt - quasi, weil der Randterm noch als additive Konstante hinzukommt!\footnote{Die Fourier-Transformation der Ableitung liefert übrigens exakt ein Produkt.}\marginpar{\small Aufgabe}
+
+In ähnlicher Weise kann man die Frage stellen, ob sich die Ableitung der Laplace-Transformierten in ein Produkt im Zeitbereich darstellt. Die Antwort ist ja. Die Formeln für höhere Ableitungen sind in der folgenden Box zusammengefasst:
+\begin{theorembox}{Laplace-Transformierte und die Ableitung}{ }
+	Die Laplace-Transformierte von \(y^{(n)}\) lautet:
+	\[
+		\mathcal L \left( y^{(n)}\right) (s) = s^n Y(s) - \sum\limits_{k=0}^{n-1} y^{(k)}(0) s^{n-k-1}
+	\]
+	Die $n$-te Ableitung der Laplace-Transformierten von \(y\) lautet:
+	\[
+		Y^{(n)}(s) = \mathcal L \left( (-t)^n y\right)(s)\,.
+	\]
+\end{theorembox}
+
+\begin{exabox}{Laplace-Transformation von $\exp$, $\sin$ und $\cos$}{ }
+	\begin{itemize}
+	\item Für $y:t\mapsto e^{\lambda t}$ mit $\lambda \in \mathbb R$ gilt
+	\[
+		\int\limits_0^\infty e^{\lambda t}\cdot e^{-st} \, \mathrm{d} t =
+		\int\limits_0^\infty e^{ (\lambda-s) t} \, \mathrm{d} t =
+	\Big[ \frac{e^{(\lambda -s ) t }}{\lambda -s}\Big]_0^\infty = \frac{1}{s-\lambda},\quad \textnormal{wenn } \mathrm{Re}(s)>\lambda\,.
+	\]
+	\item Für $y:t\mapsto e^{i\omega t}$ mit $\omega \in \mathbb R$ gilt
+	\[
+		\int\limits_0^\infty e^{i\omega t}\cdot e^{-st} \, \mathrm{d} t =
+		\int\limits_0^\infty e^{ (i\omega-s) t} \, \mathrm{d} t =
+	\Big[ \frac{e^{(i\omega -s ) t }}{i\omega -s}\Big]_0^\infty = \frac{1}{s-i\omega},\quad \textnormal{wenn } \mathrm{Re}(s)>0\,.
+	\]
+\item Für $y:t\mapsto \cos(\omega t)$ gilt
+	\[
+		\int\limits_0^\infty \cos(\omega t)\cdot e^{-st} \, \mathrm{d} t =
+		  \frac{s}{s^2 + \omega^2},\quad \textnormal{wenn } \mathrm{Re}(s)>0\,.
+	\]
+\item Für $y:t\mapsto \sin(\omega t)$ gilt
+	\[
+		\int\limits_0^\infty \sin(\omega t)\cdot e^{-st} \, \mathrm{d} t =
+		  \frac{\omega}{s^2 + \omega^2},\quad \textnormal{wenn } \mathrm{Re}(s)>0\,.
+	\]
+	\end{itemize}
+\end{exabox}
+
+\begin{exabox}{Laplace-Transformation von Potenzfunktionen}{ }
+Das Integral
+\[
+\int\limits_0^\infty t^n \cdot e^{-st}\,\mathrm{d}t  = \textnormal{?}
+\]
+
+Um das Integral zu lösen ist es geschickt, den Integranden so umzuschreiben, dass eine Ableitung nach \(s\) auftaucht:
+\begin{eqnarray*}
+	\int\limits_0^\infty t^n \cdot e^{-st}\,\mathrm{d}t  &=& \int\limits_0^\infty (-1)^n\cdot \frac{\mathrm{d}^n}{\mathrm{d}s^n} \left( e^{-st} \right) \,\mathrm{d}t = (-1)^n\cdot \frac{\mathrm{d}^n}{\mathrm{d}s^n} \int\limits_0^\infty  e^{-st} \,\mathrm{d}t = (-1)^n\cdot \frac{\mathrm{d}^n}{\mathrm{d}s^n} \Big[ \frac{e^{-st}}{-s} \Big]_0^{\infty}\\ &=& (-1)^n \cdot \frac{\mathrm{d}^n }{\mathrm{d}s^n}\frac{1}{s}, \quad \mathrm{Re}(s) > 0\,.
+\end{eqnarray*}
+
+%Die Potenzfunktionen  mit  Exponent  $0,1,2,3,\dots$ haben  also  diese  Laplace-Transformierten:
+%\begin{center}
+%	\begin{tabular}{c |c | c}
+%		$n$ &  $y(t)$ & $Y(s)$\\
+%		\hline
+%		$0$ & $1$ & $s^{-1}$ \\
+%		$1$ & $t$ & $s^{-2}$ \\
+%		$2$ & $t^2$ & $2 s^{-3}$ \\
+%		$3$ & $t^3$ & $6 s^{-4}$ \\
+%		$\vdots$ & $\vdots$ & $\vdots$ \\
+%		$n$ & $t^n$ & $n! s^{-n-1}$ \\
+%	\end{tabular}
+%\end{center}
+\end{exabox}
+
+\begin{theorembox}{Laplace-Transformierten der Potenzfunktionen}{}
+	Für die Potenzfunktion $y: t\mapsto t^n$ mit $n\in \mathbb N^+$ existiert die Laplace-Transformierte für alle \(s\in \mathbb C\) mit \(\mathrm{Re}(s) >0\) und sie lautet:
+\[ Y: s\mapsto n!\, \frac{1}{s^{n+1}}\,.\]
+\end{theorembox}
+
+\begin{exabox}{Zeitliche Verzögerung}{ }
+Wenn  das  Signal $y$ um  die  Zeit $a$ verzögert  wird,  ergibt  sich  als  Laplace-Transformierte:
+\[
+	\int\limits_{\textcolor{blue}{a}}^\infty y(t\textcolor{blue}{-a}) e^{\displaystyle{-st}}\,\mathrm{d}t \stackrel{(*)}{=}
+	\int\limits_0^\infty y(u) e^{\displaystyle{-s(u+\textcolor{blue}{a})}}\,\mathrm{d}u = e^{\displaystyle{-s\textcolor{blue}{a}}}\left( \mathcal L y\right) (s)\,.
+\]
+$(*)$ mit der Substitution $u=t-\textcolor{blue}{a}$, $\mathrm{d}u = \mathrm{d}t$.
+\end{exabox}
+
+\begin{exabox}{Zeitliche Beschleunigung}{ }
+Wenn das Signal $y$ um den Faktor $b > 1$ beschleunigt (oder bei $b<1$ verlangsamt) wird, ergibt sich als Laplace-Transformierte:
+\[
+	\int\limits_{0}^\infty y(\textcolor{blue}{b}\cdot t) e^{\displaystyle{-st}}\,\mathrm{d}t \stackrel{(*)}{=} \int\limits_0^\infty y(u) e^{\displaystyle{ -\dfrac{s}{\textcolor{blue}{b}} \cdot u}} \frac{1}{\textcolor{blue}{b}}\,\mathrm{d}u = \frac{1}{\textcolor{blue}{b}}\left( \mathcal L y\right) \left( \dfrac{ s}{\textcolor{blue}{b}}\right)\,.
+\]
+$(*)$ mit der Substitution $u=\textcolor{blue}{b} \cdot t$, $\mathrm{d}u = \textcolor{blue}{b}\,\mathrm{d}t$.
+\end{exabox}
+
+\begin{theorembox}{Eigenschaften der Laplace-Transformation}{ }
+	Die Laplace-Transformation $\mathcal L: f\mapsto \mathcal L(f)$ ist eine lineare Abblidung:
+	\begin{itemize}
+		\item $\mathcal L(f+g) = \mathcal L(f) + \mathcal L(g) $
+		\item $\mathcal L(\lambda f) = \lambda \mathcal L(f)$
+	\end{itemize}
+\end{theorembox}
+
+Für eine kausale Verzögerung verwenden wir die Heaviside-Funktion
+\(H(t)=0\) für \(t<0\) und \(H(t)=1\) für \(t\geq0\).
+Das um \(a>0\) verzögerte Signal lautet damit \(H(t-a)f(t-a)\).
+
+\begin{exabox}{Rechenregeln für die Laplace-Transformation}{ }
+	Die Laplacetransformierten der Standardsignale \(f_1: t\mapsto \cos(t)\) und \(f_2: t\mapsto t\) sind gegeben:
+	\[ \cos(t) \,\laplace \, \dfrac{s}{s^2+1}, \quad t \,\laplace \, \dfrac{1}{s^2}\]
+	Mit Hilfe der Rechenregeln folgt:
+	\[
+		\begin{array}{l rclcl l}
+			f:t\mapsto \cos(t) + t\; \quad & \mathcal L(f)(s) &=& \mathcal L(f_1)(s) + \mathcal L (f_2) (s) &=& \dfrac{s}{s^2+1} +\dfrac{1}{s^2}  & \textnormal{ Linearitaet} \\[2ex]
+			f:t\mapsto H(t-3)\cos(t-3)\; \quad & \mathcal L(f)(s) &=& e^{-3\, s} \cdot \mathcal L(f_1)(s) &=& e^{-3\, s}\dfrac{s}{s^2+1} & \textnormal{ Verzögerung} \\[2ex]
+			f:t\mapsto \cos(4t)\; \quad & \mathcal L(f)(s) &=& \dfrac14 \,\mathcal L (f_1)\left( \dfrac{s}{4} \right) &=& \dfrac14 \dfrac{\dfrac{s}{4}}{\left( \dfrac{s}{4}\right)^2+1} = \dfrac{s}{s^2+16}  & \textnormal{ Beschleunigung} \\[2ex]
+			f:t\mapsto \cos(4t) - t\; \quad & \mathcal L(f)(s) &=&  \dfrac14 \, \mathcal L(f_1)\left( \dfrac{s}{4}\right)- \mathcal L (f_2)(s)  &=& \dfrac{s}{s^2+16}-\dfrac{1}{s^2} & \textnormal{ gemischt}
+		\end{array}
+	\]
+\end{exabox}
+
+
+Es gibt eine für die Praxis wichtige Eigenschaft der Laplacetransformation. Um diese Eigenschaft aufzuschreiben, definieren wir die sogenannte Faltung:
+
+\begin{defbox}{ Faltung }{ }
+Seien \(f,g: \mathbb R \to \mathbb K\). Die Faltung von \(f\) und \(g\) ist die folgende Funktion, falls sie existiert: \[ \left( f\star g\right)(t) = \int\limits_{-\infty}^{\infty} f(t-\tau)\cdot g(\tau)\,\mathrm{d}\tau\,. \] Es gilt
+
+\begin{itemize}
+	\item[(a)] \( f\star(g\star h) = (f\star g) \star h\)
+    \item[(b)]  \( f\star (g+h) = f\star g + f\star h\)
+    \item[(c)] \(f\star g = g\star f\)
+    \item[(d)] \( (\lambda f)\star g = \lambda \cdot (f\star g), \quad \lambda \in \mathbb K\)
+\end{itemize}
+
+Gilt \( f(x) = 0\) und \( g(x)=0\) für \(x<0\) so folgt  \[ (f\star g)(x) = \int\limits_0^x f(x-\xi) g(\xi)\,\mathrm{d}\xi \,.\]
+\end{defbox}
+
+Die Faltung ist ein Integraloperator, der assoziativ, distributiv und kommutativ ist und im Kontext der Laplace-Transformation gilt folgendes:
+2. Anwendung im Kontext der Laplace-Transformation
+
+\begin{theorembox}{ Laplace-Transformation einer Faltung}{ }
+Seien \(f,g:[0,\infty) \to \mathbb R\) stückweise stetig mit Laplace-Transformationen \(F,G\). Dann gilt für die Faltung: \[ \left( f\star g\right)(t) = \int\limits_0^t f(t-\tau)\cdot g(\tau)\,\mathrm{d}\tau \] die Produktformel \[ \mathcal L\left( f\star g\right)(s) = \mathcal L(f)(s) \cdot \mathcal L(g)(s)\,. \]
+\end{theorembox}
+
+%\subsection{Zusammenfassung über Transformationen}
+%
+%Damit kennen wir nun die vier wichtigsten Funktionaltransformationen:\marginpar{\small Aufgabe}
+%\begin{mybox}[Transformationen von Funktionen]
+%	\begin{center}
+%		\begin{tabular}{l ||l|l}
+%			Transforamtion & Fourier-Reihe und DFT (FFT) & $z$-Transformation  \\
+%			Anwendung & Signalverarbeitung  & Signalverarbeitung \\
+%			\hline
+%			Transformation & (kontinuierliche) Fourier-Transformation & Laplace-Transformation \\
+%			Anwendung & Optik, Akustik, Elektrodynamik  & Regelungsprozesse
+%		\end{tabular}
+%	\end{center}
+%\end{mybox}
+

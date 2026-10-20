@@ -1,0 +1,264 @@
+\section*{Äquivalenzumformungen Lösungen}\label{MA1-aequivalenzumformungen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-aequivalenzumformungen}{ (Abschnitt \abschnittsverweis{MA1-aequivalenzumformungen})}.
+\else 
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Gleichungen und Ungleichungen]
+	Bestimmen Sie die Lösungsmengen der folgenden Gleichungen und Ungleichungen:
+	\begin{eqnarray*}
+	\begin{array}{ll}
+		(a)\; \displaystyle{\frac{x+52}{x+2}} = 11  & \quad \quad (b)\; \displaystyle{\frac{x^2+2\cdot x-3}{x+3} = 1} \\[2ex] 
+		(c)\; \displaystyle{\frac{(n+2)!}{n!}} = 72, n\in\mathbb N_0 &\quad\quad (d)\; \displaystyle{|2\cdot x-6|} = |4-5\cdot x|  \\[1ex] 
+		(e)\; 3\cdot x-3 < 7 -2\cdot x & \quad\quad (f)\; \displaystyle{\frac{3\cdot x-5}{x-2}} \leq 3 \\[2ex] 
+		(g)\; |6\cdot x+1|<|2\cdot x-1| &\quad\quad  (h)\; \displaystyle{\Big|\frac{3\cdot x+2}{x-2} \Big|} < 1 
+	\end{array}
+	\end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	\begin{itemize}
+		\item[(a)] 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					& \frac{x+52}{x+2} &=&  11   & || \cdot (x+2) \\
+					\stackrel{x\not=-2}{\Leftrightarrow} & x+52 &=& 11 \cdot (x+2) & || -11 x - 22 \\
+					\Leftrightarrow & 10\cdot x &=& 30 & || :10\\
+					\Leftrightarrow & x &=& 3 \,.
+				\end{array}
+			\end{eqnarray*}
+			Da Probe für $x=3$ ergibt eine wahre Aussage. Die Lösungsmenge ist daher $\mathbb L = \{3\}$.
+		\item[(b)] 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					& \dfrac{x^2+2\cdot x-3}{x+3} &=& 1 & ||\cdot (x+3) \\
+					\stackrel{x\not=-3}{\Leftrightarrow} & x^2+2\cdot x-3 &=& x+3 & || - x-3 \\
+					\Leftrightarrow & x^2+x-6 &=& 0 \\
+				\end{array}
+			\end{eqnarray*}
+			Mit der allgemeinen Lösungsformel erhält man \[ x_{1,2} = \frac{-1\pm\sqrt{1-4\cdot(-6)}}{2} = \frac{-1\pm5}{2} = \begin{cases} 2 \\ -3 \end{cases}\,.\] 
+			Die Probe für $x_1=2$ ergibt eine wahre Aussage, aber für $x_2=-3$ ist die ursprüngliche Gleichung nicht definiert, da der Nenner Null wird. Die Lösungsmenge ist daher $\mathbb L = \{2\}$.
+		\item[(c)] 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					& \frac{(n+2)!}{n!} &=& 72 & \\
+					\Leftrightarrow & (n+1)\cdot (n+2) &=& 72 &|| - 72 \\
+					\Leftrightarrow & n^2+3\cdot n-70 &=& 0 
+				\end{array}
+			\end{eqnarray*}
+			Mit der allgemeinen Lösungsformel erhalten Sie $n_1=-10$ und $n_2=7$. Da $n_1\not\in \mathbb N_0$ folgt $\mathbb L = \{7\}$.
+		\item[(d)] Da $x=4/5$ keine Lösung der Gleichung ist, kann durch $|4-5\cdot x|$ dividiert werden, so dass
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					&|2\cdot x-6| &=& |4-5\cdot x| &||: |4-5\cdot x|  \\[2ex]
+					\stackrel{ x\not= \frac45}{\Leftrightarrow} & \big| \frac{2\cdot x-6}{4-5\cdot x}\big| &=& 1 &\\[2ex]
+					\Leftrightarrow & \dfrac{2\cdot x-6}{4-5\cdot x} = 1 &\lor& \dfrac{2\cdot x-6}{4-5\cdot x} = -1  
+				\end{array}
+			\end{eqnarray*}
+			Auflösen der Gleichung ergibt $\mathbb L=\{10/7, -2/3\}$.
+		\item[(e)] 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					&3\cdot x-3 &<& 7-2\cdot x &||+2\cdot x+3\\
+					\Leftrightarrow & 5\cdot x &<& 10 &|| : 5 \\
+					\Leftrightarrow & x &<& 2 
+				\end{array}
+			\end{eqnarray*}
+			Somit gilt $\mathbb L=(-\infty, 2)$.
+		\item[(f)]  Multiplizieren mit $(x-2)$ unter Berücksichtigung des Vorzeichens liefert die folgenden zwei Fälle: 
+			\begin{enumerate}
+				\item 
+			\begin{eqnarray*}
+				\begin{array}{l c r c l l }
+					x-2 < 0 \Leftrightarrow x<2: & \Rightarrow &3\cdot x-5 &\geq& 3\cdot x-6 & ||-3\cdot x+5 \\
+				& \Leftrightarrow &0 &\geq& -1 
+				\end{array}
+			\end{eqnarray*}
+			Die Ungleichung ist immer erfüllt, also gilt $\mathbb L_1 = (-\infty, 2)$.
+		\item 
+			\begin{eqnarray*}
+				\begin{array}{l c r c l l }
+			x-2>0\Leftrightarrow x>2: & \Rightarrow &3\cdot x-5 &\leq& 3\cdot x-6 & || -3\cdot x+5 \\
+				&\Leftrightarrow &0 &\leq & -1 
+				\end{array}
+			\end{eqnarray*}
+			Die Ungleichung ist nie erfüllt, also gilt $\mathbb L_2 = \emptyset$.
+	\end{enumerate}
+	Insgesamt folgt $\mathbb L = \mathbb L_1 \cup \mathbb L_2 = (-\infty,2)$.
+\item[(g)]  Die beiden Terme im Betrag wechseln für $x=-1/6$ und für $x=1/2$ die Vorzeichen, das führt auf drei Fälle, die zu unterscheiden sind, um die Betragsstriche aufzulösen: 
+			\begin{enumerate}
+				\item Für $x\leq -1/6$ ist das Argument des linken Betrags negativ und das Argument des rechten Betrags negativ, also 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow & -(6\cdot x+1) &<& -(2\cdot x-1) & || +6\cdot x-1 \\
+					\Leftrightarrow & -2 &<& 4\cdot x &||:4 \\
+					\Leftrightarrow & -1/2 &<& x 
+				\end{array}
+			\end{eqnarray*}
+			Es gilt also $\mathbb L_1 = (-1/2, -1/6]$.
+				\item Für $-1/6 \leq x \leq 1/2$ ist das Argument des linken Betrags positiv und das Argument des rechten Betrags negativ, also 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow & 6\cdot x+1 &<& -(2\cdot x-1) & || +2\cdot x-1 \\
+					\Leftrightarrow & 8x &<& 0 &||:8 \\
+					\Leftrightarrow & x &<& 0
+				\end{array}
+			\end{eqnarray*}
+			Also $\mathbb L_2=(-1/6,0)$.
+				\item Für $x> 1/2$ ist das Argument des linken Betrags positiv und das Argument des rechten Betrags negativ, also 
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow & 6\cdot x+1 &<& 2\cdot x-1 & || -2\cdot x-1 \\
+					\Leftrightarrow & 4\cdot x &<& -2 &||:4 \\
+					\Leftrightarrow & x &<& -1/2 
+				\end{array}
+			\end{eqnarray*}
+			Also $\mathbb L_3=\emptyset$ und insgesamt $\mathbb L = \mathbb L_1\cup \mathbb L_2 \cup \mathbb L_3 = (-1/2,0)$.
+	\end{enumerate}
+		\item[(h)]  Für $x\not=2$ gilt
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					&\dfrac{|3\cdot x+1|}{|x-2|} &<& 1 &||\cdot |x-2| \\[2ex]
+					\stackrel{x\not=2}{\Leftrightarrow} & |3x+1| &<&|x-2| &
+				\end{array}
+			\end{eqnarray*}
+			Die beiden Terme im Betrag wechseln für $x=-2/3$ und für $x=2$ die Vorzeichen.
+			\begin{enumerate}
+				\item $x\leq -2/3$:
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow &-(3\cdot x+2) &<& -(x-2) & ||+3\cdot x-2 \\
+					\Leftrightarrow & -4 &<& 2\cdot x & ||:2 \\
+					\Leftrightarrow & -2 &<& x  &
+				\end{array}
+			\end{eqnarray*}
+			Es gilt also $\mathbb L_1=(-2,-2/3]$.
+				\item $-2/3 < x < 2$:
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow &3\cdot x+2 &<& -(x-2) & ||+x-2 \\
+					\Leftrightarrow & 3\cdot x &<& 0 & ||:3 \\
+					\Leftrightarrow & x &<& 0 &
+				\end{array}
+			\end{eqnarray*}
+			Es gilt also $\mathbb L_2=(-2/3,0)$.
+				\item $ x > 2$:
+			\begin{eqnarray*}
+				\begin{array}{c r c l l }
+					\Leftrightarrow &3\cdot x+2 &<& x-2 & ||-x-2 \\
+					\Leftrightarrow & 2\cdot x &<& -4 &||:2 \\
+					\Leftrightarrow & x &<& -2 &
+				\end{array}
+			\end{eqnarray*}
+			Also $\mathbb L_3=\emptyset$ und insgesamt $\mathbb L=\mathbb L_1 \cup \mathbb L_2 \cup \mathbb L_3 = (-2,0)$.
+	\end{enumerate}
+
+		\end{itemize}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssystem]
+	Bestimmen Sie jeweils die Lösungsmenge der folgenden Gleichungssysteme
+		\begin{eqnarray*}
+			\begin{array}{lll}
+			
+				(a)\; \begin{cases} 
+		2\cdot y-4\cdot x &= -6 \\
+		5\cdot y-4\cdot x &= -21
+	\end{cases} &\quad  
+	(b)\;\begin{cases}
+		2\cdot x+y &= 7 \\
+		2\cdot x+y &= 7
+	\end{cases}  & \quad 
+	(c)\;	\begin{cases}
+		x^2+y^2 &= 10 \\
+		x+y &= 4
+	\end{cases}
+\end{array}
+\end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Die angegebenen Gleichungssysteme bestehen alle aus zwei Gleichungen und zwei Unbekannten. Wir werden im Laufe des Semesters größere Gleichungssysteme anschauen und systematische Wege kennenlernen, wie man sie löst. Für diese einfachen Fälle genügt es die Gleichungen gewinnbringend miteinander zu verrechnen und dann nach einer Variable aufzulösen etc. 
+\begin{itemize}
+	\item[(a)] 
+		Ziehen Sie die erste Gleichung von der zweiten ab, dann erhalten Sie  $y=-5$.  Nun setzen Sie $y=5$ in die erste Gleichung ein und erhalten $x=-1$. Die Lösung für das Gleichungssytem ist eindeutig und lautet $\mathbb L = \{ (x,y): \, x=-1 \land y = -5 \}$.
+	\item[(b)] 
+		Die beiden Gleichungen sind identisch. Daher ist die zweite Gleichung automatisch erfüllt, wenn die erste erfüllt ist. Die erste Gleichung wird von allen Zahlenpaaren $(x,y)$ mit $2x+y=7$ erfüllt, also von allen Punkten der Geraden $y=-2x+7$. Es gilt also $\mathbb L = \{ (x,y):\; x\in \mathbb R \land y=-2x+7\}$.
+	\item[(c)] Aus der zweiten Gleichung erhalten wir $y=4-x$. Dies in die erste Gleichung eingesetzt ergibt eine quadratische Gleichung mit den Lösungen $x_1=1$ und $x_2=3$. Also insgesamt $\mathbb L=\{ (1,3), (3,1)\}$.
+\end{itemize}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Gleichungssystem mit Parameter]
+	Lösen Sie das folgende lineare Gleichungssystem für \(p\in \mathbb R\)
+		\begin{eqnarray*}
+			\begin{array}{rcrcr}
+				x_1 &+& p \cdot x_2 &=& 1 \\
+		(p-1)\cdot x_1 &+& x_2 &=& -1
+	\end{array}
+	\end{eqnarray*}
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Wir lösen die erste Gleichung nach \(x_1\) auf und setzen \(x_1\) in die zweite Gleichung ein 
+		\begin{eqnarray*}
+			\begin{array}{rcr c l c l }
+				x_1 &+& p\cdot x_2 &=& 1  &\Leftrightarrow& \textcolor{blue}{ x_1 } = \textcolor{blue}{ 1-p\cdot x_2}  \\
+
+				(p-1)\,\textcolor{blue}{ x_1 }  &=&  x_2 &=& -1 &\Leftrightarrow& (p-1)\,\textcolor{blue}{ (1-p\cdot x_2)}  +  x_2 = -1   \,.
+	\end{array}
+	\end{eqnarray*}
+	Nun lösen wir die zweite Gleichung nach \(x_2\) auf
+		\begin{eqnarray*}
+			\begin{array}{ l rcl l}
+				& (p-1)\cdot (1-p\cdot x_2) + x_2 &=& -1 &\\[1ex] 
+				\Leftrightarrow & (p-1)- (p^2-p-1)\cdot x_2 &=& 1 &|| -(p-1)\\[1ex] 
+				\Leftrightarrow & -(p^2-p-1)\cdot x_2 &=& -1-p+1 & || \cdot (-1) \\[1ex] 
+				\Leftrightarrow & (p^2-p-1)\cdot x_2 &=& p & || : ( p^2-p-1) \not= 0 \quad (*)\\[1ex] 
+				\stackrel{\displaystyle{p\not=p_{1,2}}}{\Leftrightarrow} & x_2 &=& \dfrac{p}{p^2-p-1} & \Rightarrow x_1 = 1-\dfrac{p^2}{p^2-p-1} \,. 
+	\end{array}
+	\end{eqnarray*}
+	Wie müssen in \( (*)\) unbedingt ausschließen, dass wir durch Null dividieren. Wir müssen also die Werte für \(p\) ausschließen, für die der Ausdruck \(p^2+p-1\) Null wird:
+	\[ p^2 - p - 1 = 0 \Leftrightarrow p=\frac{-1\pm \sqrt{5}}{2} \] 
+	Unser Zwischenergebnis lautet: für alle Werte von \(p\) mit \(p\in \mathbb R\setminus \{ p_1, p_2\}\) ist das Gleichungssystem eindeutig lösbar mit \[ \begin{cases} x_1 &=  1-\dfrac{p^2}{p^2-p-1} \\ x_2 &= \dfrac{p}{p^2-p-1} \end{cases} \]
+		Aber was, wenn es noch mehr Lösungen gibt für die ausgeschlossenen Werte von \(p\)? Die beiden Fälle überprüfen wir jetzt:
+		\begin{itemize}
+	\item Wir steigen wir in die Gleichung \( (*)\) ein und setzen  $p = p_1$: es folgt \(0  = \frac{-1 + \sqrt{5}}{2}\) und das ist falsch. Also liefert der Fall \(p=p_1\) keine weitere Lösung für \(x_1, x_2\).  
+	\item Wir steigen wir in die Gleichung \( (*)\) ein und setzen  $p = p_2$: es folgt \(0  = \frac{-1 - \sqrt{5}}{2}\) und das ist falsch. Also liefert der Fall \(p=p_2\) keine weitere Lösung für \(x_1, x_2\).  
+\end{itemize}
+Mit anderen Worten: unser Zwischenergebnis ist schon unser Endergebnis. 
+\end{exercisebox}
+
+\begin{exercisebox}[Brainteaser]
+	In einer Familie hat jeder Sohn gleich viele Schwestern und Brüder. Jede Tochter hat aber doppelt so viele Brüder wie Schwestern. Wie viele Söhne und Töchter hat die Familie?
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Es bezeichne $n$ die Anzahl der Söhne und $m$ die Anzahl der Töchter. Dann gilt
+	
+	\begin{eqnarray*}
+		\begin{cases} \left(n -1\right) = m\\
+			\left(m -1\right) = \frac{n}{2} \; \Rightarrow  2\cdot \left( m-1\right) = n
+	\end{cases}
+\end{eqnarray*}
+Dies ist ein einfaches Gleichungssystem mit zwei Gleichungen für zwei Unbekannte. Sie können es lösen, in dem Sie in  $m=n-1$ in die  zweite Gleichung einsetzen. Die Lösung lautet $n=4$ und $m=3$.
+\end{exercisebox}
+
+\begin{exercisebox}[Brainteaser]
+	Zu einem Fest auf dem Land fahren mehrere Pferdewagen mit der jeweils gleichen Anzahl an Personen. Auf halbem Weg fallen zehn Wagen aus, sodass jeder der übrigen Wagen eine weitere Person aufnehmen muss. Vor Antritt des Rückwegs fallen weitere \(15\) Wagen aus, was zur Folge hat, dass in jedem Wagen drei Personen mehr sind als bei der Abfahrt am Morgen. Wie viele Personen nahmen an dem Fest teil?
+
+	\vspace{0.3cm}
+	\noindent\textbf{Lösung:}\newline
+	Es bezeichne $x$ die ursprüngliche Anzahl der Wagen und $y$ die Anzahl der Personen. Die Anzahl von Personen pro Wagen ist damit der Quotient $\displaystyle{\frac{y}{x}}$ und es gilt
+	\begin{eqnarray*}
+		\begin{cases} 
+			\displaystyle{\frac{y}{x}} + 1  = \displaystyle{ \frac{y}{(x-10)}} \\
+			\displaystyle{\frac{y}{x}} + 3  = \displaystyle{ \frac{y}{(x-25)}}
+	\end{cases}
+\end{eqnarray*}
+Das Ergebnis erhält man, indem man eine der beiden Gleichugnen nach $x$ oder $y$ auflöst und in die andere Gleichung einsetzt. Als Lösung ergibt sich $y=900$ und $x=100$.
+\end{exercisebox}
+

@@ -1,0 +1,249 @@
+
+
+\section{Potenzfunktionen und Wurzelfunktionen}\label{MA1-potenz-und-wurzelfunktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+	  \tabitem Potenzfunktionen \(x\mapsto x^n\) für \(n\in\mathbb N^+\) darstellen und anhand von Monotonie und Symmetrie charakterisieren &\\
+\tabitem Wurzelfunktionen als Umkehrfunktionen geeigneter Potenzfunktionen interpretieren und ihre Definitionsbereiche bestimmen &\\
+\tabitem Gleichungen mit Potenzen und Wurzeln unter Beachtung des Definitionsbereichs lösen &\\
+\tabitem Potenzrechenregeln auf ganzzahlige und gebrochenzahlige Exponenten erweitern und sicher anwenden &\\
+    \midrule
+	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
+	  \tabitem Grundrechenarten & \abschnittsverweis{MA1-zahlenmengen}\\
+	  \tabitem Äquivalenzumformungen & \abschnittsverweis{MA1-aequivalenzumformungen}\\
+	  \tabitem Injektivität, Bijektivität, Umkehrbarkeit  & \abschnittsverweis{MA1-funktionen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+ \ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-potenz-und-wurzelfunktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+ \fi
+
+\subsection{Potenzfunktionen} 
+
+
+Eine Funktion der Form
+\[
+f:\mathbb R\to\mathbb R,\qquad x\mapsto x^n,
+\]
+mit \(n\in\mathbb N^+\) heißt \textbf{Potenzfunktion} (\emph{power function}).
+
+Zunächst werden nur positive ganzzahlige Exponenten betrachtet. Für diese Potenzfunktionen kann der \underline{Definitionsbereich}\randverweis{MA1-funktionen}  ohne weitere Einschränkungen als ganz \(\mathbb R\)
+\footnote{Auch Funktionen wie \(x\mapsto x^{-1/5}\) oder \(x\mapsto x^\pi\) gehören zu allgemeineren Potenzfunktionen.  Ihre Definitionsbereiche erfordern jedoch zusätzliche Überlegungen: \(x^{-1/5}\) ist bei \(x=0\) nicht definiert, während \(x^\pi\) im Reellen für negative \(x\) nicht definiert ist.}
+
+\begin{theorembox}{Monotonie und Symmetrie von Potenzfunktionen mit geradem Exponenten}{ }
+	\begin{minipage}{0.35\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/potenzfunktionen_gerade_exponenten.png}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		Potenzfunktionen \[ f: \mathbb R \to [0, \infty), x\mapsto x^{2n}, \, n\in \mathbb N^+\] mit geradem Exponenten sind\ldots  
+	\begin{itemize}
+		\item achsensymmetrisch (gerade), also \[ f(x) = f(-x)\,,\] 
+		\item auf $(-\infty, 0]$ streng monoton fallend,
+		\item auf $[0,\infty)$ streng monoton steigend,
+		\item auf \(\mathbb R\) \textcolor{blue}{nicht bijektiv} und damit nicht invertierbar!
+	\end{itemize}
+	\end{minipage}
+\end{theorembox}
+
+
+\begin{theorembox}{Monotonie und Symmetrie von Potenzfunktionen mit ungeradem Exponenten}{ }
+	\begin{minipage}{0.35\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/potenzfunktionen_ungerade_exponenten.png}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		Potenzfunktionen \[f: \mathbb R\to \mathbb R,  x\mapsto x^{2n-1}, \, n\in \mathbb N^+\] mit ungeradem Exponenten sind \ldots
+	\begin{itemize}
+		\item punktsymmetrisch (ungerade), also \[f(-x) = -f(x)\,,\] 
+		\item auf \(\mathbb R\) streng monoton steigend, 
+		\item auf \(\mathbb R\) bijektiv und damit invertierbar.
+	\end{itemize}
+	\end{minipage}
+\end{theorembox}
+
+%\subsection{Hyperbeln} 
+%
+%Potenzfunktionen mit negativen ganzzahligen Exponenten wie $x \mapsto x^{-5}$ haben als Definitionsbereich maximal $\mathbb R\setminus \{0\}$. Auch der Verlauf dieser Funktionen hängt entscheidend davon ab, ob der Exponent gerade oder ungerade ist:
+%\begin{exabox}{Hyperbeln}{ }
+%	\centering
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/07_Gerade_Hyperbeln.png}\hspace{2cm}
+%	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/07_Ungerade_Hyperbeln.png}
+%\end{exabox}
+
+\subsection{Wurzelfunktionen}
+
+Die Monotonie- und Injektivitätseigenschaften der Potenzfunktionen bestimmen unmittelbar, ob und auf welchem Definitionsbereich sie umgekehrt werden können. Ihre Umkehrfunktionen führen zu den \textbf{Wurzelfunktionen} (\emph{root functions}).
+
+Für \(n\in\mathbb N^+\) wird die \(n\)-te Wurzel durch
+\[
+x\mapsto\sqrt[n]{x}=x^{1/n}
+\]
+beschrieben. 
+
+%Dabei muss wiederum zwischen geradem und ungeradem \(n\) unterschieden werden
+%
+%\[ 
+%\sqrt[n]{ \cdot }: \left\{ 
+%\begin{array}{ll} \mathbb R \to \mathbb R, & n \text{ ungerade},\\  [0,\infty) \to [0,\infty) & n \text{ gerade} \end{array} 
+%\right.
+%\]
+
+Ungeradzahlige Wurzeln sind die \underline{Umkehrfunktionen}\randverweis{MA1-eigenschaften-von-funktionen} der entsprechenden Potenzfunktionen. Ein Beispiel:
+
+\begin{exabox}{Ungeradzahlige Wurzeln}{ }
+
+  \begin{minipage}{0.4\textwidth}
+	  \includegraphics[width=\textwidth]{../Mathematik_1/Bilder/wurzelfunktionen_potenz_drei_dritte_wurzel.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{itemize}
+		\item \(f: x\mapsto x^3\) ist auf \(\mathbb R\) eine Potenzfunktion mit ungeradem Exponenten. 
+		\item Da \(f\) auf \(\mathbb R\) streng monoton steigend und damit injektiv ist, besitzt sie auf ganz \(\mathbb R\) eine Umkehrfunktion.
+		\item \(f^{-1}: x\mapsto \sqrt[3]{x}\) ist die Umkehrfunktion.
+		\item "\,\textcolor{blue}{Umkehrfunktion}"\, und \textcolor{violett}{Funktion} sind an der Winkelhalbierenden gespiegelt.
+		\item Ungeradzahlige Wurzeln sind für alle reellen Zahlen definiert. Für negative Argumente liefern sie negative Ergebnisse.
+	\end{itemize}
+\end{minipage}
+\end{exabox}
+
+Potenzfunktionen mit geradem Exponenten sind auf \(\mathbb R\) nicht injektiv und besitzen daher dort keine Umkehrfunktion. Auf dem eingeschränkten Definitionsbereich \([0,\infty)\) sind sie dagegen streng monoton steigend und damit bijektiv auf \([0,\infty)\).
+
+\begin{exabox}{Geradzahlige Wurzeln}{ }
+  \begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/wurzelfunktionen_quadratfunktion_quadratwurzel.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\begin{itemize}
+		\item \(f: \mathbb R \to [0,\infty), x\mapsto x^4\) ist auf \(\mathbb R\) eine Potenzfunktion mit geradem Exponenten. 
+		\item \(f\) ist auf \(\mathbb R\) nicht invertierbar.
+		\item \(\tilde f: [0,\infty) \to [0,\infty), x\mapsto x^4\) ist bijektiv und damit invertierbar.
+		\item \(\tilde f^{-1}: x\mapsto \sqrt[4]{x}\) kehrt die Potenzfunktion auf \( [0,\infty)\) um.
+		\item "\,\textcolor{blue}{Umkehrfunktion}"\, und \textcolor{violett}{Funktion} sind an der Winkelhalbierenden gespiegelt.
+
+		\item Geradzahlige Wurzeln sind im Reellen nur für nichtnegative Argumente definiert und liefern ausschließliche nichtnegative Ergebnisse.
+	\end{itemize}
+\end{minipage}
+\end{exabox}
+
+Potenzfunktionen und Wurzelfunktionen treten häufig in Gleichungen auf. Für Gleichungen der Form
+\[
+x^n=c
+\]
+hängt die Anzahl der reellen Lösungen entscheidend davon ab, ob der Exponent \(n\) gerade oder ungerade ist. \marginpar{Aufgaben} 
+
+\begin{theorembox}{Gleichungen mit Potenzfunktionen}{ }
+	Es sei $n\in \mathbb N^+$. Gesucht sind alle \textbf{reellen} Lösungen $x\in \mathbb R$ der Gleichung  \[ x^n = c\,.\]
+	Für $n$ gerade, also $n=2,4,6,\cdots$ besitzt die Gleichung 
+	\begin{itemize}
+		\item für $c>0$ die beiden Lösungen $x_1= - \sqrt[n]{c}$,  $x_2= \sqrt[n]{c}$,
+		\item für $c=0$ die Lösung $x=0$, 
+		\item für $c<0$ keine Lösung. 
+	\end{itemize}
+	Für $n$ ungerade, also $n=1,3,5,7,\cdots$ besitzt die Gleichung 
+	\begin{itemize}
+		\item für $c\geq0$ die Lösung $x= \sqrt[n]{c}$,
+		\item für $c<0$ die Lösung  $x=-\sqrt[n]{|c|}$.
+	\end{itemize}
+\end{theorembox}
+
+\begin{exabox}{Gleichungen mit Potenzen}{ }
+
+	\begin{itemize}
+		\item Für die Gleichung \(x^4=16\) ist der Exponent gerade und die rechte Seite positiv. Daher gibt es zwei reelle Lösungen:
+\[
+x=-\sqrt[4]{16}=-2
+\qquad\text{oder}\qquad
+x=\sqrt[4]{16}=2.
+\]
+Die Lösungsmenge ist also \( \mathbb L=\{-2,2\}\).
+
+\item Die Gleichung \(x^3=-8 \) besitzt wegen des ungeraden Exponenten genau eine reelle Lösung:
+\[
+x=\sqrt[3]{-8}=-2.
+\]
+Damit gilt \( \mathbb L=\{-2\} \).
+\end{itemize}
+
+\end{exabox}
+
+%Es gibt verschiedene Meinungen dazu, ob man ungerade Wurzeln aus negativen Zahlen ziehen darf oder ob doch lieber alle Wurzeln nur für reelle Zahlen ab $0$ aufwärts definiert sein sollten. Mit Wolfram Alpha gibt es noch eine größere Überraschung: \verb+cubic root of -8+ wird dort eine komplexe Zahl - aus gutem Grund (Hauptwert der Wurzel). 
+
+\subsection{Verallgemeinerung der Potenzrechenregeln}
+
+Für das Produkt positiver ganzzahliger Potenzen $a^n$ und $a^m$ derselben Zahl $a\in \mathbb R$ gilt offensichtlich: $$a^n \cdot a^m = a^{n+m}\,.$$
+
+Die bekannten Potenzrechenregeln sollen auch für allgemeinere Exponenten gelten. Dadurch ergibt sich auf natürliche Weise, wie Potenzen mit dem Exponenten \(0\), mit negativen ganzzahligen Exponenten und schließlich mit gebrochenzahligen Exponenten definiert werden müssen.
+
+Damit die Potenzregel auch für den Exponenten \(0\) und für negative
+ganzzahlige Exponenten erhalten bleibt, definiert man für \(a\neq0\)
+\[
+a^0:=1,
+\qquad
+a^{-n}:=\frac{1}{a^n},
+\qquad n\in\mathbb N^+.
+\]
+
+Für eine positive ganzzahlige Potenz $(a^n)^m$ einer positiven ganzzahligen Potenz $a^n$ einer Zahl $a \in (0,\infty)$ gilt offensichtlich:
+  $$(a^n)^m = a^{n\cdot m}\,.$$
+
+Um  diese  Regel  auf  gebrochenzahlige  Exponenten  zu  erweitern,  muss man definieren:
+$$a^{\frac1n}: = \sqrt[n]{a}, \quad n\in\mathbb N^+\,.$$
+
+Fassen wir die Rechenregeln zusammen:\marginpar{Aufgaben}
+
+\begin{theorembox}{Rechenregeln}{ }
+Für \(a,b>0\) und rationale Exponenten \(r,s\in\mathbb Q\) gelten
+\begin{align*}
+(a\cdot b)^r &= a^r\cdot b^r,\\
+a^r\cdot a^s &= a^{r+s},\\
+(a^r)^s &= a^{rs},\\
+a^{-r} &= \frac{1}{a^r}.
+\end{align*}
+
+Ein rationaler Exponent
+\[
+r=\frac{m}{n},
+\qquad
+m\in\mathbb Z,\quad n\in\mathbb N^+,
+\]
+wird dabei durch
+\[
+a^{\frac{m}{n}}
+:=
+\sqrt[n]{a^m}
+=
+\left(\sqrt[n]{a}\right)^m
+\]
+definiert.
+\end{theorembox}
+
+
+Bei der Basis \(0\) und insbesondere bei negativen Basen müssen die Voraussetzungen der Potenzrechenregeln sorgfältig beachtet werden.
+
+\begin{exabox}{Vorsicht bei negativen Basen}{ }
+
+	Für \(x\geq0\) gilt \(\sqrt{x^2}=x\). Für beliebige \(x\in\mathbb R\) muss dagegen berücksichtigt werden, dass die Quadratwurzel stets nichtnegativ ist. Daher gilt allgemein \( \sqrt{x^2}=|x|\).
+
+Beispielsweise ist
+\[
+\sqrt{(-3)^2}
+=
+\sqrt9
+=
+3
+=
+|-3|
+\neq -3.
+\]
+
+Die Potenzregel \( (a^n)^m=a^{nm} \) kann daher bei negativen Basen und nichtganzzahligen Exponenten nicht ohne zusätzliche Voraussetzungen angewendet werden.
+
+\end{exabox}

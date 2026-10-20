@@ -1,0 +1,221 @@
+\section{Potenzreihen}\label{MA2-potenzreihen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}} \\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem den Konvergenzbereich einer Potenzreihe interpretieren und bestimmen & \\
+    \tabitem die Definition analytischer Funktionen erläutern & \\
+    \tabitem die Funktionsweise eines Potenzreihenansatzes zur Lösung von Differentialgleichungen erläutern & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
+    \tabitem das Konvergenzverhalten einer Reihe analysieren & \abschnittsverweis{MA2-zahlenreihen}  \\
+    \tabitem Taylor-Reihen formal bilden & \abschnittsverweis{MA2-taylorreihen} \\
+    \tabitem Ableitungen bilden & \abschnittsverweis{MA1-ableitungsregeln} \\
+    \tabitem Differentialgleichung mit Hilfe eines Ansatzes lösen &  \abschnittsverweis{MA2-lineare-differentialgleichungen}\\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-potenzreihen-aufgaben]{hier}.
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Fragestellungen}
+
+Die Entwicklung einer beliebig oft differenzierbaren Funktion $f$ an einer Stelle $x_0$ in eine \underline{Taylor-Reihe}\randverweis{MA2-taylorreihen} war:
+\[
+	f(x) \stackrel{?}{=} f(x_0) + f'(x_0)(x-x_0) +\frac12 f''(x_0) (x-x_0)^2 + \cdots + \frac{1}{n!}f^{(n)}(x_0) (x-x_0)^n + \cdots
+\]
+
+Wenn wir es mit Reihen zu tun haben, stellt sich die Frage nach ihrem Wert oder anders gesagt nach \underline{Konvergenz}\randverweis{MA2-zahlenreihen}. Im Kontext der Potenzreihe stellt sich die Frage nach Konvergenz sogar in Abhängigkeit der Variable, die potenziert wird:
+\begin{itemize}
+	\item[1.] Konvergiert diese Reihe für irgendwelche Werte von $x$?
+\end{itemize}
+Und bezüglich der Eigenschaften der Taylor-Reihe können wir uns fragen, ob sich die lokale Approximationseigenschaft auf den gesamten Definitionsbereich der Funktion ausdehnt, also:
+\begin{itemize}
+	\item[2.] Vorausgesetzt die Taylor-Reihe konvergiert für $x\in D_f$, ist der Wert der Reihe dann  der Funktionswert $f(x)$?
+\end{itemize}
+
+Eine mathematisch präzise Analyse dieser Fragen führt auf den Begriff der analytischen Funktionen - das sind genau die Funktionen, die sich durch eine Taylor-Reihe darstellen lassen. Aber zuvor beantworten wir die Frage nach der Konvergenz.
+
+\subsection{Konvergenz von Potenzreihen}
+
+Betrachten wir eine beliebige Potenzreihe, also eine Reihe der Form:
+\[
+	\sum\limits_{k=0}^\infty a_k (x-x_0)^k  = a_0 + a_1 (x-x_0) + a_2(x-x_0)^2 + \cdots = \lim\limits_{N\to \infty} S_N(x)\,.
+\]
+Wenn der Grenzwert der \underline{Partialsummen}\randverweis{MA2-zahlenreihen} für ein gegebenes $x$ existiert, dann sagt man, dass die Potenzreihe für dieses $x$ konvergiert. Die große Frage ist, für welche $x$ das der Fall ist.
+
+Anschaulich ist klar, dass die Gefahr, dass die Werte einer Potenzreihe explodieren, größer ist je weiter $x$ von $x_0$ weg liegt, je größer also der Betrag $|x-x_0|$ ist. Und in der Tat findet man genau das: Zu jeder Potenzreihe gibt es einen sogenannten Konvergenzradius $R$, so dass die Reihe für $|x-x_0|<R$ konvergiert und für $|x-x_0|>R$ divergiert (also keinen Grenzwert hat). Genau auf dem Rand, also für $|x-x_0|=R$, kann sie konvergieren oder divergieren, je nach $(a_n)_{n\in\mathbb N}$. Im Prinzip sieht das so aus:
+	\begin{figure}[h]\caption{Konvergenz}
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/potenzreihen_konvergenzintervall.png}
+\end{center}
+\end{figure}
+
+\begin{itemize}
+	\item $R=\infty$ bedeutet, dass die Reihe für alle $x \in \mathbb R$ konvergiert.
+	\item $R=0$ bedeutet, dass die Reihe nur für einen Wert von $x$ nämlich für $x=x_0$ konvergiert.
+	%\item Der Begriff Konvergenzradius lässt an eine Kreisscheibe denken und das kommt nicht von ungefähr: Setzt man komplexe Zahlen $x\in \mathbb C$ in die Potenzreihe ein, ist das Verhalten so:
+	%\begin{figure}[h]\caption{Konvergenzradius}
+%\begin{center}
+	%		\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder_unused/potenzreihen_konvergenzkreis_und_intervall.png}
+	%\end{center}
+%\end{figure}
+
+\end{itemize}
+
+%Um zu verstehen, dass die kritische Grenze genau ein Kreis ist, benutzen wir \underline{Vergleichskriterien}\randverweis{MA2-zahlenreihen}:
+%
+%Angenommen, $x$ liegt so dicht bei $x_0$, dass $\sqrt[n]{|a_n|}||x-x_0| = q < 1$ für alle $n$ gilt, gegebenenfalls  mit  endlich  vielen  Ausnahmen.  Dann  kann  man  den  Betrag  des $n$-ten Summanden der Potenzreihe nach oben abschätzen:
+%\[
+%	\Big| a_n(x-x_0)^{n} \Big| \leq \left( \sqrt[n]{|a_n|} |x-x_0|\right)^n \leq q^n \,.
+%\]
+%Die Summanden der Potenzreihe werden exponentiell schrumpfen und die geometrische Reihe ist eine konvergente Majorante für die Potenzreihe\marginnote{\small Aufgabe}
+%\[
+%	\Big|\sum\limits_{k=0}^\infty a_n(x-x_0)^n\Big| \leq \sum\limits_{k=0}^\infty \Big|a_n(x-x_0)^n\Big| \leq   \sum\limits_{k=0}^\infty q^n = \frac{1}{1-q}\,.
+%\]
+%
+%Ein hinreichendes Kriterium für Konvergenz ist also
+%\[
+%	\sqrt[n]{|a_n|} \cdot |x-x_0| = q < 1, \quad n\in \mathbb N_0\,.
+%\]
+%
+%Angenommen dagegen, $x$ liegt so fern von $x_0$, dass $\sqrt[n]{|a_n|}||x-x_0|\geq $ für alle $n$ oder zumindest für unendlich viele $n$ gilt. Für diesen kann man den Betrag des $n$-ten Summanden der Potenzreihe nach unten abschätzen:
+%\[
+%	\Big| a_n(x-x_0)^{n} \Big| \geq \left( \sqrt[n]{|a_n|} |x-x_0|\right)^n \geq 1  \,.
+%\]
+%Die Summanden der Potenzreihe werden nie kleiner als eins und die geometrische Reihe ist eine divergente Minorante für die Potenzreihe\marginnote{\small Aufgabe}
+%\[
+%	\Big|\sum\limits_{k=0}^\infty a_n(x-x_0)^n\Big| \geq \sum\limits_{k=0}^\infty \Big|a_n(x-x_0)^n\Big| \geq \sum\limits_{k=0}^\infty 1 \quad \textnormal{existiert nicht}\,.
+%\]
+
+Wie läßt sich der Konvergenzradius für eine gegebene Potenzreihe auf systematische Weise bestimmen?
+
+Naja, lassen Sie uns die Frage nach Konvergenz der Potenzreihe
+\[\sum\limits_{k=0}^\infty a_k x^k \quad (*)\]
+mit Hilfe dessen beantworten, was wir schon über \underline{Zahlenreihen}\randverweis{MA2-zahlenreihen}  wissen - denn genau das wird aus \( (*)\) wenn wir für \(x\) eine reelle Zahl einsetzen.
+
+\begin{itemize}
+	\item Das Wurzelkriterium liefert
+\[
+	\forall \, x\in \mathbb R: \; \lim\limits_{n\to\infty} \sqrt[n]{ |a_n\cdot (x-x_0)^n|} =  \lim\limits_{n\to\infty} \sqrt[n]{ |a_n|} |x-x_0| = r|x-x_0| \begin{cases} <1 \; \Rightarrow \;(*)\;\textnormal{konvergent }\,,\\[1ex]
+	=1 \; \Rightarrow \;(*)\;\textnormal{keine Aussage möglich}\,,\\[1ex]
+>1 \; \Rightarrow \;(*)\;\textnormal{divergent}\,.\end{cases}
+\]
+	\item Das Quotientenkriterium liefert
+\[
+\forall \, x\in \mathbb R: \; \lim\limits_{n\to\infty}\Big| \frac{ a_{n+1} (x-x_0)^{n+1}}{ a_n (x-x_0)^n}\Big| = \lim\limits_{n\to\infty} \Big| \frac{ a_{n+1} }{ a_n }\Big| |x-x_0| = r|x-x_0| \begin{cases} <1 \; \Rightarrow \;(*)\;\textnormal{konvergent}\,,\\[1ex]
+=1 \; \Rightarrow \;(*)\;\textnormal{keine Aussage möglich}\,,\\[1ex]
+>1 \; \Rightarrow \;(*)\;\textnormal{divergent}\,.\end{cases}
+\]
+\end{itemize}
+
+Lösen wir die Ungleichungen nach \(|x-x_0|\) auf, dann erhalten hinreichende Kriterien für Konvergenz und Divergenz der Potenzeihe:
+\[
+	\forall\, x\in \mathbb R: \; |x-x_0| \begin{cases} <\frac1r\; \Rightarrow \;(*)\;\textnormal{konvergent }\,,\\[1ex]
+		>\frac1r \; \Rightarrow \;(*)\;\textnormal{divergent}\,,\\[1ex]
+	=\frac1r \; \Rightarrow \;(*)\;\textnormal{keine Aussage möglich}\,. \end{cases}
+\]
+
+%Beispiele: Folge $\lim_{\mathrm{ sup} \{ 1; 2; 3; 1; 2; 3; 1; 2; 3;. . .231; 10; 2; 20; 3; 30;. . .240,9; 0,99; 0,999; 0,9999;. . .}$
+
+\begin{theorembox}{Konvergenz von Potenzreihen}{ }
+	Für eine Potenzreihe der Form  \( (*)\) ist der Konvergenzradius $R$ wie folgt definiert:
+	\[ R =  \frac{1}{\limsup\limits_{n\to \infty} \sqrt[n]{|a_n|}} \quad \textnormal{alternativ}\quad R =  \limsup\limits_{n\to \infty}\Big| \frac{a_n}{ a_{n+1}}\Big| \,,
+\]
+mit den Spezialfällen
+\[
+	\begin{cases}
+		R=0, \;\textnormal{falls}\; r=\infty\,,\\[1ex]
+		R=\infty, \;\textnormal{falls}\; r=0\,.
+			\end{cases}
+\]
+Folgende drei Fälle kann man dann unterscheiden:
+	\begin{eqnarray*}
+		\begin{cases}
+			|x-x_0| < R \; \Rightarrow \; \textnormal{Konvergenz}\,,\\[1ex]
+			|x-x_0| = R \; \Rightarrow \; \textnormal{unklar}\,,\\[1ex]
+			|x-x_0| > R \; \Rightarrow \; \textnormal{Divergenz}\,.
+		\end{cases}
+	\end{eqnarray*}
+\end{theorembox}
+
+\begin{exabox}{Konvergenzradius}{ }
+	Reihe:
+	\[
+	\sum\limits_{k=0}^\infty \frac{k+2}{2^k} x^k \]
+	Konvergenzradius:
+	\[
+	r = \lim\limits_{n\to \infty} \sqrt[n]{|a_n|} = \lim\limits_{n\to \infty} \sqrt[n]{\Big|\frac{n+2}{2^n}\Big|} =  \frac{1}{2}\lim\limits_{n\to \infty}\sqrt[n]{n+2} = \frac12 \;\Rightarrow \; R=2\,. \]
+	Lösung: Die Potenzreihe konvergiert für $-2 < x <2$.
+
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+\item Bei Berechnung des Konvergenzradius kommt es also nur auf den Betrag $|x-x_0|$ an. Die Grenzlinie zwischen Konvergenz und Divergenz ist ein Kreis.
+\item Entsprechend seiner Definition wird der Konvergenzradius \(R\) aus dem Wurzelkriterium abgeleitet. Man kann auch das Quotientenkriterium benutzen! Es hängt von der Stuktur der \(a_n\) ab, ob man den Quotienten oder die \(n\)-te Wurzel heranzieht.
+\item Im Allgemeinen ist $\sqrt[n]{|a_n|}\cdot |x-x_0|$ bzw  \( |  a_{n+1}/ a_n| |x-x_0|\) nicht durchgängig für alle $n$ größer oder kleiner als $1$ und das ist auch nicht nötig. Die mathematisch präzise Charakterisierung des Konvergenzradius gelingt mit Hilfe des Limes superior. Er bezeichnet den größten Häufungspunkt einer Folge inklusive $+\infty$ und $-\infty$.
+\end{itemize}
+
+\subsection{Analytische Funktionen}
+
+Nun zu der zweiten Fragestellung: Angenommen, eine Taylor-Reihe konvergiert für eingegebenes $x$. Ist das Ergebnis dann wieder $f(x)$? Funktionen $f$, für die genau das gilt, heißen analytisch. Jede analytische Funktion muss offensichtlich unendlich oft differenzierbar sein. Das gilt aber nicht umgekehrt: Eine Funktion, die unendlich oft differenzierbar ist, muss nicht unbedingt analytisch sein, das heißt nicht jede konvergente Taylor-Reihe repräsentiert wieder die ihr zu Grunde liegende Funktion $f$.
+
+\begin{itemize}
+	\item Die Ausnahmen in der Mathematik sind exotisch, beispielsweise ist die Funktion
+\[ f: x\mapsto  \begin{cases} e^{-1/x^2}, \quad &x\not=0\,,\\
+0, \quad &x=0\end{cases}
+\]
+nicht anayltisch.
+	\item Die Ausnahmen in der Praxis sind die Regel: die meisten Signalverläufe sind keine analytischen Funktionen - sonst könnte man die Zukunft vorhersagen.
+\end{itemize}
+
+\subsection{Lösen von Differentialgleichungen mit Potenzreihen}
+
+Möchte man eine \underline{Differentialgleichung}\randverweis{MA2-differentialgleichungen} lösen und hat keine Ahnung, wie man vorzugehen hat, dann kann man eine Potenzreihe als Ansatz verwenden\footnote{Damit geht man implizit davon aus, dass die Lösung analytisch ist.}.
+
+\begin{exabox}{Potenzreihen als Ansatz zur Lösung von Dgls}{ }
+	Anfangswertproblem:
+\[ \begin{cases}
+		y(2)  = 3\,, &\quad x=2\,,\\
+	y' = y^2+x\,, & x\not=2 \,.
+\end{cases}
+\]
+Ansatz:
+	\begin{eqnarray*}
+		y(x) &=& \sum\limits_{k=0}^\infty a_k (x-2)^k = a_0 + a_1(x-2) + a_2(x-2)^2 + \cdots \,,\\
+		y'(x) &=& \sum\limits_{k=1}^\infty k \cdot a_k (x-2)^{k-1} = a_1 + 2\cdot a_2\cdot (x-2) + 3 \cdot a_3 \cdot (x-2)^2 + \cdots \,.
+	\end{eqnarray*}
+	Bestimmung von $a_0$ (Anfangsbedingung):
+\begin{eqnarray*}
+	y(2) &=& \sum\limits_{k=0}^\infty a_k (2-2)^k = a_0 = 3\\
+	&& \Rightarrow  y(x) = 3 + a_1(x-2) + a_2(x-2)^2 \cdots \,.
+\end{eqnarray*}
+Bestimmung der $a_k$, $k>0$ (Einsetzen in Differentialgleichung):
+	\begin{eqnarray*}
+		a_1 + a_2\cdot 2 \cdot (x-2) \cdots  &=& \left( 3 + a_1\cdot (x-2) + a_2\cdot (x-2)^2 + a_3\cdot (x-2)^3 + \cdots\right)^2 + (x-2) + 2 \,,\\
+		&=&  9+2 + (6\cdot a_1 +1)\cdot (x-2) + (a_1^2+6\cdot a_2)\cdot(x-2)^2 + \cdots  \,,\\[2ex]
+		&&\Rightarrow \begin{cases}
+		a_1 = 11 \\
+		a_2 = 67/2\\
+		\cdots
+	\end{cases}
+		%\sum\limits_{k=1}^\infty k \cdot a_k (x-2)^{k-1} = \left( 3 + \sum\limits_{k=1}^\infty a_k (x-2)^k  \right) \cdot \left( 3 + \sum\limits_{k=1}^\infty a_k (x-2)^k  \right) + x
+	\end{eqnarray*}
+\end{exabox}
+
+\noindent Bemerkungen:
+\begin{itemize}
+	\item Auf diese Weise ist es bei vielen Differentialgleichungen möglich, die ersten Koeffizienten der Reihe auszurechnen.
+	\item Man kann die Reihenentwicklung irgendwann abbrechen und hat damit ein Taylor-Polynom als Näherung für die Lösung.
+	\item Manchmal findet man sogar eine handliche Formel für alle Koeffizienten. Die Potenzreihe konvergiert aber nur innerhalb ihres Konvergenzradius und kann auch nur da eine Lösung des Anfangswertproblems darstellen.\marginpar{\small Aufgabe}
+\end{itemize}
+
+

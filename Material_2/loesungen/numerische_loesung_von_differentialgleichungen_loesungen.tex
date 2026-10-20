@@ -1,0 +1,150 @@
+\section*{Numerische Verfahren Aufgaben mit Lösungen}\label{MA2-numerische-loesung-von-differentialgleichungen-loesungen}
+
+\ifintegriereaufgaben Erklärungen und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA2-numerische-loesung-von-differentialgleichungen}{ (Abschnitt \abschnittsverweis{MA2-numerische-loesung-von-differentialgleichungen})}. \fi
+
+\begin{exercisebox}[Explizites Euler Verfahren] %HMI 3 Blatt 4 Aufg. 4
+	Berechnen Sie für das Anfangswertproblem
+	\[
+		\begin{cases}
+			y(0) = 1\,,\quad & x=0\,,\\
+			y' = x^2+y\,,\quad & x\not=0\,
+		\end{cases}
+	\]
+	eine Näherungslösung für $y(2)$. Die Näherungslösung soll mit Hifle des Eulerschen Polygonzugverfahrens zur Schrittweite $h=1/4$ hergeleitet werden. Lösen Sie das Anfangswertproblem exakt und bestimmen Sie den relativen Fehler der Approximation für \(x=2\).
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+Bestimmung der exakten Lösung:
+\begin{enumerate}
+	\item Allgemeine Lösung der homogenen Gleichung: \[ y' - y = 0 \Rightarrow y_h(x) = ce^x\,.\]
+	\item Partikuläre Lösung mit Variation der Konstanten \[ y_p(x) = c(x) e^x \Rightarrow y_p'(x) = c'(x) e^x + c(x) e^x \Rightarrow c'(x) = x^2 e^{-x} \Rightarrow c(x) = -x^2 e^{-x} - 2xe^{-x} + ee^{-x} \,.\]
+	\item Damit lautet die allgemeine Lösung: \[ y(x) = y_h(x) + y_p(x) = -x^2 - 3x -2 + ce^x \,.\]
+	\item Bestimmung der Integrationskonstante: \[ y(0) \stackrel{!}{=} 1 \Rightarrow c = 3 \Rightarrow yy:x\mapsto 3e^x-x^2-2x-2\,.\]
+
+\end{enumerate}
+
+Bestimmung der Näherungslösung für \(x=2\) mit Polygonzugverfahren mit Schrittweite \(h=1/4\):
+\begin{enumerate}
+	\item Stützstellen \( x_k=k\cdot h, \quad k=0,\cdots, 8\):
+		\[ x_0 = 0, x_1=\frac14, x_2=\frac12, x_3 = \frac{3}{4}, x_4=1, x_5 = \frac54, x_6=\frac32, x_7=\frac74, x_8 = 2\]
+	\item Stützwerte \( y_k= y_{k-1} + 1/2 f( x_{k-1}, y_{k-1} ) k\cdot h, \quad k=0,\cdots, 8\)
+		\begin{eqnarray*}
+			y_0 &=& 1 \\
+			y_1 &=& \frac{5}{4} \\
+			y_2 &=& \frac{101}{64} \\
+			y_3 &=& \frac{521}{256} \\
+			y_4 &=& \frac{2749}{1024} \\
+			y_5 &=& \frac{14769}{4096} \\
+			y_6 &\approx& 4.90 \\
+			y_7 &\approx& 6.68 \\
+			y_8 &\approx& 9.12
+		\end{eqnarray*}
+	\item Der relative Fehler ist \[ r_{\mathrm{rel}} = \frac{|y(2) - y_2|}{|y(2)|} = 0.25\,.\]
+\end{enumerate}
+Und so sehen Sie auf einen Blick, wie sich die Approximation von der exakten Lösung wegbewegt:
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/eulerverfahren_polygonzug.png}
+\end{center}
+\end{exercisebox}
+
+\begin{exercisebox}[Verbessertes Euler Verfahren] %HMI 3 Blatt 6 Aufg. 1
+	Eine Verbesserung des expliziten Euler Verfahrens lautet
+	\[
+		\begin{cases}
+			k_1 = f(x_k, y_k)\,,\\
+			k_2 = f(x_k+\frac{h}{2}, y_k + \frac{h}{2}k_1)\,,\\
+			y_{k+1} =  y_k + hk_2\,.
+		\end{cases}
+	\]
+	\begin{itemize}
+		\item[(a)] Verdeutlichen Sie graphisch die Funktionsweise des Verfahrens.
+		\item[(b)] Bestimmen Sie für das Anfangswertproblem aus der ersten Aufgabe die Approximation für $x=2$ zur Schrittweite \(h=1/4\) und bestimmen Sie den relativen Fehler zur exakten Lösung.
+		\item[(c)] Betrachten Sie das Anfangswertproblem
+	\[
+		\begin{cases}
+			y(0) = y_0\,,\quad & x=0\,,\\
+			y' = -2at\,,\quad & x\not=0\,.
+		\end{cases}
+	\]
+	Überzeugen Sie sich davon, dass die verbesserte Polygonzugmethode das Anfangswertproblem zu unterschiedlichen Werten von \(a\) und Anfangswerten \(y_0\) exakt löst. Was können Sie daraus schließen?
+	\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+	\item[(a)]
+	\item[(b)] Die exakte Lösung ist $y:x\mapsto 3e^x-x^2-2x-2$. Sie merken schon, dass es keinen Spaß macht ein numerisches Verfahren per Hand hinzuschreiben - selbst wenn man das Intervall nur in \(8\) Teilintervalle zerteilt. Man sollte ein numerisches Verfahren programmieren. Da wir nicht an Effizienz oder Post-Prozessing interessiert sind, kann man das auch ganz einfach gestalten und zum Beispiel ein Programm zur Tabellenkalkulation benutzen.
+
+		Der numerische Fehler des verbesserten Polygonzugverfahrens für die gestellte Aufgabe beträgt nunmehr \( e_{\mathrm{rel}} = 0.02\), der Wert für \(x=2\) lautet \(y_8 = 11.87\), die exakte Lösung lautet \(y(2) = 12.17\).
+Und so sehen Sie auf einen Blick, wie sich die Approximation von der exakten Lösung unterscheidet:
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/eulerverfahren_verbesserter_polygonzug.png}
+\end{center}
+	\item[(c)]
+	\begin{center}
+	\includegraphics[width=0.7\textwidth]{../Mathematik_2/Bilder/eulerverfahren_verbesserter_polygonzug_zweite_ordnung.png}
+\end{center}
+		Das Verfahren scheint von der Ordnung zwei zu sein, das heißt exakte Lösungen maximalem polynomialem Grad zwei werden exakt reproduziert!
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Explizites Euler Verfahren] %HMI 3 Blatt 7 Aufg. 3
+	Betrachten Sie ein explizites Euler-Verfahren für das Anfangswertproblem
+	\[
+		\begin{cases}
+			y(0) = 0\,,\quad & x=0\,,\\
+			y' = 4x^2-7x+3\,,\quad & x\not=0\,.
+		\end{cases}
+	\]
+	\begin{itemize}
+		\item[(a)] Berechnen Sie die exakte Lösung  $\Phi$ des Anfangswertproblems.
+		\item[(b)] Berechnen Sie bei vorgegebener Schrittweite $h$ mit dem Euler-Verfahren Näherungswerte $y_k$ für $\Phi(x_k)$ und explizit die Fehler $\epsilon(x_k,h) = y_k - \Phi(x_k)$ mit $x_k = kh$.
+		\item[(c)] Zeigen Sie, dass der Fehler $\epsilon(x_k,h) = y_k - \Phi(x_k)$ bei festem $x$ für $h\to 0$ gegen Null konvergiert.
+	\end{itemize}
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+\begin{itemize}
+		\item[(a)] Die exakte Lösung des Anfangswertproblems lautet \[ \Phi(x) = \frac43 x^3 - \frac72 x^2 + 3x \]
+		\item[(b)] Um einen Ausdruck für den Fehler zu berechnen, ermitteln wir die Stützstelle \(y_k\). Am effizientesten ist es die Stützstellen für \(k=1,2,3\) explizit auszurechnen und dann eine Formel für beliebiges \(k\) herzuleiten (mathematisch präzise ist diese Formel dann mit einer vollständigen Induktion zu beweisen - darauf verzichten wir hier).
+			\begin{eqnarray*}
+				y_0 &=& = 3h\\
+				y_1 &=& = 3h + h ( 4 h^2-7h+3) = 4h^3 - 7h^2 + 6 h\\
+				\cdots &=& \cdots \\
+				y_k &=& y_{k-1} + h f(x_{k-1}, y_{k-1}) = 3(k+1)h + 4 h^3 \sum\limits_{i=0}^k i^2 - 7 h^2\sum\limits_{i=0}^k i
+			\end{eqnarray*}
+			Damit ergibt sich der Fehler
+			\begin{eqnarray*}
+				\epsilon(x_k, h) &=& y_k - \Phi(x_k) \\
+				&=&  3(k+1)h + 4 h^3 \sum\limits_{i=0}^k i^2 - 7 h^2\sum\limits_{i=0}^k i -\frac43 k^3 h^3 - \frac72 k^2h^2 + 3kh \\
+			&=& 3h + 2 h^3k^2 + \frac23h^3k-\frac72 kh^2 \,.\end{eqnarray*}
+		\item[(c)] Es gilt \[ \lim\limits_{h\to 0}\left(  3h + 2 h^3k^2 + \frac23h^3k-\frac72 kh^2\right) = 0 \,.\]
+	\end{itemize}
+
+\end{exercisebox}
+
+\begin{exercisebox}[Implizites Euler Verfahren] %HMI 3 Blatt 7 Aufg. 1a
+	Betrachten Sie das Anfangswertproblem
+	\[
+		\begin{cases}
+			y(0) = y_0\,,\quad & x=0\,,\\
+			y' = -2at\,,\quad & x\not=0\,.
+		\end{cases}
+	\]
+	Bestimmen Sie für das implizite Eulerverfahren den lokalen Diskretisierungsfehler
+	\[
+		\tau(t,h) := \frac1h \left( y(t_{k+1}) - y_{k+1} \right)
+	\]
+\vspace{0.3cm}
+\textbf{Lösung:} \newline
+	\begin{enumerate}
+		\item Exakte Lösung des Anfangswertproblems: \( y(t) =  -at^2 + y_0 \,.\)
+		\item Implizites Eulerverfahren: \( y_{k+1} = y_k + h\cdot f(x_{k+1}, y_{k+1}) \)
+		\item Also
+			\begin{eqnarray*}
+				\tau(t,h) &=& \frac1h \left( -a( t_k + h)^2 + y_0 - y_k - h(2a(t_k+h) \right) \\
+					&=& \frac1h \left( -ah^2 + 2h^2 a\right) = a\cdot h\,.
+				\end{eqnarray*}
+			\end{enumerate}
+\end{exercisebox}
+
+%

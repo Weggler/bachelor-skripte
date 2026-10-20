@@ -1,0 +1,313 @@
+\section{Funktionen}\label{MA1-funktionen}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{p{0.9\textwidth} p{0.1\textwidth}}
+    \toprule
+	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
+\tabitem Funktionen als eindeutige Zuordnungen präzise beschreiben &\\
+\tabitem Definitionsbereich, Zielmenge und Bildmenge unterscheiden und bestimmen &\\
+\tabitem Funktionen in mathematischer Formelsprache darstellen und interpretieren &\\
+\tabitem Funktionsgraphen als Mengen geordneter Paare interpretieren &\\
+\tabitem Funktionen von allgemeineren Relationen unterscheiden &\\
+    \midrule
+	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
+	  \tabitem Mengenoperationen und Intervallschreibweisen & \abschnittsverweis{MA1-mengen-und-logik}\\
+	  \tabitem Grundrechenarten & \abschnittsverweis{MA1-zahlenmengen}\\
+	  \tabitem Äquivalenzumformungen & \abschnittsverweis{MA1-aequivalenzumformungen}\\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-funktionen-aufgaben]{Aufgaben}
+\vspace{0.3cm}
+\hrule
+\fi
+
+\subsection{Was ist eine Funktion?}
+
+Eine \textbf{Abbildung} (\emph{mapping}) namens $f$ ordnet jedem Element $x$ eines Definitionsbereichs $D$ (\emph{domain}) genau ein Element $y$ einer Zielmenge  $Z$ (\emph{codomain}) zu. In mathematischer Kurzschreibweise sieht das so aus:
+	\[ f: D \to Z, x\mapsto y\,.\]
+	Dieser Ausdruck sagt aber noch nichts darüber, wie die Abbildung im Detail funktioniert. Was fehlt ist die Zuordnungsvorschrift oder Abbildungsvorschrift. Anstatt eine "\,Gleichung $y=f(x)$"\, wie in der Schule anzugeben, führen wir einen Abbildungspfeil ein: 
+	\[  x\mapsto f(x)\,.\]
+	Da der Definitionsbereich, die Zielmenge und die Abbildungsvorschrift zusammen eine Abbildung so definieren, dass man in der Lage ist die Abbildung zu untersuchen, fasst man diese Informationen typischerweise zusammen und gibt eine Abbildung in der folgenden Form an:  
+\begin{defbox}{Abbildung von \(D\) nach \(Z\) mit Abbildungsvorschrift}{ }
+	$ f: D\to Z, x\mapsto f(x)\,.$
+\end{defbox}
+\noindent{\textbf{ Bemerkungen:}}
+\begin{itemize}
+	\item Statt $f(x)$ wird typischerweise eine Formel angegeben, beispielsweise $ x\mapsto \sin(x)$ oder \( x\mapsto 10\cdot x^3-2\cdot\sqrt{x}\).
+	\item Wenn der Definitionsbereich und die Zielmenge fixierte Mengen von Zahlen, von geometrischen Objekten oder von Funktionen (!) \dots  sind, nennt man eine Abbildung meist eine Funktion (\emph{function}). Mathematisch sind Abbildungen und Funktionen dasselbe. 
+\end{itemize}
+
+Es gibt mehrere Vorstellungen von Abbildungen (Funktionen). Hier sind vier davon. 
+
+\begin{exabox}{Funktion als Maschine}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_maschinenmodell_zahlenwerte.png} 
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+Eine Abbildung $f$ ist eine Maschine, in die man ein Teil aus einer Menge $D$ als Rohmaterial hineinwerfen kann und aus der man dann ein Teil aus $Z$ als Produkt zurückerhält:
+\begin{itemize}
+	\item Alle Teile aus $D$ müssen akzeptiert werden.
+	\item Nur Teile aus $Z$ dürfen produziert werden. 
+	\item Es wird immer genau ein Teil produziert (nicht null, nicht sieben). 
+	\item Wenn man dasselbe Teil aus $D$ nochmal hinein wirft, muss wieder dasselbe Teil aus $Z$ produziert werden wie beim ersten Mal. 
+\end{itemize}
+\end{minipage}
+\end{exabox}
+
+\begin{exabox}{Funktion als Tabelle}{ }
+\begin{minipage}{0.2\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_darstellung_wertetabelle.png} 
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+Eine Abbildung $f$ ist eine Tabelle (ggf unendlich lang), aus der man für jedes $x\in D$ das zugehörige $f(x) \in Z$ ablesen kann:
+\begin{itemize}
+	\item In der $x$-Spalte der Tabelle muss jedes Element aus $D$ genau einmal vorkommen (nicht null mal, nicht sieben mal). 
+	\item In der $y$-Spalte der Tabelle dürfen nur Elemente aus $Z$ stehen. 
+	\item In dem Beispiel ist $Z=\mathbb Z$. 
+	\item Die Reihenfolge der Zeilen in der Tabelle ist egal. 
+\end{itemize}
+\end{minipage}
+\end{exabox}
+
+\begin{exabox}{Funktion als Pfeildiagramm}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_darstellung_pfeildiagramm.png} 
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+\begin{itemize}
+	\item Von jedem Element in $D$ muss genau ein Pfeil starten und zu einem Element in $Z$ führen. 
+	\item Es ist erlaubt, dass mehrere Pfeile auf einem Element von $Z$ enden. 
+	\item Es ist auch erlaubt, dass Elemente von $Z$ von keinem Pfeil erreicht werden. 
+\end{itemize}
+\end{minipage}
+\end{exabox}
+
+\begin{exabox}{Funktion als Graph}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/funktionen_darstellung_diskreter_graph.png} 
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+ Hier ist von Funktionen die Rede, die man in einem Diagramm aufmalen kann. 
+\begin{itemize}
+	 \item $D$ und $Z$ sind also Mengen von Zahlen. 
+	 \item Der Definitionsbereich \(D\) wird auf der \(x\)-Achse dargestellt, die Zielmenge \(Z\) auf der \(y\)-Achse.
+	 \item $D$ und $Z$ können sich natürlich auch jeweils über die gesamten Achsen erstrecken. 
+	 \item Zu jedem $x\in D$ (und nur für solche $x$ ) ist genau ein $y\in Z$ markiert. 
+ \end{itemize}
+\end{minipage}
+\end{exabox}
+
+  
+\subsection{Definitions- und Bildbereich}
+
+Der \textbf{Definitionsbereich} ist die Menge aller mathematischen Objekte, die in eine Funktion hineingegeben werden dürfen. In der Pfeilvorstellung einer Funktion bildet der Definitionsbereich den Startpunkt der Pfeile; die Pfeilspitzen liegen in der \textbf{Zielmenge}. 
+
+Diese Vorstellung findet sich unmittelbar in der mathematischen Schreibweise
+
+$$
+f:D\to Z,\qquad x\mapsto f(x)
+$$
+
+wieder: Ein Element \(x\in D\) am Pfeilanfang wird auf ein Element \(f(x)\in Z\) an der Pfeilspitze abgebildet.
+
+Definitionsbereich \(D\) und Zielmenge \(Z\) sind häufig Teilmengen der reellen Zahlen -- oder sogar ganz \(\mathbb R\). Im folgenden Beispiel muss der Definitionsbereich $D \subsetneq \mathbb R$ eingeschränkt werden, weil die Funktion an der Stelle $x=3$ nicht definiert ist:\marginpar{Aufgabe}
+\begin{exabox}{Funktion mit $D \subsetneq \mathbb R$}{ }
+  $f: D \to \mathbb R, \; x\mapsto \displaystyle{\frac{x^2+7}{x-3}} \Rightarrow D = \mathbb R\setminus \{3\}\,.$
+\end{exabox}
+
+Hinter den meisten üblichen Operationen mit Zahlen stecken Funktionen - auch wenn sie oft nicht explizit als solche bezeichnet werden: 
+\begin{itemize}
+  \item Addition reeller Zahlen: $ +:\, \mathbb R^2 \to \mathbb R,\; (x,y) \mapsto x+y\,,$ 
+  \item Division reeller Zahlen: $ /:\, \{(x,y)\in \mathbb R^2: y \not = 0\} \to \mathbb R,\; (x,y) \mapsto \displaystyle{\frac{x}{y}}\,,$
+  \item Fakultät: $!:\, \mathbb N_0 \to \mathbb N^+,\; n \mapsto n\cdot(n-1)\cdot(n-2)\cdot \dots \cdot 2\cdot 1 =: n!\,,$ 
+  \item Binomialkoeffizient: $ \displaystyle{{\cdot}\choose{\cdot}}:\, \big\{ (n,k)\in\mathbb N_0^2: k\leq n\big\} \to \mathbb N_0,\; (n,k) \mapsto \displaystyle{ \frac{n!}{k!\cdot (n-k)!} }\,.$ 
+\end{itemize}
+
+
+ 
+Die Menge der tatsächlich angenommenen Funktionswerte heißt \textbf{Bild}, \textbf{Bildbereich} oder \textbf{Bildmenge}\marginpar{\small{Aufgabe}} (\emph{image}) und wird mit \(f(D)\) bezeichnet. Dabei gilt
+
+$$
+f(D)\subseteq Z.
+$$
+
+Die Bildmenge kann also kleiner als die Zielmenge sein, sie kann aber auch mit der Zielmenge übereinstimmen.
+
+Die Menge $S$, die in einem der folgenden Beispiele auftaucht, bezeichne die Menge aller endlichen Zeichenketten.
+
+\begin{exabox}{Unterschiedliche Bildmengen}{ }
+\begin{itemize}
+  \item $f_1: [3,4] \to \mathbb R,\; x\mapsto x^2 \; \Rightarrow \; f_1(D) = [9,16]$. 
+
+\item   $f_2:S \to S, \; x\mapsto \displaystyle{\begin{cases} \verb-a-, \quad x=\verb-b- \\  x, \quad x\not=\verb-b- \end{cases}} \Rightarrow \; f_2(D) = S\setminus \{ \verb-b-\}$.
+
+\item $f_3: \mathbb R \to \mathbb R^2,\; t \mapsto \left(\cos(2\pi t), \sin(2\pi t)\right) \; \Rightarrow \; f_3(D) = \left\{(x,y)\in \mathbb R^2:  x^2 + y^2 = 1\right\}\,.$
+
+\item $f_4: \mathbb R \to \mathbb R^2,\; t\mapsto \left(e^t \cdot \cos(2 \pi\cdot t), e^t \cdot \sin(2 \pi\cdot t)\right)$ Die Bildmenge bildet geometrisch eine logarithmische Spirale.  \end{itemize}
+\end{exabox}
+
+Die folgende Skizze veranschaulicht den Definitionsbereich $D$, die Zielmenge $Z$ und die Bildmenge $f(D)$ einer Funktion $f$.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{../Mathematik_1/Bilder/funktionen_definitionsbereich_zielmenge_bildmenge.png}
+\end{center}
+
+\noindent{\textbf{ Bemerkungen:}}
+\begin{itemize}
+	\item Der Name der Funktion ist $f$. Der Ausdruck $f(x)$ bezeichnet den Funktionswert von \(f\) an der Stelle \(x\) und ist ein Element der Zielmenge $Z$. 
+	\item Fiese (pathologische) Funktionen bilden keine anschaulichen Graphen. Die Dirichlet Funktion ist eine von ihnen: 
+  $$ f: \mathbb R \to \{0, 1\}, \quad x\mapsto \begin{cases} 1,\quad x\in \mathbb Q, \\ 0,\quad x\in \mathbb R\setminus{\mathbb Q}\,.\end{cases} $$
+  \item Eine Funktion braucht nicht unbedingt eine ausdrückliche Abbildungsvorschrift wie $x \mapsto \sin(x^{2})$ zu haben. Eine Abbildung kann auch in Worten beschrieben werden, beispielsweise
+	  \begin{center}
+  "Nimm den dritten Buchstaben von $x$, falls vorhanden, ansonsten $*$." 
+  \end{center}
+  Oder sie ist nur indirekt gegeben, zum Beispiel als Stammfunktion:
+  \begin{center}
+  "$F$ ist die Stammfunktion von $x\mapsto e^{-x}$ für $F(0)=0$."
+  \end{center}
+\item Beim Programmieren kommen ebenfalls sogenannte Funktionen vor. Der Funktionsbegriff in Programmiersprachen ist jedoch allgemeiner als der mathematische Funktionsbegriff; beispielsweise können Programmfunktionen ohne explizite Eingabe aufgerufen werden.	
+\end{itemize}
+
+\subsection{Funktionsgraphen und Relationen}
+
+Für eine Funktion
+
+$$
+f:D\to Z
+$$
+
+kann jede Zuordnung \(x\mapsto f(x)\) als geordnetes Paar
+
+$$
+(x,f(x))\in D\times Z
+$$
+
+aufgefasst werden. Der \textbf{Graph einer Funktion} ist die Menge all dieser Paare:
+
+$$
+G_f
+=
+\{(x,f(x)):x\in D\}
+\subseteq D\times Z.
+$$
+
+Die formale Schreibweise für den Graphen $G_f$ bedeutet: Für jedes \(x\) aus dem Definitionsbereich wird das geordnete Paar aus \(x\) und dem zugehörigen Funktionswert \(f(x)\) in den Graphen aufgenommen.
+
+Für eine reelle Funktion \(f:D\to\mathbb R\) mit \(D\subseteq\mathbb R\) gilt insbesondere
+
+$$
+G_f\subseteq\mathbb R^2.
+$$
+
+Deshalb lässt sich der Funktionsgraph als Menge von Punkten in der Ebene darstellen.
+
+Allerdings ist nicht jede Teilmenge von \(\mathbb R^2\) der Graph einer Funktion. Die Kreislinie liefert dafür ein anschauliches Beispiel.
+
+%\subsection{Geordnete Tupel}
+%
+%Wenn man ein Gefühl für den Funktionsverlauf einer Funktion \(f: \mathbb R \to \mathbb R,\, x\mapsto f(x)\) bekommen möchte, dann geht man oft wie folgt vor 
+%\begin{enumerate}
+%	\item man wählt eine paar Werte für \(x \in \mathbb R\): das sind die Stützstellen \(x_i, \, i=1,2,3,\cdots\)
+%	\item man berechnet die zu den Stützstellen gehörigen Funktionswerte \(y_i = f(x_i) \in \mathbb R\)
+%	\item man zeichnet in ein zwei-dimensionales Koordinatensystem die Punkte \(P_i = (x_i|y_i)\) 
+%	\item man verbindet die Punkte miteinander und behauptet, dass die Funktion so aussieht!\footnote{Falls die Funktion stetig ist, ist das ein guter Ansatz!}
+%\end{enumerate} 
+%
+%Die Punkte \(P(x|y)\), die zu \(f\) gehören sind Tupel und das heißt, dass die Reihenfolge der Koordinaten fixiert ist und eine Rolle spielt: erst \(x\) dann \(y\). 
+
+\begin{exabox}{Funktionsgraph oder nicht?}{ }
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/relationen_einheitskreis.png} 
+\end{minipage}
+\begin{minipage}{0.7\textwidth}
+\begin{itemize}
+	\item Ist die Kreislinie der Graph einer Funktion? 
+	\item Wie läßt sich die Kreislinie beschreiben? 
+\end{itemize}
+\end{minipage}
+\end{exabox}
+
+Die Figur links, die Kreislinie, ist nicht der Graph einer Funktion, denn zu fast jedem \(x \in (-1,1) \) müssten zwei verschiedene Funktionswerte zugeordnet werden!\footnote{Die Kreislinie ist eine sogenannte Relation. Eine Relation ist etwas allgemeineres als eine Funktion.}
+
+\subsection{Was ist eine Relation?}
+
+Eine \textbf{Relation} beschreibt, welche Elemente mehrerer Mengen miteinander in Beziehung stehen. Formal ist eine beliebige Teilmenge eines \underline{kartesischen Produkts}\randverweis{MA1-mengen-und-logik}
+
+$$
+A_1\times A_2\times\cdots\times A_n
+$$
+
+eine \textbf{\(n\)-stellige Relation}.
+
+Eine zweistellige Relation besteht damit aus geordneten Paaren, eine dreistellige Relation aus geordneten Tripeln usw.
+
+\begin{exabox}{Relationen}{ }
+  \begin{itemize}
+    \item $\{ (1,2), (3,4), (1,5)\} \subseteq \mathbb N_0 \times \mathbb N_0$ 
+    \item $\left\{ \left(\mathrm{Anton}, \mathrm{Weber}, 293\right), \left(\mathrm{Bea}, \mathrm{Knorr}, 298\right), \left(\mathrm{Lisa}, \mathrm{Kann}, 284\right) \right\} \subseteq S\times S\times \mathbb N_0$
+  \end{itemize}
+\end{exabox}
+
+Das zweite Beispiel lässt die wesentliche Bedeutung von Relationen in der Informatik erahnen: sie dienen als Datenspeicher.
+
+Es gibt mehrere übliche Vorstellungen von Relationen. Hier sind drei davon. 
+
+\begin{enumerate}
+  \item {\textbf{Tabelle:}} Fast alle aktuell üblichen  Datenbanksysteme verwalten Tabellen. Mathematische Relationen sind nichts anderes als Tabellen mit  ein  paar  Besonderheiten.  Deshalb  heißen  diese  Datenbanksysteme auch relational.
+
+\begin{center}
+  \begin{tabular}{c|c|c}
+    Vorname & Nachname & Matrikelnummer \\
+    \hline
+  Bea & Knorr & $298$ \\
+  Lisa & Kann & $284$ \\
+  Anton & Weber & $293$
+  \end{tabular}
+\end{center}
+
+\begin{itemize}
+  \item In jeder Spalte der Tabelle dürfen nur Einträge aus der jeweiligen Menge des kartesischen Produkts stehen. 
+  \item Die Reihenfolge der Zeilen ist egal. 
+  \item Keine Zeile darf als Ganzes doppelt vorkommen; Teile der Zeile dürfen sich aber wiederholen. 
+\end{itemize}
+      
+Bei Abbildungen bzw. Funktionen gibt es im Unterschied zur Relation nur zwei Spalten. Außerdem \textbf{muss} in der linken Spalte jedes Elemente des Definitionsbereichs vorkommen - und das \textbf{genau einmal}. %Frage
+
+
+\item {\textbf{Liniendiagramm:}}
+  \begin{itemize}
+    \item Elemente  der  Mengen  aus  dem  Produkt  sind  durch  Linien  verbunden.  
+    \item Jede Linie geht durch genau ein Element aus jeder Menge des kartesischen Produkts. 
+    \item Linien dürfen teilweise übereinander liegen. 
+    \item Keine zwei beliebige Linien dürfen aber komplett übereinstimmen. 
+  \end{itemize}
+
+Bei Abbildungen bzw. Funktionen malt man typischerweise Pfeile statt Linien. Außerdem sind nur zwei Mengen beteiligt und es muss von jedem Element des Definitionsbereichs genau ein Pfeil ausgehen. 
+
+
+\item {\textbf{Geometrische Objekte im $\mathbb R^n$:}}
+
+Eine $n$-stellige Relation zwischen reellen Zahlen ist eine Teilmenge des $\mathbb R^n$, also eine Menge von Punkten. Umgekehrt ist jedes auch noch so komische geometrische Objekt eine Relation! 
+
+\begin{exabox}{Relationen}{ }
+  \begin{itemize}
+    \item die Kreislinie: $P:=\left\{ (x,y)\in \mathbb R^2: x^2+y^2 = 1\right\}$.
+	  \item die „Größer-Gleich“-Relation: $\geq := \left\{ (x,y)\in \mathbb R^2: x\geq y \right\}$,
+\end{itemize}
+	\centering
+	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/relationen_einheitskreis.png} \hspace{2cm}
+	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/relationen_halbebene_y_kleiner_gleich_x.png}
+\end{exabox}
+
+Bei einem Funktionsgraph muss jedem $x$ aus dem Definitionsbereich genau ein $y$ (nicht null, nicht zwei oder mehr) aus der Bildmenge zugeordnet werden, diese Einschränkung gilt nicht für Relationen.
+\end{enumerate}
+
+
+Eine Funktion ist damit eine besondere zweistellige Relation. Für eine Funktion $ f:D\to Z $ muss zu jedem \(x\in D\) genau ein \(y\in Z\) gehören. Eine allgemeine Relation besitzt diese Einschränkung nicht: Zu einem \(x\) können kein, genau ein oder mehrere \(y\)-Werte gehören.
+
+Der Funktionsgraph $ G_f=\{(x,f(x)):x\in D\} $ ist daher eine Relation mit einer zusätzlichen Eindeutigkeitsbedingung.

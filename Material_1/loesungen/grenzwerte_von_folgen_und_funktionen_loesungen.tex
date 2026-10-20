@@ -1,0 +1,149 @@
+\section*{Folgen und Grenzwerte Lösungen}\label{MA1-grenzwerte-von-folgen-und-funktionen-loesungen}
+
+\ifintegriereaufgaben
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript\wennreferenzvorhanden{MA1-grenzwerte-von-folgen-und-funktionen}{ (Abschnitt \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen})}.
+\else
+	Regeln und Beispiele, die zum Verständnis der Lösungswege hilfreich sind, finden Sie im Skript.
+\fi 
+
+\begin{exercisebox}[Folgen]
+	Betrachten Sie einen Kreis und zeichnen Sie die Fläche $A_3$ des durch den Kreis einbeschriebenen regelmäßigen Dreiecks ein, dann die Fläche $A_6$ eines regelmäßiges Sechsecks, $A_{12}$ eines regelmäßigen Zwölfecks usw. 
+	\begin{itemize}
+		\item Konvergiert die Folge der Flächeninhalte? 
+		\item Wenn ja, wie lautet der Grenzwert? 
+	\end{itemize}
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:} 
+Die Folge ist monoton wachsend und nach oben beschränkt. Die Folge konvergiert gegen den Flächeninhalt des Kreises. Vorausgesetzt der Kreis hat Radius $r>0$, dann gilt also $A_m \to \pi r^2$. 
+
+Man kann zeigen, dass ein regelmäßiges Vieleck mit $m = 3\cdot n^2$ Ecken den Flächenhinhalt
+\[ A_m = \frac{m}{2} r^2 \sin\left( \frac{2\pi}{m}\right)\] besitzt. 
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte]
+	\begin{itemize}
+		\item[(a)] Übersetzen Sie die folgende Aussage: \newline Es sei $(a_n)_{n\in\mathbb N^+}$ und es gelte: \( \forall\, \varepsilon > 0 \; \exists\, n_\varepsilon \in \mathbb N \; \forall\, n\geq n_\varepsilon  \; |a_n - a| < \varepsilon \quad (*)\)
+\item[(b)] Erfüllt die Folge $(a_n)_{n\in \mathbb N}$ mit \[ a_n = \frac{2n}{n+4}\] die Eigenschaft $(*)$? Wie lautet $n_\varepsilon$ bei gegebenem $\varepsilon > 0$?
+	\end{itemize}
+	
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+	\begin{itemize}
+		\item[(a)] Sie bedeutet, dass es eine Zahl $a\in \mathbb R$ gibt, gegen die die Folge konvergiert, denn zu jeder noch so kleinen, positive Zahl $\varepsilon$ findet man einen Folgenindex $n_\epsilon$ so, dass der Abstand aller Folgeglieder, die nach $a_{n_\varepsilon}$  kommen nur maximal $\varepsilon$ von $a$ entfernt sind. 
+		\item[(b)] Die gegebene Folge ist streng monoton steigend und nach oben durch den Wert $2$ beschränkt, also muss sie gegen $2$ konvergieren. Für gegebenes $\varepsilon$ suchen wir also ein $n_\varepsilon$, so dass gilt 
+			\[ \forall n\geq n_\varepsilon: \left|\frac{2n_\varepsilon}{n_\varepsilon +4} - 2 \right| < \varepsilon\]
+			Gilt diese Ungleichung für ein $n_\varepsilon$, dann ist sie wegen der Monotonie auch gültig für alle $n>n_\epsilon$ . Also versuchen wir die Ungleichung nach $n_\varepsilon$ aufzulösen.
+			\begin{eqnarray*}
+				\left|\frac{2n_\varepsilon}{n_\varepsilon+4} - 2 \right| < \varepsilon 
+				&\Leftrightarrow&  2 - \frac{2n_\varepsilon}{n_\varepsilon+4} < \varepsilon \Leftrightarrow  \frac{2n_\varepsilon}{n_\varepsilon+4} > 2- \varepsilon \Leftrightarrow 2 n_\varepsilon > (2- \varepsilon) \cdot ( n_\varepsilon + 4 )  \\
+				&\Leftrightarrow& \varepsilon \cdot n_\varepsilon > 4\cdot  (2- \varepsilon)  \Leftrightarrow n_\varepsilon > \frac{4\cdot  (2- \varepsilon)}{\varepsilon} > \frac{8}{\varepsilon}\,. 
+		\end{eqnarray*}
+\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwertsätze]
+	Geben Sie für $c=0, \; c=1, \; c=\infty$ jeweils Folgen $(a_n)_{n\in \mathbb N} $ und $(b_n)_{n\in \mathbb N}$ an, so dass 
+	\begin{eqnarray*} 
+		\lim\limits_{n\to \infty} \left( a_n \cdot b_n\right) = c \quad \textnormal{mit}\; a_n \to \infty, b_n\to 0 \; \textnormal{f\"ur } n\to \infty\,, \\
+		\lim\limits_{n\to \infty} \frac{ a_n }{ b_n} =  c \quad \textnormal{mit}\; a_n \to 0, b_n\to 0 \; \textnormal{f\"ur } n\to \infty\,, 
+	\end{eqnarray*}
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+	Für die Multiplikation: 
+	\begin{itemize}
+		\item $c = 0: \quad a_n = n\,, b_n = 1/n^2 $
+		\item $c= 1: \quad a_n = n\,, b_n = 1/n $
+		\item $c = \infty: \quad a_n = n^2\,, b_n = 1/n $
+	\end{itemize}
+	Für die Division: 
+	\begin{itemize}
+		\item $c = 0:\quad a_n = n\,, b_n = n^2 $
+		\item $c = 1:\quad a_n = n\,, b_n = n $
+		\item $c = \infty: \quad a_n = n^2\,, b_n = n $
+	\end{itemize}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Folgen]
+	Bestimmen Sie ob die folgenden Grenzwerte existieren und berechnen Sie sie gegebenenfalls. Hinweis zu $(c)$: es gilt 
+	$\displaystyle{\sum\limits_{k=1}^n k} =\displaystyle{\frac12}\cdot n \cdot (n+1)$
+
+  \begin{eqnarray*}
+		  (a)\; \displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{(n+1)^2-n^2 }{n}} \quad (b)\; \displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{9n^2+n+2}{3n^3+1}}
+		  (c)\; \displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{1 + 2 + \cdots + n }{n^2}} 
+		  (d)\; \displaystyle{\lim\limits_{n\to \infty}} \left( \sqrt{n+1} - \sqrt{n}\right)
+	  \end{eqnarray*}
+		  %\displaystyle{\lim\limits_{n\to \infty}} \displaystyle{\frac{1+2^2 + \cdots + n^2}{n^3}} \\
+\noindent\textbf{Lösung:}\newline
+	  \begin{itemize}
+		  \item[(a)] Folge ist konvergent mit Grenzwert $2$.
+		  \item[(b)] Folge ist konvergent mit Grenzwert $0$.
+		  \item[(c)] Folge ist konvergent mit Grenzwert $1/2$.
+		  %\item[(d)] Folge ist konvergent mit Grenzwert $1/3$.
+		  \item[(d)] Folge ist konvergent mit Grenzwert $0$. Wenn Sie Differenzen von Quadatwurzeln sehen, dann hilft die $3.$ Binomische Formel: 
+			  \[ \displaystyle{\lim\limits_{n\to \infty}} \left( \sqrt{n+1} - \sqrt{n}\right)  = \displaystyle{\lim\limits_{n\to \infty}} \frac{ \left( \sqrt{n+1} - \sqrt{n}\right) \cdot  \left( \sqrt{n+1} + \sqrt{n}\right) }{  \left( \sqrt{n+1} + \sqrt{n}\right) } = \frac{ 1 }{  \left( \sqrt{n+1} + \sqrt{n}\right) } = 0 \]
+	  \end{itemize}
+  \end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Folgen]
+	Überprüfen Sie, ob die Zahlenfolge $\{ f_n\}_{n\in\mathbb N^+}$ konvergiert und berechnen Sie ggf. den Grenzwert: 
+	\[ f_1=0, \; f_{n+1} = \frac13 ( f_n +1)\,.\]
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+Eine Folge konvergiert gegen $\frac12$, denn sie monoton wachsend und nach oben beschränkt durch $\frac12$. 
+\begin{enumerate}
+	\item Monotonie. Um Monotonie zu zeigen kann man entweder die Differenz zweier aufeinanderfolgender Folgeglieder betrachten oder den Quotienten. 
+		\[  \frac{f_{n+1}}{ f_n} = \frac{ \frac13 ( f_n + 1) }{f_n} =  \frac13 + \frac{1}{3f_n} > \frac13 + \frac{1}{3\cdot \frac12} = 1 \quad \Rightarrow  (f_n)_{n\in \mathbb N} \; \textnormal{ monoton wachsend}\,.\]
+	\item Beschränktheit. Wenn man eine Vermutung hat, was die Schranke ist, dann bietet es sich an die Beschränktheit mit einer vollständigen Induktion zu beweisen. Es gilt $f_n < \frac12$ für alle Folgenglieder. 
+		\begin{eqnarray*}
+			\textnormal{ Induktionsanfang:} &\quad& n=1: \; f_1 = 0 < \frac12 \\ 
+			\textnormal{ Induktionsannahme:} &\quad& n\in \mathbb N: \; f_n  < \frac12  \quad (*)\\ 
+			\textnormal{ Induktionsshritt:} &\quad& n\to n+1:\, f_{n+1} = \frac13 (f_n + 1)  \stackrel{(*)}{<} \frac13( \frac12 + 1) = \frac12  
+		\end{eqnarray*}
+\end{enumerate}
+\end{exercisebox}
+
+\begin{exercisebox}[Grenzwerte von Funktionen]
+	Bestimmen Sie ob die folgenden Grenzwerte existieren und berechnen Sie sie gegebenenfalls.
+  \begin{eqnarray*}
+	  \begin{array}{llll}
+	  (a)\; \lim\limits_{x\to\infty} \frac{-x^2+1}{x^3+2x^2+x} &\quad 
+	  (b)\; \lim\limits_{x\to-\infty} \frac{-(x+1)^2}{2x^2-x+1} &\quad 
+	  (c)\; \lim\limits_{x\to-\infty} \frac{2x^3+x^2-x}{-x^2+4} &\quad
+	  (d)\; \lim\limits_{x\to \infty} \left( 2^{-x}\cdot x^4 \right) \\
+	(e)\; \lim\limits_{x\to \infty} \frac{ \left( \ln(x)\right)^3}{x^2} &\quad
+	(f)\; \lim\limits_{x\downarrow 0} \frac{ 2^{\frac1x}}{\ln(x)} &\quad
+	(g)\; \lim\limits_{x\to 0} \frac{ x}{|x|} &\quad
+	(h)\; \lim\limits_{x\to 0} \frac{\cos(x)}{x}
+	  %(f)\; \lim\limits_{x\to \infty} \left( 2- \frac{1}{(x+3)^2}\right) &\quad
+	  %(g)\; \lim\limits_{x\to \infty} \left( -\frac{1}{2x}+ 3\right) &\quad
+	  %(h)\; \lim\limits_{x\to \infty} \frac{1}{\sqrt{x+1}} &\quad 
+	  %(i)\; \lim\limits_{x\to \infty} \frac{1}{\sqrt{x}}+1 
+  \end{array}
+  \end{eqnarray*}
+
+
+\vspace{0.3cm}
+\noindent\textbf{Lösung:}\newline
+  \begin{itemize}
+	  \item[(a)] Grenzwert null, da der Grad des Nennerpolynoms größer als der des Zählerpolynoms ist.
+	  \item[(b)] Grenzwert $-\frac12$, da der Grad des Nennerpolynoms gleich dem des Zählerpolynoms ist und der führende Koeffizient $-\frac12$ ist.
+	  \item[(c)] Bestimmte Divergenz gegen $+\infty$, da der Grad des Zählerpolynoms größer als der des Nennerpolynoms ist und der führende Koeffizient größer null ist.
+		  \[ \dfrac{ 2x^3+x^2-x}{-x^2+4} = x \cdot \underbrace{ \dfrac{2+\dfrac1x - \dfrac{1}{x^2}}{ -1 + \dfrac4x}}_{\to - 2} \to   \infty \quad \textnormal{für} \; x\to -\infty\,.\] 
+	  \item[(d)] \[\lim\limits_{x\to \infty} \frac{x^4}{2^x} = 0\]
+	  %\item[(d)] \[\lim\limits_{x\to -\infty} \frac{x^2}{3^x} = \lim\limits_{x\to \infty}\frac{(-x)^2}{3^{-x}} = \lim\limits_{x\to \infty} 3^x\cdot x^2 = \infty\]
+	  \item[(e)] Mit Stetigkeit der Wurzel und Potenzfunktion folgt
+		  \[\lim\limits_{x\to \infty} \frac{ \left( \ln(x)\right)^3}{x^2} = \lim\limits_{x\to \infty} \left( \frac{\ln(x)}{x^{\frac23}}\right)^3 = \left( \lim\limits_{x\to \infty} \frac{\ln(x)}{x^{\frac23}} \right)^3 = 0^3 = 0\]
+	  \item[(f)] Den Grenzwert berechnet man am besten, indem man an geeigneter Stelle substituiert $t=1/x$:
+		  \[\lim\limits_{x\downarrow 0} \frac{ 2^{\frac1x}}{\ln(x)} = \lim\limits_{x\to \infty} \frac{2^t}{\ln(1/t)} = \lim\limits_{t\to \infty} \frac{2^t}{-\ln(t)} = - \lim\limits_{t\to \infty}\left( \frac{2^t}{t}\cdot \frac{t}{\ln(t)} \right) = -\infty \] 
+	  \item[(g)] Der Grenzwert existiert nicht, da  
+		  \begin{eqnarray*} 
+		  \lim\limits_{x\downarrow 0} \frac{ x}{|x|} &=& \lim\limits_{x\downarrow 0} \frac{ x}{x} = 1 \\ 
+		  \lim\limits_{x\uparrow 0} \frac{ x}{|x|} &=& \lim\limits_{x\uparrow 0} \frac{ x}{-x} = -1
+  \end{eqnarray*} 
+	  \item[(h)] Es gilt \[ \left| \frac{\cos(x)}{x} \right| \leq \left| \frac{1}{x} \right| \,.\]
+		  Damit gilt wegen der Stetigkeit des Betrages \[ \left|\lim\limits_{x\to \infty} \frac{\cos(x)}{x}\right| = \lim\limits_{x\to \infty} \left|\frac{\cos(x)}{x}\right| \leq \lim\limits_{x\to \infty}\left| \frac1x\right| = 0\,.\]
+	  %\item[(d)] \[\lim\limits_{x\to \infty}\left( 2^{-x}\cdot x^4\right) = \lim\limits_{x\to \infty}\left( \frac12\right)^x \cdot x^4 = 0\]
+  \end{itemize}
+\end{exercisebox}
