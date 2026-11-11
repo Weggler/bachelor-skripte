@@ -12,7 +12,7 @@
     \tabitem Monotonie und Symmetrie prüfen &\\
     \tabitem Periodizität prüfen &\\
     \tabitem Injektivität, Surjektivität und Bijektivität unterscheiden &\\
-    \tabitem die Umkehrbarkeit einer Funktion bestimmen &\\
+    \tabitem die Umkehrfunktion einer bijektiven Funktion bestimmen &\\
     \tabitem die genannten Eigenschaften zur Erstellung eines Funktionsgraphen einsetzen &\\[.5\normalbaselineskip]
     \midrule
 	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
@@ -23,7 +23,7 @@
   \end{tabularx}
 \end{table}
 
-\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-eigenschaften-von-funktionen-aufgaben]{Aufgaben}
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema sind hier: \hyperref[MA1-eigenschaften-von-funktionen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
@@ -48,35 +48,33 @@ Eine Funktion \(f:D\to Z\) kann solche Eigenschaften auf ihrem gesamten Definiti
 	\end{itemize}
 \end{defbox}
 
-Auf Monotonie und Umkehrbarkeit wird in den folgenden Abschnitten detailliert eingegangen. Die ersten fünf Eigenschaften sollten Ihnen aus der Schule bekannt sein:\marginpar{Aufgaben}    
+Auf Monotonie und Umkehrbarkeit wird in den folgenden Abschnitten detailliert eingegangen, die ersten fünf Eigenschaften werden in der folgenden Tabelle erklärt:\marginpar{Aufgaben}    
 	\begin{center}
 	\begin{tabular}{l|l |l }
 		Eigenschaft & Aufgabe & Beispiel \(f: x\mapsto x^2\)   \\\hline
-		Nullstellen & bestimme alle \( x\in D: \quad f(x) = 0 \Rightarrow x= \)? & \(f(x) = 0 \Leftrightarrow x = 0 \)  \\[1ex]
-		Asymptotik & \( \displaystyle{\lim\limits_{|x|\to \infty}} f(x) = \) ? & \( \displaystyle{\lim\limits_{x\to \pm\infty} f(x) = \infty}\) \\[2ex]
-		Punktsymmetrie & zeige \(\forall\; x\in D:\quad f(x) = -f(-x)\) ?  & \(f(2) = 4 \not= -f(-2)=-4 \; \Rightarrow\; \) nein     \\[1ex] 
-		Achsensymmetrie & zeige \(\forall\; x\in D:\quad f(x) = f(-x)\)? & \(\forall \, x \in \mathbb R: \; x^2 = (-x)^2 \Rightarrow \;\) ja  \\[1ex] 
-		Periodizität & zeige $\exists\, T>0:  \forall x \in D: f(x) = f(x+T)$? & nein, denn \(f(0)=0 \Rightarrow f(T) = 0^2 \Leftrightarrow T =0\) 
+		Nullstellen & bestimme alle \( x\in D: \quad f(x) = 0 \Leftrightarrow x= \)? & \(f(x) = 0 \Leftrightarrow x = 0 \)  \\[1ex]
+		Asymptotik & \( \displaystyle{\lim\limits_{|x|\to \infty}} f(x) = \)  & \( \displaystyle{\lim\limits_{x\to \pm\infty} f(x) = \infty}\) \\[2ex]
+		Punktsymmetrie & zeige \(\forall\; x\in D:\quad f(x) = -f(-x)\)   & \(f(2) = 4 \not= -f(-2)=-4 \; \Rightarrow\; \) nein     \\[1ex] 
+		Achsensymmetrie & zeige \(\forall\; x\in D:\quad f(x) = f(-x)\) & \(\forall \, x \in \mathbb R: \; x^2 = (-x)^2 \Rightarrow \;\) ja  \\[1ex] 
+		Periodizität & zeige $\exists\, T>0:  \forall x \in D: f(x) = f(x+T)$ & nein, denn \(f(0)=0 \Rightarrow f(T) = 0^2 \Leftrightarrow T =0\) 
 	\end{tabular} 
 \end{center}
 
 \noindent \textbf{Bemerkungen:} 
 \begin{itemize}
-	\item Anstelle von "\,\(y\)-Wert"\, werden wir in Zukunft von Funktionswert sprechen. Das ist mathematisch präziser, da man unabhängig von einem Buchstaben ist :) 
+	\item Anstelle von "\,\(y\)-Wert"\, sprechen wir in Zukunft von Funktionswert. Das ist mathematisch präziser, da man unabhängig von einem Buchstaben ist :) 
 	\item Die Periodenlänge einer periodischen Funktion ist nicht eindeutig bestimmt. Besitzt eine periodische Funktion eine kleinste positive Periode, so wird diese als \textbf{Fundamentalperiode} bezeichnet. 
-	\item Die Übersicht über die Eigenschaften ist eine Checkliste, die dabei hilft Funktionsgraphen schnell skizzieren zu können. Die Liste ist die Grundlage einer \underline{Kurvendiskussion}\randverweis{MA1-ableitungen-und-funktionsverlauf}.
-	\item Die Checkliste wird uns in dem ganzen Themenkomplex  \,"Funktionen"\, begleiten, denn mit ihr werden wir die Standardfunktionen besser verstehen lernen. 
+	\item Die Übersicht über die Eigenschaften ist eine Checkliste, die dabei hilft Funktionsgraphen schnell skizzieren zu können. Zusammen mit den Werkzeugen der Differentialrechnung gelangt man zur \underline{Kurvendiskussion}\randverweis{MA1-ableitungen-und-funktionsverlauf}.
+	\item Die Checkliste wird uns in dem ganzen Themenkomplex  "\,Funktionen"\, begleiten, denn mit ihr werden wir die Standardfunktionen besser verstehen lernen. 
 \end{itemize}
 
 \subsection{Monotonie}
 
-Eine Funktion \(f:D\to\mathbb R\) heißt streng monoton steigend, wenn für alle \(a,b\in D\) aus \(a<b\) folgt, dass \(f(a)<f(b)\). Für eine streng monoton steigende Funktion gilt damit sogar
+Eine Funktion \(f:D\to\mathbb R\) heißt streng monoton steigend (\emph{strictly increasing}), wenn aus \(a<b\) folgt, dass \(f(a)<f(b)\). Eine streng monoton steigende Funktion kann auf eine Ungleichung angewendet werden und das Ungleichheitszeichen ändert sich nicht:
 
-$$ a<b\quad\Longleftrightarrow\quad f(a)<f(b). $$
+$$ a<b\quad\Leftrightarrow\quad f(a)<f(b). $$
 
-Eine streng monoton steigende Funktion erhält also die Größenordnung zweier Argumente.
-
-Bei nicht-strenger Monotonie funktioniert das nicht! Eine Funktion ist \textbf{monoton steigend} (\emph{increasing}), wenn für alle \(a,b\in D\) gilt:
+Bei nicht-strenger Monotonie funktioniert das nicht! Eine Funktion ist monoton steigend (\emph{increasing}), wenn für alle \(a,b\in D\) gilt:
 
 $$
 a<b
@@ -84,9 +82,9 @@ a<b
 f(a)\leq f(b).
 $$
 
-Aus \(f(a)\le f(b)\) folgt im Allgemeinen nicht \(a<b\), weil beispielsweise \(f(a)=f(b)\) auf einem konstanten Abschnitt möglich ist.
+Aus \(f(a)\le f(b)\) folgt im Allgemeinen \textbf{nicht} \(a<b\), weil beispielsweise \(f(a)=f(b)\) auf einem konstanten Abschnitt möglich ist.
 
-Entsprechend heißt \(f\) \textbf{streng monoton fallend} (\emph{strictly decreasing}), wenn
+Entsprechend heißt \(f\) streng monoton fallend (\emph{strictly decreasing}), wenn
 
 $$
 a<b
@@ -94,7 +92,7 @@ a<b
 f(a)>f(b),
 $$
 
-und \textbf{monoton fallend} (\emph{decreasing}), wenn
+und monoton fallend (\emph{decreasing}), wenn
 
 $$
 a<b
@@ -113,7 +111,7 @@ Folgende Funktionen sind beispielsweise streng monoton steigend:
   \end{itemize}
 \end{exabox}
 
-\begin{exabox}{ Anwenden einer streng steigenden Funktion }{ }
+\begin{exabox}{Anwenden einer streng steigenden Funktion }{ }
 		\[ \begin{array}{c rcl l } & (4\cdot x+7)^2 &\geq& 39 & \| (\cdot )^3 \text{ streng monoton steigend} \\{\Leftrightarrow} & \left( (4\cdot x+7)^2\right)^3 & \geq &  \left(39\right)^3 ,. & \end{array}  \] 
 \end{exabox}
 
@@ -126,10 +124,9 @@ Folgende Funktionen sind beispielsweise streng monoton fallend:
   \end{itemize}
 \end{exabox}
 
-\begin{exabox}{ Anwenden einer streng fallenden Funktion }{ }
+\begin{exabox}{Anwenden einer streng fallenden Funktion }{ }
 		\[ \begin{array}{c rcl l } & (4\cdot x+7)^2 &\geq& 39 & \| -( \cdot  )^3 \text{ streng monoton fallend} \\{\Leftrightarrow} & -\left( (4\cdot x+7)^2\right)^3 & \leq &  -\left(39\right)^3 ,. & \end{array}  \] 
 \end{exabox}
-
 
 \subsection{Umkehrbarkeit}
 
@@ -179,30 +176,7 @@ Die mathematischen Bedingungen dafür, dass die gedrehte Figur der Graph einer Fu
 	\includegraphics[width=0.25\textwidth]{../Mathematik_1/Bilder/funktionen_injektivitaet_quadratfunktion_gegenbeispiel.png}
 \end{exabox}
 
-%Die Funktionswerte \(y\) einer Funktion \(f: x\mapsto f(x) \)   Stellen Sie sich vor, dass Sie eine Funktionsabbildung gegeben haben, beispielsweise   finden Sie praktisch heraus, in dem Sie einen Funktionsgraphen um \(90\circ\) drehen und analysieren, ob die Figur, die Sie sehen eine Funktion ist oder nicht. Wir werden uns mit der
-%Um  eine  Gleichung  wie $a+3=5$ nach $a$ aufzulösen,  wendet  man  (strenggenommen) auf beide Seiten eine Funktion, nämlich $x\mapsto x-3$, an:
-%
-%\begin{exabox}{Umkehrfunktion $\Rightarrow$ Auflösen einer Gleichung}{ }
-%  $ a+ 3 = 5 \Leftrightarrow a+3-3 = 5-3 \Leftrightarrow a = 2\,.$
-%\end{exabox}
-%
-%Um $e^b=7$ nach $b$ aufzulösen wendet man entsprechend den natürlichen Logarithmus $x\mapsto \ln(x)$ an (warum ist das hier kein Problem?)
-%
-%\begin{exabox}{Umkehrfunktion $\Rightarrow$ Auflösen einer Gleichung}{ }
-%  $e^b = 7 \Leftrightarrow \ln(\mathrm{exp}(b)) = \ln(7) \Leftrightarrow b = \ln(7)\,.$
-%\end{exabox}
-
-%Man sucht also Funktionen, welche die ursprünglichen Funktionen wieder aufheben, sie umkehren:
-%\begin{center}
-%  \begin{tabular}{l|l}
-%    Funktion & Idee Umkehrfunktion \\
-%    \hline
-%    $x\mapsto x+3$ & $x+3 \mapsto x$ \\
-%    $x\mapsto \mathrm{exp}(x) $ &  $\mathrm{exp}(x) \mapsto x$ 
-%  \end{tabular}
-%\end{center}
-
-Soweit zur Theorie, die spannendere Frage ist: wie bestimmen wir die Abbildungsvorschrift der \textbf{Umkehrfunktion} (\emph{inverse function})? 
+Soweit zur Theorie, die spannendere Frage ist: wie bestimmen wir die Abbildungsvorschrift der Umkehrfunktion (\emph{inverse function})? 
 
 \noindent{\textbf{Bemerkungen}}
 \begin{itemize}
@@ -231,13 +205,6 @@ Soweit zur Theorie, die spannendere Frage ist: wie bestimmen wir die Abbildungsv
 	\end{itemize}
 \end{exabox}
 
-%\begin{exabox}{Bestimmung der Umkehrfunktionen}{ }
-%	\begin{eqnarray*} 
-%		f_1: x\mapsto x+3 & \Rightarrow & y = x+3 \Leftrightarrow x = y-3 \Rightarrow f_1^{-1}: x\mapsto x-3 \\ 
-%		f_2: x\mapsto e^x & \Rightarrow & y = e^x \Leftrightarrow x = \ln(y) \Rightarrow f_2^{-1}: x \mapsto \ln(x) \,. 
-%	\end{eqnarray*}
-%\end{exabox}
-
 \begin{theorembox}{Systematische Bestimmung der Umkehrfunktion}{ }
 	\begin{enumerate}
 		\item Bestimmung des Bildbereichs $W_f =f(D)\subset Z$ von $f$ (Surjektivität). 
@@ -259,7 +226,6 @@ Soweit zur Theorie, die spannendere Frage ist: wie bestimmen wir die Abbildungsv
 \end{theorembox}
 	\item In der praktischen  Ingenieurmathematik  kümmert  man  sich  wenig  um  die Surjektivität. Denn ist eine Funktion injektiv, aber nicht surjektiv, kann man diesen Mangel leicht durch Anpassung der Zielmenge heilen. Zum Beispiel ist $f: \mathbb R \to \mathbb R, \, x\mapsto e^x$ nicht surjektiv, aber $f: \mathbb R \to (0,\infty), \, x\mapsto e^x$ ist surjektiv. 
 \end{itemize}
-
 
 Unter den folgenden Funktionen sind zwei, die umkehrbar sind. Wissen Sie welche?
 \begin{itemize}

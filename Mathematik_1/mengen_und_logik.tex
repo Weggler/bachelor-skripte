@@ -14,7 +14,7 @@
   \end{tabularx}
 \end{table}
 
-\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-mengen-und-logik-aufgaben]{Aufgaben}
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema sind hier: \hyperref[MA1-mengen-und-logik-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
@@ -104,7 +104,7 @@ A\times B
 \{(a,b):a\in A \text{ und } b\in B\}
 $$
 
-das \textbf{kartesische Produkt} (\emph{cartesian product}) von \(A\) und \(B\).
+das kartesische Produkt (\emph{cartesian product}) von \(A\) und \(B\).
 
 Anders als bei den Elementen einer Menge spielt innerhalb eines geordneten Paares die Reihenfolge eine Rolle. Im Allgemeinen gilt daher
 
@@ -201,7 +201,7 @@ Eine  mathematische Aussage (\emph{statement,  proposition}) ist eine Aussage, d
 \end{exabox}
 Mathematische Aussagen treten selten isoliert auf. Häufig möchte man Aussagen \textbf{verneinen} oder mehrere Aussagen miteinander \textbf{verknüpfen}. Auch dafür besitzt die Mathematik eine eigene Kurzschreibweise.
 
-Beginnen wir mit der Verneinung. Betrachten wir die Aussage
+Beginnen wir mit der Negation oder Verneinung. Betrachten wir die Aussage
 
 $$
 p:\qquad x\geq 0.
@@ -210,82 +210,54 @@ $$
 Diese Aussage ist beispielsweise für \(x=3\) wahr und für \(x=-2\) falsch. Möchte man genau das Gegenteil von \(p\) ausdrücken, so lautet die entsprechende Aussage:
 
 $$
-x<0.
+q: \qquad x<0.
 $$
 
 In Worten könnte man auch sagen: „Es gilt \textbf{nicht} \(x\geq0\).“
 
-Für die Verneinung einer Aussage verwendet man in der mathematischen Formelsprache das Symbol \(\neg\). Man schreibt also
+Die Aussage \(q\) ist die Negation (\textit{negation}) von \(p\) und das lässt sich in mathematischer Formelsprache mit Hilfe des Symbols \(\neg\) ausdrücken: die Negation von \(p\) ist 
 
 $$
 \neg p.
 $$
 
-Die Aussage \(\neg p\) ist genau dann wahr, wenn die ursprüngliche Aussage \(p\) falsch ist -- und umgekehrt.
+Eine Negation \(\neg p\) ist genau dann wahr, wenn die ursprüngliche Aussage \(p\) falsch ist -- und umgekehrt.
 
-\begin{exabox}{Verneinung einer Aussage}{ }
-Für
-
-$$
-p:\qquad x\geq 0
-$$
-
-lautet die Verneinung
-
-$$
-\neg p:\qquad x<0.
-$$
-
-Beispielsweise ist für \(x=-2\) die Aussage \(p\) falsch und die Aussage \(\neg p\) wahr.
+\begin{exabox}{Negation einer Aussage}{ }
+	\begin{itemize}
+\item Für $ \; p:\qquad x\geq 0\; $ lautet die Negation $ \;\neg p:\qquad x<0$.
+\item Beispielsweise ist für \(x=-2\) die Aussage \(p\) falsch und die Aussage \(\neg p\) wahr.
+	\end{itemize}
 \end{exabox}
 
-Neben der Verneinung einer einzelnen Aussage möchte man Aussagen auch miteinander verbinden. Betrachten wir dazu die beiden Aussagen
+Neben der Negation einer einzelnen Aussage möchte man Aussagen auch miteinander verbinden. Betrachten wir beispielsweise die Aussage \( p:\; x>2\) und die Aussage \(q:\; x<5\). Suchen wir alle reellen Zahlen, für die \textbf{sowohl}  \(p\) \textbf{als auch} \(q\) gleichzeitig wahr ist, so verknüpfen wir die Aussagen durch ein logisches „und“. In mathematischer Formelsprache ist das logische „und“ das Symbol \(\land\):
 
 $$
-p:\quad x>2,
-\qquad\text{und}\qquad
-q:\quad x<5.
+p\land q: \qquad x>2 \;\textnormal{und gleichzeitig} \; x<5.
 $$
+Eine Und-Verknüpfung (\emph{and}) \(p\land q \) ist genau dann wahr, wenn sowohl \(p\) als auch \(q\) wahr sind.
 
-Suchen wir alle reellen Zahlen, für die \textbf{beide} Aussagen gleichzeitig wahr sind, so erhalten wir
-
-$$
-x>2 \quad\textbf{und}\quad x<5.
-$$
-
-In mathematischer Kurzschreibweise ersetzt man das Wort „und“ durch das Symbol \(\land\):
+Suchen wir alle reellen Zahlen, für die \textbf{mindestens eine der Aussagen}, wahr ist, so verknüpfen wir die Aussagen durch ein logisches „oder“ . In mathematischer Formelsprache ist das logische „oder“  das Symbol \(\lor\): 
 
 $$
-x>2\land x<5.
+p\lor q: \qquad x>2 \;\textnormal{oder}\; x<5.
 $$
-
-Diese zusammengesetzte Aussage ist genau für alle Zahlen  wahr, die größer als zwei und kleiner als fünf sind. 
-
-Möchten wir ausdrücken, dass \textbf{mindestens eine} der beiden Aussagen wahr sein soll, verwenden wir das logische Oder. Das Wort „oder“ wird in mathematischer Kurzschreibweise durch das Symbol \(\lor\) ersetzt.
-
-\begin{defbox}{Logische Operatoren}{ }
-Es seien \(p\) und \(q\) mathematische Aussagen.
-\begin{itemize}
-	\item Die \textbf{Verneinung} (\emph{negation}) von \(p\) wird mit \( \neg p \) bezeichnet. Sie ist genau dann wahr, wenn \(p\) falsch ist.
-
-	\item Die \textbf{Und-Verknüpfung} (\emph{and}) von \(p\) und \(q\) wir mit \(p\land q \) bezeichnet. Sie ist genau dann wahr, wenn sowohl \(p\) als auch \(q\) wahr sind.
-
-	\item Die \textbf{Oder-Verknüpfung} (\emph{or}) von \(p\) \(q\) wir mit \(p\land q \) bezeichnet. Sie ist genau dann wahr, wenn  mindestens eine der beiden Aussagen \(p\) und \(q\) wahr ist.
-
-\end{itemize}
-\end{defbox}
-
-Beim mathematischen Oder ist das Wort „oder“ einschließlich zu verstehen: Sind \(p\) und \(q\) beide wahr, dann ist auch \(p\lor q\) wahr. Das unterscheidet das mathematische Oder von Formulierungen wie „entweder -- oder“, bei denen häufig gemeint ist, dass genau eine von zwei Möglichkeiten eintreten soll.
+Eine Oder-Verknüpfung (\emph{or}) \(p\land q \) ist genau dann wahr, wenn  mindestens eine der beiden Aussagen \(p\) und \(q\) wahr ist.
 
 \begin{exabox}{Und und Oder lesen}{ }
-	Es seien $ p:\quad x>2$ und $q:\quad x<5 $.
+	Es seien $ p:\; x>2$ und $q:\; x<5 $.
 	\begin{itemize}
 		\item $ p\land q $ bedeutet in Worten  „\(x\) ist größer als \(2\) und gleichzeitig kleiner als \(5\).“ und  diese Aussage ist  genau dann wahr wenn $ 2<x<5 $.  
 		\item $ p\lor q $ bedeutet in Worten  „\(x\) ist größer als \(2\) oder kleiner als \(5\).“ und diese Aussage ist genau dann wahr wenn \(x>2\) oder \(x<5\) wahr ist, wobei auch beide Bedingungen gleichzeitig erfüllt sein dürfen (aber nicht müssen).
 	\end{itemize}
 \end{exabox}
 
-Die Symbole \(\neg\), \(\land\) und \(\lor\) werden uns immer wieder begegnen. Sie sind nicht nur Bestandteil der Aussagenlogik, sondern gehören zur mathematischen Formelsprache. Insbesondere bei der Beschreibung von Mengen werden wir Bedingungen mit diesen Operatoren verknüpfen. Deshalb ist es wichtig, solche Ausdrücke nicht nur selbst aufschreiben, sondern auch sicher in natürliche Sprache zurückübersetzen zu können.
+\noindent{\textbf{Bemerkungen:}}
+\begin{itemize}
+	\item Die Symbole \(\neg\), \(\land\) und \(\lor\) werden uns immer wieder begegnen. Sie sind nicht nur Bestandteil der Aussagenlogik, sondern gehören zur mathematischen Formelsprache. 
+	\item Bei der Beschreibung von Mengen werden wir Bedingungen mit diesen Operatoren sinnvoll verknüpfen. Deshalb ist es wichtig, logische Ausdrücke nicht nur selbst aufschreiben, sondern auch in natürliche Sprache übersetzen zu können.
+	\item Beim mathematischen Oder ist das Wort „oder“ einschließlich zu verstehen: Sind \(p\) und \(q\) beide wahr, dann ist auch \(p\lor q\) wahr. Das unterscheidet das mathematische Oder von Formulierungen wie „entweder -- oder“, bei denen häufig gemeint ist, dass genau eine von zwei Möglichkeiten eintreten soll.
+\end{itemize}
 
 Entsprechend zu „Punktrechnung vor Strichrechnung“ gibt es auch für logische Operatoren eine festgelegte Reihenfolge: Zuerst wird die Negation ausgeführt, danach das Und und zuletzt das Oder.
 
@@ -411,15 +383,15 @@ Mit Worten liest man die Äquivalenz \( p \Leftrightarrow q\) wie folgt:
 
 \subsection{Mengen und Aussagen}
 
-Der Gedanke, mit dem wir den Abschnitt eingeleitet haben, klang so, als wären Mengen von extremer Bedeutung in der Mathematik: "\,Mengen sind die Grundlage aller mathematischen Objekte."\, Die Mengen, die wir bislang notiert haben, hatten alle weniger als fünf Elemente und scheinen diese Bedeutung nicht widerzuspiegeln. Mit den Begriffen der Logik haben wir jetzt das Werkzeug an der Hand, um noch einmal über Mengen nachzudenken und um zu verstehen, dass sie Grundlage der mathematischen Fachsprache sind. 
+Der Gedanke, mit dem wir den Abschnitt eingeleitet haben, klang so, als wären Mengen von extremer Bedeutung in der Mathematik: "\,Mengen sind die Grundlage aller mathematischen Objekte."\, Die Mengen, die wir bislang notiert haben, hatten alle weniger als fünf Elemente und scheinen diese Bedeutung nicht widerzuspiegeln. Mit den Begriffen der Logik haben wir jetzt das Werkzeug an der Hand, um nochmal über Mengen nachzudenken und um zu verstehen, dass sie Grundlage der mathematischen Fachsprache sind. 
 
 Was ist eine Menge nochmal? Eine Menge ist eine Ansammlung von Objekten. Kennt man alle Objekte, dann kennt man die Menge - oder anders ausgedrückt: man kennt eine Menge, wenn man von einem Objekt sagen kann, ob es zur Menge gehört oder nicht. 
 
 Zwei Varianten, die es zulassen zu entscheiden, ob ein Objekt dazugehört oder nicht sind die folgenden: 
 \begin{itemize}
-	\item Die Menge bzw. deren Elemente sind explizit gegeben. Eine Menge in \emph{expliziter} Schreibweise lautet beispielsweise so:
+	\item Die Menge bzw. deren Elemente sind explizit gegeben. Eine Menge in \textbf{expliziter} Schreibweise lautet beispielsweise so:
 \[ M = \{0,1,2,3,4,5,6,7,8,9\}\,, \]
-	\item Die Menge wird mit Worten beschrieben. Eine Menge in sogenannter \emph{intensionaler} Schreibweise lautet beispielsweise so: 
+	\item Die Menge wird mit Worten beschrieben. Eine Menge in sogenannter \textbf{intensionaler} Schreibweise lautet beispielsweise so: 
 		\[ M = \{ \textnormal{Menge aller nat\"urlichen Zahlen, die kleiner als zehn sind.}\} \]
 \end{itemize}
 Etwas umständlicher, aber gleichbedeutend ist  
@@ -434,10 +406,10 @@ Diese Beschreibung ist zwar verständlich, aber für mathematische Texte unnötig u
 
 \noindent{\textbf{ Bemerkungen:}}
 \begin{itemize}
-	\item Wenn die Menge, die man betrachtet, eine Teilmenge einer bekannten Grundmenge\footnote{\(\mathbb N_0, \mathbb Z, \mathbb Q, \mathbb R, \mathbb C, \cdots\)} ist, beispielsweise eine Teilmenge der natürlichen Zahlen, dann schreibt man die Grundmenge auch oft vor die \textbf{eigentliche Bedingung}, also 
+	\item Wenn die Menge, die man betrachtet, eine Teilmenge einer bekannten Grundmenge\footnote{\(\mathbb N_0, \mathbb Z, \mathbb Q, \mathbb R, \mathbb C, \cdots\)} ist, beispielsweise eine Teilmenge der natürlichen Zahlen, dann schreibt man diese Grundmenge auch oft \textbf{vor} die Zusatzbedingung, also 
 \[ M =  \{ x\in \mathbb N_0: x< 10 \}\,. \]  
-	\item Die Elemente einer Menge erfüllen eine oder mehrere Bedingungen. Diese Erkenntnis ermöglicht es komplexe Mengen und Mengen mit unendlich vielen Elementen präzise anzugeben.     
 	\item "\,Bedingung erfüllen"\, bedeutet in der Aussagenlogik, dass eine Aussage wahr wird. Mit Bedingung sind sich all die Eigenschaften gemeint, die die Elemente der Menge haben sollen. 
+	\item Oft erfüllen die Elemente einer Menge mehrere Bedingungen und ob die Bedingungen alle gleichzeitig erfüllt sein müssen, oder ob eine Bedingung ausreicht, lässt sich mit Hilfe der Operatoren \(\land\) und \(\lor\) präzise angeben.     
 \end{itemize}
 
 Mengen beschreibt man also im Allgemeinen mit Hilfe von logischen Ausdrücken. Hier ein paar Beispiele:
@@ -474,15 +446,15 @@ Wenn man Schlussfolgerungen
 Ein Quantor hat noch eine weitere wichtige Funktion: Er \textbf{bindet} eine Variable. Betrachten wir beispielsweise das Prädikat
 
 $$
-p(x):\qquad x^2\geq 0.
+p:\qquad x^2\geq 0.
 $$
 
 Solange nicht festgelegt ist, für welche Zahl \(x\) die Bedingung betrachtet wird, besitzt dieser Ausdruck keinen eigenen Wahrheitswert. Es handelt sich um ein Prädikat und noch nicht um eine Aussage.
 
-Setzt man für \(x\) einen konkreten Wert ein, entsteht eine Aussage. Beispielsweise ist
+Erst, wenn man für \(x\) einen konkreten Wert annimmt, beispielsweise \(x=-2\), dann entsteht eine Aussage. Beispielsweise ist
 
 $$
-p(-2):\qquad (-2)^2\geq0
+p:\qquad (-2)^2\geq0
 $$
 
 eine wahre Aussage.
@@ -504,7 +476,6 @@ $$
 ist eine Aussage. Sie bedeutet: „Es gibt mindestens eine reelle Zahl \(x\), für die \(x^2=4\) gilt.“ Diese Aussage ist ebenfalls wahr.
 
 Ein Prädikat wird also zu einer Aussage, wenn für die vorkommenden freien Variablen konkrete Werte eingesetzt werden oder wenn die freien Variablen beispielsweise durch Quantoren gebunden werden. Erst dann lässt sich der entstandenen Aussage eindeutig ein Wahrheitswert zuordnen.
-
 
 Bei der Negation von Aussagen mit Quantoren ist besondere Vorsicht notwendig. Betrachten wir beispielsweise die Aussage
 

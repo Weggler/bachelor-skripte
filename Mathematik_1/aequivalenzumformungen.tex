@@ -10,7 +10,6 @@
     \tabitem lineare und quadratische Gleichungen lösen &\\
     \tabitem lineare und quadratische Ungleichungen systematisch bearbeiten &\\
     \tabitem Betragsungleichungen und Bruchungleichungen lösen &\\
-    \tabitem lineare und quadratische Ungleichungen systematisch bearbeiten &\\
     \midrule
 	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
 	  \tabitem Mengenoperationen und Intervallschreibweisen & \abschnittsverweis{MA1-mengen-und-logik}\\
@@ -20,16 +19,14 @@
   \end{tabularx}
 \end{table}
 
-\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier:  \hyperref[MA1-aequivalenzumformungen-aufgaben]{Aufgaben}
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema sind hier:  \hyperref[MA1-aequivalenzumformungen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
 
 \subsection{Äquivalenzumformungen und Lösungsmenge}
 
-Beim Umformen von Gleichungen und Ungleichungen ersetzen wir einen Ausdruck durch einen logisch äquivalenten,
-aber einfacheren Ausdruck. Ziel ist eine Beschreibung aller Zahlenwerte, für die die Aussage wahr ist.
-Diese Menge nennt man \textbf{Lösungsmenge}.
+Beim Umformen von Gleichungen und Ungleichungen ersetzen wir einen Ausdruck durch einen logisch äquivalenten, aber einfacheren Ausdruck. Ziel ist eine Beschreibung aller Zahlenwerte, für die die Aussage wahr ist. Diese Menge nennt man \textbf{Lösungsmenge}.
 
 \begin{exabox}{Lösungsmenge einer linearen Gleichung}{ }
 	\[
@@ -43,8 +40,7 @@ Diese Menge nennt man \textbf{Lösungsmenge}.
 
 \noindent \textbf{Bemerkungen:}
 \begin{itemize}
-	\item Nie durch Null dividieren und nie mit Null multiplizieren. Problemstellen müssen ausgeschlossen
-	und ggf. separat betrachtet werden:
+	\item Nie durch Null dividieren und nie mit Null multiplizieren. Problemstellen müssen ausgeschlossen und gegebenenfalls separat betrachtet werden:
 	\[
 	\frac{x-3}{x+2}=10
 	\stackrel{x\neq -2}{\Leftrightarrow}
@@ -55,74 +51,46 @@ Diese Menge nennt man \textbf{Lösungsmenge}.
 \item Nicht jede Gleichung ist mit dem bisherigen Werkzeug direkt lösbar (z.\,B.\ Gleichungen, in denen trigonometrische Funktionen auftauchen).\wennreferenzvorhanden{MA1-potenz-und-wurzelfunktionen}{\wennreferenzvorhanden{MA1-trigonometrische-funktionen}{\marginpar{ \small {\abschnittsverweis{MA1-potenz-und-wurzelfunktionen}--\abschnittsverweis{MA1-trigonometrische-funktionen}}}}}
 \end{itemize}
 
-Auch bei Ungleichungen ist das Ziel eine Lösungsmenge, oft ein Intervall oder eine Vereinigung von Intervallen.
+Auch das Lösen einer Ungleichung verfolgt das Ziel eine Lösungsmenge für die Variable anzugeben. Die Lösungsmenge sind oft Intervalle oder Vereinigungen von Intervallen.
 
 \begin{exabox}{Lösen einer linearen Ungleichung}{ }
 	\[
-	2\, x+6\le 2
-	\;\Leftrightarrow\;
-	x\le -2
-	\;\Leftrightarrow\;
-	x\in(-\infty,-2].
+	2\, x+6\le 2 \;\Leftrightarrow\; x\le -2 \;\Leftrightarrow\; x\in(-\infty,-2].
 	\]
 \end{exabox}
-Das Lösen einer Ungleichung funktioniert damit zunächst ganz ähnlich wie das Lösen einer Gleichung: Beide Seiten dürfen getrennt vereinfacht werden, und auf beiden Seiten darf derselbe Term addiert oder subtrahiert werden. So kann eine Ungleichung Schritt für Schritt in eine einfachere, aber äquivalente Form gebracht werden.
 
-Beim Multiplizieren und Dividieren ist allerdings das \textbf{Vorzeichen} des verwendeten Faktors entscheidend. Wird eine Ungleichung mit einer positiven Zahl multipliziert oder durch eine positive Zahl dividiert, bleibt die Richtung des Ungleichheitszeichens erhalten. Beispielsweise gilt
+Das Lösen einer Ungleichung funktioniert prinzipiell wie das Lösen einer Gleichung: Beide Seiten dürfen getrennt vereinfacht werden, und auf beiden Seiten darf derselbe Term addiert oder subtrahiert werden. So kann eine Ungleichung Schritt für Schritt in eine einfachere, aber äquivalente Form gebracht werden.
 
-$$
-2<5
-\qquad\Longleftrightarrow\qquad
-2\cdot 3<5\cdot 3.
-$$
+Beim Multiplizieren ist allerdings das \textbf{Vorzeichen} des verwendeten Faktors entscheidend:
+\begin{itemize}
+	\item Wird eine Ungleichung mit einer positiven Zahl multipliziert oder durch eine positive Zahl dividiert, bleibt des Ungleichheitszeichens erhalten.
+	\item Wird eine Ungleichung mit einer negativen Zahl multipliziert oder durch eine negative Zahl dividiert, dreht sich das Ungleichheitszeichen um.
+\end{itemize}
 
-Bei einer negativen Zahl kehrt sich dagegen die Richtung des Ungleichheitszeichens um:
-
+\begin{exabox}{Umformen von Ungleichungen}{ }
 $$
-2<5
-\qquad\Longleftrightarrow\qquad
-2\cdot(-3)>5\cdot(-3).
+\begin{array}{c rcl l} 
+	& 2&<&5 &\| \cdot 3 \\
+	\Leftrightarrow & 2\cdot 3& < & 5\cdot 3  & \\
+	\Leftrightarrow & 6& < & 15  & \| \cdot \left( -\dfrac13 \right) \\
+	\Leftrightarrow & 6\cdot \left( -\dfrac13\right) & > & 15\cdot \left(-\dfrac13\right)  &\\
+	\Leftrightarrow & -2& > & -5  &
+\end{array}
 $$
-
-Der Grund dafür wird bereits am Ergebnis sichtbar:
-
-$$
--6>-15.
-$$
+\end{exabox}
 
 Für das systematische Umformen einer Ungleichung gelten damit folgende Regeln:
-\begin{enumerate}
+\begin{itemize}
 \item Beide Seiten der Ungleichung dürfen jeweils durch äquivalente Terme ersetzt werden. Dazu gehören beispielsweise das Ausmultiplizieren, Faktorisieren oder Zusammenfassen von Termen.
+\item Auf beiden Seiten darf derselbe Term addiert oder subtrahiert werden.
+\item Beide Seiten dürfen mit demselben von Null verschiedenen Term multipliziert oder durch ihn dividiert werden, wobe das Vorzeichen berücksichtigt werden muss.
+\end{itemize}
 
-\item Auf beiden Seiten darf derselbe Term addiert oder subtrahiert werden:
-\[
-T_1<T_2
-\;\Leftrightarrow\;
-T_1+T<T_2+T.
-\]
-
-\item Beide Seiten dürfen mit demselben von Null verschiedenen Term multipliziert oder durch ihn dividiert werden. Dabei muss dessen Vorzeichen berücksichtigt werden:
-\[
-\begin{array}{rcl}
-T_1<T_2\ \land\ T>0
-&\Leftrightarrow&
-T_1\cdot T<T_2\cdot T,
-\\[1ex]
-T_1<T_2\ \land\ T<0
-&\Leftrightarrow&
-T_1\cdot T>T_2\cdot T.
-\end{array}
-\]
-Entsprechendes gilt für die Division durch \(T\neq0\).
-
-\end{enumerate}
-
-Besonders wichtig ist die dritte Regel, sobald mit einem Term multipliziert oder durch einen Term dividiert wird, dessen Vorzeichen von der Variablen abhängt. Ist beispielsweise der Faktor \(x-2\), so ist dieser für \(x>2\) positiv und für \(x<2\) negativ. In solchen Situationen muss zunächst unterschieden werden, welches Vorzeichen der Faktor besitzt. Genau daraus entstehen die \textbf{Fallunterscheidungen}, die beim Lösen vieler Ungleichungen eine zentrale Rolle spielen.
-
+Besonders wichtig ist die dritte Regel, sobald mit einem Term multipliziert oder durch einen Term dividiert wird, dessen Vorzeichen von einer Variable abhängt. Ist beispielsweise der Faktor \(x-2\), so ist dieser für \(x>2\) positiv und für \(x<2\) negativ. In solchen Situationen muss unterschieden werden, welches Vorzeichen der Faktor besitzt. Genau daraus entstehen die \textbf{Fallunterscheidungen}, die beim Lösen von Ungleichungen eine zentrale Rolle spielen.
 
 \subsection{Strukturiertes Lösen von Ungleichungen}
 
-Der Umgang mit Äquivalenzumformungen und das saubere Aufschreiben von Lösungsmengen lässt sich besonders gut an algebraischen Ungleichungen trainieren. Im Folgenden werden drei typische Formen betrachtet:
+Der Umgang mit Äquivalenzumformungen und das saubere Aufschreiben von Lösungsmengen lässt sich besonders gut an algebraischen Ungleichungen trainieren. Im Folgenden werden drei typische Ungleichungen betrachtet:
 \begin{enumerate}
 \item quadratische Ungleichungen,
 \item Bruchungleichungen,
@@ -132,45 +100,23 @@ Der Umgang mit Äquivalenzumformungen und das saubere Aufschreiben von Lösungsmen
 Diese Ungleichungen sehen zunächst sehr unterschiedlich aus. Das Vorgehen beruht jedoch immer wieder auf derselben Idee: Durch eine sinnvolle \textbf{Fallunterscheidung} wird die ursprüngliche Ungleichung auf einfachere Ungleichungen zurückgeführt. Die folgenden Beispiele zeigen dieses Vorgehen Schritt für Schritt.
 \marginpar{\small Aufgaben}
 
-Wenn auf beiden Seiten des Ungleichheitszeichens quadratische Ausdrücke derselben Variablen stehen, können zunächst alle Terme auf eine Seite gebracht werden. Anschließend wird untersucht, für welche Werte der entstehende quadratische Term positiv oder negativ ist.
+Wenn auf beiden Seiten des Ungleichheitszeichens quadratische Ausdrücke in derselben Variablen stehen, werden zunächst alle Terme auf eine Seite gebracht werden. Anschließend wird untersucht, für welche Werte der entstehende quadratische Term positiv oder negativ ist.
 
 \begin{exabox}{Lösen einer quadratischen Ungleichung}{ }
-Betrachtet wird die Ungleichung
 
 $$
-2x^2+x-4>x^2+6x-10.
+\begin{array}{c rcl l }
+& 2\cdot x^2+x-4& >& x^2+6\cdot x-10  &\|-x^2-6 \\
+\Leftrightarrow & x^2-5\cdot x+6 & > &0 &\| \;\textnormal{Fakatorisierung} \\
+\Leftrightarrow & (x-2)\cdot (x-3) &>& 0 &\| \; \textnormal{Fallunterscheidung} 
+\end{array}
 $$
 
-Die Lösung lässt sich systematisch in mehreren Schritten bestimmen.
-
-\begin{enumerate}
-\item Zunächst werden alle Terme auf eine Seite gebracht:
-
-$$
-2x^2+x-4>x^2+6x-10
-\;\Leftrightarrow\;
-x^2-5x+6>0.
-$$
-
-\item Der quadratische Term wird in Linearfaktoren zerlegt:
-
-$$
-x^2-5x+6=(x-2)(x-3).
-$$
-
-Damit ist zu untersuchen, wann
-
-$$
-(x-2)(x-3)>0
-$$
-
-gilt.
-
-\item Ein Produkt ist positiv, wenn beide Faktoren positiv oder beide Faktoren negativ sind. Daher müssen zwei Fälle unterschieden werden:
+Ein Produkt ist positiv, wenn beide Faktoren positiv \textbf{oder} beide Faktoren negativ sind:
 
 $$
 \begin{array}{rcl}
-(x-2)(x-3)>0
+(x-2)\cdot (x-3)>0
 &\Leftrightarrow&
 \begin{cases}
 x-2>0 \land x-3>0,\\
@@ -191,23 +137,15 @@ x<2.
 \end{array}
 $$
 
-\item Abschließend werden die Lösungsmengen der beiden Fälle vereinigt:
+Die Lösungsmenge ist die Vereinigung der Lösungsmengen der beiden Fälle: $ x\in(-\infty,2)\cup(3,\infty).$
 
-$$
-x\in(-\infty,2)\cup(3,\infty).
-$$
-
-\end{enumerate}
 
 \begin{minipage}{0.45\textwidth}
 \includegraphics[width=\textwidth]{../Mathematik_1/Bilder/ungleichungen_quadratische_funktion_nullstellen.png}
 \end{minipage}
 \begin{minipage}{0.55\textwidth}
 \begin{itemize}
-\item Gezeigt ist der Graph der Funktion
-\(
-	f(x)=x^2-5x+6.
-	\)
+	\item Gezeigt ist der Graph der Parabel \( f(x)=x^2-5\cdot x+6.\)
 \item Positive Funktionswerte treten links der kleineren und rechts der größeren Nullstelle auf. Genau diese Bereiche bilden die zuvor berechnete Lösungsmenge.
 \end{itemize}
 \end{minipage}
@@ -215,12 +153,12 @@ $$
 
 \noindent\textbf{Bemerkungen:}
 \begin{itemize}
-\item Die Lösungsmenge lässt sich damit sowohl rechnerisch als auch am Graphen erkennen.
-\item Quadratische Terme lassen sich mithilfe ihrer Nullstellen faktorisieren:
+\item Die Lösungsmenge lässt sich rechnerisch bestimmen und am Graphen kontrollieren.
+\item Quadratische Terme lassen sich mithilfe ihrer Nullstellen \(x_1\), \(x_2\) faktorisieren. Es gilt:
 \(
-	ax^2+bx+c=a(x-x_1)(x-x_2).
+	a\cdot x^2+b\cdot x+c=a\cdot (x-x_1)\cdot (x-x_2).
 	\)
-\item Das Grundprinzip aus Nullstellenbestimmung und Vorzeichenanalyse bleibt auch bei polynomialen Ungleichungen höherer Ordnung erhalten.
+\item Die Vorgehensweise bestehend aus Nullstellenbestimmung und Vorzeichenanalyse bleibt auch bei polynomialen Ungleichungen höherer Ordnung erhalten.
 \end{itemize}
 
 Bei einer \textbf{Bruchungleichung} kommt eine weitere Schwierigkeit hinzu: Das Vorzeichen eines Bruches hängt sowohl vom Zähler als auch vom Nenner ab. Gleichzeitig darf der Nenner niemals Null werden. Eine Multiplikation mit dem Nenner ist deshalb erst dann möglich, wenn bekannt ist, welches Vorzeichen dieser besitzt.
@@ -231,7 +169,7 @@ Besonders einfach ist der Fall, dass der Bruch mit Null verglichen wird. Ein Bru
 Betrachtet wird
 
 $$
-\frac{2x-1}{x+4}\geq0.
+\frac{2\cdot x-1}{x+4}\geq0.
 $$
 
 Der Nenner darf nicht verschwinden, also gilt zunächst
@@ -244,11 +182,11 @@ Damit der Bruch nichtnegativ ist, müssen Zähler und Nenner gleiches Vorzeichen b
 
 $$
 \begin{array}{rcl}
-\dfrac{2x-1}{x+4}\geq0
+\dfrac{2\cdot x-1}{x+4}\geq0
 &\Leftrightarrow&
 \begin{cases}
-2x-1\geq0 \land x+4>0,\\
-2x-1\leq0 \land x+4<0
+2\cdot x-1\geq0 \land x+4>0,\\
+2\cdot x-1\leq0 \land x+4<0
 \end{cases}
 \\[2ex]
 &\Leftrightarrow&
@@ -273,24 +211,24 @@ $$
 
 \end{exabox}
 
-Steht auf der rechten Seite dagegen eine von Null verschiedene Zahl, kann nicht allein das Vorzeichen des gesamten Bruches betrachtet werden. Um den Nenner zu beseitigen, müsste mit \(x+4\) multipliziert werden. Dabei hängt die Richtung des Ungleichheitszeichens davon ab, ob \(x+4\) positiv oder negativ ist. Deshalb wird \textbf{zuerst das Vorzeichen des Nenners unterschieden}.
+Steht auf der rechten Seite einer Bruchungleichung keine Null, genügt eine Vorzeichenunterscheidung von Zähler und Nenner allein nicht. Um den Nenner zu beseitigen, müsste mit \(x+4\) multipliziert werden. Dabei hängt die Richtung des Ungleichheitszeichens davon ab, ob \(x+4\) positiv oder negativ ist. Deshalb wird \textbf{zuerst das Vorzeichen des Nenners unterschieden}.
 
 \begin{exabox}{Lösen einer Bruchungleichung mit konstanter rechter Seite}{ }
 Betrachtet wird
 
 $$
-\frac{2x-1}{x+4}\geq3.
+\frac{2\cdot x-1}{x+4}\geq3.
 $$
 
 Der Nenner verschwindet für \(x=-4\). Dieser Wert gehört nicht zum Definitionsbereich. Für alle übrigen Werte werden zwei Fälle unterschieden.
 
 $$
 \begin{array}{rcll}
-\dfrac{2x-1}{x+4}\geq3
+\dfrac{2\cdot x-1}{x+4}\geq3
 &\Leftrightarrow&
 \begin{cases}
-x+4>0 \land 2x-1\geq3(x+4),\\
-x+4<0 \land 2x-1\leq3(x+4)
+x+4>0 \land 2\cdot x-1\geq3\cdot (x+4),\\
+x+4<0 \land 2\cdot x-1\leq3\cdot (x+4)
 \end{cases}
 & \text{Nenner-Vorzeichen}
 \\[3ex]
@@ -314,7 +252,7 @@ x\in[-13,-4).
 \end{array}
 $$
 
-Im ersten Fall widersprechen sich die Bedingungen \(x>-4\) und \(x\leq-13\); dieser Fall liefert daher keine Lösung. Im zweiten Fall müssen \(x<-4\) und \(x\geq-13\) gleichzeitig erfüllt sein. Daraus entsteht das Intervall \([-13,-4)\).
+Da sich im ersten Fall sich die Bedingungen \(x>-4\) und \(x\leq-13\) wiedersprechen, liefert der erste Fall keine Lösung. Im zweiten Fall müssen \(x<-4\) und \(x\geq-13\) gleichzeitig erfüllt sein und das klappt für alle \(x\in [-13,-4)\).
 \end{exabox}
 
 Bei einer \textbf{Betragsungleichung} entsteht die Fallunterscheidung aus der Definition des Betrags. Der Betrag eines Ausdrucks hängt davon ab, ob dieser Ausdruck nichtnegativ oder negativ ist:
@@ -359,7 +297,10 @@ $$
 
 \end{exabox}
 
-Bei einfachen Betragsungleichungen lässt sich dasselbe Ergebnis auch unmittelbar aus der Bedeutung des Betrags ablesen:
+
+\noindent{\bf Bemerkungen:}
+\begin{itemize}
+	\item Bei einfachen Betragsungleichungen lässt sich dasselbe Ergebnis auch unmittelbar aus der Bedeutung des Betrags ablesen:
 
 $$
 |x-7|<5
@@ -369,6 +310,5 @@ $$
 2<x<12.
 $$
 
-Die ausführliche Fallunterscheidung bleibt dennoch wichtig, da sie auch dann funktioniert, wenn kompliziertere Ausdrücke innerhalb des Betrags auftreten.
-
-Treten mehrere dieser Strukturen gleichzeitig auf, müssen die notwendigen Fallunterscheidungen miteinander kombiniert werden. Bei einem Betrag im Zähler und einem variablen Nenner muss beispielsweise sowohl das Vorzeichen des Nenners als auch das Vorzeichen des Ausdrucks innerhalb des Betrags berücksichtigt werden.
+\item Tauchen in einer Ungleichung mehr als nur ein Betrag auf oder enthält der Betrag einen Bruch, dann helfen nur systematische Fallunterscheidungen. 
+	\end{itemize}

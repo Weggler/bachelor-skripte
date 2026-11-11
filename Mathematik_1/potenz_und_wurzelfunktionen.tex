@@ -9,10 +9,12 @@
 	  \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
     \midrule
 	  \textbf{Lernziele} &\\[.5\normalbaselineskip]
-	  \tabitem Potenzfunktionen \(x\mapsto x^n\) für \(n\in\mathbb N^+\) darstellen und anhand von Monotonie und Symmetrie charakterisieren &\\
-\tabitem Wurzelfunktionen als Umkehrfunktionen geeigneter Potenzfunktionen interpretieren und ihre Definitionsbereiche bestimmen &\\
+	  \tabitem Potenzfunktionen und Wurzelfunktionen skizzieren &\\
+	  \tabitem Monotonie und Symmetrie einer Potenzfunktion charakterisieren &\\
+\tabitem Wurzelfunktionen als Umkehrfunktionen geeigneter Potenzfunktionen vestehen &\\
+\tabitem Definitionsbereiche von Wurzelfunktionen bestimmen &\\
 \tabitem Gleichungen mit Potenzen und Wurzeln unter Beachtung des Definitionsbereichs lösen &\\
-\tabitem Potenzrechenregeln auf ganzzahlige und gebrochenzahlige Exponenten erweitern und sicher anwenden &\\
+\tabitem Potenzrechenregeln mit ganzzahligem und gebrochenzahligem Exponenten anwenden &\\
     \midrule
 	  \textbf{Voraussetzungen} \\[.5\normalbaselineskip]
 	  \tabitem Grundrechenarten & \abschnittsverweis{MA1-zahlenmengen}\\
@@ -22,7 +24,7 @@
   \end{tabularx}
 \end{table}
 
- \ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-potenz-und-wurzelfunktionen-aufgaben]{Aufgaben}
+ \ifintegriereaufgaben \noindent Übungsaufgaben zum Thema sind hier: \hyperref[MA1-potenz-und-wurzelfunktionen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
  \fi
@@ -34,10 +36,7 @@ Eine Funktion der Form
 \[
 f:\mathbb R\to\mathbb R,\qquad x\mapsto x^n,
 \]
-mit \(n\in\mathbb N^+\) heißt \textbf{Potenzfunktion} (\emph{power function}).
-
-Zunächst werden nur positive ganzzahlige Exponenten betrachtet. Für diese Potenzfunktionen kann der \underline{Definitionsbereich}\randverweis{MA1-funktionen}  ohne weitere Einschränkungen als ganz \(\mathbb R\)
-\footnote{Auch Funktionen wie \(x\mapsto x^{-1/5}\) oder \(x\mapsto x^\pi\) gehören zu allgemeineren Potenzfunktionen.  Ihre Definitionsbereiche erfordern jedoch zusätzliche Überlegungen: \(x^{-1/5}\) ist bei \(x=0\) nicht definiert, während \(x^\pi\) im Reellen für negative \(x\) nicht definiert ist.}
+mit \(n\in\mathbb N^+\) heißt Potenzfunktion (\emph{power function}). Der Definition \underline{Definitionsbereich}\randverweis{MA1-funktionen} aller dieser Potenzfunktionen \footnote{Auch Funktionen wie \(x\mapsto x^{-1/5}\) oder \(x\mapsto x^\pi\) gehören zu allgemeineren Potenzfunktionen.  Ihre Definitionsbereiche erfordern jedoch zusätzliche Überlegungen: \(x^{-1/5}\) ist bei \(x=0\) nicht definiert, während \(x^\pi\) im Reellen für negative \(x\) nicht definiert ist.} ist \(\mathbb R\).
 
 \begin{theorembox}{Monotonie und Symmetrie von Potenzfunktionen mit geradem Exponenten}{ }
 	\begin{minipage}{0.35\textwidth}
@@ -54,7 +53,6 @@ Zunächst werden nur positive ganzzahlige Exponenten betrachtet. Für diese Potenz
 	\end{minipage}
 \end{theorembox}
 
-
 \begin{theorembox}{Monotonie und Symmetrie von Potenzfunktionen mit ungeradem Exponenten}{ }
 	\begin{minipage}{0.35\textwidth}
 	\includegraphics[width=\textwidth]{../Mathematik_1/Bilder/potenzfunktionen_ungerade_exponenten.png}
@@ -69,35 +67,11 @@ Zunächst werden nur positive ganzzahlige Exponenten betrachtet. Für diese Potenz
 	\end{minipage}
 \end{theorembox}
 
-%\subsection{Hyperbeln} 
-%
-%Potenzfunktionen mit negativen ganzzahligen Exponenten wie $x \mapsto x^{-5}$ haben als Definitionsbereich maximal $\mathbb R\setminus \{0\}$. Auch der Verlauf dieser Funktionen hängt entscheidend davon ab, ob der Exponent gerade oder ungerade ist:
-%\begin{exabox}{Hyperbeln}{ }
-%	\centering
-%	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/07_Gerade_Hyperbeln.png}\hspace{2cm}
-%	\includegraphics[width=0.4\textwidth]{../Mathematik_1/Bilder/07_Ungerade_Hyperbeln.png}
-%\end{exabox}
-
 \subsection{Wurzelfunktionen}
 
-Die Monotonie- und Injektivitätseigenschaften der Potenzfunktionen bestimmen unmittelbar, ob und auf welchem Definitionsbereich sie umgekehrt werden können. Ihre Umkehrfunktionen führen zu den \textbf{Wurzelfunktionen} (\emph{root functions}).
+Die Monotonie- und Injektivitätseigenschaften der Potenzfunktionen bestimmen unmittelbar, ob und auf welchem Definitionsbereich sie umgekehrt werden können. Ihre Umkehrfunktionen führen zu den Wurzelfunktionen (\emph{root functions}).
 
-Für \(n\in\mathbb N^+\) wird die \(n\)-te Wurzel durch
-\[
-x\mapsto\sqrt[n]{x}=x^{1/n}
-\]
-beschrieben. 
-
-%Dabei muss wiederum zwischen geradem und ungeradem \(n\) unterschieden werden
-%
-%\[ 
-%\sqrt[n]{ \cdot }: \left\{ 
-%\begin{array}{ll} \mathbb R \to \mathbb R, & n \text{ ungerade},\\  [0,\infty) \to [0,\infty) & n \text{ gerade} \end{array} 
-%\right.
-%\]
-
-Ungeradzahlige Wurzeln sind die \underline{Umkehrfunktionen}\randverweis{MA1-eigenschaften-von-funktionen} der entsprechenden Potenzfunktionen. Ein Beispiel:
-
+Ungeradzahlige Wurzeln sind die \underline{Umkehrfunktionen}\randverweis{MA1-eigenschaften-von-funktionen} der entsprechenden Potenzfunktionen. 
 \begin{exabox}{Ungeradzahlige Wurzeln}{ }
 
   \begin{minipage}{0.4\textwidth}

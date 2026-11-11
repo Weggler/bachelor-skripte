@@ -21,18 +21,18 @@
   \end{tabularx}
 \end{table}
 
-\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema finden Sie hier: \hyperref[MA1-zahlenmengen-aufgaben]{Aufgaben}
+\ifintegriereaufgaben \noindent Übungsaufgaben zum Thema sind hier: \hyperref[MA1-zahlenmengen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
 
 \subsection{Natürliche, ganze und rationale Zahlen}
 
-Zum Zählen benötigt man die Zahlen $1,  2,  3,\dots$. Diese Menge von Zahlen nennt man die \textbf{natürlichen Zahlen} (\emph{natural numbers}) und führt das Symbol \(\mathbb N\) ein. Allerdings ist unklar, ob \(\mathbb N\) die Null beinhaltet oder nicht\footnote{In der Informatik zählt die Null meist dazu und in der Mathematik mal so mal so.} In diesem Skript werden Indizes eingeführt, die die Frage präzise klären: $\mathbb N_0$ enthält die Null und $\mathbb N^+$ nicht.\footnote{Wie lauten die Bedingungen in mathematischer Kurzschrift? \(0\in \mathbb N_0\) und \( \forall n\in \mathbb N^+: n>0\).}
+Zum Zählen benötigt man die Zahlen $1,  2,  3,\dots$. Diese Menge von Zahlen nennt man die natürlichen Zahlen (\emph{natural numbers}) und führt das Symbol \(\mathbb N\) ein. Allerdings ist unklar, ob \(\mathbb N\) die Null beinhaltet oder nicht\footnote{In der Informatik zählt die Null meist dazu und in der Mathematik mal so mal so.} In diesem Skript werden Indizes eingeführt, die die Frage präzise klären: $\mathbb N_0$ enthält die Null und $\mathbb N^+$ nicht.\footnote{Wie lauten die Bedingungen in mathematischer Kurzschrift? \(0\in \mathbb N_0\) und \( \forall n\in \mathbb N^+: n>0\).}
 
-Im Zahlenbereich $\mathbb Z$ der  \textbf{ganzen Zahlen}  (\emph{integers}) kommen die negativen ganzen Zahlen hinzu. 
+Im Zahlenbereich $\mathbb Z$ der ganzen Zahlen  (\emph{integers}) kommen die negativen ganzen Zahlen hinzu. 
 
-Kommen noch alle positiven und negativen Brüche hinzu, erhält man den Bereich der \textbf{rationalen Zahlen} \(\mathbb Q\) (\emph{rational numbers}).
+Kommen noch alle positiven und negativen Brüche hinzu, erhält man den Bereich der rationalen Zahlen \(\mathbb Q\) (\emph{rational numbers}).
 
 \begin{defbox}{Natürliche, ganze und rationale Zahlen: $\mathbb N$, $\mathbb Z$ und $\mathbb Q$}{ }
 \begin{eqnarray*}
@@ -65,13 +65,13 @@ Binomialkoeffizient &  \(\displaystyle{\binom{n}{k}} = \displaystyle{\frac{ n!}{
 \subsection{Reelle Zahlen}
 
 
-Um $x^{2}=2$ lösen zu können oder den Umfang eines Kreises mit Durchmesser $1$ als Zahl anzugeben, benötigt man einen größeren Zahlenbereich: den der \textbf{reellen Zahlen} $\mathbb R$ (\emph{real numbers}). 
+Um $x^{2}=2$ lösen zu können oder den Umfang eines Kreises mit Durchmesser $1$ als Zahl anzugeben, benötigt man einen größeren Zahlenbereich: den der reellen Zahlen $\mathbb R$ (\emph{real numbers}). 
 
 \begin{exabox}{Reelle Zahlen}{ }
 	$\displaystyle{\left\{-\ln(77)\,, \; \sqrt{2}\,, \; \pi\,, \; \frac{4}{28}\,, \; 38624983 \right\} \subset \mathbb R\,. }$
 \end{exabox}
 
-Die reellen Zahlen besitzen gegenüber den rationalen Zahlen eine weitere wichtige Eigenschaft: Sie sind \textbf{vollständig}\footnote{Vereinfacht gesprochen bedeutet die Vollständigkeit von \(\mathbb R\): Konvergente Näherungsverfahren, deren Werte reelle Zahlen sind und die sich immer weiter auf einen Wert festlegen, führen nicht aus dem Zahlenbereich \(\mathbb R\) hinaus.} Anschaulich bedeutet dies, dass der reelle Zahlenstrahl keine „Lücken“ besitzt. Eine solche Lücke tritt beispielsweise auf, wenn man versucht, \(\sqrt{2}\) ausschließlich mit rationalen Zahlen zu erfassen. Durch immer genauere rationale Näherungen kann man sich der Zahl \(\sqrt{2}\) beliebig weit annähern. Der Grenzwert dieser Näherungen ist jedoch selbst keine rationale Zahl. Innerhalb von \(\mathbb Q\) fehlt also genau die Zahl, auf die die Näherungen zulaufen.
+Die reellen Zahlen besitzen gegenüber den rationalen Zahlen eine weitere wichtige Eigenschaft: Sie sind \textbf{vollständig}\footnote{Vereinfacht gesprochen bedeutet die Vollständigkeit von \(\mathbb R\): Konvergente Näherungsverfahren, deren Werte reelle Zahlen sind und die sich immer weiter auf einen Wert festlegen, führen nicht aus dem Zahlenbereich \(\mathbb R\) hinaus.} Anschaulich bedeutet dies, dass der reelle Zahlenstrahl keine „Lücken“ besitzt. Eine solche Lücke tritt beispielsweise auf, wenn man versucht, \(\sqrt{2}\) ausschließlich mit rationalen Zahlen zu erfassen. Durch immer genauere rationale Näherungen kann man der Zahl \(\sqrt{2}\) beliebig nah kommen -- der Grenzwert dieser Näherungen ist jedoch selbst keine rationale Zahl. Innerhalb von \(\mathbb Q\) fehlt also genau die Zahl, auf die die Näherungen zulaufen.
 
 \begin{exabox}{Die Zahl \(\sqrt{2}\)}{ }
 Ein klassisches Beispiel für eine reelle Zahl, die nicht rational ist, ist \(\sqrt{2}\). Angenommen, es gäbe einen vollständig gekürzten Bruch
@@ -107,7 +107,7 @@ $$
 Es entstehen ineinander geschachtelte Intervalle mit rationalen Grenzen, die \(\sqrt{2}\) immer genauer festlegen. Dieses Verfahren heißt \textbf{Intervallschachtelung}.
 \end{exabox}
 
-Ein zusammenhängendes Stück der reellen Zahlen nennt man ein Intervall. Es gibt offene, halboffene oder abgeschlossene Intervalle -- je nachdem ob beide, nur eines oder beide Intervallenden dazugehören oder nicht. Möchte man ein Intervall aufschreiben, das bis ins Unendliche geht, dann benutzen wir für plus Unendlich das Unendlichkeitsymbol $\infty$ und für minus Unendlich entsprechend \(-\infty\).\footnote{Aufpassen: Unendlich ist keine reelle Zahl, sondern ein Symbol!} 
+Ein zusammenhängendes Stück der reellen Zahlen nennt man ein Intervall. Es gibt offene, halboffene oder abgeschlossene Intervalle -- je nachdem ob beide, nur eines oder beide Intervallenden dazugehören oder nicht. Möchte man ein Intervall aufschreiben, das bis ins Unendliche geht, dann benutzen wir für plus Unendlich das Symbol $\infty$ und für minus Unendlich entsprechend \(-\infty\).\footnote{Aufpassen: Unendlich ist keine reelle Zahl, sondern ein Symbol!} 
 \begin{exabox}{Intervalle}{ }
   \begin{itemize}
     \item $[0,1] = \{x\in \mathbb R: 0 \leq x \leq 1\}$,
@@ -118,7 +118,7 @@ Ein zusammenhängendes Stück der reellen Zahlen nennt man ein Intervall. Es gibt 
   \end{itemize}
 \end{exabox}
 
-Eine abschließende Bemerkung: viele reelle Zahlen haben zwei Schreibweisen - schauen Sie sich das an: \[\displaystyle{ 1 = 3\cdot \frac13 = 3 \cdot 0,\bar 3 = 0,\bar 9 \,.}\]
+Eine abschließende Bemerkung, die zum Nachdenken anregt: viele reelle Zahlen haben zwei Schreibweisen und hier ist ein Beispiel \[\displaystyle{ 1 = 3\cdot \frac13 = 3 \cdot 0,\bar 3 = 0,\bar 9 \,.}\]
 
 \subsection{Rechenregeln}
 
@@ -143,27 +143,23 @@ Subtraktion und Division sind dagegen weder assoziativ noch kommutativ!
 \end{itemize}
 \end{exabox}
 
-Die Zahlenbereiche $\mathbb{Q}$ und $\mathbb{R}$ besitzen eine wichtige zusätzliche Eigenschaft,
-die $\mathbb{N}_0$ und $\mathbb{Z}$ nicht haben:
+Die Zahlenbereiche $\mathbb{Q}$ und $\mathbb{R}$ besitzen eine wichtige zusätzliche Eigenschaft, die $\mathbb{N}_0$ und $\mathbb{Z}$ nicht haben:
 
 In $\mathbb{Q}$ und $\mathbb{R}$ kann man durch jede von $0$ verschiedene Zahl teilen.
 
-Der Grund dafür ist, dass zu jeder Zahl $a\neq 0$ eine Zahl $a^{-1}$ existiert,
-so dass
+Der Grund dafür ist, dass zu jeder Zahl $a\neq 0$ eine Zahl $a^{-1}$ existiert, so dass
 
 \[
 a \cdot a^{-1} = 1.
 \]
 
-Diese Zahl nennt man das \textbf{multiplikative Inverse} von $a$.
-Division durch $a$ entspricht also der Multiplikation mit $a^{-1}$:
+Diese Zahl nennt man das \textbf{multiplikative Inverse} von $a$.  Division durch $a$ entspricht also der Multiplikation mit $a^{-1}$:
 
 \[
 \frac{b}{a} = b \cdot a^{-1}.
 \]
 
-In den natürlichen Zahlen $\mathbb{N}_0$ oder den ganzen Zahlen $\mathbb{Z}$ ist
-dies im Allgemeinen nicht möglich. Die Gleichung 
+In den natürlichen Zahlen $\mathbb{N}_0$ oder den ganzen Zahlen $\mathbb{Z}$ ist dies im Allgemeinen nicht möglich. Die Gleichung 
 
 \[
 2 \cdot x = 1
@@ -173,7 +169,7 @@ hat keine Lösung in $\mathbb{Z}$ - die Lösung \(x = \frac12\) ist eine rationale
 
 In den Zahlenbereichen $\mathbb{Q}$ und $\mathbb{R}$ gelten die üblichen Rechenregeln (Assoziativ-, Kommutativ- und Distributivgesetz), und jede von $0$ verschiedene Zahl besitzt ein multiplikatives Inverses.  Deshalb kann man in diesen Zahlenbereichen beliebig addieren, subtrahieren, multiplizieren und durch von $0$ verschiedene Zahlen teilen.
 
-Die Zahlenbereiche \(\mathbb Q\) und \(\mathbb R\) besitzen damit eine gemeinsame algebraische Struktur: Beide sind sogenannte \textbf{Körper} (\emph{fields}). Der Begriff fasst genau die Eigenschaften zusammen, die für das Rechnen mit Addition, Subtraktion, Multiplikation und Division benötigt werden.
+Die Zahlenbereiche \(\mathbb Q\) und \(\mathbb R\) besitzen damit eine gemeinsame \textbf{algebraische Struktur}: Beide sind sogenannte Körper (\emph{fields}). 
 
 \begin{defbox}{Körper}{ }
 Eine Menge \(\mathbb K\) mit einer Addition \(+\) und einer Multiplikation \(\cdot\) heißt Körper, wenn für alle \(a,b,c\in\mathbb K\) gilt:
@@ -197,32 +193,34 @@ $$
 \end{itemize}
 \end{defbox}
 
-Entscheidend ist dabei, dass die Ergebnisse der Rechenoperationen wieder im selben Zahlenbereich liegen. 
-
-Im Unterschied zu \(\mathbb Q\) ist \(\mathbb R\) vollständig. Die Begriffe \textbf{Körper} und \textbf{Vollständigkeit} beschreiben also unterschiedliche Eigenschaften eines Zahlenbereichs.
-
-Der Begriff des Körpers wird später bei der Definition eines Vektorraums wieder auftreten: Die Skalare, mit denen Vektoren multipliziert werden, stammen aus einem Körper \(\mathbb K\). In diesem Skript wird dabei meist \(\mathbb K=\mathbb R\) gelten.
+\noindent{\textbf{Bemerkungen:}}
+\begin{itemize}
+	\item Rechnet man in einem Körper, dann liegen die Ergebnisse der Rechenoperationen wieder im selben Zahlenbereich. 
+	\item Im Unterschied zu \(\mathbb Q\) ist \(\mathbb R\) vollständig. Die Begriffe \textbf{Körper} und \textbf{Vollständigkeit} beschreiben also unterschiedliche Eigenschaften eines Zahlenbereichs.
+	\item Der Begriff des Körpers wird später bei der Definition eines Vektorraums wieder auftreten: Die Skalare, mit denen Vektoren multipliziert werden, stammen aus einem Körper \(\mathbb K\). In diesem Skript wird dabei meist \(\mathbb K=\mathbb R\) gelten.
+\end{itemize}
 
 \subsubsection*{Summen- und Produktzeichen}
 
 Die Liste an mathematischen Symbolen, die man aus Effizienzgründen einführt, erweitern wir noch um das Summen- und das Produktzeichen.\marginpar{Aufgabe} 
 
-	Es sei \(f_k\) ein mathematischer Ausdruck, der von der Variable \(k\) abhängt. Mit \(f_1\) ist dann gemeint: setze in dem mathematischen Ausdruck  \(k=1\), mit \(f_a\) ist entsprechend \(k=a\) zu setzen.
+	Es sei \(f_k\) ein mathematischer Ausdruck, der von der Variable \(k\) abhängt. Mit \(f_1\) ist dann gemeint: setze in dem mathematischen Ausdruck  \(k=1\), mit \(f_2\) ist entsprechend \(k=2\) zu setzen und so weiter.
 \begin{defbox}{Summen- und Produktzeichen}{ }
 	\begin{center}
 	\begin{tabular}{l|l|l }
 Name & Symbol & Wertebereich  \\
 \hline
-Summenzeichen & \(\displaystyle{ \sum_{k=a}^b} f_k = f_a + f_{a+1} + \dots + f_b \) &  \(f_k \in \mathbb R, \; a\leq b \in \mathbb N_0\) \\[2ex] 
-Produktzeichen & \(\displaystyle{ \prod_{k=a}^b} f_k = f_a \cdot f_{a+1} \cdot \dots \cdot f_b \) &  \(f_k\in \mathbb R, \, a\leq b \in \mathbb N_0\) 
+Summenzeichen & \(\displaystyle{ \sum_{k=0}^n} f_k = f_0 + f_{1} + \dots + f_n \) &  \(f_k \in \mathbb R, \; n \in \mathbb N_0\) \\[2ex] 
+Produktzeichen & \(\displaystyle{ \prod_{k=0}^n} f_k = f_0 \cdot f_{1} \cdot \dots \cdot f_n \) &  \(f_k\in \mathbb R, \, n \in \mathbb N_0\) 
 \end{tabular}
 \end{center} 
 \end{defbox}
 
+
 \begin{exabox}{Summen- und Produktzeichen}{ }
 	\begin{eqnarray*} 
-		\sum\limits_{k=3}^{6} (1+k)^{k-1} &=& (1+3)^{3-1} + (1+4)^{4-1} + (1+5)^{5-1}+ (1+6)^{6-1} = 4^2+5^3+6^4+7^5 \,,\\
-		\prod\limits_{k=1}^{3} x^k &=& x\cdot x^2\cdot x^3 = x^{6}\,.
+		\sum\limits_{k=0}^{3} (1+k)^{k-1} &=& (1+0)^{0-1} + (1+1)^{1-1} + (1+2)^{2-1}+ (1+3)^{3-1} = 1+1+3+16 = 21 \,,\\
+		\prod\limits_{k=0}^{3} x^k &=& 1\cdot x\cdot x^2\cdot x^3 = x^{6}\,.
 	\end{eqnarray*}
 \end{exabox}
 
