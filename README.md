@@ -9,11 +9,11 @@ Skripte, Übungsaufgaben, Lösungen und ergänzende Lehrmaterialien von Prof. Dr
 | Mathematik 1: Gesamtskript mit Aufgaben und Lösungen | [Mathematik_1_Skript/MA1.tex](Mathematik_1_Skript/MA1.tex) |
 | Mathematik 1: einzelne Themenblöcke und Aufgabenhefte | [Mathematik_1_Sections](Mathematik_1_Sections) |
 | Mathematik 1: fachliche Quelldateien, Bilddateien und Leitideen | [Mathematik_1](Mathematik_1) |
-| Mathematik 1: Aufgaben, Lösungen und Ergänzungen | [Material_1](Material_1) |
+| Mathematik 1: Aufgaben, Lösungen und Ergänzungen | [Mathematik_1_Material](Mathematik_1_Material) |
 | Mathematik 2: Gesamtskript einschließlich Mathematik 1 | [Mathematik_2_Skript/MA2.tex](Mathematik_2_Skript/MA2.tex) |
 | Mathematik 2: einzelne Themenblöcke und Aufgabenhefte | [Mathematik_2_Sections](Mathematik_2_Sections) |
 | Mathematik 2: fachliche Quelldateien, Bilddateien und Leitideen | [Mathematik_2](Mathematik_2) |
-| Mathematik 2: Aufgaben, Lösungen und Ergänzungen | [Material_1](Material_2) |
+| Mathematik 2: Aufgaben, Lösungen und Ergänzungen | [Mathematik_2_Material](Mathematik_2_Material) |
 | Semesterbezogene Kursinformationen | [Kursorganisation](Kursorganisation) |
 
 Die Struktur von Mathematik 1 und 2 ist vereinheitlicht: sprechende Inhaltsnamen,

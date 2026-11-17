@@ -4,8 +4,8 @@ Die Inhaltsdateien tragen sprechende Namen. Ihre Reihenfolge und die sichtbare
 Abschnittsnummerierung entstehen durch die Einbindungen im jeweiligen Hauptdokument.
 
 Zu jedem Thema gehören die Inhaltsdatei in diesem Ordner sowie
-`<thema>_aufgaben.tex` in `Material_1/aufgaben` und
-`<thema>_loesungen.tex` in `Material_1/loesungen`.
+`<thema>_aufgaben.tex` in `Mathematik_1_Material/aufgaben` und
+`<thema>_loesungen.tex` in `Mathematik_1_Material/loesungen`.
 Labels folgen dem Schema `MA1-thema`, `MA1-thema-aufgaben` und
 `MA1-thema-loesungen`, jeweils mit Bindestrichen statt Unterstrichen.
 Diese Labels werden auch aus Mathematik 2 verwendet.
