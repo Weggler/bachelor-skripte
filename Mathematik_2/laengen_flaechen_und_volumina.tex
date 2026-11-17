@@ -14,15 +14,15 @@
     \tabitem Flächenschwerpunkte mit Hilfe von Integralen berechnen & \\[.5\normalbaselineskip]
     \midrule
     \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
-    \tabitem Integrale geometrisch interpretieren können & \abschnittsverweis{MA2-integration}  \\
-    \tabitem Integrale berechnen können & \abschnittsverweis{MA2-integrationsregeln} \\
-    \tabitem Ableitungen berechnen können & \abschnittsverweis{MA1-ableitungsregeln}  \\
-    \tabitem Determinanten geometrisch interpretieren und berechnen können & \abschnittsverweis{MA1-determinante-und-inverse} \\[.5\normalbaselineskip]
+    \tabitem geometrische Interpretation des Integrals & \abschnittsverweis{MA2-integration}  \\
+    \tabitem Integralrechnung & \abschnittsverweis{MA2-integrationsregeln} \\
+    \tabitem Ableitungsregeln & \abschnittsverweis{MA1-ableitungsregeln}  \\
+    \tabitem Determinanten und ihre geometrische Bedeutung & \abschnittsverweis{MA1-determinante-und-inverse} \\[.5\normalbaselineskip]
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-laengen-flaechen-und-volumina-aufgaben]{hier}.
+\noindent \ifintegriereaufgaben Übungsaufgaben zum Thema sind hier: \hyperref[MA2-laengen-flaechen-und-volumina-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
@@ -54,7 +54,7 @@ Außerdem ist sie null für $r=0$ und damit $C=0$, also:
 	V = b\cdot t \cdot h = A\cdot h\,,.
 \]
 \item \textbf{Gerader Zylinder:} Wenn man die Querschnittsfläche  eines Quaders auf der gesamten Höhe gleichartig umformt, dann erählt man einen geraden Zylinder, dessen Volumen genau dem des Quaders entspricht. Denken Sie an Knete!
-\item \textbf{Prisma:} Wenn man die Querschnittsfläche \(A\) eines Quaders in ein  Vieleck [polygon] gleichen Flächeninhalts umformt, dann spricht man von einem Prisma. Das Prisma hat dasselbe Volumen wie der Quader, wenn die Querschnittsflächen denselben Flächeninhalt haben. (Spezialfall des geraden Zylinders)
+\item \textbf{Prisma:} Wenn man die Querschnittsfläche \(A\) eines Quaders in ein  Vieleck (\emph{polygon}) gleichen Flächeninhalts umformt, dann spricht man von einem Prisma. Das Prisma hat dasselbe Volumen wie der Quader, wenn die Querschnittsflächen denselben Flächeninhalt haben. (Spezialfall des geraden Zylinders)
 \item \textbf{Schiefer Zylinder:} Stellt man sich einen geraden Zylinder als einen Stapel von Bierdeckeln vor, dann kann man ihn neigen ohne sein Volumen oder seine Höhe zu ändern. Es ergibt sich ein schiefer Zylinder.
 \item \textbf{Pyramide:} Ein Würfel mit Kantenlänge $a$ zerfällt in sechs regelmäßiger Pyramiden der quadratischer Grundfläche $a^2$ und Höhe $a/2$. Also ist das Volumen einer Pyramide:
 	\[
@@ -81,7 +81,7 @@ mit einer \underline{differenzierbaren Funktion}\randverweis{MA1-ableitungsregel
 \[
 	(\Delta s)^2 = (\Delta x)^2 + (\Delta y)^2 = (\Delta x)^2 + \left( f' (x) \cdot \Delta x\right)^2  \Rightarrow \Delta s=  \Delta x \sqrt{1 + f'(x)}\,.
 \]
-Summieren wir nun über all die Inkremente $\Delta s$, dann erhalten wir eine Approximation der Länge des Graphen. Das Maßband, das wir anlegen ist ein stückweiser Polygonzug. Gehen wir zum Grenzwert über, dann erhalten wir die sogenannte Bogenlänge [arc length]:\marginpar{\small Aufgabe}
+Summieren wir nun über all die Inkremente $\Delta s$, dann erhalten wir eine Approximation der Länge des Graphen. Das Maßband, das wir anlegen ist ein stückweiser Polygonzug. Gehen wir zum Grenzwert über, dann erhalten wir die sogenannte Bogenlänge (\emph{arc length}):\marginpar{\small Aufgabe}
 
 \begin{defbox}{Bogenlänge}{ }
 	\begin{minipage}{0.3\textwidth}
@@ -124,7 +124,7 @@ wobei $\gamma'(t) = \left( x'(t), y'(t), z'(t)\right)^\intercal$.
 
 \subsection{Rotationssymmetrische Körper}
 
-Ein Rotationskörper [solid of revolution] entstehe durch Rotation des Funktionsgraphen $f: x \mapsto f(x) \geq 0$ um die $x$-Achse. An der Stelle $x$ ist seine Querschnittfläche also eine Kreisscheibe mit dem Radius $f(x)$. %(Hier wird nicht der Fall betrachtet, dass der Graph z. B. um die $z$-Achse gedreht wird!)
+Ein Rotationskörper (\emph{solid of revolution}) entstehe durch Rotation des Funktionsgraphen $f: x \mapsto f(x) \geq 0$ um die $x$-Achse. An der Stelle $x$ ist seine Querschnittfläche also eine Kreisscheibe mit dem Radius $f(x)$. %(Hier wird nicht der Fall betrachtet, dass der Graph z. B. um die $z$-Achse gedreht wird!)
 Wieder im Sinne eines Stapels von Bierdeckeln ist das Volumen $V$ des Körpers zwischen $x=a$ und $x=b$:
 \begin{center}
 		\includegraphics[width=0.8\textwidth]{../Mathematik_2/Bilder/integration_rotationskoerper_scheibenmethode.png}

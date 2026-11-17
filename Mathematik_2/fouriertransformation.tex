@@ -12,13 +12,13 @@
     \tabitem die Bedeutung der Fourier-Transformation im Frequenzraum erläutern & \\[.5\normalbaselineskip]
     \midrule
     \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
-    \tabitem uneigentliche Integrale berechnen können & \abschnittsverweis{MA2-integration}  \\
-    \tabitem Grenzwerte sicher bilden können & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}  \\[.5\normalbaselineskip]
+    \tabitem uneigentliche Integralrechnung & \abschnittsverweis{MA2-integration}  \\
+    \tabitem Grenzwerte von Folgen und Funktionen & \abschnittsverweis{MA1-grenzwerte-von-folgen-und-funktionen}  \\[.5\normalbaselineskip]
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-fouriertransformation-aufgaben]{hier}.
+\noindent \ifintegriereaufgaben Übungsaufgaben zum Thema sind hier: \hyperref[MA2-fouriertransformation-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
@@ -75,12 +75,12 @@ Der \textcolor{blue}{ blau eingefärbte Term} ist die Fourier-Transformierte \( \
 Die (kontinuierliche) Fourier-Transformierte $\hat f$ einer Funktion $f$ (zu Einschränkungen siehe den vorigen Abschnitt) wird definiert durch:
 \begin{defbox}{Fourier-Transformation und inverse Fourier-Transformation}{ }
 	\begin{itemize}
-		\item Die Abbildung \(\mathcal F: f\to \hat f\) nennt man die Fouiertransformation [Fourier transform]. Die Fouriertransformation ist ein Basiswechsel: vom Zeitbereich in den Frequenzbereich.
+		\item Die Abbildung \(\mathcal F: f\to \hat f\) nennt man die Fouiertransformation (\emph{Fourier transform}). Die Fouriertransformation ist ein Basiswechsel: vom Zeitbereich in den Frequenzbereich.
 		\item Die Fourier-Transformierte \(\hat f\) zu einer Funktion $f$ berechnet sich wie folgt:
 	\[
 		\hat f(\omega) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} f(t)\cdot e^{-i\, \omega\, t}\, \mathrm{d}t\,.
 	\]
-\item Die Abbildung \(\mathcal F^{-1}: \hat f\to f\) nennt man die inverse Fouiertransformation [inverse Fourier transform]. Die inverse Fouriertransformation ist ein Basiswechsel: vom Frequenzbereich in den Zeitbereich.
+\item Die Abbildung \(\mathcal F^{-1}: \hat f\to f\) nennt man die inverse Fouiertransformation (\emph{inverse Fourier transform}). Die inverse Fouriertransformation ist ein Basiswechsel: vom Frequenzbereich in den Zeitbereich.
 \item Die Funktion \(f\) kann man bei gegebener Fourier-Transformierten \(\hat f\) wie folgt berechnen:
 	\[
 		f(t) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} \hat f(\omega)\cdot  e^{i\,\omega\, t} \, \mathrm{d}\omega\,.

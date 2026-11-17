@@ -13,13 +13,13 @@
     \tabitem den Einfluss der Schrittweite auf Genauigkeit und Stabilität beurteilen & \\[.5\normalbaselineskip]
     \midrule
     \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
-    \tabitem das Konzept der Linearisierung anwenden können & \abschnittsverweis{MA1-lokale-linearitaet}\\
-    \tabitem Differentialgleichungen erster Ordnung kennen & \abschnittsverweis{MA2-differentialgleichungen} \\[.5\normalbaselineskip]
+    \tabitem lokale Linearisierung & \abschnittsverweis{MA1-lokale-linearitaet}\\
+    \tabitem Differentialgleichungen erster Ordnung & \abschnittsverweis{MA2-differentialgleichungen} \\[.5\normalbaselineskip]
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-numerische-loesung-von-differentialgleichungen-aufgaben]{hier}.
+\noindent \ifintegriereaufgaben Übungsaufgaben zum Thema sind hier: \hyperref[MA2-numerische-loesung-von-differentialgleichungen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
@@ -31,7 +31,7 @@
 Die Differentialgleichungen der meisten interessanten Modelle können nicht mit Bleistift und Papier gelöst werden (etwa mittels Variation der Konstanten oder mittels Trennung der Variablen). Die Lösungs\-funktionen von Differentialgleichungen lassen sich typischerweise nicht einmal mit Standardfunktionen wie $\sin$ und $\exp$ hinschreiben. Also versucht man, die Lösungs\-funktionen numerisch zu bestimmen, also Wertetabellen aufzustellen. Das geht immer nur mehr oder weniger genau!
 % Demo für eine Physik-Simulation mit Maxon Cinema 4D.
 
-Die Differentialgleichung wird in einen numerischen Löser hineingegeben [numerical integrator], der dann eine Wertetabelle bestimmt. Typischerweise erwarten numerische Löser Anfangswertprobleme in der Form
+Die Differentialgleichung wird in einen numerischen Löser (\emph{numerical integrator}) hineingegeben, der dann eine Wertetabelle bestimmt. Typischerweise erwarten numerische Löser Anfangswertprobleme in der Form
 \[ \begin{cases}
 		y(x_0) = y_0\,,\quad & x=x_0\,,\\
 		y'(x) =  f(y(x),x)\,, \quad & x>x_0\,.
@@ -155,7 +155,7 @@ Anders als beim expliziten Verfahren, ist ein Gleichungssystem zu lösen\randverw
 
 	\noindent Bemerkungen:
 	\begin{itemize}
-		\item Implizite Löser sind hilfreich beim Umgang mit steifen [stiff] Systemen. So heißen Systeme von Differentialgleichungen, in denen sehr verschieden schnelle Abklingverhalten gemischt werden. Die Anteile mit dem schnellen Abklingverhalten erzwingen gegebenenfalls eine entsprechend kleine Schrittweite.
+		\item Implizite Löser sind hilfreich beim Umgang mit steifen (\emph{stiff}) Systemen. So heißen Systeme von Differentialgleichungen, in denen sehr verschieden schnelle Abklingverhalten gemischt werden. Die Anteile mit dem schnellen Abklingverhalten erzwingen gegebenenfalls eine entsprechend kleine Schrittweite.
 	\end{itemize}
 
 \subsection{Symplektische Verfahren für Differentialgleichungen zweiter Ordnung}

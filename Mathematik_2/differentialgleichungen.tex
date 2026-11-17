@@ -12,24 +12,24 @@
     \tabitem Anfangswertprobleme erster Ordnung geometrisch verstehen & \\[.5\normalbaselineskip]
     \midrule
     \textbf{Voraussetzungen} &  \\[.5\normalbaselineskip]
-    \tabitem Ableitungen berechnen können & \abschnittsverweis{MA1-ableitungsregeln}  \\
-    \tabitem unterschiedliche Notationen für Ableitungen beliebiger Ordnung kennen &  \\[.5\normalbaselineskip]
+    \tabitem Ableitungsregeln & \abschnittsverweis{MA1-ableitungsregeln}  \\
+    \tabitem Notationen für Ableitungen beliebiger Ordnung &  \\[.5\normalbaselineskip]
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-differentialgleichungen-aufgaben]{hier}.
+\noindent \ifintegriereaufgaben Übungsaufgaben zum Thema sind hier: \hyperref[MA2-differentialgleichungen-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
 
 \subsection{Woher kommen Differentialgleichungen?}
 
-Deterministische dynamische Systeme [dynamical systems] modellieren zeitliche Entwicklungen und Regelungsprozesse – in der Physik, der Elektrotechnik, der Automatisierungstechnik, der Klimaforschung ebenso wie der Volkswirtschaft. Typischerweise leistet der Zufall seinen Beitrag, zum Beispiel durch Messungenauigkeiten oder quantenmechanische Effekte. Aber oft kann man den Zufall weitgehend ignorieren und sich nur mit deterministischen dynamischen Systemen befassen. Nur um diese geht es im Folgenden.
+Deterministische dynamische Systeme (\emph{dynamical systems}) modellieren zeitliche Entwicklungen und Regelungsprozesse – in der Physik, der Elektrotechnik, der Automatisierungstechnik, der Klimaforschung ebenso wie der Volkswirtschaft. Typischerweise leistet der Zufall seinen Beitrag, zum Beispiel durch Messungenauigkeiten oder quantenmechanische Effekte. Aber oft kann man den Zufall weitgehend ignorieren und sich nur mit deterministischen dynamischen Systemen befassen. Nur um diese geht es im Folgenden.
 
 Zwei Informationen definieren ein dynamisches System:
 \begin{itemize}
-	\item Die Beschreibung der Zustände [states]: Zu jedem Zeitpunkt ist das dynamische System in einem bestimmten Zustand. Der aktuelle Zustand umfasst dabei alles, was die zukünftige Entwicklung bestimmt. Die Menge aller denkbaren Zustände heißt Zustandsraum [state space] oder auch Phasenraum [phase space].
+	\item Die Beschreibung der Zustände (\emph{states}): Zu jedem Zeitpunkt ist das dynamische System in einem bestimmten Zustand. Der aktuelle Zustand umfasst dabei alles, was die zukünftige Entwicklung bestimmt. Die Menge aller denkbaren Zustände heißt Zustandsraum (\emph{state space}) oder auch Phasenraum (\emph{phase space}).
 	\item Die Angabe eines Entwicklungsgesetzes: Es gibt eine Regel, die eindeutig festlegt, wie sich der Zustand von einem Zeitpunkt zum nächsten entwickelt.
 \end{itemize}
 
@@ -162,7 +162,7 @@ Der Schwingkreis ist damit ein prototypisches Beispiel für ein zeitkontinuierlic
 
 \subsection{Typen von Differentialgleichungen}
 
-Zeitkontinuierliche dynamische Systeme werden typischerweise mit Differentialgleichungen beschrieben. Differentialgleichungen sind Gleichungen, in denen eine Ableitung oder mehrere Ableitungen einer Funktion und gegebenenfalls die Funktion selbst auftreten. Anders als beim Lösen einer Gleichung ist die Lösung einer Differentialgleichung eine Funktion und kein Wert. Das ist also eine Differentialgleichung [differential equation] und die gesuchte Größe ist die Funktion $f$:
+Zeitkontinuierliche dynamische Systeme werden typischerweise mit Differentialgleichungen beschrieben. Differentialgleichungen sind Gleichungen, in denen eine Ableitung oder mehrere Ableitungen einer Funktion und gegebenenfalls die Funktion selbst auftreten. Anders als beim Lösen einer Gleichung ist die Lösung einer Differentialgleichung eine Funktion und kein Wert. Das ist also eine Differentialgleichung (\emph{differential equation}) und die gesuchte Größe ist die Funktion $f$:
 		\[
 			f'(x) = 3\cdot f(x) + x^2\,.
 		\]
@@ -177,18 +177,18 @@ Zeitkontinuierliche dynamische Systeme werden typischerweise mit Differentialgle
 
 		\begin{defbox}{Klassifikationen von Differentialgleichungen}{ }
 			\begin{itemize}
-				\item Die Ordnung [order] einer Differentialgleichung gibt an, was die höchste Ableitung ist, die in der Differentialgleichung vorkommt. Zum Beispiel ist das eine Differentialgelichung der Ordung zwei:  \[ y'' - \sin(x)\cdot y = \left( y'\right)^2\,. \]
-				\item In einer expliziten [explicit] Differentialgleichung steht die höchste Ableitung isoliert auf einer Seite und kommt ansonsten nicht vor. Zum Beispiel: \[ y'' = \sin(x)\cdot y  + \left( y'\right)^2\,. \]
-				\item In einer impliziten [implicit] Differentialgleichung läßt sich die höchste Ableitung nicht isolieren. Zum Beispiel: \[\sin(y'' + x^2) = y'\,. \]
-				\item In einer linearen [linear] Differentialgleichung tritt nur eine Summe von Vielfachen der Funktion und ihrer Ableitungen auf. Diese Vielfachen dürfen allerdings Funktionen der unabhängigen Variablen sein.  Zum Beispiel  \[\sin(x) \cdot y'' - 17 \cdot y' + x^2\cdot y = \cos(x) \,.\]
-				\item Falls die Vielfachen einer linearen Differentialgleichung nicht Funktionen, sondern Konstanten sind, hat man eine lineare Differentialgleichung mit konstanten Koeffizienten [constant coefficients]. Die Inhomogenität darf dabei aber weiter eine Funktion sein. Zum Beispiel:   \[ 3\cdot y'' - 4\cdot y' + 7\cdot y = \cos(x)\,.\]
+				\item Die Ordnung (\emph{order}) einer Differentialgleichung gibt an, was die höchste Ableitung ist, die in der Differentialgleichung vorkommt. Zum Beispiel ist das eine Differentialgelichung der Ordung zwei:  \[ y'' - \sin(x)\cdot y = \left( y'\right)^2\,. \]
+				\item In einer expliziten (\emph{explicit}) Differentialgleichung steht die höchste Ableitung isoliert auf einer Seite und kommt ansonsten nicht vor. Zum Beispiel: \[ y'' = \sin(x)\cdot y  + \left( y'\right)^2\,. \]
+				\item In einer impliziten (\emph{implicit}) Differentialgleichung läßt sich die höchste Ableitung nicht isolieren. Zum Beispiel: \[\sin(y'' + x^2) = y'\,. \]
+				\item In einer linearen (\emph{linear}) Differentialgleichung tritt nur eine Summe von Vielfachen der Funktion und ihrer Ableitungen auf. Diese Vielfachen dürfen allerdings Funktionen der unabhängigen Variablen sein.  Zum Beispiel  \[\sin(x) \cdot y'' - 17 \cdot y' + x^2\cdot y = \cos(x) \,.\]
+				\item Falls die Vielfachen einer linearen Differentialgleichung nicht Funktionen, sondern Konstanten sind, hat man eine lineare Differentialgleichung mit konstanten Koeffizienten (\emph{constant coefficients}). Die Inhomogenität darf dabei aber weiter eine Funktion sein. Zum Beispiel:   \[ 3\cdot y'' - 4\cdot y' + 7\cdot y = \cos(x)\,.\]
 	\end{itemize}
 		\end{defbox}
 
 		\noindent Bemerkungen:
 
 		\begin{itemize}
-			\item Die Differentialgleichungen, in denen nur nach einer Unabhängigen abgeleitet wird, heißen "\, gewöhnliche Differentialgleichungen"\, [ordinary differential equations]. Nur um solche geht es hier.
+			\item Die Differentialgleichungen, in denen nur nach einer Unabhängigen abgeleitet wird, heißen "\, gewöhnliche Differentialgleichungen"\, (\emph{ordinary differential equations}). Nur um solche geht es hier.
 			\item Differentialgleichungen, in denen mehrere unabhängige Variablen auftauchen, heißen partielle Differentialgleichungen. Partielle Differentialgleichungen werden hier nicht betrachtet.
 			\item Die Bezeichnung "\,explizit"\, ist nicht überall gleich definiert. Ist eine explizite Differentialgleichung eine, die nach der höchsten Ableitung aufgelöst ist? Oder aber eine wie $\frac{ \mathrm{d} y}{\mathrm{d}x} +7=x$, die man leicht nach der höchsten Ableitung auflösen kann? Einige Autoren verwenden auch den Begriff "\,explizite Form"\,, wenn die Gleichung nach der höchsten Ableitung aufgelöst ist.
 				Wir nennen eine Differentialgleichung explizit, wenn sie in expliziter Form gegeben ist.

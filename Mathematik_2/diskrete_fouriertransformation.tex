@@ -13,19 +13,19 @@
     \tabitem die DFT als lineare Abbildung $\mathbb C^N\to\mathbb C^N$ in Matrixform darstellen & \\[.5\normalbaselineskip]
     \midrule
     \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
-    \tabitem mit komplexen Zahlen in Polarform rechnen können (Einheitswurzeln, $e^{i\varphi}$) &  \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
-    \tabitem Fourier-Reihen bzw.\ Fourierpolynome als Überlagerung harmonischer Schwingungen verstehen &  \abschnittsverweis{MA2-fourierreihen} \\
-    \tabitem mit Matrizen und Matrix-Vektor-Produkten umgehen können &  \abschnittsverweis{MA1-matrizen} \\
+    \tabitem komplexe Zahlen in Polarform (Einheitswurzeln, $e^{i\varphi}$) &  \abschnittsverweis{MA1-komplexe-zahlen-polarform-und-euler} \\
+    \tabitem Fourier-Reihen und Fourierpolynome als Überlagerung harmonischer Schwingungen &  \abschnittsverweis{MA2-fourierreihen} \\
+    \tabitem Matrizen und Matrix-Vektor-Produkte &  \abschnittsverweis{MA1-matrizen} \\
     \bottomrule
   \end{tabularx}
 \end{table}
 
-\noindent \ifintegriereaufgaben Die Übungsaufgaben zum Thema finden Sie \hyperref[MA2-diskrete-fouriertransformation-aufgaben]{hier}.
+\noindent \ifintegriereaufgaben Übungsaufgaben zum Thema sind hier: \hyperref[MA2-diskrete-fouriertransformation-aufgaben]{Aufgaben}
 \vspace{0.3cm}
 \hrule
 \fi
 
-Aus dem vorigen Abschnitt wissen wir, dass man für eine periodische, stückweise stetig differenzierbare Funktion \(u\) ein Spektrum [Fourier analysis] bestimmen kann: anhand des Spektrums lässt sich ablesen, welche harmonischen Schwingungen zum Signal \(f\) beitragen. In der Praxis liegen Signale aber oft nur diskret abgetastet, schlussendlich also als Menge von Messpunkten \(\left\{ \left( t_n, u_n\right), \; n=0,\cdots,N-1\right\} \), vor.
+Aus dem vorigen Abschnitt wissen wir, dass man für eine periodische, stückweise stetig differenzierbare Funktion \(u\) durch Fourier-Analyse (\emph{Fourier analysis}) ein Spektrum bestimmen kann: anhand des Spektrums lässt sich ablesen, welche harmonischen Schwingungen zum Signal \(f\) beitragen. In der Praxis liegen Signale aber oft nur diskret abgetastet, schlussendlich also als Menge von Messpunkten \(\left\{ \left( t_n, u_n\right), \; n=0,\cdots,N-1\right\} \), vor.
 
 \begin{exabox}{Ausganglage}{ }
 \begin{minipage}{0.3\textwidth}
@@ -107,7 +107,7 @@ Es gibt also nur \(N\) unterschiedliche Zahlen der Bauart \( W_N^k\) und genau d
 \subsection{Diskrete Fouriertransformationen}
 
 \vspace{0.4cm}
-Die diskrete Fouriertransformation [DFT] lautet:
+Die diskrete Fouriertransformation (\emph{discrete Fourier transform}, DFT) lautet:
 
 \begin{equation}\label{MA2-dft}
 \mbox{DFT}: \left\{ u_n,\, n=0,\cdots,N-1\right\} \mapsto  \left\{ \tilde c_k, k=0,\cdots,N-1\right\}, \; \tilde c_k = \sum\limits_{n=0}^{N-1} u_n \cdot W_N^{k\,n} \,. \end{equation}
@@ -116,7 +116,7 @@ Bei gegebener DFT (gegebenem Spektrum) lässt sich ein Fourierpolynom definieren.
 \begin{equation}\label{diskretes_fourier_polynom}
 	\mbox{Fourier-Synthese}: \; \left\{ \tilde c_k,\, k=0,\cdots,N-1\right\} \mapsto  g(t) = \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k\cdot  e^{i \,\omega_k \, t }\,, \quad \omega_k = k\cdot \dfrac{2\pi}{T}\,.
 \end{equation}
-Das Fourierpolynom \(g\) \textbf{interpoliert} die gegebenen \(N\) Samples und das bedeutet\marginpar{{\small Aufgabe}} \[\mbox{Interpolationseigenschaft:} \quad g(t_n) = u_n \; \textnormal{für alle } n=0,\cdots,N-1\,. \] Die Interpolationseigenschaft lässt sich auch wie folgt lesen: eine DFT definiert ein Fourierpolynom \(g\), aus dem man die Messwerte im Zeitbereich generieren oder zurückgewinnen kann. Es ergibt sich die Umkehrabbildung zur DFT \eqref{MA2-dft}, man nennt sie die inverse Diskrete Fouriertransformation [iDFT]: \[\begin{array}{l rcl} \mbox{Interpolationseigenschaft:} & u_n &=& g(t_n) \\[2ex] t_n \mbox{ in } g \mbox{ einsetzen:} & &=& \dfrac{1}{N} \cdot \sum\limits_{k=0}^{N-1}\tilde c_k\cdot  e^{i\, k \,\frac{2\pi}{T} \,  t_n} \\[2ex] t_n=n\cdot \frac{T}{N} \mbox{ ersetzen:} & &=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot  e^{i \,\frac{2\pi}{T} \, k \, n \cdot \frac{T}{N} } \\ \mbox{vereinfachen:} & &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \left( \textcolor{blue}{ e^{-i \, \frac{2\pi}{N} }} \right)^{-k \, n } \\ W_N \mbox{ identifizieren:} &  &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \textcolor{blue}{ W_N}^{-k\, n }\,. \end{array} \]
+Das Fourierpolynom \(g\) \textbf{interpoliert} die gegebenen \(N\) Samples und das bedeutet\marginpar{{\small Aufgabe}} \[\mbox{Interpolationseigenschaft:} \quad g(t_n) = u_n \; \textnormal{für alle } n=0,\cdots,N-1\,. \] Die Interpolationseigenschaft lässt sich auch wie folgt lesen: eine DFT definiert ein Fourierpolynom \(g\), aus dem man die Messwerte im Zeitbereich generieren oder zurückgewinnen kann. Es ergibt sich die Umkehrabbildung zur DFT \eqref{MA2-dft}, man nennt sie die inverse Diskrete Fouriertransformation (\emph{inverse discrete Fourier transform}, iDFT): \[\begin{array}{l rcl} \mbox{Interpolationseigenschaft:} & u_n &=& g(t_n) \\[2ex] t_n \mbox{ in } g \mbox{ einsetzen:} & &=& \dfrac{1}{N} \cdot \sum\limits_{k=0}^{N-1}\tilde c_k\cdot  e^{i\, k \,\frac{2\pi}{T} \,  t_n} \\[2ex] t_n=n\cdot \frac{T}{N} \mbox{ ersetzen:} & &=& \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot  e^{i \,\frac{2\pi}{T} \, k \, n \cdot \frac{T}{N} } \\ \mbox{vereinfachen:} & &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \left( \textcolor{blue}{ e^{-i \, \frac{2\pi}{N} }} \right)^{-k \, n } \\ W_N \mbox{ identifizieren:} &  &=&  \dfrac1N \cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot \textcolor{blue}{ W_N}^{-k\, n }\,. \end{array} \]
 
 \begin{theorembox}{Inverse Diskrete Fouriertransformation}{ }
 \begin{minipage}{0.4\textwidth}
@@ -132,7 +132,7 @@ Das Fourierpolynom \(g\) \textbf{interpoliert} die gegebenen \(N\) Samples und d
 
 \vspace{0.4cm}
 
-Die inverse diskrete Fouriertransformation [iDFT] lautet:
+Die inverse diskrete Fouriertransformation (\emph{inverse discrete Fourier transform}, iDFT) lautet:
 
 \begin{equation}\label{MA2-idft}
 \mbox{iDFT}: \left\{ \tilde c_k, k=0,\cdots,N-1\right\} \mapsto \left\{ u_n,\, n=0,\cdots,N-1\right\}, \; u_n = \dfrac{1}{N}\cdot \sum\limits_{k=0}^{N-1} \tilde c_k \cdot W_N^{-k\,n} \,. \end{equation}
