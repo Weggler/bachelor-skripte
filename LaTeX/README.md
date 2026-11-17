@@ -53,6 +53,7 @@ Aufgaben und Lösungen angepasst werden.
 | Hauptdokumente | Einstellung |
 | --- | --- |
 | `Mathematik_1_Skript/MA1.tex` | `\integriereaufgabentrue` |
+| `Multivariate_Analysis_Skript/Multivariate_Analysis.tex` | `\integriereaufgabenfalse`; eigenständiges Theorie-Add-on |
 | Mathe-1-Theoriehefte und Symbolübersicht | `\integriereaufgabenfalse` |
 | Separate Mathe-1- und Mathe-2-Aufgabenhefte | `\integriereaufgabenfalse` |
 | `Mathematik_2_Skript/MA2.tex` | `\integriereaufgabenfalse`; enthält derzeit Theorie aus beiden Modulen |

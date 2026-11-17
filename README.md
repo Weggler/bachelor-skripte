@@ -14,6 +14,8 @@ Skripte, Übungsaufgaben, Lösungen und ergänzende Lehrmaterialien von Prof. Dr
 | Mathematik 2: einzelne Themenblöcke und Aufgabenhefte | [Mathematik_2_Sections](Mathematik_2_Sections) |
 | Mathematik 2: fachliche Quelldateien, Bilddateien und Leitideen | [Mathematik_2](Mathematik_2) |
 | Mathematik 2: Aufgaben, Lösungen und Ergänzungen | [Mathematik_2_Material](Mathematik_2_Material) |
+| Multivariate Analysis: eigenständiges Theorie-Add-on für Bachelor und Master | [Multivariate_Analysis_Skript/Multivariate_Analysis.tex](Multivariate_Analysis_Skript/Multivariate_Analysis.tex) |
+| Multivariate Analysis: fachliche Quelldateien, Bilddateien und Leitidee | [Multivariate_Analysis](Multivariate_Analysis) |
 | Semesterbezogene Kursinformationen | [Kursorganisation](Kursorganisation) |
 
 Die Struktur von Mathematik 1 und 2 ist vereinheitlicht: sprechende Inhaltsnamen,
@@ -40,6 +42,13 @@ cd Mathematik_2_Skript
 latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=../build/mathematik_2 MA2.tex
 ```
 
+Das eigenständige Add-on zur multivariaten Analysis:
+
+```sh
+cd Multivariate_Analysis_Skript
+latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=../build/multivariate_analysis Multivariate_Analysis.tex
+```
+
 Einzelne Themenblöcke lassen sich entsprechend aus `Mathematik_1_Sections` erstellen, beispielsweise mit `MA1-FNT.tex` für Funktionen oder
 `MA1-FNT-Aufgaben.tex` für das zugehörige Aufgabenheft.
 
@@ -52,7 +61,7 @@ Die LaTeX-Quellen verwenden derzeit `ansinew` (Windows-1252). Beim Bearbeiten di
 
 ## Materialien bearbeiten
 
-Inhalte werden einmal in `Mathematik_1` bzw. `Mathematik_2` gepflegt und von den Hauptdokumenten eingebunden. Die Reihenfolge und die sichtbare Nummerierung legt das jeweilige Hauptdokument fest. Die sprechenden Labels beider Module werden auch modulübergreifend verwendet; Änderungen daran müssen repositoryweit erfolgen.
+Inhalte werden einmal in `Mathematik_1`, `Mathematik_2` beziehungsweise `Multivariate_Analysis` gepflegt und von den Hauptdokumenten eingebunden. Die Reihenfolge und die sichtbare Nummerierung legt das jeweilige Hauptdokument fest. Die sprechenden Labels beider Module werden auch modulübergreifend verwendet; Änderungen daran müssen repositoryweit erfolgen.
 
 Die gemeinsame Kopfzeile der lesbaren Output Dateien ist in [LaTeX/kopfzeile.tex](LaTeX/kopfzeile.tex) definiert. 
 

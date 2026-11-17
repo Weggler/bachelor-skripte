@@ -1,0 +1,467 @@
+\chapter{Funktionen mehrerer Veränderlicher}\label{MULTI-funktionen-mehrerer-veraenderlicher}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Funktionen mehrerer Veränderlicher geometrisch interpretieren (Graph, Höhenlinien) & \\
+    \tabitem partielle Ableitungen berechnen & \\
+    \tabitem den Gradienten einer Funktion bestimmen und geometrisch deuten & \\
+    \tabitem die Tangentialebene als lineare Näherung einer Funktion aufstellen & \\
+    \tabitem das totale Differential formulieren und anwenden & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem Ableitungen von Funktionen einer Veränderlichen &  \\
+    \tabitem lineare Näherungen (Tangente) & \\
+    \tabitem Vektoren und Skalarprodukte & \\[.5\normalbaselineskip]
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section*{Leitidee}
+
+Funktionen mehrerer Veränderlicher beschreiben Zusammenhänge, bei denen ein Ergebnis gleichzeitig von mehreren Einflussgrößen abhängt. In technischen Anwendungen ist das der Normalfall: Eine Größe hängt etwa von Ort, Zeit, Temperatur, Druck oder mehreren geometrischen Parametern ab.
+
+Die entscheidende neue Frage lautet:
+\begin{center}
+\textbf{Wie ändert sich eine Funktion, wenn man sich von einem Punkt aus in verschiedene Richtungen bewegt?}
+\end{center}
+
+Bei Funktionen einer Veränderlichen gibt es nur eine unabhängige Richtung. Bei Funktionen mehrerer Veränderlicher gibt es dagegen unendlich viele mögliche Bewegungsrichtungen. Deshalb muss man genauer unterscheiden:
+\begin{itemize}
+\item Wie stark ändert sich die Funktion entlang der Koordinatenachsen?
+\item In welche Richtung wächst sie am stärksten?
+\item Wie kann man ihr Verhalten in einer Umgebung eines Punktes durch ein lineares Modell approximieren?
+\end{itemize}
+
+Die zentralen Werkzeuge dazu sind die partiellen Ableitungen, der Gradient, die Jacobi-Matrix und die Tangentialebene. Sie erlauben es, das lokale Verhalten einer Funktion systematisch zu beschreiben und bilden die Grundlage für Fehlerabschätzung, Optimierung, Koordinatentransformationen und mehrdimensionale Integration.
+
+\section{Vektorfelder}
+
+Die übliche Vorstellung, die man von einer (reellwertigen) Funktion zwei reeller Veränderlicher hat, ist die eines Gebirges: die Funktion ordnet jedem Punkt in der \((x,y) \)-Ebene seine Höhe zu. Die Höhe ist dann die zu \(x\) und \(y\) gehörige \(z\)-Koordinate. Das Tripel \( (x,y,z)\) lebt also in drei Dimensionen und ist ein Punkt auf einer im Allgemeinen beliebig gekrümmten Fläche im Raum:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Multivariate_Analysis/Bilder/funktion_polynom_oberflaeche.png}
+\caption{Visualisierung \(f(x,y)=x^2+0.3\,y^3\) als Oberfläche in \(\mathbb R^3\).}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{p{0.45\textwidth}|p{0.45\textwidth}}
+
+\textbf{Matlab} &
+\textbf{Python} \\
+
+\begin{lstlisting}[language=Matlab]
+x = -3:0.1:3;
+y = -3:0.1:3;
+[xx,yy] = meshgrid(x,y);
+z = xx.^2+0.3*yy.^3;
+surf(x,y,z)
+colorbar
+\end{lstlisting}
+
+&
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(-3,3.1,0.1)
+y = np.arange(-3,3.1,0.1)
+xx,yy = np.meshgrid(x,y)
+z = xx**2 + 0.3*yy**3
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+surf = ax.plot_surface(xx,yy,z)
+fig.colorbar(surf)
+plt.show()
+\end{lstlisting}
+
+\end{tabular}
+\end{center}
+
+Möchte man ein Gebirge auf einem Blatt Papier zeichnen, dann übersetzt man oft die \(z\)-Koordinate in eine Farbe (Matlab \verb-imagesc-) oder man zeichnet \textbf{ Höhenlinien } (Isolinien, Äquipotentialinien):
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Multivariate_Analysis/Bilder/funktion_polynom_hoehenlinien.png}
+	\caption{Visualisierung \(f(x,y)=x^2+0.3\,y^3\) als Höhenlinienprofil in \(\mathbb R^2\).}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{p{0.45\textwidth}|p{0.45\textwidth}}
+
+\textbf{Matlab} &
+\textbf{Python} \\
+
+\begin{lstlisting}[language=Matlab]
+x = -3:0.1:3;
+y = -3:0.1:3;
+[xx,yy] = meshgrid(x,y);
+z = xx.^2 + 0.3*yy.^3;
+contour(x,y,z,20,'LineWidth',2)
+colorbar
+\end{lstlisting}
+
+&
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(-3, 3.1, 0.1)
+y = np.arange(-3, 3.1, 0.1)
+xx, yy = np.meshgrid(x, y)
+
+z = xx**2 + 0.3*yy**3
+
+plt.contour(x, y, z, 20, linewidths=2)
+plt.colorbar()
+plt.show()
+\end{lstlisting}
+
+\end{tabular}
+\end{center}
+\vspace{0.5cm}
+
+Eine Funktion $f$ von $n$ Veränderlichen ordnet einem Punkt $\vec x = (x_1,x_2,\cdots,x_n)^\intercal$ mit \(n\) Koordinaten genau einen Wert zu. Der Definitionsbereich (\emph{domain}) von \(f\) ist also eine Teilmenge des \(\mathbb R^n\) und der Zielbereich sind die reellen Zahlen:
+\[ f: D_f\subset \mathbb R^n \to \mathbb R, \vec x \mapsto f(\vec x)\,.\]
+Die Menge der tatsächlich vorkommenden Werte $f(\vec x)$ heißt, wie im Falle \(n=1\), das Bild oder der Bildbereich (\emph{image} oder \emph{range}) der Funktion $f$, kurz $f(D_f)$. Wie für Funktionen einer Veränderlicher ist das Bild der Funktion eine Untermenge des Zielbereichs (\emph{codomain}).
+\begin{exabox}{Definitionsbereich und Bild einer zweidimensionalen Funktion }{}
+	\begin{minipage}{0.4\textwidth}
+		\includegraphics[width=\textwidth]{../Multivariate_Analysis/Bilder/funktion_definitionsbereich_und_bild.png}
+	\end{minipage}
+	\begin{minipage}{0.59\textwidth}
+		\begin{itemize}
+			\item Das Bild links zeigt die Funktion
+				\[ f: \mathbb R^2 \to \mathbb R, (x,y) \mapsto \sin\left(\dfrac12 x\right)\cdot \cos\left(\dfrac12 y\right)\]
+			\item Der Definitionsbereich von \(f\) ist die \(x,y\)-Ebene.
+			\item Der Zielbereich von \(f\) ist die \(z\)-Achse
+			\item Der Bildbereich von \(f\) ist eine Teilmenge von \(\mathbb R\).
+		\end{itemize}
+	\end{minipage}
+\end{exabox}
+
+\section{Gradient und Jacobi-Matrix}
+
+Die Ableitung einer Funktion $f$ an einer Stelle $x$ gibt an, wie sich die Funktion ändert, wenn man einen unendlich kleinen Schritt von $x$ vorwärts oder rückwärts macht. Bei einer Funktion, die von mehreren Variablen abhängt, kann man diesen Schritt aber auch sozusagen quer machen. Das Einfachste ist, entlang einer der Achsen zu schreiten. Das ergibt die jeweilige \textbf{ partielle Ableitung } (\emph{partial derivative}): Man behandelt alle Variablen bis auf eine einzige als Konstanten und leitet ganz normal nach dieser einen ab. Für die Funktion \[f:\mathbb R^2 \to \mathbb R, (x,y) \mapsto x^2+y^2\] ist die partielle Ableitung nach $x$ also
+\[ \frac{\partial f}{\partial x} (\textcolor{blue}{ x}, y) = \lim\limits_{h\to 0} \frac{ f(\textcolor{blue}{x+h},y) - f(\textcolor{blue}{x},y)}{\textcolor{blue}{h}} =  \lim\limits_{h\to 0} \frac{ (\textcolor{blue}{x+h})^2 + y^2 - (\textcolor{blue}{x}^2 + y^2 )}{\textcolor{blue}{h}} = 2x\,.\]
+
+Das Symbol für eine partielle Ableitung ist ein Differenzenquotient, wobei man anstatt $\mathrm{d}$ das geschwungene Symbol $\partial$ schreibt. Hängt die Funktion von $n$ Veränderlichen ab, dann können wir maximal $n$ partielle Ableitungen angeben. Ein paar Beispiele:
+\begin{exabox}{Partielle Ableitungen}{ }
+\begin{itemize}
+	\item $f(x,y)=x^2+y^2 \quad \Rightarrow \quad\displaystyle{ \frac{\partial f}{\partial x} }= 2\cdot x\,,\quad  \displaystyle{ \frac{\partial f}{\partial y}= 2\cdot y }\,.$
+	\item $f(x,y)=\sin(x\cdot y) \quad \Rightarrow \quad \displaystyle{\frac{\partial f}{\partial x}}= \cos(x\cdot y) \cdot y\,,\quad  \displaystyle{\frac{\partial f}{\partial y}}= \cos(x\cdot y) \cdot x\,.$
+	\item $f(u,v,w)=u\cdot v^2+v\cdot e^{w} \quad \Rightarrow \quad \displaystyle{ \frac{\partial f}{\partial u}} = v^2\,,\quad \displaystyle{\frac{\partial f}{\partial v}}= 2\cdot u\cdot v + e^{w}\,,\quad \displaystyle{ \frac{\partial f}{\partial w} = v\cdot e^w }\,.$
+\end{itemize}
+\end{exabox}
+
+Wenn man die partiellen Ableitungen zu einem Vektor übereinanderstellt, hat man den \textbf{Gradient} der Funktion. Es gibt unterschiedliche Symbole für den Gradienten: \[ \mathrm{grad} f\,, \; \nabla f\,,  \quad \textnormal{ oder mit Vektorpfeil: } \; \overrightarrow{\mathrm{grad}} f, \; \overrightarrow{\nabla } f \]
+Das Symbol $\nabla$ heißt Nabla-Operator. Für die drei Beispiele ist der Gradient also:
+
+\begin{theorembox}{Gradient}{ }
+	\begin{itemize}
+		\item $f(x,y)=x^2+y^2 \quad \Rightarrow\; \nabla f(x,y) = \left( \begin{array}{c} \displaystyle{\frac{\partial f}{\partial x}} \\[1ex]  \displaystyle{\frac{\partial f}{\partial y}} \end{array}\right) = \left( \begin{array}{c} 2\cdot x \\ 2\cdot y \end{array}\right)\,. $
+			\item $f(x,y)=\sin(x\cdot y) \quad \Rightarrow \; \nabla f(x,y) = \left( \begin{array}{c} \displaystyle{\frac{\partial f}{\partial x}} \\[1ex]  \displaystyle{\frac{\partial f}{\partial y}} \end{array}\right) = \left( \begin{array}{c} \cos(x\cdot y)\cdot y \\ \cos(x\cdot y)\cdot x \end{array}\right)\,.$
+				\item $f(u,v,w)=u\cdot v^2+v\cdot e^w \quad \Rightarrow \nabla f(u,v,w) = \left( \begin{array}{c} \displaystyle{\frac{\partial f}{\partial u}} \\[1ex] \displaystyle{\frac{\partial f}{\partial v}}\\[1ex]  \displaystyle{\frac{\partial f}{\partial w}} \end{array}\right) = \left( \begin{array}{c} v^2 \\ 2\cdot u\cdot v+e^w \\v \cdot e^w \end{array}\right)\,. $
+\end{itemize}
+\end{theorembox}
+
+Der Gradient ist eine Abbildung, die jedem Punkt des Definitionsbereichs einen Vektor zuordnet. Man nennt so eine Abbildung ein Vektorfeld. Ein Vektor trägt zwei Informationen in sich: seine \textbf{Länge} und seine \textbf{Richtung}. Und im Fall eines Gradientenvektors beschreiben Länge und Richtung das lokale Verhalten der Funktion:
+\begin{itemize}
+	\item Die Länge gibt die lokale maximale Änderungsrate der Funktionswerte an: je länger der Gradient ist, desto so stärker verändern sich die Funktionswerte.
+	\item Die Richtung gibt die Richtung an, in die die Funktionswerte lokal am stärksten ansteigen.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Multivariate_Analysis/Bilder/funktion_polynom_gradientenfeld.png}
+	\caption{Visualisierung der Höhenlinien und der Gradienten von \(f(x,y)=x^2+0.3\,y^3\) .}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{p{0.45\textwidth}|p{0.45\textwidth}}
+
+\textbf{Matlab} &
+\textbf{Python} \\
+
+\begin{lstlisting}[language=Matlab]
+x = -3:0.1:3;
+y = -3:0.1:3;
+[xx,yy] = meshgrid(x,y);
+z = xx.^2 + 0.3*yy.^3;
+
+contour(x,y,z,10,'LineWidth',2)
+hold on
+
+x = -3:0.4:3;
+y = -3:0.4:3;
+[xx,yy] = meshgrid(x,y);
+
+g1 = 2*xx;
+g2 = 9/10*yy.^2;
+
+quiver(x,y,g1,g2,'b','LineWidth',1)
+
+hold off
+colorbar
+legend({"Hoehenlinien $f$",
+"Gradientenfeld $\nabla f$"},
+"interpreter","latex")
+\end{lstlisting}
+
+&
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.arange(-3,3.1,0.1)
+y = np.arange(-3,3.1,0.1)
+xx,yy = np.meshgrid(x,y)
+
+z = xx**2 + 0.3*yy**3
+
+plt.contour(x,y,z,10,linewidths=2)
+
+x = np.arange(-3,3.1,0.4)
+y = np.arange(-3,3.1,0.4)
+xx,yy = np.meshgrid(x,y)
+
+g1 = 2*xx
+g2 = 0.9*yy**2
+
+plt.quiver(x,y,g1,g2,color='b')
+
+plt.colorbar()
+plt.legend([r"Höhenlinien $f$",
+r"Gradientenfeld $\nabla f$"])
+
+plt.show()
+\end{lstlisting}
+
+\end{tabular}
+\end{center}
+
+Streng genommen muss man sich fragen, inwiefern die partiellen Ableitungen separat garantieren, dass eine Funktion \(f\), die von $n$ Variablen abhängt, differenzierbar ist. Dies führt zum Begriff der totalen Differenzierbarkeit. Wir können uns an dieser Stelle merken:  Wenn  in  einer  Umgebung eines \(\vec x^*\in D_f\)  alle  partiellen  Ableitungen von \(f\)  existieren und stetig sind, dann kann man die Funktion in \(\vec x^*\) in eine beliebige \textbf{Richtung} ableiten.
+
+Eine beliebige Richtung wird per Definition durch einen \textbf{ Einheitsvektor } angegeben, also einen Vektor mit normierter Euklidischer Länge.
+    \[\hat v \in \mathbb R^n: \quad  \|\hat{ v}\|_2 = 1 \,.\]
+    Wie nutzen im folgenden den kleinen Hut, um Einheitsvektoren zu kennzeichnen. Ist \(f\) in einer Umgebung von \(\vec x^*\in \mathbb R^n\) differenzierbar, so existiert der Grenzwert
+    \begin{equation*} \lim\limits_{h\to 0} \dfrac{ f(\vec x^* - h\cdot \hat v)-f(\vec x^*)}{h}\end{equation*}
+    und er heißt Richtungsableitung von \(f\)  in \(\vec x^*\) in Richtung \(\hat v\) und bekommt das Symbol
+    \[
+    \dfrac{\partial f}{\partial \hat v}(\vec x^*) = \lim\limits_{h\to 0} \dfrac{ f(\vec x^* - h\cdot \hat v)-f(\vec x^*)}{h}\,.
+    \]
+    In der Praxis berechnet man den Grenzwert nicht, sondern macht sich zu Nutze, dass die Richtungsableitung von \(f\) in Richtung \(\hat v\) die Projektion des Gradienten \(\nabla f(\vec x^*)\) auf die Richtung \(\hat v\) ist:
+
+    \begin{exabox}{Richtungsableitung von $f$}{ }
+    \begin{equation}\label{MULTI-richtungsableitung}
+    \dfrac{\partial f}{\partial \hat v}(\vec x^*) = \left\langle \nabla f(\vec x^*), \hat{\vec v}\right\rangle\,.
+    \end{equation}
+    \end{exabox}
+
+    Die spitzen Klammern in \eqref{MULTI-richtungsableitung} bezeichnen das \textbf{Skalarprodukt} in \(\mathbb R^n\):
+	  \[ \vec v, \vec u \in \mathbb R^n: \quad \left\langle \vec v,  \vec u \right\rangle  = \sum\limits_{i=1}^n v_i \cdot u_i \,.\]
+
+ Es gilt also
+    \[ \dfrac{\partial f}{\partial \hat v}(\vec x^*) = \left\langle \nabla f(\vec x^*), \hat v\right\rangle = \|\nabla f(\vec x^*)\|_2 \cdot \underbrace{ || \hat v||_2}_{\displaystyle{=1}} \cdot \cos(\alpha) \] und damit
+    \[ \left\{ \begin{array}{rcl c rcl c rcl}
+		    \alpha &=& 0  &\Rightarrow  & \cos(\alpha) &=& 1 & \Rightarrow & \hat v &=& \dfrac{\nabla f(\vec x^*)}{||\nabla f(\vec x^*)||_2}\,,\\[2ex]
+		    \alpha &=& \pi & \Rightarrow & \cos(\alpha) &=& -1 & \Rightarrow & \hat v &=& -\dfrac{\nabla f(\vec x^*)}{||\nabla f(\vec x^*)||_2}\,.
+    \end{array}\right.
+    \]
+    Die Eigenschaften des Gradienten sind also mathematisch fundiert - wir wiederholen sie:
+    \begin{itemize}
+	    \item Der Gradientenvektor zeigt immer in die Richtung des stärksten Anstiegs von \(f\).
+	    \item Der Gradientenvektor steht senkrecht auf den Höhenlinien von \(f\).
+		\item Der Gradientenvektor einer Funktion von $n$ Veränderlichen ist ein Vektor im $\mathbb R^n$. Er zeigt nicht aus der Ebene raus, sondern lebt, wie die Höhenlinien, in der Ebene der Landkarte.
+    \end{itemize}
+
+    Das Konzept der Ableitung einer Funktion mehrerer Veränderlicher läßt sich übertragen auf eine vektorwertige Funktion mehrerer Veränderlicher
+    \[ \vec f: \mathbb R^n \to \mathbb R^n, \, \underbrace{\vec x}_{\left( \begin{array}{c} x_1 \\ \vdots \\ x_n \end{array}\right)}  \mapsto \underbrace{\vec f(\vec x)}_{\left( \begin{array}{c} f_1(\vec x) \\ f_2(\vec x)\\ \vdots \\ f_n(\vec x)\end{array}\right)}\,. \]
+    Existieren für jede der Funktionen \(f_i: \mathbb R^n \to \mathbb R\) alle partiellen Ableitungen, so erhält man die Jacobi-Matrix von \(\vec f\), wenn man alle partiellen Ableitungen in einer Matrix zusammenfasst:
+    \[ J = \left( \begin{array}{cccc}
+			    \dfrac{\partial f_1}{\partial x_1} &  \dfrac{\partial f_1}{\partial x_2} & \cdots &  \dfrac{\partial f_1}{\partial x_n} \\[2ex]
+			    \dfrac{\partial f_2}{\partial x_1} &  \dfrac{\partial f_2}{\partial x_2} & \cdots &  \dfrac{\partial f_2}{\partial x_n} \\
+			    \vdots & \vdots &\vdots & \vdots \\
+			    \dfrac{\partial f_n}{\partial x_1} &  \dfrac{\partial f_n}{\partial x_2} & \cdots &  \dfrac{\partial f_n}{\partial x_n}
+	    \end{array}\right)\,.
+    \]
+
+    Die \(i\)-te Zeile der Jacobi-Matrix von \(\vec f\) ist gerade der Gradient der Funktion \(f_i\)!
+    \[ J = \left( \begin{array}{cccc}
+			    \textcolor{blue}{\dfrac{\partial f_1}{\partial x_1}} &  \textcolor{blue}{\dfrac{\partial f_1}{\partial x_2}} & \textcolor{blue}{\cdots} & \textcolor{blue}{\dfrac{\partial f_1}{\partial x_n}} \\[2ex]
+			    \dfrac{\partial f_2}{\partial x_1} &  \dfrac{\partial f_2}{\partial x_2} & \cdots &  \dfrac{\partial f_2}{\partial x_n} \\
+			    \vdots & \vdots &\vdots & \vdots \\
+			    \dfrac{\partial f_n}{\partial x_1} &  \dfrac{\partial f_n}{\partial x_2} & \cdots &  \dfrac{\partial f_n}{\partial x_n}
+	    \end{array}\right) = \left(\begin{array}{c} \textcolor{blue}{\left(\nabla f_1\right)^\intercal }\\[2ex]
+	    \left(\nabla f_2\right)^\intercal \\ \vdots \\\left(\nabla f_n\right)^\intercal \end{array}\right)\,.
+    \]
+
+\section{Kettenregel}
+
+Bis jetzt haben wir untersucht, wie sich eine Funktion \(f(\vec x)\) ändert, wenn man eine einzelne Koordinate variiert oder sich in eine feste Richtung \(\hat v\) bewegt. In Anwendungen hängt der Punkt \(\vec x\) aber oft selbst wieder von einer anderen Größe ab, zum Beispiel von der Zeit, vom Radius oder von einem Winkel. Dann betrachtet man eine zusammengesetzte Funktion
+\[
+t \mapsto \vec x(t) \mapsto f(\vec x(t))\,.
+\]
+Die Frage lautet dann: Wie schnell ändert sich der Funktionswert \(f(\vec x(t))\), wenn sich der Punkt \(\vec x(t)\) entlang einer Kurve durch den Definitionsbereich bewegt?
+
+Genau das beantwortet die \textbf{Kettenregel für mehrere Variablen}. Sie sagt: Die Änderung des Funktionswerts entlang der Kurve ergibt sich aus dem Gradienten von \(f\) und der Änderungsrichtung der Kurve.
+
+\begin{theorembox}{Kettenregel für \(f:\mathbb R^n \to \mathbb R\)}{}
+Es sei
+\[
+f:\mathbb R^n \to \mathbb R
+\]
+differenzierbar und
+\[
+\vec x:\mathbb R \to \mathbb R^n,\qquad t \mapsto \vec x(t)
+\]
+differenzierbar. Dann ist auch die zusammengesetzte Funktion
+\[
+t \mapsto f(\vec x(t))
+\]
+differenzierbar und es gilt
+\[
+\frac{\mathrm d}{\mathrm dt}f(\vec x(t))
+=
+\left\langle \nabla f(\vec x(t)), \vec x\,'(t)\right\rangle .
+\]
+\end{theorembox}
+
+\noindent
+Die Kettenregel sagt also:
+\begin{itemize}
+\item \(\nabla f(\vec x(t))\) beschreibt die lokale Änderung der Funktion,
+\item \(\vec x\,'(t)\) beschreibt die Bewegungsrichtung entlang der Kurve,
+\item das Skalarprodukt beider Vektoren liefert die momentane Änderungsrate des Funktionswerts.
+\end{itemize}
+
+\begin{exabox}{Kettenregel entlang einer Kurve}{}
+Betrachten wir die Funktion
+\[
+f(x,y)=x^2+y^2
+\]
+und die Kurve
+\[
+\vec x(t)=
+\begin{pmatrix}
+\cos(t)\\
+\sin(t)
+\end{pmatrix}.
+\]
+Dann gilt
+\[
+f(\vec x(t)) = \cos^2(t)+\sin^2(t)=1,
+\]
+also
+\[
+\frac{\mathrm d}{\mathrm dt}f(\vec x(t))=0.
+\]
+
+Dasselbe Ergebnis liefert die Kettenregel:
+\[
+\nabla f(x,y)=
+\begin{pmatrix}
+2x\\
+2y
+\end{pmatrix}
+\]
+also
+\[
+\nabla f(\vec x(t))=
+\begin{pmatrix}
+2\cos(t)\\
+2\sin(t)
+\end{pmatrix},
+\qquad
+\vec x\,'(t)=
+\begin{pmatrix}
+-\sin(t)\\
+\cos(t)
+\end{pmatrix}.
+\]
+Damit folgt
+\[
+\frac{\mathrm d}{\mathrm dt}f(\vec x(t))
+=
+\left\langle
+\begin{pmatrix}
+2\cos(t)\\
+2\sin(t)
+\end{pmatrix},
+\begin{pmatrix}
+-\sin(t)\\
+\cos(t)
+\end{pmatrix}
+\right\rangle
+=0.
+\]
+
+Das passt zur Geometrie:
+Die Kurve läuft auf einer Höhenlinie von \(f\), also ändert sich der Funktionswert nicht.
+\end{exabox}
+
+\noindent
+Die Kettenregel wird später an mehreren Stellen wieder auftauchen:
+bei Koordinatentransformationen, bei der Linearisierung vektorwertiger Funktionen und bei Bewegungen in Kraft- oder Potentialfeldern. Für vektorwertige Funktionen führt sie direkt zur Matrixschreibweise mit der Jacobi-Matrix.
+
+\section{Lineare Näherung von Vektorfeldern}
+
+Eine differenzierbare Funktion \(f\) läßt sich in jeder Stelle ihres Definitionsbereichs linearisieren und zwar durch ihre Tangentengerade \(t\):
+\begin{theorembox}{Linearisierung \(f:\mathbb R \to \mathbb R\) (Ableitung)}{ }
+	Es sei $f$ differenzierbar auf $D_f\subset \mathbb R$ und $x^*\in D_f$. Die Tangente \(t\) lautet
+	    \[ t:D_f \to \mathbb R,\,  x \mapsto t(x) = f(x^*) + f'(x^*)(x-x^*)\,. \]
+    \end{theorembox}
+
+    Die lineare Näherung einer differenzierbaren Funktion $f$, die von zwei Veränderlichen abhängt, ist keine Gerade mehr, sondern eine Ebene, die sich an \(f\) tangential anschmiegt. Man nennt die Ebene Tangentialebene.
+    Es sei $f$ differenzierbar auf $D_f\subset \mathbb R^2$ und $\vec x^*\in D_f$. Die Tangentialebene \(t\) lautet
+	  \begin{eqnarray*}
+		  t: D_f \to \mathbb R,\, \vec x\mapsto t(\vec x^*) = f(\vec x^*) + \textcolor{blue}{ \dfrac{\partial f}{\partial x_1}(x_1 - x^*_1) + \dfrac{\partial f}{\partial x_2}(x_2 - x^*_2)} \,,
+  \end{eqnarray*}
+	  wobei die blau eingefärbten Terme das \textcolor{blue}{Skalarprodukt} (\emph{inner product}) zwischen dem Vektor \(\nabla f\) und dem Vektor \((\vec x-\vec x^*) \) ist:
+		  \[ \left\langle \textcolor{blue}{\nabla f (\vec x^*), (\vec x- \vec x^*)}\right\rangle = \dfrac{\partial f}{\partial x_1}(\vec x^*)\cdot (x_1 - x^*_1) + \dfrac{\partial f}{\partial x_2}(\vec x^*)\cdot ( x_2 - x^*_2) \in \mathbb R\,.\]
+
+  Für eine Funktion, die von \(n\) unabhängigen Variablen abhängt, gilt entsprechend:
+
+    \begin{theorembox}{Linearisierung \(f:\mathbb R^n \to \mathbb R\) (Gradient)}{ }
+    Es sei $f$ differenzierbar auf $D_f\subset \mathbb R^n$ und $\vec x^*\in D_f$. Die Linearisierung \(t\) lautet
+	  \begin{eqnarray*}
+		  t: D_f \to \mathbb R,\, \vec x\mapsto t(\vec x^*) = f(\vec x^*) + \left\langle \nabla f (\vec x^*), (\vec x- \vec x^* )\right\rangle\,.
+  \end{eqnarray*}
+    \end{theorembox}
+
+    Betrachten wir als nächstes eine vektorwertige Funktion mit zwei Komponentenfunktionen, also
+    \[ \vec f: \mathbb R^2 \to \mathbb R^2, \left( \begin{array}{c} x_1 \\ x_2 \end{array}\right) \mapsto \left( \begin{array}{c} f_1(x_1,x_2) \\ f_2(x_1,x_2)\end{array}\right)\,. \]
+    \(\vec f\) läßt sich an jeder Stelle \( \vec x^* = (x^*_1, x^*_2)^\intercal \in D_f\) des Definitionsbereichs linearisieren und die Linearisierung lautet
+	  \begin{eqnarray*}
+		  \vec t: D_f \to \mathbb R^2,  \vec x \mapsto \vec t  \left( \vec x\right) = \vec f(\vec x^*) + \textcolor{blue}{ J(\vec x^*) \left(\vec x - \vec x^*\right)}\,,
+	  \end{eqnarray*}
+	  wobei \(J(\vec x^*)\) die Jacobi-Matrix von \(\vec f\) an der Stelle \(\vec x^*\) bezeichnet. Der blau eingefärbte Term ist die folgende \textcolor{blue}{Matrix-Vektor-Multiplikation}:
+	  \begin{eqnarray*}
+		  \textcolor{blue}{ J(\vec x^*) \left(\vec x - \vec x^*\right)} &=&
+    \left( \begin{array}{cc}
+			    \dfrac{\partial f_1}{\partial x_1} &  \dfrac{\partial f_1}{\partial x_2}\\[2ex]
+			    \dfrac{\partial f_2}{\partial x_1} &  \dfrac{\partial f_2}{\partial x_2}
+	    \end{array}\right) \left( \begin{array}{c} x_1 - x^*_1 \\[2ex] x_2 - x^*_2\end{array}\right) \\&=&
+	    \left( \begin{array}{c} \dfrac{\partial f_1}{\partial x_1} \cdot (x_1-x_1^*)  + \dfrac{\partial f_1}{\partial x_2} \cdot (x_2-x_2^*) \\[2ex]
+    \dfrac{\partial f_2}{\partial x_1} \cdot (x_1-x_1^*)  + \dfrac{\partial f_2}{\partial x_2} \cdot (x_2-x_2^*) \end{array}\right) \in \mathbb R^2  \end{eqnarray*}
+
+  \noindent \textbf{Bemerkungen:}
+  \begin{itemize}
+	  \item Die lineare Näherung eines Vektorfeldes \(\vec f\) ist selbst wieder ein Vektorfeld.
+	  \item Die lineare Näherung von \(\vec f\) ist genau das Vektorfeld, dessen Einträge die linearen Näherungen der Komponentenfunktionen sind.
+  \end{itemize}
+
+Und das Konzept läßt sich auch auf differenzierbare Vektorfelder beliebiger Dimension verallgemeinern.
+\begin{theorembox}{Linearisierung \(\vec f:\mathbb R^n \to \mathbb R^n\) (Jacobi-Matrix)}{ }
+	Es sei $\vec f$ differenzierbar auf $D_f\subset \mathbb R^n$ und $\vec x^*\in D_f$. Die Linearisierung \(\vec t\) lautet
+	\begin{equation*}
+		  \vec t: D_f \to \mathbb R^n, \;\vec x \mapsto \vec t(\vec x) = \vec f(\vec x^*)+  J\left(\vec x^*\right) \left( \vec x - \vec x^*\right) \,.
+	  \end{equation*}
+    \end{theorembox}
+

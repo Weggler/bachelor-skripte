@@ -1,0 +1,164 @@
+\documentclass[a4paper,10pt]{scrreprt}
+
+% Seitenränder
+\usepackage[top=2.0cm,bottom=2.0cm,left=1.5cm,right=2.5cm]{geometry}
+
+% Encoding + Sprache
+\usepackage[ngerman]{babel}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Captions
+\usepackage{caption}
+
+% Farben/Grafik
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\definecolor{violett}{RGB}{154,50,205}
+\definecolor{darkgreen}{RGB}{0,136,0}
+\definecolor{htwgreen}{RGB}{134,189,36}
+
+% Mathe
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsfonts}
+
+% Tabellen
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array} % für Tabellenspalten, falls nötig
+
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+% codeboxes
+\usepackage{listings}
+\lstset{basicstyle=\small\ttfamily,breaklines=true,columns=fullflexible,keepspaces=true}
+
+% tcolorbox
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% Hyperref (später laden, aber vor scrlayer-scrpage)
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = red,
+  linkcolor  = red,
+  citecolor  = red
+}
+
+\input{../LaTeX/ausgabemodus}
+\integriereaufgabenfalse
+
+% KOMA-Script header/footer
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\cfoot*{\footnotesize
+Prof. Dr. Lucy Weggler -- Lizenz:
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC-BY-NC-SA 4.0}
+}
+
+\ofoot*{\pagemark}
+\titlehead{\thispagestyle{plain.scrheadings}}
+
+\input{../LaTeX/kopfzeile}
+% --- tcolorbox-Definitionen ---------------------
+% Definition
+% #1: Title
+% #2: Bemerkung
+\newcounter{def}
+\newtcolorbox{defbox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=left, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Def. \stepcounter{def}\thedef \newline \textcolor{black}{#3} };
+},
+  colframe=gray,
+  %colback=mytestcolor,
+  colback=white,
+  coltitle=red!70!gray,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt}
+
+% Satz
+% #1: Title
+% #2: Bemerkung
+\newcounter{satz}
+   \newtcolorbox{theorembox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+\node[fill=white,rounded corners, draw=white, text=gray, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east){#2};
+\node[anchor=north east, text=gray, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east) {\small Regel \stepcounter{satz}\thesatz \newline \textcolor{black}{#3} };
+},
+  colframe=gray,
+  %colback=mytestcolor,
+  colback=white,
+  coltitle=red!70!gray,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Beispiel
+% #1: Title
+% #2: Bemerkung
+\newcounter{exa}
+\newtcolorbox{exabox}[3][]{
+  enhanced,
+  overlay unbroken and first={
+	  \node[fill=white, rounded corners, draw=white, text=blue, line width=3pt, inner sep=4pt, anchor=east, xshift=-10pt] at (frame.north east) {#2};
+	  \node[anchor=north east, text=blue, fill=white, text width=3.5em, align=right, minimum height=4ex] at ([xshift=4.5\marginparsep]frame.north east)  {\small  Bsp \stepcounter{exa}\theexa \newline \textcolor{black}{ #3} };
+},
+  colframe=blue,
+  colback=white,
+  coltitle=red!70!blue,
+  boxrule=1pt,
+  arc=1mm,
+  breakable,
+  top=5pt,
+  before=\vskip18pt
+}
+
+% Nummerierung
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+
+\begin{document}
+\title{Mathematik für Ingenieure\\ \vspace{0.5cm} {Ein Einstieg in Multivariate Analysis}}
+\author{Prof. Dr. Lucy Weggler (HTW Berlin)}
+\date{\today}
+\maketitle
+\setcounter{page}{2}
+
+\tableofcontents
+\cleardoublepage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0}
+\input{../Multivariate_Analysis/funktionen_mehrerer_veraenderlicher}
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0}
+\input{../Multivariate_Analysis/lokale_analysis}
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0}
+\input{../Multivariate_Analysis/koordinatensysteme}
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0}
+\input{../Multivariate_Analysis/mehrdimensionale_integrale}
+\newpage
+
+\setcounter{def}{0} \setcounter{satz}{0} \setcounter{exa}{0}
+\input{../Multivariate_Analysis/leitideen/multivariate_analysis}
+\newpage
+
+\end{document}

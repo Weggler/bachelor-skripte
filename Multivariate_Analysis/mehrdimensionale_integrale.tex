@@ -1,0 +1,289 @@
+\chapter{Integration in mehr Dimensionen}\label{MULTI-mehrdimensionale-integrale}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X r@{}}
+    \toprule
+    \multicolumn{2}{c}{\textbf{Übersicht über Lernziele und Voraussetzungen}}\\
+    \midrule
+    \textbf{Lernziele} & \\[.5\normalbaselineskip]
+    \tabitem Mehrfachintegrale geometrisch als Volumen oder Gesamtgröße interpretieren & \\
+    \tabitem kartesische Mehrfachintegrale durch iterierte Integration berechnen & \\
+    \tabitem Integrationsbereiche geeignet parametrisieren & \\
+    \tabitem Mehrfachintegrale in Polarkoordinaten, Zylinder- und Kugelkoordinaten berechnen & \\
+    \tabitem Flächenintegrale als Integration einer Dichtegröße über eine Fläche interpretieren & \\[.5\normalbaselineskip]
+    \midrule
+    \textbf{Voraussetzungen} & \\[.5\normalbaselineskip]
+    \tabitem bestimmte Integrale &  \\
+    \tabitem Skalarprodukte & \\
+    \tabitem partielle Ableitungen und Gradienten & \abschnittsverweis{MULTI-funktionen-mehrerer-veraenderlicher} \\
+    \tabitem Koordinatentransformationen (polar, zylindrisch, sphärisch) & \abschnittsverweis{MULTI-koordinatensysteme}  \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\section*{Leitidee}
+
+Bisher haben wir Werkzeuge kennengelernt, mit denen sich das \emph{lokale Verhalten}
+einer Funktion beschreiben lässt: partielle Ableitungen, Gradient, Jacobi-Matrix
+und Tangentialebene.
+
+Viele Anwendungen interessieren sich jedoch nicht für lokale Änderungen,
+sondern für \emph{Gesamtgrößen}. Beispiele sind:
+
+\begin{itemize}
+\item die Gesamtmasse eines Körpers aus seiner Massendichte,
+\item die gesamte elektrische Ladung aus einer Ladungsdichte,
+\item die gesamte Energie aus einer Energiedichte,
+\item das Volumen unter einer Fläche.
+\end{itemize}
+
+Die zentrale Idee der Integralrechnung besteht darin,
+eine solche Gesamtgröße als Summe vieler kleiner lokaler Beiträge zu berechnen.
+
+Bei Funktionen einer Veränderlichen summiert man Beiträge entlang einer Strecke.
+Bei Funktionen mehrerer Veränderlicher summiert man Beiträge über Flächen oder
+Volumen.
+
+Mehrfachintegrale verallgemeinern also das eindimensionale Integral auf höhere
+Dimensionen. Sie erlauben es, lokale Dichten über ihren gesamten Definitionsbereich
+aufzusummieren und so globale Größen zu bestimmen.
+
+Dabei spielen geeignete Koordinatensysteme eine wichtige Rolle.
+Wählt man Koordinaten, die zur Symmetrie eines Problems passen
+(z.\,B. Polar-, Zylinder- oder Kugelkoordinaten),
+werden viele Integrale deutlich einfacher.
+
+\section{Berechnung kartesischer Mehrfachintegrale}
+
+Das bestimmte Integral einer Funktion einer Veränderlichen gibt die Fläche unter dem Funktionsgraphen an
+\[ A = \int_a^b f(x) \, \mathrm d x\,.\]
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../Multivariate_Analysis/Bilder/integral_flaecheninhalt.png}
+\caption{Integral liefert den Flächeninhalt unter dem Graph von \(f(x)\).}
+\end{figure}
+
+\vspace{0.5cm}
+
+Entsprechend gibt das Integral einer Funktion zweier Veränderlicher das Volumen unter dem Funktionsgraphen an. Der Integrationsbereich \(D\) ist nun eine Teilmenge des $\mathbb R^2$, das Differential eine infinitessimales Flächenstück \(\mathrm d A\). Um anzudeuten, dass man über eine Fläche integriert schreibt man oft ein doppeltes Integralsymbol:
+\[ V = \iint_D f(x,y) \, \mathrm d A\,.\]
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Multivariate_Analysis/Bilder/mehrfachintegral_volumen.png}
+\caption{Integral liefert das Volumen unter dem Graph von \(f(x,y)\).}
+\end{figure}
+
+Hängt eine Funktion von dreier  Veränderlichen ab, dann integrieren wir selbst über ein Volumen (darstellen kann man das dann leider nicht mehr gut). In der  Anwendung kommen Volumenintegrale aber  sehr häufig vor. Möchte man die Gesamtmasse eines Stoffes bestimmen, dessen Dichte von \(x,y\) und \(z\) abhängt, wobei der Stoff das Volumen \(V\) einnimmt, dann muss man über das Volumen \(V\) integrieren:
+\[ M = \iiint_V \delta(x,y,z) \, \mathrm d V  \,.  \]
+
+\begin{center}
+\textbf{Wie integriert man über eine Fläche oder ein Volumen?}
+\end{center}
+
+Angenommen, die Funktion $f(x,y):=x^2+y^2$ soll über das Dreieck zwischen den Punkten $(0|0)$, $(1|0)$ und $(0|1)$ integriert werden. Gesucht ist also sozusagen das Volumen eines dreieckigen Tortenstücks unter dem Paraboloid:
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Multivariate_Analysis/Bilder/mehrfachintegral_dreieckiger_bereich.png}
+\caption{Integral liefert das Volumen zwischen dreieckigem Integrationsgebiet und Paraboloid \(f(x,y)\).}
+\end{figure}
+
+Der übliche Trick besteht nun darin, den Integrationsbereich
+(d.\,h.\ das Dreieck) längs der $x$- oder der $y$-Achse in
+horizontale Salamischeiben zu schneiden, zum Beispiel so:
+\[
+D=\{(x,y)\mid 0\le x\le 1,\;0\le y\le 1-x\}.
+\]
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../Multivariate_Analysis/Bilder/iterierte_integration_vertikale_schnitte.png}
+\caption{Zerlegung des Integrationsgebiets in vertikale Scheiben: mache \(y\) von \(x\) abhängig.}
+\end{figure}
+
+Hierdurch kann man das Mehrfachintegral in ein eindimensionales
+Integral eines eindimensionalen Integrals umwandeln, bei dem
+die Grenzen des inneren Integrals von der Variablen des äußeren
+Integrals abhängen:
+\[
+\iint_D f(x,y)\,\mathrm dA
+=
+\int_0^1
+\int_0^{1-x}
+f(x,y)\,\mathrm dy\,\mathrm dx .
+\]
+Man könnte auch andersrum vorgehen und das Integrationsgebiet in horizontale Scheiben zerlegen: die Variable
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.4\textwidth]{../Multivariate_Analysis/Bilder/iterierte_integration_horizontale_schnitte.png}
+\caption{Zerlegung des Integrationsgebiets in horizontale Scheiben: mache \(x\) von \(y\) abhängig.}
+\end{figure}
+Diese Zerlegung formuliert \(x\) in Abhängigkeit von \(y\):
+\[
+	D=\{(x,y)\mid 0\le y\le 1,\;0\le x\le 1-y\}\,,
+\]
+und entsprechend wird zuerst die Variable \(x\) aus und danach \(y\) ausintegriert:
+
+\[
+\iint_D f(x,y)\,\mathrm dA
+=
+\int_0^1 \int_0^{1-y} f(x,y)\,\mathrm dx\,\mathrm dy
+\]
+
+Auf dieselbe Weise werden Funktionen von drei und mehr
+Veränderlichen integriert.
+
+\section{ Integration in Polarkoordinaten und Zylinderkoordinaten}
+
+Eine  Funktion $f(r,\varphi)$  und  ein  Integrationsbereich  seien  in  Polarkoordinaten gegeben. Dann möchte man gerne über $r$ und $\varphi$ integrieren statt über $x$ und $y$. Wenn man sich die Integration als Grenzfall einer Summe vorstellt, summiert man in kartesischen Koordinaten hohe oder tiefe Quader mit kleiner quadratischer Grundfläche $\mathrm{d}x \,\mathrm{d}y$ und Höhe $\varphi(x,y)$. Bei Polarkoordinaten sind die Grundflächen dagegen nicht mehr quadratisch, sondern kleine Sektoren von Kreisringen. Die Fläche eines solchen Stücks ist \textbf{nicht} $ \mathrm{d}r \,\mathrm{d}\varphi$, sondern verlangt einen Korrekturfaktor:
+\[ \mathrm dx \, \mathrm dy = r \, \mathrm r \, \mathrm d \varphi\]
+
+Damit ergibt sich für ein Flächenintegral in Polarkoordinaten
+
+\[
+\iint_A f(x,y)\,\mathrm dA
+=
+\iiint
+f(r\,\cos(\varphi),
+r\,\sin(\varphi)) \, r\,
+\,\mathrm dr\,\mathrm d\varphi\,. \]
+
+Die Fläche einer Kreisscheibe mit Radius $R$ um den Ursprung wird zu einer fast trivialen Integrationsaufgabe:
+\[A_{\textnormal{Kreis}} = \iint_S \,\mathrm d A = \int\limits_0^R \,\int\limits_0^{2\pi} r\,\mathrm d r \, \mathrm d \varphi = \dfrac12\, R^2 \cdot 2 \pi = \pi \, R^2\,. \]
+
+In Zylinderkoordinaten ist derselbe Korrekturfaktor nötig,
+\[ \mathrm dx \, \mathrm dy \, \mathrm d z = r \, \mathrm r \, \mathrm d \varphi \, \mathrm d z\]
+
+Damit ergibt sich für ein Volumenintegral in Zylinderkoordinaten
+
+\[
+	\iiint_V f(x,y,z)\,\mathrm dV
+=
+\iiint
+f(r\,\cos(\varphi),
+r\,\sin(\varphi), z) \, r\,
+\,\mathrm dr\,\mathrm d\varphi \, \mathrm d z\,. \]
+
+\section{Integration in Kugelkoordinaten}
+
+Die Integration einer Funktion über ein Volumen $V$ kann man sich als Grenzwert
+von Summen über kleine Teilvolumina vorstellen. Zerlegt man den Raum in kleine
+Quader der Größe $\Delta x \,\Delta y\,\Delta z$, erhält man die Riemannsumme
+
+\[
+\int_V f(x,y,z)\,\mathrm dV
+=
+\lim_{n\to\infty}
+\sum_{k=1}^n
+f(x_k,y_k,z_k)\,\Delta x\,\Delta y\,\Delta z .
+\]
+
+Die Faktoren $\Delta x\,\Delta y\,\Delta z$ sind dabei die Volumina der kleinen
+kartesischen Würfel.
+
+Verwendet man statt kartesischer Koordinaten Kugelkoordinaten
+\[
+(r,\theta,\varphi),
+\]
+so wird der Raum nicht mehr durch Würfel, sondern durch kleine gekrümmte
+Volumenelemente zerlegt. Für hinreichend kleine Schritte
+$\mathrm dr$, $\mathrm d\theta$, $\mathrm d\varphi$
+kann man dieses Volumen näherungsweise aus den lokalen
+Kantenlängen bestimmen.
+
+In radialer Richtung hat das Volumenelement die Länge $\mathrm dr$.
+In Richtung des Polarwinkels $\theta$ entspricht eine Winkeländerung
+$\mathrm d\theta$ der Bogenlänge $r\,\mathrm d\theta$.
+In Richtung des Azimutwinkels $\varphi$ entsteht die Bogenlänge
+$r\sin\theta\,\mathrm d\varphi$.
+
+Multipliziert man diese drei lokalen Kantenlängen, erhält man das
+Volumenelement
+
+\[
+\mathrm dV
+=
+\mathrm dr \, (r\,\mathrm d\theta) \, (r\,\sin(\theta)\,\mathrm d\varphi)
+=
+r^2\, \sin (\theta)\,\mathrm dr\,\mathrm d(\theta)\,\mathrm d(\varphi)\, .
+\]
+
+Damit ergibt sich für ein Volumenintegral in Kugelkoordinaten
+
+\[
+\iiint_V f(x,y,z)\,\mathrm dV
+=
+\iiint
+f(r\,\sin(\theta) \,\cos(\varphi),
+  r\,\sin(\theta) \,\sin(\varphi),
+  r\,\cos(\theta) )
+\, r^2\sin\theta
+\,\mathrm dr\,\mathrm d\theta\,\mathrm d\varphi\,. \]
+
+Das Volumen einer Kugel lässt sich sehr einfach bestimmen, denn \(f=1\):
+\[
+\iiint_V \,\mathrm dV
+=
+\iiint\mathrm dr\,\mathrm d\theta\,\mathrm d\varphi = \dfrac13\, R^3 \cdot (-\cos(\pi) + \cos(0)) \cdot 2 \pi = \dfrac43 \,\pi \, R^3\,. \]
+
+\subsection*{Anwendungen}
+
+In der Elektrotechnik beschreibt die Stromdichte
+\[
+\vec J(\vec r)
+\]
+die elektrische Stromstärke pro Flächeneinheit.
+Ihre Einheit ist
+\[
+\mathrm{A/m^2}.
+\]
+
+Die Stromdichte ist also eine \emph{Flächendichte} des Stroms:
+Sie gibt an, wie viel Strom durch eine infinitesimal kleine
+Fläche fließt.
+
+Betrachtet man ein kleines Flächenelement $\mathrm dA$
+mit Normalenvektor $\vec n$, so ist der durch dieses
+Element fließende Strom
+
+\[
+\mathrm dI
+=
+\vec J \cdot \vec n \,\mathrm dA.
+\]
+
+Der gesamte Strom durch eine Querschnittsfläche $A$
+ergibt sich durch Aufsummieren aller lokalen Beiträge:
+
+\[
+I
+=
+\int_A \vec J \cdot \vec n \,\mathrm dA.
+\]
+
+Das Flächenintegral wandelt also eine lokale Dichtegröße
+(Strom pro Fläche) in die globale Gesamtgröße Strom um.
+
+\bigskip
+
+\textbf{Strukturelle Analogie:}
+
+\[
+\text{Strom} = \int \text{Stromdichte} \,\mathrm d(\text{Fläche})
+\]
+
+Vergleich:
+
+\[
+\text{Energie} = \int \text{Leistung} \,\mathrm dt
+\]
+
+\[
+\text{Masse} = \int \text{Massendichte} \,\mathrm dx
+\]
+
+In allen Fällen wird eine lokale Intensitäts- oder Dichtegröße
+über ihren Bezugsraum integriert, um die zugehörige Gesamtgröße
+zu erhalten.
