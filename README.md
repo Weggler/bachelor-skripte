@@ -73,6 +73,12 @@ Die Präambeln laden außerdem `LaTeX/ausgabemodus.tex`. Der boolesche Schalter 
 
 - Ergänzendes Material ist weder durchgehend geprüft noch stilistisch vereinheitlicht.
 
-## Urheberschaft und Lizenz
+## Urheberschaft
 
-Die eigenen Lehrmaterialien stehen unter CC BY-NC-SA 4.0. Die bestätigte Urheberschaft einzelner Materialgruppen und offene Quellenangaben sind in [QUELLEN.md](QUELLEN.md) dokumentiert. Weitere Angaben stehen in [LIZENZ.md](LIZENZ.md).
+Die bestätigte Urheberschaft des Materials und offene Quellenangaben sind in [QUELLEN.md](QUELLEN.md) dokumentiert. 
+
+## Lizenz
+
+Die Lehrmaterialien dieses Repositories stehen unter der Lizenz **[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de)**, siehe [LIZENZ.md](LIZENZ.md).
+
+Die Materialien dürfen unter **Namensnennung (Weggler)** frei verwendet, geteilt und bearbeitet werden, sofern die Nutzung **nicht kommerziell** erfolgt und Bearbeitungen unter **derselben Lizenz** veröffentlicht werden.
